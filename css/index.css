@@ -453,6 +453,9 @@ blockquote p {
   margin-left: 17%;
   padding-top: 0.8rem;
 }
+.post-top-item {
+  margin-left: 17%;
+}
 .category-lists {
   margin-left: 17%;
   padding: 3rem 0 3rem;
