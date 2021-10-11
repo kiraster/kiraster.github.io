@@ -44,26 +44,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我理解的费曼学习方法</title>
     <url>/posts/237b6272.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
@@ -89,6 +69,26 @@
       <tags>
         <tag>方法论</tag>
         <tag>费曼学习方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -311,22 +311,22 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C设备SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改“Send”后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
+    <title>This is a post page</title>
+    <url>/posts/52dfdc3d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>This is a post page</strong></p>
+<ul>
+<li>Where is this page display?</li>
+<li>Is anthing should be edit?</li>
+<li>It is a test page.</li>
+<li>^_^</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
-        <category>巡检脚本</category>
+        <category>Categories-test</category>
+        <category>Categories-test-1</category>
       </categories>
       <tags>
-        <tag>巡检脚本</tag>
-        <tag>H3C设备巡检</tag>
+        <tag>Categories-test</tag>
       </tags>
   </entry>
   <entry>
@@ -355,22 +355,22 @@
       </tags>
   </entry>
   <entry>
-    <title>This is a post page</title>
-    <url>/posts/52dfdc3d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>This is a post page</strong></p>
-<ul>
-<li>Where is this page display?</li>
-<li>Is anthing should be edit?</li>
-<li>It is a test page.</li>
-<li>^_^</li>
+    <title>H3C设备SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
+<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改“Send”后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
 </ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>Categories-test</category>
-        <category>Categories-test-1</category>
+        <category>巡检脚本</category>
       </categories>
       <tags>
-        <tag>Categories-test</tag>
+        <tag>巡检脚本</tag>
+        <tag>H3C设备巡检</tag>
       </tags>
   </entry>
   <entry>
@@ -413,6 +413,49 @@
       <tags>
         <tag>ENSP模拟器</tag>
         <tag>USG防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客调整更新日志</title>
+    <url>/posts/e2a2e564.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
+<li>添加文章页评论邮件提醒功能</li>
+</ul>
+<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
+<li>修改博客网站访问地址不带二级目录</li>
+<li>修正修改访问地址后文章阅读次数显示为0问题</li>
+<li>修正whoami页面显示双footer栏问题</li>
+</ul>
+<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
+<li>修正文章阅读次数显示为0问题</li>
+<li><del>添加文章模板updated参数</del></li>
+<li>对网站添加百度统计</li>
+</ul>
+<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
+<li>制作修改博客Logo，更改cover图片</li>
+<li>修改导航栏标签为中文</li>
+<li>启用valine评论代码</li>
+<li>添加文章页END结束分割线</li>
+<li>添加文章页上一篇下一篇链接</li>
+<li>添加post文章模板，添加categories,series,cover,tags参数</li>
+<li>修改网页底部footer，添加网站运行时间记录</li>
+<li>更换图标库链接</li>
+<li>添加网站图床</li>
+<li>更换文章页播放音乐</li>
+<li>更换网站首页Website slogans动态文字</li>
+<li><del>文章页和about页添加网易云音乐</del></li>
+<li><del>文章页添加“友情链接”</del></li>
+<li><del>更换部分页面左上角图标返回链接</del></li>
+<li>添加abbrlink插件，修改文章页url链接</li>
+<li>博客网站本地初始调试工作完成，推送至Gitee</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>更新日志</category>
+      </categories>
+      <tags>
+        <tag>更新日志</tag>
       </tags>
   </entry>
   <entry>
@@ -473,49 +516,6 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>博客调整更新日志</title>
-    <url>/posts/e2a2e564.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
-<li>添加文章页评论邮件提醒功能</li>
-</ul>
-<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
-<li>修改博客网站访问地址不带二级目录</li>
-<li>修正修改访问地址后文章阅读次数显示为0问题</li>
-<li>修正whoami页面显示双footer栏问题</li>
-</ul>
-<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
-<li>修正文章阅读次数显示为0问题</li>
-<li><del>添加文章模板updated参数</del></li>
-<li>对网站添加百度统计</li>
-</ul>
-<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
-<li>制作修改博客Logo，更改cover图片</li>
-<li>修改导航栏标签为中文</li>
-<li>启用valine评论代码</li>
-<li>添加文章页END结束分割线</li>
-<li>添加文章页上一篇下一篇链接</li>
-<li>添加post文章模板，添加categories,series,cover,tags参数</li>
-<li>修改网页底部footer，添加网站运行时间记录</li>
-<li>更换图标库链接</li>
-<li>添加网站图床</li>
-<li>更换文章页播放音乐</li>
-<li>更换网站首页Website slogans动态文字</li>
-<li><del>文章页和about页添加网易云音乐</del></li>
-<li><del>文章页添加“友情链接”</del></li>
-<li><del>更换部分页面左上角图标返回链接</del></li>
-<li>添加abbrlink插件，修改文章页url链接</li>
-<li>博客网站本地初始调试工作完成，推送至Gitee</li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>更新日志</category>
-      </categories>
-      <tags>
-        <tag>更新日志</tag>
-      </tags>
   </entry>
   <entry>
     <title>HCL-路由器双出口策略配置实验</title>
