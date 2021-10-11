@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>九十年代</title>
     <url>/posts/8847b633.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
@@ -38,6 +18,26 @@
 <p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
 <p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
 <p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
 <p>……</p>
 ]]></content>
       <categories>
@@ -247,28 +247,83 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Theme: Obsidian</title>
-    <url>/posts/9cdc001c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
-<blockquote>
-<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
-</blockquote>
-<blockquote>
-<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
-</blockquote>
-<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
+    <title>H3C设备SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
+<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改“Send”后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
-<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
-<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
-<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
 ]]></content>
       <categories>
-        <category>Themes</category>
+        <category>巡检脚本</category>
       </categories>
       <tags>
-        <tag>主题介绍</tag>
+        <tag>巡检脚本</tag>
+        <tag>H3C设备巡检</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>This is a post page</title>
+    <url>/posts/52dfdc3d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>This is a post page</strong></p>
+<ul>
+<li>Where is this page display?</li>
+<li>Is anthing should be edit?</li>
+<li>It is a test page.</li>
+<li>^_^</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Categories-test</category>
+        <category>Categories-test-1</category>
+      </categories>
+      <tags>
+        <tag>Categories-test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ENSP-防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
+    <url>/posts/ab67d7a4.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
+<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
+<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
+<li>通过修改admin的密码，修改vty配置，修改管理接口配置测试验证导入配置的实用性</li>
+</ul>
+<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在电脑本地新建xxx.cfg(后缀名为.cfg)文件，文件内容如下</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在浏览器输入192.168.10.2:8443，可跳转到防火墙登陆界面</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>使用SecureCRT软件，可登陆到防火墙设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>ENSP模拟器</category>
+      </categories>
+      <tags>
+        <tag>ENSP模拟器</tag>
+        <tag>USG防火墙</tag>
       </tags>
   </entry>
   <entry>
@@ -336,104 +391,6 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C设备SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改“Send”后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>巡检脚本</category>
-      </categories>
-      <tags>
-        <tag>巡检脚本</tag>
-        <tag>H3C设备巡检</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>This is a post page</title>
-    <url>/posts/52dfdc3d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>This is a post page</strong></p>
-<ul>
-<li>Where is this page display?</li>
-<li>Is anthing should be edit?</li>
-<li>It is a test page.</li>
-<li>^_^</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Categories-test</category>
-        <category>Categories-test-1</category>
-      </categories>
-      <tags>
-        <tag>Categories-test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>ENSP-防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
-    <url>/posts/ab67d7a4.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
-<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
-<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
-<li>通过修改admin的密码，修改vty配置，修改管理接口配置测试验证导入配置的实用性</li>
-</ul>
-<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在电脑本地新建xxx.cfg(后缀名为.cfg)文件，文件内容如下</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在浏览器输入192.168.10.2:8443，可跳转到防火墙登陆界面</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>使用SecureCRT软件，可登陆到防火墙设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
-<p>​    </p>
-]]></content>
-      <categories>
-        <category>ENSP模拟器</category>
-      </categories>
-      <tags>
-        <tag>ENSP模拟器</tag>
-        <tag>USG防火墙</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HCL vpn-instance不同实例互通实验</title>
     <url>/posts/eb7e5d69.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验拓扑和需求"><a href="#实验拓扑和需求" class="headerlink" title="实验拓扑和需求"></a><strong>实验拓扑和需求</strong></h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"><img src = "https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"  /></a></p>
@@ -473,6 +430,24 @@
         <tag>VPN实例</tag>
         <tag>实例互通</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>博客调整更新日志</title>
@@ -579,6 +554,31 @@
         <tag>扯谈</tag>
         <tag>南山南</tag>
         <tag>北秋悲</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Theme: Obsidian</title>
+    <url>/posts/9cdc001c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
+<blockquote>
+<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
+</blockquote>
+<blockquote>
+<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
+</blockquote>
+<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
+
+
+<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
+<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
+<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
+<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
+]]></content>
+      <categories>
+        <category>Themes</category>
+      </categories>
+      <tags>
+        <tag>主题介绍</tag>
       </tags>
   </entry>
 </search>
