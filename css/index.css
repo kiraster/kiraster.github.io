@@ -451,10 +451,11 @@ blockquote p {
 }
 .recent-post-item {
   margin-left: 17%;
-  padding-top: 0.8rem;
+  margin-top: 0.8rem;
 }
 .post-top-item {
   margin-left: 17%;
+  margin-top: 0.8rem;
 }
 .category-lists {
   margin-left: 17%;
