@@ -1,8 +1,6 @@
+User-agent: Googlebot
+
 User-agent: *
 Allow: /
-Allow: /archives/
-Allow: /tags/
-Allow: /categories/
-Allow: /whoami/
-Allow: /_posts/
-Sitemap: https://kiraster.github.io//sitemap.xml
+
+Sitemap: https://kiraster.github.io/sitemap.xml
