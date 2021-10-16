@@ -1,0 +1,11 @@
+.post-copyright {
+  margin-left: 4rem;
+  padding: 0.5em 0.5em;
+  border-left: 2px solid #ff1700;
+  background-color: #f9f9f9;
+  line-height: 0.8;
+  list-style: none;
+}
+.post-copyright li {
+  margin: 8px 0;
+}
