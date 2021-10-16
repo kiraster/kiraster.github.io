@@ -26,23 +26,7 @@
       </tags>
   </entry>
   <entry>
-    <title>关于开始扯谈</title>
-    <url>/posts/49183d2a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗<br>肚里墨水浅，蹦不出几个字    </p>
-<p>晚上躺床，可能由于早已被破坏了的生物钟的影响<br>时常辗转反侧，脑里思绪万千<br>明明是身体驱使着我要睡了要睡了<br>但是脑子并不协调躯体</p>
-<p>躺床的我使劲的翻看手机屏幕<br>完全忘记了床的两大原始作用，你懂我意思吗</p>
-<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡<br>喜马拉雅，定一个倒计时<br>强行把自己深夜的思绪带入场景中<br>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
-<p>眼睛一睁已是第二天的差不多日上三竿的时间<br>洗洗醒醒坐坐，一天开始了</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ENSP-防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
+    <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
@@ -81,6 +65,22 @@
       <tags>
         <tag>ENSP模拟器</tag>
         <tag>USG防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于开始扯谈</title>
+    <url>/posts/49183d2a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗<br>肚里墨水浅，蹦不出几个字    </p>
+<p>晚上躺床，可能由于早已被破坏了的生物钟的影响<br>时常辗转反侧，脑里思绪万千<br>明明是身体驱使着我要睡了要睡了<br>但是脑子并不协调躯体</p>
+<p>躺床的我使劲的翻看手机屏幕<br>完全忘记了床的两大原始作用，你懂我意思吗</p>
+<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡<br>喜马拉雅，定一个倒计时<br>强行把自己深夜的思绪带入场景中<br>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
+<p>眼睛一睁已是第二天的差不多日上三竿的时间<br>洗洗醒醒坐坐，一天开始了</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -139,66 +139,7 @@
       </tags>
   </entry>
   <entry>
-    <title>博客调整更新日志</title>
-    <url>/posts/e2a2e564.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
-<li>使用<a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a>主题，感谢作者<a href="https://phower.me/">Le Phower’s</a></li>
-<li>博客从Gitee迁移到Github</li>
-<li>修改主题配置文件</li>
-<li>修改sidebar的social内容</li>
-<li>主页content修改为显示最近十篇文章</li>
-<li>主页content添加置顶文章</li>
-<li>除category页和about页外添加pagination</li>
-<li>添加category页，添加tag-cloud</li>
-<li>添加archive页</li>
-<li>添加about页</li>
-<li>post页面侧边栏添加article-toc文章目录</li>
-<li>添加百度统计，谷歌统计，谷歌收录，bing收录</li>
-<li><del>侧边栏添加aplayer播放器，显示效果不美观，已注释代码</del></li>
-<li><del>page_main的div CSS浮动问题未解决</del></li>
-</ul>
-<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
-<li><del>添加文章页评论邮件提醒功能</del></li>
-</ul>
-<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
-<li><del>修改博客网站访问地址不带二级目录</del></li>
-<li><del>修正修改访问地址后文章阅读次数显示为0问题</del></li>
-<li><del>修正whoami页面显示双footer栏问题</del></li>
-</ul>
-<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
-<li><del>修正文章阅读次数显示为0问题</del></li>
-<li><del>添加文章模板updated参数</del></li>
-<li><del>对网站添加百度统计</del></li>
-</ul>
-<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
-<li><del>制作修改博客Logo，更改cover图片</del></li>
-<li><del>修改导航栏标签为中文</del></li>
-<li><del>启用valine评论代码</del></li>
-<li><del>添加文章页END结束分割线</del></li>
-<li><del>添加文章页上一篇下一篇链接</del></li>
-<li><del>添加post文章模板，添加categories,series,cover,tags参数</del></li>
-<li><del>修改网页底部footer，添加网站运行时间记录</del></li>
-<li><del>更换图标库链接</del></li>
-<li><del>添加网站图床</del></li>
-<li><del>更换文章页播放音乐</del></li>
-<li><del>更换网站首页Website slogans动态文字</del></li>
-<li><del>文章页和about页添加网易云音乐</del></li>
-<li><del>文章页添加“友情链接”</del></li>
-<li><del>更换部分页面左上角图标返回链接</del></li>
-<li><del>添加abbrlink插件，修改文章页url链接</del></li>
-<li><del>博客网站本地初始调试工作完成，推送至Gitee</del></li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>更新日志</category>
-      </categories>
-      <tags>
-        <tag>更新日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HCL-一个小实验的思路</title>
+    <title>HCL_一个小实验的思路</title>
     <url>/posts/c7ac5477.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验说明："><a href="#实验说明：" class="headerlink" title="实验说明："></a>实验说明：</h2><p><strong>设备互联线路，IP地址、路由协议、可靠性等配置自定义</strong></p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg"><img src="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg" width="61.8%" align="center" ></a></p>
@@ -274,78 +215,62 @@
       </tags>
   </entry>
   <entry>
-    <title>HCL-路由器双出口策略配置实验</title>
-    <url>/posts/4e82271c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" /></a></p>
-<h2 id="路由器出口策略配置说明"><a href="#路由器出口策略配置说明" class="headerlink" title="路由器出口策略配置说明"></a>路由器出口策略配置说明</h2><h3 id="NQA"><a href="#NQA" class="headerlink" title="NQA"></a>NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置探测电信DNS的NQA</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68 //探测远端DNS地址</span><br><span class="line">  frequency 2000 //每间隔2秒探测一次</span><br><span class="line">  history-record enable //开启NQA历史记录保存功能</span><br><span class="line">  history-record number 5 //保存的最大历史记录个数为5条</span><br><span class="line">  next-hop ip 101.1.1.2 //探测报文经过的下一跳</span><br><span class="line">  probe count 5 //每次探测检测5次</span><br><span class="line">  probe timeout 1000 //检测超时时间1秒</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only //连续探测失败5次，触发其他模块联动</span><br><span class="line">  source ip 101.1.1.1 //探测报文源地址</span><br><span class="line"></span><br><span class="line"># 配置探测联通DNS的NQA</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line"></span><br><span class="line"># 当前时间起永久启用NQA监测</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="track关联NQA"><a href="#track关联NQA" class="headerlink" title="track关联NQA"></a>track关联NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#  </span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="策略路由配置，联动"><a href="#策略路由配置，联动" class="headerlink" title="策略路由配置，联动"></a>策略路由配置，联动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line"></span><br><span class="line"># 指定下一跳时与track 200联动，当NQA监测失败结果时，策略路由失效，流量根据路由表转发流量</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line"># 默认路由与track 100联动，当NQA监测失败结果时，该条默认路由失效，优先级为80的默认路由加载路由表，流量根据路由表转发流量</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"></span><br><span class="line"># 内网流量入接口下调用策略路由</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line">ip policy-based-route to_isp_policy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="测试说明："><a href="#测试说明：" class="headerlink" title="测试说明："></a>测试说明：</h2><p>外网网络正常情况，查看nqa监测结果，探测发出的数据包和收到的数据包数量一致</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png"><img src="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png" ></a></p>
-<p>通过debug查看NAT转换信息，vlan10去往互联网DNS地址的流量走101.1.1.2下一跳地址，vlan20去往互联网DNS地址的流量走202.1.1.2下一跳地址<br><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png"><img src="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png" ></a></p>
-<h3 id="当电信网络不可用时"><a href="#当电信网络不可用时" class="headerlink" title="当电信网络不可用时"></a>当电信网络不可用时</h3><p>当电信网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png"><img src="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png" ></a></p>
-<p><a data-fancybox="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png"><img src="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png" ></a></p>
-<p>路由表中，默认路由的下一跳为202.1.1.2</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png"><img src="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png" ></a></p>
-<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png"><img src="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png" ></a></p>
-<p>通过debug查看NAT转换信息，所有流量走联通网络出口</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png"><img src="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png" ></a></p>
-<h3 id="当联通网络不可用时"><a href="#当联通网络不可用时" class="headerlink" title="当联通网络不可用时"></a>当联通网络不可用时</h3><p>当联通网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png"><img src="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png"><img src="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png" ></a></p>
-<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png"><img src="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png" ></a></p>
-<p>通过debug查看NAT转换信息，所有流量走电信网络出口</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png"><img src="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png" ></a></p>
-<h2 id="路由器配置："><a href="#路由器配置：" class="headerlink" title="路由器配置："></a>路由器配置：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname Router</span><br><span class="line">#</span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1</span><br><span class="line">#</span><br><span class="line"> system-working-mode standard</span><br><span class="line"> xbar load-single</span><br><span class="line"> password-recovery enable</span><br><span class="line"> lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br><span class="line">#</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 101.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 101.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line">#</span><br><span class="line">interface Serial1/0</span><br><span class="line">#</span><br><span class="line">interface Serial2/0</span><br><span class="line">#</span><br><span class="line">interface Serial3/0</span><br><span class="line">#</span><br><span class="line">interface Serial4/0</span><br><span class="line">#</span><br><span class="line">interface NULL0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 1.1.1.1 255.255.255.252</span><br><span class="line"> ip policy-based-route to_isp_policy</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 101.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/2</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 202.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line"> scheduler logfile size 16</span><br><span class="line">#</span><br><span class="line">line class aux </span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class console</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line class tty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class vty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line aux 0</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line con 0</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line vty 0 63</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"> ip route-static 192.168.10.0 24 1.1.1.2</span><br><span class="line"> ip route-static 192.168.20.0 24 1.1.1.2</span><br><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip</span><br><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br><span class="line">domain name system</span><br><span class="line">#</span><br><span class="line"> domain default enable system</span><br><span class="line">#</span><br><span class="line">role name level-0</span><br><span class="line"> description Predefined level-0 role</span><br><span class="line">#</span><br><span class="line">role name level-1</span><br><span class="line"> description Predefined level-1 role</span><br><span class="line">#</span><br><span class="line">role name level-2</span><br><span class="line"> description Predefined level-2 role</span><br><span class="line">#</span><br><span class="line">role name level-3</span><br><span class="line"> description Predefined level-3 role</span><br><span class="line">#</span><br><span class="line">role name level-4</span><br><span class="line"> description Predefined level-4 role</span><br><span class="line">#</span><br><span class="line">role name level-5</span><br><span class="line"> description Predefined level-5 role</span><br><span class="line">#</span><br><span class="line">role name level-6</span><br><span class="line"> description Predefined level-6 role</span><br><span class="line">#</span><br><span class="line">role name level-7</span><br><span class="line"> description Predefined level-7 role</span><br><span class="line">#</span><br><span class="line">role name level-8</span><br><span class="line"> description Predefined level-8 role</span><br><span class="line">#</span><br><span class="line">role name level-9</span><br><span class="line"> description Predefined level-9 role</span><br><span class="line">#</span><br><span class="line">role name level-10</span><br><span class="line"> description Predefined level-10 role</span><br><span class="line">#</span><br><span class="line">role name level-11</span><br><span class="line"> description Predefined level-11 role</span><br><span class="line">#</span><br><span class="line">role name level-12</span><br><span class="line"> description Predefined level-12 role</span><br><span class="line">#</span><br><span class="line">role name level-13</span><br><span class="line"> description Predefined level-13 role</span><br><span class="line">#</span><br><span class="line">role name level-14</span><br><span class="line"> description Predefined level-14 role</span><br><span class="line">#</span><br><span class="line">user-group system</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">&lt;Router&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>HCL模拟器</category>
-      </categories>
-      <tags>
-        <tag>路由器双出口策略配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C设备SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改“Send”后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
+    <title>博客调整更新日志</title>
+    <url>/posts/e2a2e564.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
+<li>使用<a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a>主题，感谢作者<a href="https://phower.me/">Le Phower’s</a></li>
+<li>博客从Gitee迁移到Github</li>
+<li>修改主题配置文件</li>
+<li>修改sidebar的social内容</li>
+<li>主页content修改为显示最近十篇文章</li>
+<li>主页content添加置顶文章</li>
+<li>除category页和about页外添加pagination</li>
+<li>添加category页，添加tag-cloud</li>
+<li>添加archive页</li>
+<li>添加about页</li>
+<li>post页面侧边栏添加article-toc文章目录</li>
+<li>添加百度统计，谷歌统计，谷歌收录，bing收录</li>
+<li><del>侧边栏添加aplayer播放器，显示效果不美观，已注释代码</del></li>
+<li><del>page_main的div CSS浮动问题未解决</del></li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
+<li><del>添加文章页评论邮件提醒功能</del></li>
+</ul>
+<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
+<li><del>修改博客网站访问地址不带二级目录</del></li>
+<li><del>修正修改访问地址后文章阅读次数显示为0问题</del></li>
+<li><del>修正whoami页面显示双footer栏问题</del></li>
+</ul>
+<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
+<li><del>修正文章阅读次数显示为0问题</del></li>
+<li><del>添加文章模板updated参数</del></li>
+<li><del>对网站添加百度统计</del></li>
+</ul>
+<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
+<li><del>制作修改博客Logo，更改cover图片</del></li>
+<li><del>修改导航栏标签为中文</del></li>
+<li><del>启用valine评论代码</del></li>
+<li><del>添加文章页END结束分割线</del></li>
+<li><del>添加文章页上一篇下一篇链接</del></li>
+<li><del>添加post文章模板，添加categories,series,cover,tags参数</del></li>
+<li><del>修改网页底部footer，添加网站运行时间记录</del></li>
+<li><del>更换图标库链接</del></li>
+<li><del>添加网站图床</del></li>
+<li><del>更换文章页播放音乐</del></li>
+<li><del>更换网站首页Website slogans动态文字</del></li>
+<li><del>文章页和about页添加网易云音乐</del></li>
+<li><del>文章页添加“友情链接”</del></li>
+<li><del>更换部分页面左上角图标返回链接</del></li>
+<li><del>添加abbrlink插件，修改文章页url链接</del></li>
+<li><del>博客网站本地初始调试工作完成，推送至Gitee</del></li>
+</ul>
+<hr>
 ]]></content>
       <categories>
-        <category>巡检脚本</category>
+        <category>更新日志</category>
       </categories>
       <tags>
-        <tag>巡检脚本</tag>
-        <tag>H3C设备巡检</tag>
+        <tag>更新日志</tag>
       </tags>
   </entry>
   <entry>
@@ -413,6 +338,81 @@
       </tags>
   </entry>
   <entry>
+    <title>HCL_路由器双出口策略配置实验</title>
+    <url>/posts/4e82271c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" /></a></p>
+<h2 id="路由器出口策略配置说明"><a href="#路由器出口策略配置说明" class="headerlink" title="路由器出口策略配置说明"></a>路由器出口策略配置说明</h2><h3 id="NQA"><a href="#NQA" class="headerlink" title="NQA"></a>NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置探测电信DNS的NQA</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68 //探测远端DNS地址</span><br><span class="line">  frequency 2000 //每间隔2秒探测一次</span><br><span class="line">  history-record enable //开启NQA历史记录保存功能</span><br><span class="line">  history-record number 5 //保存的最大历史记录个数为5条</span><br><span class="line">  next-hop ip 101.1.1.2 //探测报文经过的下一跳</span><br><span class="line">  probe count 5 //每次探测检测5次</span><br><span class="line">  probe timeout 1000 //检测超时时间1秒</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only //连续探测失败5次，触发其他模块联动</span><br><span class="line">  source ip 101.1.1.1 //探测报文源地址</span><br><span class="line"></span><br><span class="line"># 配置探测联通DNS的NQA</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line"></span><br><span class="line"># 当前时间起永久启用NQA监测</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="track关联NQA"><a href="#track关联NQA" class="headerlink" title="track关联NQA"></a>track关联NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#  </span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="策略路由配置，联动"><a href="#策略路由配置，联动" class="headerlink" title="策略路由配置，联动"></a>策略路由配置，联动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line"></span><br><span class="line"># 指定下一跳时与track 200联动，当NQA监测失败结果时，策略路由失效，流量根据路由表转发流量</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line"># 默认路由与track 100联动，当NQA监测失败结果时，该条默认路由失效，优先级为80的默认路由加载路由表，流量根据路由表转发流量</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"></span><br><span class="line"># 内网流量入接口下调用策略路由</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line">ip policy-based-route to_isp_policy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="测试说明："><a href="#测试说明：" class="headerlink" title="测试说明："></a>测试说明：</h2><p>外网网络正常情况，查看nqa监测结果，探测发出的数据包和收到的数据包数量一致</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png"><img src="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png" ></a></p>
+<p>通过debug查看NAT转换信息，vlan10去往互联网DNS地址的流量走101.1.1.2下一跳地址，vlan20去往互联网DNS地址的流量走202.1.1.2下一跳地址<br><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png"><img src="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png" ></a></p>
+<h3 id="当电信网络不可用时"><a href="#当电信网络不可用时" class="headerlink" title="当电信网络不可用时"></a>当电信网络不可用时</h3><p>当电信网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png"><img src="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png" ></a></p>
+<p><a data-fancybox="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png"><img src="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png" ></a></p>
+<p>路由表中，默认路由的下一跳为202.1.1.2</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png"><img src="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png" ></a></p>
+<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png"><img src="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png" ></a></p>
+<p>通过debug查看NAT转换信息，所有流量走联通网络出口</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png"><img src="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png" ></a></p>
+<h3 id="当联通网络不可用时"><a href="#当联通网络不可用时" class="headerlink" title="当联通网络不可用时"></a>当联通网络不可用时</h3><p>当联通网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png"><img src="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png"><img src="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png" ></a></p>
+<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png"><img src="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png" ></a></p>
+<p>通过debug查看NAT转换信息，所有流量走电信网络出口</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png"><img src="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png" ></a></p>
+<h2 id="路由器配置："><a href="#路由器配置：" class="headerlink" title="路由器配置："></a>路由器配置：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname Router</span><br><span class="line">#</span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1</span><br><span class="line">#</span><br><span class="line"> system-working-mode standard</span><br><span class="line"> xbar load-single</span><br><span class="line"> password-recovery enable</span><br><span class="line"> lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br><span class="line">#</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 101.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 101.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line">#</span><br><span class="line">interface Serial1/0</span><br><span class="line">#</span><br><span class="line">interface Serial2/0</span><br><span class="line">#</span><br><span class="line">interface Serial3/0</span><br><span class="line">#</span><br><span class="line">interface Serial4/0</span><br><span class="line">#</span><br><span class="line">interface NULL0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 1.1.1.1 255.255.255.252</span><br><span class="line"> ip policy-based-route to_isp_policy</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 101.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/2</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 202.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line"> scheduler logfile size 16</span><br><span class="line">#</span><br><span class="line">line class aux </span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class console</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line class tty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class vty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line aux 0</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line con 0</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line vty 0 63</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"> ip route-static 192.168.10.0 24 1.1.1.2</span><br><span class="line"> ip route-static 192.168.20.0 24 1.1.1.2</span><br><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip</span><br><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br><span class="line">domain name system</span><br><span class="line">#</span><br><span class="line"> domain default enable system</span><br><span class="line">#</span><br><span class="line">role name level-0</span><br><span class="line"> description Predefined level-0 role</span><br><span class="line">#</span><br><span class="line">role name level-1</span><br><span class="line"> description Predefined level-1 role</span><br><span class="line">#</span><br><span class="line">role name level-2</span><br><span class="line"> description Predefined level-2 role</span><br><span class="line">#</span><br><span class="line">role name level-3</span><br><span class="line"> description Predefined level-3 role</span><br><span class="line">#</span><br><span class="line">role name level-4</span><br><span class="line"> description Predefined level-4 role</span><br><span class="line">#</span><br><span class="line">role name level-5</span><br><span class="line"> description Predefined level-5 role</span><br><span class="line">#</span><br><span class="line">role name level-6</span><br><span class="line"> description Predefined level-6 role</span><br><span class="line">#</span><br><span class="line">role name level-7</span><br><span class="line"> description Predefined level-7 role</span><br><span class="line">#</span><br><span class="line">role name level-8</span><br><span class="line"> description Predefined level-8 role</span><br><span class="line">#</span><br><span class="line">role name level-9</span><br><span class="line"> description Predefined level-9 role</span><br><span class="line">#</span><br><span class="line">role name level-10</span><br><span class="line"> description Predefined level-10 role</span><br><span class="line">#</span><br><span class="line">role name level-11</span><br><span class="line"> description Predefined level-11 role</span><br><span class="line">#</span><br><span class="line">role name level-12</span><br><span class="line"> description Predefined level-12 role</span><br><span class="line">#</span><br><span class="line">role name level-13</span><br><span class="line"> description Predefined level-13 role</span><br><span class="line">#</span><br><span class="line">role name level-14</span><br><span class="line"> description Predefined level-14 role</span><br><span class="line">#</span><br><span class="line">user-group system</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">&lt;Router&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>HCL模拟器</category>
+      </categories>
+      <tags>
+        <tag>路由器双出口策略配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
+<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改“Send”后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>巡检脚本</category>
+      </categories>
+      <tags>
+        <tag>巡检脚本</tag>
+        <tag>H3C设备巡检</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>H3C_V5_V7设备巡检信息提取</title>
     <url>/posts/80e04e00.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备CPU使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用python脚本写入到巡检报告或者表格中。</p>
@@ -439,7 +439,7 @@
       </tags>
   </entry>
   <entry>
-    <title>HCL vpn-instance不同实例互通实验</title>
+    <title>HCL_vpn-instance不同实例互通实验</title>
     <url>/posts/eb7e5d69.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验拓扑和需求"><a href="#实验拓扑和需求" class="headerlink" title="实验拓扑和需求"></a><strong>实验拓扑和需求</strong></h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"><img src = "https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"  /></a></p>
 <p>实验模拟的是一个总部和一个分支站点的网络，网络中总部和分支相同VPN实例网络互通，不同VPN实例网络相互隔离，总部VPN2中特殊主机PC_8需要访问位于分支网络中的VPN1网络</p>
@@ -480,7 +480,7 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C S5500-52C-EI升级步骤</title>
+    <title>H3C_S5500-52C-EI升级步骤</title>
     <url>/posts/e765d177.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载升级所需要的两个文件：</p>
 <p><strong>S5500EI-BTM-721.btm</strong>（新版本Bootrom程序）</p>
@@ -656,6 +656,114 @@
         <tag>Blog</tag>
         <tag>脚本</tag>
         <tag>hexo命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_连接L2TP的客户端设置(图片)</title>
+    <url>/posts/ab889e59.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode客户端设置"><a href="#iNode客户端设置" class="headerlink" title="iNode客户端设置"></a>iNode客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" ></a></p>
+
+<h2 id="windows-端配置—网络中心添加"><a href="#windows-端配置—网络中心添加" class="headerlink" title="windows 端配置—网络中心添加"></a>windows 端配置—网络中心添加</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" ></a></p>
+]]></content>
+      <categories>
+        <category>H3C</category>
+      </categories>
+      <tags>
+        <tag>H3C</tag>
+        <tag>L2TP</tag>
+        <tag>LAC端配置</tag>
+        <tag>iNode客户端</tag>
+        <tag>windows自带</tag>
+        <tag>网络中心添加</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_线路测试脚本</title>
+    <url>/posts/60e83b3d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个ping测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩python，就想着能不能做个脚本自己跑，最后实现了，而且生成excel表格统计测试成功和测试失败的信息。</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="记录会话日志（log-session）"><a href="#记录会话日志（log-session）" class="headerlink" title="记录会话日志（log session）"></a>记录会话日志（log session）</h3><ul>
+<li>设置会话属性参数（可单独设置串口会话、telnet会话和ssh会话，右键会话属性修改即可）</li>
+</ul>
+<p><a data-fancybox="gallery" a href="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" ></a></p>
+<ul>
+<li>设置log file 参数（设置保存路径，选项，日志的开头和结束位置插入信息（脚本用于判断结束的位置））</li>
+</ul>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg" ></a></p>
+<h3 id="制作端口和IP信息的txt文件"><a href="#制作端口和IP信息的txt文件" class="headerlink" title="制作端口和IP信息的txt文件"></a>制作端口和IP信息的txt文件</h3><p>说明：第一列为网络中心路由器接口，第二列为对端网点设备的IP地址（接口和IP我已经处理过了，假的，真的不会贴出来）</p>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg" ></a></p>
+<h3 id="编写ping测试python脚本"><a href="#编写ping测试python脚本" class="headerlink" title="编写ping测试python脚本"></a>编写ping测试python脚本</h3><ul>
+<li>脚本内容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># $language = &quot;python&quot;</span><br><span class="line"># $interface = &quot;1.0&quot;</span><br><span class="line">import os</span><br><span class="line">import SecureCRT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    crt.Screen.Synchronous = True</span><br><span class="line">    with open(&#x27;F:/SR66_Test/SR66.txt&#x27;, &#x27;r&#x27;) as rfile:</span><br><span class="line">        ping_list = rfile.readlines()</span><br><span class="line">        # 遍历SR66文件里的每一行，把第1列赋值给 port_info，第二列赋值给 ping_ip</span><br><span class="line">        for ping_info in ping_list:</span><br><span class="line">            port_info = ping_info.split()[0]</span><br><span class="line">            ping_ip = ping_info.split()[1]</span><br><span class="line">            crt.Screen.Send(&#x27;\r&#x27;)</span><br><span class="line">            # 在路由器命令行界面输入#+port_info并回车，例如：#GE4/1/0.111</span><br><span class="line">            crt.Screen.Send(&#x27;#&#x27; + port_info + &#x27;\r&#x27;)</span><br><span class="line">            # 在路由器命令行界面输入ping -c + ping_ip并回车，例如：ping -c 3 100.10.142.30</span><br><span class="line">            crt.Screen.Send(&#x27;ping -c 3 &#x27; + ping_ip + &#x27;\r&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>SceureCRT登陆路由器，点击 “Script” –&gt; “Run”选择脚本，运行脚本。运行时间取决于线路的正常连通和测试的数量</li>
+</ul>
+<h3 id="编写结果统计python脚本"><a href="#编写结果统计python脚本" class="headerlink" title="编写结果统计python脚本"></a>编写结果统计python脚本</h3><ol>
+<li>处理ping测试后的 log session日志记录</li>
+<li>提取ping测试的结果信息（会同时生成一个result.txt的文件）</li>
+<li>对result.txt文件的信息进行处理生成excel表格</li>
+</ol>
+<ul>
+<li>脚本内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Author：KIRASTER</span><br><span class="line"># Time：2021/x/x x:x</span><br><span class="line"># Description：</span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line">import xlsxwriter as xw</span><br><span class="line">from xlsxwriter import Workbook</span><br><span class="line"></span><br><span class="line">filename = &#x27;F:/SR66_Test/xxx.log&#x27;</span><br><span class="line">resultfilename = &#x27;F:/SR66_Test/result.txt&#x27;</span><br><span class="line">if os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = open(&#x27;F:/SR66_Test/result.txt&#x27;, &#x27;a&#x27;)</span><br><span class="line"></span><br><span class="line">with open(filename, &#x27;r&#x27;, encoding=&#x27;utf8&#x27;) as file_to_read:</span><br><span class="line">    while True:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        if &quot;GE&quot; in lines:</span><br><span class="line">            #  # 提取GE开头的行，也就是端口和IP信息的txt文件里的第一列，并且换行符替换制表符</span><br><span class="line">            result_line1 = re.sub(r&#x27;^.*?#_&#x27;, &#x27;&#x27;, lines)</span><br><span class="line">            result_line1 = result_line1.replace(&quot;\n&quot;, &quot;\t&quot;)</span><br><span class="line">            print(result_line1)</span><br><span class="line">            result_txt.write(result_line1)</span><br><span class="line">        if &quot;--- Ping statistics&quot; in lines:</span><br><span class="line">            # 提取包含“--- Ping statistics”这一行，替换成“ping + IP”，并且换行符替换制表符</span><br><span class="line">            result_line2 = re.sub(r&#x27;^.*?for&#x27;, &#x27;ping&#x27;, lines)</span><br><span class="line">            result_line2 = result_line2.replace(&quot;-&quot;, &quot;&quot;)</span><br><span class="line">            result_line2 = result_line2.replace(&quot;\n&quot;, &quot;\t&quot;)</span><br><span class="line">            print(result_line2)</span><br><span class="line">            result_txt.write(result_line2)</span><br><span class="line">            lines = next(file_to_read)</span><br><span class="line">            # 提取下一行，替换成“result: 0.0% packet loss”</span><br><span class="line">            result_line3 = re.sub(r&#x27;^.*?received,&#x27;, &#x27;result:&#x27;, lines)</span><br><span class="line">            print(result_line3)</span><br><span class="line">            result_txt.write(result_line3)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        if &quot;结束记录时间&quot; in lines:</span><br><span class="line">            # 遍历到“结束记录时间”这行，中断循环</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">workbook: Workbook = xw.Workbook(&#x27;F:/SR66_Test/result.xlsx&#x27;)</span><br><span class="line"></span><br><span class="line">sheet0 = workbook.add_worksheet(&#x27;测试结果&#x27;)</span><br><span class="line">centered = workbook.add_format(&#123;&#x27;align&#x27;: &#x27;center&#x27;&#125;)</span><br><span class="line">red_style = workbook.add_format(&#123;</span><br><span class="line">    &quot;fg_color&quot;: &quot;red&quot;,&#x27;align&#x27;: &#x27;center&#x27;,&#x27;bold&#x27;: True&#125;)</span><br><span class="line">green_style = workbook.add_format(&#123;</span><br><span class="line">    &quot;fg_color&quot;: &quot;green&quot;,&#x27;align&#x27;: &#x27;center&#x27;,&#x27;bold&#x27;: True&#125;)</span><br><span class="line">blue_style = workbook.add_format(&#123;</span><br><span class="line">    &quot;fg_color&quot;: &quot;#8DB4E2&quot;,&#x27;align&#x27;: &#x27;center&#x27;&#125;)</span><br><span class="line">sheet0.write(0, 0, &#x27;检测端口&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 1, &#x27;对端IP地址&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 2, &#x27;返回结果&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 3, &#x27;检测结果&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 4, &#x27;线路正常&#x27;, green_style)</span><br><span class="line"># sheet0.write(0, 5, &#x27;&#x27;, green_style)</span><br><span class="line">sheet0.write(0, 6, &#x27;检测失败&#x27;, red_style)</span><br><span class="line"># sheet0.write(0, 7, &#x27;&#x27;, red_style)</span><br><span class="line">sheet0.set_column(0, 0, width=20)</span><br><span class="line">sheet0.set_column(1, 1, width=24)</span><br><span class="line">sheet0.set_column(2, 2, width=28)</span><br><span class="line">sheet0.set_column(3, 3, width=12.38)</span><br><span class="line">sheet0.set_column(4, 4, width=12.38)</span><br><span class="line">sheet0.set_column(5, 5, width=5)</span><br><span class="line">sheet0.set_column(6, 6, width=12.38)</span><br><span class="line">sheet0.set_column(7, 7, width=5)</span><br><span class="line">sheet0.freeze_panes(1, 8, top_row=1)</span><br><span class="line"># sheet0.filter_column_list(&quot;D&quot;, [&#x27;正常&#x27;, &#x27;检测失败&#x27;])</span><br><span class="line">sheet0.filter_column_list(3, &#x27;x = &quot;正常&quot;&#x27;)</span><br><span class="line">sheet0.write_formula(&#x27;D2&#x27;, &#x27;&#123;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;检测失败&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;正常&quot;))&#125;&#x27;)</span><br><span class="line">sheet0.write_formula(&#x27;F1&#x27;, &#x27;&#123;=SUMPRODUCT((D2:D999=&quot;正常&quot;)*1)&#125;&#x27;)</span><br><span class="line">sheet0.write_formula(&#x27;H1&#x27;, &#x27;&#123;=SUMPRODUCT((D2:D999=&quot;检测失败&quot;)*1)&#125;&#x27;)</span><br><span class="line"></span><br><span class="line">with open(&#x27;D:/SR6608_Test/result.txt&#x27;) as file_object:</span><br><span class="line">    lines = file_object.readlines()</span><br><span class="line">    file_object.close()</span><br><span class="line"></span><br><span class="line">i = 1</span><br><span class="line">x = 1</span><br><span class="line">for xls_line in lines:</span><br><span class="line">    if &quot;GE&quot; in xls_line:</span><br><span class="line">        xls_line = xls_line.strip(&#x27;\n&#x27;)</span><br><span class="line">        xls_line = xls_line.split(&#x27;\t&#x27;)</span><br><span class="line">        print(xls_line)</span><br><span class="line">        port_info = xls_line[0]</span><br><span class="line">        ip_addr = xls_line[1]</span><br><span class="line">        return_info = xls_line[2]</span><br><span class="line">        sheet0.write(i, 0, port_info, )</span><br><span class="line">        sheet0.write(i, 1, ip_addr, )</span><br><span class="line">        sheet0.write(i, 2, return_info, )</span><br><span class="line">        # sheet0.write_formula(x, 3, &#x27;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;正常&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;检测失败&quot;))&#x27;)</span><br><span class="line">        i += 1</span><br><span class="line">        x += 1</span><br><span class="line"></span><br><span class="line">workbook.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ping测试的log session文件</li>
+</ul>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" ></a></p>
+<ul>
+<li>生成的result.txt文件</li>
+</ul>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" ></a></p>
+<ul>
+<li>生成的excel表格</li>
+</ul>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" ></a></p>
+]]></content>
+      <categories>
+        <category>H3C</category>
+      </categories>
+      <tags>
+        <tag>脚本</tag>
+        <tag>线路测试</tag>
+        <tag>割接工作</tag>
+        <tag>Python脚本</tag>
       </tags>
   </entry>
 </search>
