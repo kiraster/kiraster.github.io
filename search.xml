@@ -26,48 +26,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
-    <url>/posts/ab67d7a4.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
-<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
-<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
-<li>通过修改admin的密码，修改vty配置，修改管理接口配置测试验证导入配置的实用性</li>
-</ul>
-<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在电脑本地新建xxx.cfg(后缀名为.cfg)文件，文件内容如下</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在浏览器输入192.168.10.2:8443，可跳转到防火墙登陆界面</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>使用SecureCRT软件，可登陆到防火墙设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
-<p>​    </p>
-]]></content>
-      <categories>
-        <category>ENSP模拟器</category>
-      </categories>
-      <tags>
-        <tag>ENSP模拟器</tag>
-        <tag>USG防火墙</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于开始扯谈</title>
     <url>/posts/49183d2a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗<br>肚里墨水浅，蹦不出几个字    </p>
@@ -109,6 +67,48 @@
       <tags>
         <tag>方法论</tag>
         <tag>费曼学习方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
+    <url>/posts/ab67d7a4.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
+<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
+<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
+<li>通过修改admin的密码，修改vty配置，修改管理接口配置测试验证导入配置的实用性</li>
+</ul>
+<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在电脑本地新建xxx.cfg(后缀名为.cfg)文件，文件内容如下</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在浏览器输入192.168.10.2:8443，可跳转到防火墙登陆界面</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>使用SecureCRT软件，可登陆到防火墙设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>ENSP模拟器</category>
+      </categories>
+      <tags>
+        <tag>ENSP模拟器</tag>
+        <tag>USG防火墙</tag>
       </tags>
   </entry>
   <entry>
@@ -215,65 +215,6 @@
       </tags>
   </entry>
   <entry>
-    <title>博客调整更新日志</title>
-    <url>/posts/e2a2e564.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
-<li>使用<a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a>主题，感谢作者<a href="https://phower.me/">Le Phower’s</a></li>
-<li>博客从Gitee迁移到Github</li>
-<li>修改主题配置文件</li>
-<li>修改sidebar的social内容</li>
-<li>主页content修改为显示最近十篇文章</li>
-<li>主页content添加置顶文章</li>
-<li>除category页和about页外添加pagination</li>
-<li>添加category页，添加tag-cloud</li>
-<li>添加archive页</li>
-<li>添加about页</li>
-<li>post页面侧边栏添加article-toc文章目录</li>
-<li>添加百度统计，谷歌统计，谷歌收录，bing收录</li>
-<li><del>侧边栏添加aplayer播放器，显示效果不美观，已注释代码</del></li>
-<li><del>page_main的div CSS浮动问题未解决</del></li>
-</ul>
-<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
-<li><del>添加文章页评论邮件提醒功能</del></li>
-</ul>
-<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
-<li><del>修改博客网站访问地址不带二级目录</del></li>
-<li><del>修正修改访问地址后文章阅读次数显示为0问题</del></li>
-<li><del>修正whoami页面显示双footer栏问题</del></li>
-</ul>
-<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
-<li><del>修正文章阅读次数显示为0问题</del></li>
-<li><del>添加文章模板updated参数</del></li>
-<li><del>对网站添加百度统计</del></li>
-</ul>
-<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
-<li><del>制作修改博客Logo，更改cover图片</del></li>
-<li><del>修改导航栏标签为中文</del></li>
-<li><del>启用valine评论代码</del></li>
-<li><del>添加文章页END结束分割线</del></li>
-<li><del>添加文章页上一篇下一篇链接</del></li>
-<li><del>添加post文章模板，添加categories,series,cover,tags参数</del></li>
-<li><del>修改网页底部footer，添加网站运行时间记录</del></li>
-<li><del>更换图标库链接</del></li>
-<li><del>添加网站图床</del></li>
-<li><del>更换文章页播放音乐</del></li>
-<li><del>更换网站首页Website slogans动态文字</del></li>
-<li><del>文章页和about页添加网易云音乐</del></li>
-<li><del>文章页添加“友情链接”</del></li>
-<li><del>更换部分页面左上角图标返回链接</del></li>
-<li><del>添加abbrlink插件，修改文章页url链接</del></li>
-<li><del>博客网站本地初始调试工作完成，推送至Gitee</del></li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>更新日志</category>
-      </categories>
-      <tags>
-        <tag>更新日志</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>B站视频教程-简明现代汉语语法_学习</title>
     <url>/posts/51f223b9.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
@@ -338,6 +279,85 @@
       </tags>
   </entry>
   <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客调整更新日志</title>
+    <url>/posts/e2a2e564.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
+<li>使用<a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a>主题，感谢作者<a href="https://phower.me/">Le Phower’s</a></li>
+<li>博客从Gitee迁移到Github</li>
+<li>修改主题配置文件</li>
+<li>修改sidebar的social内容</li>
+<li>主页content修改为显示最近十篇文章</li>
+<li>主页content添加置顶文章</li>
+<li>除category页和about页外添加pagination</li>
+<li>添加category页，添加tag-cloud</li>
+<li>添加archive页</li>
+<li>添加about页</li>
+<li>post页面侧边栏添加article-toc文章目录</li>
+<li>添加百度统计，谷歌统计，谷歌收录，bing收录</li>
+<li><del>侧边栏添加aplayer播放器，显示效果不美观，已注释代码</del></li>
+<li><del>page_main的div CSS浮动问题未解决</del></li>
+</ul>
+<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
+<li><del>添加文章页评论邮件提醒功能</del></li>
+</ul>
+<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
+<li><del>修改博客网站访问地址不带二级目录</del></li>
+<li><del>修正修改访问地址后文章阅读次数显示为0问题</del></li>
+<li><del>修正whoami页面显示双footer栏问题</del></li>
+</ul>
+<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
+<li><del>修正文章阅读次数显示为0问题</del></li>
+<li><del>添加文章模板updated参数</del></li>
+<li><del>对网站添加百度统计</del></li>
+</ul>
+<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
+<li><del>制作修改博客Logo，更改cover图片</del></li>
+<li><del>修改导航栏标签为中文</del></li>
+<li><del>启用valine评论代码</del></li>
+<li><del>添加文章页END结束分割线</del></li>
+<li><del>添加文章页上一篇下一篇链接</del></li>
+<li><del>添加post文章模板，添加categories,series,cover,tags参数</del></li>
+<li><del>修改网页底部footer，添加网站运行时间记录</del></li>
+<li><del>更换图标库链接</del></li>
+<li><del>添加网站图床</del></li>
+<li><del>更换文章页播放音乐</del></li>
+<li><del>更换网站首页Website slogans动态文字</del></li>
+<li><del>文章页和about页添加网易云音乐</del></li>
+<li><del>文章页添加“友情链接”</del></li>
+<li><del>更换部分页面左上角图标返回链接</del></li>
+<li><del>添加abbrlink插件，修改文章页url链接</del></li>
+<li><del>博客网站本地初始调试工作完成，推送至Gitee</del></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>更新日志</category>
+      </categories>
+      <tags>
+        <tag>更新日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HCL_路由器双出口策略配置实验</title>
     <url>/posts/4e82271c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" /></a></p>
@@ -374,45 +394,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改“Send”后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>巡检脚本</category>
-      </categories>
-      <tags>
-        <tag>巡检脚本</tag>
-        <tag>H3C设备巡检</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>H3C_V5_V7设备巡检信息提取</title>
     <url>/posts/80e04e00.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备CPU使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用python脚本写入到巡检报告或者表格中。</p>
@@ -436,6 +417,25 @@
       <tags>
         <tag>设备巡检</tag>
         <tag>H3C设备</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
+<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改“Send”后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>巡检脚本</category>
+      </categories>
+      <tags>
+        <tag>巡检脚本</tag>
+        <tag>H3C设备巡检</tag>
       </tags>
   </entry>
   <entry>
@@ -489,13 +489,15 @@
 <p><strong>S5500EI-CMW520-R2222P12.bin</strong>（新版本主机软件）</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-CMW520-R2222P12.bin</span><br><span class="line">大小: 14386411 字节 (13 MiB)</span><br><span class="line">CRC32: D2E2387E</span><br><span class="line">CRC64: 5806015C822E9D46</span><br><span class="line">SHA256: 33F9948CF29DEEE01C2449DEC499E35AC1721331F6E73644526F9D2BF9B6C2E0</span><br><span class="line">SHA1: 8D50B9BAD0E80F6DCE14E3C941D3E74CA8D72B96</span><br><span class="line">BLAKE2sp: 7510F4902CE03E9ABF44E480C4DF642782818AAF9F400E8E8716AFC7F18C6BE2</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\kir.KIR-PC\AppData\Roaming\Typora\typora-user-images\image-20210914171027192.png" alt="image-20210914171027192"></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" target="_blank"><img src="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" ></a></p>
+
 <h2 id="登陆查看版本信息和Flash空间"><a href="#登陆查看版本信息和Flash空间" class="headerlink" title="登陆查看版本信息和Flash空间"></a>登陆查看版本信息和Flash空间</h2><h3 id="查看当前主机软件版本和Bootrom版本"><a href="#查看当前主机软件版本和Bootrom版本" class="headerlink" title="查看当前主机软件版本和Bootrom版本"></a>查看当前主机软件版本和Bootrom版本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;display version</span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2202</span><br><span class="line">Copyright (c) 2004-2010 Hangzhou H3C Tech. Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 5 weeks, 3 days, 20 hours, 9 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 609</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
 
 <h3 id="查看Flash-剩余空间"><a href="#查看Flash-剩余空间" class="headerlink" title="查看Flash 剩余空间"></a>查看Flash 剩余空间</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17880  Sep 07 2021 15:25:30   startup.cfg</span><br><span class="line"></span><br><span class="line">31496 KB total (21277 KB free)</span><br></pre></td></tr></table></figure>
 
 <p>确保Flash有<strong>14.1</strong>M以上剩余空间（新版本软件共14.1M）</p>
-<h2 id="通过FTP实现远程加载文件"><a href="#通过FTP实现远程加载文件" class="headerlink" title="通过FTP实现远程加载文件"></a>通过FTP实现远程加载文件</h2><p><img src="F:\Picture_2020\Screen_Capture\ScreenCaputure210914190418.jpeg"></p>
+<h2 id="通过FTP实现远程加载文件"><a href="#通过FTP实现远程加载文件" class="headerlink" title="通过FTP实现远程加载文件"></a>通过FTP实现远程加载文件</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" ></a></p>
+
 <p>如 图 所示，FTP Server与配置计算机是同一台计算机。远程登录到交换机上，执行FTP命令，从FTP Server上（假定IP地址为 2.2.2.1）下载主机程序<strong>S5500EI-CMW520-R2222P12.bin</strong> 和BOOTROM程序 <strong>S5500EI-BTM-721.btm</strong>。</p>
 <p><strong>备份Flash 文件</strong></p>
 <p>加载文件前使用FTP命令备份文件</p>
@@ -533,30 +535,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于新主题博客</title>
-    <url>/posts/f2af2fdc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" ></a></p>
-
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
-<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
-
-<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>GiteePages</tag>
-        <tag>博客迁移</tag>
-        <tag>为什么</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>大梦初醒 荒唐了一生</title>
     <url>/posts/2703fb4a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
@@ -582,6 +560,30 @@
         <tag>扯谈</tag>
         <tag>南山南</tag>
         <tag>北秋悲</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于新主题博客</title>
+    <url>/posts/f2af2fdc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" ></a></p>
+
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
+<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
+
+<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>GiteePages</tag>
+        <tag>博客迁移</tag>
+        <tag>为什么</tag>
       </tags>
   </entry>
   <entry>
