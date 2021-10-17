@@ -3,11 +3,12 @@
   padding: 0.2em 0.2em;
   border-left: 2px solid #438cb5;
   background-color: #f9f9f9;
-  line-height: 1.5;
+  line-height: 0.9;
   list-style: none;
 }
 .post-copyright li {
   margin: 8px 0;
+  font-size: 0.8em;
 }
 .page pre,
 .page .highlight {
