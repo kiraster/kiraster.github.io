@@ -1,48 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
-    <url>/posts/ab67d7a4.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
-<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
-<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
-<li>通过修改admin的密码，修改vty配置，修改管理接口配置测试验证导入配置的实用性</li>
-</ul>
-<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在电脑本地新建xxx.cfg(后缀名为.cfg)文件，文件内容如下</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在浏览器输入192.168.10.2:8443，可跳转到防火墙登陆界面</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>使用SecureCRT软件，可登陆到防火墙设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
-<p>​    </p>
-]]></content>
-      <categories>
-        <category>ENSP模拟器</category>
-      </categories>
-      <tags>
-        <tag>ENSP模拟器</tag>
-        <tag>USG防火墙</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于开始扯谈</title>
     <url>/posts/49183d2a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗<br>肚里墨水浅，蹦不出几个字    </p>
@@ -50,61 +8,6 @@
 <p>躺床的我使劲的翻看手机屏幕<br>完全忘记了床的两大原始作用，你懂我意思吗</p>
 <p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡<br>喜马拉雅，定一个倒计时<br>强行把自己深夜的思绪带入场景中<br>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
 <p>眼睛一睁已是第二天的差不多日上三竿的时间<br>洗洗醒醒坐坐，一天开始了</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
-</ul>
-]]></content>
-      <categories>
-        <category>方法论</category>
-      </categories>
-      <tags>
-        <tag>方法论</tag>
-        <tag>费曼学习方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>九十年代</title>
-    <url>/posts/8847b633.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
-<p>那时候人事物，我稍微回忆一下</p>
-<p>老爸买的黑白电视机，带有车牌号的自行车……</p>
-<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
-<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
-<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起VCD机</p>
-<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
-<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是BB机，我老爸有一个</p>
-<p>那时候村里起房子，砖是从田里挖泥造的</p>
-<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
-<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
-<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
-<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
-<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
-<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
-<p>……</p>
 ]]></content>
       <categories>
         <category>扯谈</category>
@@ -190,6 +93,48 @@
       </tags>
   </entry>
   <entry>
+    <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
+    <url>/posts/ab67d7a4.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
+<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
+<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
+<li>通过修改admin的密码，修改vty配置，修改管理接口配置测试验证导入配置的实用性</li>
+</ul>
+<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在电脑本地新建xxx.cfg(后缀名为.cfg)文件，文件内容如下</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在浏览器输入192.168.10.2:8443，可跳转到防火墙登陆界面</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>使用SecureCRT软件，可登陆到防火墙设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>ENSP模拟器</category>
+      </categories>
+      <tags>
+        <tag>ENSP模拟器</tag>
+        <tag>USG防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Theme: Obsidian</title>
     <url>/posts/9cdc001c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
@@ -212,6 +157,61 @@
       </categories>
       <tags>
         <tag>主题介绍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>九十年代</title>
+    <url>/posts/8847b633.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
+<p>那时候人事物，我稍微回忆一下</p>
+<p>老爸买的黑白电视机，带有车牌号的自行车……</p>
+<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
+<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
+<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起VCD机</p>
+<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
+<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是BB机，我老爸有一个</p>
+<p>那时候村里起房子，砖是从田里挖泥造的</p>
+<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
+<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
+<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
+<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
+<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
+<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
+]]></content>
+      <categories>
+        <category>方法论</category>
+      </categories>
+      <tags>
+        <tag>方法论</tag>
+        <tag>费曼学习方法</tag>
       </tags>
   </entry>
   <entry>
@@ -539,58 +539,6 @@
       </tags>
   </entry>
   <entry>
-    <title>大梦初醒 荒唐了一生</title>
-    <url>/posts/2703fb4a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
-<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ资料界面一直挂着这首歌</p>
-<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
-<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p>
-<p>带感情的演唱，好像作者在表达不为人知的情感</p>
-<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
-<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
-<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
-<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
-<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
-<p>你要问我为什么拉黑，我回答不喜欢</p>
-<p>你要问我什么原因，同上</p>
-<p>不解释，我自己心里有一些抽象的名词</p>
-<p>原则、底线、信仰、情感……</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-        <tag>南山南</tag>
-        <tag>北秋悲</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于新主题博客</title>
-    <url>/posts/f2af2fdc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" ></a></p>
-
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
-<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
-
-<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>GiteePages</tag>
-        <tag>博客迁移</tag>
-        <tag>为什么</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我的一些blog常用小操作</title>
     <url>/posts/c1906682.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是^_^"></a>这是^_^</h2><p>自己日常操作的一些小命令和插件。</p>
@@ -665,56 +613,55 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C_连接L2TP的客户端设置(图片)</title>
-    <url>/posts/ab889e59.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode客户端设置"><a href="#iNode客户端设置" class="headerlink" title="iNode客户端设置"></a>iNode客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" ></a></p>
-
-<h2 id="windows-端配置—网络中心添加"><a href="#windows-端配置—网络中心添加" class="headerlink" title="windows 端配置—网络中心添加"></a>windows 端配置—网络中心添加</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" ></a></p>
+    <title>大梦初醒 荒唐了一生</title>
+    <url>/posts/2703fb4a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
+<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ资料界面一直挂着这首歌</p>
+<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
+<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p>
+<p>带感情的演唱，好像作者在表达不为人知的情感</p>
+<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
+<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
+<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
+<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
+<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
+<p>你要问我为什么拉黑，我回答不喜欢</p>
+<p>你要问我什么原因，同上</p>
+<p>不解释，我自己心里有一些抽象的名词</p>
+<p>原则、底线、信仰、情感……</p>
+<p>……</p>
 ]]></content>
       <categories>
-        <category>H3C</category>
+        <category>扯谈</category>
       </categories>
       <tags>
-        <tag>H3C</tag>
-        <tag>L2TP</tag>
-        <tag>LAC端配置</tag>
-        <tag>iNode客户端</tag>
-        <tag>windows自带</tag>
-        <tag>网络中心添加</tag>
+        <tag>扯谈</tag>
+        <tag>南山南</tag>
+        <tag>北秋悲</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于新主题博客</title>
+    <url>/posts/f2af2fdc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" ></a></p>
+
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
+<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
+
+<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>GiteePages</tag>
+        <tag>博客迁移</tag>
+        <tag>为什么</tag>
       </tags>
   </entry>
   <entry>
@@ -770,6 +717,59 @@
         <tag>线路测试</tag>
         <tag>割接工作</tag>
         <tag>Python脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_连接L2TP的客户端设置(图片)</title>
+    <url>/posts/ab889e59.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode客户端设置"><a href="#iNode客户端设置" class="headerlink" title="iNode客户端设置"></a>iNode客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" ></a></p>
+
+<h2 id="windows-端配置—网络中心添加"><a href="#windows-端配置—网络中心添加" class="headerlink" title="windows 端配置—网络中心添加"></a>windows 端配置—网络中心添加</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" ></a></p>
+]]></content>
+      <categories>
+        <category>H3C</category>
+      </categories>
+      <tags>
+        <tag>H3C</tag>
+        <tag>L2TP</tag>
+        <tag>LAC端配置</tag>
+        <tag>iNode客户端</tag>
+        <tag>windows自带</tag>
+        <tag>网络中心添加</tag>
       </tags>
   </entry>
 </search>
