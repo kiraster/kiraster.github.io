@@ -1,12 +1,12 @@
 .post-copyright {
-  margin-left: 1.5rem;
+  margin-left: 3rem;
   padding: 0.2em 0.2em;
   border-left: 2px solid #438cb5;
-  background-color: #f9f9f9;
+  background-color: none;
   line-height: 0.9;
   list-style: none;
 }
 .post-copyright li {
   margin: 8px 0;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
