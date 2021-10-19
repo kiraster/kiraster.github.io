@@ -42,34 +42,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
-</ul>
-]]></content>
-      <categories>
-        <category>方法论</category>
-      </categories>
-      <tags>
-        <tag>方法论</tag>
-        <tag>费曼学习方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
@@ -109,6 +81,34 @@
       <tags>
         <tag>ENSP模拟器</tag>
         <tag>USG防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
+]]></content>
+      <categories>
+        <category>方法论</category>
+      </categories>
+      <tags>
+        <tag>方法论</tag>
+        <tag>费曼学习方法</tag>
       </tags>
   </entry>
   <entry>
@@ -342,6 +342,26 @@
       </tags>
   </entry>
   <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HCL_路由器双出口策略配置实验</title>
     <url>/posts/4e82271c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" class="img-center" ></a></p>
@@ -375,26 +395,6 @@
       </categories>
       <tags>
         <tag>路由器双出口策略配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -484,34 +484,6 @@
       </tags>
   </entry>
   <entry>
-    <title>大梦初醒 荒唐了一生</title>
-    <url>/posts/2703fb4a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
-<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ资料界面一直挂着这首歌</p>
-<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
-<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p>
-<p>带感情的演唱，好像作者在表达不为人知的情感</p>
-<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
-<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
-<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
-<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
-<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
-<p>你要问我为什么拉黑，我回答不喜欢</p>
-<p>你要问我什么原因，同上</p>
-<p>不解释，我自己心里有一些抽象的名词</p>
-<p>原则、底线、信仰、情感……</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-        <tag>南山南</tag>
-        <tag>北秋悲</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>H3C_S5500-52C-EI升级步骤</title>
     <url>/posts/e765d177.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载升级所需要的两个文件：</p>
@@ -591,6 +563,34 @@
       </tags>
   </entry>
   <entry>
+    <title>大梦初醒 荒唐了一生</title>
+    <url>/posts/2703fb4a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
+<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ资料界面一直挂着这首歌</p>
+<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
+<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p>
+<p>带感情的演唱，好像作者在表达不为人知的情感</p>
+<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
+<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
+<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
+<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
+<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
+<p>你要问我为什么拉黑，我回答不喜欢</p>
+<p>你要问我什么原因，同上</p>
+<p>不解释，我自己心里有一些抽象的名词</p>
+<p>原则、底线、信仰、情感……</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+        <tag>南山南</tag>
+        <tag>北秋悲</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我的一些blog常用小操作</title>
     <url>/posts/c1906682.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是^_^"></a>这是^_^</h2><p>自己日常操作的一些小命令和插件。</p>
@@ -603,7 +603,7 @@
 <li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo s”运行</li>
 </ol>
 <h3 id="bat推送至github"><a href="#bat推送至github" class="headerlink" title="bat推送至github"></a>bat推送至github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>新建后缀为bat的脚本文件</li>
@@ -614,12 +614,12 @@
 <ol>
 <li>Add latest jQuery and fancyBox files</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>Create links</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>Enjoy!</li>
@@ -640,15 +640,16 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>修改<strong>网站根目录</strong>配置文件_config_yml</p>
+<li>修改<strong>网站根目录</strong>配置文件_config_yml</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
 
-<p>alg和rep不同组合生成的链接</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
-
-<p>hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
-</li>
+<ul>
+<li>alg和rep不同组合生成的链接</li>
 </ul>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
+
+<p>  hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
 ]]></content>
       <categories>
         <category>Blog</category>
@@ -713,6 +714,32 @@
       </tags>
   </entry>
   <entry>
+    <title>TI10</title>
+    <url>/posts/fae4c6b8.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10结束了，LGD再次倒在了总决赛</p>
+<p>相信包括我在内的许多人都坚信今年的总冠军是LGD，但是……</p>
+<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
+<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
+<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
+<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
+<p>你也别说什么五年了，该CN DOTA举一次盾了</p>
+<p>巧了，独联体区的玩家也是这么这么认为的</p>
+<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
+<p>……</p>
+<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>DOTA2</tag>
+        <tag>LGD</tag>
+        <tag>马格纳斯</tag>
+        <tag>Dead Game</tag>
+        <tag>TI10</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>H3C_线路测试脚本</title>
     <url>/posts/60e83b3d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个ping测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩python，就想着能不能做个脚本自己跑，最后实现了，而且生成excel表格统计测试成功和测试失败的信息。</p>
@@ -765,32 +792,6 @@
         <tag>线路测试</tag>
         <tag>割接工作</tag>
         <tag>Python脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TI10</title>
-    <url>/posts/fae4c6b8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10结束了，LGD再次倒在了总决赛</p>
-<p>相信包括我在内的许多人都坚信今年的总冠军是LGD，但是……</p>
-<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
-<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
-<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
-<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
-<p>你也别说什么五年了，该CN DOTA举一次盾了</p>
-<p>巧了，独联体区的玩家也是这么这么认为的</p>
-<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
-<p>……</p>
-<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>DOTA2</tag>
-        <tag>LGD</tag>
-        <tag>马格纳斯</tag>
-        <tag>Dead Game</tag>
-        <tag>TI10</tag>
       </tags>
   </entry>
 </search>

@@ -9,7 +9,7 @@
 <li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo s”运行</li>
 </ol>
 <h3 id="bat推送至github"><a href="#bat推送至github" class="headerlink" title="bat推送至github"></a>bat推送至github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>新建后缀为bat的脚本文件</li>
@@ -20,12 +20,12 @@
 <ol>
 <li>Add latest jQuery and fancyBox files</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>Create links</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>Enjoy!</li>
@@ -46,15 +46,16 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>修改<strong>网站根目录</strong>配置文件_config_yml</p>
+<li>修改<strong>网站根目录</strong>配置文件_config_yml</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
 
-<p>alg和rep不同组合生成的链接</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
-
-<p>hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
-</li>
+<ul>
+<li>alg和rep不同组合生成的链接</li>
 </ul>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
+
+<p>  hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
 </article><div style="padding-bottom: 10px;"><ul class="post-copyright">
 <li class="post-title">
 <strong>标题：</strong><currenttitle>我的一些blog常用小操作</currenttitle><li class="post-copyright-author">
