@@ -17,6 +17,34 @@
       </tags>
   </entry>
   <entry>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
+]]></content>
+      <categories>
+        <category>方法论</category>
+      </categories>
+      <tags>
+        <tag>方法论</tag>
+        <tag>费曼学习方法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Theme: Obsidian</title>
     <url>/posts/9cdc001c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
@@ -84,58 +112,79 @@
       </tags>
   </entry>
   <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+    <title>HCL_一个小实验的思路</title>
+    <url>/posts/c7ac5477.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验说明："><a href="#实验说明：" class="headerlink" title="实验说明："></a>实验说明：</h2><p><strong>设备互联线路，IP地址、路由协议、可靠性等配置自定义</strong></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg"><img src="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg" width="61.8%" align="center" ></a></p>
+<h2 id="实验效果："><a href="#实验效果：" class="headerlink" title="实验效果："></a>实验效果：</h2><ul>
+<li>PC_1网段流量经R1出互联网</li>
+<li>PC_2网段流量经R2出互联网</li>
+<li>当任意互联网线路故障后，全部流量走另一线路出互联网</li>
 </ul>
+<h2 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h2><ul>
+<li><strong>设备互联，IP地址规划如图</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png"><img  src="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png" width="61.8%" align="center" ></a></p>
+<ul>
+<li><strong>Core_SW1、Core_SW2做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为BFD检测线</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis irf</span><br><span class="line">MemberID    Role    Priority  CPU-Mac         Description</span><br><span class="line"> *+1        Master  15        72f0-e201-0504  ---</span><br><span class="line">   2        Standby 10        72f0-e6bc-0604  ---</span><br><span class="line">--------------------------------------------------</span><br><span class="line"> * indicates the device is the master.</span><br><span class="line"> + indicates the device through which the user logs in.</span><br><span class="line"> &lt;Core_SW1&gt;dis irf topology </span><br><span class="line">                              Topology Info</span><br><span class="line"> -------------------------------------------------------------------------</span><br><span class="line">               IRF-Port1                IRF-Port2          </span><br><span class="line"> MemberID    Link       neighbor      Link       neighbor    Belong To</span><br><span class="line"> 1           DIS        ---           UP         2           72f0-e201-0504</span><br><span class="line"> 2           UP         1             DIS        ---         72f0-e201-0504</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>核心交换机Core_SW与R1,R2之间启用三层聚合链路</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis link-aggregation summary </span><br><span class="line">Aggregation Interface Type: </span><br><span class="line">BAGG -- Bridge-Aggregation, BLAGG -- Blade-Aggregation, RAGG -- Route-Aggregation, SCH-B -- Schannel-Bundle </span><br><span class="line">Aggregation Mode: S -- Static, D -- Dynamic </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing</span><br><span class="line">Actor System ID: 0x8000, 72f0-e201-0500</span><br><span class="line"></span><br><span class="line">AGG        AGG   Partner ID              Selected  Unselected  Individual  Share</span><br><span class="line">Interface  Mode                          Ports     Ports       Ports       Type </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">BAGG3      S     None                    2         0           0           Shar </span><br><span class="line">RAGG1      S     None                    2         0           0           Shar </span><br><span class="line">RAGG2      S     None                    2         0           0           Shar </span><br><span class="line">&lt;Core_SW1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE1/0/1                  up       up       --              --</span><br><span class="line">GE1/0/2                  up       up       --              --</span><br><span class="line">GE2/0/1                  up       up       --              --</span><br><span class="line">GE2/0/2                  up       up       --              --</span><br><span class="line">MGE0/0/0                 down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.1        --</span><br><span class="line">RAGG2                    up       up       10.1.1.5        --</span><br><span class="line">Vlan10                   up       up       192.168.10.254  --</span><br><span class="line">Vlan20                   up       up       192.168.20.254  --</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       101.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.2        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R2&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       201.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.6        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>核心交换机Core_SW与SW3之间启用二层聚合链路</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;SW3&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Bridge-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE1/0/1          S       32768    1         </span><br><span class="line">  GE1/0/2          S       32768    1         </span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>核心交换机Core_SW配置静态路由；R1、R2配置默认路由下一跳指向ISP设备地址、配置回程静态路由指向Core_SW三层聚合接口地址</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis cur | inc route</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> ip policy-based-route vlan20nexthop</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           101.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           201.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>核心交换机Core_SW配置NQA，检测ISP_1,ISP_2可达性，关联Track,与静态路由、策略路由联动</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">nqa entry admin isp_1_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 101.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_2_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 201.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.6</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.5</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_1_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_2_test start-time now lifetime forever</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">track 1 nqa entry admin isp_2_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 2 nqa entry admin isp_1_test reaction 1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> if-match acl 3001</span><br><span class="line"> apply next-hop 10.1.1.6 track 1</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 5 deny ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255</span><br><span class="line"> rule 10 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>ISP网络设备配置OSPF</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ISP_NETWORK&gt;dis ip routing-table  protocol ospf</span><br><span class="line"></span><br><span class="line">Summary count : 5</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 2</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">101.1.1.0/30       O_INTRA 10  2           101.1.1.5       GE0/1</span><br><span class="line">201.1.1.0/30       O_INTRA 10  2           201.1.1.5       GE0/2</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">1.2.3.4/32         O_INTRA 10  0           0.0.0.0         Loop0</span><br><span class="line">101.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/1</span><br><span class="line">201.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/2</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>方法论</category>
+        <category>HCL模拟器</category>
       </categories>
       <tags>
-        <tag>方法论</tag>
-        <tag>费曼学习方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>九十年代</title>
-    <url>/posts/8847b633.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
-<p>那时候人事物，我稍微回忆一下</p>
-<p>老爸买的黑白电视机，带有车牌号的自行车……</p>
-<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
-<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
-<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起VCD机</p>
-<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
-<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是BB机，我老爸有一个</p>
-<p>那时候村里起房子，砖是从田里挖泥造的</p>
-<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
-<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
-<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
-<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
-<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
-<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
+        <tag>HCL模拟器</tag>
       </tags>
   </entry>
   <entry>
@@ -199,6 +248,33 @@
       </categories>
       <tags>
         <tag>更新日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>九十年代</title>
+    <url>/posts/8847b633.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
+<p>那时候人事物，我稍微回忆一下</p>
+<p>老爸买的黑白电视机，带有车牌号的自行车……</p>
+<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
+<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
+<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起VCD机</p>
+<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
+<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是BB机，我老爸有一个</p>
+<p>那时候村里起房子，砖是从田里挖泥造的</p>
+<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
+<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
+<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
+<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
+<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
+<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -302,120 +378,22 @@
       </tags>
   </entry>
   <entry>
-    <title>HCL_vpn-instance不同实例互通实验</title>
-    <url>/posts/eb7e5d69.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验拓扑和需求"><a href="#实验拓扑和需求" class="headerlink" title="实验拓扑和需求"></a><strong>实验拓扑和需求</strong></h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"><img src = "https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"   class="img-center"/></a></p>
-<p>实验模拟的是一个总部和一个分支站点的网络，网络中总部和分支相同VPN实例网络互通，不同VPN实例网络相互隔离，总部VPN2中特殊主机PC_8需要访问位于分支网络中的VPN1网络</p>
-<hr>
-<h2 id="思路和解决方法"><a href="#思路和解决方法" class="headerlink" title="思路和解决方法"></a><strong>思路和解决方法</strong></h2><ul>
-<li><p>网络设备中配置vpn instance用来隔离不同网络数据</p>
-</li>
-<li><p>在不做特殊配置的情况下，不同vpn实例的网络是不能互相通信的</p>
-</li>
-<li><p>然而在设备上vpn实例引入其他vpn实例网络又会造成不同实例间网络能互通的情况，进而要做各种acl限制</p>
-</li>
-<li><p>实验中并不涉及MPLS VPN的场景，有点类似H3C 文档中MCE的情况，但是不涉及CE、PE、RD、RT……</p>
-</li>
-<li><p>RD是用来做路由区分的，RT是BGP协议中团体属性的内容，本实验中都不涉及，本来也考虑使用MPLS VPN的方式做，但是就当前这个场景完全不需要，客户只需要把原有不同的几套网络隔离，还要考虑到设备特性，设备性能等等</p>
-</li>
-<li><p>实验中在路由经过的下一跳的设备上都要配置vpn实例，核心下联的二层设备不需要配置</p>
-</li>
-<li><p>由于不使用引入其他vpn实例的方式，需要在总部路由器和总部交换机上配置vpn静态路由</p>
-</li>
+    <title>H3C_SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
+<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改“Send”后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
 </ul>
-<h2 id="具体配置"><a href="#具体配置" class="headerlink" title="具体配置"></a><strong>具体配置</strong></h2><h3 id="SITE-SW"><a href="#SITE-SW" class="headerlink" title="SITE_SW"></a><strong>SITE_SW</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname SITE_SW</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line"># 配置rip 100 绑定VPN1，宣告与总部互联的网络和分支VPN1的网络</span><br><span class="line">rip 100 vpn-instance vpn1</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 10.1.1.1 0.0.0.0</span><br><span class="line"> network 172.16.10.254 0.0.0.0</span><br><span class="line"># 配置rip 200 绑定VPN2，宣告与总部互联的网络和分支VPN2的网络</span><br><span class="line">rip 200 vpn-instance vpn2</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 20.1.1.1 0.0.0.0</span><br><span class="line"> network 172.16.20.254 0.0.0.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line"> dhcp enable</span><br><span class="line">#</span><br><span class="line">vlan 10</span><br><span class="line">#</span><br><span class="line">vlan 20</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan10</span><br><span class="line"> vpn-instance vpn1</span><br><span class="line"> gateway-list 172.16.10.254</span><br><span class="line"> network 172.16.10.0 mask 255.255.255.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan20</span><br><span class="line"> vpn-instance vpn2</span><br><span class="line"> gateway-list 172.16.20.254</span><br><span class="line"> network 172.16.20.0 mask 255.255.255.0</span><br><span class="line"># Vlan-interface10为VPN1网络网关</span><br><span class="line">interface Vlan-interface10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 172.16.10.254 255.255.255.0</span><br><span class="line"># Vlan-interface20为VPN1网络网关</span><br><span class="line">interface Vlan-interface20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 172.16.20.254 255.255.255.0</span><br><span class="line"># 与总部互联物理接口</span><br><span class="line">interface GigabitEthernet1/0/3</span><br><span class="line"> port link-mode route</span><br><span class="line"># 使用子接口与总部互联，绑定VPN1</span><br><span class="line">interface GigabitEthernet1/0/3.10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 10.1.1.1 255.255.255.252</span><br><span class="line"># 使用子接口与总部互联，绑定VPN2</span><br><span class="line">interface GigabitEthernet1/0/3.20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 20.1.1.1 255.255.255.252</span><br><span class="line"># 不重要</span><br><span class="line">interface GigabitEthernet1/0/1</span><br><span class="line"> port access vlan 10</span><br><span class="line"> stp edged-port</span><br><span class="line"># 不重要</span><br><span class="line">interface GigabitEthernet1/0/2</span><br><span class="line"> port access vlan 20</span><br><span class="line"> stp edged-port</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="HQ-ROUTER"><a href="#HQ-ROUTER" class="headerlink" title="HQ_ROUTER"></a><strong>HQ_ROUTER</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname HQ_ROUTER</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line"># 配置rip 100 绑定VPN1，宣告与分支互联的网络，与HQ_SW互联的网络，引入手动配置的去往PC_8主机的路由</span><br><span class="line">rip 100 vpn-instance vpn1</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 10.1.1.2 0.0.0.0</span><br><span class="line"> network 100.1.1.1 0.0.0.0</span><br><span class="line"> import-route static</span><br><span class="line"># 配置rip 200 绑定VPN2，宣告与分支互联的网络，与HQ_SW互联的网络</span><br><span class="line">rip 200 vpn-instance vpn2</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 20.1.1.2 0.0.0.0</span><br><span class="line"> network 100.1.1.1 0.0.0.0</span><br><span class="line">#</span><br><span class="line">vlan 111</span><br><span class="line">#</span><br><span class="line">vlan 222</span><br><span class="line"># 与HQ_SW VPN1 互联vlanif接口</span><br><span class="line">interface Vlan-interface111</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 100.1.1.1 255.255.255.252</span><br><span class="line"># 与HQ_SW VPN2 互联vlanif接口</span><br><span class="line">interface Vlan-interface222</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 100.1.1.1 255.255.255.252</span><br><span class="line"># 与分支互联物理接口</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"># 使用子接口与分支互联，绑定VPN1</span><br><span class="line">interface GigabitEthernet0/0.10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 10.1.1.2 255.255.255.252</span><br><span class="line"> vlan-type dot1q vid 10</span><br><span class="line"># 使用子接口与分支互联，绑定VPN2</span><br><span class="line">interface GigabitEthernet0/0.20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 20.1.1.2 255.255.255.252</span><br><span class="line"> vlan-type dot1q vid 20</span><br><span class="line"># 与HQ_SW互联的物理接口</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode bridge</span><br><span class="line"> port link-type trunk</span><br><span class="line"> port trunk permit vlan all</span><br><span class="line"> combo enable copper</span><br><span class="line"># 在vpn1网络中配置的去往PC_8主机的路由     </span><br><span class="line"> ip route-static vpn-instance vpn1 192.168.40.200 32 vpn-instance vpn2 100.1.1.2</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="HQ-SW"><a href="#HQ-SW" class="headerlink" title="HQ_SW"></a><strong>HQ_SW</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname HQ_SW</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line"># 配置rip 100 绑定VPN1，宣告与HQ_ROUTER互联的网络和总部VPN1的网络，注意有一条路由过滤，因为在HQ_ROUTER中引入了手动配置的静态的路由，而在HQ_SW VPN1网络中不需要</span><br><span class="line">rip 100 vpn-instance vpn1</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 100.1.1.2 0.0.0.0</span><br><span class="line"> network 192.168.30.254 0.0.0.0</span><br><span class="line"> filter-policy prefix-list filter_192.168.40.200 import</span><br><span class="line"># 配置rip 200 绑定VPN2，宣告与HQ_ROUTER互联的网络和总部VPN2的网络</span><br><span class="line">rip 200 vpn-instance vpn2</span><br><span class="line"> undo summary</span><br><span class="line"> version 2     </span><br><span class="line"> network 100.1.1.2 0.0.0.0</span><br><span class="line"> network 192.168.40.254 0.0.0.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line"> dhcp enable</span><br><span class="line">#</span><br><span class="line">vlan 30</span><br><span class="line">#</span><br><span class="line">vlan 40</span><br><span class="line">#</span><br><span class="line">vlan 111</span><br><span class="line">#</span><br><span class="line">vlan 222       </span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan30</span><br><span class="line"> vpn-instance vpn1</span><br><span class="line"> gateway-list 192.168.30.254</span><br><span class="line"> network 192.168.30.0 mask 255.255.255.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan40</span><br><span class="line"> vpn-instance vpn2</span><br><span class="line"> gateway-list 192.168.40.254</span><br><span class="line"> network 192.168.40.0 mask 255.255.255.0</span><br><span class="line"> forbidden-ip 192.168.40.200</span><br><span class="line"># vlan30为VPN1网络网关</span><br><span class="line">interface Vlan-interface30</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 192.168.30.254 255.255.255.0</span><br><span class="line"># vlan40为VPN1网络网关</span><br><span class="line">interface Vlan-interface40</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 192.168.40.254 255.255.255.0</span><br><span class="line"> packet-filter 3001 inbound</span><br><span class="line"># 与HQ_ROUTER VPN1 互联vlanif接口</span><br><span class="line">interface Vlan-interface111</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 100.1.1.2 255.255.255.252</span><br><span class="line"># 与HQ_ROUTER VPN2 互联vlanif接口</span><br><span class="line">interface Vlan-interface222</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 100.1.1.2 255.255.255.252</span><br><span class="line"># 与HQ_ROUTER互联的物理接口</span><br><span class="line">interface GigabitEthernet1/0/1</span><br><span class="line"> port link-mode bridge</span><br><span class="line"> port link-type trunk</span><br><span class="line"> port trunk permit vlan all</span><br><span class="line"> combo enable fiber</span><br><span class="line"># 配置前缀列表，过滤从HQ_ROUTER学习到的特殊主机路由</span><br><span class="line"> ip prefix-list filter_192.168.40.200 index 10 deny 192.168.40.2 32</span><br><span class="line"> ip prefix-list filter_192.168.40.200 index 20 permit 0.0.0.0 0 less-equal 32</span><br><span class="line"># 配置总部VPN2网络到分支VPN1网络的路由</span><br><span class="line"> ip route-static vpn-instance vpn2 172.16.10.0 24 vpn-instance vpn1 100.1.1.1</span><br><span class="line"># 限制除PC_8外去往分支VPN1网络的流量</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip source 192.168.40.200 0 destination 172.16.10.0 0.0.0.255</span><br><span class="line"> rule 5 deny ip source 192.168.40.0 0.0.0.255 destination 172.16.10.0 0.0.0.255</span><br><span class="line"> rule 10 permit ip</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>HCL模拟器</category>
+        <category>巡检脚本</category>
       </categories>
       <tags>
-        <tag>HCL模拟器</tag>
-        <tag>vpn-instance</tag>
-        <tag>VPN实例</tag>
-        <tag>实例互通</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HCL_一个小实验的思路</title>
-    <url>/posts/c7ac5477.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验说明："><a href="#实验说明：" class="headerlink" title="实验说明："></a>实验说明：</h2><p><strong>设备互联线路，IP地址、路由协议、可靠性等配置自定义</strong></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg"><img src="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg" width="61.8%" align="center" ></a></p>
-<h2 id="实验效果："><a href="#实验效果：" class="headerlink" title="实验效果："></a>实验效果：</h2><ul>
-<li>PC_1网段流量经R1出互联网</li>
-<li>PC_2网段流量经R2出互联网</li>
-<li>当任意互联网线路故障后，全部流量走另一线路出互联网</li>
-</ul>
-<h2 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h2><ul>
-<li><strong>设备互联，IP地址规划如图</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png"><img  src="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png" width="61.8%" align="center" ></a></p>
-<ul>
-<li><strong>Core_SW1、Core_SW2做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为BFD检测线</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis irf</span><br><span class="line">MemberID    Role    Priority  CPU-Mac         Description</span><br><span class="line"> *+1        Master  15        72f0-e201-0504  ---</span><br><span class="line">   2        Standby 10        72f0-e6bc-0604  ---</span><br><span class="line">--------------------------------------------------</span><br><span class="line"> * indicates the device is the master.</span><br><span class="line"> + indicates the device through which the user logs in.</span><br><span class="line"> &lt;Core_SW1&gt;dis irf topology </span><br><span class="line">                              Topology Info</span><br><span class="line"> -------------------------------------------------------------------------</span><br><span class="line">               IRF-Port1                IRF-Port2          </span><br><span class="line"> MemberID    Link       neighbor      Link       neighbor    Belong To</span><br><span class="line"> 1           DIS        ---           UP         2           72f0-e201-0504</span><br><span class="line"> 2           UP         1             DIS        ---         72f0-e201-0504</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>核心交换机Core_SW与R1,R2之间启用三层聚合链路</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis link-aggregation summary </span><br><span class="line">Aggregation Interface Type: </span><br><span class="line">BAGG -- Bridge-Aggregation, BLAGG -- Blade-Aggregation, RAGG -- Route-Aggregation, SCH-B -- Schannel-Bundle </span><br><span class="line">Aggregation Mode: S -- Static, D -- Dynamic </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing</span><br><span class="line">Actor System ID: 0x8000, 72f0-e201-0500</span><br><span class="line"></span><br><span class="line">AGG        AGG   Partner ID              Selected  Unselected  Individual  Share</span><br><span class="line">Interface  Mode                          Ports     Ports       Ports       Type </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">BAGG3      S     None                    2         0           0           Shar </span><br><span class="line">RAGG1      S     None                    2         0           0           Shar </span><br><span class="line">RAGG2      S     None                    2         0           0           Shar </span><br><span class="line">&lt;Core_SW1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE1/0/1                  up       up       --              --</span><br><span class="line">GE1/0/2                  up       up       --              --</span><br><span class="line">GE2/0/1                  up       up       --              --</span><br><span class="line">GE2/0/2                  up       up       --              --</span><br><span class="line">MGE0/0/0                 down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.1        --</span><br><span class="line">RAGG2                    up       up       10.1.1.5        --</span><br><span class="line">Vlan10                   up       up       192.168.10.254  --</span><br><span class="line">Vlan20                   up       up       192.168.20.254  --</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       101.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.2        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R2&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       201.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.6        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>核心交换机Core_SW与SW3之间启用二层聚合链路</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;SW3&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Bridge-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE1/0/1          S       32768    1         </span><br><span class="line">  GE1/0/2          S       32768    1         </span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>核心交换机Core_SW配置静态路由；R1、R2配置默认路由下一跳指向ISP设备地址、配置回程静态路由指向Core_SW三层聚合接口地址</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis cur | inc route</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> ip policy-based-route vlan20nexthop</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           101.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           201.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>核心交换机Core_SW配置NQA，检测ISP_1,ISP_2可达性，关联Track,与静态路由、策略路由联动</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">nqa entry admin isp_1_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 101.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_2_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 201.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.6</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.5</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_1_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_2_test start-time now lifetime forever</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">track 1 nqa entry admin isp_2_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 2 nqa entry admin isp_1_test reaction 1</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> if-match acl 3001</span><br><span class="line"> apply next-hop 10.1.1.6 track 1</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 5 deny ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255</span><br><span class="line"> rule 10 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>ISP网络设备配置OSPF</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ISP_NETWORK&gt;dis ip routing-table  protocol ospf</span><br><span class="line"></span><br><span class="line">Summary count : 5</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 2</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">101.1.1.0/30       O_INTRA 10  2           101.1.1.5       GE0/1</span><br><span class="line">201.1.1.0/30       O_INTRA 10  2           201.1.1.5       GE0/2</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">1.2.3.4/32         O_INTRA 10  0           0.0.0.0         Loop0</span><br><span class="line">101.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/1</span><br><span class="line">201.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/2</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>HCL模拟器</category>
-      </categories>
-      <tags>
-        <tag>HCL模拟器</tag>
+        <tag>巡检脚本</tag>
+        <tag>H3C设备巡检</tag>
       </tags>
   </entry>
   <entry>
@@ -436,25 +414,6 @@
       </categories>
       <tags>
         <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改“Send”后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>巡检脚本</category>
-      </categories>
-      <tags>
-        <tag>巡检脚本</tag>
-        <tag>H3C设备巡检</tag>
       </tags>
   </entry>
   <entry>
@@ -481,34 +440,6 @@
       <tags>
         <tag>设备巡检</tag>
         <tag>H3C设备</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大梦初醒 荒唐了一生</title>
-    <url>/posts/2703fb4a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
-<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ资料界面一直挂着这首歌</p>
-<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
-<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p>
-<p>带感情的演唱，好像作者在表达不为人知的情感</p>
-<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
-<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
-<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
-<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
-<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
-<p>你要问我为什么拉黑，我回答不喜欢</p>
-<p>你要问我什么原因，同上</p>
-<p>不解释，我自己心里有一些抽象的名词</p>
-<p>原则、底线、信仰、情感……</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-        <tag>南山南</tag>
-        <tag>北秋悲</tag>
       </tags>
   </entry>
   <entry>
@@ -567,72 +498,72 @@
       </tags>
   </entry>
   <entry>
-    <title>我的一些blog常用小操作</title>
-    <url>/posts/c1906682.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是^_^"></a>这是^_^</h2><p>自己日常操作的一些小命令和插件。</p>
-<h3 id="bat启动hexo本地服务"><a href="#bat启动hexo本地服务" class="headerlink" title="bat启动hexo本地服务"></a>bat启动hexo本地服务</h3><p>前提条件：已完成博客搭建。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>新建后缀为bat的脚本文件</li>
-<li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo s”运行</li>
-</ol>
-<h3 id="bat推送至github"><a href="#bat推送至github" class="headerlink" title="bat推送至github"></a>bat推送至github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>新建后缀为bat的脚本文件</li>
-<li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s”运行（如果只输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
-</ol>
-<h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
-<ol>
-<li>Add latest jQuery and fancyBox files</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Create links</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>Enjoy!</li>
-</ol>
-<h3 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a>404页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
-<p>虽然blog网站简单，访问出现404页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
-<p>公益404页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
-<p>网站只需要在自己的404页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
-<p>复制以下 js 代码，嵌入到您的 404 页面，可以自适应移动设备。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改“homePageUrl”、“homePageName”两个参数即可。</p>
-<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 <strong>页面则必须在线上测试</strong>，本地测试（localhost:4000）返回主页无效</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://yoursite.com/yourPage.html&quot; homePageName=&quot;回到我的主页&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="添加文章链接abbrlink"><a href="#添加文章链接abbrlink" class="headerlink" title="添加文章链接abbrlink"></a>添加文章链接abbrlink</h3><ul>
-<li>安装插件</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>修改<strong>网站根目录</strong>配置文件_config_yml</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
-
-<p>alg和rep不同组合生成的链接</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
-
-<p>hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
+    <title>HCL_vpn-instance不同实例互通实验</title>
+    <url>/posts/eb7e5d69.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验拓扑和需求"><a href="#实验拓扑和需求" class="headerlink" title="实验拓扑和需求"></a><strong>实验拓扑和需求</strong></h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"><img src = "https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"   class="img-center"/></a></p>
+<p>实验模拟的是一个总部和一个分支站点的网络，网络中总部和分支相同VPN实例网络互通，不同VPN实例网络相互隔离，总部VPN2中特殊主机PC_8需要访问位于分支网络中的VPN1网络</p>
+<hr>
+<h2 id="思路和解决方法"><a href="#思路和解决方法" class="headerlink" title="思路和解决方法"></a><strong>思路和解决方法</strong></h2><ul>
+<li><p>网络设备中配置vpn instance用来隔离不同网络数据</p>
+</li>
+<li><p>在不做特殊配置的情况下，不同vpn实例的网络是不能互相通信的</p>
+</li>
+<li><p>然而在设备上vpn实例引入其他vpn实例网络又会造成不同实例间网络能互通的情况，进而要做各种acl限制</p>
+</li>
+<li><p>实验中并不涉及MPLS VPN的场景，有点类似H3C 文档中MCE的情况，但是不涉及CE、PE、RD、RT……</p>
+</li>
+<li><p>RD是用来做路由区分的，RT是BGP协议中团体属性的内容，本实验中都不涉及，本来也考虑使用MPLS VPN的方式做，但是就当前这个场景完全不需要，客户只需要把原有不同的几套网络隔离，还要考虑到设备特性，设备性能等等</p>
+</li>
+<li><p>实验中在路由经过的下一跳的设备上都要配置vpn实例，核心下联的二层设备不需要配置</p>
+</li>
+<li><p>由于不使用引入其他vpn实例的方式，需要在总部路由器和总部交换机上配置vpn静态路由</p>
 </li>
 </ul>
+<h2 id="具体配置"><a href="#具体配置" class="headerlink" title="具体配置"></a><strong>具体配置</strong></h2><h3 id="SITE-SW"><a href="#SITE-SW" class="headerlink" title="SITE_SW"></a><strong>SITE_SW</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname SITE_SW</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line"># 配置rip 100 绑定VPN1，宣告与总部互联的网络和分支VPN1的网络</span><br><span class="line">rip 100 vpn-instance vpn1</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 10.1.1.1 0.0.0.0</span><br><span class="line"> network 172.16.10.254 0.0.0.0</span><br><span class="line"># 配置rip 200 绑定VPN2，宣告与总部互联的网络和分支VPN2的网络</span><br><span class="line">rip 200 vpn-instance vpn2</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 20.1.1.1 0.0.0.0</span><br><span class="line"> network 172.16.20.254 0.0.0.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line"> dhcp enable</span><br><span class="line">#</span><br><span class="line">vlan 10</span><br><span class="line">#</span><br><span class="line">vlan 20</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan10</span><br><span class="line"> vpn-instance vpn1</span><br><span class="line"> gateway-list 172.16.10.254</span><br><span class="line"> network 172.16.10.0 mask 255.255.255.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan20</span><br><span class="line"> vpn-instance vpn2</span><br><span class="line"> gateway-list 172.16.20.254</span><br><span class="line"> network 172.16.20.0 mask 255.255.255.0</span><br><span class="line"># Vlan-interface10为VPN1网络网关</span><br><span class="line">interface Vlan-interface10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 172.16.10.254 255.255.255.0</span><br><span class="line"># Vlan-interface20为VPN1网络网关</span><br><span class="line">interface Vlan-interface20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 172.16.20.254 255.255.255.0</span><br><span class="line"># 与总部互联物理接口</span><br><span class="line">interface GigabitEthernet1/0/3</span><br><span class="line"> port link-mode route</span><br><span class="line"># 使用子接口与总部互联，绑定VPN1</span><br><span class="line">interface GigabitEthernet1/0/3.10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 10.1.1.1 255.255.255.252</span><br><span class="line"># 使用子接口与总部互联，绑定VPN2</span><br><span class="line">interface GigabitEthernet1/0/3.20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 20.1.1.1 255.255.255.252</span><br><span class="line"># 不重要</span><br><span class="line">interface GigabitEthernet1/0/1</span><br><span class="line"> port access vlan 10</span><br><span class="line"> stp edged-port</span><br><span class="line"># 不重要</span><br><span class="line">interface GigabitEthernet1/0/2</span><br><span class="line"> port access vlan 20</span><br><span class="line"> stp edged-port</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="HQ-ROUTER"><a href="#HQ-ROUTER" class="headerlink" title="HQ_ROUTER"></a><strong>HQ_ROUTER</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname HQ_ROUTER</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line"># 配置rip 100 绑定VPN1，宣告与分支互联的网络，与HQ_SW互联的网络，引入手动配置的去往PC_8主机的路由</span><br><span class="line">rip 100 vpn-instance vpn1</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 10.1.1.2 0.0.0.0</span><br><span class="line"> network 100.1.1.1 0.0.0.0</span><br><span class="line"> import-route static</span><br><span class="line"># 配置rip 200 绑定VPN2，宣告与分支互联的网络，与HQ_SW互联的网络</span><br><span class="line">rip 200 vpn-instance vpn2</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 20.1.1.2 0.0.0.0</span><br><span class="line"> network 100.1.1.1 0.0.0.0</span><br><span class="line">#</span><br><span class="line">vlan 111</span><br><span class="line">#</span><br><span class="line">vlan 222</span><br><span class="line"># 与HQ_SW VPN1 互联vlanif接口</span><br><span class="line">interface Vlan-interface111</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 100.1.1.1 255.255.255.252</span><br><span class="line"># 与HQ_SW VPN2 互联vlanif接口</span><br><span class="line">interface Vlan-interface222</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 100.1.1.1 255.255.255.252</span><br><span class="line"># 与分支互联物理接口</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"># 使用子接口与分支互联，绑定VPN1</span><br><span class="line">interface GigabitEthernet0/0.10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 10.1.1.2 255.255.255.252</span><br><span class="line"> vlan-type dot1q vid 10</span><br><span class="line"># 使用子接口与分支互联，绑定VPN2</span><br><span class="line">interface GigabitEthernet0/0.20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 20.1.1.2 255.255.255.252</span><br><span class="line"> vlan-type dot1q vid 20</span><br><span class="line"># 与HQ_SW互联的物理接口</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode bridge</span><br><span class="line"> port link-type trunk</span><br><span class="line"> port trunk permit vlan all</span><br><span class="line"> combo enable copper</span><br><span class="line"># 在vpn1网络中配置的去往PC_8主机的路由     </span><br><span class="line"> ip route-static vpn-instance vpn1 192.168.40.200 32 vpn-instance vpn2 100.1.1.2</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="HQ-SW"><a href="#HQ-SW" class="headerlink" title="HQ_SW"></a><strong>HQ_SW</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname HQ_SW</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line"># 配置rip 100 绑定VPN1，宣告与HQ_ROUTER互联的网络和总部VPN1的网络，注意有一条路由过滤，因为在HQ_ROUTER中引入了手动配置的静态的路由，而在HQ_SW VPN1网络中不需要</span><br><span class="line">rip 100 vpn-instance vpn1</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 100.1.1.2 0.0.0.0</span><br><span class="line"> network 192.168.30.254 0.0.0.0</span><br><span class="line"> filter-policy prefix-list filter_192.168.40.200 import</span><br><span class="line"># 配置rip 200 绑定VPN2，宣告与HQ_ROUTER互联的网络和总部VPN2的网络</span><br><span class="line">rip 200 vpn-instance vpn2</span><br><span class="line"> undo summary</span><br><span class="line"> version 2     </span><br><span class="line"> network 100.1.1.2 0.0.0.0</span><br><span class="line"> network 192.168.40.254 0.0.0.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line"> dhcp enable</span><br><span class="line">#</span><br><span class="line">vlan 30</span><br><span class="line">#</span><br><span class="line">vlan 40</span><br><span class="line">#</span><br><span class="line">vlan 111</span><br><span class="line">#</span><br><span class="line">vlan 222       </span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan30</span><br><span class="line"> vpn-instance vpn1</span><br><span class="line"> gateway-list 192.168.30.254</span><br><span class="line"> network 192.168.30.0 mask 255.255.255.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan40</span><br><span class="line"> vpn-instance vpn2</span><br><span class="line"> gateway-list 192.168.40.254</span><br><span class="line"> network 192.168.40.0 mask 255.255.255.0</span><br><span class="line"> forbidden-ip 192.168.40.200</span><br><span class="line"># vlan30为VPN1网络网关</span><br><span class="line">interface Vlan-interface30</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 192.168.30.254 255.255.255.0</span><br><span class="line"># vlan40为VPN1网络网关</span><br><span class="line">interface Vlan-interface40</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 192.168.40.254 255.255.255.0</span><br><span class="line"> packet-filter 3001 inbound</span><br><span class="line"># 与HQ_ROUTER VPN1 互联vlanif接口</span><br><span class="line">interface Vlan-interface111</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 100.1.1.2 255.255.255.252</span><br><span class="line"># 与HQ_ROUTER VPN2 互联vlanif接口</span><br><span class="line">interface Vlan-interface222</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 100.1.1.2 255.255.255.252</span><br><span class="line"># 与HQ_ROUTER互联的物理接口</span><br><span class="line">interface GigabitEthernet1/0/1</span><br><span class="line"> port link-mode bridge</span><br><span class="line"> port link-type trunk</span><br><span class="line"> port trunk permit vlan all</span><br><span class="line"> combo enable fiber</span><br><span class="line"># 配置前缀列表，过滤从HQ_ROUTER学习到的特殊主机路由</span><br><span class="line"> ip prefix-list filter_192.168.40.200 index 10 deny 192.168.40.2 32</span><br><span class="line"> ip prefix-list filter_192.168.40.200 index 20 permit 0.0.0.0 0 less-equal 32</span><br><span class="line"># 配置总部VPN2网络到分支VPN1网络的路由</span><br><span class="line"> ip route-static vpn-instance vpn2 172.16.10.0 24 vpn-instance vpn1 100.1.1.1</span><br><span class="line"># 限制除PC_8外去往分支VPN1网络的流量</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip source 192.168.40.200 0 destination 172.16.10.0 0.0.0.255</span><br><span class="line"> rule 5 deny ip source 192.168.40.0 0.0.0.255 destination 172.16.10.0 0.0.0.255</span><br><span class="line"> rule 10 permit ip</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>Blog</category>
+        <category>HCL模拟器</category>
       </categories>
       <tags>
-        <tag>Blog</tag>
-        <tag>脚本</tag>
-        <tag>hexo命令</tag>
+        <tag>HCL模拟器</tag>
+        <tag>vpn-instance</tag>
+        <tag>VPN实例</tag>
+        <tag>实例互通</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大梦初醒 荒唐了一生</title>
+    <url>/posts/2703fb4a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
+<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ资料界面一直挂着这首歌</p>
+<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
+<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p>
+<p>带感情的演唱，好像作者在表达不为人知的情感</p>
+<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
+<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
+<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
+<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
+<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
+<p>你要问我为什么拉黑，我回答不喜欢</p>
+<p>你要问我什么原因，同上</p>
+<p>不解释，我自己心里有一些抽象的名词</p>
+<p>原则、底线、信仰、情感……</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+        <tag>南山南</tag>
+        <tag>北秋悲</tag>
       </tags>
   </entry>
   <entry>
@@ -713,29 +644,72 @@
       </tags>
   </entry>
   <entry>
-    <title>TI10</title>
-    <url>/posts/fae4c6b8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10结束了，LGD再次倒在了总决赛</p>
-<p>相信包括我在内的许多人都坚信今年的总冠军是LGD，但是……</p>
-<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
-<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
-<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
-<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
-<p>你也别说什么五年了，该CN DOTA举一次盾了</p>
-<p>巧了，独联体区的玩家也是这么这么认为的</p>
-<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
-<p>……</p>
-<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
+    <title>我的一些blog常用小操作</title>
+    <url>/posts/c1906682.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是^_^"></a>这是^_^</h2><p>自己日常操作的一些小命令和插件。</p>
+<h3 id="bat启动hexo本地服务"><a href="#bat启动hexo本地服务" class="headerlink" title="bat启动hexo本地服务"></a>bat启动hexo本地服务</h3><p>前提条件：已完成博客搭建。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>新建后缀为bat的脚本文件</li>
+<li>复制以上命令粘贴（注意修改路径 ），保存</li>
+<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo s”运行</li>
+</ol>
+<h3 id="bat推送至github"><a href="#bat推送至github" class="headerlink" title="bat推送至github"></a>bat推送至github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>新建后缀为bat的脚本文件</li>
+<li>复制以上命令粘贴（注意修改路径 ），保存</li>
+<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s”运行（如果只输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
+</ol>
+<h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
+<ol>
+<li>Add latest jQuery and fancyBox files</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Create links</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Enjoy!</li>
+</ol>
+<h3 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a>404页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
+<p>虽然blog网站简单，访问出现404页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
+<p>公益404页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
+<p>网站只需要在自己的404页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
+<p>复制以下 js 代码，嵌入到您的 404 页面，可以自适应移动设备。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改“homePageUrl”、“homePageName”两个参数即可。</p>
+<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 <strong>页面则必须在线上测试</strong>，本地测试（localhost:4000）返回主页无效</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://yoursite.com/yourPage.html&quot; homePageName=&quot;回到我的主页&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="添加文章链接abbrlink"><a href="#添加文章链接abbrlink" class="headerlink" title="添加文章链接abbrlink"></a>添加文章链接abbrlink</h3><ul>
+<li>安装插件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修改<strong>网站根目录</strong>配置文件_config_yml</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
+
+<p>alg和rep不同组合生成的链接</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
+
+<p>hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>扯谈</category>
+        <category>Blog</category>
       </categories>
       <tags>
-        <tag>DOTA2</tag>
-        <tag>LGD</tag>
-        <tag>马格纳斯</tag>
-        <tag>Dead Game</tag>
-        <tag>TI10</tag>
+        <tag>Blog</tag>
+        <tag>脚本</tag>
+        <tag>hexo命令</tag>
       </tags>
   </entry>
   <entry>
@@ -791,6 +765,32 @@
         <tag>线路测试</tag>
         <tag>割接工作</tag>
         <tag>Python脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TI10</title>
+    <url>/posts/fae4c6b8.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10结束了，LGD再次倒在了总决赛</p>
+<p>相信包括我在内的许多人都坚信今年的总冠军是LGD，但是……</p>
+<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
+<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
+<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
+<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
+<p>你也别说什么五年了，该CN DOTA举一次盾了</p>
+<p>巧了，独联体区的玩家也是这么这么认为的</p>
+<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
+<p>……</p>
+<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>DOTA2</tag>
+        <tag>LGD</tag>
+        <tag>马格纳斯</tag>
+        <tag>Dead Game</tag>
+        <tag>TI10</tag>
       </tags>
   </entry>
 </search>
