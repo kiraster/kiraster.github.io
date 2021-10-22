@@ -557,8 +557,11 @@ blockquote p {
   margin-left: 17%;
   margin-top: 0.8rem;
 }
-.post-top-item {
+.post-top {
   margin-left: 17%;
+}
+.post-top-item {
+  margin-left: 1e-12%;
   margin-top: 0.8rem;
 }
 .category-lists {
@@ -583,8 +586,11 @@ blockquote p {
 .category-list .category-list-count:after {
   content: ")";
 }
-.article-sort {
+.article-sort-title {
   margin-left: 17%;
+}
+.article-sort {
+  margin-left: 19%;
 }
 .img-center {
   display: block;
@@ -627,22 +633,22 @@ blockquote p {
 .tag-cloud h2 {
   font-size: 2.8rem;
 }
-.tag-cloud h3 {
+margin-left: 17% h3 {
   font-size: 2.6rem;
 }
-.tag-cloud p,
-.tag-cloud li {
+margin-left: 17% p,
+margin-left: 17% li {
   font-size: 1.8rem;
 }
-.tag-cloud a {
+margin-left: 17% a {
   color: #494e52;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.tag-cloud a:hover {
+margin-left: 17% a:hover {
   color: #c62641;
 }
-.tag-cloud .highlight {
+margin-left: 17% .highlight {
   overflow: auto;
   margin: 0 0 1rem;
   padding: 0;
@@ -650,14 +656,14 @@ blockquote p {
   color: #525252;
   line-height: 20px;
 }
-.tag-cloud .gutter pre {
+margin-left: 17% .gutter pre {
   padding-right: 0.8rem;
   padding-left: 0.7rem;
   background-color: #f8f8f8;
   color: #cfd8dc;
   text-align: right;
 }
-.tag-cloud code {
+margin-left: 17% code {
   font-family: "Times New Roman", FangSong, STFangsong, sans-serif;
   padding: 0.2rem 0.3rem;
   background: rgba(27,31,35,0.05);
