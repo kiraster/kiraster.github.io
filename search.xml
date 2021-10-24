@@ -17,6 +17,31 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo Theme: Obsidian</title>
+    <url>/posts/9cdc001c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
+<blockquote>
+<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
+</blockquote>
+<blockquote>
+<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
+</blockquote>
+<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
+
+
+<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
+<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
+<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
+<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
+]]></content>
+      <categories>
+        <category>Themes</category>
+      </categories>
+      <tags>
+        <tag>主题介绍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
@@ -59,28 +84,31 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Theme: Obsidian</title>
-    <url>/posts/9cdc001c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
-<blockquote>
-<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
-</blockquote>
-<blockquote>
-<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
-</blockquote>
-<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
-
-
-<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
-<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
-<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
-<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Themes</category>
+        <category>方法论</category>
       </categories>
       <tags>
-        <tag>主题介绍</tag>
+        <tag>方法论</tag>
+        <tag>费曼学习方法</tag>
       </tags>
   </entry>
   <entry>
@@ -111,31 +139,79 @@
       </tags>
   </entry>
   <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+    <title>HCL_一个小实验的思路</title>
+    <url>/posts/c7ac5477.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验说明："><a href="#实验说明：" class="headerlink" title="实验说明："></a>实验说明：</h2><p><strong>设备互联线路，IP地址、路由协议、可靠性等配置自定义</strong></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg"><img src="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg" width="61.8%" align="center" ></a></p>
+<h2 id="实验效果："><a href="#实验效果：" class="headerlink" title="实验效果："></a>实验效果：</h2><ul>
+<li>PC_1网段流量经R1出互联网</li>
+<li>PC_2网段流量经R2出互联网</li>
+<li>当任意互联网线路故障后，全部流量走另一线路出互联网</li>
 </ul>
+<h2 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h2><ul>
+<li><strong>设备互联，IP地址规划如图</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png"><img  src="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png" width="61.8%" align="center" ></a></p>
+<ul>
+<li><strong>Core_SW1、Core_SW2做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为BFD检测线</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis irf</span><br><span class="line">MemberID    Role    Priority  CPU-Mac         Description</span><br><span class="line"> *+1        Master  15        72f0-e201-0504  ---</span><br><span class="line">   2        Standby 10        72f0-e6bc-0604  ---</span><br><span class="line">--------------------------------------------------</span><br><span class="line"> * indicates the device is the master.</span><br><span class="line"> + indicates the device through which the user logs in.</span><br><span class="line"> &lt;Core_SW1&gt;dis irf topology </span><br><span class="line">                              Topology Info</span><br><span class="line"> -------------------------------------------------------------------------</span><br><span class="line">               IRF-Port1                IRF-Port2          </span><br><span class="line"> MemberID    Link       neighbor      Link       neighbor    Belong To</span><br><span class="line"> 1           DIS        ---           UP         2           72f0-e201-0504</span><br><span class="line"> 2           UP         1             DIS        ---         72f0-e201-0504</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>核心交换机Core_SW与R1,R2之间启用三层聚合链路</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis link-aggregation summary </span><br><span class="line">Aggregation Interface Type: </span><br><span class="line">BAGG -- Bridge-Aggregation, BLAGG -- Blade-Aggregation, RAGG -- Route-Aggregation, SCH-B -- Schannel-Bundle </span><br><span class="line">Aggregation Mode: S -- Static, D -- Dynamic </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing</span><br><span class="line">Actor System ID: 0x8000, 72f0-e201-0500</span><br><span class="line"></span><br><span class="line">AGG        AGG   Partner ID              Selected  Unselected  Individual  Share</span><br><span class="line">Interface  Mode                          Ports     Ports       Ports       Type </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">BAGG3      S     None                    2         0           0           Shar </span><br><span class="line">RAGG1      S     None                    2         0           0           Shar </span><br><span class="line">RAGG2      S     None                    2         0           0           Shar </span><br><span class="line">&lt;Core_SW1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE1/0/1                  up       up       --              --</span><br><span class="line">GE1/0/2                  up       up       --              --</span><br><span class="line">GE2/0/1                  up       up       --              --</span><br><span class="line">GE2/0/2                  up       up       --              --</span><br><span class="line">MGE0/0/0                 down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.1        --</span><br><span class="line">RAGG2                    up       up       10.1.1.5        --</span><br><span class="line">Vlan10                   up       up       192.168.10.254  --</span><br><span class="line">Vlan20                   up       up       192.168.20.254  --</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       101.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.2        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R2&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       201.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.6        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>核心交换机Core_SW与SW3之间启用二层聚合链路</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;SW3&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Bridge-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE1/0/1          S       32768    1         </span><br><span class="line">  GE1/0/2          S       32768    1         </span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>核心交换机Core_SW配置静态路由；R1、R2配置默认路由下一跳指向ISP设备地址、配置回程静态路由指向Core_SW三层聚合接口地址</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis cur | inc route</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> ip policy-based-route vlan20nexthop</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           101.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           201.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>核心交换机Core_SW配置NQA，检测ISP_1,ISP_2可达性，关联Track,与静态路由、策略路由联动</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">nqa entry admin isp_1_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 101.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_2_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 201.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.6</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.5</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_1_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_2_test start-time now lifetime forever</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">track 1 nqa entry admin isp_2_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 2 nqa entry admin isp_1_test reaction 1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> if-match acl 3001</span><br><span class="line"> apply next-hop 10.1.1.6 track 1</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 5 deny ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255</span><br><span class="line"> rule 10 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>ISP网络设备配置OSPF</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ISP_NETWORK&gt;dis ip routing-table  protocol ospf</span><br><span class="line"></span><br><span class="line">Summary count : 5</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 2</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">101.1.1.0/30       O_INTRA 10  2           101.1.1.5       GE0/1</span><br><span class="line">201.1.1.0/30       O_INTRA 10  2           201.1.1.5       GE0/2</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">1.2.3.4/32         O_INTRA 10  0           0.0.0.0         Loop0</span><br><span class="line">101.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/1</span><br><span class="line">201.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/2</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>方法论</category>
+        <category>HCL模拟器</category>
       </categories>
       <tags>
-        <tag>方法论</tag>
-        <tag>费曼学习方法</tag>
+        <tag>HCL模拟器</tag>
       </tags>
   </entry>
   <entry>
@@ -269,82 +345,6 @@
       </categories>
       <tags>
         <tag>更新日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HCL_一个小实验的思路</title>
-    <url>/posts/c7ac5477.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验说明："><a href="#实验说明：" class="headerlink" title="实验说明："></a>实验说明：</h2><p><strong>设备互联线路，IP地址、路由协议、可靠性等配置自定义</strong></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg"><img src="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg" width="61.8%" align="center" ></a></p>
-<h2 id="实验效果："><a href="#实验效果：" class="headerlink" title="实验效果："></a>实验效果：</h2><ul>
-<li>PC_1网段流量经R1出互联网</li>
-<li>PC_2网段流量经R2出互联网</li>
-<li>当任意互联网线路故障后，全部流量走另一线路出互联网</li>
-</ul>
-<h2 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h2><ul>
-<li><strong>设备互联，IP地址规划如图</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png"><img  src="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png" width="61.8%" align="center" ></a></p>
-<ul>
-<li><strong>Core_SW1、Core_SW2做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为BFD检测线</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis irf</span><br><span class="line">MemberID    Role    Priority  CPU-Mac         Description</span><br><span class="line"> *+1        Master  15        72f0-e201-0504  ---</span><br><span class="line">   2        Standby 10        72f0-e6bc-0604  ---</span><br><span class="line">--------------------------------------------------</span><br><span class="line"> * indicates the device is the master.</span><br><span class="line"> + indicates the device through which the user logs in.</span><br><span class="line"> &lt;Core_SW1&gt;dis irf topology </span><br><span class="line">                              Topology Info</span><br><span class="line"> -------------------------------------------------------------------------</span><br><span class="line">               IRF-Port1                IRF-Port2          </span><br><span class="line"> MemberID    Link       neighbor      Link       neighbor    Belong To</span><br><span class="line"> 1           DIS        ---           UP         2           72f0-e201-0504</span><br><span class="line"> 2           UP         1             DIS        ---         72f0-e201-0504</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>核心交换机Core_SW与R1,R2之间启用三层聚合链路</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis link-aggregation summary </span><br><span class="line">Aggregation Interface Type: </span><br><span class="line">BAGG -- Bridge-Aggregation, BLAGG -- Blade-Aggregation, RAGG -- Route-Aggregation, SCH-B -- Schannel-Bundle </span><br><span class="line">Aggregation Mode: S -- Static, D -- Dynamic </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing</span><br><span class="line">Actor System ID: 0x8000, 72f0-e201-0500</span><br><span class="line"></span><br><span class="line">AGG        AGG   Partner ID              Selected  Unselected  Individual  Share</span><br><span class="line">Interface  Mode                          Ports     Ports       Ports       Type </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">BAGG3      S     None                    2         0           0           Shar </span><br><span class="line">RAGG1      S     None                    2         0           0           Shar </span><br><span class="line">RAGG2      S     None                    2         0           0           Shar </span><br><span class="line">&lt;Core_SW1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE1/0/1                  up       up       --              --</span><br><span class="line">GE1/0/2                  up       up       --              --</span><br><span class="line">GE2/0/1                  up       up       --              --</span><br><span class="line">GE2/0/2                  up       up       --              --</span><br><span class="line">MGE0/0/0                 down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.1        --</span><br><span class="line">RAGG2                    up       up       10.1.1.5        --</span><br><span class="line">Vlan10                   up       up       192.168.10.254  --</span><br><span class="line">Vlan20                   up       up       192.168.20.254  --</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       101.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.2        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R2&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       201.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.6        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>核心交换机Core_SW与SW3之间启用二层聚合链路</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;SW3&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Bridge-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE1/0/1          S       32768    1         </span><br><span class="line">  GE1/0/2          S       32768    1         </span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>核心交换机Core_SW配置静态路由；R1、R2配置默认路由下一跳指向ISP设备地址、配置回程静态路由指向Core_SW三层聚合接口地址</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis cur | inc route</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> ip policy-based-route vlan20nexthop</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           101.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.1        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R2&gt;dis ip routing-table pro static </span><br><span class="line"></span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/0          Static  60  0           201.1.1.2       GE0/0</span><br><span class="line">192.168.10.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line">192.168.20.0/24    Static  60  0           10.1.1.5        RAGG1</span><br><span class="line"></span><br><span class="line">Static Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 0</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>核心交换机Core_SW配置NQA，检测ISP_1,ISP_2可达性，关联Track,与静态路由、策略路由联动</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">nqa entry admin isp_1_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 101.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_2_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 201.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.6</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.5</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_1_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_2_test start-time now lifetime forever</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">track 1 nqa entry admin isp_2_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 2 nqa entry admin isp_1_test reaction 1</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> if-match acl 3001</span><br><span class="line"> apply next-hop 10.1.1.6 track 1</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 5 deny ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255</span><br><span class="line"> rule 10 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>ISP网络设备配置OSPF</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ISP_NETWORK&gt;dis ip routing-table  protocol ospf</span><br><span class="line"></span><br><span class="line">Summary count : 5</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 2</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">101.1.1.0/30       O_INTRA 10  2           101.1.1.5       GE0/1</span><br><span class="line">201.1.1.0/30       O_INTRA 10  2           201.1.1.5       GE0/2</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">1.2.3.4/32         O_INTRA 10  0           0.0.0.0         Loop0</span><br><span class="line">101.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/1</span><br><span class="line">201.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/2</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>HCL模拟器</category>
-      </categories>
-      <tags>
-        <tag>HCL模拟器</tag>
       </tags>
   </entry>
   <entry>
@@ -573,6 +573,30 @@
       </tags>
   </entry>
   <entry>
+    <title>关于新主题博客</title>
+    <url>/posts/f2af2fdc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" class="img-center" ></a></p>
+
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
+<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
+
+<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>GiteePages</tag>
+        <tag>博客迁移</tag>
+        <tag>为什么</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我的一些blog常用小操作</title>
     <url>/posts/c1906682.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是^_^"></a>这是^_^</h2><p>自己日常操作的一些小命令和插件。</p>
@@ -643,30 +667,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于新主题博客</title>
-    <url>/posts/f2af2fdc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" class="img-center" ></a></p>
-
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
-<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
-
-<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>GiteePages</tag>
-        <tag>博客迁移</tag>
-        <tag>为什么</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>H3C_连接L2TP的客户端设置(图片)</title>
     <url>/posts/ab889e59.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode客户端设置"><a href="#iNode客户端设置" class="headerlink" title="iNode客户端设置"></a>iNode客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
@@ -717,6 +717,32 @@
         <tag>iNode客户端</tag>
         <tag>windows自带</tag>
         <tag>网络中心添加</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TI10</title>
+    <url>/posts/fae4c6b8.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10结束了，LGD再次倒在了总决赛</p>
+<p>相信包括我在内的许多人都坚信今年的总冠军是LGD，但是……</p>
+<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
+<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
+<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
+<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
+<p>你也别说什么五年了，该CN DOTA举一次盾了</p>
+<p>巧了，独联体区的玩家也是这么这么认为的</p>
+<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
+<p>……</p>
+<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>DOTA2</tag>
+        <tag>LGD</tag>
+        <tag>马格纳斯</tag>
+        <tag>Dead Game</tag>
+        <tag>TI10</tag>
       </tags>
   </entry>
   <entry>
@@ -772,32 +798,6 @@
         <tag>线路测试</tag>
         <tag>割接工作</tag>
         <tag>Python脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TI10</title>
-    <url>/posts/fae4c6b8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10结束了，LGD再次倒在了总决赛</p>
-<p>相信包括我在内的许多人都坚信今年的总冠军是LGD，但是……</p>
-<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
-<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
-<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
-<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
-<p>你也别说什么五年了，该CN DOTA举一次盾了</p>
-<p>巧了，独联体区的玩家也是这么这么认为的</p>
-<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
-<p>……</p>
-<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>DOTA2</tag>
-        <tag>LGD</tag>
-        <tag>马格纳斯</tag>
-        <tag>Dead Game</tag>
-        <tag>TI10</tag>
       </tags>
   </entry>
 </search>
