@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于开始扯谈</title>
+    <url>/posts/49183d2a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗<br>肚里墨水浅，蹦不出几个字    </p>
+<p>晚上躺床，可能由于早已被破坏了的生物钟的影响<br>时常辗转反侧，脑里思绪万千<br>明明是身体驱使着我要睡了要睡了<br>但是脑子并不协调躯体</p>
+<p>躺床的我使劲的翻看手机屏幕<br>完全忘记了床的两大原始作用，你懂我意思吗</p>
+<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡<br>喜马拉雅，定一个倒计时<br>强行把自己深夜的思绪带入场景中<br>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
+<p>眼睛一睁已是第二天的差不多日上三竿的时间<br>洗洗醒醒坐坐，一天开始了</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
+]]></content>
+      <categories>
+        <category>方法论</category>
+      </categories>
+      <tags>
+        <tag>方法论</tag>
+        <tag>费曼学习方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Theme: Obsidian</title>
+    <url>/posts/9cdc001c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
+<blockquote>
+<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
+</blockquote>
+<blockquote>
+<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
+</blockquote>
+<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
+
+
+<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
+<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
+<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
+<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
+]]></content>
+      <categories>
+        <category>Themes</category>
+      </categories>
+      <tags>
+        <tag>主题介绍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
@@ -43,59 +112,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Theme: Obsidian</title>
-    <url>/posts/9cdc001c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
-<blockquote>
-<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
-</blockquote>
-<blockquote>
-<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
-</blockquote>
-<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
-
-
-<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
-<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
-<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
-<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
-]]></content>
-      <categories>
-        <category>Themes</category>
-      </categories>
-      <tags>
-        <tag>主题介绍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
-</ul>
-]]></content>
-      <categories>
-        <category>方法论</category>
-      </categories>
-      <tags>
-        <tag>方法论</tag>
-        <tag>费曼学习方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>九十年代</title>
     <url>/posts/8847b633.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
@@ -114,22 +130,6 @@
 <p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
 <p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
 <p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于开始扯谈</title>
-    <url>/posts/49183d2a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗<br>肚里墨水浅，蹦不出几个字    </p>
-<p>晚上躺床，可能由于早已被破坏了的生物钟的影响<br>时常辗转反侧，脑里思绪万千<br>明明是身体驱使着我要睡了要睡了<br>但是脑子并不协调躯体</p>
-<p>躺床的我使劲的翻看手机屏幕<br>完全忘记了床的两大原始作用，你懂我意思吗</p>
-<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡<br>喜马拉雅，定一个倒计时<br>强行把自己深夜的思绪带入场景中<br>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
-<p>眼睛一睁已是第二天的差不多日上三竿的时间<br>洗洗醒醒坐坐，一天开始了</p>
 ]]></content>
       <categories>
         <category>扯谈</category>
@@ -200,6 +200,98 @@
       <tags>
         <tag>汉语语法</tag>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客调整更新日志</title>
+    <url>/posts/e2a2e564.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211024"><a href="#20211024" class="headerlink" title="20211024"></a>20211024</h3><ul>
+<li>修改CSS样式中的媒体查询 <strong>media query</strong> 下属性</li>
+</ul>
+<h3 id="20211022"><a href="#20211022" class="headerlink" title="20211022"></a>20211022</h3><ul>
+<li>修改文章页，去除左侧sidebar，page_main添加边框样式</li>
+<li>修改about页面底部contact信息</li>
+<li>去除article-toc文章目录</li>
+<li>去除sidebar CV信息标签</li>
+</ul>
+<h3 id="20211016"><a href="#20211016" class="headerlink" title="20211016"></a>20211016</h3><ul>
+<li>添加文章页版权信息</li>
+<li>修改md文件信息</li>
+</ul>
+<h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
+<li>使用<a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a>主题，感谢作者<a href="https://phower.me/">Le Phower’s</a></li>
+<li>博客从Gitee迁移到Github</li>
+<li>修改主题配置文件</li>
+<li>修改sidebar的social内容</li>
+<li>主页content修改为显示最近十篇文章</li>
+<li>主页content添加置顶文章</li>
+<li>除category页和about页外添加pagination</li>
+<li>添加category页，添加tag-cloud</li>
+<li>添加archive页</li>
+<li>添加about页</li>
+<li><del>post页面侧边栏添加article-toc文章目录</del></li>
+<li>添加百度统计，谷歌统计，谷歌收录，bing收录</li>
+<li><del>侧边栏添加aplayer播放器，显示效果不美观，已注释代码</del></li>
+<li><del>page_main的div CSS浮动问题未解决</del></li>
+</ul>
+<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
+<li><del>添加文章页评论邮件提醒功能</del></li>
+</ul>
+<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
+<li><del>修改博客网站访问地址不带二级目录</del></li>
+<li><del>修正修改访问地址后文章阅读次数显示为0问题</del></li>
+<li><del>修正whoami页面显示双footer栏问题</del></li>
+</ul>
+<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
+<li><del>修正文章阅读次数显示为0问题</del></li>
+<li><del>添加文章模板updated参数</del></li>
+<li><del>对网站添加百度统计</del></li>
+</ul>
+<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
+<li><del>制作修改博客Logo，更改cover图片</del></li>
+<li><del>修改导航栏标签为中文</del></li>
+<li><del>启用valine评论代码</del></li>
+<li><del>添加文章页END结束分割线</del></li>
+<li><del>添加文章页上一篇下一篇链接</del></li>
+<li><del>添加post文章模板，添加categories,series,cover,tags参数</del></li>
+<li><del>修改网页底部footer，添加网站运行时间记录</del></li>
+<li><del>更换图标库链接</del></li>
+<li><del>添加网站图床</del></li>
+<li><del>更换文章页播放音乐</del></li>
+<li><del>更换网站首页Website slogans动态文字</del></li>
+<li><del>文章页和about页添加网易云音乐</del></li>
+<li><del>文章页添加“友情链接”</del></li>
+<li><del>更换部分页面左上角图标返回链接</del></li>
+<li><del>添加abbrlink插件，修改文章页url链接</del></li>
+<li><del>博客网站本地初始调试工作完成，推送至Gitee</del></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>更新日志</category>
+      </categories>
+      <tags>
+        <tag>更新日志</tag>
       </tags>
   </entry>
   <entry>
@@ -279,134 +371,6 @@
       </tags>
   </entry>
   <entry>
-    <title>博客调整更新日志</title>
-    <url>/posts/e2a2e564.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211024"><a href="#20211024" class="headerlink" title="20211024"></a>20211024</h3><ul>
-<li>修改CSS样式中的媒体查询 <strong>media query</strong> 下属性</li>
-</ul>
-<h3 id="20211022"><a href="#20211022" class="headerlink" title="20211022"></a>20211022</h3><ul>
-<li>修改文章页，去除左侧sidebar，page_main添加边框样式</li>
-<li>修改about页面底部contact信息</li>
-<li>去除article-toc文章目录</li>
-<li>去除sidebar CV信息标签</li>
-</ul>
-<h3 id="20211016"><a href="#20211016" class="headerlink" title="20211016"></a>20211016</h3><ul>
-<li>添加文章页版权信息</li>
-<li>修改md文件信息</li>
-</ul>
-<h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
-<li>使用<a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a>主题，感谢作者<a href="https://phower.me/">Le Phower’s</a></li>
-<li>博客从Gitee迁移到Github</li>
-<li>修改主题配置文件</li>
-<li>修改sidebar的social内容</li>
-<li>主页content修改为显示最近十篇文章</li>
-<li>主页content添加置顶文章</li>
-<li>除category页和about页外添加pagination</li>
-<li>添加category页，添加tag-cloud</li>
-<li>添加archive页</li>
-<li>添加about页</li>
-<li><del>post页面侧边栏添加article-toc文章目录</del></li>
-<li>添加百度统计，谷歌统计，谷歌收录，bing收录</li>
-<li><del>侧边栏添加aplayer播放器，显示效果不美观，已注释代码</del></li>
-<li><del>page_main的div CSS浮动问题未解决</del></li>
-</ul>
-<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
-<li><del>添加文章页评论邮件提醒功能</del></li>
-</ul>
-<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
-<li><del>修改博客网站访问地址不带二级目录</del></li>
-<li><del>修正修改访问地址后文章阅读次数显示为0问题</del></li>
-<li><del>修正whoami页面显示双footer栏问题</del></li>
-</ul>
-<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
-<li><del>修正文章阅读次数显示为0问题</del></li>
-<li><del>添加文章模板updated参数</del></li>
-<li><del>对网站添加百度统计</del></li>
-</ul>
-<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
-<li><del>制作修改博客Logo，更改cover图片</del></li>
-<li><del>修改导航栏标签为中文</del></li>
-<li><del>启用valine评论代码</del></li>
-<li><del>添加文章页END结束分割线</del></li>
-<li><del>添加文章页上一篇下一篇链接</del></li>
-<li><del>添加post文章模板，添加categories,series,cover,tags参数</del></li>
-<li><del>修改网页底部footer，添加网站运行时间记录</del></li>
-<li><del>更换图标库链接</del></li>
-<li><del>添加网站图床</del></li>
-<li><del>更换文章页播放音乐</del></li>
-<li><del>更换网站首页Website slogans动态文字</del></li>
-<li><del>文章页和about页添加网易云音乐</del></li>
-<li><del>文章页添加“友情链接”</del></li>
-<li><del>更换部分页面左上角图标返回链接</del></li>
-<li><del>添加abbrlink插件，修改文章页url链接</del></li>
-<li><del>博客网站本地初始调试工作完成，推送至Gitee</del></li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>更新日志</category>
-      </categories>
-      <tags>
-        <tag>更新日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HCL_路由器双出口策略配置实验</title>
-    <url>/posts/4e82271c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" class="img-center" ></a></p>
-<h2 id="路由器出口策略配置说明"><a href="#路由器出口策略配置说明" class="headerlink" title="路由器出口策略配置说明"></a>路由器出口策略配置说明</h2><h3 id="NQA"><a href="#NQA" class="headerlink" title="NQA"></a>NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置探测电信DNS的NQA</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68 //探测远端DNS地址</span><br><span class="line">  frequency 2000 //每间隔2秒探测一次</span><br><span class="line">  history-record enable //开启NQA历史记录保存功能</span><br><span class="line">  history-record number 5 //保存的最大历史记录个数为5条</span><br><span class="line">  next-hop ip 101.1.1.2 //探测报文经过的下一跳</span><br><span class="line">  probe count 5 //每次探测检测5次</span><br><span class="line">  probe timeout 1000 //检测超时时间1秒</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only //连续探测失败5次，触发其他模块联动</span><br><span class="line">  source ip 101.1.1.1 //探测报文源地址</span><br><span class="line"></span><br><span class="line"># 配置探测联通DNS的NQA</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line"></span><br><span class="line"># 当前时间起永久启用NQA监测</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="track关联NQA"><a href="#track关联NQA" class="headerlink" title="track关联NQA"></a>track关联NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#  </span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="策略路由配置，联动"><a href="#策略路由配置，联动" class="headerlink" title="策略路由配置，联动"></a>策略路由配置，联动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line"></span><br><span class="line"># 指定下一跳时与track 200联动，当NQA监测失败结果时，策略路由失效，流量根据路由表转发流量</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line"># 默认路由与track 100联动，当NQA监测失败结果时，该条默认路由失效，优先级为80的默认路由加载路由表，流量根据路由表转发流量</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"></span><br><span class="line"># 内网流量入接口下调用策略路由</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line">ip policy-based-route to_isp_policy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="测试说明："><a href="#测试说明：" class="headerlink" title="测试说明："></a>测试说明：</h2><p>外网网络正常情况，查看nqa监测结果，探测发出的数据包和收到的数据包数量一致</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png"><img src="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png" ></a></p>
-<p>通过debug查看NAT转换信息，vlan10去往互联网DNS地址的流量走101.1.1.2下一跳地址，vlan20去往互联网DNS地址的流量走202.1.1.2下一跳地址<br><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png"><img src="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png" ></a></p>
-<h3 id="当电信网络不可用时"><a href="#当电信网络不可用时" class="headerlink" title="当电信网络不可用时"></a>当电信网络不可用时</h3><p>当电信网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png"><img src="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png" ></a></p>
-<p><a data-fancybox="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png"><img src="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png" ></a></p>
-<p>路由表中，默认路由的下一跳为202.1.1.2</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png"><img src="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png" ></a></p>
-<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png"><img src="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png" ></a></p>
-<p>通过debug查看NAT转换信息，所有流量走联通网络出口</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png"><img src="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png" ></a></p>
-<h3 id="当联通网络不可用时"><a href="#当联通网络不可用时" class="headerlink" title="当联通网络不可用时"></a>当联通网络不可用时</h3><p>当联通网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png"><img src="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png"><img src="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png" ></a></p>
-<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png"><img src="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png" ></a></p>
-<p>通过debug查看NAT转换信息，所有流量走电信网络出口</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png"><img src="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png" ></a></p>
-<h2 id="路由器配置："><a href="#路由器配置：" class="headerlink" title="路由器配置："></a>路由器配置：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname Router</span><br><span class="line">#</span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1</span><br><span class="line">#</span><br><span class="line"> system-working-mode standard</span><br><span class="line"> xbar load-single</span><br><span class="line"> password-recovery enable</span><br><span class="line"> lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br><span class="line">#</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 101.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 101.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line">#</span><br><span class="line">interface Serial1/0</span><br><span class="line">#</span><br><span class="line">interface Serial2/0</span><br><span class="line">#</span><br><span class="line">interface Serial3/0</span><br><span class="line">#</span><br><span class="line">interface Serial4/0</span><br><span class="line">#</span><br><span class="line">interface NULL0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 1.1.1.1 255.255.255.252</span><br><span class="line"> ip policy-based-route to_isp_policy</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 101.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/2</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 202.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line"> scheduler logfile size 16</span><br><span class="line">#</span><br><span class="line">line class aux </span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class console</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line class tty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class vty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line aux 0</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line con 0</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line vty 0 63</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"> ip route-static 192.168.10.0 24 1.1.1.2</span><br><span class="line"> ip route-static 192.168.20.0 24 1.1.1.2</span><br><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip</span><br><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br><span class="line">domain name system</span><br><span class="line">#</span><br><span class="line"> domain default enable system</span><br><span class="line">#</span><br><span class="line">role name level-0</span><br><span class="line"> description Predefined level-0 role</span><br><span class="line">#</span><br><span class="line">role name level-1</span><br><span class="line"> description Predefined level-1 role</span><br><span class="line">#</span><br><span class="line">role name level-2</span><br><span class="line"> description Predefined level-2 role</span><br><span class="line">#</span><br><span class="line">role name level-3</span><br><span class="line"> description Predefined level-3 role</span><br><span class="line">#</span><br><span class="line">role name level-4</span><br><span class="line"> description Predefined level-4 role</span><br><span class="line">#</span><br><span class="line">role name level-5</span><br><span class="line"> description Predefined level-5 role</span><br><span class="line">#</span><br><span class="line">role name level-6</span><br><span class="line"> description Predefined level-6 role</span><br><span class="line">#</span><br><span class="line">role name level-7</span><br><span class="line"> description Predefined level-7 role</span><br><span class="line">#</span><br><span class="line">role name level-8</span><br><span class="line"> description Predefined level-8 role</span><br><span class="line">#</span><br><span class="line">role name level-9</span><br><span class="line"> description Predefined level-9 role</span><br><span class="line">#</span><br><span class="line">role name level-10</span><br><span class="line"> description Predefined level-10 role</span><br><span class="line">#</span><br><span class="line">role name level-11</span><br><span class="line"> description Predefined level-11 role</span><br><span class="line">#</span><br><span class="line">role name level-12</span><br><span class="line"> description Predefined level-12 role</span><br><span class="line">#</span><br><span class="line">role name level-13</span><br><span class="line"> description Predefined level-13 role</span><br><span class="line">#</span><br><span class="line">role name level-14</span><br><span class="line"> description Predefined level-14 role</span><br><span class="line">#</span><br><span class="line">user-group system</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">&lt;Router&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>HCL模拟器</category>
-      </categories>
-      <tags>
-        <tag>路由器双出口策略配置</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>H3C_V5_V7设备巡检信息提取</title>
     <url>/posts/80e04e00.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备CPU使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用python脚本写入到巡检报告或者表格中。</p>
@@ -452,58 +416,39 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C_S5500-52C-EI升级步骤</title>
-    <url>/posts/e765d177.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载升级所需要的两个文件：</p>
-<p><strong>S5500EI-BTM-721.btm</strong>（新版本Bootrom程序）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-BTM-721.btm</span><br><span class="line">大小: 483732 字节 (472 KiB)</span><br><span class="line">CRC32: 4B9436E9</span><br><span class="line">CRC64: 928CB6227DE9AF69</span><br><span class="line">SHA256: C0EDB2FA02C5F8804E8D983F4DD197F1D321C21C317ED5BB10BF002CB4973CE8</span><br><span class="line">SHA1: F8B345BC2012C8183CE01F092E4181FC15495867</span><br><span class="line">BLAKE2sp: 6A5E362D8A4DA8FA74B6A9F4568627FA07C53126DB67F5FF287C9BE893C33502</span><br></pre></td></tr></table></figure>
+    <title>HCL_路由器双出口策略配置实验</title>
+    <url>/posts/4e82271c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" class="img-center" ></a></p>
+<h2 id="路由器出口策略配置说明"><a href="#路由器出口策略配置说明" class="headerlink" title="路由器出口策略配置说明"></a>路由器出口策略配置说明</h2><h3 id="NQA"><a href="#NQA" class="headerlink" title="NQA"></a>NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置探测电信DNS的NQA</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68 //探测远端DNS地址</span><br><span class="line">  frequency 2000 //每间隔2秒探测一次</span><br><span class="line">  history-record enable //开启NQA历史记录保存功能</span><br><span class="line">  history-record number 5 //保存的最大历史记录个数为5条</span><br><span class="line">  next-hop ip 101.1.1.2 //探测报文经过的下一跳</span><br><span class="line">  probe count 5 //每次探测检测5次</span><br><span class="line">  probe timeout 1000 //检测超时时间1秒</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only //连续探测失败5次，触发其他模块联动</span><br><span class="line">  source ip 101.1.1.1 //探测报文源地址</span><br><span class="line"></span><br><span class="line"># 配置探测联通DNS的NQA</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line"></span><br><span class="line"># 当前时间起永久启用NQA监测</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="track关联NQA"><a href="#track关联NQA" class="headerlink" title="track关联NQA"></a>track关联NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#  </span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="策略路由配置，联动"><a href="#策略路由配置，联动" class="headerlink" title="策略路由配置，联动"></a>策略路由配置，联动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line"></span><br><span class="line"># 指定下一跳时与track 200联动，当NQA监测失败结果时，策略路由失效，流量根据路由表转发流量</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line"># 默认路由与track 100联动，当NQA监测失败结果时，该条默认路由失效，优先级为80的默认路由加载路由表，流量根据路由表转发流量</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"></span><br><span class="line"># 内网流量入接口下调用策略路由</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line">ip policy-based-route to_isp_policy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="测试说明："><a href="#测试说明：" class="headerlink" title="测试说明："></a>测试说明：</h2><p>外网网络正常情况，查看nqa监测结果，探测发出的数据包和收到的数据包数量一致</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png"><img src="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png" ></a></p>
+<p>通过debug查看NAT转换信息，vlan10去往互联网DNS地址的流量走101.1.1.2下一跳地址，vlan20去往互联网DNS地址的流量走202.1.1.2下一跳地址<br><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png"><img src="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png" ></a></p>
+<h3 id="当电信网络不可用时"><a href="#当电信网络不可用时" class="headerlink" title="当电信网络不可用时"></a>当电信网络不可用时</h3><p>当电信网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png"><img src="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png" ></a></p>
+<p><a data-fancybox="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png"><img src="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png" ></a></p>
+<p>路由表中，默认路由的下一跳为202.1.1.2</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png"><img src="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png" ></a></p>
+<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png"><img src="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png" ></a></p>
+<p>通过debug查看NAT转换信息，所有流量走联通网络出口</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png"><img src="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png" ></a></p>
+<h3 id="当联通网络不可用时"><a href="#当联通网络不可用时" class="headerlink" title="当联通网络不可用时"></a>当联通网络不可用时</h3><p>当联通网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png"><img src="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png"><img src="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png" ></a></p>
+<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png"><img src="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png" ></a></p>
+<p>通过debug查看NAT转换信息，所有流量走电信网络出口</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png"><img src="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png" ></a></p>
+<h2 id="路由器配置："><a href="#路由器配置：" class="headerlink" title="路由器配置："></a>路由器配置：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname Router</span><br><span class="line">#</span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1</span><br><span class="line">#</span><br><span class="line"> system-working-mode standard</span><br><span class="line"> xbar load-single</span><br><span class="line"> password-recovery enable</span><br><span class="line"> lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br><span class="line">#</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 101.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 101.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line">#</span><br><span class="line">interface Serial1/0</span><br><span class="line">#</span><br><span class="line">interface Serial2/0</span><br><span class="line">#</span><br><span class="line">interface Serial3/0</span><br><span class="line">#</span><br><span class="line">interface Serial4/0</span><br><span class="line">#</span><br><span class="line">interface NULL0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 1.1.1.1 255.255.255.252</span><br><span class="line"> ip policy-based-route to_isp_policy</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 101.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/2</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 202.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line"> scheduler logfile size 16</span><br><span class="line">#</span><br><span class="line">line class aux </span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class console</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line class tty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class vty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line aux 0</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line con 0</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line vty 0 63</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"> ip route-static 192.168.10.0 24 1.1.1.2</span><br><span class="line"> ip route-static 192.168.20.0 24 1.1.1.2</span><br><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip</span><br><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br><span class="line">domain name system</span><br><span class="line">#</span><br><span class="line"> domain default enable system</span><br><span class="line">#</span><br><span class="line">role name level-0</span><br><span class="line"> description Predefined level-0 role</span><br><span class="line">#</span><br><span class="line">role name level-1</span><br><span class="line"> description Predefined level-1 role</span><br><span class="line">#</span><br><span class="line">role name level-2</span><br><span class="line"> description Predefined level-2 role</span><br><span class="line">#</span><br><span class="line">role name level-3</span><br><span class="line"> description Predefined level-3 role</span><br><span class="line">#</span><br><span class="line">role name level-4</span><br><span class="line"> description Predefined level-4 role</span><br><span class="line">#</span><br><span class="line">role name level-5</span><br><span class="line"> description Predefined level-5 role</span><br><span class="line">#</span><br><span class="line">role name level-6</span><br><span class="line"> description Predefined level-6 role</span><br><span class="line">#</span><br><span class="line">role name level-7</span><br><span class="line"> description Predefined level-7 role</span><br><span class="line">#</span><br><span class="line">role name level-8</span><br><span class="line"> description Predefined level-8 role</span><br><span class="line">#</span><br><span class="line">role name level-9</span><br><span class="line"> description Predefined level-9 role</span><br><span class="line">#</span><br><span class="line">role name level-10</span><br><span class="line"> description Predefined level-10 role</span><br><span class="line">#</span><br><span class="line">role name level-11</span><br><span class="line"> description Predefined level-11 role</span><br><span class="line">#</span><br><span class="line">role name level-12</span><br><span class="line"> description Predefined level-12 role</span><br><span class="line">#</span><br><span class="line">role name level-13</span><br><span class="line"> description Predefined level-13 role</span><br><span class="line">#</span><br><span class="line">role name level-14</span><br><span class="line"> description Predefined level-14 role</span><br><span class="line">#</span><br><span class="line">user-group system</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">&lt;Router&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><strong>S5500EI-CMW520-R2222P12.bin</strong>（新版本主机软件）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-CMW520-R2222P12.bin</span><br><span class="line">大小: 14386411 字节 (13 MiB)</span><br><span class="line">CRC32: D2E2387E</span><br><span class="line">CRC64: 5806015C822E9D46</span><br><span class="line">SHA256: 33F9948CF29DEEE01C2449DEC499E35AC1721331F6E73644526F9D2BF9B6C2E0</span><br><span class="line">SHA1: 8D50B9BAD0E80F6DCE14E3C941D3E74CA8D72B96</span><br><span class="line">BLAKE2sp: 7510F4902CE03E9ABF44E480C4DF642782818AAF9F400E8E8716AFC7F18C6BE2</span><br></pre></td></tr></table></figure>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" target="_blank"><img src="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" class="img-center" ></a></p>
-
-<h2 id="登陆查看版本信息和Flash空间"><a href="#登陆查看版本信息和Flash空间" class="headerlink" title="登陆查看版本信息和Flash空间"></a>登陆查看版本信息和Flash空间</h2><h3 id="查看当前主机软件版本和Bootrom版本"><a href="#查看当前主机软件版本和Bootrom版本" class="headerlink" title="查看当前主机软件版本和Bootrom版本"></a>查看当前主机软件版本和Bootrom版本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;display version</span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2202</span><br><span class="line">Copyright (c) 2004-2010 Hangzhou H3C Tech. Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 5 weeks, 3 days, 20 hours, 9 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 609</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看Flash-剩余空间"><a href="#查看Flash-剩余空间" class="headerlink" title="查看Flash 剩余空间"></a>查看Flash 剩余空间</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17880  Sep 07 2021 15:25:30   startup.cfg</span><br><span class="line"></span><br><span class="line">31496 KB total (21277 KB free)</span><br></pre></td></tr></table></figure>
-
-<p>确保Flash有<strong>14.1</strong>M以上剩余空间（新版本软件共14.1M）</p>
-<h2 id="通过FTP实现远程加载文件"><a href="#通过FTP实现远程加载文件" class="headerlink" title="通过FTP实现远程加载文件"></a>通过FTP实现远程加载文件</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" class="img-center"></a></p>
-
-<p>如 图 所示，FTP Server与配置计算机是同一台计算机。远程登录到交换机上，执行FTP命令，从FTP Server上（假定IP地址为 2.2.2.1）下载主机程序<strong>S5500EI-CMW520-R2222P12.bin</strong> 和BOOTROM程序 <strong>S5500EI-BTM-721.btm</strong>。</p>
-<p><strong>备份Flash 文件</strong></p>
-<p>加载文件前使用FTP命令备份文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;ftp 2.2.2.1</span><br><span class="line">Trying 2.2.2.1 ...</span><br><span class="line">Press CTRL+K to abort</span><br><span class="line">Connected to 2.2.2.1.</span><br><span class="line">220 3Com 3CDaemon FTP  2.0 ready for new user</span><br><span class="line">User(2.2.2.1:(none)):123</span><br><span class="line">331 Give me your password, please</span><br><span class="line">Password:</span><br><span class="line">230 Logged in successfully</span><br><span class="line">[ftp]</span><br><span class="line">[ftp] put s5500ei-cmw520-r2202.bin</span><br><span class="line">[ftp] put startup.cfg</span><br><span class="line">[ftp] put ......</span><br></pre></td></tr></table></figure>
-
-<h3 id="第一步：通过-FTP-的相关命令将软件下载到本地交换机上。"><a href="#第一步：通过-FTP-的相关命令将软件下载到本地交换机上。" class="headerlink" title="第一步：通过 FTP 的相关命令将软件下载到本地交换机上。"></a>第一步：通过 FTP 的相关命令将软件下载到本地交换机上。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[ftp] get S5500EI-BTM-721.btm</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,132)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó        </span><br><span class="line">......226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 483732 byte(s) received in 7.111 second(s), 68.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[ftp]</span><br><span class="line">[ftp] get S5500EI-CMW520-R2222P12.bin</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,133)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó</span><br><span class="line"></span><br><span class="line">...............................................226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 14386411 byte(s) received in 197.289 second(s), 72.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[[ftp] bye</span><br></pre></td></tr></table></figure>
-
-<h3 id="第二步：在交换机上升级-BOOTROM。"><a href="#第二步：在交换机上升级-BOOTROM。" class="headerlink" title="第二步：在交换机上升级 BOOTROM。"></a>第二步：在交换机上升级 BOOTROM。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;bootrom update file flash:/s5500ei-btm-721.btm slot 1 </span><br><span class="line">  This command will update bootrom file on the specified board(s), Continue? [Y/N]:y</span><br><span class="line">  Now updating bootrom, please wait...</span><br><span class="line"></span><br><span class="line">  Succeeded to update bootrom of Board 1.</span><br></pre></td></tr></table></figure>
-
-<h3 id="第三步：在交换机上升级主机软件。"><a href="#第三步：在交换机上升级主机软件。" class="headerlink" title="第三步：在交换机上升级主机软件。"></a>第三步：在交换机上升级主机软件。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;boot-loader file flash:/s5500ei-cmw520-r2222p12.bin slot 1 main                                           </span><br><span class="line">  This command will set the boot file of the specified board. Continue? [Y/N]:y</span><br><span class="line">  The specified file will be used as the main boot file at the next reboot on slot 1!</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dis boot-loader </span><br><span class="line"> Slot 1</span><br><span class="line">The current boot app is:  flash:/s5500ei-cmw520-r2202.bin</span><br><span class="line">The main boot app is:     flash:/s5500ei-cmw520-r2222p12.bin</span><br><span class="line">The backup boot app is:   flash:/</span><br></pre></td></tr></table></figure>
-
-<h3 id="第四步：重新启动交换机。"><a href="#第四步：重新启动交换机。" class="headerlink" title="第四步：重新启动交换机。"></a>第四步：重新启动交换机。</h3><ul>
-<li>重起前请确认其他配置是否保存，防止重启后造成配置信息丢失。</li>
-<li>重启设备后即可完成 BOOTROM 和主机软件的加载。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;reboot </span><br><span class="line"> Start to check configuration with next startup configuration file, please wait.........DONE!</span><br><span class="line"> This command will reboot the device. Continue? [Y/N]:y</span><br><span class="line">#Sep 14 15:51:46:49 2021 XX-XX-S5500-1 DEV/1/REBOOT:</span><br><span class="line"> Reboot device by command. </span><br><span class="line"></span><br><span class="line">%Sep 14 15:51:46:163 2021 XX-XX-S5500-1 DEV/4/SYSTEM REBOOT:</span><br><span class="line"> System is rebooting now.</span><br><span class="line"></span><br><span class="line">Starting......</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            ***********************************************************</span><br><span class="line">            *                                                         *</span><br><span class="line">            *          H3C S5500-52C-EI BOOTROM, Version 721          *</span><br><span class="line">            *                                                         *</span><br><span class="line">            ***********************************************************</span><br><span class="line">            Copyright (c) 2004-2013 Hangzhou H3C Tech. Co., Ltd.</span><br><span class="line">            Creation date   : Nov 12 2013, 01:59:13</span><br><span class="line">            CPU Clock Speed : 533MHz</span><br><span class="line">            BUS Clock Speed : 133MHz</span><br><span class="line">            Memory Size     : 256MB</span><br><span class="line">            Mac Address     : 3822d60cd0f8</span><br><span class="line"></span><br><span class="line">Press Ctrl-B to enter Boot Menu... 0</span><br><span class="line">Auto-booting...</span><br><span class="line">Decompress Image.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................OK!</span><br><span class="line"></span><br><span class="line">User interface aux0 is available.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Press ENTER to get started.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="查看升级后的版本信息"><a href="#查看升级后的版本信息" class="headerlink" title="查看升级后的版本信息"></a>查看升级后的版本信息</h2><p>查看主机软件版本和Bootrom程序版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dis version </span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2222P12</span><br><span class="line">Copyright (c) 2004-2018 New H3C Technologies Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 0 week, 0 day, 0 hour, 2 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 721</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除旧主机软件"><a href="#删除旧主机软件" class="headerlink" title="删除旧主机软件"></a>删除旧主机软件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir                                                                                                       </span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   2     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   3     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   4     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (6751 KB free)</span><br><span class="line"></span><br><span class="line">&lt;XX-XX-S5500-1&gt;delete /unreserved s5500ei-cmw520-r2202.bin </span><br><span class="line">The contents cannot be restored!!! Delete flash:/s5500ei-cmw520-r2202.bin?[Y/N]:y</span><br><span class="line">Deleting a file permanently will take a long time. Please wait...</span><br><span class="line">........................................................................................</span><br><span class="line">%Delete file flash:/s5500ei-cmw520-r2202.bin...Done.</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   1     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   2     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   3     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (16943 KB free)</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>加载主机软件必须通过 reboot 命令重起交换机后才能使加载成功。</li>
-<li>如果 Flash 空间不够，可以先删除 Flash 中的无用文件，再进行软件的下载。</li>
-<li>在加载过程中不可断电。</li>
-</ul>
 ]]></content>
       <categories>
-        <category>H3C</category>
+        <category>HCL模拟器</category>
       </categories>
       <tags>
-        <tag>H3C设备</tag>
-        <tag>交换机升级版本</tag>
+        <tag>路由器双出口策略配置</tag>
       </tags>
   </entry>
   <entry>
@@ -545,30 +490,6 @@
         <tag>vpn-instance</tag>
         <tag>VPN实例</tag>
         <tag>实例互通</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于新主题博客</title>
-    <url>/posts/f2af2fdc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" class="img-center" ></a></p>
-
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
-<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
-
-<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>GiteePages</tag>
-        <tag>博客迁移</tag>
-        <tag>为什么</tag>
       </tags>
   </entry>
   <entry>
@@ -667,6 +588,85 @@
         <tag>Blog</tag>
         <tag>脚本</tag>
         <tag>hexo命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于新主题博客</title>
+    <url>/posts/f2af2fdc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" class="img-center" ></a></p>
+
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
+<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
+
+<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>GiteePages</tag>
+        <tag>博客迁移</tag>
+        <tag>为什么</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_S5500-52C-EI升级步骤</title>
+    <url>/posts/e765d177.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载升级所需要的两个文件：</p>
+<p><strong>S5500EI-BTM-721.btm</strong>（新版本Bootrom程序）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-BTM-721.btm</span><br><span class="line">大小: 483732 字节 (472 KiB)</span><br><span class="line">CRC32: 4B9436E9</span><br><span class="line">CRC64: 928CB6227DE9AF69</span><br><span class="line">SHA256: C0EDB2FA02C5F8804E8D983F4DD197F1D321C21C317ED5BB10BF002CB4973CE8</span><br><span class="line">SHA1: F8B345BC2012C8183CE01F092E4181FC15495867</span><br><span class="line">BLAKE2sp: 6A5E362D8A4DA8FA74B6A9F4568627FA07C53126DB67F5FF287C9BE893C33502</span><br></pre></td></tr></table></figure>
+
+<p><strong>S5500EI-CMW520-R2222P12.bin</strong>（新版本主机软件）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-CMW520-R2222P12.bin</span><br><span class="line">大小: 14386411 字节 (13 MiB)</span><br><span class="line">CRC32: D2E2387E</span><br><span class="line">CRC64: 5806015C822E9D46</span><br><span class="line">SHA256: 33F9948CF29DEEE01C2449DEC499E35AC1721331F6E73644526F9D2BF9B6C2E0</span><br><span class="line">SHA1: 8D50B9BAD0E80F6DCE14E3C941D3E74CA8D72B96</span><br><span class="line">BLAKE2sp: 7510F4902CE03E9ABF44E480C4DF642782818AAF9F400E8E8716AFC7F18C6BE2</span><br></pre></td></tr></table></figure>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" target="_blank"><img src="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" class="img-center" ></a></p>
+
+<h2 id="登陆查看版本信息和Flash空间"><a href="#登陆查看版本信息和Flash空间" class="headerlink" title="登陆查看版本信息和Flash空间"></a>登陆查看版本信息和Flash空间</h2><h3 id="查看当前主机软件版本和Bootrom版本"><a href="#查看当前主机软件版本和Bootrom版本" class="headerlink" title="查看当前主机软件版本和Bootrom版本"></a>查看当前主机软件版本和Bootrom版本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;display version</span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2202</span><br><span class="line">Copyright (c) 2004-2010 Hangzhou H3C Tech. Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 5 weeks, 3 days, 20 hours, 9 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 609</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看Flash-剩余空间"><a href="#查看Flash-剩余空间" class="headerlink" title="查看Flash 剩余空间"></a>查看Flash 剩余空间</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17880  Sep 07 2021 15:25:30   startup.cfg</span><br><span class="line"></span><br><span class="line">31496 KB total (21277 KB free)</span><br></pre></td></tr></table></figure>
+
+<p>确保Flash有<strong>14.1</strong>M以上剩余空间（新版本软件共14.1M）</p>
+<h2 id="通过FTP实现远程加载文件"><a href="#通过FTP实现远程加载文件" class="headerlink" title="通过FTP实现远程加载文件"></a>通过FTP实现远程加载文件</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" class="img-center"></a></p>
+
+<p>如 图 所示，FTP Server与配置计算机是同一台计算机。远程登录到交换机上，执行FTP命令，从FTP Server上（假定IP地址为 2.2.2.1）下载主机程序<strong>S5500EI-CMW520-R2222P12.bin</strong> 和BOOTROM程序 <strong>S5500EI-BTM-721.btm</strong>。</p>
+<p><strong>备份Flash 文件</strong></p>
+<p>加载文件前使用FTP命令备份文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;ftp 2.2.2.1</span><br><span class="line">Trying 2.2.2.1 ...</span><br><span class="line">Press CTRL+K to abort</span><br><span class="line">Connected to 2.2.2.1.</span><br><span class="line">220 3Com 3CDaemon FTP  2.0 ready for new user</span><br><span class="line">User(2.2.2.1:(none)):123</span><br><span class="line">331 Give me your password, please</span><br><span class="line">Password:</span><br><span class="line">230 Logged in successfully</span><br><span class="line">[ftp]</span><br><span class="line">[ftp] put s5500ei-cmw520-r2202.bin</span><br><span class="line">[ftp] put startup.cfg</span><br><span class="line">[ftp] put ......</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一步：通过-FTP-的相关命令将软件下载到本地交换机上。"><a href="#第一步：通过-FTP-的相关命令将软件下载到本地交换机上。" class="headerlink" title="第一步：通过 FTP 的相关命令将软件下载到本地交换机上。"></a>第一步：通过 FTP 的相关命令将软件下载到本地交换机上。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[ftp] get S5500EI-BTM-721.btm</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,132)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó        </span><br><span class="line">......226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 483732 byte(s) received in 7.111 second(s), 68.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[ftp]</span><br><span class="line">[ftp] get S5500EI-CMW520-R2222P12.bin</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,133)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó</span><br><span class="line"></span><br><span class="line">...............................................226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 14386411 byte(s) received in 197.289 second(s), 72.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[[ftp] bye</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二步：在交换机上升级-BOOTROM。"><a href="#第二步：在交换机上升级-BOOTROM。" class="headerlink" title="第二步：在交换机上升级 BOOTROM。"></a>第二步：在交换机上升级 BOOTROM。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;bootrom update file flash:/s5500ei-btm-721.btm slot 1 </span><br><span class="line">  This command will update bootrom file on the specified board(s), Continue? [Y/N]:y</span><br><span class="line">  Now updating bootrom, please wait...</span><br><span class="line"></span><br><span class="line">  Succeeded to update bootrom of Board 1.</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三步：在交换机上升级主机软件。"><a href="#第三步：在交换机上升级主机软件。" class="headerlink" title="第三步：在交换机上升级主机软件。"></a>第三步：在交换机上升级主机软件。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;boot-loader file flash:/s5500ei-cmw520-r2222p12.bin slot 1 main                                           </span><br><span class="line">  This command will set the boot file of the specified board. Continue? [Y/N]:y</span><br><span class="line">  The specified file will be used as the main boot file at the next reboot on slot 1!</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dis boot-loader </span><br><span class="line"> Slot 1</span><br><span class="line">The current boot app is:  flash:/s5500ei-cmw520-r2202.bin</span><br><span class="line">The main boot app is:     flash:/s5500ei-cmw520-r2222p12.bin</span><br><span class="line">The backup boot app is:   flash:/</span><br></pre></td></tr></table></figure>
+
+<h3 id="第四步：重新启动交换机。"><a href="#第四步：重新启动交换机。" class="headerlink" title="第四步：重新启动交换机。"></a>第四步：重新启动交换机。</h3><ul>
+<li>重起前请确认其他配置是否保存，防止重启后造成配置信息丢失。</li>
+<li>重启设备后即可完成 BOOTROM 和主机软件的加载。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;reboot </span><br><span class="line"> Start to check configuration with next startup configuration file, please wait.........DONE!</span><br><span class="line"> This command will reboot the device. Continue? [Y/N]:y</span><br><span class="line">#Sep 14 15:51:46:49 2021 XX-XX-S5500-1 DEV/1/REBOOT:</span><br><span class="line"> Reboot device by command. </span><br><span class="line"></span><br><span class="line">%Sep 14 15:51:46:163 2021 XX-XX-S5500-1 DEV/4/SYSTEM REBOOT:</span><br><span class="line"> System is rebooting now.</span><br><span class="line"></span><br><span class="line">Starting......</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            ***********************************************************</span><br><span class="line">            *                                                         *</span><br><span class="line">            *          H3C S5500-52C-EI BOOTROM, Version 721          *</span><br><span class="line">            *                                                         *</span><br><span class="line">            ***********************************************************</span><br><span class="line">            Copyright (c) 2004-2013 Hangzhou H3C Tech. Co., Ltd.</span><br><span class="line">            Creation date   : Nov 12 2013, 01:59:13</span><br><span class="line">            CPU Clock Speed : 533MHz</span><br><span class="line">            BUS Clock Speed : 133MHz</span><br><span class="line">            Memory Size     : 256MB</span><br><span class="line">            Mac Address     : 3822d60cd0f8</span><br><span class="line"></span><br><span class="line">Press Ctrl-B to enter Boot Menu... 0</span><br><span class="line">Auto-booting...</span><br><span class="line">Decompress Image.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................OK!</span><br><span class="line"></span><br><span class="line">User interface aux0 is available.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Press ENTER to get started.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看升级后的版本信息"><a href="#查看升级后的版本信息" class="headerlink" title="查看升级后的版本信息"></a>查看升级后的版本信息</h2><p>查看主机软件版本和Bootrom程序版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dis version </span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2222P12</span><br><span class="line">Copyright (c) 2004-2018 New H3C Technologies Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 0 week, 0 day, 0 hour, 2 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 721</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除旧主机软件"><a href="#删除旧主机软件" class="headerlink" title="删除旧主机软件"></a>删除旧主机软件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir                                                                                                       </span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   2     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   3     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   4     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (6751 KB free)</span><br><span class="line"></span><br><span class="line">&lt;XX-XX-S5500-1&gt;delete /unreserved s5500ei-cmw520-r2202.bin </span><br><span class="line">The contents cannot be restored!!! Delete flash:/s5500ei-cmw520-r2202.bin?[Y/N]:y</span><br><span class="line">Deleting a file permanently will take a long time. Please wait...</span><br><span class="line">........................................................................................</span><br><span class="line">%Delete file flash:/s5500ei-cmw520-r2202.bin...Done.</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   1     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   2     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   3     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (16943 KB free)</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>加载主机软件必须通过 reboot 命令重起交换机后才能使加载成功。</li>
+<li>如果 Flash 空间不够，可以先删除 Flash 中的无用文件，再进行软件的下载。</li>
+<li>在加载过程中不可断电。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>H3C</category>
+      </categories>
+      <tags>
+        <tag>H3C设备</tag>
+        <tag>交换机升级版本</tag>
       </tags>
   </entry>
   <entry>

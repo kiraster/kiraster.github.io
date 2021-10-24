@@ -78,6 +78,18 @@
     max-width: 996px;
   }
 }
+@media (max-width: 34em) {
+  #page_header {
+    box-shadow: 0 0 5px #ccc;
+  }
+  #page_main_post {
+    margin-top: -1rem;
+    margin-bottom: 1.6rem;
+  }
+  #page_main_post .page {
+    box-shadow: 0 0 5px #ccc;
+  }
+}
 @media (min-width: 34em) {
   .page {
     width: 100%;
