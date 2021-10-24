@@ -200,20 +200,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
-    <lastmod>2021-10-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2021-10-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/ENSP%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
     <lastmod>2021-10-24</lastmod>
     <changefreq>daily</changefreq>
@@ -222,6 +208,20 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/USG%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
+    <lastmod>2021-10-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
+    <lastmod>2021-10-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2021-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -489,14 +489,14 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
+    <loc>https://kiraster.github.io/categories/ENSP%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
     <lastmod>2021-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/ENSP%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
+    <loc>https://kiraster.github.io/categories/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
     <lastmod>2021-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
