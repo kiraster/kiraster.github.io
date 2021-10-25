@@ -738,7 +738,8 @@ blockquote p {
   }
   #page_main .whoami_main {
     margin-left: 10px;
-    padding-left: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 @media (min-width: 34em) {
