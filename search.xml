@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于开始扯谈</title>
+    <url>/posts/49183d2a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗</p>
+<p>肚里墨水浅，蹦不出几个字    </p>
+<p>晚上躺床，可能由于早已被破坏了的生物钟的影响</p>
+<p>时常辗转反侧，脑里思绪万千</p>
+<p>明明是身体驱使着我要睡了要睡了</p>
+<p>但是脑子并不协调躯体</p>
+<p>躺床的我使劲的翻看手机屏幕</p>
+<p>完全忘记了床的两大原始作用，你懂我意思吗</p>
+<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡</p>
+<p>喜马拉雅，定一个倒计时</p>
+<p>强行把自己深夜的思绪带入场景中</p>
+<p>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
+<p>眼睛一睁已是第二天的差不多日上三竿的时间</p>
+<p>洗洗醒醒坐坐，一天开始了</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Theme: Obsidian</title>
     <url>/posts/9cdc001c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
@@ -26,67 +51,9 @@
       </tags>
   </entry>
   <entry>
-    <title>关于开始扯谈</title>
-    <url>/posts/49183d2a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗<br>肚里墨水浅，蹦不出几个字    </p>
-<p>晚上躺床，可能由于早已被破坏了的生物钟的影响<br>时常辗转反侧，脑里思绪万千<br>明明是身体驱使着我要睡了要睡了<br>但是脑子并不协调躯体</p>
-<p>躺床的我使劲的翻看手机屏幕<br>完全忘记了床的两大原始作用，你懂我意思吗</p>
-<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡<br>喜马拉雅，定一个倒计时<br>强行把自己深夜的思绪带入场景中<br>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
-<p>眼睛一睁已是第二天的差不多日上三竿的时间<br>洗洗醒醒坐坐，一天开始了</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
-    <url>/posts/ab67d7a4.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行ENSP模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
-<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
-<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
-<li>通过修改admin的密码，修改vty配置，修改管理接口配置测试验证导入配置的实用性</li>
-</ul>
-<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在电脑本地新建xxx.cfg(后缀名为.cfg)文件，文件内容如下</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>在浏览器输入192.168.10.2:8443，可跳转到防火墙登陆界面</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
-<ul>
-<li><strong>使用SecureCRT软件，可登陆到防火墙设备</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
-<p>​    </p>
-]]></content>
-      <categories>
-        <category>ENSP模拟器</category>
-      </categories>
-      <tags>
-        <tag>ENSP模拟器</tag>
-        <tag>USG防火墙</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我理解的费曼学习方法</title>
     <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人Richard Feynman提出的一种学习知识的方法，具体介绍可以访问<a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
 <h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
 <ol>
 <li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
@@ -112,6 +79,48 @@
       </tags>
   </entry>
   <entry>
+    <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
+    <url>/posts/ab67d7a4.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"><img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg" width="61.8%" class="img-center" /></a></p>
+<h2 id="思路和实验"><a href="#思路和实验" class="headerlink" title="思路和实验"></a><strong>思路和实验</strong></h2><ul>
+<li>通过设备加载初始配置跳过设备首次登陆需要更改密码 </li>
+<li>通过修改 admin 的密码，修改 vty 配置，修改管理接口配置测试验证导入配置的实用性</li>
+</ul>
+<h2 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a><strong>操作方法</strong></h2><p><strong>假设你已经会配置Cloud，并且连接好设备</strong></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"><img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在电脑本地新建 xxx.cfg (后缀名为 .cfg )文件，文件内容如下</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">aaa</span><br><span class="line"> manager-user admin </span><br><span class="line">  password cipher Cisco@123</span><br><span class="line">  service-type web terminal ssh</span><br><span class="line">   level 15 </span><br><span class="line"></span><br><span class="line"> web-manager enable</span><br><span class="line"> web-manager security enable</span><br><span class="line"></span><br><span class="line">ssh user admin</span><br><span class="line">ssh user admin authentication-type password</span><br><span class="line">ssh user admin service-type stelnet</span><br><span class="line"></span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet0/0/0</span><br><span class="line"></span><br><span class="line"> interface GigabitEthernet0/0/0</span><br><span class="line"> ip address 192.168.10.2 255.255.255.0</span><br><span class="line"> service-manage http permit</span><br><span class="line"> service-manage https permit</span><br><span class="line"> service-manage ping permit</span><br><span class="line"> service-manage ssh permit</span><br><span class="line"></span><br><span class="line">user-interface con 0</span><br><span class="line"> authentication-mode aaa</span><br><span class="line">user-interface vty 0 4</span><br><span class="line"> authentication-mode aaa</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>导入上面新建的初始配置文件，启动设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"><img  src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"><img  src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>在浏览器输入 192.168.10.2:8443 ，可跳转到防火墙登陆界面</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"><img  src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg" width="61.8%"  class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"><img  src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg" width="61.8%" class="img-center" /></a></p>
+<ul>
+<li><strong>使用 SecureCRT 软件，可登陆到防火墙设备</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"><img  src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg" width="61.8%" class="img-center" /></a><br><a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"><img  src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg" width="61.8%" class="img-center" /></a></p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>ENSP模拟器</category>
+      </categories>
+      <tags>
+        <tag>ENSP模拟器</tag>
+        <tag>USG防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>九十年代</title>
     <url>/posts/8847b633.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
@@ -119,9 +128,9 @@
 <p>老爸买的黑白电视机，带有车牌号的自行车……</p>
 <p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
 <p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
-<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起VCD机</p>
+<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起 VCD 机</p>
 <p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
-<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是BB机，我老爸有一个</p>
+<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是 BB                                                  机，我老爸有一个</p>
 <p>那时候村里起房子，砖是从田里挖泥造的</p>
 <p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
 <p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
@@ -139,13 +148,85 @@
       </tags>
   </entry>
   <entry>
+    <title>博客调整更新日志</title>
+    <url>/posts/e2a2e564.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211024"><a href="#20211024" class="headerlink" title="20211024"></a>20211024</h3><ul>
+<li>修改 CSS 样式中的媒体查询 <strong>media query</strong> 下属性</li>
+</ul>
+<h3 id="20211022"><a href="#20211022" class="headerlink" title="20211022"></a>20211022</h3><ul>
+<li>修改文章页，去除左侧 sidebar，page_main 添加边框样式</li>
+<li>修改 about 页面底部 contact 信息</li>
+<li>去除 article-toc 文章目录</li>
+<li>去除 sidebar CV 信息标签</li>
+</ul>
+<h3 id="20211016"><a href="#20211016" class="headerlink" title="20211016"></a>20211016</h3><ul>
+<li>添加文章页版权信息</li>
+<li>修改 md 文件信息</li>
+</ul>
+<h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
+<li>使用 <a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a> 主题，感谢作者 <a href="https://phower.me/">Le Phower’s</a></li>
+<li>博客从 Gitee 迁移到 GitHub</li>
+<li>修改主题配置文件</li>
+<li>修改 sidebar 的 social 内容</li>
+<li>主页 content 修改为显示最近十篇文章</li>
+<li>主页 content 添加置顶文章</li>
+<li>除 category 页和 about 页外添加 pagination</li>
+<li>添加 category 页，添加 tag-cloud</li>
+<li>添加 archive 页</li>
+<li>添加 about 页</li>
+<li> <del>post 页面侧边栏添加 article-toc 文章目录</del></li>
+<li>添加百度统计，谷歌统计，谷歌收录，bing 收录</li>
+<li><del>侧边栏添加 aplayer 播放器，显示效果不美观，已注释代码</del></li>
+<li><del>page_main 的 div CSS 浮动问题未解决</del></li>
+</ul>
+<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
+<li><del>添加文章页评论邮件提醒功能</del></li>
+</ul>
+<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
+<li><del>修改博客网站访问地址不带二级目录</del></li>
+<li><del>修正修改访问地址后文章阅读次数显示为 0 问题</del></li>
+<li><del>修正 whoami 页面显示双 footer 栏问题</del></li>
+</ul>
+<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
+<li><del>修正文章阅读次数显示为 0 问题</del></li>
+<li><del>添加文章模板 updated 参数</del></li>
+<li><del>对网站添加百度统计</del></li>
+</ul>
+<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
+<li><del>制作修改博客 Logo，更改 cover 图片</del></li>
+<li><del>修改导航栏标签为中文</del></li>
+<li><del>启用 valine 评论代码</del></li>
+<li><del>添加文章页 END 结束分割线</del></li>
+<li><del>添加文章页上一篇下一篇链接</del></li>
+<li><del>添加 post 文章模板，添加 categories,series,cover,tags 参数</del></li>
+<li><del>修改网页底部 footer，添加网站运行时间记录</del></li>
+<li><del>更换图标库链接</del></li>
+<li><del>添加网站图床</del></li>
+<li><del>更换文章页播放音乐</del></li>
+<li><del>更换网站首页 Website slogans 动态文字</del></li>
+<li><del>文章页和 about 页添加网易云音乐</del></li>
+<li><del>文章页添加“友情链接”</del></li>
+<li><del>更换部分页面左上角图标返回链接</del></li>
+<li><del>添加 abbrlink 插件，修改文章页 url 链接</del></li>
+<li><del>博客网站本地初始调试工作完成，推送至 Gitee</del></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>更新日志</category>
+      </categories>
+      <tags>
+        <tag>更新日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HCL_一个小实验的思路</title>
     <url>/posts/c7ac5477.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验说明："><a href="#实验说明：" class="headerlink" title="实验说明："></a>实验说明：</h2><p><strong>设备互联线路，IP地址、路由协议、可靠性等配置自定义</strong></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验说明："><a href="#实验说明：" class="headerlink" title="实验说明："></a>实验说明：</h2><p><strong>设备互联线路，IP 地址、路由协议、可靠性等配置自定义</strong></p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg"><img src="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg" width="61.8%" align="center" ></a></p>
 <h2 id="实验效果："><a href="#实验效果：" class="headerlink" title="实验效果："></a>实验效果：</h2><ul>
-<li>PC_1网段流量经R1出互联网</li>
-<li>PC_2网段流量经R2出互联网</li>
+<li>PC_1 网段流量经R1出互联网</li>
+<li>PC_2 网段流量经R2出互联网</li>
 <li>当任意互联网线路故障后，全部流量走另一线路出互联网</li>
 </ul>
 <h2 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h2><ul>
@@ -153,13 +234,13 @@
 </ul>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png"><img  src="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png" width="61.8%" align="center" ></a></p>
 <ul>
-<li><strong>Core_SW1、Core_SW2做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为BFD检测线</strong></li>
+<li><strong>Core_SW1、Core_SW2 做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为 BFD 检测线</strong></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis irf</span><br><span class="line">MemberID    Role    Priority  CPU-Mac         Description</span><br><span class="line"> *+1        Master  15        72f0-e201-0504  ---</span><br><span class="line">   2        Standby 10        72f0-e6bc-0604  ---</span><br><span class="line">--------------------------------------------------</span><br><span class="line"> * indicates the device is the master.</span><br><span class="line"> + indicates the device through which the user logs in.</span><br><span class="line"> &lt;Core_SW1&gt;dis irf topology </span><br><span class="line">                              Topology Info</span><br><span class="line"> -------------------------------------------------------------------------</span><br><span class="line">               IRF-Port1                IRF-Port2          </span><br><span class="line"> MemberID    Link       neighbor      Link       neighbor    Belong To</span><br><span class="line"> 1           DIS        ---           UP         2           72f0-e201-0504</span><br><span class="line"> 2           UP         1             DIS        ---         72f0-e201-0504</span><br></pre></td></tr></table></figure>
 
 
 
-<p><strong>核心交换机Core_SW与R1,R2之间启用三层聚合链路</strong></p>
+<p><strong>核心交换机 Core_SW 与 R1, R2 之间启用三层聚合链路</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis link-aggregation summary </span><br><span class="line">Aggregation Interface Type: </span><br><span class="line">BAGG -- Bridge-Aggregation, BLAGG -- Blade-Aggregation, RAGG -- Route-Aggregation, SCH-B -- Schannel-Bundle </span><br><span class="line">Aggregation Mode: S -- Static, D -- Dynamic </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing</span><br><span class="line">Actor System ID: 0x8000, 72f0-e201-0500</span><br><span class="line"></span><br><span class="line">AGG        AGG   Partner ID              Selected  Unselected  Individual  Share</span><br><span class="line">Interface  Mode                          Ports     Ports       Ports       Type </span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">BAGG3      S     None                    2         0           0           Shar </span><br><span class="line">RAGG1      S     None                    2         0           0           Shar </span><br><span class="line">RAGG2      S     None                    2         0           0           Shar </span><br><span class="line">&lt;Core_SW1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE1/0/1                  up       up       --              --</span><br><span class="line">GE1/0/2                  up       up       --              --</span><br><span class="line">GE2/0/1                  up       up       --              --</span><br><span class="line">GE2/0/2                  up       up       --              --</span><br><span class="line">MGE0/0/0                 down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.1        --</span><br><span class="line">RAGG2                    up       up       10.1.1.5        --</span><br><span class="line">Vlan10                   up       up       192.168.10.254  --</span><br><span class="line">Vlan20                   up       up       192.168.20.254  --</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;R1&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Route-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE0/1            S       32768    1         </span><br><span class="line">  GE0/2            S       32768    1         </span><br><span class="line">&lt;R1&gt;dis ip int b</span><br><span class="line">*down: administratively down</span><br><span class="line">(s): spoofing  (l): loopback</span><br><span class="line">Interface                Physical Protocol IP Address      Description </span><br><span class="line">GE0/0                    up       up       101.1.1.1       --</span><br><span class="line">GE0/1                    up       up       --              --</span><br><span class="line">GE0/2                    up       up       --              --</span><br><span class="line">GE5/0                    down     down     --              --</span><br><span class="line">GE5/1                    down     down     --              --</span><br><span class="line">GE6/0                    down     down     --              --</span><br><span class="line">GE6/1                    down     down     --              --</span><br><span class="line">RAGG1                    up       up       10.1.1.2        --</span><br><span class="line">Ser1/0                   down     down     --              --</span><br><span class="line">Ser2/0                   down     down     --              --</span><br><span class="line">Ser3/0                   down     down     --              --</span><br><span class="line">Ser4/0                   down     down     --              --</span><br></pre></td></tr></table></figure>
@@ -169,14 +250,14 @@
 
 
 <ul>
-<li><strong>核心交换机Core_SW与SW3之间启用二层聚合链路</strong></li>
+<li><strong>核心交换机 Core_SW 与 SW3 之间启用二层聚合链路</strong></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;SW3&gt;dis link-aggregation verbose </span><br><span class="line">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing </span><br><span class="line">Port: A -- Auto</span><br><span class="line">Port Status: S -- Selected, U -- Unselected, I -- Individual </span><br><span class="line">Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, </span><br><span class="line">        D -- Synchronization, E -- Collecting, F -- Distributing,  </span><br><span class="line">        G -- Defaulted, H -- Expired</span><br><span class="line"></span><br><span class="line">Aggregate Interface: Bridge-Aggregation1</span><br><span class="line">Aggregation Mode: Static</span><br><span class="line">Loadsharing Type: Shar</span><br><span class="line">  Port             Status  Priority Oper-Key</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">  GE1/0/1          S       32768    1         </span><br><span class="line">  GE1/0/2          S       32768    1         </span><br></pre></td></tr></table></figure>
 
 
 
 <ul>
-<li><strong>核心交换机Core_SW配置静态路由；R1、R2配置默认路由下一跳指向ISP设备地址、配置回程静态路由指向Core_SW三层聚合接口地址</strong></li>
+<li><strong>核心交换机 Core_SW 配置静态路由；R1、R2 配置默认路由下一跳指向 ISP 设备地址、配置回程静态路由指向 Core_SW 三层聚合接口地址</strong></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Core_SW1&gt;dis cur | inc route</span><br><span class="line">policy-based-route vlan20nexthop permit node 1</span><br><span class="line"> ip policy-based-route vlan20nexthop</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> port link-mode route</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.2 track 2</span><br><span class="line"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80</span><br></pre></td></tr></table></figure>
 
@@ -187,7 +268,7 @@
 
 
 <ul>
-<li><strong>核心交换机Core_SW配置NQA，检测ISP_1,ISP_2可达性，关联Track,与静态路由、策略路由联动</strong></li>
+<li><strong>核心交换机 Core_SW  配置 NQA，检测 ISP_1, ISP_2 可达性，关联 Track 与静态路由、策略路由联动</strong></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">nqa entry admin isp_1_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 101.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_2_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 201.1.1.2</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 10.1.1.6</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only</span><br><span class="line">  source ip 10.1.1.5</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_1_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_2_test start-time now lifetime forever</span><br></pre></td></tr></table></figure>
 
@@ -202,7 +283,7 @@
 
 
 <ul>
-<li><strong>ISP网络设备配置OSPF</strong></li>
+<li><strong>ISP 网络设备配置 OSPF</strong></li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;ISP_NETWORK&gt;dis ip routing-table  protocol ospf</span><br><span class="line"></span><br><span class="line">Summary count : 5</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Active&gt;</span><br><span class="line">Summary count : 2</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">101.1.1.0/30       O_INTRA 10  2           101.1.1.5       GE0/1</span><br><span class="line">201.1.1.0/30       O_INTRA 10  2           201.1.1.5       GE0/2</span><br><span class="line"></span><br><span class="line">OSPF Routing table status : &lt;Inactive&gt;</span><br><span class="line">Summary count : 3</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">1.2.3.4/32         O_INTRA 10  0           0.0.0.0         Loop0</span><br><span class="line">101.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/1</span><br><span class="line">201.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/2</span><br></pre></td></tr></table></figure>
 
@@ -215,39 +296,23 @@
       </tags>
   </entry>
   <entry>
-    <title>HCL_路由器双出口策略配置实验</title>
-    <url>/posts/4e82271c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" class="img-center" ></a></p>
-<h2 id="路由器出口策略配置说明"><a href="#路由器出口策略配置说明" class="headerlink" title="路由器出口策略配置说明"></a>路由器出口策略配置说明</h2><h3 id="NQA"><a href="#NQA" class="headerlink" title="NQA"></a>NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置探测电信DNS的NQA</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68 //探测远端DNS地址</span><br><span class="line">  frequency 2000 //每间隔2秒探测一次</span><br><span class="line">  history-record enable //开启NQA历史记录保存功能</span><br><span class="line">  history-record number 5 //保存的最大历史记录个数为5条</span><br><span class="line">  next-hop ip 101.1.1.2 //探测报文经过的下一跳</span><br><span class="line">  probe count 5 //每次探测检测5次</span><br><span class="line">  probe timeout 1000 //检测超时时间1秒</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only //连续探测失败5次，触发其他模块联动</span><br><span class="line">  source ip 101.1.1.1 //探测报文源地址</span><br><span class="line"></span><br><span class="line"># 配置探测联通DNS的NQA</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line"></span><br><span class="line"># 当前时间起永久启用NQA监测</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="track关联NQA"><a href="#track关联NQA" class="headerlink" title="track关联NQA"></a>track关联NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#  </span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="策略路由配置，联动"><a href="#策略路由配置，联动" class="headerlink" title="策略路由配置，联动"></a>策略路由配置，联动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line"></span><br><span class="line"># 指定下一跳时与track 200联动，当NQA监测失败结果时，策略路由失效，流量根据路由表转发流量</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line"># 默认路由与track 100联动，当NQA监测失败结果时，该条默认路由失效，优先级为80的默认路由加载路由表，流量根据路由表转发流量</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"></span><br><span class="line"># 内网流量入接口下调用策略路由</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line">ip policy-based-route to_isp_policy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="测试说明："><a href="#测试说明：" class="headerlink" title="测试说明："></a>测试说明：</h2><p>外网网络正常情况，查看nqa监测结果，探测发出的数据包和收到的数据包数量一致</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png"><img src="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png" ></a></p>
-<p>通过debug查看NAT转换信息，vlan10去往互联网DNS地址的流量走101.1.1.2下一跳地址，vlan20去往互联网DNS地址的流量走202.1.1.2下一跳地址<br><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png"><img src="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png" ></a></p>
-<h3 id="当电信网络不可用时"><a href="#当电信网络不可用时" class="headerlink" title="当电信网络不可用时"></a>当电信网络不可用时</h3><p>当电信网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png"><img src="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png" ></a></p>
-<p><a data-fancybox="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png"><img src="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png" ></a></p>
-<p>路由表中，默认路由的下一跳为202.1.1.2</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png"><img src="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png" ></a></p>
-<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png"><img src="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png" ></a></p>
-<p>通过debug查看NAT转换信息，所有流量走联通网络出口</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png"><img src="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png" ></a></p>
-<h3 id="当联通网络不可用时"><a href="#当联通网络不可用时" class="headerlink" title="当联通网络不可用时"></a>当联通网络不可用时</h3><p>当联通网络不可用时，路由器日志提示prob-fail，此时NQA探测收到的icmp-reply 数据包为0</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png"><img src="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png"><img src="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png" ></a></p>
-<p>查看NAT会话表，有vlan10，vlan20的流量会话</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png"><img src="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png" ></a></p>
-<p>通过debug查看NAT转换信息，所有流量走电信网络出口</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png"><img src="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png" ></a></p>
-<h2 id="路由器配置："><a href="#路由器配置：" class="headerlink" title="路由器配置："></a>路由器配置：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname Router</span><br><span class="line">#</span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1</span><br><span class="line">#</span><br><span class="line"> system-working-mode standard</span><br><span class="line"> xbar load-single</span><br><span class="line"> password-recovery enable</span><br><span class="line"> lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br><span class="line">#</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 101.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 101.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line">#</span><br><span class="line">interface Serial1/0</span><br><span class="line">#</span><br><span class="line">interface Serial2/0</span><br><span class="line">#</span><br><span class="line">interface Serial3/0</span><br><span class="line">#</span><br><span class="line">interface Serial4/0</span><br><span class="line">#</span><br><span class="line">interface NULL0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 1.1.1.1 255.255.255.252</span><br><span class="line"> ip policy-based-route to_isp_policy</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 101.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/2</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 202.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line"> scheduler logfile size 16</span><br><span class="line">#</span><br><span class="line">line class aux </span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class console</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line class tty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class vty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line aux 0</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line con 0</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line vty 0 63</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"> ip route-static 192.168.10.0 24 1.1.1.2</span><br><span class="line"> ip route-static 192.168.20.0 24 1.1.1.2</span><br><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip</span><br><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br><span class="line">domain name system</span><br><span class="line">#</span><br><span class="line"> domain default enable system</span><br><span class="line">#</span><br><span class="line">role name level-0</span><br><span class="line"> description Predefined level-0 role</span><br><span class="line">#</span><br><span class="line">role name level-1</span><br><span class="line"> description Predefined level-1 role</span><br><span class="line">#</span><br><span class="line">role name level-2</span><br><span class="line"> description Predefined level-2 role</span><br><span class="line">#</span><br><span class="line">role name level-3</span><br><span class="line"> description Predefined level-3 role</span><br><span class="line">#</span><br><span class="line">role name level-4</span><br><span class="line"> description Predefined level-4 role</span><br><span class="line">#</span><br><span class="line">role name level-5</span><br><span class="line"> description Predefined level-5 role</span><br><span class="line">#</span><br><span class="line">role name level-6</span><br><span class="line"> description Predefined level-6 role</span><br><span class="line">#</span><br><span class="line">role name level-7</span><br><span class="line"> description Predefined level-7 role</span><br><span class="line">#</span><br><span class="line">role name level-8</span><br><span class="line"> description Predefined level-8 role</span><br><span class="line">#</span><br><span class="line">role name level-9</span><br><span class="line"> description Predefined level-9 role</span><br><span class="line">#</span><br><span class="line">role name level-10</span><br><span class="line"> description Predefined level-10 role</span><br><span class="line">#</span><br><span class="line">role name level-11</span><br><span class="line"> description Predefined level-11 role</span><br><span class="line">#</span><br><span class="line">role name level-12</span><br><span class="line"> description Predefined level-12 role</span><br><span class="line">#</span><br><span class="line">role name level-13</span><br><span class="line"> description Predefined level-13 role</span><br><span class="line">#</span><br><span class="line">role name level-14</span><br><span class="line"> description Predefined level-14 role</span><br><span class="line">#</span><br><span class="line">user-group system</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">&lt;Router&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
 ]]></content>
       <categories>
-        <category>HCL模拟器</category>
+        <category>扯谈</category>
       </categories>
       <tags>
-        <tag>路由器双出口策略配置</tag>
+        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -315,31 +380,47 @@
       </tags>
   </entry>
   <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有传统的思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
+    <title>HCL_路由器双出口策略配置实验</title>
+    <url>/posts/4e82271c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" class="img-center" ></a></p>
+<h2 id="路由器出口策略配置说明"><a href="#路由器出口策略配置说明" class="headerlink" title="路由器出口策略配置说明"></a>路由器出口策略配置说明</h2><h3 id="NQA"><a href="#NQA" class="headerlink" title="NQA"></a>NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 配置探测电信DNS的NQA</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68 //探测远端DNS地址</span><br><span class="line">  frequency 2000 //每间隔2秒探测一次</span><br><span class="line">  history-record enable //开启NQA历史记录保存功能</span><br><span class="line">  history-record number 5 //保存的最大历史记录个数为5条</span><br><span class="line">  next-hop ip 101.1.1.2 //探测报文经过的下一跳</span><br><span class="line">  probe count 5 //每次探测检测5次</span><br><span class="line">  probe timeout 1000 //检测超时时间1秒</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only //连续探测失败5次，触发其他模块联动</span><br><span class="line">  source ip 101.1.1.1 //探测报文源地址</span><br><span class="line"></span><br><span class="line"># 配置探测联通DNS的NQA</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line"></span><br><span class="line"># 当前时间起永久启用NQA监测</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="track-关联-NQA"><a href="#track-关联-NQA" class="headerlink" title="track 关联 NQA"></a>track 关联 NQA</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#  </span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="策略路由配置，联动"><a href="#策略路由配置，联动" class="headerlink" title="策略路由配置，联动"></a>策略路由配置，联动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line"></span><br><span class="line"># 指定下一跳时与track 200联动，当NQA监测失败结果时，策略路由失效，流量根据路由表转发流量</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line"># 默认路由与track 100联动，当NQA监测失败结果时，该条默认路由失效，优先级为80的默认路由加载路由表，流量根据路由表转发流量</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"></span><br><span class="line"># 内网流量入接口下调用策略路由</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line">ip policy-based-route to_isp_policy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="测试说明："><a href="#测试说明：" class="headerlink" title="测试说明："></a>测试说明：</h2><p>外网网络正常情况，查看 nqa 监测结果，探测发出的数据包和收到的数据包数量一致</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png"><img src="https://i.loli.net/2021/02/01/HvybjOQ13LX5nCd.png" ></a></p>
+<p>通过 debug 查看 NAT 转换信息，vlan10 去往互联网 DNS 地址的流量走101.1.1.2下一跳地址，vlan20 去往互联网 DNS 地址的流量走 202.1.1.2 下一跳地址<br><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png"><img src="https://i.loli.net/2021/02/01/6jezdH7ZCBkfVxG.png" ></a></p>
+<h3 id="当电信网络不可用时"><a href="#当电信网络不可用时" class="headerlink" title="当电信网络不可用时"></a>当电信网络不可用时</h3><p>当电信网络不可用时，路由器日志提示 prob-fail，此时 NQA 探测收到的 icmp-reply 数据包为 0</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png"><img src="https://i.loli.net/2021/02/01/QTfK8veUMG9NFnk.png" ></a></p>
+<p><a data-fancybox="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png"><img src="https://i.loli.net/2021/02/01/1zrq6wU7BJvs5kS.png" ></a></p>
+<p>路由表中，默认路由的下一跳为 202.1.1.2</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png"><img src="https://i.loli.net/2021/02/01/EvY1ARqf8XWuNye.png" ></a></p>
+<p>查看 NAT 会话表，有 vlan10，vlan20 的流量会话</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png"><img src="https://i.loli.net/2021/02/01/5iHdByYflu6XtOG.png" ></a></p>
+<p>通过 debug 查看 NAT 转换信息，所有流量走联通网络出口</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png"><img src="https://i.loli.net/2021/02/01/Cv84ktVDedW9sYx.png" ></a></p>
+<h3 id="当联通网络不可用时"><a href="#当联通网络不可用时" class="headerlink" title="当联通网络不可用时"></a>当联通网络不可用时</h3><p>当联通网络不可用时，路由器日志提示 prob-fail，此时 NQA 探测收到的 icmp-reply 数据包为0</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png"><img src="https://i.loli.net/2021/02/01/xuc7PRo9FBYpIVE.png" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png"><img src="https://i.loli.net/2021/02/01/57eGLloi4RWnFkh.png" ></a></p>
+<p>查看 NAT 会话表，有 vlan10，vlan20 的流量会话</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png"><img src="https://i.loli.net/2021/02/01/8XskBLebAmqJohc.png" ></a></p>
+<p>通过 debug 查看 NAT 转换信息，所有流量走电信网络出口</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png"><img src="https://i.loli.net/2021/02/01/bXINu8lvyMYDkjo.png" ></a></p>
+<h2 id="路由器配置："><a href="#路由器配置：" class="headerlink" title="路由器配置："></a>路由器配置：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname Router</span><br><span class="line">#</span><br><span class="line">track 100 nqa entry admin isp_telecom_test reaction 1</span><br><span class="line">#</span><br><span class="line">track 200 nqa entry admin isp_unicom_test reaction 1</span><br><span class="line">#</span><br><span class="line"> system-working-mode standard</span><br><span class="line"> xbar load-single</span><br><span class="line"> password-recovery enable</span><br><span class="line"> lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br><span class="line">#</span><br><span class="line">policy-based-route to_isp_policy permit node 10</span><br><span class="line"> if-match acl 3002</span><br><span class="line"> apply next-hop 202.1.1.2 track 200</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_telecom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 202.103.224.68</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 101.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 101.1.1.1</span><br><span class="line">#</span><br><span class="line">nqa entry admin isp_unicom_test</span><br><span class="line"> type icmp-echo</span><br><span class="line">  destination ip 211.138.240.100</span><br><span class="line">  frequency 2000</span><br><span class="line">  history-record enable</span><br><span class="line">  history-record number 5</span><br><span class="line">  next-hop ip 202.1.1.2</span><br><span class="line">  probe count 5</span><br><span class="line">  probe timeout 1000</span><br><span class="line">  reaction 1 checked-element probe-fail threshold-type consecutive 5 action-type trigger-only</span><br><span class="line">  source ip 202.1.1.1</span><br><span class="line">#</span><br><span class="line"> nqa schedule admin isp_telecom_test start-time now lifetime forever</span><br><span class="line"> nqa schedule admin isp_unicom_test start-time now lifetime forever</span><br><span class="line">#</span><br><span class="line">interface Serial1/0</span><br><span class="line">#</span><br><span class="line">interface Serial2/0</span><br><span class="line">#</span><br><span class="line">interface Serial3/0</span><br><span class="line">#</span><br><span class="line">interface Serial4/0</span><br><span class="line">#</span><br><span class="line">interface NULL0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 1.1.1.1 255.255.255.252</span><br><span class="line"> ip policy-based-route to_isp_policy</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 101.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/2</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line"> ip address 202.1.1.1 255.255.255.252</span><br><span class="line"> nat outbound 3001</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet5/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/0</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet6/1</span><br><span class="line"> port link-mode route</span><br><span class="line"> combo enable copper</span><br><span class="line">#</span><br><span class="line"> scheduler logfile size 16</span><br><span class="line">#</span><br><span class="line">line class aux </span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class console</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line class tty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line class vty</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line aux 0</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line">line con 0</span><br><span class="line"> user-role network-admin</span><br><span class="line">#</span><br><span class="line">line vty 0 63</span><br><span class="line"> user-role network-operator</span><br><span class="line">#</span><br><span class="line"> ip route-static 0.0.0.0 0 101.1.1.2 track 100</span><br><span class="line"> ip route-static 0.0.0.0 0 202.1.1.2 preference 80</span><br><span class="line"> ip route-static 192.168.10.0 24 1.1.1.2</span><br><span class="line"> ip route-static 192.168.20.0 24 1.1.1.2</span><br><span class="line">#</span><br><span class="line">acl advanced 3001</span><br><span class="line"> rule 0 permit ip</span><br><span class="line">#</span><br><span class="line">acl advanced 3002</span><br><span class="line"> rule 0 permit ip source 192.168.20.0 0.0.0.255</span><br><span class="line">#</span><br><span class="line">domain name system</span><br><span class="line">#</span><br><span class="line"> domain default enable system</span><br><span class="line">#</span><br><span class="line">role name level-0</span><br><span class="line"> description Predefined level-0 role</span><br><span class="line">#</span><br><span class="line">role name level-1</span><br><span class="line"> description Predefined level-1 role</span><br><span class="line">#</span><br><span class="line">role name level-2</span><br><span class="line"> description Predefined level-2 role</span><br><span class="line">#</span><br><span class="line">role name level-3</span><br><span class="line"> description Predefined level-3 role</span><br><span class="line">#</span><br><span class="line">role name level-4</span><br><span class="line"> description Predefined level-4 role</span><br><span class="line">#</span><br><span class="line">role name level-5</span><br><span class="line"> description Predefined level-5 role</span><br><span class="line">#</span><br><span class="line">role name level-6</span><br><span class="line"> description Predefined level-6 role</span><br><span class="line">#</span><br><span class="line">role name level-7</span><br><span class="line"> description Predefined level-7 role</span><br><span class="line">#</span><br><span class="line">role name level-8</span><br><span class="line"> description Predefined level-8 role</span><br><span class="line">#</span><br><span class="line">role name level-9</span><br><span class="line"> description Predefined level-9 role</span><br><span class="line">#</span><br><span class="line">role name level-10</span><br><span class="line"> description Predefined level-10 role</span><br><span class="line">#</span><br><span class="line">role name level-11</span><br><span class="line"> description Predefined level-11 role</span><br><span class="line">#</span><br><span class="line">role name level-12</span><br><span class="line"> description Predefined level-12 role</span><br><span class="line">#</span><br><span class="line">role name level-13</span><br><span class="line"> description Predefined level-13 role</span><br><span class="line">#</span><br><span class="line">role name level-14</span><br><span class="line"> description Predefined level-14 role</span><br><span class="line">#</span><br><span class="line">user-group system</span><br><span class="line">#</span><br><span class="line">return</span><br><span class="line">&lt;Router&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
-        <category>扯谈</category>
+        <category>HCL模拟器</category>
       </categories>
       <tags>
-        <tag>扯谈</tag>
+        <tag>路由器双出口策略配置</tag>
       </tags>
   </entry>
   <entry>
     <title>H3C_SecureCRT巡检脚本</title>
     <url>/posts/21b002a6.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用CRT软件登陆H3C设备，点击 “Script” –&gt; “Run”选择脚本，运行脚本可得到需要收集的信息（当然你要打开log记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改“Send”后面的内容</li>
+<li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击  “Script” –&gt; “Run” 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改 “Send” 后面的内容</li>
 <li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -354,97 +435,51 @@
       </tags>
   </entry>
   <entry>
-    <title>博客调整更新日志</title>
-    <url>/posts/e2a2e564.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211024"><a href="#20211024" class="headerlink" title="20211024"></a>20211024</h3><ul>
-<li>修改CSS样式中的媒体查询 <strong>media query</strong> 下属性</li>
+    <title>H3C_V5_V7设备巡检信息提取</title>
+    <url>/posts/80e04e00.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。</p>
+<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
+<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
 </ul>
-<h3 id="20211022"><a href="#20211022" class="headerlink" title="20211022"></a>20211022</h3><ul>
-<li>修改文章页，去除左侧sidebar，page_main添加边框样式</li>
-<li>修改about页面底部contact信息</li>
-<li>去除article-toc文章目录</li>
-<li>去除sidebar CV信息标签</li>
-</ul>
-<h3 id="20211016"><a href="#20211016" class="headerlink" title="20211016"></a>20211016</h3><ul>
-<li>添加文章页版权信息</li>
-<li>修改md文件信息</li>
-</ul>
-<h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
-<li>使用<a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a>主题，感谢作者<a href="https://phower.me/">Le Phower’s</a></li>
-<li>博客从Gitee迁移到Github</li>
-<li>修改主题配置文件</li>
-<li>修改sidebar的social内容</li>
-<li>主页content修改为显示最近十篇文章</li>
-<li>主页content添加置顶文章</li>
-<li>除category页和about页外添加pagination</li>
-<li>添加category页，添加tag-cloud</li>
-<li>添加archive页</li>
-<li>添加about页</li>
-<li><del>post页面侧边栏添加article-toc文章目录</del></li>
-<li>添加百度统计，谷歌统计，谷歌收录，bing收录</li>
-<li><del>侧边栏添加aplayer播放器，显示效果不美观，已注释代码</del></li>
-<li><del>page_main的div CSS浮动问题未解决</del></li>
-</ul>
-<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
-<li><del>添加文章页评论邮件提醒功能</del></li>
-</ul>
-<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
-<li><del>修改博客网站访问地址不带二级目录</del></li>
-<li><del>修正修改访问地址后文章阅读次数显示为0问题</del></li>
-<li><del>修正whoami页面显示双footer栏问题</del></li>
-</ul>
-<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
-<li><del>修正文章阅读次数显示为0问题</del></li>
-<li><del>添加文章模板updated参数</del></li>
-<li><del>对网站添加百度统计</del></li>
-</ul>
-<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
-<li><del>制作修改博客Logo，更改cover图片</del></li>
-<li><del>修改导航栏标签为中文</del></li>
-<li><del>启用valine评论代码</del></li>
-<li><del>添加文章页END结束分割线</del></li>
-<li><del>添加文章页上一篇下一篇链接</del></li>
-<li><del>添加post文章模板，添加categories,series,cover,tags参数</del></li>
-<li><del>修改网页底部footer，添加网站运行时间记录</del></li>
-<li><del>更换图标库链接</del></li>
-<li><del>添加网站图床</del></li>
-<li><del>更换文章页播放音乐</del></li>
-<li><del>更换网站首页Website slogans动态文字</del></li>
-<li><del>文章页和about页添加网易云音乐</del></li>
-<li><del>文章页添加“友情链接”</del></li>
-<li><del>更换部分页面左上角图标返回链接</del></li>
-<li><del>添加abbrlink插件，修改文章页url链接</del></li>
-<li><del>博客网站本地初始调试工作完成，推送至Gitee</del></li>
-</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
+<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Author：KIRASTER</span><br><span class="line"># Time：2021/3/21 23:26</span><br><span class="line"># Description：Device_info</span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = &#x27;F:/111.txt&#x27;</span><br><span class="line">resultfilename = &#x27;F:/result.txt&#x27;</span><br><span class="line">if os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = open(&#x27;F:/result.txt&#x27;, &#x27;a&#x27;)</span><br><span class="line"></span><br><span class="line">with open(filename, &#x27;r&#x27;, encoding=&#x27;utf8&#x27;) as file_to_read:</span><br><span class="line">    while True:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        # 首行显示50个“=”号，提取设备版本信息，开头注释</span><br><span class="line">        if &quot;display version&quot; in lines:</span><br><span class="line">            result_line01 = &#x27;=&#x27; * 50 + &#x27;\n&#x27;</span><br><span class="line">            result_line02 = &#x27;Device Name:\t&#x27; + &#x27;&#x27;.join(re.findall(r&#x27;[&lt;](.*?)[&gt;]&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            print(result_line01)</span><br><span class="line">            print(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        # 提取设备版本信息      </span><br><span class="line">        if &quot;Comware Software&quot; in lines:</span><br><span class="line">            result_line03 = &#x27;Comware Software:\t&#x27; +&#x27;&#x27;.join(re.findall(&#x27;(?&lt;=Software, ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        # 提取设备运行时间</span><br><span class="line">        if &quot;uptime is&quot; in lines:</span><br><span class="line">            result_line04 = &#x27;Uptime:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=uptime is ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        # 提取设备序列号</span><br><span class="line">        if &quot;DEVICE_SERIAL_NUMBER&quot; in lines:</span><br><span class="line">            result_line05 = &#x27;SN:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=:).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_line05 = result_line05.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        # 提取设备cpu使用率方式1</span><br><span class="line">        if &quot;Slot 1 CPU 0 CPU usage:&quot; in lines:</span><br><span class="line">            result_line06 = next(file_to_read)</span><br><span class="line">            result_line06 = result_line06[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line06 = &#x27;cpu-usage:\t&#x27; + result_line06.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        # 提取设备cpu使用率方式2</span><br><span class="line">        if &quot;Slot 1 CPU usage:&quot; in lines:</span><br><span class="line">            result_line066 = next(file_to_read)</span><br><span class="line">            result_line066 = result_line066[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line066 = &#x27;cpu-usage:\t&#x27; + result_line066.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        # 提取设备cpu使用率方式3</span><br><span class="line">        if &quot;Unit CPU usage:&quot; in lines:</span><br><span class="line">            result_line0666 = next(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line0666 = &#x27;cpu-usage:\t&#x27; + result_line0666.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        # 提取设备memory使用率方式1</span><br><span class="line">        if &quot;Used Rate&quot; in lines:</span><br><span class="line">            result_line07 = lines[-4:]</span><br><span class="line">            result_line07 = &#x27;memory-usage:\t&#x27; + result_line07.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        # 提取设备memory使用率方式2</span><br><span class="line">        if &quot;Mem:&quot; in lines:</span><br><span class="line">            result_line08 = lines[-6:]</span><br><span class="line">            result_line08 = result_line08.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = result_line08.replace(&#x27;%&#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = 100 - float(result_line08)</span><br><span class="line">            result_line08 = &#x27;%.1f%%&#x27; % result_line08</span><br><span class="line">            result_line08 = &#x27;memory-usage:\t&#x27; + result_line08 + &#x27;\n&#x27;</span><br><span class="line">            print(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        if &quot;结束记录时间&quot; in lines:</span><br><span class="line">            break</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <hr>
+<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
+<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
+<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
+<li>生成的文件为 word 或 excel 等都是可以实现的</li>
+</ul>
 ]]></content>
       <categories>
-        <category>更新日志</category>
+        <category>设备巡检</category>
       </categories>
       <tags>
-        <tag>更新日志</tag>
+        <tag>设备巡检</tag>
+        <tag>H3C设备</tag>
       </tags>
   </entry>
   <entry>
     <title>HCL_VPN不同实例互通实验</title>
     <url>/posts/eb7e5d69.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验拓扑和需求"><a href="#实验拓扑和需求" class="headerlink" title="实验拓扑和需求"></a><strong>实验拓扑和需求</strong></h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"><img src = "https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"   class="img-center"/></a></p>
-<p>实验模拟的是一个总部和一个分支站点的网络，网络中总部和分支相同VPN实例网络互通，不同VPN实例网络相互隔离，总部VPN2中特殊主机PC_8需要访问位于分支网络中的VPN1网络</p>
+<p>实验模拟的是一个总部和一个分支站点的网络，网络中总部和分支相同 VPN 实例网络互通，不同 VPN 实例网络相互隔离，总部 VPN2 中特殊主机 PC_8 需要访问位于分支网络中的 VPN1 网络</p>
 <hr>
 <h2 id="思路和解决方法"><a href="#思路和解决方法" class="headerlink" title="思路和解决方法"></a><strong>思路和解决方法</strong></h2><ul>
-<li><p>网络设备中配置vpn instance用来隔离不同网络数据</p>
+<li><p>网络设备中配置 VPN instance 用来隔离不同网络数据</p>
 </li>
-<li><p>在不做特殊配置的情况下，不同vpn实例的网络是不能互相通信的</p>
+<li><p>在不做特殊配置的情况下，不同 VPN 实例的网络是不能互相通信的</p>
 </li>
-<li><p>然而在设备上vpn实例引入其他vpn实例网络又会造成不同实例间网络能互通的情况，进而要做各种acl限制</p>
+<li><p>然而在设备上 VPN 实例引入其他 VPN 实例网络又会造成不同实例间网络能互通的情况，进而要做各种 ACL 限制</p>
 </li>
-<li><p>实验中并不涉及MPLS VPN的场景，有点类似H3C 文档中MCE的情况，但是不涉及CE、PE、RD、RT……</p>
+<li><p>实验中并不涉及 MPLS VPN 的场景，有点类似 H3C  文档中 MCE 的情况，但是不涉及 CE、PE、RD、RT……</p>
 </li>
-<li><p>RD是用来做路由区分的，RT是BGP协议中团体属性的内容，本实验中都不涉及，本来也考虑使用MPLS VPN的方式做，但是就当前这个场景完全不需要，客户只需要把原有不同的几套网络隔离，还要考虑到设备特性，设备性能等等</p>
+<li><p>RD 是用来做路由区分的，RT 是 BGP 协议中团体属性的内容，本实验中都不涉及，本来也考虑使用 MPLS VPN 的方式做，但是就当前这个场景完全不需要，客户只需要把原有不同的几套网络隔离，还要考虑到设备特性，设备性能等等</p>
 </li>
-<li><p>实验中在路由经过的下一跳的设备上都要配置vpn实例，核心下联的二层设备不需要配置</p>
+<li><p>实验中在路由经过的下一跳的设备上都要配置 VPN 实例，核心下联的二层设备不需要配置</p>
 </li>
-<li><p>由于不使用引入其他vpn实例的方式，需要在总部路由器和总部交换机上配置vpn静态路由</p>
+<li><p>由于不使用引入其他 VPN 实例的方式，需要在总部路由器和总部交换机上配置 VPN 静态路由</p>
 </li>
 </ul>
 <h2 id="具体配置"><a href="#具体配置" class="headerlink" title="具体配置"></a><strong>具体配置</strong></h2><h3 id="SITE-SW"><a href="#SITE-SW" class="headerlink" title="SITE_SW"></a><strong>SITE_SW</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#</span><br><span class="line"> sysname SITE_SW</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn1</span><br><span class="line">#</span><br><span class="line">ip vpn-instance vpn2</span><br><span class="line"># 配置rip 100 绑定VPN1，宣告与总部互联的网络和分支VPN1的网络</span><br><span class="line">rip 100 vpn-instance vpn1</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 10.1.1.1 0.0.0.0</span><br><span class="line"> network 172.16.10.254 0.0.0.0</span><br><span class="line"># 配置rip 200 绑定VPN2，宣告与总部互联的网络和分支VPN2的网络</span><br><span class="line">rip 200 vpn-instance vpn2</span><br><span class="line"> undo summary</span><br><span class="line"> version 2</span><br><span class="line"> network 20.1.1.1 0.0.0.0</span><br><span class="line"> network 172.16.20.254 0.0.0.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line"> dhcp enable</span><br><span class="line">#</span><br><span class="line">vlan 10</span><br><span class="line">#</span><br><span class="line">vlan 20</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan10</span><br><span class="line"> vpn-instance vpn1</span><br><span class="line"> gateway-list 172.16.10.254</span><br><span class="line"> network 172.16.10.0 mask 255.255.255.0</span><br><span class="line"># 不重要的dhcp</span><br><span class="line">dhcp server ip-pool vlan20</span><br><span class="line"> vpn-instance vpn2</span><br><span class="line"> gateway-list 172.16.20.254</span><br><span class="line"> network 172.16.20.0 mask 255.255.255.0</span><br><span class="line"># Vlan-interface10为VPN1网络网关</span><br><span class="line">interface Vlan-interface10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 172.16.10.254 255.255.255.0</span><br><span class="line"># Vlan-interface20为VPN1网络网关</span><br><span class="line">interface Vlan-interface20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 172.16.20.254 255.255.255.0</span><br><span class="line"># 与总部互联物理接口</span><br><span class="line">interface GigabitEthernet1/0/3</span><br><span class="line"> port link-mode route</span><br><span class="line"># 使用子接口与总部互联，绑定VPN1</span><br><span class="line">interface GigabitEthernet1/0/3.10</span><br><span class="line"> ip binding vpn-instance vpn1</span><br><span class="line"> ip address 10.1.1.1 255.255.255.252</span><br><span class="line"># 使用子接口与总部互联，绑定VPN2</span><br><span class="line">interface GigabitEthernet1/0/3.20</span><br><span class="line"> ip binding vpn-instance vpn2</span><br><span class="line"> ip address 20.1.1.1 255.255.255.252</span><br><span class="line"># 不重要</span><br><span class="line">interface GigabitEthernet1/0/1</span><br><span class="line"> port access vlan 10</span><br><span class="line"> stp edged-port</span><br><span class="line"># 不重要</span><br><span class="line">interface GigabitEthernet1/0/2</span><br><span class="line"> port access vlan 20</span><br><span class="line"> stp edged-port</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
@@ -467,36 +502,65 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C_V5_V7设备巡检信息提取</title>
-    <url>/posts/80e04e00.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备CPU使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用python脚本写入到巡检报告或者表格中。</p>
-<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
-<li><strong>没有提取前已导出的设备信息（保护隐私，使用HCL模拟器产生的设备信息）</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
-<h3 id="Python脚本"><a href="#Python脚本" class="headerlink" title="Python脚本"></a>Python脚本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Author：KIRASTER</span><br><span class="line"># Time：2021/3/21 23:26</span><br><span class="line"># Description：Device_info</span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = &#x27;F:/111.txt&#x27;</span><br><span class="line">resultfilename = &#x27;F:/result.txt&#x27;</span><br><span class="line">if os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = open(&#x27;F:/result.txt&#x27;, &#x27;a&#x27;)</span><br><span class="line"></span><br><span class="line">with open(filename, &#x27;r&#x27;, encoding=&#x27;utf8&#x27;) as file_to_read:</span><br><span class="line">    while True:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        # 首行显示50个“=”号，提取设备版本信息，开头注释</span><br><span class="line">        if &quot;display version&quot; in lines:</span><br><span class="line">            result_line01 = &#x27;=&#x27; * 50 + &#x27;\n&#x27;</span><br><span class="line">            result_line02 = &#x27;Device Name:\t&#x27; + &#x27;&#x27;.join(re.findall(r&#x27;[&lt;](.*?)[&gt;]&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            print(result_line01)</span><br><span class="line">            print(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        # 提取设备版本信息      </span><br><span class="line">        if &quot;Comware Software&quot; in lines:</span><br><span class="line">            result_line03 = &#x27;Comware Software:\t&#x27; +&#x27;&#x27;.join(re.findall(&#x27;(?&lt;=Software, ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        # 提取设备运行时间</span><br><span class="line">        if &quot;uptime is&quot; in lines:</span><br><span class="line">            result_line04 = &#x27;Uptime:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=uptime is ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        # 提取设备序列号</span><br><span class="line">        if &quot;DEVICE_SERIAL_NUMBER&quot; in lines:</span><br><span class="line">            result_line05 = &#x27;SN:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=:).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_line05 = result_line05.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        # 提取设备cpu使用率方式1</span><br><span class="line">        if &quot;Slot 1 CPU 0 CPU usage:&quot; in lines:</span><br><span class="line">            result_line06 = next(file_to_read)</span><br><span class="line">            result_line06 = result_line06[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line06 = &#x27;cpu-usage:\t&#x27; + result_line06.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        # 提取设备cpu使用率方式2</span><br><span class="line">        if &quot;Slot 1 CPU usage:&quot; in lines:</span><br><span class="line">            result_line066 = next(file_to_read)</span><br><span class="line">            result_line066 = result_line066[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line066 = &#x27;cpu-usage:\t&#x27; + result_line066.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        # 提取设备cpu使用率方式3</span><br><span class="line">        if &quot;Unit CPU usage:&quot; in lines:</span><br><span class="line">            result_line0666 = next(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line0666 = &#x27;cpu-usage:\t&#x27; + result_line0666.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        # 提取设备memory使用率方式1</span><br><span class="line">        if &quot;Used Rate&quot; in lines:</span><br><span class="line">            result_line07 = lines[-4:]</span><br><span class="line">            result_line07 = &#x27;memory-usage:\t&#x27; + result_line07.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        # 提取设备memory使用率方式2</span><br><span class="line">        if &quot;Mem:&quot; in lines:</span><br><span class="line">            result_line08 = lines[-6:]</span><br><span class="line">            result_line08 = result_line08.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = result_line08.replace(&#x27;%&#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = 100 - float(result_line08)</span><br><span class="line">            result_line08 = &#x27;%.1f%%&#x27; % result_line08</span><br><span class="line">            result_line08 = &#x27;memory-usage:\t&#x27; + result_line08 + &#x27;\n&#x27;</span><br><span class="line">            print(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        if &quot;结束记录时间&quot; in lines:</span><br><span class="line">            break</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>H3C_S5500-52C-EI升级步骤</title>
+    <url>/posts/e765d177.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载升级所需要的两个文件：</p>
+<p><strong>S5500EI-BTM-721.btm</strong>（新版本 Bootrom 程序）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-BTM-721.btm</span><br><span class="line">大小: 483732 字节 (472 KiB)</span><br><span class="line">CRC32: 4B9436E9</span><br><span class="line">CRC64: 928CB6227DE9AF69</span><br><span class="line">SHA256: C0EDB2FA02C5F8804E8D983F4DD197F1D321C21C317ED5BB10BF002CB4973CE8</span><br><span class="line">SHA1: F8B345BC2012C8183CE01F092E4181FC15495867</span><br><span class="line">BLAKE2sp: 6A5E362D8A4DA8FA74B6A9F4568627FA07C53126DB67F5FF287C9BE893C33502</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
-<li>本文中的脚本在实际工作中使用过，设备包含华三V5和V7版本的交换机、防火墙和无线控制器等</li>
-<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
-<li>生成的文件为word或excel等都是可以实现的</li>
+<p><strong>S5500EI-CMW520-R2222P12.bin</strong>（新版本主机软件）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-CMW520-R2222P12.bin</span><br><span class="line">大小: 14386411 字节 (13 MiB)</span><br><span class="line">CRC32: D2E2387E</span><br><span class="line">CRC64: 5806015C822E9D46</span><br><span class="line">SHA256: 33F9948CF29DEEE01C2449DEC499E35AC1721331F6E73644526F9D2BF9B6C2E0</span><br><span class="line">SHA1: 8D50B9BAD0E80F6DCE14E3C941D3E74CA8D72B96</span><br><span class="line">BLAKE2sp: 7510F4902CE03E9ABF44E480C4DF642782818AAF9F400E8E8716AFC7F18C6BE2</span><br></pre></td></tr></table></figure>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" target="_blank"><img src="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" class="img-center" ></a></p>
+
+<h2 id="登陆查看版本信息和-Flash-空间"><a href="#登陆查看版本信息和-Flash-空间" class="headerlink" title="登陆查看版本信息和 Flash 空间"></a>登陆查看版本信息和 Flash 空间</h2><h3 id="查看当前主机软件版本和-Bootrom-版本"><a href="#查看当前主机软件版本和-Bootrom-版本" class="headerlink" title="查看当前主机软件版本和 Bootrom 版本"></a>查看当前主机软件版本和 Bootrom 版本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;display version</span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2202</span><br><span class="line">Copyright (c) 2004-2010 Hangzhou H3C Tech. Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 5 weeks, 3 days, 20 hours, 9 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 609</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看-Flash-剩余空间"><a href="#查看-Flash-剩余空间" class="headerlink" title="查看 Flash 剩余空间"></a>查看 Flash 剩余空间</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17880  Sep 07 2021 15:25:30   startup.cfg</span><br><span class="line"></span><br><span class="line">31496 KB total (21277 KB free)</span><br></pre></td></tr></table></figure>
+
+<p>确保Flash有<strong>14.1</strong>M以上剩余空间（新版本软件共14.1M）</p>
+<h2 id="通过-FTP-实现远程加载文件"><a href="#通过-FTP-实现远程加载文件" class="headerlink" title="通过 FTP 实现远程加载文件"></a>通过 FTP 实现远程加载文件</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" class="img-center"></a></p>
+
+<p>如 图 所示，FTP Server 与配置计算机是同一台计算机。远程登录到交换机上，执行FTP命令，从 FTP Server 上（假定IP地址为 2.2.2.1）下载主机程序 <strong>S5500EI-CMW520-R2222P12.bin</strong>  和 BOOTROM 程序 <strong>S5500EI-BTM-721.btm</strong>。</p>
+<p><strong>备份 Flash 文件</strong></p>
+<p>加载文件前使用 FTP 命令备份文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;ftp 2.2.2.1</span><br><span class="line">Trying 2.2.2.1 ...</span><br><span class="line">Press CTRL+K to abort</span><br><span class="line">Connected to 2.2.2.1.</span><br><span class="line">220 3Com 3CDaemon FTP  2.0 ready for new user</span><br><span class="line">User(2.2.2.1:(none)):123</span><br><span class="line">331 Give me your password, please</span><br><span class="line">Password:</span><br><span class="line">230 Logged in successfully</span><br><span class="line">[ftp]</span><br><span class="line">[ftp] put s5500ei-cmw520-r2202.bin</span><br><span class="line">[ftp] put startup.cfg</span><br><span class="line">[ftp] put ......</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一步：通过-FTP-的相关命令将软件下载到本地交换机上。"><a href="#第一步：通过-FTP-的相关命令将软件下载到本地交换机上。" class="headerlink" title="第一步：通过 FTP 的相关命令将软件下载到本地交换机上。"></a>第一步：通过 FTP 的相关命令将软件下载到本地交换机上。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[ftp] get S5500EI-BTM-721.btm</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,132)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó        </span><br><span class="line">......226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 483732 byte(s) received in 7.111 second(s), 68.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[ftp]</span><br><span class="line">[ftp] get S5500EI-CMW520-R2222P12.bin</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,133)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó</span><br><span class="line"></span><br><span class="line">...............................................226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 14386411 byte(s) received in 197.289 second(s), 72.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[[ftp] bye</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二步：在交换机上升级-BOOTROM。"><a href="#第二步：在交换机上升级-BOOTROM。" class="headerlink" title="第二步：在交换机上升级 BOOTROM。"></a>第二步：在交换机上升级 BOOTROM。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;bootrom update file flash:/s5500ei-btm-721.btm slot 1 </span><br><span class="line">  This command will update bootrom file on the specified board(s), Continue? [Y/N]:y</span><br><span class="line">  Now updating bootrom, please wait...</span><br><span class="line"></span><br><span class="line">  Succeeded to update bootrom of Board 1.</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三步：在交换机上升级主机软件。"><a href="#第三步：在交换机上升级主机软件。" class="headerlink" title="第三步：在交换机上升级主机软件。"></a>第三步：在交换机上升级主机软件。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;boot-loader file flash:/s5500ei-cmw520-r2222p12.bin slot 1 main                                           </span><br><span class="line">  This command will set the boot file of the specified board. Continue? [Y/N]:y</span><br><span class="line">  The specified file will be used as the main boot file at the next reboot on slot 1!</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dis boot-loader </span><br><span class="line"> Slot 1</span><br><span class="line">The current boot app is:  flash:/s5500ei-cmw520-r2202.bin</span><br><span class="line">The main boot app is:     flash:/s5500ei-cmw520-r2222p12.bin</span><br><span class="line">The backup boot app is:   flash:/</span><br></pre></td></tr></table></figure>
+
+<h3 id="第四步：重新启动交换机。"><a href="#第四步：重新启动交换机。" class="headerlink" title="第四步：重新启动交换机。"></a>第四步：重新启动交换机。</h3><ul>
+<li>重起前请确认其他配置是否保存，防止重启后造成配置信息丢失。</li>
+<li>重启设备后即可完成 BOOTROM 和主机软件的加载。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;reboot </span><br><span class="line"> Start to check configuration with next startup configuration file, please wait.........DONE!</span><br><span class="line"> This command will reboot the device. Continue? [Y/N]:y</span><br><span class="line">#Sep 14 15:51:46:49 2021 XX-XX-S5500-1 DEV/1/REBOOT:</span><br><span class="line"> Reboot device by command. </span><br><span class="line"></span><br><span class="line">%Sep 14 15:51:46:163 2021 XX-XX-S5500-1 DEV/4/SYSTEM REBOOT:</span><br><span class="line"> System is rebooting now.</span><br><span class="line"></span><br><span class="line">Starting......</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            ***********************************************************</span><br><span class="line">            *                                                         *</span><br><span class="line">            *          H3C S5500-52C-EI BOOTROM, Version 721          *</span><br><span class="line">            *                                                         *</span><br><span class="line">            ***********************************************************</span><br><span class="line">            Copyright (c) 2004-2013 Hangzhou H3C Tech. Co., Ltd.</span><br><span class="line">            Creation date   : Nov 12 2013, 01:59:13</span><br><span class="line">            CPU Clock Speed : 533MHz</span><br><span class="line">            BUS Clock Speed : 133MHz</span><br><span class="line">            Memory Size     : 256MB</span><br><span class="line">            Mac Address     : 3822d60cd0f8</span><br><span class="line"></span><br><span class="line">Press Ctrl-B to enter Boot Menu... 0</span><br><span class="line">Auto-booting...</span><br><span class="line">Decompress Image.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................OK!</span><br><span class="line"></span><br><span class="line">User interface aux0 is available.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Press ENTER to get started.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看升级后的版本信息"><a href="#查看升级后的版本信息" class="headerlink" title="查看升级后的版本信息"></a>查看升级后的版本信息</h2><p>查看主机软件版本和 Bootrom 程序版本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dis version </span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2222P12</span><br><span class="line">Copyright (c) 2004-2018 New H3C Technologies Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 0 week, 0 day, 0 hour, 2 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 721</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除旧主机软件"><a href="#删除旧主机软件" class="headerlink" title="删除旧主机软件"></a>删除旧主机软件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir                                                                                                       </span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   2     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   3     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   4     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (6751 KB free)</span><br><span class="line"></span><br><span class="line">&lt;XX-XX-S5500-1&gt;delete /unreserved s5500ei-cmw520-r2202.bin </span><br><span class="line">The contents cannot be restored!!! Delete flash:/s5500ei-cmw520-r2202.bin?[Y/N]:y</span><br><span class="line">Deleting a file permanently will take a long time. Please wait...</span><br><span class="line">........................................................................................</span><br><span class="line">%Delete file flash:/s5500ei-cmw520-r2202.bin...Done.</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   1     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   2     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   3     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (16943 KB free)</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>加载主机软件必须通过 reboot 命令重起交换机后才能使加载成功。</li>
+<li>如果 Flash 空间不够，可以先删除 Flash 中的无用文件，再进行软件的下载。</li>
+<li>在加载过程中不可断电。</li>
 </ul>
 ]]></content>
       <categories>
-        <category>设备巡检</category>
+        <category>H3C</category>
       </categories>
       <tags>
-        <tag>设备巡检</tag>
         <tag>H3C设备</tag>
+        <tag>交换机升级版本</tag>
       </tags>
   </entry>
   <entry>
     <title>大梦初醒 荒唐了一生</title>
     <url>/posts/2703fb4a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
-<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ资料界面一直挂着这首歌</p>
+<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ 资料界面一直挂着这首歌</p>
 <p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
 <p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p>
 <p>带感情的演唱，好像作者在表达不为人知的情感</p>
@@ -521,71 +585,16 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C_S5500-52C-EI升级步骤</title>
-    <url>/posts/e765d177.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载升级所需要的两个文件：</p>
-<p><strong>S5500EI-BTM-721.btm</strong>（新版本Bootrom程序）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-BTM-721.btm</span><br><span class="line">大小: 483732 字节 (472 KiB)</span><br><span class="line">CRC32: 4B9436E9</span><br><span class="line">CRC64: 928CB6227DE9AF69</span><br><span class="line">SHA256: C0EDB2FA02C5F8804E8D983F4DD197F1D321C21C317ED5BB10BF002CB4973CE8</span><br><span class="line">SHA1: F8B345BC2012C8183CE01F092E4181FC15495867</span><br><span class="line">BLAKE2sp: 6A5E362D8A4DA8FA74B6A9F4568627FA07C53126DB67F5FF287C9BE893C33502</span><br></pre></td></tr></table></figure>
-
-<p><strong>S5500EI-CMW520-R2222P12.bin</strong>（新版本主机软件）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称: S5500EI-CMW520-R2222P12.bin</span><br><span class="line">大小: 14386411 字节 (13 MiB)</span><br><span class="line">CRC32: D2E2387E</span><br><span class="line">CRC64: 5806015C822E9D46</span><br><span class="line">SHA256: 33F9948CF29DEEE01C2449DEC499E35AC1721331F6E73644526F9D2BF9B6C2E0</span><br><span class="line">SHA1: 8D50B9BAD0E80F6DCE14E3C941D3E74CA8D72B96</span><br><span class="line">BLAKE2sp: 7510F4902CE03E9ABF44E480C4DF642782818AAF9F400E8E8716AFC7F18C6BE2</span><br></pre></td></tr></table></figure>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" target="_blank"><img src="https://i.loli.net/2021/10/16/ua79omSMlvEptZe.png" class="img-center" ></a></p>
-
-<h2 id="登陆查看版本信息和Flash空间"><a href="#登陆查看版本信息和Flash空间" class="headerlink" title="登陆查看版本信息和Flash空间"></a>登陆查看版本信息和Flash空间</h2><h3 id="查看当前主机软件版本和Bootrom版本"><a href="#查看当前主机软件版本和Bootrom版本" class="headerlink" title="查看当前主机软件版本和Bootrom版本"></a>查看当前主机软件版本和Bootrom版本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;display version</span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2202</span><br><span class="line">Copyright (c) 2004-2010 Hangzhou H3C Tech. Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 5 weeks, 3 days, 20 hours, 9 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 609</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
-
-<h3 id="查看Flash-剩余空间"><a href="#查看Flash-剩余空间" class="headerlink" title="查看Flash 剩余空间"></a>查看Flash 剩余空间</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17880  Sep 07 2021 15:25:30   startup.cfg</span><br><span class="line"></span><br><span class="line">31496 KB total (21277 KB free)</span><br></pre></td></tr></table></figure>
-
-<p>确保Flash有<strong>14.1</strong>M以上剩余空间（新版本软件共14.1M）</p>
-<h2 id="通过FTP实现远程加载文件"><a href="#通过FTP实现远程加载文件" class="headerlink" title="通过FTP实现远程加载文件"></a>通过FTP实现远程加载文件</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/XyuBs1QNEGqOZzb.jpg" class="img-center"></a></p>
-
-<p>如 图 所示，FTP Server与配置计算机是同一台计算机。远程登录到交换机上，执行FTP命令，从FTP Server上（假定IP地址为 2.2.2.1）下载主机程序<strong>S5500EI-CMW520-R2222P12.bin</strong> 和BOOTROM程序 <strong>S5500EI-BTM-721.btm</strong>。</p>
-<p><strong>备份Flash 文件</strong></p>
-<p>加载文件前使用FTP命令备份文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;ftp 2.2.2.1</span><br><span class="line">Trying 2.2.2.1 ...</span><br><span class="line">Press CTRL+K to abort</span><br><span class="line">Connected to 2.2.2.1.</span><br><span class="line">220 3Com 3CDaemon FTP  2.0 ready for new user</span><br><span class="line">User(2.2.2.1:(none)):123</span><br><span class="line">331 Give me your password, please</span><br><span class="line">Password:</span><br><span class="line">230 Logged in successfully</span><br><span class="line">[ftp]</span><br><span class="line">[ftp] put s5500ei-cmw520-r2202.bin</span><br><span class="line">[ftp] put startup.cfg</span><br><span class="line">[ftp] put ......</span><br></pre></td></tr></table></figure>
-
-<h3 id="第一步：通过-FTP-的相关命令将软件下载到本地交换机上。"><a href="#第一步：通过-FTP-的相关命令将软件下载到本地交换机上。" class="headerlink" title="第一步：通过 FTP 的相关命令将软件下载到本地交换机上。"></a>第一步：通过 FTP 的相关命令将软件下载到本地交换机上。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[ftp] get S5500EI-BTM-721.btm</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,132)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó        </span><br><span class="line">......226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 483732 byte(s) received in 7.111 second(s), 68.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[ftp]</span><br><span class="line">[ftp] get S5500EI-CMW520-R2222P12.bin</span><br><span class="line"></span><br><span class="line">227 ÕýÔÚ½øÈë±»¶¯Ä£Ê½ (2,2,2,1,195,133)     </span><br><span class="line">125 ÕýÔÚÊ¹ÓÃÏÖ´æµÄÊý¾ÝÁ¬½Ó</span><br><span class="line"></span><br><span class="line">...............................................226 ÕýÔÚ¹Ø±ÕÊý¾ÝÁ¬½Ó; ÎÄ¼þ´«Êä³É¹¦Íê³É.               </span><br><span class="line">FTP: 14386411 byte(s) received in 197.289 second(s), 72.00K byte(s)/sec. </span><br><span class="line"></span><br><span class="line">[[ftp] bye</span><br></pre></td></tr></table></figure>
-
-<h3 id="第二步：在交换机上升级-BOOTROM。"><a href="#第二步：在交换机上升级-BOOTROM。" class="headerlink" title="第二步：在交换机上升级 BOOTROM。"></a>第二步：在交换机上升级 BOOTROM。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;bootrom update file flash:/s5500ei-btm-721.btm slot 1 </span><br><span class="line">  This command will update bootrom file on the specified board(s), Continue? [Y/N]:y</span><br><span class="line">  Now updating bootrom, please wait...</span><br><span class="line"></span><br><span class="line">  Succeeded to update bootrom of Board 1.</span><br></pre></td></tr></table></figure>
-
-<h3 id="第三步：在交换机上升级主机软件。"><a href="#第三步：在交换机上升级主机软件。" class="headerlink" title="第三步：在交换机上升级主机软件。"></a>第三步：在交换机上升级主机软件。</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;boot-loader file flash:/s5500ei-cmw520-r2222p12.bin slot 1 main                                           </span><br><span class="line">  This command will set the boot file of the specified board. Continue? [Y/N]:y</span><br><span class="line">  The specified file will be used as the main boot file at the next reboot on slot 1!</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dis boot-loader </span><br><span class="line"> Slot 1</span><br><span class="line">The current boot app is:  flash:/s5500ei-cmw520-r2202.bin</span><br><span class="line">The main boot app is:     flash:/s5500ei-cmw520-r2222p12.bin</span><br><span class="line">The backup boot app is:   flash:/</span><br></pre></td></tr></table></figure>
-
-<h3 id="第四步：重新启动交换机。"><a href="#第四步：重新启动交换机。" class="headerlink" title="第四步：重新启动交换机。"></a>第四步：重新启动交换机。</h3><ul>
-<li>重起前请确认其他配置是否保存，防止重启后造成配置信息丢失。</li>
-<li>重启设备后即可完成 BOOTROM 和主机软件的加载。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;reboot </span><br><span class="line"> Start to check configuration with next startup configuration file, please wait.........DONE!</span><br><span class="line"> This command will reboot the device. Continue? [Y/N]:y</span><br><span class="line">#Sep 14 15:51:46:49 2021 XX-XX-S5500-1 DEV/1/REBOOT:</span><br><span class="line"> Reboot device by command. </span><br><span class="line"></span><br><span class="line">%Sep 14 15:51:46:163 2021 XX-XX-S5500-1 DEV/4/SYSTEM REBOOT:</span><br><span class="line"> System is rebooting now.</span><br><span class="line"></span><br><span class="line">Starting......</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            ***********************************************************</span><br><span class="line">            *                                                         *</span><br><span class="line">            *          H3C S5500-52C-EI BOOTROM, Version 721          *</span><br><span class="line">            *                                                         *</span><br><span class="line">            ***********************************************************</span><br><span class="line">            Copyright (c) 2004-2013 Hangzhou H3C Tech. Co., Ltd.</span><br><span class="line">            Creation date   : Nov 12 2013, 01:59:13</span><br><span class="line">            CPU Clock Speed : 533MHz</span><br><span class="line">            BUS Clock Speed : 133MHz</span><br><span class="line">            Memory Size     : 256MB</span><br><span class="line">            Mac Address     : 3822d60cd0f8</span><br><span class="line"></span><br><span class="line">Press Ctrl-B to enter Boot Menu... 0</span><br><span class="line">Auto-booting...</span><br><span class="line">Decompress Image.........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................OK!</span><br><span class="line"></span><br><span class="line">User interface aux0 is available.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Press ENTER to get started.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="查看升级后的版本信息"><a href="#查看升级后的版本信息" class="headerlink" title="查看升级后的版本信息"></a>查看升级后的版本信息</h2><p>查看主机软件版本和Bootrom程序版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dis version </span><br><span class="line">H3C Comware Platform Software</span><br><span class="line">Comware Software, Version 5.20, Release 2222P12</span><br><span class="line">Copyright (c) 2004-2018 New H3C Technologies Co., Ltd. All rights reserved.</span><br><span class="line">H3C S5500-52C-EI uptime is 0 week, 0 day, 0 hour, 2 minutes</span><br><span class="line"></span><br><span class="line">H3C S5500-52C-EI with 1 Processor</span><br><span class="line">256M    bytes SDRAM</span><br><span class="line">32768K  bytes Flash Memory</span><br><span class="line"></span><br><span class="line">Hardware Version is REV.C</span><br><span class="line">CPLD Version is 002</span><br><span class="line">Bootrom Version is 721</span><br><span class="line">[SubSlot 0] 48GE+4SFP Hardware Version is REV.C</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除旧主机软件"><a href="#删除旧主机软件" class="headerlink" title="删除旧主机软件"></a>删除旧主机软件</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;XX-XX-S5500-1&gt;dir                                                                                                       </span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-  10436470  Aug 11 2010 15:04:09   s5500ei-cmw520-r2202.bin</span><br><span class="line">   1     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   2     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   3     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   4     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (6751 KB free)</span><br><span class="line"></span><br><span class="line">&lt;XX-XX-S5500-1&gt;delete /unreserved s5500ei-cmw520-r2202.bin </span><br><span class="line">The contents cannot be restored!!! Delete flash:/s5500ei-cmw520-r2202.bin?[Y/N]:y</span><br><span class="line">Deleting a file permanently will take a long time. Please wait...</span><br><span class="line">........................................................................................</span><br><span class="line">%Delete file flash:/s5500ei-cmw520-r2202.bin...Done.</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;</span><br><span class="line">&lt;XX-XX-S5500-1&gt;dir</span><br><span class="line">Directory of flash:/</span><br><span class="line"></span><br><span class="line">   0     -rw-     17952  Sep 14 2021 15:36:21   startup.cfg</span><br><span class="line">   1     -rw-    483732  Sep 14 2021 15:31:57   s5500ei-btm-721.btm</span><br><span class="line">   2     -rw-  14386411  Sep 14 2021 15:35:42   s5500ei-cmw520-r2222p12.bin</span><br><span class="line">   3     drw-         -  Apr 26 2000 12:00:40   seclog</span><br><span class="line"></span><br><span class="line">31496 KB total (16943 KB free)</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
-<li>加载主机软件必须通过 reboot 命令重起交换机后才能使加载成功。</li>
-<li>如果 Flash 空间不够，可以先删除 Flash 中的无用文件，再进行软件的下载。</li>
-<li>在加载过程中不可断电。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>H3C</category>
-      </categories>
-      <tags>
-        <tag>H3C设备</tag>
-        <tag>交换机升级版本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于新主题博客</title>
     <url>/posts/f2af2fdc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新hexo主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到Github呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的To-Do List，我真是自己玩自己。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新 hexo 主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到 GitHub 呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的 To-Do List，我真是自己玩自己。</p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" class="img-center" ></a></p>
 
 <h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
-<h2 id="关于GiteePages"><a href="#关于GiteePages" class="headerlink" title="关于GiteePages"></a>关于GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是category页面违规，what？一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态html页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用Pages服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到Gitee后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括Pages服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加QQ群联系管理员–再人工审核三五天，真QQ办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
+<h2 id="关于-GiteePages"><a href="#关于-GiteePages" class="headerlink" title="关于 GiteePages"></a>关于 GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是 category 页面违规，what？ 一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态 html  页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用 Pages 服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到 Gitee 后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括 Pages 服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加 QQ 群联系管理员–再人工审核三五天，真 QQ 办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
 
-<h2 id="Obsidian主题页面留念"><a href="#Obsidian主题页面留念" class="headerlink" title="Obsidian主题页面留念"></a>Obsidian主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
+<h2 id="Obsidian-主题页面留念"><a href="#Obsidian-主题页面留念" class="headerlink" title="Obsidian 主题页面留念"></a>Obsidian 主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
@@ -602,22 +611,22 @@
   <entry>
     <title>我的一些blog常用小操作</title>
     <url>/posts/c1906682.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是^_^"></a>这是^_^</h2><p>自己日常操作的一些小命令和插件。</p>
-<h3 id="bat启动hexo本地服务"><a href="#bat启动hexo本地服务" class="headerlink" title="bat启动hexo本地服务"></a>bat启动hexo本地服务</h3><p>前提条件：已完成博客搭建。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是 ^_^"></a>这是 ^_^</h2><p>自己日常操作的一些小命令和插件。</p>
+<h3 id="bat启动-hexo-本地服务"><a href="#bat启动-hexo-本地服务" class="headerlink" title="bat启动 hexo 本地服务"></a>bat启动 hexo 本地服务</h3><p>前提条件：已完成博客搭建。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>新建后缀为bat的脚本文件</li>
 <li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo s”运行</li>
+<li>双击此脚本运行的结果相当于在你的 blog 路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo s” 运行</li>
 </ol>
-<h3 id="bat推送至github"><a href="#bat推送至github" class="headerlink" title="bat推送至github"></a>bat推送至github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
+<h3 id="bat-推送至-github"><a href="#bat-推送至-github" class="headerlink" title="bat 推送至 github"></a>bat 推送至 github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>新建后缀为bat的脚本文件</li>
 <li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s”运行（如果只输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
+<li>双击此脚本运行的结果相当于在你的blog路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s” 运行（如果只输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
 </ol>
 <h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
 <ol>
@@ -633,32 +642,32 @@
 <ol start="3">
 <li>Enjoy!</li>
 </ol>
-<h3 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a>404页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
-<p>虽然blog网站简单，访问出现404页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
-<p>公益404页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
-<p>网站只需要在自己的404页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
+<h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
+<p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
+<p>公益 404 页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
+<p>网站只需要在自己的 404 页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
 <p>复制以下 js 代码，嵌入到您的 404 页面，可以自适应移动设备。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改“homePageUrl”、“homePageName”两个参数即可。</p>
-<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 <strong>页面则必须在线上测试</strong>，本地测试（localhost:4000）返回主页无效</p>
+<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改 “homePageUrl”、“homePageName” 两个参数即可。</p>
+<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 页面则必须在线上测试**，本地测试（localhost:4000）返回主页无效</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://yoursite.com/yourPage.html&quot; homePageName=&quot;回到我的主页&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="添加文章链接abbrlink"><a href="#添加文章链接abbrlink" class="headerlink" title="添加文章链接abbrlink"></a>添加文章链接abbrlink</h3><ul>
+<h3 id="添加文章链接-abbrlink"><a href="#添加文章链接-abbrlink" class="headerlink" title="添加文章链接 abbrlink"></a>添加文章链接 abbrlink</h3><ul>
 <li>安装插件</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>修改<strong>网站根目录</strong>配置文件_config_yml</li>
+<li>修改<strong>网站根目录</strong>配置文件 _config_yml</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>alg和rep不同组合生成的链接</li>
+<li> alg 和 rep 不同组合生成的链接</li>
 </ul>
   <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
 
-<p>  hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
+<p>  hexo g 生成后，md 文件的 Front-matter 增加 abbrlink  属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。</p>
 ]]></content>
       <categories>
         <category>Blog</category>
@@ -672,7 +681,7 @@
   <entry>
     <title>H3C_连接L2TP的客户端设置(图片)</title>
     <url>/posts/ab889e59.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode客户端设置"><a href="#iNode客户端设置" class="headerlink" title="iNode客户端设置"></a>iNode客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode-客户端设置"><a href="#iNode-客户端设置" class="headerlink" title="iNode 客户端设置"></a>iNode 客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
 
 <p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" ></a></p>
 
@@ -725,13 +734,13 @@
   <entry>
     <title>TI10</title>
     <url>/posts/fae4c6b8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10结束了，LGD再次倒在了总决赛</p>
-<p>相信包括我在内的许多人都坚信今年的总冠军是LGD，但是……</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10 结束了，LGD 再次倒在了总决赛</p>
+<p>相信包括我在内的许多人都坚信今年的总冠军是 LGD，但是……</p>
 <p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
 <p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
 <p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
 <p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
-<p>你也别说什么五年了，该CN DOTA举一次盾了</p>
+<p>你也别说什么五年了，该 CN DOTA 举一次盾了</p>
 <p>巧了，独联体区的玩家也是这么这么认为的</p>
 <p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
 <p>……</p>
@@ -752,29 +761,29 @@
   <entry>
     <title>H3C_线路测试脚本</title>
     <url>/posts/60e83b3d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个ping测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩python，就想着能不能做个脚本自己跑，最后实现了，而且生成excel表格统计测试成功和测试失败的信息。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。</p>
 <h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="记录会话日志（log-session）"><a href="#记录会话日志（log-session）" class="headerlink" title="记录会话日志（log session）"></a>记录会话日志（log session）</h3><ul>
-<li>设置会话属性参数（可单独设置串口会话、telnet会话和ssh会话，右键会话属性修改即可）</li>
+<li>设置会话属性参数（可单独设置串口会话、telnet 会话和 ssh 会话，右键会话属性修改即可）</li>
 </ul>
 <p><a data-fancybox="gallery" a href="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" class="img-center" ></a></p>
 <ul>
-<li>设置log file 参数（设置保存路径，选项，日志的开头和结束位置插入信息（脚本用于判断结束的位置））</li>
+<li>设置 log file 参数（设置保存路径，选项，日志的开头和结束位置插入信息（脚本用于判断结束的位置））</li>
 </ul>
 <p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg"  class="img-center"></a></p>
-<h3 id="制作端口和IP信息的txt文件"><a href="#制作端口和IP信息的txt文件" class="headerlink" title="制作端口和IP信息的txt文件"></a>制作端口和IP信息的txt文件</h3><p>说明：第一列为网络中心路由器接口，第二列为对端网点设备的IP地址（接口和IP我已经处理过了，假的，真的不会贴出来）</p>
+<h3 id="制作端口和-IP-信息的-txt-文件"><a href="#制作端口和-IP-信息的-txt-文件" class="headerlink" title="制作端口和 IP 信息的 txt 文件"></a>制作端口和 IP 信息的 txt 文件</h3><p>说明：第一列为网络中心路由器接口，第二列为对端网点设备的 IP 地址（接口和IP我已经处理过了，假的，真的不会贴出来）</p>
 <p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg"  class="img-center"></a></p>
-<h3 id="编写ping测试python脚本"><a href="#编写ping测试python脚本" class="headerlink" title="编写ping测试python脚本"></a>编写ping测试python脚本</h3><ul>
+<h3 id="编写-ping-测试-Python-脚本"><a href="#编写-ping-测试-Python-脚本" class="headerlink" title="编写 ping 测试 Python 脚本"></a>编写 ping 测试 Python 脚本</h3><ul>
 <li>脚本内容</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># $language = &quot;python&quot;</span><br><span class="line"># $interface = &quot;1.0&quot;</span><br><span class="line">import os</span><br><span class="line">import SecureCRT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    crt.Screen.Synchronous = True</span><br><span class="line">    with open(&#x27;F:/SR66_Test/SR66.txt&#x27;, &#x27;r&#x27;) as rfile:</span><br><span class="line">        ping_list = rfile.readlines()</span><br><span class="line">        # 遍历SR66文件里的每一行，把第1列赋值给 port_info，第二列赋值给 ping_ip</span><br><span class="line">        for ping_info in ping_list:</span><br><span class="line">            port_info = ping_info.split()[0]</span><br><span class="line">            ping_ip = ping_info.split()[1]</span><br><span class="line">            crt.Screen.Send(&#x27;\r&#x27;)</span><br><span class="line">            # 在路由器命令行界面输入#+port_info并回车，例如：#GE4/1/0.111</span><br><span class="line">            crt.Screen.Send(&#x27;#&#x27; + port_info + &#x27;\r&#x27;)</span><br><span class="line">            # 在路由器命令行界面输入ping -c + ping_ip并回车，例如：ping -c 3 100.10.142.30</span><br><span class="line">            crt.Screen.Send(&#x27;ping -c 3 &#x27; + ping_ip + &#x27;\r&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>SceureCRT登陆路由器，点击 “Script” –&gt; “Run”选择脚本，运行脚本。运行时间取决于线路的正常连通和测试的数量</li>
+<li>SceureCRT 登陆路由器，点击 “Script” –&gt; “Run” 选择脚本，运行脚本。运行时间取决于线路的正常连通和测试的数量</li>
 </ul>
-<h3 id="编写结果统计python脚本"><a href="#编写结果统计python脚本" class="headerlink" title="编写结果统计python脚本"></a>编写结果统计python脚本</h3><ol>
-<li>处理ping测试后的 log session日志记录</li>
-<li>提取ping测试的结果信息（会同时生成一个result.txt的文件）</li>
-<li>对result.txt文件的信息进行处理生成excel表格</li>
+<h3 id="编写结果统计-Python-脚本"><a href="#编写结果统计-Python-脚本" class="headerlink" title="编写结果统计 Python 脚本"></a>编写结果统计 Python 脚本</h3><ol>
+<li>处理 ping 测试后的 log session 日志记录</li>
+<li>提取 ping 测试的结果信息（会同时生成一个 result.txt 的文件）</li>
+<li>对 result.txt 文件的信息进行处理生成 Excel 表格</li>
 </ol>
 <ul>
 <li>脚本内容：</li>
@@ -782,15 +791,15 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Author：KIRASTER</span><br><span class="line"># Time：2021/x/x x:x</span><br><span class="line"># Description：</span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line">import xlsxwriter as xw</span><br><span class="line">from xlsxwriter import Workbook</span><br><span class="line"></span><br><span class="line">filename = &#x27;F:/SR66_Test/xxx.log&#x27;</span><br><span class="line">resultfilename = &#x27;F:/SR66_Test/result.txt&#x27;</span><br><span class="line">if os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = open(&#x27;F:/SR66_Test/result.txt&#x27;, &#x27;a&#x27;)</span><br><span class="line"></span><br><span class="line">with open(filename, &#x27;r&#x27;, encoding=&#x27;utf8&#x27;) as file_to_read:</span><br><span class="line">    while True:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        if &quot;GE&quot; in lines:</span><br><span class="line">            #  # 提取GE开头的行，也就是端口和IP信息的txt文件里的第一列，并且换行符替换制表符</span><br><span class="line">            result_line1 = re.sub(r&#x27;^.*?#_&#x27;, &#x27;&#x27;, lines)</span><br><span class="line">            result_line1 = result_line1.replace(&quot;\n&quot;, &quot;\t&quot;)</span><br><span class="line">            print(result_line1)</span><br><span class="line">            result_txt.write(result_line1)</span><br><span class="line">        if &quot;--- Ping statistics&quot; in lines:</span><br><span class="line">            # 提取包含“--- Ping statistics”这一行，替换成“ping + IP”，并且换行符替换制表符</span><br><span class="line">            result_line2 = re.sub(r&#x27;^.*?for&#x27;, &#x27;ping&#x27;, lines)</span><br><span class="line">            result_line2 = result_line2.replace(&quot;-&quot;, &quot;&quot;)</span><br><span class="line">            result_line2 = result_line2.replace(&quot;\n&quot;, &quot;\t&quot;)</span><br><span class="line">            print(result_line2)</span><br><span class="line">            result_txt.write(result_line2)</span><br><span class="line">            lines = next(file_to_read)</span><br><span class="line">            # 提取下一行，替换成“result: 0.0% packet loss”</span><br><span class="line">            result_line3 = re.sub(r&#x27;^.*?received,&#x27;, &#x27;result:&#x27;, lines)</span><br><span class="line">            print(result_line3)</span><br><span class="line">            result_txt.write(result_line3)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        if &quot;结束记录时间&quot; in lines:</span><br><span class="line">            # 遍历到“结束记录时间”这行，中断循环</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">workbook: Workbook = xw.Workbook(&#x27;F:/SR66_Test/result.xlsx&#x27;)</span><br><span class="line"></span><br><span class="line">sheet0 = workbook.add_worksheet(&#x27;测试结果&#x27;)</span><br><span class="line">centered = workbook.add_format(&#123;&#x27;align&#x27;: &#x27;center&#x27;&#125;)</span><br><span class="line">red_style = workbook.add_format(&#123;</span><br><span class="line">    &quot;fg_color&quot;: &quot;red&quot;,&#x27;align&#x27;: &#x27;center&#x27;,&#x27;bold&#x27;: True&#125;)</span><br><span class="line">green_style = workbook.add_format(&#123;</span><br><span class="line">    &quot;fg_color&quot;: &quot;green&quot;,&#x27;align&#x27;: &#x27;center&#x27;,&#x27;bold&#x27;: True&#125;)</span><br><span class="line">blue_style = workbook.add_format(&#123;</span><br><span class="line">    &quot;fg_color&quot;: &quot;#8DB4E2&quot;,&#x27;align&#x27;: &#x27;center&#x27;&#125;)</span><br><span class="line">sheet0.write(0, 0, &#x27;检测端口&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 1, &#x27;对端IP地址&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 2, &#x27;返回结果&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 3, &#x27;检测结果&#x27;, blue_style)</span><br><span class="line">sheet0.write(0, 4, &#x27;线路正常&#x27;, green_style)</span><br><span class="line"># sheet0.write(0, 5, &#x27;&#x27;, green_style)</span><br><span class="line">sheet0.write(0, 6, &#x27;检测失败&#x27;, red_style)</span><br><span class="line"># sheet0.write(0, 7, &#x27;&#x27;, red_style)</span><br><span class="line">sheet0.set_column(0, 0, width=20)</span><br><span class="line">sheet0.set_column(1, 1, width=24)</span><br><span class="line">sheet0.set_column(2, 2, width=28)</span><br><span class="line">sheet0.set_column(3, 3, width=12.38)</span><br><span class="line">sheet0.set_column(4, 4, width=12.38)</span><br><span class="line">sheet0.set_column(5, 5, width=5)</span><br><span class="line">sheet0.set_column(6, 6, width=12.38)</span><br><span class="line">sheet0.set_column(7, 7, width=5)</span><br><span class="line">sheet0.freeze_panes(1, 8, top_row=1)</span><br><span class="line"># sheet0.filter_column_list(&quot;D&quot;, [&#x27;正常&#x27;, &#x27;检测失败&#x27;])</span><br><span class="line">sheet0.filter_column_list(3, &#x27;x = &quot;正常&quot;&#x27;)</span><br><span class="line">sheet0.write_formula(&#x27;D2&#x27;, &#x27;&#123;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;检测失败&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;正常&quot;))&#125;&#x27;)</span><br><span class="line">sheet0.write_formula(&#x27;F1&#x27;, &#x27;&#123;=SUMPRODUCT((D2:D999=&quot;正常&quot;)*1)&#125;&#x27;)</span><br><span class="line">sheet0.write_formula(&#x27;H1&#x27;, &#x27;&#123;=SUMPRODUCT((D2:D999=&quot;检测失败&quot;)*1)&#125;&#x27;)</span><br><span class="line"></span><br><span class="line">with open(&#x27;D:/SR6608_Test/result.txt&#x27;) as file_object:</span><br><span class="line">    lines = file_object.readlines()</span><br><span class="line">    file_object.close()</span><br><span class="line"></span><br><span class="line">i = 1</span><br><span class="line">x = 1</span><br><span class="line">for xls_line in lines:</span><br><span class="line">    if &quot;GE&quot; in xls_line:</span><br><span class="line">        xls_line = xls_line.strip(&#x27;\n&#x27;)</span><br><span class="line">        xls_line = xls_line.split(&#x27;\t&#x27;)</span><br><span class="line">        print(xls_line)</span><br><span class="line">        port_info = xls_line[0]</span><br><span class="line">        ip_addr = xls_line[1]</span><br><span class="line">        return_info = xls_line[2]</span><br><span class="line">        sheet0.write(i, 0, port_info, )</span><br><span class="line">        sheet0.write(i, 1, ip_addr, )</span><br><span class="line">        sheet0.write(i, 2, return_info, )</span><br><span class="line">        # sheet0.write_formula(x, 3, &#x27;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;正常&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;检测失败&quot;))&#x27;)</span><br><span class="line">        i += 1</span><br><span class="line">        x += 1</span><br><span class="line"></span><br><span class="line">workbook.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>ping测试的log session文件</li>
+<li>ping 测试的 log session 文件</li>
 </ul>
 <p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" class="img-center" ></a></p>
 <ul>
-<li>生成的result.txt文件</li>
+<li>生成的 result.txt 文件</li>
 </ul>
 <p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" class="img-center" ></a></p>
 <ul>
-<li>生成的excel表格</li>
+<li>生成的 Exce 表格</li>
 </ul>
 <p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" class="img-center" ></a></p>
 ]]></content>

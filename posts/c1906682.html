@@ -1,20 +1,20 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-site-verification" content="WJYkORGaCKpmTo5KTO23-HtGay4kqsa1kvMVMad6DMY" />
-<meta name="msvalidate.01" content="B0C0B3C5A32207C648603D179C10C991" /><script src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-209914470-1');</script><title>Kir's Blog</title><meta name="author" content="Kir Aster"><link rel="shortcut icon" href="/img/favicon.png"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Kir's Blog</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/categories"> Category</a></li><li class="menus_item"><a class="site-page" href="/archives"> Archive</a></li><li class="menus_item"><a class="site-page" href="/whoami"> About</a></li></ul></div></header><main id="page_main_post"><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">我的一些blog常用小操作</h2><article><h2 id="这是"><a href="#这是" class="headerlink" title="这是^_^"></a>这是^_^</h2><p>自己日常操作的一些小命令和插件。</p>
-<h3 id="bat启动hexo本地服务"><a href="#bat启动hexo本地服务" class="headerlink" title="bat启动hexo本地服务"></a>bat启动hexo本地服务</h3><p>前提条件：已完成博客搭建。</p>
+<meta name="msvalidate.01" content="B0C0B3C5A32207C648603D179C10C991" /><script src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-209914470-1');</script><title>Kir's Blog</title><meta name="author" content="Kir Aster"><link rel="shortcut icon" href="/img/favicon.png"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Kir's Blog</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/categories"> Category</a></li><li class="menus_item"><a class="site-page" href="/archives"> Archive</a></li><li class="menus_item"><a class="site-page" href="/whoami"> About</a></li></ul></div></header><main id="page_main_post"><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h2 class="page-title">我的一些blog常用小操作</h2><article><h2 id="这是"><a href="#这是" class="headerlink" title="这是 ^_^"></a>这是 ^_^</h2><p>自己日常操作的一些小命令和插件。</p>
+<h3 id="bat启动-hexo-本地服务"><a href="#bat启动-hexo-本地服务" class="headerlink" title="bat启动 hexo 本地服务"></a>bat启动 hexo 本地服务</h3><p>前提条件：已完成博客搭建。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>新建后缀为bat的脚本文件</li>
 <li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo s”运行</li>
+<li>双击此脚本运行的结果相当于在你的 blog 路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo s” 运行</li>
 </ol>
-<h3 id="bat推送至github"><a href="#bat推送至github" class="headerlink" title="bat推送至github"></a>bat推送至github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
+<h3 id="bat-推送至-github"><a href="#bat-推送至-github" class="headerlink" title="bat 推送至 github"></a>bat 推送至 github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>新建后缀为bat的脚本文件</li>
 <li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键“Git Bash Here”并输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s”运行（如果只输入“hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
+<li>双击此脚本运行的结果相当于在你的blog路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s” 运行（如果只输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
 </ol>
 <h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a target="_blank" rel="noopener" href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
 <ol>
@@ -30,32 +30,32 @@
 <ol start="3">
 <li>Enjoy!</li>
 </ol>
-<h3 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a>404页面</h3><p><strong>相关链接</strong>：<a target="_blank" rel="noopener" href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
-<p>虽然blog网站简单，访问出现404页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
-<p>公益404页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
-<p>网站只需要在自己的404页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
+<h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><p><strong>相关链接</strong>：<a target="_blank" rel="noopener" href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
+<p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
+<p>公益 404 页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
+<p>网站只需要在自己的 404 页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
 <p>复制以下 js 代码，嵌入到您的 404 页面，可以自适应移动设备。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改“homePageUrl”、“homePageName”两个参数即可。</p>
-<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 <strong>页面则必须在线上测试</strong>，本地测试（localhost:4000）返回主页无效</p>
+<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改 “homePageUrl”、“homePageName” 两个参数即可。</p>
+<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 页面则必须在线上测试**，本地测试（localhost:4000）返回主页无效</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://yoursite.com/yourPage.html&quot; homePageName=&quot;回到我的主页&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="添加文章链接abbrlink"><a href="#添加文章链接abbrlink" class="headerlink" title="添加文章链接abbrlink"></a>添加文章链接abbrlink</h3><ul>
+<h3 id="添加文章链接-abbrlink"><a href="#添加文章链接-abbrlink" class="headerlink" title="添加文章链接 abbrlink"></a>添加文章链接 abbrlink</h3><ul>
 <li>安装插件</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>修改<strong>网站根目录</strong>配置文件_config_yml</li>
+<li>修改<strong>网站根目录</strong>配置文件 _config_yml</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>alg和rep不同组合生成的链接</li>
+<li> alg 和 rep 不同组合生成的链接</li>
 </ul>
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
 
-<p>  hexo g生成后，md文件的Front-matter 增加abbrlink 属性，值为生成的ID链接，发布文章后文章链接不随改变文章内容而改变。</p>
+<p>  hexo g 生成后，md 文件的 Front-matter 增加 abbrlink  属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。</p>
 </article><div style="padding-bottom: 10px;"><ul class="post-copyright">
 <li class="post-title">
 <strong>Title：</strong><currenttitle>我的一些blog常用小操作</currenttitle><li class="post-copyright-author">
