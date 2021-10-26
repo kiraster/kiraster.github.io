@@ -690,53 +690,56 @@ blockquote p {
   }
 }
 @media (max-width: 34em) {
-  #page_main .post-top {
+  #page_main_post .page-title {
+    padding-top: 12px;
+  }
+  #page_main_post .post-top {
     margin-left: 0px;
     padding-left: 10px;
   }
-  #page_main .post-top-item {
+  #page_main_post .post-top-item {
     margin-left: 0px;
     padding-left: 10px;
   }
-  #page_main .recent-posts {
+  #page_main_post .recent-posts {
     margin-left: 10px;
     margin-top: 0.8rem;
   }
-  #page_main .recent-post-item {
+  #page_main_post .recent-post-item {
     margin-left: 0px;
     padding-left: 20px;
   }
-  #page_main h2 {
+  #page_main_post h2 {
     margin-left: 0px;
     padding-left: 10px;
   }
-  #page_main .pagination {
+  #page_main_post .pagination {
     margin-left: 8%;
   }
-  #page_main .category-lists {
+  #page_main_post .category-lists {
     margin-left: 10px;
     padding-left: 10px;
   }
-  #page_main .category__title {
+  #page_main_post .category__title {
     font-size: 1.8rem;
     font-weight: bold;
   }
-  #page_main .tag-cloud {
+  #page_main_post .tag-cloud {
     margin-left: 10px;
     padding: 1rem 1rem;
     text-align: center;
   }
-  #page_main .article-sort-title {
+  #page_main_post .article-sort-title {
     margin-left: 0px;
     padding-left: 10px;
     font-size: 1.8rem;
     font-weight: bold;
   }
-  #page_main .article-sort {
+  #page_main_post .article-sort {
     margin-left: 10px;
     padding-left: 10px;
   }
-  #page_main .whoami_main {
+  #page_main_post .whoami_main {
     margin-left: 10px;
     padding-left: 8px;
     padding-right: 8px;
