@@ -101,6 +101,9 @@
   #page_main_post .page {
     box-shadow: 0 0 5px #ccc;
   }
+  #page_main_post .page-title {
+    padding-top: 22.5px;
+  }
 }
 @media (min-width: 34em) {
   .page {
