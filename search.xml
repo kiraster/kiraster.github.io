@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于开始扯谈</title>
+    <url>/posts/49183d2a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗</p>
+<p>肚里墨水浅，蹦不出几个字    </p>
+<p>晚上躺床，可能由于早已被破坏了的生物钟的影响</p>
+<p>时常辗转反侧，脑里思绪万千</p>
+<p>明明是身体驱使着我要睡了要睡了</p>
+<p>但是脑子并不协调躯体</p>
+<p>躺床的我使劲的翻看手机屏幕</p>
+<p>完全忘记了床的两大原始作用，你懂我意思吗</p>
+<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡</p>
+<p>喜马拉雅，定一个倒计时</p>
+<p>强行把自己深夜的思绪带入场景中</p>
+<p>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
+<p>眼睛一睁已是第二天的差不多日上三竿的时间</p>
+<p>洗洗醒醒坐坐，一天开始了</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Theme: Obsidian</title>
+    <url>/posts/9cdc001c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
+<blockquote>
+<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
+</blockquote>
+<blockquote>
+<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
+</blockquote>
+<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
+
+
+<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
+<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
+<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
+<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
+]]></content>
+      <categories>
+        <category>Themes</category>
+      </categories>
+      <tags>
+        <tag>主题介绍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ENSP_防火墙通过导入初始配置实现启动后跳过更改初始密码</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。</p>
@@ -43,47 +93,24 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Theme: Obsidian</title>
-    <url>/posts/9cdc001c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
-<blockquote>
-<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
-</blockquote>
-<blockquote>
-<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> </p>
-</blockquote>
-<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
-
-
-<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
-<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
-<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
-<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
-]]></content>
-      <categories>
-        <category>Themes</category>
-      </categories>
-      <tags>
-        <tag>主题介绍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于开始扯谈</title>
-    <url>/posts/49183d2a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗</p>
-<p>肚里墨水浅，蹦不出几个字    </p>
-<p>晚上躺床，可能由于早已被破坏了的生物钟的影响</p>
-<p>时常辗转反侧，脑里思绪万千</p>
-<p>明明是身体驱使着我要睡了要睡了</p>
-<p>但是脑子并不协调躯体</p>
-<p>躺床的我使劲的翻看手机屏幕</p>
-<p>完全忘记了床的两大原始作用，你懂我意思吗</p>
-<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡</p>
-<p>喜马拉雅，定一个倒计时</p>
-<p>强行把自己深夜的思绪带入场景中</p>
-<p>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
-<p>眼睛一睁已是第二天的差不多日上三竿的时间</p>
-<p>洗洗醒醒坐坐，一天开始了</p>
+    <title>九十年代</title>
+    <url>/posts/8847b633.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
+<p>那时候人事物，我稍微回忆一下</p>
+<p>老爸买的黑白电视机，带有车牌号的自行车……</p>
+<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
+<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
+<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起 VCD 机</p>
+<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
+<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是 BB                                                  机，我老爸有一个</p>
+<p>那时候村里起房子，砖是从田里挖泥造的</p>
+<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
+<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
+<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
+<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
+<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
+<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
+<p>……</p>
 ]]></content>
       <categories>
         <category>扯谈</category>
@@ -121,30 +148,78 @@
       </tags>
   </entry>
   <entry>
-    <title>九十年代</title>
-    <url>/posts/8847b633.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
-<p>那时候人事物，我稍微回忆一下</p>
-<p>老爸买的黑白电视机，带有车牌号的自行车……</p>
-<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
-<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
-<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起 VCD 机</p>
-<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
-<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是 BB                                                  机，我老爸有一个</p>
-<p>那时候村里起房子，砖是从田里挖泥造的</p>
-<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
-<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
-<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
-<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
-<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
-<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
-<p>……</p>
+    <title>博客调整更新日志</title>
+    <url>/posts/e2a2e564.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211026"><a href="#20211026" class="headerlink" title="20211026"></a>20211026</h3><ul>
+<li>修改 archive 页面条目显示数量</li>
+</ul>
+<h3 id="20211024"><a href="#20211024" class="headerlink" title="20211024"></a>20211024</h3><ul>
+<li>修改 CSS 样式中的媒体查询 <strong>media query</strong> 下属性</li>
+</ul>
+<h3 id="20211022"><a href="#20211022" class="headerlink" title="20211022"></a>20211022</h3><ul>
+<li>修改文章页，去除左侧 sidebar，page_main 添加边框样式</li>
+<li>修改 about 页面底部 contact 信息</li>
+<li>去除 article-toc 文章目录</li>
+<li>去除 sidebar CV 信息标签</li>
+</ul>
+<h3 id="20211016"><a href="#20211016" class="headerlink" title="20211016"></a>20211016</h3><ul>
+<li><del>添加文章页版权信息</del></li>
+<li>修改 md 文件信息</li>
+</ul>
+<h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
+<li>使用 <a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a> 主题，感谢作者 <a href="https://phower.me/">Le Phower’s</a></li>
+<li>博客从 Gitee 迁移到 GitHub</li>
+<li>修改主题配置文件</li>
+<li>修改 sidebar 的 social 内容</li>
+<li>主页 content 修改为显示最近十篇文章</li>
+<li>主页 content 添加置顶文章</li>
+<li>除 category 页和 about 页外添加 pagination</li>
+<li>添加 category 页，添加 tag-cloud</li>
+<li>添加 archive 页</li>
+<li>添加 about 页</li>
+<li> <del>post 页面侧边栏添加 article-toc 文章目录</del></li>
+<li>添加百度统计，谷歌统计，谷歌收录，bing 收录</li>
+<li><del>侧边栏添加 aplayer 播放器，显示效果不美观，已注释代码</del></li>
+<li><del>page_main 的 div CSS 浮动问题未解决</del></li>
+</ul>
+<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
+<li><del>添加文章页评论邮件提醒功能</del></li>
+</ul>
+<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
+<li><del>修改博客网站访问地址不带二级目录</del></li>
+<li><del>修正修改访问地址后文章阅读次数显示为 0 问题</del></li>
+<li><del>修正 whoami 页面显示双 footer 栏问题</del></li>
+</ul>
+<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
+<li><del>修正文章阅读次数显示为 0 问题</del></li>
+<li><del>添加文章模板 updated 参数</del></li>
+<li><del>对网站添加百度统计</del></li>
+</ul>
+<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
+<li><del>制作修改博客 Logo，更改 cover 图片</del></li>
+<li><del>修改导航栏标签为中文</del></li>
+<li><del>启用 valine 评论代码</del></li>
+<li><del>添加文章页 END 结束分割线</del></li>
+<li><del>添加文章页上一篇下一篇链接</del></li>
+<li><del>添加 post 文章模板，添加 categories,series,cover,tags 参数</del></li>
+<li><del>修改网页底部 footer，添加网站运行时间记录</del></li>
+<li><del>更换图标库链接</del></li>
+<li><del>添加网站图床</del></li>
+<li><del>更换文章页播放音乐</del></li>
+<li><del>更换网站首页 Website slogans 动态文字</del></li>
+<li><del>文章页和 about 页添加网易云音乐</del></li>
+<li><del>文章页添加“友情链接”</del></li>
+<li><del>更换部分页面左上角图标返回链接</del></li>
+<li><del>添加 abbrlink 插件，修改文章页 url 链接</del></li>
+<li><del>博客网站本地初始调试工作完成，推送至 Gitee</del></li>
+</ul>
+<hr>
 ]]></content>
       <categories>
-        <category>扯谈</category>
+        <category>更新日志</category>
       </categories>
       <tags>
-        <tag>扯谈</tag>
+        <tag>更新日志</tag>
       </tags>
   </entry>
   <entry>
@@ -288,101 +363,6 @@
       </tags>
   </entry>
   <entry>
-    <title>博客调整更新日志</title>
-    <url>/posts/e2a2e564.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="20211026"><a href="#20211026" class="headerlink" title="20211026"></a>20211026</h3><ul>
-<li>修改 archive 页面条目显示数量</li>
-</ul>
-<h3 id="20211024"><a href="#20211024" class="headerlink" title="20211024"></a>20211024</h3><ul>
-<li>修改 CSS 样式中的媒体查询 <strong>media query</strong> 下属性</li>
-</ul>
-<h3 id="20211022"><a href="#20211022" class="headerlink" title="20211022"></a>20211022</h3><ul>
-<li>修改文章页，去除左侧 sidebar，page_main 添加边框样式</li>
-<li>修改 about 页面底部 contact 信息</li>
-<li>去除 article-toc 文章目录</li>
-<li>去除 sidebar CV 信息标签</li>
-</ul>
-<h3 id="20211016"><a href="#20211016" class="headerlink" title="20211016"></a>20211016</h3><ul>
-<li><del>添加文章页版权信息</del></li>
-<li>修改 md 文件信息</li>
-</ul>
-<h3 id="20211012"><a href="#20211012" class="headerlink" title="20211012"></a>20211012</h3><ul>
-<li>使用 <a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a> 主题，感谢作者 <a href="https://phower.me/">Le Phower’s</a></li>
-<li>博客从 Gitee 迁移到 GitHub</li>
-<li>修改主题配置文件</li>
-<li>修改 sidebar 的 social 内容</li>
-<li>主页 content 修改为显示最近十篇文章</li>
-<li>主页 content 添加置顶文章</li>
-<li>除 category 页和 about 页外添加 pagination</li>
-<li>添加 category 页，添加 tag-cloud</li>
-<li>添加 archive 页</li>
-<li>添加 about 页</li>
-<li> <del>post 页面侧边栏添加 article-toc 文章目录</del></li>
-<li>添加百度统计，谷歌统计，谷歌收录，bing 收录</li>
-<li><del>侧边栏添加 aplayer 播放器，显示效果不美观，已注释代码</del></li>
-<li><del>page_main 的 div CSS 浮动问题未解决</del></li>
-</ul>
-<h3 id="20210123"><a href="#20210123" class="headerlink" title="20210123"></a>20210123</h3><ul>
-<li><del>添加文章页评论邮件提醒功能</del></li>
-</ul>
-<h3 id="20210114"><a href="#20210114" class="headerlink" title="20210114"></a>20210114</h3><ul>
-<li><del>修改博客网站访问地址不带二级目录</del></li>
-<li><del>修正修改访问地址后文章阅读次数显示为 0 问题</del></li>
-<li><del>修正 whoami 页面显示双 footer 栏问题</del></li>
-</ul>
-<h3 id="20210108"><a href="#20210108" class="headerlink" title="20210108"></a>20210108</h3><ul>
-<li><del>修正文章阅读次数显示为 0 问题</del></li>
-<li><del>添加文章模板 updated 参数</del></li>
-<li><del>对网站添加百度统计</del></li>
-</ul>
-<h3 id="20210106"><a href="#20210106" class="headerlink" title="20210106"></a>20210106</h3><ul>
-<li><del>制作修改博客 Logo，更改 cover 图片</del></li>
-<li><del>修改导航栏标签为中文</del></li>
-<li><del>启用 valine 评论代码</del></li>
-<li><del>添加文章页 END 结束分割线</del></li>
-<li><del>添加文章页上一篇下一篇链接</del></li>
-<li><del>添加 post 文章模板，添加 categories,series,cover,tags 参数</del></li>
-<li><del>修改网页底部 footer，添加网站运行时间记录</del></li>
-<li><del>更换图标库链接</del></li>
-<li><del>添加网站图床</del></li>
-<li><del>更换文章页播放音乐</del></li>
-<li><del>更换网站首页 Website slogans 动态文字</del></li>
-<li><del>文章页和 about 页添加网易云音乐</del></li>
-<li><del>文章页添加“友情链接”</del></li>
-<li><del>更换部分页面左上角图标返回链接</del></li>
-<li><del>添加 abbrlink 插件，修改文章页 url 链接</del></li>
-<li><del>博客网站本地初始调试工作完成，推送至 Gitee</del></li>
-</ul>
-<hr>
-]]></content>
-      <categories>
-        <category>更新日志</category>
-      </categories>
-      <tags>
-        <tag>更新日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HCL_路由器双出口策略配置实验</title>
     <url>/posts/4e82271c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" class="img-center" ></a></p>
@@ -416,6 +396,71 @@
       </categories>
       <tags>
         <tag>路由器双出口策略配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
+<li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击  “Script” –&gt; “Run” 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改 “Send” 后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>巡检脚本</category>
+      </categories>
+      <tags>
+        <tag>巡检脚本</tag>
+        <tag>H3C设备巡检</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗</p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_V5_V7设备巡检信息提取</title>
+    <url>/posts/80e04e00.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。</p>
+<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
+<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
+<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Author：KIRASTER</span><br><span class="line"># Time：2021/3/21 23:26</span><br><span class="line"># Description：Device_info</span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = &#x27;F:/111.txt&#x27;</span><br><span class="line">resultfilename = &#x27;F:/result.txt&#x27;</span><br><span class="line">if os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = open(&#x27;F:/result.txt&#x27;, &#x27;a&#x27;)</span><br><span class="line"></span><br><span class="line">with open(filename, &#x27;r&#x27;, encoding=&#x27;utf8&#x27;) as file_to_read:</span><br><span class="line">    while True:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        # 首行显示50个“=”号，提取设备版本信息，开头注释</span><br><span class="line">        if &quot;display version&quot; in lines:</span><br><span class="line">            result_line01 = &#x27;=&#x27; * 50 + &#x27;\n&#x27;</span><br><span class="line">            result_line02 = &#x27;Device Name:\t&#x27; + &#x27;&#x27;.join(re.findall(r&#x27;[&lt;](.*?)[&gt;]&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            print(result_line01)</span><br><span class="line">            print(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        # 提取设备版本信息      </span><br><span class="line">        if &quot;Comware Software&quot; in lines:</span><br><span class="line">            result_line03 = &#x27;Comware Software:\t&#x27; +&#x27;&#x27;.join(re.findall(&#x27;(?&lt;=Software, ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        # 提取设备运行时间</span><br><span class="line">        if &quot;uptime is&quot; in lines:</span><br><span class="line">            result_line04 = &#x27;Uptime:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=uptime is ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        # 提取设备序列号</span><br><span class="line">        if &quot;DEVICE_SERIAL_NUMBER&quot; in lines:</span><br><span class="line">            result_line05 = &#x27;SN:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=:).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_line05 = result_line05.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        # 提取设备cpu使用率方式1</span><br><span class="line">        if &quot;Slot 1 CPU 0 CPU usage:&quot; in lines:</span><br><span class="line">            result_line06 = next(file_to_read)</span><br><span class="line">            result_line06 = result_line06[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line06 = &#x27;cpu-usage:\t&#x27; + result_line06.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        # 提取设备cpu使用率方式2</span><br><span class="line">        if &quot;Slot 1 CPU usage:&quot; in lines:</span><br><span class="line">            result_line066 = next(file_to_read)</span><br><span class="line">            result_line066 = result_line066[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line066 = &#x27;cpu-usage:\t&#x27; + result_line066.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        # 提取设备cpu使用率方式3</span><br><span class="line">        if &quot;Unit CPU usage:&quot; in lines:</span><br><span class="line">            result_line0666 = next(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line0666 = &#x27;cpu-usage:\t&#x27; + result_line0666.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        # 提取设备memory使用率方式1</span><br><span class="line">        if &quot;Used Rate&quot; in lines:</span><br><span class="line">            result_line07 = lines[-4:]</span><br><span class="line">            result_line07 = &#x27;memory-usage:\t&#x27; + result_line07.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        # 提取设备memory使用率方式2</span><br><span class="line">        if &quot;Mem:&quot; in lines:</span><br><span class="line">            result_line08 = lines[-6:]</span><br><span class="line">            result_line08 = result_line08.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = result_line08.replace(&#x27;%&#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = 100 - float(result_line08)</span><br><span class="line">            result_line08 = &#x27;%.1f%%&#x27; % result_line08</span><br><span class="line">            result_line08 = &#x27;memory-usage:\t&#x27; + result_line08 + &#x27;\n&#x27;</span><br><span class="line">            print(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        if &quot;结束记录时间&quot; in lines:</span><br><span class="line">            break</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
+<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
+<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
+<li>生成的文件为 word 或 excel 等都是可以实现的</li>
+</ul>
+]]></content>
+      <categories>
+        <category>设备巡检</category>
+      </categories>
+      <tags>
+        <tag>设备巡检</tag>
+        <tag>H3C设备</tag>
       </tags>
   </entry>
   <entry>
@@ -457,51 +502,6 @@
         <tag>vpn-instance</tag>
         <tag>VPN实例</tag>
         <tag>实例互通</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击  “Script” –&gt; “Run” 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改 “Send” 后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#$language = &quot;VBScript&quot;</span><br><span class="line">#$interface = &quot;1.0&quot;</span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = True</span><br><span class="line"></span><br><span class="line">&#x27; This automatically generated script may need to be</span><br><span class="line">&#x27; edited in order to work correctly.</span><br><span class="line"></span><br><span class="line">Sub Main</span><br><span class="line">	crt.Screen.Send &quot;#start right now&quot;&amp; chr(13)</span><br><span class="line">	crt.Screen.WaitForString &quot;&gt;&quot;</span><br><span class="line">	crt.Screen.Send &quot;screen-length disable&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cur &quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip interface brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display interface brief des&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display vlan brief&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display ip routing-table&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display version&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display cpu-usage&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display memory&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;display device manuinfo&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">	crt.Screen.Send &quot;save force&quot; &amp; chr(13)</span><br><span class="line">End Sub</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>巡检脚本</category>
-      </categories>
-      <tags>
-        <tag>巡检脚本</tag>
-        <tag>H3C设备巡检</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_V5_V7设备巡检信息提取</title>
-    <url>/posts/80e04e00.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。</p>
-<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
-<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
-<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Author：KIRASTER</span><br><span class="line"># Time：2021/3/21 23:26</span><br><span class="line"># Description：Device_info</span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = &#x27;F:/111.txt&#x27;</span><br><span class="line">resultfilename = &#x27;F:/result.txt&#x27;</span><br><span class="line">if os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = open(&#x27;F:/result.txt&#x27;, &#x27;a&#x27;)</span><br><span class="line"></span><br><span class="line">with open(filename, &#x27;r&#x27;, encoding=&#x27;utf8&#x27;) as file_to_read:</span><br><span class="line">    while True:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        # 首行显示50个“=”号，提取设备版本信息，开头注释</span><br><span class="line">        if &quot;display version&quot; in lines:</span><br><span class="line">            result_line01 = &#x27;=&#x27; * 50 + &#x27;\n&#x27;</span><br><span class="line">            result_line02 = &#x27;Device Name:\t&#x27; + &#x27;&#x27;.join(re.findall(r&#x27;[&lt;](.*?)[&gt;]&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            print(result_line01)</span><br><span class="line">            print(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        # 提取设备版本信息      </span><br><span class="line">        if &quot;Comware Software&quot; in lines:</span><br><span class="line">            result_line03 = &#x27;Comware Software:\t&#x27; +&#x27;&#x27;.join(re.findall(&#x27;(?&lt;=Software, ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        # 提取设备运行时间</span><br><span class="line">        if &quot;uptime is&quot; in lines:</span><br><span class="line">            result_line04 = &#x27;Uptime:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=uptime is ).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            print(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        # 提取设备序列号</span><br><span class="line">        if &quot;DEVICE_SERIAL_NUMBER&quot; in lines:</span><br><span class="line">            result_line05 = &#x27;SN:\t&#x27; + &#x27;&#x27;.join(re.findall(&#x27;(?&lt;=:).*$&#x27;, lines)) + &#x27;\n&#x27;</span><br><span class="line">            result_line05 = result_line05.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        # 提取设备cpu使用率方式1</span><br><span class="line">        if &quot;Slot 1 CPU 0 CPU usage:&quot; in lines:</span><br><span class="line">            result_line06 = next(file_to_read)</span><br><span class="line">            result_line06 = result_line06[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line06 = &#x27;cpu-usage:\t&#x27; + result_line06.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        # 提取设备cpu使用率方式2</span><br><span class="line">        if &quot;Slot 1 CPU usage:&quot; in lines:</span><br><span class="line">            result_line066 = next(file_to_read)</span><br><span class="line">            result_line066 = result_line066[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line066 = &#x27;cpu-usage:\t&#x27; + result_line066.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        # 提取设备cpu使用率方式3</span><br><span class="line">        if &quot;Unit CPU usage:&quot; in lines:</span><br><span class="line">            result_line0666 = next(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[5:9] + &#x27;\n&#x27;</span><br><span class="line">            result_line0666 = &#x27;cpu-usage:\t&#x27; + result_line0666.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        # 提取设备memory使用率方式1</span><br><span class="line">        if &quot;Used Rate&quot; in lines:</span><br><span class="line">            result_line07 = lines[-4:]</span><br><span class="line">            result_line07 = &#x27;memory-usage:\t&#x27; + result_line07.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            print(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        # 提取设备memory使用率方式2</span><br><span class="line">        if &quot;Mem:&quot; in lines:</span><br><span class="line">            result_line08 = lines[-6:]</span><br><span class="line">            result_line08 = result_line08.replace(&#x27; &#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = result_line08.replace(&#x27;%&#x27;, &#x27;&#x27;)</span><br><span class="line">            result_line08 = 100 - float(result_line08)</span><br><span class="line">            result_line08 = &#x27;%.1f%%&#x27; % result_line08</span><br><span class="line">            result_line08 = &#x27;memory-usage:\t&#x27; + result_line08 + &#x27;\n&#x27;</span><br><span class="line">            print(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        if &quot;结束记录时间&quot; in lines:</span><br><span class="line">            break</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
-<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
-<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
-<li>生成的文件为 word 或 excel 等都是可以实现的</li>
-</ul>
-]]></content>
-      <categories>
-        <category>设备巡检</category>
-      </categories>
-      <tags>
-        <tag>设备巡检</tag>
-        <tag>H3C设备</tag>
       </tags>
   </entry>
   <entry>
@@ -588,6 +588,76 @@
       </tags>
   </entry>
   <entry>
+    <title>我的一些blog常用小操作</title>
+    <url>/posts/c1906682.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是 ^_^"></a>这是 ^_^</h2><p>自己日常操作的一些小命令和插件。</p>
+<h3 id="bat启动-hexo-本地服务"><a href="#bat启动-hexo-本地服务" class="headerlink" title="bat启动 hexo 本地服务"></a>bat启动 hexo 本地服务</h3><p>前提条件：已完成博客搭建。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>新建后缀为bat的脚本文件</li>
+<li>复制以上命令粘贴（注意修改路径 ），保存</li>
+<li>双击此脚本运行的结果相当于在你的 blog 路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo s” 运行</li>
+</ol>
+<h3 id="bat-推送至-github"><a href="#bat-推送至-github" class="headerlink" title="bat 推送至 github"></a>bat 推送至 github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>新建后缀为bat的脚本文件</li>
+<li>复制以上命令粘贴（注意修改路径 ），保存</li>
+<li>双击此脚本运行的结果相当于在你的blog路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s” 运行（如果只输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
+</ol>
+<h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
+<ol>
+<li>Add latest jQuery and fancyBox files</li>
+</ol>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Create links</li>
+</ol>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Enjoy!</li>
+</ol>
+<h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
+<p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
+<p>公益 404 页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
+<p>网站只需要在自己的 404 页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
+<p>复制以下 js 代码，嵌入到您的 404 页面，可以自适应移动设备。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改 “homePageUrl”、“homePageName” 两个参数即可。</p>
+<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 页面则必须在线上测试**，本地测试（localhost:4000）返回主页无效</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://yoursite.com/yourPage.html&quot; homePageName=&quot;回到我的主页&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="添加文章链接-abbrlink"><a href="#添加文章链接-abbrlink" class="headerlink" title="添加文章链接 abbrlink"></a>添加文章链接 abbrlink</h3><ul>
+<li>安装插件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改<strong>网站根目录</strong>配置文件 _config_yml</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> alg 和 rep 不同组合生成的链接</li>
+</ul>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
+
+<p>  hexo g 生成后，md 文件的 Front-matter 增加 abbrlink  属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。</p>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+        <tag>脚本</tag>
+        <tag>hexo命令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于新主题博客</title>
     <url>/posts/f2af2fdc.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新 hexo 主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到 GitHub 呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的 To-Do List，我真是自己玩自己。</p>
@@ -665,6 +735,48 @@
       </tags>
   </entry>
   <entry>
+    <title>TI10</title>
+    <url>/posts/fae4c6b8.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10 结束了，LGD 再次倒在了总决赛</p>
+<p>相信包括我在内的许多人都坚信今年的总冠军是 LGD，但是……</p>
+<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
+<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
+<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
+<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
+<p>你也别说什么五年了，该 CN DOTA 举一次盾了</p>
+<p>巧了，独联体区的玩家也是这么这么认为的</p>
+<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
+<p>……</p>
+<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+        <tag>DOTA2</tag>
+        <tag>LGD</tag>
+        <tag>马格纳斯</tag>
+        <tag>Dead Game</tag>
+        <tag>TI10</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>archive_test</title>
+    <url>/posts/515317e3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
+<ul>
+<li>This is a test page .</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>H3C_线路测试脚本</title>
     <url>/posts/60e83b3d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。</p>
@@ -713,122 +825,10 @@
         <category>H3C</category>
       </categories>
       <tags>
-        <tag>线路测试</tag>
         <tag>脚本</tag>
+        <tag>线路测试</tag>
         <tag>割接工作</tag>
         <tag>Python脚本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>archive_test</title>
-    <url>/posts/515317e3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
-<ul>
-<li>This is a test page .</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>Blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TI10</title>
-    <url>/posts/fae4c6b8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10 结束了，LGD 再次倒在了总决赛</p>
-<p>相信包括我在内的许多人都坚信今年的总冠军是 LGD，但是……</p>
-<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐</p>
-<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
-<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
-<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
-<p>你也别说什么五年了，该 CN DOTA 举一次盾了</p>
-<p>巧了，独联体区的玩家也是这么这么认为的</p>
-<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
-<p>……</p>
-<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-        <tag>DOTA2</tag>
-        <tag>LGD</tag>
-        <tag>马格纳斯</tag>
-        <tag>Dead Game</tag>
-        <tag>TI10</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的一些blog常用小操作</title>
-    <url>/posts/c1906682.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是 ^_^"></a>这是 ^_^</h2><p>自己日常操作的一些小命令和插件。</p>
-<h3 id="bat启动-hexo-本地服务"><a href="#bat启动-hexo-本地服务" class="headerlink" title="bat启动 hexo 本地服务"></a>bat启动 hexo 本地服务</h3><p>前提条件：已完成博客搭建。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>新建后缀为bat的脚本文件</li>
-<li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的 blog 路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo s” 运行</li>
-</ol>
-<h3 id="bat-推送至-github"><a href="#bat-推送至-github" class="headerlink" title="bat 推送至 github"></a>bat 推送至 github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>新建后缀为bat的脚本文件</li>
-<li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s” 运行（如果只输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
-</ol>
-<h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
-<ol>
-<li>Add latest jQuery and fancyBox files</li>
-</ol>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>Create links</li>
-</ol>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>Enjoy!</li>
-</ol>
-<h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
-<p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
-<p>公益 404 页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
-<p>网站只需要在自己的 404 页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
-<p>复制以下 js 代码，嵌入到您的 404 页面，可以自适应移动设备。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改 “homePageUrl”、“homePageName” 两个参数即可。</p>
-<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 页面则必须在线上测试**，本地测试（localhost:4000）返回主页无效</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://yoursite.com/yourPage.html&quot; homePageName=&quot;回到我的主页&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="添加文章链接-abbrlink"><a href="#添加文章链接-abbrlink" class="headerlink" title="添加文章链接 abbrlink"></a>添加文章链接 abbrlink</h3><ul>
-<li>安装插件</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改<strong>网站根目录</strong>配置文件 _config_yml</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> alg 和 rep 不同组合生成的链接</li>
-</ul>
-  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
-
-<p>  hexo g 生成后，md 文件的 Front-matter 增加 abbrlink  属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。</p>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>脚本</tag>
-        <tag>Blog</tag>
-        <tag>hexo命令</tag>
       </tags>
   </entry>
 </search>
