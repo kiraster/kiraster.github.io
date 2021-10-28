@@ -18,28 +18,20 @@
 </ol>
 <h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a target="_blank" rel="noopener" href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
 <ol>
-<li>Add latest jQuery and fancyBox files</li>
+<li>添加 js/css 到网站代码中，每个博客的存放代码的文件和位置可能不一样，有的是在 styl 文件中，有的可能在 EJS/PUG/SWIG 文件中，我使用的模版是在主题目录下的 _config.yml 文件中</li>
 </ol>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;link  href=&quot;/path/to/jquery.fancybox.min.css&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">&lt;script src=&quot;/path/to/jquery.fancybox.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">css:</span><br><span class="line">  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css</span><br><span class="line">js:</span><br><span class="line">  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js</span><br><span class="line">  - https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li>Create links</li>
+<li>在 .md 文件里插入图片，添加代码</li>
 </ol>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_2.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_2.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;                </span><br></pre></td></tr></table></figure>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;a data-fancybox=&quot;gallery&quot; href=&quot;big_1.jpg&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;small_1.jpg&quot;&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"></span><br><span class="line"># 其中 big_1.jpg 和 small_1.jpg 可以是一致的，可以设置 width 参数来设置网页图片显示为小图。例如:</span><br><span class="line"> &lt;a data-fancybox=&quot;gallery&quot; href=&quot;https://i.loli.net/xxxxx.jpg&quot;&gt;</span><br><span class="line"> &lt;img src=&quot;https://i.loli.net/xxxxx.jpg&quot; width=&quot;61.8%&quot; /&gt;</span><br><span class="line"> &lt;/a&gt;</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>Enjoy!</li>
-</ol>
+
+
 <h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><p><strong>相关链接</strong>：<a target="_blank" rel="noopener" href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
 <p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
-<p>公益 404 页面是由腾讯公司员工志愿者自主发起的互联网公益活动。</p>
-<p>网站只需要在自己的 404 页面中嵌入一段简单的代码，就能通过互联网来迅速传播失踪儿童信息，从而提高找回失踪儿童的概率。失踪儿童信息来自宝贝回家寻子网。</p>
-<p>复制以下 js 代码，嵌入到您的 404 页面，可以自适应移动设备。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>同时我们提供“返回腾讯网”这个超链接的可定制化能力，修改 “homePageUrl”、“homePageName” 两个参数即可。</p>
-<p>需要<strong>注意</strong>的是：无效网址自动跳转 404 页面则必须在线上测试**，本地测试（localhost:4000）返回主页无效</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://yoursite.com/yourPage.html&quot; homePageName=&quot;回到我的主页&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>具体设置点上面网址。</p>
 <h3 id="添加文章链接-abbrlink"><a href="#添加文章链接-abbrlink" class="headerlink" title="添加文章链接 abbrlink"></a>添加文章链接 abbrlink</h3><ul>
 <li>安装插件</li>
 </ul>
