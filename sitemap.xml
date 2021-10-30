@@ -228,14 +228,7 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/Methods/</loc>
-    <lastmod>2021-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Feynman/</loc>
+    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
     <lastmod>2021-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -256,7 +249,21 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
+    <loc>https://kiraster.github.io/tags/Methods/</loc>
+    <lastmod>2021-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Feynman/</loc>
+    <lastmod>2021-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Update/</loc>
     <lastmod>2021-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -285,13 +292,6 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/H3C-Scripts/</loc>
-    <lastmod>2021-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Update/</loc>
     <lastmod>2021-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -510,7 +510,7 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/Methods/</loc>
+    <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
     <lastmod>2021-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -524,14 +524,7 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
-    <lastmod>2021-10-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/categories/Scripts/</loc>
+    <loc>https://kiraster.github.io/categories/Methods/</loc>
     <lastmod>2021-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -539,6 +532,13 @@
   
   <url>
     <loc>https://kiraster.github.io/categories/Update/</loc>
+    <lastmod>2021-10-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/categories/Scripts/</loc>
     <lastmod>2021-10-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
