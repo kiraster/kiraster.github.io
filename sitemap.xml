@@ -249,6 +249,20 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Update/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/tags/%E6%B1%89%E8%AF%AD%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
@@ -257,13 +271,6 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/Notes/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -284,7 +291,14 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/Update/</loc>
+    <loc>https://kiraster.github.io/tags/Scripts/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/H3C%E8%AE%BE%E5%A4%87/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -299,20 +313,6 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/H3C-Scripts/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Scripts/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/H3C%E8%AE%BE%E5%A4%87/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -340,20 +340,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/%E5%8D%97%E5%B1%B1%E5%8D%97/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/%E5%8C%97%E7%A7%8B%E6%82%B2/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/GiteePages/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
@@ -369,6 +355,20 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/%E4%B8%BA%E4%BB%80%E4%B9%88/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E5%8D%97%E5%B1%B1%E5%8D%97/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E5%8C%97%E7%A7%8B%E6%82%B2/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -524,13 +524,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/Notes/</loc>
-    <lastmod>2021-10-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
@@ -539,6 +532,13 @@
   
   <url>
     <loc>https://kiraster.github.io/categories/Update/</loc>
+    <lastmod>2021-10-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/categories/Notes/</loc>
     <lastmod>2021-10-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
