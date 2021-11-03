@@ -1144,7 +1144,7 @@ blockquote p {
     position: -webkit-sticky;
     position: sticky;
     top: 2em;
-    height: 886px;
+    height: 666px;
   }
   .sticky>* {
     display: block;
