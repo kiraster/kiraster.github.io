@@ -10,6 +10,36 @@
   margin: 8px 0;
   font-size: 0.9em;
 }
+.article-sort {
+  margin-left: 19%;
+}
+.article-sort .article-sort-item year,
+.article-sort .article-sort-item month {
+  padding-left: 1em;
+  display: inline-block;
+  color: #bababa;
+}
+.article-sort .article-sort-item {
+  margin: 5px 0;
+}
+.article-sort .article-sort-item .article-sort-item__time {
+  padding-left: 1em;
+  display: inline-block;
+  color: #bababa;
+}
+.article-sort .article-sort-item .article-sort-item__time:hover {
+  color: #5af;
+  border-right: 1px solid #fff;
+}
+.article-sort .article-sort-item .article-sort-item__title {
+  padding-left: 1em;
+  color: #000;
+  text-decoration: none;
+}
+.article-sort .article-sort-item .article-sort-item__title:hover {
+  color: #5af;
+  border: 5px solid #fff;
+}
 #page_main_post {
   min-height: 72%;
   margin-left: auto;
@@ -665,22 +695,66 @@ blockquote p {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
 }
+.recent-post {
+  text-decoration: none;
+}
 .recent-post-item {
   margin-left: 17%;
   margin-top: 0.8rem;
 }
+.recent-post-item .recent-post-item-title {
+  text-decoration: none;
+}
+.recent-post-item .recent-post-item-title:link {
+  color: #000;
+  border-bottom: 1px solid #bdc1c4;
+}
+.recent-post-item .recent-post-item-title:hover {
+  text-decoration: none;
+  color: #5af;
+  font-size: 1.9rem;
+  border-bottom: 1px solid #bdc1c4;
+  border-left: 5px solid #fff;
+}
 .post-top {
   margin-left: 17%;
+  text-decoration: none;
 }
 .post-top-item {
   margin-left: 1e-12%;
   margin-top: 0.8rem;
+}
+.post-top-item .post-top-item-title {
+  text-decoration: none;
+}
+.post-top-item .post-top-item-title:link {
+  color: #000;
+  border-bottom: 1px solid #bdc1c4;
+}
+.post-top-item .post-top-item-title:hover {
+  text-decoration: none;
+  color: #5af;
+  border-bottom: 1px solid #bdc1c4;
+  border-left: 5px solid #fff;
 }
 .category-lists {
   margin-left: 17%;
 }
 .category-lists .category__title {
   font-size: 1.8rem;
+}
+.category-list .category-list-item .category-list-link {
+  text-decoration: none;
+}
+.category-list .category-list-item .category-list-link:link {
+  color: #000;
+  text-decoration: underline;
+}
+.category-list .category-list-item .category-list-link:hover {
+  text-decoration: none;
+  color: #5af;
+  border-bottom: 1px solid #bdc1c4;
+  border-left: 1px solid #fff;
 }
 .category-list a {
   color: $font-black;
@@ -1070,6 +1144,7 @@ blockquote p {
     position: -webkit-sticky;
     position: sticky;
     top: 2em;
+    height: 886px;
   }
   .sticky>* {
     display: block;
