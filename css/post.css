@@ -39,7 +39,7 @@
   transition: all 0.2s ease-in-out;
 }
 .page-tags a:hover {
-  color: $theme-red;
+  color: #5af;
 }
 .page article {
   padding-left: 1.2rem;
