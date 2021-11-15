@@ -695,26 +695,45 @@ blockquote p {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
 }
+#recent-posts {
+  max-width: 996px;
+  margin-left: 184px;
+}
 .recent-post {
+  box-shadow: 0px 2px 2px 2px #f8f8f8;
+  padding: 10px;
+}
+.recent-post .post-title {
+  margin: 0;
+  margin-top: 8px;
+  font-size: 1.5;
+  color: #283d4b;
+}
+.recent-post .post-title .recent-post-item-title {
+  font-size: 2.7rem;
+}
+.recent-post .post-title .recent-post-item-title:link {
   text-decoration: none;
+  color: #283d4b;
+}
+.recent-post .post-title .recent-post-item-title:visited {
+  text-decoration: none;
+  color: #283d4b;
+}
+.recent-post .post-title .recent-post-item-title:hover {
+  text-decoration: none;
+  color: #5af;
+}
+.recent-post .post-meta {
+  font-size: 14px;
+  line-height: 1.4;
+}
+.recent-post .post-meta .page-date {
+  padding: 0;
 }
 .recent-post-item {
   margin-left: 17%;
   margin-top: 0.8rem;
-}
-.recent-post-item .recent-post-item-title {
-  text-decoration: none;
-}
-.recent-post-item .recent-post-item-title:link {
-  color: #000;
-  border-bottom: 1px solid #bdc1c4;
-}
-.recent-post-item .recent-post-item-title:hover {
-  text-decoration: none;
-  color: #5af;
-  font-size: 1.9rem;
-  border-bottom: 1px solid #bdc1c4;
-  border-left: 5px solid #fff;
 }
 .post-top {
   margin-left: 17%;
@@ -784,19 +803,64 @@ blockquote p {
 .pagination {
   margin-top: 1.5rem;
   margin-left: 18%;
+  font-weight: bolder;
+  font-size: 2rem;
+}
+.pagination .extend.prev {
+  border: 1px solid #bdc1c4;
+  padding: 10px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  box-shadow: 0px 2px 2px 2px #f8f8f8;
+}
+.pagination .extend.prev:link {
+  text-decoration: none;
+  color: #283d4b;
+}
+.pagination .extend.prev:visited {
+  text-decoration: none;
+  color: #283d4b;
+}
+.pagination .extend.prev:hover {
+  text-decoration: none;
+  color: #5af;
+}
+.pagination .page-number {
+  border: 1px solid #bdc1c4;
+  padding: 10px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  box-shadow: 0px 2px 2px 2px #f8f8f8;
+}
+.pagination .page-number:link {
+  text-decoration: none;
+  color: #283d4b;
+}
+.pagination .page-number:hover {
+  text-decoration: none;
+  color: #5af;
+}
+.pagination .extend.next {
+  border: 1px solid #bdc1c4;
+  padding: 10px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  box-shadow: 0px 2px 2px 2px #f8f8f8;
+}
+.pagination .extend.next:link {
+  text-decoration: none;
+  color: #283d4b;
+}
+.pagination .extend.next:visited {
+  text-decoration: none;
+  color: #283d4b;
+}
+.pagination .extend.next:hover {
+  text-decoration: none;
+  color: #5af;
 }
 .whoami_main {
   padding-left: 17%;
-}
-.page-number {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-.extend.prev {
-  margin-right: 0.5rem;
-}
-.extend.next {
-  margin-left: 0.5rem;
 }
 .tag-cloud {
   margin-left: 17%;
@@ -872,9 +936,10 @@ blockquote p {
     margin-left: 0px;
     padding-left: 10px;
   }
-  #page_main .recent-posts {
+  #page_main #recent-posts {
     margin-left: 10px;
     margin-top: 0.8rem;
+    padding-right: 10px;
   }
   #page_main .recent-post-item {
     margin-left: 0px;
@@ -1131,7 +1196,6 @@ blockquote p {
     width: 15.25424%;
     min-width: 165px;
     float: left;
-    margin-right: 1.69492%;
     opacity: 0.75;
     -webkit-transition: opacity 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out;
@@ -1144,7 +1208,7 @@ blockquote p {
     position: -webkit-sticky;
     position: sticky;
     top: 2em;
-    height: 666px;
+    box-shadow: 0px 2px 2px 2px #f8f8f8;
   }
   .sticky>* {
     display: block;
