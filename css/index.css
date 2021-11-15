@@ -180,6 +180,10 @@
     padding: 0 3.6rem 3.6rem;
   }
 }
+#search {
+  max-width: 996px;
+  margin-left: 184px;
+}
 .search-input {
   font-size: 1.8rem;
   height: 1.8rem;
@@ -202,7 +206,7 @@
 }
 #search-result ul.search-result-list {
   list-style-type: none;
-  padding-left: 18%;
+  padding-left: 0;
 }
 #search-result li {
   margin: 2em auto;
@@ -235,6 +239,9 @@
   margin-left: 18%;
 }
 @media (max-width: 34em) {
+  #page_main #search {
+    margin-left: 22.5px;
+  }
   #page_main .search-input {
     margin-left: 22.5px;
   }
@@ -756,8 +763,12 @@ blockquote p {
   border-bottom: 1px solid #bdc1c4;
   border-left: 5px solid #fff;
 }
+#category {
+  max-width: 996px;
+}
 .category-lists {
-  margin-left: 17%;
+  max-width: 996px;
+  margin-left: 184px;
 }
 .category-lists .category__title {
   font-size: 1.8rem;
@@ -790,11 +801,9 @@ blockquote p {
 .category-list .category-list-count:after {
   content: ")";
 }
-.article-sort-title {
-  margin-left: 17%;
-}
-.article-sort {
-  margin-left: 19%;
+#archive .article-sort {
+  max-width: 996px;
+  margin-left: 184px;
 }
 .img-center {
   display: block;
@@ -860,11 +869,12 @@ blockquote p {
   color: #5af;
 }
 .whoami_main {
-  padding-left: 17%;
+  max-width: 996px;
+  margin-left: 184px;
 }
 .tag-cloud {
-  margin-left: 17%;
-  padding: 4.5rem 0 7rem;
+  max-width: 996px;
+  margin-left: 184px;
   text-align: center;
 }
 .tag-cloud a {

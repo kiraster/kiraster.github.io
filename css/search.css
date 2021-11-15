@@ -1,3 +1,7 @@
+#search {
+  max-width: 996px;
+  margin-left: 184px;
+}
 .search-input {
   font-size: 1.8rem;
   height: 1.8rem;
@@ -20,7 +24,7 @@
 }
 #search-result ul.search-result-list {
   list-style-type: none;
-  padding-left: 18%;
+  padding-left: 0;
 }
 #search-result li {
   margin: 2em auto;
@@ -53,6 +57,9 @@
   margin-left: 18%;
 }
 @media (max-width: 34em) {
+  #page_main #search {
+    margin-left: 22.5px;
+  }
   #page_main .search-input {
     margin-left: 22.5px;
   }
