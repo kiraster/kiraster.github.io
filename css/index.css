@@ -811,16 +811,25 @@ blockquote p {
 }
 .pagination {
   margin-top: 1.5rem;
-  margin-left: 18%;
   font-weight: bolder;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 .pagination .extend.prev {
-  border: 1px solid #bdc1c4;
+  float: left;
+  line-height: 18px;
   padding: 10px;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  box-shadow: 0px 2px 2px 2px #f8f8f8;
+  font: bold 12px Arial;
+  text-decoration: none;
+  border-radius: 5px;
+  background: none repeat scroll 0 0 #f8f8f8;
+  color: #333;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #ccc;
 }
 .pagination .extend.prev:link {
   text-decoration: none;
@@ -832,9 +841,11 @@ blockquote p {
 }
 .pagination .extend.prev:hover {
   text-decoration: none;
-  color: #5af;
+  color: #f8f8f8;
+  background: none repeat scroll 0 0 #5af;
 }
 .pagination .page-number {
+  visibility: hidden;
   border: 1px solid #bdc1c4;
   padding: 10px;
   margin-left: 0.5rem;
@@ -850,11 +861,21 @@ blockquote p {
   color: #5af;
 }
 .pagination .extend.next {
-  border: 1px solid #bdc1c4;
+  float: right;
+  line-height: 18px;
   padding: 10px;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  box-shadow: 0px 2px 2px 2px #f8f8f8;
+  font: bold 12px Arial;
+  text-decoration: none;
+  border-radius: 5px;
+  background: none repeat scroll 0 0 #f8f8f8;
+  color: #333;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #ccc;
 }
 .pagination .extend.next:link {
   text-decoration: none;
@@ -866,7 +887,8 @@ blockquote p {
 }
 .pagination .extend.next:hover {
   text-decoration: none;
-  color: #5af;
+  color: #f8f8f8;
+  background: none repeat scroll 0 0 #5af;
 }
 .whoami_main {
   max-width: 996px;
