@@ -766,12 +766,19 @@ blockquote p {
 #category {
   max-width: 996px;
 }
+#category .article-sort-title {
+  padding-left: 10px;
+}
 .category-lists {
   max-width: 996px;
   margin-left: 184px;
+  padding-left: 10px;
 }
 .category-lists .category__title {
   font-size: 1.8rem;
+}
+.category-list {
+  padding-left: 20px;
 }
 .category-list .category-list-item .category-list-link {
   text-decoration: none;
@@ -804,6 +811,7 @@ blockquote p {
 #archive .article-sort {
   max-width: 996px;
   margin-left: 184px;
+  padding-left: 10px;
 }
 .img-center {
   display: block;
@@ -898,6 +906,7 @@ blockquote p {
   max-width: 996px;
   margin-left: 184px;
   text-align: center;
+  padding-left: 10px;
 }
 .tag-cloud a {
   display: inline-block;
