@@ -64,8 +64,31 @@
 .page-date {
   padding: 0 3.6rem;
 }
+.page-categories {
+  padding: 0 1rem;
+}
+.page-categories .page-categories-item {
+  display: inline-block;
+  margin-right: 1px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  border-bottom: 1px solid #bdc1c4;
+  border-radius: 1px;
+}
+.page-categories .page-categories-item:link {
+  text-decoration: none;
+  color: #bdc1c4;
+}
+.page-categories .page-categories-item:visited {
+  text-decoration: none;
+  color: #283d4b;
+}
+.page-categories .page-categories-item:hover {
+  text-decoration: none;
+  color: #5af;
+}
 .page-tags {
-  padding: 0 3.6rem;
+  padding-left: 1rem;
 }
 .page-tags .page-tags-item {
   display: inline-block;
