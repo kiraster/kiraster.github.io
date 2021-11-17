@@ -36,6 +36,7 @@
 .page-categories .page-categories-item:link {
   text-decoration: none;
   color: #bdc1c4;
+  border-bottom: 1px solid #bdc1c4;
 }
 .page-categories .page-categories-item:visited {
   text-decoration: none;
