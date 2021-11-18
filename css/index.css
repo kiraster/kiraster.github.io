@@ -89,7 +89,7 @@
   color: #5af;
 }
 .page-tags {
-  padding-left: 1rem;
+  padding: 0 3.6rem;
 }
 .page-tags .page-tags-item {
   display: inline-block;
@@ -105,6 +105,25 @@
   transition: all 0.2s ease-in-out;
 }
 .page-tags a:hover {
+  color: #5af;
+}
+.page-tag {
+  padding: 0 1rem;
+}
+.page-tag .page-tags-item {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  border-bottom: 1px solid #bdc1c4;
+  border-radius: 1px;
+}
+.page-tag a {
+  color: #bdc1c4;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.page-tag a:hover {
   color: #5af;
 }
 .page article {
