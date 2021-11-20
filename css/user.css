@@ -10,33 +10,3 @@
   margin: 8px 0;
   font-size: 0.9em;
 }
-.article-sort {
-  margin-left: 19%;
-}
-.article-sort .article-sort-item year,
-.article-sort .article-sort-item month {
-  padding-left: 1em;
-  display: inline-block;
-  color: #bababa;
-}
-.article-sort .article-sort-item {
-  margin: 5px 0;
-}
-.article-sort .article-sort-item .article-sort-item__time {
-  padding-left: 1em;
-  display: inline-block;
-  color: #bababa;
-}
-.article-sort .article-sort-item .article-sort-item__time:hover {
-  color: #5af;
-  border-right: 1px solid #fff;
-}
-.article-sort .article-sort-item .article-sort-item__title {
-  padding-left: 1em;
-  color: #000;
-  text-decoration: none;
-}
-.article-sort .article-sort-item .article-sort-item__title:hover {
-  color: #5af;
-  border: 5px solid #fff;
-}

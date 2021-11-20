@@ -1,6 +1,7 @@
 #search {
   max-width: 996px;
-  margin-left: 184px;
+  margin-left: 204px;
+  padding-left: 10px;
 }
 .search-input {
   font-size: 1.8rem;

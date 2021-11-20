@@ -23,26 +23,27 @@
   padding: 0 3.6rem;
 }
 .page-categories {
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 }
-.page-categories .page-categories-item {
+.page-categories .page-category-item {
   display: inline-block;
   margin-right: 1px;
+  margin-left: 2px;
   margin-bottom: 8px;
   text-decoration: none;
   border-bottom: 1px solid #bdc1c4;
   border-radius: 1px;
 }
-.page-categories .page-categories-item:link {
+.page-categories .page-category-item:link {
   text-decoration: none;
   color: #bdc1c4;
   border-bottom: 1px solid #bdc1c4;
 }
-.page-categories .page-categories-item:visited {
+.page-categories .page-category-item:visited {
   text-decoration: none;
   color: #283d4b;
 }
-.page-categories .page-categories-item:hover {
+.page-categories .page-category-item:hover {
   text-decoration: none;
   color: #5af;
 }
@@ -66,32 +67,33 @@
   color: #5af;
 }
 .page-tag {
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 }
-.page-tag .page-tags-item {
+.page-tag .page-tag-item {
   display: inline-block;
-  margin-right: 5px;
+  margin-left: 5px;
   margin-bottom: 8px;
   text-decoration: none;
   border-bottom: 1px solid #bdc1c4;
   border-radius: 1px;
 }
-.page-tag a {
+.page-tag .page-tag-item:link {
+  text-decoration: none;
   color: #bdc1c4;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  border-bottom: 1px solid #bdc1c4;
 }
-.page-tag a:hover {
+.page-tag .page-tag-item:visited {
+  text-decoration: none;
+  color: #283d4b;
+}
+.page-tag .page-tag-item:hover {
+  text-decoration: none;
   color: #5af;
 }
 .page article {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
   padding-bottom: 1.2rem;
-}
-.post-top-item {
-  margin-left: 17%;
-  margin-top: 0.8rem;
 }
 .img-center {
   display: block;
