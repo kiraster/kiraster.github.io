@@ -66,6 +66,10 @@ $(function () {
         fragment: '.page',
         timeout: 5000
     });
+    $(document).pjax('a[target!=_blank]','.widget', {
+        fragment: '.widget',
+        timeout: 5000
+    });
     $(document).on({
         'pjax:click': function() {
             $('body,html').animate({
