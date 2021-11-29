@@ -223,9 +223,9 @@
             
             <tag> PNETLab </tag>
             
-            <tag> EVE-NG </tag>
-            
             <tag> Cisco </tag>
+            
+            <tag> EVE-NG </tag>
             
         </tags>
       
@@ -521,11 +521,11 @@
       
         <tags>
             
+            <tag> Scripts </tag>
+            
             <tag> 巡检脚本 </tag>
             
             <tag> H3C </tag>
-            
-            <tag> Scripts </tag>
             
         </tags>
       
