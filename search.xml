@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>关于开始扯谈</title>
+    <url>/posts/49183d2a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗</p>
+<p>肚里墨水浅，蹦不出几个字    </p>
+<p>晚上躺床，可能由于早已被破坏了的生物钟的影响</p>
+<p>时常辗转反侧，脑里思绪万千<span id="more"></span></p>
+<p>明明是身体驱使着我要睡了要睡了</p>
+<p>但是脑子并不协调躯体</p>
+<p>躺床的我使劲的翻看手机屏幕</p>
+<p>完全忘记了床的两大原始作用，你懂我意思吗</p>
+<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡</p>
+<p>喜马拉雅，定一个倒计时</p>
+<p>强行把自己深夜的思绪带入场景中</p>
+<p>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
+<p>眼睛一睁已是第二天的差不多日上三竿的时间</p>
+<p>洗洗醒醒坐坐，一天开始了</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Theme: Obsidian</title>
+    <url>/posts/9cdc001c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
+<blockquote>
+<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
+</blockquote>
+<blockquote>
+<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> <span id="more"></span></p>
+</blockquote>
+<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
+
+
+<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
+<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
+<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
+<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
+]]></content>
+      <categories>
+        <category>Themes</category>
+      </categories>
+      <tags>
+        <tag>obsidian</tag>
+        <tag>Themes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ENSP_防火墙初始密码问题</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。<span id="more"></span></p>
@@ -43,57 +94,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo Theme: Obsidian</title>
-    <url>/posts/9cdc001c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
-<blockquote>
-<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
-</blockquote>
-<blockquote>
-<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> <span id="more"></span></p>
-</blockquote>
-<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
-
-
-<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
-<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
-<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
-<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
-]]></content>
-      <categories>
-        <category>Themes</category>
-      </categories>
-      <tags>
-        <tag>obsidian</tag>
-        <tag>Themes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于开始扯谈</title>
-    <url>/posts/49183d2a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗</p>
-<p>肚里墨水浅，蹦不出几个字    </p>
-<p>晚上躺床，可能由于早已被破坏了的生物钟的影响</p>
-<p>时常辗转反侧，脑里思绪万千<span id="more"></span></p>
-<p>明明是身体驱使着我要睡了要睡了</p>
-<p>但是脑子并不协调躯体</p>
-<p>躺床的我使劲的翻看手机屏幕</p>
-<p>完全忘记了床的两大原始作用，你懂我意思吗</p>
-<p>最近一段时间，几乎每晚靠着罗哥调校自如的声音入睡</p>
-<p>喜马拉雅，定一个倒计时</p>
-<p>强行把自己深夜的思绪带入场景中</p>
-<p>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡</p>
-<p>眼睛一睁已是第二天的差不多日上三竿的时间</p>
-<p>洗洗醒醒坐坐，一天开始了</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我理解的费曼学习方法</title>
     <url>/posts/237b6272.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
@@ -119,70 +119,6 @@
       <tags>
         <tag>Methods</tag>
         <tag>Feynman</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>简明现代汉语语法_学习</title>
-    <url>/posts/51f223b9.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
-<h2 id="字词、词性、成分之间的关系"><a href="#字词、词性、成分之间的关系" class="headerlink" title="字词、词性、成分之间的关系"></a>字词、词性、成分之间的关系</h2><p>一般规律：</p>
-<ul>
-<li>名词和代词一般更适合做主语和宾语</li>
-<li>动词一般更适合做谓语</li>
-<li>副词和形容词一般更适合做定语和状语</li>
-<li>主谓宾是一般顺序</li>
-<li>定语一般在主语和宾语前面</li>
-<li>状语一般在谓语前面</li>
-<li>顺序颠倒了就是倒装</li>
-</ul>
-<h2 id="词性"><a href="#词性" class="headerlink" title="词性"></a>词性</h2><p>实词 vs 虚词</p>
-<ul>
-<li>实词：意义编辑具体的词，包括：名词、动词、形容词、数词、量词、代词</li>
-<li>虚词：一般不能单独成句，意义比较抽象，有帮助造句作用的词，包括：副词、介词、连词、助词、叹词、拟声词</li>
-</ul>
-<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
-<p>表示人或事物名称<br>表示人：姑娘、青年、工人<br>表示具体事物：锤子、坚果、手机<br>表示抽象事物：理想、精神、感情<br>表示时间：春天、昨天、早上、下午</p>
-</blockquote>
-<blockquote>
-<p>方位名词<br>上下左右前后左右东西南北里头外边以上之下<br>大多数情况下，方位名词用在其他名词性词语的后边，表示事物所在的位置和范围</p>
-</blockquote>
-<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><blockquote>
-<p>表示人或事物的动作行为、心里活动、发展变化<br>表示动作行为：走、跑、滚、唱、跳、打<br>表示心里活动：爱、恨、喜欢、讨厌、想念、忘记、佩服<br>表示事物发展变化：增加、减少、扩大、提高、降低、发生、出现</p>
-</blockquote>
-<blockquote>
-<p>表示可能、应该、意愿<br>能、不能、能够、会、可能、可以、可、要、应该、应当、肯、敢、愿、愿意<br>这类词常放在一般动词的前面</p>
-</blockquote>
-<blockquote>
-<p>表示动作趋向<br>下、去、来、进、出、到、过、过去、上来、回去、起来<br>这类动词往往放在表示动作行为的动词后边，用来表示动作行为的方向</p>
-</blockquote>
-<blockquote>
-<p>表示判断：是vs不是</p>
-</blockquote>
-<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><blockquote>
-<p>用来描摹人或事物<br>表示状态：快、慢、软、硬、忙碌、悠闲、激动<br>表示性质：好、坏、美、丑、存粹、清脆<br>表示颜色：赤橙黄绿青蓝紫、苍白、绿油由、红彤彤<br>表示形状：大、小、宽、长、窄、笔直、弯曲</p>
-</blockquote>
-<h4 id="一词多性"><a href="#一词多性" class="headerlink" title="一词多性"></a>一词多性</h4><blockquote>
-<p>结合语境判断</p>
-</blockquote>
-<h3 id="数词和量词"><a href="#数词和量词" class="headerlink" title="数词和量词"></a>数词和量词</h3><blockquote>
-<p>数词：表示确数、序数和概数:<br>确数：一、八千、七万八千<br>概述：十来（个）、三十几（个）、八九（辆）<br>序数：第一、老二、初八</p>
-</blockquote>
-<blockquote>
-<p>量词：表示单位<br>表示事物的单位：个、台、辆、条<br>表示度量单位：米、吨、克<br>表示动作行为的单位：次、回、趟，轮</p>
-</blockquote>
-<blockquote>
-<p>数量：数词和量词一般结合起来使用表示数量<br>一个、八千次、十来吨、第一轮</p>
-</blockquote>
-<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><blockquote>
-<p>代替名词、动词、形容词、数词、量词、副词<br>代替人或事物：你、你们、我、我们、他、它、她、咱们、自己<br>具有指示作用：那、这、这里、那里、这里、这样、那么、每、各<br>表示疑问：哪里、什么、谁、怎样、怎么样、哪、哪呢</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>汉语语法</tag>
-        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -389,29 +325,67 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C_V5_V7设备巡检信息提取</title>
-    <url>/posts/80e04e00.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。<span id="more"></span></p>
-<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
-<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
+    <title>简明现代汉语语法_学习</title>
+    <url>/posts/51f223b9.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
+<h2 id="字词、词性、成分之间的关系"><a href="#字词、词性、成分之间的关系" class="headerlink" title="字词、词性、成分之间的关系"></a>字词、词性、成分之间的关系</h2><p>一般规律：</p>
+<ul>
+<li>名词和代词一般更适合做主语和宾语</li>
+<li>动词一般更适合做谓语</li>
+<li>副词和形容词一般更适合做定语和状语</li>
+<li>主谓宾是一般顺序</li>
+<li>定语一般在主语和宾语前面</li>
+<li>状语一般在谓语前面</li>
+<li>顺序颠倒了就是倒装</li>
 </ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
-<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/3/21 23:26</span></span><br><span class="line"><span class="comment"># Description：Device_info</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/111.txt&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="comment"># 首行显示50个“=”号，提取设备版本信息，开头注释</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;display version&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line01 = <span class="string">&#x27;=&#x27;</span> * <span class="number">50</span> + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line02 = <span class="string">&#x27;Device Name:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">r&#x27;[&lt;](.*?)[&gt;]&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            <span class="built_in">print</span>(result_line01)</span><br><span class="line">            <span class="built_in">print</span>(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        <span class="comment"># 提取设备版本信息      </span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Comware Software&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line03 = <span class="string">&#x27;Comware Software:\t&#x27;</span> +<span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=Software, ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        <span class="comment"># 提取设备运行时间</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;uptime is&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line04 = <span class="string">&#x27;Uptime:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=uptime is ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        <span class="comment"># 提取设备序列号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;DEVICE_SERIAL_NUMBER&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line05 = <span class="string">&#x27;SN:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=:).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line05 = result_line05.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU 0 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line06 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line06 = result_line06[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line06 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line06.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line066 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line066 = result_line066[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line066 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line066.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式3</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Unit CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line0666 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line0666 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line0666.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Used Rate&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line07 = lines[-<span class="number">4</span>:]</span><br><span class="line">            result_line07 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line07.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Mem:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line08 = lines[-<span class="number">6</span>:]</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27;%&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = <span class="number">100</span> - <span class="built_in">float</span>(result_line08)</span><br><span class="line">            result_line08 = <span class="string">&#x27;%.1f%%&#x27;</span> % result_line08</span><br><span class="line">            result_line08 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line08 + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
-<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
-<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
-<li>生成的文件为 word 或 excel 等都是可以实现的</li>
+<h2 id="词性"><a href="#词性" class="headerlink" title="词性"></a>词性</h2><p>实词 vs 虚词</p>
+<ul>
+<li>实词：意义编辑具体的词，包括：名词、动词、形容词、数词、量词、代词</li>
+<li>虚词：一般不能单独成句，意义比较抽象，有帮助造句作用的词，包括：副词、介词、连词、助词、叹词、拟声词</li>
 </ul>
+<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
+<p>表示人或事物名称<br>表示人：姑娘、青年、工人<br>表示具体事物：锤子、坚果、手机<br>表示抽象事物：理想、精神、感情<br>表示时间：春天、昨天、早上、下午</p>
+</blockquote>
+<blockquote>
+<p>方位名词<br>上下左右前后左右东西南北里头外边以上之下<br>大多数情况下，方位名词用在其他名词性词语的后边，表示事物所在的位置和范围</p>
+</blockquote>
+<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><blockquote>
+<p>表示人或事物的动作行为、心里活动、发展变化<br>表示动作行为：走、跑、滚、唱、跳、打<br>表示心里活动：爱、恨、喜欢、讨厌、想念、忘记、佩服<br>表示事物发展变化：增加、减少、扩大、提高、降低、发生、出现</p>
+</blockquote>
+<blockquote>
+<p>表示可能、应该、意愿<br>能、不能、能够、会、可能、可以、可、要、应该、应当、肯、敢、愿、愿意<br>这类词常放在一般动词的前面</p>
+</blockquote>
+<blockquote>
+<p>表示动作趋向<br>下、去、来、进、出、到、过、过去、上来、回去、起来<br>这类动词往往放在表示动作行为的动词后边，用来表示动作行为的方向</p>
+</blockquote>
+<blockquote>
+<p>表示判断：是vs不是</p>
+</blockquote>
+<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><blockquote>
+<p>用来描摹人或事物<br>表示状态：快、慢、软、硬、忙碌、悠闲、激动<br>表示性质：好、坏、美、丑、存粹、清脆<br>表示颜色：赤橙黄绿青蓝紫、苍白、绿油由、红彤彤<br>表示形状：大、小、宽、长、窄、笔直、弯曲</p>
+</blockquote>
+<h4 id="一词多性"><a href="#一词多性" class="headerlink" title="一词多性"></a>一词多性</h4><blockquote>
+<p>结合语境判断</p>
+</blockquote>
+<h3 id="数词和量词"><a href="#数词和量词" class="headerlink" title="数词和量词"></a>数词和量词</h3><blockquote>
+<p>数词：表示确数、序数和概数:<br>确数：一、八千、七万八千<br>概述：十来（个）、三十几（个）、八九（辆）<br>序数：第一、老二、初八</p>
+</blockquote>
+<blockquote>
+<p>量词：表示单位<br>表示事物的单位：个、台、辆、条<br>表示度量单位：米、吨、克<br>表示动作行为的单位：次、回、趟，轮</p>
+</blockquote>
+<blockquote>
+<p>数量：数词和量词一般结合起来使用表示数量<br>一个、八千次、十来吨、第一轮</p>
+</blockquote>
+<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><blockquote>
+<p>代替名词、动词、形容词、数词、量词、副词<br>代替人或事物：你、你们、我、我们、他、它、她、咱们、自己<br>具有指示作用：那、这、这里、那里、这里、这样、那么、每、各<br>表示疑问：哪里、什么、谁、怎样、怎么样、哪、哪呢</p>
+</blockquote>
 ]]></content>
       <categories>
-        <category>Scripts</category>
+        <category>Notes</category>
       </categories>
       <tags>
-        <tag>Scripts</tag>
-        <tag>H3C设备</tag>
+        <tag>汉语语法</tag>
+        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -452,26 +426,6 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C_SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
-<li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击  “Script” –&gt; “Run” 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改 “Send” 后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……<span id="more"></span></li>
-</ul>
-<figure class="highlight vbscript"><table><tr><td class="code"><pre><span class="line">#$language = <span class="string">&quot;VBScript&quot;</span></span><br><span class="line">#$interface = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; This automatically generated script may need to be</span></span><br><span class="line"><span class="comment">&#x27; edited in order to work correctly.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> Main</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;#start right now&quot;</span>&amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.WaitForString <span class="string">&quot;&gt;&quot;</span></span><br><span class="line">	crt.Screen.Send <span class="string">&quot;screen-length disable&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cur &quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip interface brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display interface brief des&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip routing-table&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display version&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cpu-usage&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display memory&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display device manuinfo&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Scripts</category>
-      </categories>
-      <tags>
-        <tag>Scripts</tag>
-        <tag>巡检脚本</tag>
-        <tag>H3C</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我的母亲</title>
     <url>/posts/221a99d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
@@ -489,6 +443,52 @@
       </categories>
       <tags>
         <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h3><ul>
+<li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击  “Script” –&gt; “Run” 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改 “Send” 后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……<span id="more"></span></li>
+</ul>
+<figure class="highlight vbscript"><table><tr><td class="code"><pre><span class="line">#$language = <span class="string">&quot;VBScript&quot;</span></span><br><span class="line">#$interface = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; This automatically generated script may need to be</span></span><br><span class="line"><span class="comment">&#x27; edited in order to work correctly.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> Main</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;#start right now&quot;</span>&amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.WaitForString <span class="string">&quot;&gt;&quot;</span></span><br><span class="line">	crt.Screen.Send <span class="string">&quot;screen-length disable&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cur &quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip interface brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display interface brief des&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip routing-table&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display version&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cpu-usage&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display memory&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display device manuinfo&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Scripts</category>
+      </categories>
+      <tags>
+        <tag>巡检脚本</tag>
+        <tag>H3C</tag>
+        <tag>Scripts</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_V5_V7设备巡检信息提取</title>
+    <url>/posts/80e04e00.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。<span id="more"></span></p>
+<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
+<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
+<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/3/21 23:26</span></span><br><span class="line"><span class="comment"># Description：Device_info</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/111.txt&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="comment"># 首行显示50个“=”号，提取设备版本信息，开头注释</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;display version&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line01 = <span class="string">&#x27;=&#x27;</span> * <span class="number">50</span> + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line02 = <span class="string">&#x27;Device Name:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">r&#x27;[&lt;](.*?)[&gt;]&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            <span class="built_in">print</span>(result_line01)</span><br><span class="line">            <span class="built_in">print</span>(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        <span class="comment"># 提取设备版本信息      </span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Comware Software&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line03 = <span class="string">&#x27;Comware Software:\t&#x27;</span> +<span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=Software, ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        <span class="comment"># 提取设备运行时间</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;uptime is&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line04 = <span class="string">&#x27;Uptime:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=uptime is ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        <span class="comment"># 提取设备序列号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;DEVICE_SERIAL_NUMBER&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line05 = <span class="string">&#x27;SN:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=:).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line05 = result_line05.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU 0 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line06 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line06 = result_line06[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line06 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line06.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line066 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line066 = result_line066[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line066 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line066.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式3</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Unit CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line0666 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line0666 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line0666.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Used Rate&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line07 = lines[-<span class="number">4</span>:]</span><br><span class="line">            result_line07 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line07.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Mem:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line08 = lines[-<span class="number">6</span>:]</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27;%&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = <span class="number">100</span> - <span class="built_in">float</span>(result_line08)</span><br><span class="line">            result_line08 = <span class="string">&#x27;%.1f%%&#x27;</span> % result_line08</span><br><span class="line">            result_line08 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line08 + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
+<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
+<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
+<li>生成的文件为 word 或 excel 等都是可以实现的</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Scripts</category>
+      </categories>
+      <tags>
+        <tag>Scripts</tag>
+        <tag>H3C设备</tag>
       </tags>
   </entry>
   <entry>
@@ -529,58 +529,6 @@
         <tag>H3C Cloud Lab</tag>
         <tag>vpn-instance</tag>
         <tag>VPN实例</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大梦初醒 荒唐了一生</title>
-    <url>/posts/2703fb4a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
-<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ 资料界面一直挂着这首歌</p>
-<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
-<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了<span id="more"></span></p>
-<p>带感情的演唱，好像作者在表达不为人知的情感</p>
-<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
-<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
-<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
-<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
-<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
-<p>你要问我为什么拉黑，我回答不喜欢</p>
-<p>你要问我什么原因，同上</p>
-<p>不解释，我自己心里有一些抽象的名词</p>
-<p>原则、底线、信仰、情感……</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-        <tag>南山南</tag>
-        <tag>北秋悲</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于新主题博客</title>
-    <url>/posts/f2af2fdc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新 hexo 主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到 GitHub 呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的 To-Do List，我真是自己玩自己。<span id="more"></span></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" class="img-center" ></a></p>
-
-<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
-<h2 id="关于-GiteePages"><a href="#关于-GiteePages" class="headerlink" title="关于 GiteePages"></a>关于 GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是 category 页面违规，what？ 一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态 html  页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用 Pages 服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到 Gitee 后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括 Pages 服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加 QQ 群联系管理员–再人工审核三五天，真 QQ 办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
-
-<h2 id="Obsidian-主题页面留念"><a href="#Obsidian-主题页面留念" class="headerlink" title="Obsidian 主题页面留念"></a>Obsidian 主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>GiteePages</tag>
-        <tag>博客迁移</tag>
-        <tag>为什么</tag>
       </tags>
   </entry>
   <entry>
@@ -636,6 +584,58 @@
       <tags>
         <tag>H3C设备</tag>
         <tag>交换机升级版本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于新主题博客</title>
+    <url>/posts/f2af2fdc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我为什么要启用一个新 hexo 主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到 GitHub 呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的 To-Do List，我真是自己玩自己。<span id="more"></span></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg"><img src="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg" class="img-center" ></a></p>
+
+<h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2><p>先感谢上一个主题的作者（<a href="https://tridiamond.tech/">三·钻 TriDiamond</a> ）让我搭了博客，再感谢现在这个主题（<a href="https://phower.me/">Le Phower’s</a>）的作者。</p>
+<h2 id="关于-GiteePages"><a href="#关于-GiteePages" class="headerlink" title="关于 GiteePages"></a>关于 GiteePages</h2><p>大概是四五月份，GiteePages上突然出了个公告说维护，一停就到八九月份。九月份我再去点开启服务，好家伙直接提示页面违规？我按提示去检查页面是 category 页面违规，what？ 一个文章分类页提示违规？自问没有什么敏感词在里头，页面加起来就几十个汉字，代码违规我就不懂了。我直接去生成的静态 html  页面把代码清空再发布就可以了，wtf？气不过的我直接关了服务晾了几个星期，后来有点空闲时间我开始折腾起来，就是弄现在的这个博客主题。直到我把内容制作好，再次启用 Pages 服务并截几张图做留念，就把博客仓库的文件清空了，当我把现在的代码上传到 Gitee 后点击启动服务，弹出实名认证，姓名，身份证正反面，手持身份证正反面，而没清空前可以发布成功，真是双标，你要是一视同仁我敬重你。我去查了邮箱没有收到任何通知，包括 Pages 服务停用的事情，这种办事方式我个人是不认同的，不尊重用户。随即我个人做出了抵制的举动，我清空了所有仓库（虽然也没什么太多内容），签名留下一句话，就去找注销账户的页面，再次震惊了我，流程（见图片），按照格式写封邮件–加 QQ 群联系管理员–再人工审核三五天，真 QQ 办公……想想算了，我嫌麻烦，还要耗费时间打交道。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg"><img src="https://i.loli.net/2021/10/12/HFrU5xyjnD3OKMI.jpg" ></a></p>
+
+<h2 id="Obsidian-主题页面留念"><a href="#Obsidian-主题页面留念" class="headerlink" title="Obsidian 主题页面留念"></a>Obsidian 主题页面留念</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg"><img src="https://i.loli.net/2021/10/12/QJlZR58bizGd4VU.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg"><img src="https://i.loli.net/2021/10/12/epGrIlb4F1vcNmn.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg"><img src="https://i.loli.net/2021/10/12/iQ5TS3yqlvZs1eR.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg"><img src="https://i.loli.net/2021/10/12/1tolf749segZz6c.jpg" ></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg"><img src="https://i.loli.net/2021/10/12/P5ruo3QzU46kbWD.jpg" ></a></p>]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>GiteePages</tag>
+        <tag>博客迁移</tag>
+        <tag>为什么</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大梦初醒 荒唐了一生</title>
+    <url>/posts/2703fb4a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><em><strong>“大梦初醒 荒唐了一生” –马頔</strong></em></p>
+<p>刚开始听到这首歌是一个混实习的关系户女孩，QQ 资料界面一直挂着这首歌</p>
+<p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数</p>
+<p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了<span id="more"></span></p>
+<p>带感情的演唱，好像作者在表达不为人知的情感</p>
+<p>每个人听到一首歌，可能都会有自己的看法，或者没有看法只觉得：爽</p>
+<p>这是主观上的看法，都要尊重与自己不同观点的人的看法，你可以不同意，没必要去勉强、要求</p>
+<p>特意去翻了一下抖音上隐私设置里的黑名单：484</p>
+<p>有时候看短视频，看到讨厌的就不辞麻烦的点点点拉黑了</p>
+<p>有时候为了不误判还点进主页多看几个视频，确认无误后才动手</p>
+<p>你要问我为什么拉黑，我回答不喜欢</p>
+<p>你要问我什么原因，同上</p>
+<p>不解释，我自己心里有一些抽象的名词</p>
+<p>原则、底线、信仰、情感……</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+        <tag>南山南</tag>
+        <tag>北秋悲</tag>
       </tags>
   </entry>
   <entry>
@@ -809,40 +809,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PNETLab试用</title>
-    <url>/posts/13f1a9a7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="What-is-PNETLab"><a href="#What-is-PNETLab" class="headerlink" title="What is PNETLab"></a>What is PNETLab</h2><p><strong>PNETLab</strong> <strong>(<em>Packet Network Emulator Tool Lab</em></strong>)is a platform that allows you to download and share labs with the community.  这句话摘抄自<a href="https://pnetlab.com/pages/documentation">官网</a>介绍，这是链接：<a href="https://pnetlab.com/pages/documentation">What is PNETLab?</a></p>
-<p>上网冲浪发现这个大宝贝，看完介绍心理痒痒就搞一搞，有个帖子介绍挺好，原文：<a href="https://community.cisco.com/t5/%E7%BD%91%E7%BB%9C%E5%8D%9A%E5%AE%A2/%E5%8E%9F%E5%88%9B-%E8%B6%85%E7%BA%A7%E6%8E%A8%E8%8D%90-%E7%BD%91%E5%B7%A5%E5%BF%85%E5%A4%87%E6%A8%A1%E6%8B%9F%E5%99%A8pnetlab-%E9%99%84%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5-%E5%85%A8%E7%90%83%E7%AC%AC%E4%B8%80%E7%AF%87%E6%9C%80%E4%BC%98%E8%B4%A8%E7%9A%84%E5%B8%96%E5%AD%90/ba-p/4383377">【原创】超级推荐：网工必备模拟器PNETLab，附下载链接，全球第一篇最优质的帖子</a>。</p>
-<h2 id="Experience"><a href="#Experience" class="headerlink" title="Experience"></a>Experience</h2><p>不能说和 EVE-NG “一模一样”，我对比过（可能是使用方法不规范，也可能是其他原因），之前用EVE-NG可以跑起整张 CCIE V5 H1 的拓扑（电脑的 CPU 和 RAM 未变动，系统换 WIN10 ，加了固态硬盘做系统盘），现在装了 PNETLab 只能跑 31台 还是 32 台设备（原谅老年人健忘）。<span id="more"></span></p>
-<h3 id="Hardware-requirements"><a href="#Hardware-requirements" class="headerlink" title="Hardware requirements"></a>Hardware requirements</h3><p>看了官网文档，我这古董 AMD CPU 不在硬件支持范围内（是不是这个原因跑不了那么多设备呢？），当看到这些说明的时候，我差点就把正在下载中的文件给取消了。最后安上了，我若安不好，当天便可以多睡几小时。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PC/Laptop HW requirements</span><br><span class="line">CPU：Intel i5/i7 (4 Logical processors), Enabled Intel virtualization in BIOS</span><br><span class="line">RAM：8Gb</span><br><span class="line">HDD Space：40Gb</span><br><span class="line">Network：LAN/WLAN</span><br><span class="line">----------------------------------------------------------------------------------------------------------</span><br><span class="line">PNETLab Virtual machine requirements</span><br><span class="line">CPU：4/1 (Number of processors/Number of cores per processor) Enabled Intel VT-x/EPT virtualization engine</span><br><span class="line">RAM：6Gb or more</span><br><span class="line">HDD：40Gb or more</span><br><span class="line">Network：VMware NAT or Bridged network adapter</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Unsupported hardware and systems</span><br><span class="line">The following are currently not supported:</span><br><span class="line">•   AMD CPU based PC or Server</span><br><span class="line">•   VirtualBox virtualization</span><br><span class="line">•   Citrix XenServer</span><br><span class="line">•   Microsoft HyperV</span><br><span class="line">•   Ubuntu 17.X or 18.x as platform</span><br></pre></td></tr></table></figure>
-
-<h3 id="PNETLab-Supported-Images"><a href="#PNETLab-Supported-Images" class="headerlink" title="PNETLab Supported Images"></a>PNETLab Supported Images</h3><p>查看支持的镜像，还是挺多的，不知为何 H3C 不在列表里，看B站 UP 主视频把 H3C 的防火墙设备弄进去了，不过我挺少用 QEMU 的镜像（太吃内存了），Huawei/H3C 的实验还是用官方的模拟器。</p>
-<p>还有个事，就是现在 <a href="https://user.pnetlab.com/store/labs/view"><em>PNETLab Store</em></a> 商店下载Lab不附带一起下载镜像了，要自己找镜像上传到目录，还好可以找之前 EVE-NG 的资源上传。</p>
-<h3 id="Language-amp-汉化"><a href="#Language-amp-汉化" class="headerlink" title="Language &amp; 汉化"></a>Language &amp; 汉化</h3><p>看到 B 站视频有 UP 主用了汉化，我就还好，看这些英文不头疼。其实也简单，就是把里边的英文包复制一份到电脑，再打开里面的 <strong>JSON 文件</strong>，里面有两列，左边属性，右边 Web 界面显示的字符，把右边填上中文保存上传到 Chinese 的文件夹，再切换一下即可。</p>
-<h3 id="How-to-console-to-devices"><a href="#How-to-console-to-devices" class="headerlink" title="How to console to devices"></a>How to console to devices</h3><p>有两种方式，跟 EVE-NG 不知道是哪个版本的方式一样。</p>
-<ul>
-<li>使用 <strong>HTML Console</strong>，在拓扑界面弹出一个小窗的方式，我个人就不太喜欢这么搞，不舒畅。</li>
-<li>使用 <strong>Default Console</strong>，调用系统自带的默认程序打开，例如把 CRT 软件设置成系统默认，跟 EVE-NG 的 <strong>EVE-NG-Win-Client-Pack</strong> 这玩意儿“一模一样”。</li>
-</ul>
-<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><p>欢乐的时光特别短，又到时候说88，还有很多需要探索的地方，不谈了，开饭。</p>
-<p>接下来我将用 PNETLab 搞一个实验，来自大佬<a href="http://blog.sina.com.cn/vinsoney">红茶三杯</a>博客的原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html">【有点儿意思系列 06】一个看起来简单的案例</a>，弄完了写一篇文 po 出来，先看图。</p>
- <a data-fancybox="gallery" href="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg">
- <img src="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg" class="img-center" /></a>
-]]></content>
-      <categories>
-        <category>PNETLab</category>
-      </categories>
-      <tags>
-        <tag>Network Emulator</tag>
-        <tag>PNETLab</tag>
-        <tag>EVE-NG</tag>
-        <tag>Cisco</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>TI10</title>
     <url>/posts/fae4c6b8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10 结束了，LGD 再次倒在了总决赛</p>
@@ -882,98 +848,6 @@
       </categories>
       <tags>
         <tag>Blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>No.001 Simple Case</title>
-    <url>/posts/8ac5ac4a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html">【有点儿意思系列 06】一个看起来简单的案例</a>，再上图。<span id="more"></span></p>
- <a data-fancybox="gallery" href="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg">
- <img src="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg" class="img-center" /></a>
-
-<h2 id="Request-and-Solution"><a href="#Request-and-Solution" class="headerlink" title="Request and Solution"></a>Request and Solution</h2><ol>
-<li><p>PC1、PC2 分属 VLAN10 和 VLAN20；DHCP 服务器属 VLAN30 ，PC1 和 PC2 从 DHCP 服务器自动获取地址。</p>
-<p>   <strong>S</strong>：根据上下文需求，确定 R3 和 R4 是热备组网。R3 和 R4 上配置子接口，配置 VRRP ；业务地址段和 DHCPServer 不在同一网段，所以需要在业务网段的网关上配置 DHCP 中继。实验中使用一台路由器模拟 DHCPServer，上面配置分配给 VLAN10,VLAN20 的地址池。</p>
-   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- DHCPServer 配置</span><br><span class="line">!</span><br><span class="line">ip dhcp excluded-address 10.1.10.252 10.1.10.254</span><br><span class="line">ip dhcp excluded-address 10.1.20.252 10.1.20.254</span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan10</span><br><span class="line"> network 10.1.10.0 255.255.255.0</span><br><span class="line"> default-router 10.1.10.254 </span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan20</span><br><span class="line"> network 10.1.20.0 255.255.255.0</span><br><span class="line"> default-router 10.1.20.254 </span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> encapsulation dot1Q 10</span><br><span class="line"> ip address 10.1.10.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 10 ip 10.1.10.254</span><br><span class="line"> vrrp 10 priority 120</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.20</span><br><span class="line"> encapsulation dot1Q 20</span><br><span class="line"> ip address 10.1.20.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 20 ip 10.1.20.254</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.30</span><br><span class="line"> encapsulation dot1Q 30</span><br><span class="line"> ip address 10.1.30.252 255.255.255.0</span><br><span class="line"> vrrp 30 ip 10.1.30.254</span><br><span class="line"> vrrp 30 priority 120</span><br><span class="line"> vrrp 30 track 1 decrement 21</span><br><span class="line">! --- 网管地址网关</span><br><span class="line">interface Ethernet0/1.99</span><br><span class="line"> encapsulation dot1Q 99</span><br><span class="line"> ip address 20.1.1.252 255.255.255.0</span><br><span class="line"> vrrp 99 ip 20.1.1.254</span><br><span class="line"> vrrp 99 priority 120</span><br><span class="line"> vrrp 99 track 1 decrement 21</span><br><span class="line">!       </span><br></pre></td></tr></table></figure></li>
-<li><p>SW4 是内网用户接入交换机（仅具二层功能），要求内网两个网段的用户均能 telnet 到该设备。</p>
-<p>   <strong>S</strong>：配置 VLAN ，划分接口，配置 Trunk，配置默认网关和远程网管</p>
-   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW4 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/1</span><br><span class="line"> switchport access vlan 10</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/2</span><br><span class="line"> switchport access vlan 20</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/3</span><br><span class="line"> switchport access vlan 30</span><br><span class="line">! --- 网管IP地址</span><br><span class="line">interface Vlan99</span><br><span class="line"> ip address 20.1.1.10 255.255.255.0</span><br><span class="line">! -- 本想使用 ip default-gateway，但是不起作用，下面这条效果是一样</span><br><span class="line">ip route 0.0.0.0 0.0.0.0 20.1.1.254</span><br><span class="line">! --- 网管配置 略</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-<p>   由于 VPCS 不支持 Telnet ，此处使用 DHCPServer 做测试。</p>
-   <a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg">
-<img src="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg" class="img-center" /></a>
- 
-</li>
-<li><p>R3 和 R4 作为内网用户的网关设备，互为热备份。</p>
-<p>  <strong>S</strong>：这一条前面提过了，整个拓扑完整配置后边发，我打个包。</p>
-</li>
-<li><p>R3、R4、SW2 及 SW3 上不允许出现任何手工配置的静态路由条目。 </p>
-<p>  <strong>S</strong>：好的，满足你。</p>
-</li>
-<li><p>SW1 采用重发布的方式，将直连的服务器网段路由（如10.1.100.0/24）注入 EIGRP。</p>
-<p>  <strong>S</strong>：好的，满足你。</p>
-</li>
-<li><p>内网用户（PC1、PC2）访问核心服务器 Server（10.1.100.1）的数据流走向如下：</p>
-<p> PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</p>
-<p> PC2 访问 Server：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</p>
-<p> 沿途任何设备上到达 Server 的路由不允许出现负载均衡，且 PC 访问 Server 的流量往返路径一致。</p>
-<p>  <strong>S</strong>：在配置完路由协议后，查看沿途设备路由表发现到达 Server 的路由出现负载均衡是正常现象，旁观大局，逐个处理就行。</p>
-<p>  但是有一个现象我不知是模拟器的 Bug 还是镜像的问题，查看 SW3 和 SW4  ，总有一台设备到达 Server 的路由是这样的：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D EX     10.1.100.0/24 [170/307200]</span><br></pre></td></tr></table></figure>
-<p>  另一台学习到去往 Server 网段的路由是从上面这台学习到的外部路由，重启两台交换机的 OSPF 进程，这条路由又可能显示在第二台了。我又用 GNS3 做了测试，也是这种情况，按理说加载到路由表的不应该是管理距离为 110 的 OSPF 外部路由么？</p>
-<p> 我思考了一番，可能是 OSPF 进程启动先后顺序的问题，先启动的交换机 OSPF 进程加载了 EIGRP 外部路由，而后启动的交换机 OSPF 进程学习到 EIGRP 外部路由和 OSPF 外部路由，按照规则选择了管理距离值较小的 OSPF 路由条目。</p>
-<p> <strong>PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R1 配置，修改 OSPF 入向接口的 cost ，使从 e0/0 收到去往10.1.100.0网段的路由更优</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置, 在 OSPF 进程下过滤入方向收到的去往 10.1.100.0 网段的条目，为什么这么做呢，从后面需求看，断掉 SW2/SW3 与 SW1 的线路之一，去往 Server的流量就不需要经过断掉线路这台交换机，而且断掉线路还要流量经过这台设备，走了个直角线路，并不是最优路径</span><br><span class="line">!</span><br><span class="line">router ospf 200</span><br><span class="line"> distribute-list 10 in</span><br><span class="line">!</span><br><span class="line">access-list 10 deny   10.1.100.0 0.0.0.255</span><br><span class="line">access-list 10 permit any</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-<p> <strong>PC2 访问 Server ：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</strong></p>
-<p> 思路和 PC1 访问 Server 一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
-<p> <strong>PC1 访问 Server 回程路径： Server&gt; SW1 &gt; SW2 &gt; R1 &gt;R3 ；</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW1 配置，观察到去往内网网段的路由条目是负载均衡，配置偏移列表和指定入向接口，增加希望不要出现在路由表里的条目 metric 偏移，影响路由表加载</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> offset-list 20 in 1024 Ethernet0/2 </span><br><span class="line"> offset-list 10 in 1024 Ethernet0/1 </span><br><span class="line">!</span><br><span class="line">access-list 10 permit 10.1.20.0 0.0.0.255</span><br><span class="line">access-list 20 permit 10.1.10.0 0.0.0.255</span><br><span class="line"> !</span><br></pre></td></tr></table></figure>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，修改 e0/3 接口 cost，使得从该接口学习到去往 10.1.10.0 和 10.1.20.0 网段的路由不是最优路由</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3</span><br><span class="line">  ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-<p>  <strong>PC2 访问 Server 回程路径： Server&gt; SW1 &gt; SW3 &gt; R2 &gt;R3 ；</strong></p>
-<p>  思路和 PC1 访问 Server 回程路径一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
-</li>
-<li><p>要求 SW2 和 SW3 访问 Server 都走最优路径，即 SW2 前往 Server 的数据流走 SW1，SW3 前往 Server 的数据流也直接到 SW1。</p>
-<p>   <strong>S</strong>：这一条也佐证了我在上面说到的流量走直角路径不是最优的想法。说的通俗一点就是：SW1 上的有流量要去往 Server 只能从 e0/1 出去，不走直角。即使 SW1 上的出口线路故障了也不走，走的路径是：拓扑上的对角线。退一步来说当 SW2/SW3 的出口线路故障了，下联的 R1/R2 不会从 SW2/SW3 学习到去往 Server 的路由条目。SW2 也是这个道理。</p>
-</li>
-</ol>
-<a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg">
- <img src="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg" class="img-center" /></a>
-
-<ol start="8">
-<li><p>SW1 上关于 10.1.10.0/24 和 10.1.20.0/24 的路由不应该出现等价负载均衡，正常情况下访问 10.0/24 网段的数据流走 SW2，访问2 0.0/24 网段的数据流走 SW3。</p>
-<p>   <strong>S</strong>：在 PC1/PC2 访问 Server 的回程路径时候已经解决这一条，不占用篇幅了（懒得码字）。</p>
-</li>
-<li><p>当 SW1-SW2 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径： R3&gt;R1&gt;SW3&gt;SW1&gt;Server，且往返路径一致。而当 SW1-SW3 之间的链路 DOWN 掉时，PC2 应该仍然能够访问 Server，情况类似。</p>
-<p>  <strong>S</strong>：正如我前面所说的：当 SW2/SW3 的出口线路故障了，下联的 R1/R2 也不会从 SW2/SW3 学习到去往 Server 的路由条目。此时去往 Server 的流量已经在 R1/R2 通过走对角线的路径来到 SW3/SW2 上。</p>
-<p>重点解决回程的路径。因为前面已经修改了 SW2 和 SW3 上的 e0/3 的 cost ，这就使得当 SW1-SW2 之间的链路 DOWN 掉或者 SW1-SW3 之间的链路 DOWN 掉时，SW3/SW2 去往 10.1.10.0 和 10.1.20.0 网段都是直线往下经过 R2 或者 R1 回程到业务网段，并不符合需求。需要添加策略路由 PBR 实现往返路径一致。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，配置匹配去往 10.1.20.0 网段的 ACL，配置 route-map 匹配 ACL ，设置去往10.1.20.0 网段的下一跳地址，配置 SLA 监测，最后在 e0/1 调用</span><br><span class="line">!</span><br><span class="line">access-list 101 permit ip any 10.1.20.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">route-map pbr_20.0 permit 10</span><br><span class="line"> match ip address 101</span><br><span class="line"> set ip next-hop verify-availability 10.1.254.105 1 track 1</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 10.1.254.105 source-interface Ethernet0/3</span><br><span class="line"> frequency 5</span><br><span class="line">! 设置 delay 是为了及时观察现象，实际生产环境不需这么做</span><br><span class="line"> track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip policy route-map pbr_20.0</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<p>当SW1-SW3之间的链路DOWN掉时，PC2应该仍然能够访问Server，情况类似。解决思路和上面一样，懒-码-字。</p>
-</li>
-<li><p>当 SW2-R1 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径：R3&gt;R1&gt;SW3&gt;SW1&gt;Server，此时不要求流量往返路径完全一致。当 SW3-R2 之间的链路 DOWN 掉时，PC2 应该仍能够访问到 Server。</p>
-<p>  <strong>S</strong>：当 SW2-R1 之间的链路 DOWN 掉时，R1 是能够从 SW3 学习到去往 Server 的路由的，只是回程的时候路径是： Server&gt; SW1 &gt; SW2 &gt; R2 &gt;R4 ，不要求流量往返路径完全一致，本条需求已经自动实现了。当SW3-R2之间的链路DOWN掉时同理。</p>
-</li>
-<li><p>R3、R4 任意一台路由器与内网交换机直连链路 DOWN 掉，不影响内网 PC 访问外网。</p>
-<p>  <strong>S</strong>：配置的 VRRP 可以实现。 </p>
-</li>
-<li><p>【可选】若 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，以上两种情况，R3 都能检测到，要求此两种情况发生时内网用户访问 SERVER 都不受影响，R4 同理。</p>
-<p>  <strong>S</strong>：R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，明显要求配置 SLA 特性，我的做法是在 SW3 和 SW2 上配置一个环回地址，R3/R4 检测这个地址的可达性。举例：当 R3 配置了监测 SW3 的环回地址可达性，无论是 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN 其中一个条件达成，都会导致监测失败不可达，再在相应的内网子接口下配置 Track 联动降低 VRRP 组的优先级，使其成为 Backup 状态，另一台路由器成为 Master ，此时内网用户访问 Server 路径自动切换不受影响（其实还是会掉包的，取决于你配置的监测周期，抢占延时，生成树协议）。R4 同理。</p>
-<p>（11月10日发现，可以使用 <strong>Track list</strong> 的方式实现）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 33.33.33.33 source-interface Ethernet0/0</span><br><span class="line"> frequency 5</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
-<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/VsEkNTBjuxy">分享的文件</a>]</li>
-<li>欢迎“<del>来电</del>”来函探讨。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>PNETLab</category>
-      </categories>
-      <tags>
-        <tag>Network Emulator</tag>
-        <tag>PNETLab</tag>
-        <tag>Cisco</tag>
       </tags>
   </entry>
   <entry>
@@ -1082,6 +956,40 @@
       </tags>
   </entry>
   <entry>
+    <title>PNETLab试用</title>
+    <url>/posts/13f1a9a7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="What-is-PNETLab"><a href="#What-is-PNETLab" class="headerlink" title="What is PNETLab"></a>What is PNETLab</h2><p><strong>PNETLab</strong> <strong>(<em>Packet Network Emulator Tool Lab</em></strong>)is a platform that allows you to download and share labs with the community.  这句话摘抄自<a href="https://pnetlab.com/pages/documentation">官网</a>介绍，这是链接：<a href="https://pnetlab.com/pages/documentation">What is PNETLab?</a></p>
+<p>上网冲浪发现这个大宝贝，看完介绍心理痒痒就搞一搞，有个帖子介绍挺好，原文：<a href="https://community.cisco.com/t5/%E7%BD%91%E7%BB%9C%E5%8D%9A%E5%AE%A2/%E5%8E%9F%E5%88%9B-%E8%B6%85%E7%BA%A7%E6%8E%A8%E8%8D%90-%E7%BD%91%E5%B7%A5%E5%BF%85%E5%A4%87%E6%A8%A1%E6%8B%9F%E5%99%A8pnetlab-%E9%99%84%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5-%E5%85%A8%E7%90%83%E7%AC%AC%E4%B8%80%E7%AF%87%E6%9C%80%E4%BC%98%E8%B4%A8%E7%9A%84%E5%B8%96%E5%AD%90/ba-p/4383377">【原创】超级推荐：网工必备模拟器PNETLab，附下载链接，全球第一篇最优质的帖子</a>。</p>
+<h2 id="Experience"><a href="#Experience" class="headerlink" title="Experience"></a>Experience</h2><p>不能说和 EVE-NG “一模一样”，我对比过（可能是使用方法不规范，也可能是其他原因），之前用EVE-NG可以跑起整张 CCIE V5 H1 的拓扑（电脑的 CPU 和 RAM 未变动，系统换 WIN10 ，加了固态硬盘做系统盘），现在装了 PNETLab 只能跑 31台 还是 32 台设备（原谅老年人健忘）。<span id="more"></span></p>
+<h3 id="Hardware-requirements"><a href="#Hardware-requirements" class="headerlink" title="Hardware requirements"></a>Hardware requirements</h3><p>看了官网文档，我这古董 AMD CPU 不在硬件支持范围内（是不是这个原因跑不了那么多设备呢？），当看到这些说明的时候，我差点就把正在下载中的文件给取消了。最后安上了，我若安不好，当天便可以多睡几小时。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PC/Laptop HW requirements</span><br><span class="line">CPU：Intel i5/i7 (4 Logical processors), Enabled Intel virtualization in BIOS</span><br><span class="line">RAM：8Gb</span><br><span class="line">HDD Space：40Gb</span><br><span class="line">Network：LAN/WLAN</span><br><span class="line">----------------------------------------------------------------------------------------------------------</span><br><span class="line">PNETLab Virtual machine requirements</span><br><span class="line">CPU：4/1 (Number of processors/Number of cores per processor) Enabled Intel VT-x/EPT virtualization engine</span><br><span class="line">RAM：6Gb or more</span><br><span class="line">HDD：40Gb or more</span><br><span class="line">Network：VMware NAT or Bridged network adapter</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Unsupported hardware and systems</span><br><span class="line">The following are currently not supported:</span><br><span class="line">•   AMD CPU based PC or Server</span><br><span class="line">•   VirtualBox virtualization</span><br><span class="line">•   Citrix XenServer</span><br><span class="line">•   Microsoft HyperV</span><br><span class="line">•   Ubuntu 17.X or 18.x as platform</span><br></pre></td></tr></table></figure>
+
+<h3 id="PNETLab-Supported-Images"><a href="#PNETLab-Supported-Images" class="headerlink" title="PNETLab Supported Images"></a>PNETLab Supported Images</h3><p>查看支持的镜像，还是挺多的，不知为何 H3C 不在列表里，看B站 UP 主视频把 H3C 的防火墙设备弄进去了，不过我挺少用 QEMU 的镜像（太吃内存了），Huawei/H3C 的实验还是用官方的模拟器。</p>
+<p>还有个事，就是现在 <a href="https://user.pnetlab.com/store/labs/view"><em>PNETLab Store</em></a> 商店下载Lab不附带一起下载镜像了，要自己找镜像上传到目录，还好可以找之前 EVE-NG 的资源上传。</p>
+<h3 id="Language-amp-汉化"><a href="#Language-amp-汉化" class="headerlink" title="Language &amp; 汉化"></a>Language &amp; 汉化</h3><p>看到 B 站视频有 UP 主用了汉化，我就还好，看这些英文不头疼。其实也简单，就是把里边的英文包复制一份到电脑，再打开里面的 <strong>JSON 文件</strong>，里面有两列，左边属性，右边 Web 界面显示的字符，把右边填上中文保存上传到 Chinese 的文件夹，再切换一下即可。</p>
+<h3 id="How-to-console-to-devices"><a href="#How-to-console-to-devices" class="headerlink" title="How to console to devices"></a>How to console to devices</h3><p>有两种方式，跟 EVE-NG 不知道是哪个版本的方式一样。</p>
+<ul>
+<li>使用 <strong>HTML Console</strong>，在拓扑界面弹出一个小窗的方式，我个人就不太喜欢这么搞，不舒畅。</li>
+<li>使用 <strong>Default Console</strong>，调用系统自带的默认程序打开，例如把 CRT 软件设置成系统默认，跟 EVE-NG 的 <strong>EVE-NG-Win-Client-Pack</strong> 这玩意儿“一模一样”。</li>
+</ul>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><p>欢乐的时光特别短，又到时候说88，还有很多需要探索的地方，不谈了，开饭。</p>
+<p>接下来我将用 PNETLab 搞一个实验，来自大佬<a href="http://blog.sina.com.cn/vinsoney">红茶三杯</a>博客的原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html">【有点儿意思系列 06】一个看起来简单的案例</a>，弄完了写一篇文 po 出来，先看图。</p>
+ <a data-fancybox="gallery" href="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg">
+ <img src="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg" class="img-center" /></a>
+]]></content>
+      <categories>
+        <category>PNETLab</category>
+      </categories>
+      <tags>
+        <tag>Network Emulator</tag>
+        <tag>PNETLab</tag>
+        <tag>Cisco</tag>
+        <tag>EVE-NG</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>No.003 Simple Case</title>
     <url>/posts/62d0e673.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>红茶三杯的原文 ：<a href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html">【有点儿意思系列 04】哎哟喂停不下来了</a> ，根据问题延续中的表述， 实验拓扑增加了两台出口路由器，两台防火墙，一台服务器。本次拓扑实验依托上一个拓扑演变而来，大部分基础配置与上一个相同，如果您是初次看到本文，请参阅上文 <strong>【<a href="https://kiraster.github.io/posts/2da7a7a9.html">No.002 Simple Case</a>】</strong>，本文不在赘述。</p>
@@ -1179,42 +1087,6 @@
       </tags>
   </entry>
   <entry>
-    <title>把组装机主板塞到品牌机机箱</title>
-    <url>/posts/1f544ac3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>前段时间我的台式机电源嗝屁了，不得不掏出吃灰近四年的旧电源来顶一顶，祸不单行，这旧电源也出毛病，目测是供电不足，挂载了三块硬盘，开个 VMware 虚拟机做实验，老是自动频繁的弹出一块机械硬盘，望了望旁边还有一个联想品牌机的机箱（带电源，最大功率只有 280W ），想想要不给它个机会，抱着试一试的想法拆下来插上电，居然能带的动（其实我查过整机功率了，是带的动，显卡用亮机卡了不解释），所以进行了一场“岁土转生”。</p>
-<p>首先感谢的是，品牌机没有对电源插口做特殊化，主板和 CPU 供电接口通用，看了看电源标签上的参数也通用。唯一的问题是主板连接前面板跳线的插口，联想搞了自己个标准。</p>
-<p>图：电源、重启、指示灯跳线的插头</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/FN9oPIm31AzbpCs.jpg"><img src="https://i.loli.net/2021/11/24/FN9oPIm31AzbpCs.jpg" width="61.8%" class="img-center" /></a></p>
-<p>图：前面板音频插头</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/fMduPomV7CaFKnh.jpg"><img src="https://i.loli.net/2021/11/24/fMduPomV7CaFKnh.jpg" width="61.8%" class="img-center" /></a></p>
-<p>图：前面板 USB 插头</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/cKdQjDqmSaHu8Cg.jpg"><img src="https://i.loli.net/2021/11/24/cKdQjDqmSaHu8Cg.jpg" width="61.8%" class="img-center" /></a></p>
-<p>这……完全不对劲啊，首先针座和针头就对不上。这时候就要动脑和搜索引擎里遨游了。首先查找到联想机箱原主板的针脚，看下图，列出了各针脚的说明。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/23/SUgCk5O7sDQR1Bn.jpg"><img src="https://i.loli.net/2021/11/23/SUgCk5O7sDQR1Bn.jpg" width="61.8%" class="img-center" /></a></p>
-<p>用根牙签把联想机箱跳线插座上的线头挑出来，然后对应组装机主板的说明进行排列组合使之在组装机主板能使用（见下图），第一次我把电源指示灯正负接反了（这也不能怪我，联想的板子上没标正负），调换过后就正常了。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/23/tMQljEr87xvXBWL.jpg"><img src="https://i.loli.net/2021/11/23/tMQljEr87xvXBWL.jpg" width="61.8%" class="img-center" /></a></p>
-<p>其实在这个正负问题上我还折腾了好一会儿，一开始以为都是按左边针脚是正，右边针脚是负来对应的，打开机箱头部查看电路板发现指示灯也没有正负标识，查了 LED 哪个针脚是正负，查到了，LED 灯珠里小的那一边是正（涨知识了）</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/7tWBpuMq8ejbiYA.jpg"><img src="https://i.loli.net/2021/11/24/7tWBpuMq8ejbiYA.jpg" width="61.8%" class="img-center" /></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/t9voikRXlgIFuJY.jpg"><img src="https://i.loli.net/2021/11/24/t9voikRXlgIFuJY.jpg" width="61.8%" class="img-center" /></a></p>
-<p>接下来处理前面板的音频插口跳线，查看网上的介绍说明（搜索引擎搜：<strong>联想前置音频13针转9针</strong>），满满的都是复制粘贴的内容，我就不贴出来了，一番操作后得到如下图样式插头。总是有妖，明明照着教程撸的，测试的时候左右声道反了，又返工对换一对线。^*^</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/sgljUt1wFPiNSym.jpg"><img src="https://i.loli.net/2021/11/24/sgljUt1wFPiNSym.jpg" width="61.8%" class="img-center" /></a></p>
-<p>接下来处理前置 USB 线，查看网上的介绍说明（<a href="https://zhidao.baidu.com/question/244344946.html">联想USB接口11针的怎么接主板9针接口？</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">联想前置USB接口接法：</span><br><span class="line">市面上普通主板九针接法</span><br><span class="line">VCC，DATA-，DATA+，GND 空</span><br><span class="line">VCC，DATA-，DATA+，GND</span><br><span class="line">线的颜色是:</span><br><span class="line">红 白 绿 黑</span><br><span class="line">红 白 绿 黑</span><br><span class="line">联想主板上的F-usb 11针前置接法又不同了, 经常会遇到联想机箱+组装主板 ，一不小心，将前置线接上组装主板上,结果烧坏了前置usb控制板.</span><br><span class="line">1 2 9 10 都是黑线，3 5 7依次是红白绿，4 6 8依次是棕蓝黄,11是空着的.</span><br><span class="line">顺次是这个的</span><br><span class="line">1 3 5 7 9 11</span><br><span class="line">2 4 6 8 10</span><br><span class="line">⑴⑵⑼⑽是地线，⑶⑷是VCC，也就是电源正极，⑸⑹是DATA－，⑺⑻是DATA+，⑾是空针</span><br></pre></td></tr></table></figure>
-
-<p>按照这个说明，只需把插头的 3-5-7-8 这四列对应接到主板针脚上即可，不需要改插座头。为了安全起见，我还是掏出了万用表测量了一下自己的组装机主板是否对应这个正负输出（接错线的话确实有点小危险，5 V 直接短路可是要冒烟的）。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/FNMyc5LTBAY3a9i.jpg"><img src="https://i.loli.net/2021/11/24/FNMyc5LTBAY3a9i.jpg" width="61.8%" class="img-center" /></a></p>
-<p>终于折腾完了，把组装机的主板塞进了品牌机的机箱，目前前面板各项功能正常。由于使用了这个 280 W 的电源，这就彻底使我和大型网游“绝缘”了，不过也有好些年不抡游戏了。值得说一句，联想10年前的机箱用料十足，机箱的设计也挺好，给个好评她。这么一折腾才发现处处是学问，不能轻视电脑组装拧螺丝。</p>
-]]></content>
-      <categories>
-        <category>Fantasy</category>
-      </categories>
-      <tags>
-        <tag>Computer Case</tag>
-        <tag>Pin</tag>
-        <tag>更换机箱</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>No.004 Simple Case</title>
     <url>/posts/1fa3e02b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>红茶三杯的原文 ：<a href="http://blog.sina.com.cn/s/blog_5ec353710102vmgc.html">【有点儿意思系列 02】哎哟喂停不下来了</a> ，看完原文描述，我想到的是用 NAT 转换目的地址的方式解决，经过实验验证后，也说明了这个方法是可行的。做完实验后又想还有没有其他方法实现呢，想到用霸道的 PBR ，也能实现，不过这个方法我个人觉得比较傻。<span id="more"></span></p>
@@ -1260,6 +1132,134 @@
 <li>原文后边加两台防火墙的测试我就不做了（古董 AMD 台式机跑不起 ASAv），大概的考察点还是 数据包来回路径一致的问题</li>
 <li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
 <li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/3sWzTdiL5TG">分享的文件</a>]</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>PNETLab</category>
+      </categories>
+      <tags>
+        <tag>Network Emulator</tag>
+        <tag>PNETLab</tag>
+        <tag>Cisco</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>把组装机主板塞到品牌机机箱</title>
+    <url>/posts/1f544ac3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>前段时间我的台式机电源嗝屁了，不得不掏出吃灰近四年的旧电源来顶一顶，祸不单行，这旧电源也出毛病，目测是供电不足，挂载了三块硬盘，开个 VMware 虚拟机做实验，老是自动频繁的弹出一块机械硬盘，望了望旁边还有一个联想品牌机的机箱（带电源，最大功率只有 280W ），想想要不给它个机会，抱着试一试的想法拆下来插上电，居然能带的动（其实我查过整机功率了，是带的动，显卡用亮机卡了不解释），所以进行了一场“岁土转生”。</p>
+<p>首先感谢的是，品牌机没有对电源插口做特殊化，主板和 CPU 供电接口通用，看了看电源标签上的参数也通用。唯一的问题是主板连接前面板跳线的插口，联想搞了自己个标准。</p>
+<p>图：电源、重启、指示灯跳线的插头</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/FN9oPIm31AzbpCs.jpg"><img src="https://i.loli.net/2021/11/24/FN9oPIm31AzbpCs.jpg" width="61.8%" class="img-center" /></a></p>
+<p>图：前面板音频插头</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/fMduPomV7CaFKnh.jpg"><img src="https://i.loli.net/2021/11/24/fMduPomV7CaFKnh.jpg" width="61.8%" class="img-center" /></a></p>
+<p>图：前面板 USB 插头</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/cKdQjDqmSaHu8Cg.jpg"><img src="https://i.loli.net/2021/11/24/cKdQjDqmSaHu8Cg.jpg" width="61.8%" class="img-center" /></a></p>
+<p>这……完全不对劲啊，首先针座和针头就对不上。这时候就要动脑和搜索引擎里遨游了。首先查找到联想机箱原主板的针脚，看下图，列出了各针脚的说明。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/23/SUgCk5O7sDQR1Bn.jpg"><img src="https://i.loli.net/2021/11/23/SUgCk5O7sDQR1Bn.jpg" width="61.8%" class="img-center" /></a></p>
+<p>用根牙签把联想机箱跳线插座上的线头挑出来，然后对应组装机主板的说明进行排列组合使之在组装机主板能使用（见下图），第一次我把电源指示灯正负接反了（这也不能怪我，联想的板子上没标正负），调换过后就正常了。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/23/tMQljEr87xvXBWL.jpg"><img src="https://i.loli.net/2021/11/23/tMQljEr87xvXBWL.jpg" width="61.8%" class="img-center" /></a></p>
+<p>其实在这个正负问题上我还折腾了好一会儿，一开始以为都是按左边针脚是正，右边针脚是负来对应的，打开机箱头部查看电路板发现指示灯也没有正负标识，查了 LED 哪个针脚是正负，查到了，LED 灯珠里小的那一边是正（涨知识了）</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/7tWBpuMq8ejbiYA.jpg"><img src="https://i.loli.net/2021/11/24/7tWBpuMq8ejbiYA.jpg" width="61.8%" class="img-center" /></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/t9voikRXlgIFuJY.jpg"><img src="https://i.loli.net/2021/11/24/t9voikRXlgIFuJY.jpg" width="61.8%" class="img-center" /></a></p>
+<p>接下来处理前面板的音频插口跳线，查看网上的介绍说明（搜索引擎搜：<strong>联想前置音频13针转9针</strong>），满满的都是复制粘贴的内容，我就不贴出来了，一番操作后得到如下图样式插头。总是有妖，明明照着教程撸的，测试的时候左右声道反了，又返工对换一对线。^*^</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/sgljUt1wFPiNSym.jpg"><img src="https://i.loli.net/2021/11/24/sgljUt1wFPiNSym.jpg" width="61.8%" class="img-center" /></a></p>
+<p>接下来处理前置 USB 线，查看网上的介绍说明（<a href="https://zhidao.baidu.com/question/244344946.html">联想USB接口11针的怎么接主板9针接口？</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">联想前置USB接口接法：</span><br><span class="line">市面上普通主板九针接法</span><br><span class="line">VCC，DATA-，DATA+，GND 空</span><br><span class="line">VCC，DATA-，DATA+，GND</span><br><span class="line">线的颜色是:</span><br><span class="line">红 白 绿 黑</span><br><span class="line">红 白 绿 黑</span><br><span class="line">联想主板上的F-usb 11针前置接法又不同了, 经常会遇到联想机箱+组装主板 ，一不小心，将前置线接上组装主板上,结果烧坏了前置usb控制板.</span><br><span class="line">1 2 9 10 都是黑线，3 5 7依次是红白绿，4 6 8依次是棕蓝黄,11是空着的.</span><br><span class="line">顺次是这个的</span><br><span class="line">1 3 5 7 9 11</span><br><span class="line">2 4 6 8 10</span><br><span class="line">⑴⑵⑼⑽是地线，⑶⑷是VCC，也就是电源正极，⑸⑹是DATA－，⑺⑻是DATA+，⑾是空针</span><br></pre></td></tr></table></figure>
+
+<p>按照这个说明，只需把插头的 3-5-7-8 这四列对应接到主板针脚上即可，不需要改插座头。为了安全起见，我还是掏出了万用表测量了一下自己的组装机主板是否对应这个正负输出（接错线的话确实有点小危险，5 V 直接短路可是要冒烟的）。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/FNMyc5LTBAY3a9i.jpg"><img src="https://i.loli.net/2021/11/24/FNMyc5LTBAY3a9i.jpg" width="61.8%" class="img-center" /></a></p>
+<p>终于折腾完了，把组装机的主板塞进了品牌机的机箱，目前前面板各项功能正常。由于使用了这个 280 W 的电源，这就彻底使我和大型网游“绝缘”了，不过也有好些年不抡游戏了。值得说一句，联想10年前的机箱用料十足，机箱的设计也挺好，给个好评她。这么一折腾才发现处处是学问，不能轻视电脑组装拧螺丝。</p>
+]]></content>
+      <categories>
+        <category>Fantasy</category>
+      </categories>
+      <tags>
+        <tag>Computer Case</tag>
+        <tag>Pin</tag>
+        <tag>更换机箱</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>No.001 Simple Case</title>
+    <url>/posts/8ac5ac4a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html">【有点儿意思系列 06】一个看起来简单的案例</a>，再上图。<span id="more"></span></p>
+ <a data-fancybox="gallery" href="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg">
+ <img src="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg" class="img-center" /></a>
+
+<h2 id="Request-and-Solution"><a href="#Request-and-Solution" class="headerlink" title="Request and Solution"></a>Request and Solution</h2><ol>
+<li><p>PC1、PC2 分属 VLAN10 和 VLAN20；DHCP 服务器属 VLAN30 ，PC1 和 PC2 从 DHCP 服务器自动获取地址。</p>
+<p>   <strong>S</strong>：根据上下文需求，确定 R3 和 R4 是热备组网。R3 和 R4 上配置子接口，配置 VRRP ；业务地址段和 DHCPServer 不在同一网段，所以需要在业务网段的网关上配置 DHCP 中继。实验中使用一台路由器模拟 DHCPServer，上面配置分配给 VLAN10,VLAN20 的地址池。</p>
+   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- DHCPServer 配置</span><br><span class="line">!</span><br><span class="line">ip dhcp excluded-address 10.1.10.252 10.1.10.254</span><br><span class="line">ip dhcp excluded-address 10.1.20.252 10.1.20.254</span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan10</span><br><span class="line"> network 10.1.10.0 255.255.255.0</span><br><span class="line"> default-router 10.1.10.254 </span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan20</span><br><span class="line"> network 10.1.20.0 255.255.255.0</span><br><span class="line"> default-router 10.1.20.254 </span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> encapsulation dot1Q 10</span><br><span class="line"> ip address 10.1.10.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 10 ip 10.1.10.254</span><br><span class="line"> vrrp 10 priority 120</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.20</span><br><span class="line"> encapsulation dot1Q 20</span><br><span class="line"> ip address 10.1.20.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 20 ip 10.1.20.254</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.30</span><br><span class="line"> encapsulation dot1Q 30</span><br><span class="line"> ip address 10.1.30.252 255.255.255.0</span><br><span class="line"> vrrp 30 ip 10.1.30.254</span><br><span class="line"> vrrp 30 priority 120</span><br><span class="line"> vrrp 30 track 1 decrement 21</span><br><span class="line">! --- 网管地址网关</span><br><span class="line">interface Ethernet0/1.99</span><br><span class="line"> encapsulation dot1Q 99</span><br><span class="line"> ip address 20.1.1.252 255.255.255.0</span><br><span class="line"> vrrp 99 ip 20.1.1.254</span><br><span class="line"> vrrp 99 priority 120</span><br><span class="line"> vrrp 99 track 1 decrement 21</span><br><span class="line">!       </span><br></pre></td></tr></table></figure></li>
+<li><p>SW4 是内网用户接入交换机（仅具二层功能），要求内网两个网段的用户均能 telnet 到该设备。</p>
+<p>   <strong>S</strong>：配置 VLAN ，划分接口，配置 Trunk，配置默认网关和远程网管</p>
+   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW4 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/1</span><br><span class="line"> switchport access vlan 10</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/2</span><br><span class="line"> switchport access vlan 20</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/3</span><br><span class="line"> switchport access vlan 30</span><br><span class="line">! --- 网管IP地址</span><br><span class="line">interface Vlan99</span><br><span class="line"> ip address 20.1.1.10 255.255.255.0</span><br><span class="line">! -- 本想使用 ip default-gateway，但是不起作用，下面这条效果是一样</span><br><span class="line">ip route 0.0.0.0 0.0.0.0 20.1.1.254</span><br><span class="line">! --- 网管配置 略</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<p>   由于 VPCS 不支持 Telnet ，此处使用 DHCPServer 做测试。</p>
+   <a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg">
+<img src="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg" class="img-center" /></a>
+ 
+</li>
+<li><p>R3 和 R4 作为内网用户的网关设备，互为热备份。</p>
+<p>  <strong>S</strong>：这一条前面提过了，整个拓扑完整配置后边发，我打个包。</p>
+</li>
+<li><p>R3、R4、SW2 及 SW3 上不允许出现任何手工配置的静态路由条目。 </p>
+<p>  <strong>S</strong>：好的，满足你。</p>
+</li>
+<li><p>SW1 采用重发布的方式，将直连的服务器网段路由（如10.1.100.0/24）注入 EIGRP。</p>
+<p>  <strong>S</strong>：好的，满足你。</p>
+</li>
+<li><p>内网用户（PC1、PC2）访问核心服务器 Server（10.1.100.1）的数据流走向如下：</p>
+<p> PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</p>
+<p> PC2 访问 Server：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</p>
+<p> 沿途任何设备上到达 Server 的路由不允许出现负载均衡，且 PC 访问 Server 的流量往返路径一致。</p>
+<p>  <strong>S</strong>：在配置完路由协议后，查看沿途设备路由表发现到达 Server 的路由出现负载均衡是正常现象，旁观大局，逐个处理就行。</p>
+<p>  但是有一个现象我不知是模拟器的 Bug 还是镜像的问题，查看 SW3 和 SW4  ，总有一台设备到达 Server 的路由是这样的：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D EX     10.1.100.0/24 [170/307200]</span><br></pre></td></tr></table></figure>
+<p>  另一台学习到去往 Server 网段的路由是从上面这台学习到的外部路由，重启两台交换机的 OSPF 进程，这条路由又可能显示在第二台了。我又用 GNS3 做了测试，也是这种情况，按理说加载到路由表的不应该是管理距离为 110 的 OSPF 外部路由么？</p>
+<p> 我思考了一番，可能是 OSPF 进程启动先后顺序的问题，先启动的交换机 OSPF 进程加载了 EIGRP 外部路由，而后启动的交换机 OSPF 进程学习到 EIGRP 外部路由和 OSPF 外部路由，按照规则选择了管理距离值较小的 OSPF 路由条目。</p>
+<p> <strong>PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R1 配置，修改 OSPF 入向接口的 cost ，使从 e0/0 收到去往10.1.100.0网段的路由更优</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置, 在 OSPF 进程下过滤入方向收到的去往 10.1.100.0 网段的条目，为什么这么做呢，从后面需求看，断掉 SW2/SW3 与 SW1 的线路之一，去往 Server的流量就不需要经过断掉线路这台交换机，而且断掉线路还要流量经过这台设备，走了个直角线路，并不是最优路径</span><br><span class="line">!</span><br><span class="line">router ospf 200</span><br><span class="line"> distribute-list 10 in</span><br><span class="line">!</span><br><span class="line">access-list 10 deny   10.1.100.0 0.0.0.255</span><br><span class="line">access-list 10 permit any</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<p> <strong>PC2 访问 Server ：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</strong></p>
+<p> 思路和 PC1 访问 Server 一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
+<p> <strong>PC1 访问 Server 回程路径： Server&gt; SW1 &gt; SW2 &gt; R1 &gt;R3 ；</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW1 配置，观察到去往内网网段的路由条目是负载均衡，配置偏移列表和指定入向接口，增加希望不要出现在路由表里的条目 metric 偏移，影响路由表加载</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> offset-list 20 in 1024 Ethernet0/2 </span><br><span class="line"> offset-list 10 in 1024 Ethernet0/1 </span><br><span class="line">!</span><br><span class="line">access-list 10 permit 10.1.20.0 0.0.0.255</span><br><span class="line">access-list 20 permit 10.1.10.0 0.0.0.255</span><br><span class="line"> !</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，修改 e0/3 接口 cost，使得从该接口学习到去往 10.1.10.0 和 10.1.20.0 网段的路由不是最优路由</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3</span><br><span class="line">  ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<p>  <strong>PC2 访问 Server 回程路径： Server&gt; SW1 &gt; SW3 &gt; R2 &gt;R3 ；</strong></p>
+<p>  思路和 PC1 访问 Server 回程路径一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
+</li>
+<li><p>要求 SW2 和 SW3 访问 Server 都走最优路径，即 SW2 前往 Server 的数据流走 SW1，SW3 前往 Server 的数据流也直接到 SW1。</p>
+<p>   <strong>S</strong>：这一条也佐证了我在上面说到的流量走直角路径不是最优的想法。说的通俗一点就是：SW1 上的有流量要去往 Server 只能从 e0/1 出去，不走直角。即使 SW1 上的出口线路故障了也不走，走的路径是：拓扑上的对角线。退一步来说当 SW2/SW3 的出口线路故障了，下联的 R1/R2 不会从 SW2/SW3 学习到去往 Server 的路由条目。SW2 也是这个道理。</p>
+</li>
+</ol>
+<a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg">
+ <img src="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg" class="img-center" /></a>
+
+<ol start="8">
+<li><p>SW1 上关于 10.1.10.0/24 和 10.1.20.0/24 的路由不应该出现等价负载均衡，正常情况下访问 10.0/24 网段的数据流走 SW2，访问2 0.0/24 网段的数据流走 SW3。</p>
+<p>   <strong>S</strong>：在 PC1/PC2 访问 Server 的回程路径时候已经解决这一条，不占用篇幅了（懒得码字）。</p>
+</li>
+<li><p>当 SW1-SW2 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径： R3&gt;R1&gt;SW3&gt;SW1&gt;Server，且往返路径一致。而当 SW1-SW3 之间的链路 DOWN 掉时，PC2 应该仍然能够访问 Server，情况类似。</p>
+<p>  <strong>S</strong>：正如我前面所说的：当 SW2/SW3 的出口线路故障了，下联的 R1/R2 也不会从 SW2/SW3 学习到去往 Server 的路由条目。此时去往 Server 的流量已经在 R1/R2 通过走对角线的路径来到 SW3/SW2 上。</p>
+<p>重点解决回程的路径。因为前面已经修改了 SW2 和 SW3 上的 e0/3 的 cost ，这就使得当 SW1-SW2 之间的链路 DOWN 掉或者 SW1-SW3 之间的链路 DOWN 掉时，SW3/SW2 去往 10.1.10.0 和 10.1.20.0 网段都是直线往下经过 R2 或者 R1 回程到业务网段，并不符合需求。需要添加策略路由 PBR 实现往返路径一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，配置匹配去往 10.1.20.0 网段的 ACL，配置 route-map 匹配 ACL ，设置去往10.1.20.0 网段的下一跳地址，配置 SLA 监测，最后在 e0/1 调用</span><br><span class="line">!</span><br><span class="line">access-list 101 permit ip any 10.1.20.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">route-map pbr_20.0 permit 10</span><br><span class="line"> match ip address 101</span><br><span class="line"> set ip next-hop verify-availability 10.1.254.105 1 track 1</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 10.1.254.105 source-interface Ethernet0/3</span><br><span class="line"> frequency 5</span><br><span class="line">! 设置 delay 是为了及时观察现象，实际生产环境不需这么做</span><br><span class="line"> track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip policy route-map pbr_20.0</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<p>当SW1-SW3之间的链路DOWN掉时，PC2应该仍然能够访问Server，情况类似。解决思路和上面一样，懒-码-字。</p>
+</li>
+<li><p>当 SW2-R1 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径：R3&gt;R1&gt;SW3&gt;SW1&gt;Server，此时不要求流量往返路径完全一致。当 SW3-R2 之间的链路 DOWN 掉时，PC2 应该仍能够访问到 Server。</p>
+<p>  <strong>S</strong>：当 SW2-R1 之间的链路 DOWN 掉时，R1 是能够从 SW3 学习到去往 Server 的路由的，只是回程的时候路径是： Server&gt; SW1 &gt; SW2 &gt; R2 &gt;R4 ，不要求流量往返路径完全一致，本条需求已经自动实现了。当SW3-R2之间的链路DOWN掉时同理。</p>
+</li>
+<li><p>R3、R4 任意一台路由器与内网交换机直连链路 DOWN 掉，不影响内网 PC 访问外网。</p>
+<p>  <strong>S</strong>：配置的 VRRP 可以实现。 </p>
+</li>
+<li><p>【可选】若 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，以上两种情况，R3 都能检测到，要求此两种情况发生时内网用户访问 SERVER 都不受影响，R4 同理。</p>
+<p>  <strong>S</strong>：R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，明显要求配置 SLA 特性，我的做法是在 SW3 和 SW2 上配置一个环回地址，R3/R4 检测这个地址的可达性。举例：当 R3 配置了监测 SW3 的环回地址可达性，无论是 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN 其中一个条件达成，都会导致监测失败不可达，再在相应的内网子接口下配置 Track 联动降低 VRRP 组的优先级，使其成为 Backup 状态，另一台路由器成为 Master ，此时内网用户访问 Server 路径自动切换不受影响（其实还是会掉包的，取决于你配置的监测周期，抢占延时，生成树协议）。R4 同理。</p>
+<p>（11月10日发现，可以使用 <strong>Track list</strong> 的方式实现）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 33.33.33.33 source-interface Ethernet0/0</span><br><span class="line"> frequency 5</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
+<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/VsEkNTBjuxy">分享的文件</a>]</li>
 <li>欢迎“<del>来电</del>”来函探讨。</li>
 </ul>
 ]]></content>
