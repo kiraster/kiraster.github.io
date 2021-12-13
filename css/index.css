@@ -493,7 +493,7 @@ figure.highlight {
   color: #525252;
 }
 * {
-  -webkit-filter: grayscale(100%);
+  -webkit-text-size-adjust: none;
 }
 html {
   height: 100%;
