@@ -270,20 +270,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/eNSP/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/USG%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/Methods/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
@@ -298,7 +284,14 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
+    <loc>https://kiraster.github.io/tags/eNSP/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/USG%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -313,6 +306,13 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/Notes/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -368,6 +368,13 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%8D%87%E7%BA%A7%E7%89%88%E6%9C%AC/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/tags/vpn-instance/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
@@ -376,13 +383,6 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/VPN%E5%AE%9E%E4%BE%8B/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%8D%87%E7%BA%A7%E7%89%88%E6%9C%AC/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -473,34 +473,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/Network-Emulator/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/PNETLab/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/EVE-NG/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Cisco/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/%E7%BA%BF%E8%B7%AF%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
@@ -557,6 +529,34 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/tags/Network-Emulator/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/PNETLab/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/EVE-NG/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Cisco/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/tags/Computer-Case/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
@@ -594,13 +594,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/eNSP/</loc>
-    <lastmod>2021-12-13</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/categories/Methods/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
@@ -608,7 +601,7 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
+    <loc>https://kiraster.github.io/categories/eNSP/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -616,6 +609,13 @@
   
   <url>
     <loc>https://kiraster.github.io/categories/Notes/</loc>
+    <lastmod>2021-12-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
     <lastmod>2021-12-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
