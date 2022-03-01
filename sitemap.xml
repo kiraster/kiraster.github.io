@@ -312,28 +312,7 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/Update/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/%E5%8F%8C%E5%87%BA%E5%8F%A3%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Router/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -348,6 +327,27 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/Notes/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Update/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E5%8F%8C%E5%87%BA%E5%8F%A3%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Router/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -375,6 +375,13 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/tags/H3C%E8%AE%BE%E5%A4%87/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/tags/vpn-instance/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
@@ -383,13 +390,6 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/VPN%E5%AE%9E%E4%BE%8B/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/H3C%E8%AE%BE%E5%A4%87/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -438,41 +438,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/%E7%BA%BF%E8%B7%AF%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/%E5%89%B2%E6%8E%A5%E5%B7%A5%E4%BD%9C/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Python%E8%84%9A%E6%9C%AC/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Blog/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/L2TP/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
@@ -502,6 +467,41 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%BF%83%E6%B7%BB%E5%8A%A0/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Blog/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E7%BA%BF%E8%B7%AF%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E5%89%B2%E6%8E%A5%E5%B7%A5%E4%BD%9C/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Python%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -650,13 +650,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/Update/</loc>
-    <lastmod>2022-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
@@ -665,6 +658,13 @@
   
   <url>
     <loc>https://kiraster.github.io/categories/Notes/</loc>
+    <lastmod>2022-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/categories/Update/</loc>
     <lastmod>2022-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
