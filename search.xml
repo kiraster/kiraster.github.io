@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo Theme: Obsidian</title>
-    <url>/posts/9cdc001c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
-<blockquote>
-<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
-</blockquote>
-<blockquote>
-<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> <span id="more"></span></p>
-</blockquote>
-<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
-
-
-<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
-<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
-<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
-<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
-]]></content>
-      <categories>
-        <category>Themes</category>
-      </categories>
-      <tags>
-        <tag>obsidian</tag>
-        <tag>Themes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于开始扯谈</title>
     <url>/posts/49183d2a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>就字面意思，你懂我意思吗</p>
@@ -52,31 +26,29 @@
       </tags>
   </entry>
   <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。<span id="more"></span></p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
-</ul>
+    <title>Hexo Theme: Obsidian</title>
+    <url>/posts/9cdc001c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="主题介绍"></a>主题介绍</h2><p><strong>这是一款暗色的 Hexo 主题, 拥有响应式布局, 简约而优雅。</strong></p>
+<blockquote>
+<p><strong>作者：</strong><p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond</a>   <em><strong>ᴅᴇsɪɢɴᴇᴅ &amp; ᴄᴏᴅᴇᴅ ʙʏ ᴛʀɪᴅɪᴀᴍᴏɴᴅ</strong></em></a><br>[<strong>主题使用中文文档：</strong>]( <a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md">https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/README_CN.md</a> ）   </p>
+</blockquote>
+<blockquote>
+<p><strong>感谢作者</strong>：<p><img width="40" src="https://img-blog.csdnimg.cn/20200930013332450.png" alt=""><a href="https://tridiamond.tech/">三·钻 TriDiamond（点击浏览作者博客）</a> </a> <span id="more"></span></p>
+</blockquote>
+<h2 id="主题页面展示"><a href="#主题页面展示" class="headerlink" title="主题页面展示"></a><strong>主题页面展示</strong></h2><img src = "https://res.cloudinary.com/tridiamond/image/upload/v1573323147/blog/A-Obsidian-full_ubmo0d.png" />
+
+
+<h3 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a><strong>分类页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148012/blog/A-Obsidian-categories_mgdti7.png"></p>
+<h3 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a><strong>多级分类</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-categories-level_xtxty9.png"></p>
+<h3 id="归档页"><a href="#归档页" class="headerlink" title="归档页"></a><strong>归档页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573323148/blog/A-Obsidian-archives_ffpwf9.png"></p>
+<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a><strong>文章页</strong></h3><p><img src="https://res.cloudinary.com/tridiamond/image/upload/v1573148016/blog/A-Obsidian-articles_wlsu2v.png"></p>
 ]]></content>
       <categories>
-        <category>Methods</category>
+        <category>Themes</category>
       </categories>
       <tags>
-        <tag>Methods</tag>
-        <tag>Feynman</tag>
+        <tag>obsidian</tag>
+        <tag>Themes</tag>
       </tags>
   </entry>
   <entry>
@@ -119,6 +91,34 @@
       <tags>
         <tag>eNSP</tag>
         <tag>USG防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。</p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。<span id="more"></span></p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Methods</category>
+      </categories>
+      <tags>
+        <tag>Methods</tag>
+        <tag>Feynman</tag>
       </tags>
   </entry>
   <entry>
@@ -225,6 +225,106 @@
       </tags>
   </entry>
   <entry>
+    <title>Blog Update</title>
+    <url>/posts/e2a2e564.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="2021-11-20"><a href="#2021-11-20" class="headerlink" title="2021/11/20"></a>2021/11/20</h3><ul>
+<li>首页导航栏不显示 Category 页面入口链接</li>
+<li>分类页 Category  内容侧边栏显示</li>
+<li>清除 Jade 无用代码</li>
+<li>修正 Jade 部分代码</li>
+<li>修正 CSS 样式文件<span id="more"></span></li>
+</ul>
+<h3 id="2021-11-15"><a href="#2021-11-15" class="headerlink" title="2021/11/15"></a>2021/11/15</h3><ul>
+<li>修改首页内容展示方式</li>
+<li>修改 pagination 样式</li>
+</ul>
+<h3 id="2021-11-7"><a href="#2021-11-7" class="headerlink" title="2021/11/7"></a>2021/11/7</h3><ul>
+<li>修改网站字体为思源黑体</li>
+</ul>
+<h3 id="2021-10-30"><a href="#2021-10-30" class="headerlink" title="2021/10/30"></a>2021/10/30</h3><ul>
+<li>修改 Archive 页样式</li>
+<li>修改链接样式</li>
+</ul>
+<h3 id="2021-10-30-1"><a href="#2021-10-30-1" class="headerlink" title="2021/10/30"></a>2021/10/30</h3><ul>
+<li>添加本地搜索</li>
+</ul>
+<h3 id="2021-10-29"><a href="#2021-10-29" class="headerlink" title="2021/10/29"></a>2021/10/29</h3><ul>
+<li>修改 post 文章页和其他页面的 date_format 参数</li>
+</ul>
+<h3 id="2021-10-26"><a href="#2021-10-26" class="headerlink" title="2021/10/26"></a>2021/10/26</h3><ul>
+<li>修改 archive 页面条目显示数量</li>
+<li>添加文章页底部 Published、Tags</li>
+</ul>
+<h3 id="2021-10-24"><a href="#2021-10-24" class="headerlink" title="2021/10/24"></a>2021/10/24</h3><ul>
+<li>修改样式中的 <strong>media query</strong> 参数</li>
+</ul>
+<h3 id="2021-10-22"><a href="#2021-10-22" class="headerlink" title="2021/10/22"></a>2021/10/22</h3><ul>
+<li>修改文章页，移除左侧 sidebar，page_main 添加边框样式</li>
+<li>修改 about 页面底部 contact 信息</li>
+<li>移除 article-toc 文章目录</li>
+<li>移除 sidebar CV 信息标签</li>
+</ul>
+<h3 id="2021-10-16"><a href="#2021-10-16" class="headerlink" title="2021/10/16"></a>2021/10/16</h3><ul>
+<li><del>添加文章页版权信息</del></li>
+<li>修改 md 文件信息</li>
+</ul>
+<h3 id="2021-10-12"><a href="#2021-10-12" class="headerlink" title="2021/10/12"></a>2021/10/12</h3><ul>
+<li>使用 <a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a> 主题，感谢作者 <a href="https://phower.me/">Le Phower’s</a></li>
+<li>博客从 Gitee 迁移到 GitHub</li>
+<li>修改主题配置文件</li>
+<li>修改 sidebar 的 social 内容</li>
+<li>主页 content 修改为显示最近十篇文章</li>
+<li>主页 content 添加置顶文章</li>
+<li>除 category 页和 about 页外添加 pagination</li>
+<li>添加 category 页，添加 tag-cloud</li>
+<li>添加 archive 页</li>
+<li>添加 about 页</li>
+<li> <del>post 页面侧边栏添加 article-toc 文章目录</del></li>
+<li>添加百度统计，谷歌统计，谷歌收录，bing 收录</li>
+<li><del>侧边栏添加 aplayer 播放器，显示效果不美观，已注释代码</del></li>
+<li><del>page_main 的 div CSS 浮动问题未解决</del></li>
+</ul>
+<h3 id="2021-01-23"><a href="#2021-01-23" class="headerlink" title="2021/01/23"></a>2021/01/23</h3><ul>
+<li><del>添加文章页评论邮件提醒功能</del></li>
+</ul>
+<h3 id="2021-01-14"><a href="#2021-01-14" class="headerlink" title="2021/01/14"></a>2021/01/14</h3><ul>
+<li><del>修改博客网站访问地址不带二级目录</del></li>
+<li><del>修正修改访问地址后文章阅读次数显示为 0 问题</del></li>
+<li><del>修正 whoami 页面显示双 footer 栏问题</del></li>
+</ul>
+<h3 id="2021-01-08"><a href="#2021-01-08" class="headerlink" title="2021/01/08"></a>2021/01/08</h3><ul>
+<li><del>修正文章阅读次数显示为 0 问题</del></li>
+<li><del>添加文章模板 updated 参数</del></li>
+<li><del>对网站添加百度统计</del></li>
+</ul>
+<h3 id="2021-01-06"><a href="#2021-01-06" class="headerlink" title="2021/01/06"></a>2021/01/06</h3><ul>
+<li><del>制作修改博客 Logo，更改 cover 图片</del></li>
+<li><del>修改导航栏标签为中文</del></li>
+<li><del>启用 valine 评论代码</del></li>
+<li><del>添加文章页 END 结束分割线</del></li>
+<li><del>添加文章页上一篇下一篇链接</del></li>
+<li><del>添加 post 文章模板，添加 categories,series,cover,tags 参数</del></li>
+<li><del>修改网页底部 footer，添加网站运行时间记录</del></li>
+<li><del>更换图标库链接</del></li>
+<li><del>添加网站图床</del></li>
+<li><del>更换文章页播放音乐</del></li>
+<li><del>更换网站首页 Website slogans 动态文字</del></li>
+<li><del>文章页和 about 页添加网易云音乐</del></li>
+<li><del>文章页添加“友情链接”</del></li>
+<li><del>更换部分页面左上角图标返回链接</del></li>
+<li><del>添加 abbrlink 插件，修改文章页 url 链接</del></li>
+<li><del>博客网站本地初始调试工作完成，推送至 Gitee</del></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>Update</category>
+      </categories>
+      <tags>
+        <tag>Update</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简明现代汉语语法_学习</title>
     <url>/posts/51f223b9.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
@@ -326,103 +426,23 @@
       </tags>
   </entry>
   <entry>
-    <title>Blog Update</title>
-    <url>/posts/e2a2e564.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="2021-11-20"><a href="#2021-11-20" class="headerlink" title="2021/11/20"></a>2021/11/20</h3><ul>
-<li>首页导航栏不显示 Category 页面入口链接</li>
-<li>分类页 Category  内容侧边栏显示</li>
-<li>清除 Jade 无用代码</li>
-<li>修正 Jade 部分代码</li>
-<li>修正 CSS 样式文件<span id="more"></span></li>
-</ul>
-<h3 id="2021-11-15"><a href="#2021-11-15" class="headerlink" title="2021/11/15"></a>2021/11/15</h3><ul>
-<li>修改首页内容展示方式</li>
-<li>修改 pagination 样式</li>
-</ul>
-<h3 id="2021-11-7"><a href="#2021-11-7" class="headerlink" title="2021/11/7"></a>2021/11/7</h3><ul>
-<li>修改网站字体为思源黑体</li>
-</ul>
-<h3 id="2021-10-30"><a href="#2021-10-30" class="headerlink" title="2021/10/30"></a>2021/10/30</h3><ul>
-<li>修改 Archive 页样式</li>
-<li>修改链接样式</li>
-</ul>
-<h3 id="2021-10-30-1"><a href="#2021-10-30-1" class="headerlink" title="2021/10/30"></a>2021/10/30</h3><ul>
-<li>添加本地搜索</li>
-</ul>
-<h3 id="2021-10-29"><a href="#2021-10-29" class="headerlink" title="2021/10/29"></a>2021/10/29</h3><ul>
-<li>修改 post 文章页和其他页面的 date_format 参数</li>
-</ul>
-<h3 id="2021-10-26"><a href="#2021-10-26" class="headerlink" title="2021/10/26"></a>2021/10/26</h3><ul>
-<li>修改 archive 页面条目显示数量</li>
-<li>添加文章页底部 Published、Tags</li>
-</ul>
-<h3 id="2021-10-24"><a href="#2021-10-24" class="headerlink" title="2021/10/24"></a>2021/10/24</h3><ul>
-<li>修改样式中的 <strong>media query</strong> 参数</li>
-</ul>
-<h3 id="2021-10-22"><a href="#2021-10-22" class="headerlink" title="2021/10/22"></a>2021/10/22</h3><ul>
-<li>修改文章页，移除左侧 sidebar，page_main 添加边框样式</li>
-<li>修改 about 页面底部 contact 信息</li>
-<li>移除 article-toc 文章目录</li>
-<li>移除 sidebar CV 信息标签</li>
-</ul>
-<h3 id="2021-10-16"><a href="#2021-10-16" class="headerlink" title="2021/10/16"></a>2021/10/16</h3><ul>
-<li><del>添加文章页版权信息</del></li>
-<li>修改 md 文件信息</li>
-</ul>
-<h3 id="2021-10-12"><a href="#2021-10-12" class="headerlink" title="2021/10/12"></a>2021/10/12</h3><ul>
-<li>使用 <a href="https://github.com/PhosphorW/hexo-theme-academia">Academic</a> 主题，感谢作者 <a href="https://phower.me/">Le Phower’s</a></li>
-<li>博客从 Gitee 迁移到 GitHub</li>
-<li>修改主题配置文件</li>
-<li>修改 sidebar 的 social 内容</li>
-<li>主页 content 修改为显示最近十篇文章</li>
-<li>主页 content 添加置顶文章</li>
-<li>除 category 页和 about 页外添加 pagination</li>
-<li>添加 category 页，添加 tag-cloud</li>
-<li>添加 archive 页</li>
-<li>添加 about 页</li>
-<li> <del>post 页面侧边栏添加 article-toc 文章目录</del></li>
-<li>添加百度统计，谷歌统计，谷歌收录，bing 收录</li>
-<li><del>侧边栏添加 aplayer 播放器，显示效果不美观，已注释代码</del></li>
-<li><del>page_main 的 div CSS 浮动问题未解决</del></li>
-</ul>
-<h3 id="2021-01-23"><a href="#2021-01-23" class="headerlink" title="2021/01/23"></a>2021/01/23</h3><ul>
-<li><del>添加文章页评论邮件提醒功能</del></li>
-</ul>
-<h3 id="2021-01-14"><a href="#2021-01-14" class="headerlink" title="2021/01/14"></a>2021/01/14</h3><ul>
-<li><del>修改博客网站访问地址不带二级目录</del></li>
-<li><del>修正修改访问地址后文章阅读次数显示为 0 问题</del></li>
-<li><del>修正 whoami 页面显示双 footer 栏问题</del></li>
-</ul>
-<h3 id="2021-01-08"><a href="#2021-01-08" class="headerlink" title="2021/01/08"></a>2021/01/08</h3><ul>
-<li><del>修正文章阅读次数显示为 0 问题</del></li>
-<li><del>添加文章模板 updated 参数</del></li>
-<li><del>对网站添加百度统计</del></li>
-</ul>
-<h3 id="2021-01-06"><a href="#2021-01-06" class="headerlink" title="2021/01/06"></a>2021/01/06</h3><ul>
-<li><del>制作修改博客 Logo，更改 cover 图片</del></li>
-<li><del>修改导航栏标签为中文</del></li>
-<li><del>启用 valine 评论代码</del></li>
-<li><del>添加文章页 END 结束分割线</del></li>
-<li><del>添加文章页上一篇下一篇链接</del></li>
-<li><del>添加 post 文章模板，添加 categories,series,cover,tags 参数</del></li>
-<li><del>修改网页底部 footer，添加网站运行时间记录</del></li>
-<li><del>更换图标库链接</del></li>
-<li><del>添加网站图床</del></li>
-<li><del>更换文章页播放音乐</del></li>
-<li><del>更换网站首页 Website slogans 动态文字</del></li>
-<li><del>文章页和 about 页添加网易云音乐</del></li>
-<li><del>文章页添加“友情链接”</del></li>
-<li><del>更换部分页面左上角图标返回链接</del></li>
-<li><del>添加 abbrlink 插件，修改文章页 url 链接</del></li>
-<li><del>博客网站本地初始调试工作完成，推送至 Gitee</del></li>
-</ul>
-<hr>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗<span id="more"></span></p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
 ]]></content>
       <categories>
-        <category>Update</category>
+        <category>扯谈</category>
       </categories>
       <tags>
-        <tag>Update</tag>
+        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -446,23 +466,29 @@
       </tags>
   </entry>
   <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗<span id="more"></span></p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
+    <title>H3C_V5_V7设备巡检信息提取</title>
+    <url>/posts/80e04e00.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。<span id="more"></span></p>
+<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
+<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
+<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/3/21 23:26</span></span><br><span class="line"><span class="comment"># Description：Device_info</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/111.txt&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="comment"># 首行显示50个“=”号，提取设备版本信息，开头注释</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;display version&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line01 = <span class="string">&#x27;=&#x27;</span> * <span class="number">50</span> + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line02 = <span class="string">&#x27;Device Name:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">r&#x27;[&lt;](.*?)[&gt;]&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            <span class="built_in">print</span>(result_line01)</span><br><span class="line">            <span class="built_in">print</span>(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        <span class="comment"># 提取设备版本信息      </span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Comware Software&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line03 = <span class="string">&#x27;Comware Software:\t&#x27;</span> +<span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=Software, ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        <span class="comment"># 提取设备运行时间</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;uptime is&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line04 = <span class="string">&#x27;Uptime:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=uptime is ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        <span class="comment"># 提取设备序列号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;DEVICE_SERIAL_NUMBER&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line05 = <span class="string">&#x27;SN:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=:).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line05 = result_line05.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU 0 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line06 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line06 = result_line06[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line06 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line06.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line066 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line066 = result_line066[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line066 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line066.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式3</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Unit CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line0666 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line0666 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line0666.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Used Rate&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line07 = lines[-<span class="number">4</span>:]</span><br><span class="line">            result_line07 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line07.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Mem:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line08 = lines[-<span class="number">6</span>:]</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27;%&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = <span class="number">100</span> - <span class="built_in">float</span>(result_line08)</span><br><span class="line">            result_line08 = <span class="string">&#x27;%.1f%%&#x27;</span> % result_line08</span><br><span class="line">            result_line08 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line08 + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
+<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
+<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
+<li>生成的文件为 word 或 excel 等都是可以实现的</li>
+</ul>
 ]]></content>
       <categories>
-        <category>扯谈</category>
+        <category>Scripts</category>
       </categories>
       <tags>
-        <tag>扯谈</tag>
+        <tag>Scripts</tag>
+        <tag>H3C设备</tag>
       </tags>
   </entry>
   <entry>
@@ -556,8 +582,8 @@
         <category>H3C</category>
       </categories>
       <tags>
-        <tag>交换机升级版本</tag>
         <tag>H3C设备</tag>
+        <tag>交换机升级版本</tag>
       </tags>
   </entry>
   <entry>
@@ -582,32 +608,6 @@
         <tag>GiteePages</tag>
         <tag>博客迁移</tag>
         <tag>为什么</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_V5_V7设备巡检信息提取</title>
-    <url>/posts/80e04e00.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="脚本说明"><a href="#脚本说明" class="headerlink" title="脚本说明"></a><strong>脚本说明</strong></h2><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。<span id="more"></span></p>
-<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
-<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
-<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/3/21 23:26</span></span><br><span class="line"><span class="comment"># Description：Device_info</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/111.txt&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="comment"># 首行显示50个“=”号，提取设备版本信息，开头注释</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;display version&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line01 = <span class="string">&#x27;=&#x27;</span> * <span class="number">50</span> + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line02 = <span class="string">&#x27;Device Name:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">r&#x27;[&lt;](.*?)[&gt;]&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            <span class="built_in">print</span>(result_line01)</span><br><span class="line">            <span class="built_in">print</span>(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        <span class="comment"># 提取设备版本信息      </span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Comware Software&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line03 = <span class="string">&#x27;Comware Software:\t&#x27;</span> +<span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=Software, ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        <span class="comment"># 提取设备运行时间</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;uptime is&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line04 = <span class="string">&#x27;Uptime:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=uptime is ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        <span class="comment"># 提取设备序列号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;DEVICE_SERIAL_NUMBER&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line05 = <span class="string">&#x27;SN:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=:).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line05 = result_line05.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU 0 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line06 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line06 = result_line06[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line06 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line06.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line066 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line066 = result_line066[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line066 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line066.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式3</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Unit CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line0666 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line0666 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line0666.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Used Rate&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line07 = lines[-<span class="number">4</span>:]</span><br><span class="line">            result_line07 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line07.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Mem:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line08 = lines[-<span class="number">6</span>:]</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27;%&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = <span class="number">100</span> - <span class="built_in">float</span>(result_line08)</span><br><span class="line">            result_line08 = <span class="string">&#x27;%.1f%%&#x27;</span> % result_line08</span><br><span class="line">            result_line08 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line08 + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
-<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
-<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
-<li>生成的文件为 word 或 excel 等都是可以实现的</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Scripts</category>
-      </categories>
-      <tags>
-        <tag>Scripts</tag>
-        <tag>H3C设备</tag>
       </tags>
   </entry>
   <entry>
@@ -701,101 +701,6 @@
       </tags>
   </entry>
   <entry>
-    <title>H3C_连接L2TP的客户端设置(图片)</title>
-    <url>/posts/ab889e59.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode-客户端设置"><a href="#iNode-客户端设置" class="headerlink" title="iNode 客户端设置"></a>iNode 客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" ></a></p>
-
-<h2 id="windows-端配置—网络中心添加"><a href="#windows-端配置—网络中心添加" class="headerlink" title="windows 端配置—网络中心添加"></a>windows 端配置—网络中心添加</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" ></a></p>
-
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" ></a></p>
-]]></content>
-      <categories>
-        <category>H3C</category>
-      </categories>
-      <tags>
-        <tag>H3C</tag>
-        <tag>L2TP</tag>
-        <tag>LAC端配置</tag>
-        <tag>iNode客户端</tag>
-        <tag>windows自带</tag>
-        <tag>网络中心添加</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>archive_test</title>
-    <url>/posts/515317e3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
-<ul>
-<li>This is a test page .</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>Blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>TI10</title>
-    <url>/posts/fae4c6b8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10 结束了，LGD 再次倒在了总决赛</p>
-<p>相信包括我在内的许多人都坚信今年的总冠军是 LGD，但是……</p>
-<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐<span id="more"></span></p>
-<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
-<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
-<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
-<p>你也别说什么五年了，该 CN DOTA 举一次盾了</p>
-<p>巧了，独联体区的玩家也是这么这么认为的</p>
-<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
-<p>……</p>
-<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-        <tag>DOTA2</tag>
-        <tag>LGD</tag>
-        <tag>马格纳斯</tag>
-        <tag>Dead Game</tag>
-        <tag>TI10</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>H3C_线路测试脚本</title>
     <url>/posts/60e83b3d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。</p>
@@ -848,6 +753,101 @@
         <tag>线路测试</tag>
         <tag>割接工作</tag>
         <tag>Python脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TI10</title>
+    <url>/posts/fae4c6b8.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Ti10 结束了，LGD 再次倒在了总决赛</p>
+<p>相信包括我在内的许多人都坚信今年的总冠军是 LGD，但是……</p>
+<p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐<span id="more"></span></p>
+<p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家</p>
+<p>赛事结束后看到微博上各种“哀嚎”，“愤怒”，“”谩骂“，“惋惜”，“揣测”……</p>
+<p>尽管各种情绪，但理智的思考后只有一句话：技不如人，甘拜下风</p>
+<p>你也别说什么五年了，该 CN DOTA 举一次盾了</p>
+<p>巧了，独联体区的玩家也是这么这么认为的</p>
+<p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠</p>
+<p>……</p>
+<p>只希望有勇敢的追梦人继续追逐他们的梦想</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+        <tag>DOTA2</tag>
+        <tag>LGD</tag>
+        <tag>马格纳斯</tag>
+        <tag>Dead Game</tag>
+        <tag>TI10</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>archive_test</title>
+    <url>/posts/515317e3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
+<ul>
+<li>This is a test page .</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_连接L2TP的客户端设置(图片)</title>
+    <url>/posts/ab889e59.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="iNode-客户端设置"><a href="#iNode-客户端设置" class="headerlink" title="iNode 客户端设置"></a>iNode 客户端设置</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg" ></a></p>
+
+<h2 id="windows-端配置—网络中心添加"><a href="#windows-端配置—网络中心添加" class="headerlink" title="windows 端配置—网络中心添加"></a>windows 端配置—网络中心添加</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg" ></a></p>
+
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg" ></a></p>
+]]></content>
+      <categories>
+        <category>H3C</category>
+      </categories>
+      <tags>
+        <tag>H3C</tag>
+        <tag>L2TP</tag>
+        <tag>LAC端配置</tag>
+        <tag>iNode客户端</tag>
+        <tag>windows自带</tag>
+        <tag>网络中心添加</tag>
       </tags>
   </entry>
   <entry>
@@ -977,52 +977,99 @@
       </tags>
   </entry>
   <entry>
-    <title>No.004 Simple Case</title>
-    <url>/posts/1fa3e02b.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>红茶三杯的原文 ：<a href="http://blog.sina.com.cn/s/blog_5ec353710102vmgc.html">【有点儿意思系列 02】哎哟喂停不下来了</a> ，看完原文描述，我想到的是用 NAT 转换目的地址的方式解决，经过实验验证后，也说明了这个方法是可行的。做完实验后又想还有没有其他方法实现呢，想到用霸道的 PBR ，也能实现，不过这个方法我个人觉得比较傻。<span id="more"></span></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/s2KaDPXMNwSLiWT.jpg"><img src="https://i.loli.net/2021/11/18/s2KaDPXMNwSLiWT.jpg" class="img-center" /></a></p>
-<p><strong>背景描述：</strong></p>
-<ol>
-<li>R1、R2为两台出口路由器，分别连接电信及网通的广域网出口线路；</li>
-<li>R1、R2、SW1、SW2运行OSPF，R1配置指向网通的静态路由并部署静态路由到OSPF的路由重发布，R2则向OSPF域发布缺省路由。换而言之，内网访问网通的流量缺省走R1，而访问其他Internet资源的流量走R2出去；</li>
-<li>内网有两种服务器：一是向网通公网用户提供服务的服务器，以及向电信公网用户提供服务的服务器。为了使得这两台服务器能够被外网访问，在R1上将网通服务器映射到网通公网地址220.12.15.x/27，而在R2上把电信服务器映射到电信公网地址202.112.12.x/24。</li>
-<li>完成上述部署后，网通的公网用户使用目的地址220.12.15.x可以访问网通服务器，电信外网用户通过202.112.12.x可以访问电信服务器。但是电信外网用户使用220.12.15.x地址却无法正常访问网通服务器。请分析原因，并提出解决方案。</li>
+    <title>No.002 Simple Case</title>
+    <url>/posts/2da7a7a9.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>来自红茶三杯的原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html">【有点儿意思系列 04】哎哟喂停不下来了</a></p>
+<p>当时看完 Case 的需求我是不想理会的，不就是 VRF 隔离么，我压根没往配置 ACL 这个方向去，其实看需求已经暗示的非常明显了，“始终”，“完全隔离” 等等字眼。再加上 VRRP（远离思科设备多年，不玩 HSRP 了，模拟器做不了堆叠啊） 的冗余方案。但是 “问题后续” 这段话引起了我的兴趣，还是从这个拓扑开始吧（其实我已经做完两个拓扑在码这篇文章的时候），话不多说，开干。<span id="more"></span></p>
+<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/PMKamjJfoEgb8G4.jpg">
+ <img src="https://i.loli.net/2021/11/11/PMKamjJfoEgb8G4.jpg" class="img-center" /></a>
+
+<h2 id="Step-1：配置接入层交换机（SW5、SW6、SW7）"><a href="#Step-1：配置接入层交换机（SW5、SW6、SW7）" class="headerlink" title="Step 1：配置接入层交换机（SW5、SW6、SW7）"></a>Step 1：配置接入层交换机（SW5、SW6、SW7）</h2><ol>
+<li><p>创建 VLAN ，上联 Core-SW 的端口配置 Trunk 放行 VLAN，把连接 PC 的端口划入对应 VLAN</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- SW5 配置， 根据需求业务 A 有多个 VLAN ，就敷衍一下配置VLAN10,VLAN20</span><br><span class="line">!</span><br><span class="line">vlan 10</span><br><span class="line">vlan 20</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> switchport access vlan 10</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+<li><p>SW6、SW7 如法炮制即可。</p>
+</li>
 </ol>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h3><p>详细的配置我就不贴文中了，可到文章末尾链接自取。</p>
-<p>先说明一下拓扑在中的设备：CNC_User 和 Telecom_User 是用 PNETLab 的 <em>Docker Chrome Node</em> 设备（打开界面是是一个 Chrome 浏览器，用命令行登陆发现是个 Linux 系统），内网服务器用的是 <em>Docker Apache</em> （命令行登后发现是 Linux 系统，开启了 Apache 服务）。本次实验模拟外网客户端访问内网映射到公网的 HTTP 服务。</p>
-<p>首先，日常配置 VLAN、VRRP、OSPF、NAT……</p>
-<p>一顿操作后，实现上面提到的 <em><strong>1 - 3</strong></em> 的需求及 <em><strong>4</strong></em> 中的前半部分需求。<em>电信外网用户使用220.12.15.x地址却无法正常访问网通服务器。</em>原因在于电信用户访问220.12.15.x地址来回路径不一致导致 TCP 会话超时（拓扑中模拟访问 HTTP）,解决方案就是使来回路径一致（皮）。</p>
-<h3 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h3><p>没有添加配置前，查看 Telecom_User 访问网通服务器 的情况。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/YGjhp9nl4iNoyMv.jpg"><img src="https://i.loli.net/2021/11/18/YGjhp9nl4iNoyMv.jpg" class="img-center" /></a></p>
-<p>从图中可以看出 Telecom_User （202.112.13.2）电信用户向网通服务器映射地址（220.12.15.1）发出目的端口为 80 的 TCP 的数据包，而 R2 上电信的公网 IP （202.112.12.1）回应了 TCP ，证实了前面提到的 来回路径不一致（其实从内网路由表也可看出），后面数据包逐渐黑化了。</p>
-<p>在 R1 上添加公网访问网通服务器的目的地址 NAT 转换配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R1 配置     </span><br><span class="line">! -- 配置公网访问网通服务器转换的 NAT 地址池     </span><br><span class="line">ip nat pool to_cnc_server 172.16.1.100 172.16.1.110 netmask 255.255.255.0</span><br><span class="line">! -- 配置（outside list）任一公网地址访问 R1 上公网 IP 的 80 端口</span><br><span class="line">access-list 101 permit tcp any host 220.12.15.1 eq www</span><br><span class="line">! -- 配置目的地址 NAT 转换</span><br><span class="line">ip nat outside source list 101 pool to_cnc_server</span><br><span class="line">! -- 配置 NAT 地址池网段静态路由，用于回程触发 NAT 转换 </span><br><span class="line">ip route 172.16.1.0 255.255.255.0 220.12.15.2</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<h2 id="Step-2：配置-Core-SW1-和-Core-SW2"><a href="#Step-2：配置-Core-SW1-和-Core-SW2" class="headerlink" title="Step 2：配置 Core_SW1 和 Core_SW2"></a>Step 2：配置 Core_SW1 和 Core_SW2</h2><ol>
+<li><p>创建 VLAN10、VLAN20、VLAN50，创建 VRF 定义为 vpn_biz 和 vpn_internet</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 和 Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">vlan 10</span><br><span class="line">vlan 20</span><br><span class="line">vlan 50</span><br><span class="line">!</span><br><span class="line">! --- 其实用不到 RD 和 RT ，在 MPLS-VPN 引入的时候才用，为了看起来好看点</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_internet</span><br><span class="line"> rd 20:20</span><br><span class="line"> route-target export 200:200</span><br><span class="line"> route-target import 200:200</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+<li><p>配置 Core-SW1 与 Core-SW2 之间的  Port-channel，配置 Core-SW 和下联 SW5、SW6、SW7 的 Trunk </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 和 Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Port-channel1</span><br><span class="line"> switchport trunk allowed vlan 10,20,50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20,50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line"> channel-group 1 mode active</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> switchport trunk allowed vlan 10,20,50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line"> channel-group 1 mode active</span><br><span class="line">! </span><br><span class="line">interface Ethernet1/1</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/2</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/3</span><br><span class="line"> switchport trunk allowed vlan 50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!       </span><br></pre></td></tr></table></figure></li>
+<li><p>创建 VLAN 接口并绑定 VRF，配置 IP 地址，配置 VRRP</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 配置</span><br><span class="line">!</span><br><span class="line">interface Vlan10</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.10.252 255.255.255.0</span><br><span class="line"> vrrp 10 ip 192.168.10.254</span><br><span class="line"> vrrp 10 priority 120</span><br><span class="line">!</span><br><span class="line">interface Vlan20</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.20.252 255.255.255.0</span><br><span class="line"> vrrp 20 ip 192.168.20.254</span><br><span class="line"> vrrp 20 priority 120</span><br><span class="line">!</span><br><span class="line">interface Vlan50</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 192.168.50.252 255.255.255.0</span><br><span class="line"> vrrp 50 ip 192.168.50.254</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
 
-<p>配置完成测试结果如下：</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/2XpYlNcgE3ISKmC.jpg"><img src="https://i.loli.net/2021/11/18/2XpYlNcgE3ISKmC.jpg" class="img-center" /></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/iLsfHeNT4pO3mkx.jpg"><img src="https://i.loli.net/2021/11/18/iLsfHeNT4pO3mkx.jpg" class="img-center" /></a></p>
-<p>电信外网用户使用220.12.15.x地址正常访问网通服务器。</p>
-<p>查看 R1 NAT 映射表，有目的地址 NAT 转换，注意观察 Outside local 和 Outside global</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/Bondgqwj7SvMT41.jpg"><img src="https://i.loli.net/2021/11/18/Bondgqwj7SvMT41.jpg" class="img-center" /></a></p>
-<p>原理就是让 网通服务器 回程的数据包从 R1 出去。在 R1 上配置目的地址 NAT 转换。这时从网通服务上看就是源地址为 172.16.1.100 - 172.16.1.110 的地址访问的自身，回包也就回这个地址段。待回包至 R1 ，查找路由表发现 172.16.1.0 网段下一跳地址是 220.12.15.2 （手动配置的静态路由），触发 NAT 转换（此处查找 NAT 映射表项），源地址转成 R1 网通公网 IP地址回包最终至电信用户。此处配置的 172.16.1.0 网段静态路由是触发 NAT 转换，如果不配置，R1 就把网通服务器发过来的数据包丢弃了。</p>
-<p>普及一下 NAT 执行的顺序，查看思科官网(<a href="https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/6209-5.html?referring_site=bodynav">NAT Order of Operation</a>)</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/3VtGKEm9P8WZjTU.jpg"><img src="https://i.loli.net/2021/11/18/3VtGKEm9P8WZjTU.jpg" class="img-center" /></a></p>
-<h3 id="Part-3"><a href="#Part-3" class="headerlink" title="Part 3"></a>Part 3</h3><p><em><strong>Part 2</strong></em> 中使用 目的地址 NAT 转换的手段使得来回路径一致，那有什么办法能使网通服务器回包强制从 R1 的公网 IP 地址端口出去呢？—  <strong>PBR</strong>。从 SW1 上就开始把网通服务器回包路径扭到 R1 上，R1 再把数据强行从公网接口丢出去。</p>
-<p>清除 <em><strong>Part 2</strong></em> 增加的配置，SW1、R1 添加如下配置：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- SW1 配置     </span><br><span class="line">!</span><br><span class="line">access-list 101 permit ip host 192.168.10.1 any </span><br><span class="line">!</span><br><span class="line">route-map acc_telecom_remote permit 10</span><br><span class="line"> match ip address 101</span><br><span class="line"> set ip next-hop 10.10.10.2</span><br><span class="line">!</span><br><span class="line">interface Vlan10</span><br><span class="line"> ip policy route-map acc_telecom_remote</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Vlan10</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.10.253 255.255.255.0</span><br><span class="line"> vrrp 10 ip 192.168.10.254</span><br><span class="line">!</span><br><span class="line">interface Vlan20</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.20.253 255.255.255.0</span><br><span class="line"> vrrp 20 ip 192.168.20.254</span><br><span class="line">!</span><br><span class="line">interface Vlan50</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 192.168.50.253 255.255.255.0</span><br><span class="line"> vrrp 50 ip 192.168.50.254</span><br><span class="line"> vrrp 50 priority 120</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+<li><p>配置 Core-SW1 与 OBR-SW1 ，Core-SW2 与 OBR-SW2 互联的接口 IP 地址，并配置 OSPF 网络类型为点对点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.2 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.2 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R1 配置     </span><br><span class="line">!</span><br><span class="line">access-list 102 permit ip host 192.168.10.1 any</span><br><span class="line">!</span><br><span class="line">route-map acc_telecom_remote permit 10</span><br><span class="line"> match ip address 102</span><br><span class="line"> set ip next-hop 220.12.15.2</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> ip policy route-map acc_telecom_remote</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.10 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.10 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Step-3：配置-OBR-SW1-和-OBR-SW2"><a href="#Step-3：配置-OBR-SW1-和-OBR-SW2" class="headerlink" title="Step 3：配置 OBR-SW1 和 OBR-SW2"></a>Step 3：配置 OBR-SW1 和 OBR-SW2</h2><ol>
+<li><p>配置创建 VRF 定义为 vpn_biz 和 vpn_internet，配置互联接口 IP 地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW1 配置</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_internet</span><br><span class="line"> rd 20:20</span><br><span class="line"> route-target export 200:200</span><br><span class="line"> route-target import 200:200</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.1 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 200.1.1.5 255.255.255.252</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.5 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.5 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.1 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.1 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
 
-<p>配置完成测试结果如下：</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/PU7eDJI1X9YLZCT.jpg"><img src="https://i.loli.net/2021/11/18/PU7eDJI1X9YLZCT.jpg" class="img-center" /></a></p>
-<p>电信外网用户使用220.12.15.x地址正常访问网通服务器。</p>
-<p>查看 R1 NAT 映射表，没有目的地址 NAT 转换，但是触发了正常流量上网的 PAT，注意观察 Outside local 和 Outside global</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/U4wzxdgM56Wy2oE.jpg"><img src="https://i.loli.net/2021/11/18/U4wzxdgM56Wy2oE.jpg" class="img-center" /></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW2 配置</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_internet</span><br><span class="line"> rd 20:20</span><br><span class="line"> route-target export 200:200</span><br><span class="line"> route-target import 200:200</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 200.1.1.1 255.255.255.252</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.5 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.6 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.6 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.9 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.9 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Step-4：配置-Biz-A-Remote"><a href="#Step-4：配置-Biz-A-Remote" class="headerlink" title="Step 4：配置 Biz_A_Remote"></a>Step 4：配置 Biz_A_Remote</h2><ol>
+<li><p>配置创建 VRF 定义为 vpn_biz，配置互联接口 IP 地址，配置环回接口作为测试地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Biz_A_Remote 配置</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">interface Loopback0</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.30.111 255.255.255.255</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.2 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.6 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Step-5：配置-Internet"><a href="#Step-5：配置-Internet" class="headerlink" title="Step 5：配置 Internet"></a>Step 5：配置 Internet</h2><ol>
+<li><p>配置接口 IP 地址和环回接口即可，现实环境中，运营商的设备控制不了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Internet 配置</span><br><span class="line">!</span><br><span class="line">interface Loopback0</span><br><span class="line"> ip address 1.2.3.4 255.255.255.255</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> ip address 200.1.1.2 255.255.255.252</span><br><span class="line"> duplex auto</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip address 200.1.1.6 255.255.255.252</span><br><span class="line"> duplex auto</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Step-6：配置-OSPF"><a href="#Step-6：配置-OSPF" class="headerlink" title="Step 6：配置 OSPF"></a>Step 6：配置 OSPF</h2><ul>
+<li><p>为了简化配置过程，我全网使用 Area 0 ，生产环境中该划分区域的不要偷懒。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 1.1.1.1</span><br><span class="line"> network 10.10.10.2 0.0.0.0 area 0</span><br><span class="line"> network 192.168.10.252 0.0.0.0 area 0</span><br><span class="line"> network 192.168.20.252 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 1.1.1.2</span><br><span class="line"> network 10.10.10.2 0.0.0.0 area 0</span><br><span class="line"> network 192.168.50.252 0.0.0.0 area 0</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 2.2.2.1</span><br><span class="line"> network 10.10.10.10 0.0.0.0 area 0</span><br><span class="line"> network 192.168.10.253 0.0.0.0 area 0</span><br><span class="line"> network 192.168.20.253 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 2.2.2.2</span><br><span class="line"> network 10.10.10.10 0.0.0.0 area 0</span><br><span class="line"> network 192.168.50.253 0.0.0.0 area 0</span><br><span class="line">! </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW1 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 11.11.11.1</span><br><span class="line"> network 10.10.10.1 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.5 0.0.0.0 area 0</span><br><span class="line"> network 100.1.1.1 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 11.11.11.2</span><br><span class="line"> network 10.10.10.1 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.5 0.0.0.0 area 0</span><br><span class="line"> default-information originate always</span><br><span class="line">!         </span><br><span class="line">ip route vrf vpn_internet 0.0.0.0 0.0.0.0 200.1.1.6</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW2 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 22.22.22.1</span><br><span class="line"> network 10.10.10.6 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.9 0.0.0.0 area 0</span><br><span class="line"> network 100.1.1.5 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 22.22.22.2</span><br><span class="line"> network 10.10.10.6 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.9 0.0.0.0 area 0</span><br><span class="line"> default-information originate always</span><br><span class="line">!         </span><br><span class="line">ip route vrf vpn_internet 0.0.0.0 0.0.0.0 200.1.1.2</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Biz_A_Remote 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 3.3.3.1</span><br><span class="line"> network 100.1.1.2 0.0.0.0 area 0</span><br><span class="line"> network 100.1.1.6 0.0.0.0 area 0</span><br><span class="line"> network 192.168.30.111 0.0.0.0 area 0</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Step-7：配置-NAT"><a href="#Step-7：配置-NAT" class="headerlink" title="Step 7：配置 NAT"></a>Step 7：配置 NAT</h2><ol>
+<li><p>其实在生产环境中用核心交换机作为互联网出口的情况不常见（我没见过），核心交换机的上行可能会有行为管理器、安全设备、路由器等设备，具体情况就要看客户单位对网络有什么样的需求和预算了。</p>
+</li>
+<li><p>到这还有个问题，思科 CEF 和 NAT 貌似有冲突，去思科论坛看巴拉巴拉一大通大概是软件版本和硬件和处理器的类型等等问题，我这个是虚拟环境，不好判断是什么原因，放出看过的链接。各位如果知道是什么原因的请知会我，万分感谢。</p>
+<ul>
+<li><p><a href="https://learningnetwork.cisco.com/s/question/0D53i00000Kt7C1/nat-not-working-with-cef">NAT not working with CEF</a></p>
+</li>
+<li><p><a href="https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/26704-nat-faq-00.html">Network Address Translation (NAT) FAQ</a></p>
+</li>
+<li><p><a href="https://learningnetwork.cisco.com/s/question/0D53i00000Kt6em/nat-cef-punted-packets">NAT: CEF Punted packets</a></p>
+</li>
+</ul>
+</li>
+<li><p>对于上述问题，经过试验可行的方法是在需要配置 NAT 参数的接口关闭路由高速缓存</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW1 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip nat outside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 192.168.50.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">ip nat inside source list 10 interface Ethernet0/1 overload</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> ip nat outside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 192.168.50.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">ip nat inside source list 10 interface Ethernet0/0 overload</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Step-8：Test"><a href="#Step-8：Test" class="headerlink" title="Step 8：Test"></a>Step 8：Test</h2><ol>
+<li><p>Biz_A_PC 和 Biz_B_PC 测试，发现两个网络之间不能互通。Biz_A_PC  能 ping 通 Biz_A_Remote 的环回地址 192.168.30.111；Biz_B_PC 能 ping 通 Internet 的环回地址 1.2.3.4</p>
+<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/wfSlNJc7AarQi8v.gif">
+<img src="https://i.loli.net/2021/11/11/wfSlNJc7AarQi8v.gif" /></a>
+
+<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/57yVOWh2RKnEwrG.gif">
+<img src="https://i.loli.net/2021/11/11/57yVOWh2RKnEwrG.gif" class="img-center" /></a></li>
+<li><p>冗余测试</p>
+<ul>
+<li><p>由于这个拓扑实验和我写的下一篇文章有大量重叠部分，故放在下一篇文章中表述，本文中也没有添加配置。</p>
+</li>
+<li><p>大概思路思路是通过 Track 关联降低 VRRP 的优先级使其成为 VRRP 的 Backup 组，流量路径自动切换至另一台设备。举个例子：当 Core-SW1 以出接口 e0/0 监测到与 OBR-SW1 直连线路不通或监测到 Biz_A_Remote 的 e0/0 不通(这是个 and 的关系，用编程语言的描述就是：条件 A 和条件 B 同时为 True，结果才为 True)，此时 SLA 监测状态为 Time-out ，在 VRRP 与 Track 联动下降低 VRRP 优先级使其成为 Backup 状态，Biz_A_PC 去往 Biz_A_Remote 的流量路径切换至 Core-SW2 ，途径：Core-SW2 –&gt; OBR-SW2 最终到达 Biz_A_Remote ，如图所示：</p>
+<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/YJWEOwKAsa9Xq4v.jpg">
+<img src="https://i.loli.net/2021/11/11/YJWEOwKAsa9Xq4v.jpg" class="img-center" /></a></li>
+</ul>
+</li>
+</ol>
 <h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
-<li>原文后边加两台防火墙的测试我就不做了（古董 AMD 台式机跑不起 ASAv），大概的考察点还是 数据包来回路径一致的问题</li>
-<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
-<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/3sWzTdiL5TG">分享的文件</a>]</li>
+<li>总算码完了，其实还挺耗时间的写文章，但是对做拓扑实验做了梳理，其中还包含怎么清晰的表达我的思路和想表达的意思。</li>
+<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/k8tnrEpqc46">分享的文件</a>]</li>
 <li>欢迎“<del>来电</del>”来函探讨。</li>
+<li>下一篇文更有意思^_^，To be continued.</li>
 </ul>
 ]]></content>
       <categories>
@@ -1132,99 +1179,117 @@
       </tags>
   </entry>
   <entry>
-    <title>No.002 Simple Case</title>
-    <url>/posts/2da7a7a9.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>来自红茶三杯的原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html">【有点儿意思系列 04】哎哟喂停不下来了</a></p>
-<p>当时看完 Case 的需求我是不想理会的，不就是 VRF 隔离么，我压根没往配置 ACL 这个方向去，其实看需求已经暗示的非常明显了，“始终”，“完全隔离” 等等字眼。再加上 VRRP（远离思科设备多年，不玩 HSRP 了，模拟器做不了堆叠啊） 的冗余方案。但是 “问题后续” 这段话引起了我的兴趣，还是从这个拓扑开始吧（其实我已经做完两个拓扑在码这篇文章的时候），话不多说，开干。<span id="more"></span></p>
-<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/PMKamjJfoEgb8G4.jpg">
- <img src="https://i.loli.net/2021/11/11/PMKamjJfoEgb8G4.jpg" class="img-center" /></a>
-
-<h2 id="Step-1：配置接入层交换机（SW5、SW6、SW7）"><a href="#Step-1：配置接入层交换机（SW5、SW6、SW7）" class="headerlink" title="Step 1：配置接入层交换机（SW5、SW6、SW7）"></a>Step 1：配置接入层交换机（SW5、SW6、SW7）</h2><ol>
-<li><p>创建 VLAN ，上联 Core-SW 的端口配置 Trunk 放行 VLAN，把连接 PC 的端口划入对应 VLAN</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- SW5 配置， 根据需求业务 A 有多个 VLAN ，就敷衍一下配置VLAN10,VLAN20</span><br><span class="line">!</span><br><span class="line">vlan 10</span><br><span class="line">vlan 20</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> switchport access vlan 10</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-<li><p>SW6、SW7 如法炮制即可。</p>
-</li>
+    <title>No.004 Simple Case</title>
+    <url>/posts/1fa3e02b.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Start"><a href="#Start" class="headerlink" title="Start"></a>Start</h2><p>红茶三杯的原文 ：<a href="http://blog.sina.com.cn/s/blog_5ec353710102vmgc.html">【有点儿意思系列 02】哎哟喂停不下来了</a> ，看完原文描述，我想到的是用 NAT 转换目的地址的方式解决，经过实验验证后，也说明了这个方法是可行的。做完实验后又想还有没有其他方法实现呢，想到用霸道的 PBR ，也能实现，不过这个方法我个人觉得比较傻。<span id="more"></span></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/s2KaDPXMNwSLiWT.jpg"><img src="https://i.loli.net/2021/11/18/s2KaDPXMNwSLiWT.jpg" class="img-center" /></a></p>
+<p><strong>背景描述：</strong></p>
+<ol>
+<li>R1、R2为两台出口路由器，分别连接电信及网通的广域网出口线路；</li>
+<li>R1、R2、SW1、SW2运行OSPF，R1配置指向网通的静态路由并部署静态路由到OSPF的路由重发布，R2则向OSPF域发布缺省路由。换而言之，内网访问网通的流量缺省走R1，而访问其他Internet资源的流量走R2出去；</li>
+<li>内网有两种服务器：一是向网通公网用户提供服务的服务器，以及向电信公网用户提供服务的服务器。为了使得这两台服务器能够被外网访问，在R1上将网通服务器映射到网通公网地址220.12.15.x/27，而在R2上把电信服务器映射到电信公网地址202.112.12.x/24。</li>
+<li>完成上述部署后，网通的公网用户使用目的地址220.12.15.x可以访问网通服务器，电信外网用户通过202.112.12.x可以访问电信服务器。但是电信外网用户使用220.12.15.x地址却无法正常访问网通服务器。请分析原因，并提出解决方案。</li>
 </ol>
-<h2 id="Step-2：配置-Core-SW1-和-Core-SW2"><a href="#Step-2：配置-Core-SW1-和-Core-SW2" class="headerlink" title="Step 2：配置 Core_SW1 和 Core_SW2"></a>Step 2：配置 Core_SW1 和 Core_SW2</h2><ol>
-<li><p>创建 VLAN10、VLAN20、VLAN50，创建 VRF 定义为 vpn_biz 和 vpn_internet</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 和 Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">vlan 10</span><br><span class="line">vlan 20</span><br><span class="line">vlan 50</span><br><span class="line">!</span><br><span class="line">! --- 其实用不到 RD 和 RT ，在 MPLS-VPN 引入的时候才用，为了看起来好看点</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_internet</span><br><span class="line"> rd 20:20</span><br><span class="line"> route-target export 200:200</span><br><span class="line"> route-target import 200:200</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-<li><p>配置 Core-SW1 与 Core-SW2 之间的  Port-channel，配置 Core-SW 和下联 SW5、SW6、SW7 的 Trunk </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 和 Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Port-channel1</span><br><span class="line"> switchport trunk allowed vlan 10,20,50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20,50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line"> channel-group 1 mode active</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> switchport trunk allowed vlan 10,20,50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line"> channel-group 1 mode active</span><br><span class="line">! </span><br><span class="line">interface Ethernet1/1</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/2</span><br><span class="line"> switchport trunk allowed vlan 10,20</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/3</span><br><span class="line"> switchport trunk allowed vlan 50</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!       </span><br></pre></td></tr></table></figure></li>
-<li><p>创建 VLAN 接口并绑定 VRF，配置 IP 地址，配置 VRRP</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 配置</span><br><span class="line">!</span><br><span class="line">interface Vlan10</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.10.252 255.255.255.0</span><br><span class="line"> vrrp 10 ip 192.168.10.254</span><br><span class="line"> vrrp 10 priority 120</span><br><span class="line">!</span><br><span class="line">interface Vlan20</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.20.252 255.255.255.0</span><br><span class="line"> vrrp 20 ip 192.168.20.254</span><br><span class="line"> vrrp 20 priority 120</span><br><span class="line">!</span><br><span class="line">interface Vlan50</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 192.168.50.252 255.255.255.0</span><br><span class="line"> vrrp 50 ip 192.168.50.254</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h3><p>详细的配置我就不贴文中了，可到文章末尾链接自取。</p>
+<p>先说明一下拓扑在中的设备：CNC_User 和 Telecom_User 是用 PNETLab 的 <em>Docker Chrome Node</em> 设备（打开界面是是一个 Chrome 浏览器，用命令行登陆发现是个 Linux 系统），内网服务器用的是 <em>Docker Apache</em> （命令行登后发现是 Linux 系统，开启了 Apache 服务）。本次实验模拟外网客户端访问内网映射到公网的 HTTP 服务。</p>
+<p>首先，日常配置 VLAN、VRRP、OSPF、NAT……</p>
+<p>一顿操作后，实现上面提到的 <em><strong>1 - 3</strong></em> 的需求及 <em><strong>4</strong></em> 中的前半部分需求。<em>电信外网用户使用220.12.15.x地址却无法正常访问网通服务器。</em>原因在于电信用户访问220.12.15.x地址来回路径不一致导致 TCP 会话超时（拓扑中模拟访问 HTTP）,解决方案就是使来回路径一致（皮）。</p>
+<h3 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h3><p>没有添加配置前，查看 Telecom_User 访问网通服务器 的情况。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/YGjhp9nl4iNoyMv.jpg"><img src="https://i.loli.net/2021/11/18/YGjhp9nl4iNoyMv.jpg" class="img-center" /></a></p>
+<p>从图中可以看出 Telecom_User （202.112.13.2）电信用户向网通服务器映射地址（220.12.15.1）发出目的端口为 80 的 TCP 的数据包，而 R2 上电信的公网 IP （202.112.12.1）回应了 TCP ，证实了前面提到的 来回路径不一致（其实从内网路由表也可看出），后面数据包逐渐黑化了。</p>
+<p>在 R1 上添加公网访问网通服务器的目的地址 NAT 转换配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R1 配置     </span><br><span class="line">! -- 配置公网访问网通服务器转换的 NAT 地址池     </span><br><span class="line">ip nat pool to_cnc_server 172.16.1.100 172.16.1.110 netmask 255.255.255.0</span><br><span class="line">! -- 配置（outside list）任一公网地址访问 R1 上公网 IP 的 80 端口</span><br><span class="line">access-list 101 permit tcp any host 220.12.15.1 eq www</span><br><span class="line">! -- 配置目的地址 NAT 转换</span><br><span class="line">ip nat outside source list 101 pool to_cnc_server</span><br><span class="line">! -- 配置 NAT 地址池网段静态路由，用于回程触发 NAT 转换 </span><br><span class="line">ip route 172.16.1.0 255.255.255.0 220.12.15.2</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Vlan10</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.10.253 255.255.255.0</span><br><span class="line"> vrrp 10 ip 192.168.10.254</span><br><span class="line">!</span><br><span class="line">interface Vlan20</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.20.253 255.255.255.0</span><br><span class="line"> vrrp 20 ip 192.168.20.254</span><br><span class="line">!</span><br><span class="line">interface Vlan50</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 192.168.50.253 255.255.255.0</span><br><span class="line"> vrrp 50 ip 192.168.50.254</span><br><span class="line"> vrrp 50 priority 120</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-<li><p>配置 Core-SW1 与 OBR-SW1 ，Core-SW2 与 OBR-SW2 互联的接口 IP 地址，并配置 OSPF 网络类型为点对点</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.2 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.2 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<p>配置完成测试结果如下：</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/2XpYlNcgE3ISKmC.jpg"><img src="https://i.loli.net/2021/11/18/2XpYlNcgE3ISKmC.jpg" class="img-center" /></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/iLsfHeNT4pO3mkx.jpg"><img src="https://i.loli.net/2021/11/18/iLsfHeNT4pO3mkx.jpg" class="img-center" /></a></p>
+<p>电信外网用户使用220.12.15.x地址正常访问网通服务器。</p>
+<p>查看 R1 NAT 映射表，有目的地址 NAT 转换，注意观察 Outside local 和 Outside global</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/Bondgqwj7SvMT41.jpg"><img src="https://i.loli.net/2021/11/18/Bondgqwj7SvMT41.jpg" class="img-center" /></a></p>
+<p>原理就是让 网通服务器 回程的数据包从 R1 出去。在 R1 上配置目的地址 NAT 转换。这时从网通服务上看就是源地址为 172.16.1.100 - 172.16.1.110 的地址访问的自身，回包也就回这个地址段。待回包至 R1 ，查找路由表发现 172.16.1.0 网段下一跳地址是 220.12.15.2 （手动配置的静态路由），触发 NAT 转换（此处查找 NAT 映射表项），源地址转成 R1 网通公网 IP地址回包最终至电信用户。此处配置的 172.16.1.0 网段静态路由是触发 NAT 转换，如果不配置，R1 就把网通服务器发过来的数据包丢弃了。</p>
+<p>普及一下 NAT 执行的顺序，查看思科官网(<a href="https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/6209-5.html?referring_site=bodynav">NAT Order of Operation</a>)</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/3VtGKEm9P8WZjTU.jpg"><img src="https://i.loli.net/2021/11/18/3VtGKEm9P8WZjTU.jpg" class="img-center" /></a></p>
+<h3 id="Part-3"><a href="#Part-3" class="headerlink" title="Part 3"></a>Part 3</h3><p><em><strong>Part 2</strong></em> 中使用 目的地址 NAT 转换的手段使得来回路径一致，那有什么办法能使网通服务器回包强制从 R1 的公网 IP 地址端口出去呢？—  <strong>PBR</strong>。从 SW1 上就开始把网通服务器回包路径扭到 R1 上，R1 再把数据强行从公网接口丢出去。</p>
+<p>清除 <em><strong>Part 2</strong></em> 增加的配置，SW1、R1 添加如下配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- SW1 配置     </span><br><span class="line">!</span><br><span class="line">access-list 101 permit ip host 192.168.10.1 any </span><br><span class="line">!</span><br><span class="line">route-map acc_telecom_remote permit 10</span><br><span class="line"> match ip address 101</span><br><span class="line"> set ip next-hop 10.10.10.2</span><br><span class="line">!</span><br><span class="line">interface Vlan10</span><br><span class="line"> ip policy route-map acc_telecom_remote</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.10 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.10 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="Step-3：配置-OBR-SW1-和-OBR-SW2"><a href="#Step-3：配置-OBR-SW1-和-OBR-SW2" class="headerlink" title="Step 3：配置 OBR-SW1 和 OBR-SW2"></a>Step 3：配置 OBR-SW1 和 OBR-SW2</h2><ol>
-<li><p>配置创建 VRF 定义为 vpn_biz 和 vpn_internet，配置互联接口 IP 地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW1 配置</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_internet</span><br><span class="line"> rd 20:20</span><br><span class="line"> route-target export 200:200</span><br><span class="line"> route-target import 200:200</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.1 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 200.1.1.5 255.255.255.252</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.5 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.5 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.1 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.1 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R1 配置     </span><br><span class="line">!</span><br><span class="line">access-list 102 permit ip host 192.168.10.1 any</span><br><span class="line">!</span><br><span class="line">route-map acc_telecom_remote permit 10</span><br><span class="line"> match ip address 102</span><br><span class="line"> set ip next-hop 220.12.15.2</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> ip policy route-map acc_telecom_remote</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW2 配置</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_internet</span><br><span class="line"> rd 20:20</span><br><span class="line"> route-target export 200:200</span><br><span class="line"> route-target import 200:200</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 200.1.1.1 255.255.255.252</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.5 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.6 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.6 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.100</span><br><span class="line"> encapsulation dot1Q 100</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 10.10.10.9 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> encapsulation dot1Q 200</span><br><span class="line"> ip vrf forwarding vpn_internet</span><br><span class="line"> ip address 10.10.10.9 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="Step-4：配置-Biz-A-Remote"><a href="#Step-4：配置-Biz-A-Remote" class="headerlink" title="Step 4：配置 Biz_A_Remote"></a>Step 4：配置 Biz_A_Remote</h2><ol>
-<li><p>配置创建 VRF 定义为 vpn_biz，配置互联接口 IP 地址，配置环回接口作为测试地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Biz_A_Remote 配置</span><br><span class="line">!</span><br><span class="line">ip vrf vpn_biz</span><br><span class="line"> rd 10:10</span><br><span class="line"> route-target export 100:100</span><br><span class="line"> route-target import 100:100</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">interface Loopback0</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 192.168.30.111 255.255.255.255</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.2 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> no switchport</span><br><span class="line"> ip vrf forwarding vpn_biz</span><br><span class="line"> ip address 100.1.1.6 255.255.255.252</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="Step-5：配置-Internet"><a href="#Step-5：配置-Internet" class="headerlink" title="Step 5：配置 Internet"></a>Step 5：配置 Internet</h2><ol>
-<li><p>配置接口 IP 地址和环回接口即可，现实环境中，运营商的设备控制不了</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Internet 配置</span><br><span class="line">!</span><br><span class="line">interface Loopback0</span><br><span class="line"> ip address 1.2.3.4 255.255.255.255</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> ip address 200.1.1.2 255.255.255.252</span><br><span class="line"> duplex auto</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip address 200.1.1.6 255.255.255.252</span><br><span class="line"> duplex auto</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="Step-6：配置-OSPF"><a href="#Step-6：配置-OSPF" class="headerlink" title="Step 6：配置 OSPF"></a>Step 6：配置 OSPF</h2><ul>
-<li><p>为了简化配置过程，我全网使用 Area 0 ，生产环境中该划分区域的不要偷懒。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW1 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 1.1.1.1</span><br><span class="line"> network 10.10.10.2 0.0.0.0 area 0</span><br><span class="line"> network 192.168.10.252 0.0.0.0 area 0</span><br><span class="line"> network 192.168.20.252 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 1.1.1.2</span><br><span class="line"> network 10.10.10.2 0.0.0.0 area 0</span><br><span class="line"> network 192.168.50.252 0.0.0.0 area 0</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Core_SW2 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 2.2.2.1</span><br><span class="line"> network 10.10.10.10 0.0.0.0 area 0</span><br><span class="line"> network 192.168.10.253 0.0.0.0 area 0</span><br><span class="line"> network 192.168.20.253 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 2.2.2.2</span><br><span class="line"> network 10.10.10.10 0.0.0.0 area 0</span><br><span class="line"> network 192.168.50.253 0.0.0.0 area 0</span><br><span class="line">! </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW1 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 11.11.11.1</span><br><span class="line"> network 10.10.10.1 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.5 0.0.0.0 area 0</span><br><span class="line"> network 100.1.1.1 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 11.11.11.2</span><br><span class="line"> network 10.10.10.1 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.5 0.0.0.0 area 0</span><br><span class="line"> default-information originate always</span><br><span class="line">!         </span><br><span class="line">ip route vrf vpn_internet 0.0.0.0 0.0.0.0 200.1.1.6</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW2 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 22.22.22.1</span><br><span class="line"> network 10.10.10.6 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.9 0.0.0.0 area 0</span><br><span class="line"> network 100.1.1.5 0.0.0.0 area 0</span><br><span class="line">!</span><br><span class="line">router ospf 200 vrf vpn_internet</span><br><span class="line"> router-id 22.22.22.2</span><br><span class="line"> network 10.10.10.6 0.0.0.0 area 0</span><br><span class="line"> network 10.10.10.9 0.0.0.0 area 0</span><br><span class="line"> default-information originate always</span><br><span class="line">!         </span><br><span class="line">ip route vrf vpn_internet 0.0.0.0 0.0.0.0 200.1.1.2</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- Biz_A_Remote 配置</span><br><span class="line">!</span><br><span class="line">router ospf 100 vrf vpn_biz</span><br><span class="line"> router-id 3.3.3.1</span><br><span class="line"> network 100.1.1.2 0.0.0.0 area 0</span><br><span class="line"> network 100.1.1.6 0.0.0.0 area 0</span><br><span class="line"> network 192.168.30.111 0.0.0.0 area 0</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Step-7：配置-NAT"><a href="#Step-7：配置-NAT" class="headerlink" title="Step 7：配置 NAT"></a>Step 7：配置 NAT</h2><ol>
-<li><p>其实在生产环境中用核心交换机作为互联网出口的情况不常见（我没见过），核心交换机的上行可能会有行为管理器、安全设备、路由器等设备，具体情况就要看客户单位对网络有什么样的需求和预算了。</p>
-</li>
-<li><p>到这还有个问题，思科 CEF 和 NAT 貌似有冲突，去思科论坛看巴拉巴拉一大通大概是软件版本和硬件和处理器的类型等等问题，我这个是虚拟环境，不好判断是什么原因，放出看过的链接。各位如果知道是什么原因的请知会我，万分感谢。</p>
-<ul>
-<li><p><a href="https://learningnetwork.cisco.com/s/question/0D53i00000Kt7C1/nat-not-working-with-cef">NAT not working with CEF</a></p>
-</li>
-<li><p><a href="https://www.cisco.com/c/en/us/support/docs/ip/network-address-translation-nat/26704-nat-faq-00.html">Network Address Translation (NAT) FAQ</a></p>
-</li>
-<li><p><a href="https://learningnetwork.cisco.com/s/question/0D53i00000Kt6em/nat-cef-punted-packets">NAT: CEF Punted packets</a></p>
-</li>
-</ul>
-</li>
-<li><p>对于上述问题，经过试验可行的方法是在需要配置 NAT 参数的接口关闭路由高速缓存</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW1 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip nat outside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 192.168.50.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">ip nat inside source list 10 interface Ethernet0/1 overload</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- OBR-SW2 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> ip nat outside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3.200</span><br><span class="line"> ip nat inside</span><br><span class="line"> no ip route-cache</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 192.168.50.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">ip nat inside source list 10 interface Ethernet0/0 overload</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="Step-8：Test"><a href="#Step-8：Test" class="headerlink" title="Step 8：Test"></a>Step 8：Test</h2><ol>
-<li><p>Biz_A_PC 和 Biz_B_PC 测试，发现两个网络之间不能互通。Biz_A_PC  能 ping 通 Biz_A_Remote 的环回地址 192.168.30.111；Biz_B_PC 能 ping 通 Internet 的环回地址 1.2.3.4</p>
-<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/wfSlNJc7AarQi8v.gif">
-<img src="https://i.loli.net/2021/11/11/wfSlNJc7AarQi8v.gif" /></a>
-
-<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/57yVOWh2RKnEwrG.gif">
-<img src="https://i.loli.net/2021/11/11/57yVOWh2RKnEwrG.gif" class="img-center" /></a></li>
-<li><p>冗余测试</p>
-<ul>
-<li><p>由于这个拓扑实验和我写的下一篇文章有大量重叠部分，故放在下一篇文章中表述，本文中也没有添加配置。</p>
-</li>
-<li><p>大概思路思路是通过 Track 关联降低 VRRP 的优先级使其成为 VRRP 的 Backup 组，流量路径自动切换至另一台设备。举个例子：当 Core-SW1 以出接口 e0/0 监测到与 OBR-SW1 直连线路不通或监测到 Biz_A_Remote 的 e0/0 不通(这是个 and 的关系，用编程语言的描述就是：条件 A 和条件 B 同时为 True，结果才为 True)，此时 SLA 监测状态为 Time-out ，在 VRRP 与 Track 联动下降低 VRRP 优先级使其成为 Backup 状态，Biz_A_PC 去往 Biz_A_Remote 的流量路径切换至 Core-SW2 ，途径：Core-SW2 –&gt; OBR-SW2 最终到达 Biz_A_Remote ，如图所示：</p>
-<a data-fancybox="gallery" href="https://i.loli.net/2021/11/11/YJWEOwKAsa9Xq4v.jpg">
-<img src="https://i.loli.net/2021/11/11/YJWEOwKAsa9Xq4v.jpg" class="img-center" /></a></li>
-</ul>
-</li>
-</ol>
+<p>配置完成测试结果如下：</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/PU7eDJI1X9YLZCT.jpg"><img src="https://i.loli.net/2021/11/18/PU7eDJI1X9YLZCT.jpg" class="img-center" /></a></p>
+<p>电信外网用户使用220.12.15.x地址正常访问网通服务器。</p>
+<p>查看 R1 NAT 映射表，没有目的地址 NAT 转换，但是触发了正常流量上网的 PAT，注意观察 Outside local 和 Outside global</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/18/U4wzxdgM56Wy2oE.jpg"><img src="https://i.loli.net/2021/11/18/U4wzxdgM56Wy2oE.jpg" class="img-center" /></a></p>
 <h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
-<li>总算码完了，其实还挺耗时间的写文章，但是对做拓扑实验做了梳理，其中还包含怎么清晰的表达我的思路和想表达的意思。</li>
-<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/k8tnrEpqc46">分享的文件</a>]</li>
+<li>原文后边加两台防火墙的测试我就不做了（古董 AMD 台式机跑不起 ASAv），大概的考察点还是 数据包来回路径一致的问题</li>
+<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
+<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/3sWzTdiL5TG">分享的文件</a>]</li>
 <li>欢迎“<del>来电</del>”来函探讨。</li>
-<li>下一篇文更有意思^_^，To be continued.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>PNETLab</category>
+      </categories>
+      <tags>
+        <tag>Network Emulator</tag>
+        <tag>PNETLab</tag>
+        <tag>Cisco</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>几种重分发方式可能带来的问题和处理</title>
+    <url>/posts/1b6d0fec.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近翻看 《CCNP ROUTE(642-902)学习指南 》，没错就是 2015 年之前 CCNP 改版前的那本，现在最新的认证考试已不是这个编号和课程了。诶，不聊这些，这不重要。</p>
+<p>现在把时间线拉回当年那个技术发展的时候，你要是说技术过时了，不好意思今年我还在某现网中看到设备运行 RIPv2 和 OSPF 两种协议的重分发。这也不重要。</p>
+<p>本文权当自己学习和回忆。</p>
+<h2 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h2><p><strong>单点单向重分发</strong></p>
+<p>下图所示 ，在 R1 上进行单向重分发（RIP 重分发进入 OSPF），R2 不进行重分发操作。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/HwmqiykMruAxldG.jpg"><img src="https://i.loli.net/2021/11/28/HwmqiykMruAxldG.jpg" class="img-center" /></a></p>
+<p>观察 R2 上的路由表发现去往 RIP 外部网络 10.0.0.0 的路由下一跳地址是 R1 的 12.1.1.1 ，产生了次优路由。正确路径的下一跳应是 R3 的 23.1.1.3 。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/4zPy9MbFkonw28D.jpg"><img src="https://i.loli.net/2021/11/28/4zPy9MbFkonw28D.jpg" class="img-center" /></a></p>
+<p>产生这条次优路由的原因是 R1 进行的重分发，产生 5 类 LSA 传递到 R2 上，最终 Cisco 路由器根据对比管理距离大小选择加载了 OSPF (110) 的路由。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/7lk5v3xDAZFgBUC.jpg"><img src="https://i.loli.net/2021/11/28/7lk5v3xDAZFgBUC.jpg" class="img-center" /></a></p>
+<p>既然知道了加载这条路由的原因，解决方法有：1、阻断重分发而来的 LSA ，使 R2 自始至终只有 RIP 的路由，这么做虽然能临时使 R2 选择最优路径，但是当 R2 和 R3 之间的链路出现问题，通过 R2 去往 10.0.0.0 外部网络将不可达，不是一个好方法；2、修改 OSPF 外部路由的管理距离，使之大于 RIP （120），这样处理就可以使 R2 选择加载 RIP 学习到的路由，这是可行的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- 方式 1 ，定义 ACL 匹配外部网络，在 OSPF 进程下针对该 ACL 修改管理距离</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 10.0.0.0 0.255.255.255</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance 121 0.0.0.0 255.255.255.255 10</span><br><span class="line">!</span><br><span class="line">! -- 方式 2 ，直接在 OSPF 进程下针对外部网络修改管理距离</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance ospf external 121</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<p>无论使用哪种方式，都会得到下图所示路由表。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/OoFESgzdmCWBpiG.jpg"><img src="https://i.loli.net/2021/11/28/OoFESgzdmCWBpiG.jpg" class="img-center" /></a></p>
+<h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h2><p><strong>多点单向重分发</strong></p>
+<p>下图所示 ，在 R1 和 R2 上进行单向重分发（RIP 重分发进入 OSPF）。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/aJ6fuZ2vhNwQ7yc.jpg"><img src="https://i.loli.net/2021/11/28/aJ6fuZ2vhNwQ7yc.jpg" class="img-center" /></a></p>
+<p>观察 R2 上的路由表发现去往 RIP 外部网络 10.0.0.0 的路由下一跳地址是 R1 的 12.1.1.1 ，产生了次优路由。正确路径的下一跳应是 R3 的 23.1.1.3 。R1 上执行 <em><strong>clear ip ospf redistribution</strong></em> 命令，再观察 R1 路由表发现去往 RIP 外部网络 10.0.0.0 的路由下一跳地址是 R1 的 12.1.1.2 ，产生了次优路由。正确路径的下一跳应是 R3 的 13.1.1.3 。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/hdbmjRwiTvepCa4.gif"><img src="https://i.loli.net/2021/11/28/hdbmjRwiTvepCa4.gif" class="img-center" /></a></p>
+<p>产生次优路由的原因和 <em><strong>Part 1</strong></em> 中是类似的，解决方法类似。</p>
+<h2 id="Part-3"><a href="#Part-3" class="headerlink" title="Part 3"></a>Part 3</h2><p><strong>多点多向重分发</strong></p>
+<p>下图所示 ，在 R1 和 R2 上进行双向重分发。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/HsXxUZ3JLcBWpja.jpg"><img src="https://i.loli.net/2021/11/28/HsXxUZ3JLcBWpja.jpg" class="img-center" /></a></p>
+<p>观察 R1 和 R2 去往 EIGRP 外部网络 192.168.1.0 和 192.168.2.0 的路由表项，发现 R1 上去往外部网络路径下一跳是 R2 ，R2 上去往外部网络路径下一跳是 R1 ，出现了<strong>次优路由</strong>和<strong>路由环路</strong>。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/AwWzrbkBn8mQtIl.jpg"><img src="https://i.loli.net/2021/11/28/AwWzrbkBn8mQtIl.jpg" class="img-center" /></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/JiAYCQ571LOSoFg.jpg"><img src="https://i.loli.net/2021/11/28/JiAYCQ571LOSoFg.jpg" class="img-center" /></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/eBifcXS3QyoEFY8.gif"><img src="https://i.loli.net/2021/11/28/eBifcXS3QyoEFY8.gif" class="img-center" /></a></p>
+<p>产生上述问题的原因是，在 R1 上把 EIGRP 重分发进 OSPF ，R2 上又把重分发进 OSPF 的路由重分发回 EIGRP ，R1 上收到 R2 和 R3 发过来关于 192.168.1.0/192.168.2.0 的外部路由更新，对比度量值后，选取度量值小的加载到路由表。R1 上查看输出：</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/pe1M8UgSCrvo3n7.jpg"><img src="https://i.loli.net/2021/11/28/pe1M8UgSCrvo3n7.jpg" class="img-center" /></a></p>
+<p><strong>解决方法：</strong>阻断重分发进对方路由域的路由更新再次重分发回原路由域 。定义名称为 <strong>in2ospf</strong> 的 route-map ，序号 10 的语句对匹配 TAG 为 <strong>100</strong> 的路由条目拒绝重分发；序号 20 的语句对 TAG 不是 <strong>100</strong> 的路由条目设置 TAG 为 200 。定义名称为 <strong>in2eigrp</strong> 的 route-map ，序号 10 的语句对匹配 TAG 为 <strong>200</strong> 的路由条目拒绝重分发；序号 20 的语句对 TAG 不是 <strong>200</strong> 的路由条目设置 TAG 为 100 。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R2 上定义 route-map ，R1 上也做这样的操作</span><br><span class="line">!</span><br><span class="line">route-map in2ospf deny 10</span><br><span class="line"> match tag 100</span><br><span class="line">!</span><br><span class="line">route-map in2ospf permit 20</span><br><span class="line"> set tag 200</span><br><span class="line">!</span><br><span class="line">route-map in2eigrp deny 10</span><br><span class="line"> match tag 200</span><br><span class="line">!</span><br><span class="line">route-map in2eigrp permit 20</span><br><span class="line"> set tag 100</span><br><span class="line">!</span><br><span class="line">! -- 重分发时调用 route-map ，R1 上也做这样的操作</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> redistribute ospf 100 metric 10000 100 255 1 1500 route-map in2eigrp</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> redistribute eigrp 100 metric 100 subnets route-map in2ospf</span><br><span class="line">! </span><br></pre></td></tr></table></figure>
+
+<p>还可以使用更精简的方式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R2 上定义 route-map ，R1 上也做这样</span><br><span class="line">!</span><br><span class="line">route-map R-TAGS deny 10</span><br><span class="line"> match tag 100</span><br><span class="line">!</span><br><span class="line">route-map R-TAGS permit 20</span><br><span class="line"> set tag 100</span><br><span class="line">!</span><br><span class="line">! -- 重分发时调用 route-map ，R1 上也做这样的操作</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> redistribute ospf 100 metric 10000 100 255 1 1500 route-map R-TAGS</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> redistribute eigrp 100 metric 100 subnets route-map R-TAGS</span><br><span class="line">! </span><br></pre></td></tr></table></figure>
+
+<p>做完以上步骤后，查看 R1 和 R2 的路由表，发现环路路由问题解决了，但是还存在次优路由。</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/9FjXYtfGx5sinKD.jpg"><img src="https://i.loli.net/2021/11/29/9FjXYtfGx5sinKD.jpg" class="img-center" /></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/nSZVpNFzc1Ti78M.jpg"><img src="https://i.loli.net/2021/11/29/nSZVpNFzc1Ti78M.jpg" class="img-center" /></a></p>
+<p>修改 OSPF 外部路由的管理距离，使之大于 EIGRP 外部路由 （170），这样处理就可以使路由器选择加载 EIGRP 学习到的外部路由。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- 方式 1 ，定义 ACL 匹配外部网络，在 OSPF 进程下针对该 ACL 修改管理距离</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 192.168.1.0 0.0.0.255</span><br><span class="line">access-list 10 permit 192.168.2.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance 171 0.0.0.0 255.255.255.255 10</span><br><span class="line">!</span><br><span class="line">! -- 方式 2 ，直接在 OSPF 进程下针对外部网络修改管理距离</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance ospf external 171</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<p>最终解决问题</p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/noHTCkGxhsVfl9A.jpg"><img src="https://i.loli.net/2021/11/29/noHTCkGxhsVfl9A.jpg" class="img-center" /></a></p>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/okR8upbOfKC3Tz6.jpg"><img src="https://i.loli.net/2021/11/29/okR8upbOfKC3Tz6.jpg" class="img-center" /></a></p>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
+<li>做路由重分发的时候要考虑到操作后是否产生环路路由、次优路由和网络不可达的情况。</li>
+<li>对于产生环路路由、次优路由和网络不可达的情况，要是合理使用 route-map、修改管理距离等手段修正。</li>
+<li>当然合理的规划网络也很重要。必要的进行路由汇总，设置 passive-interface ……，使设备路由表尽可能的精简而又能高效的完成转发工作，这是很好的思路。</li>
+<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1311,71 +1376,6 @@
         <tag>WLAN</tag>
         <tag>unmanged switch</tag>
         <tag>PoE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>几种重分发方式可能带来的问题和处理</title>
-    <url>/posts/1b6d0fec.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近翻看 《CCNP ROUTE(642-902)学习指南 》，没错就是 2015 年之前 CCNP 改版前的那本，现在最新的认证考试已不是这个编号和课程了。诶，不聊这些，这不重要。</p>
-<p>现在把时间线拉回当年那个技术发展的时候，你要是说技术过时了，不好意思今年我还在某现网中看到设备运行 RIPv2 和 OSPF 两种协议的重分发。这也不重要。</p>
-<p>本文权当自己学习和回忆。</p>
-<h2 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h2><p><strong>单点单向重分发</strong></p>
-<p>下图所示 ，在 R1 上进行单向重分发（RIP 重分发进入 OSPF），R2 不进行重分发操作。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/HwmqiykMruAxldG.jpg"><img src="https://i.loli.net/2021/11/28/HwmqiykMruAxldG.jpg" class="img-center" /></a></p>
-<p>观察 R2 上的路由表发现去往 RIP 外部网络 10.0.0.0 的路由下一跳地址是 R1 的 12.1.1.1 ，产生了次优路由。正确路径的下一跳应是 R3 的 23.1.1.3 。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/4zPy9MbFkonw28D.jpg"><img src="https://i.loli.net/2021/11/28/4zPy9MbFkonw28D.jpg" class="img-center" /></a></p>
-<p>产生这条次优路由的原因是 R1 进行的重分发，产生 5 类 LSA 传递到 R2 上，最终 Cisco 路由器根据对比管理距离大小选择加载了 OSPF (110) 的路由。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/7lk5v3xDAZFgBUC.jpg"><img src="https://i.loli.net/2021/11/28/7lk5v3xDAZFgBUC.jpg" class="img-center" /></a></p>
-<p>既然知道了加载这条路由的原因，解决方法有：1、阻断重分发而来的 LSA ，使 R2 自始至终只有 RIP 的路由，这么做虽然能临时使 R2 选择最优路径，但是当 R2 和 R3 之间的链路出现问题，通过 R2 去往 10.0.0.0 外部网络将不可达，不是一个好方法；2、修改 OSPF 外部路由的管理距离，使之大于 RIP （120），这样处理就可以使 R2 选择加载 RIP 学习到的路由，这是可行的。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- 方式 1 ，定义 ACL 匹配外部网络，在 OSPF 进程下针对该 ACL 修改管理距离</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 10.0.0.0 0.255.255.255</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance 121 0.0.0.0 255.255.255.255 10</span><br><span class="line">!</span><br><span class="line">! -- 方式 2 ，直接在 OSPF 进程下针对外部网络修改管理距离</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance ospf external 121</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<p>无论使用哪种方式，都会得到下图所示路由表。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/OoFESgzdmCWBpiG.jpg"><img src="https://i.loli.net/2021/11/28/OoFESgzdmCWBpiG.jpg" class="img-center" /></a></p>
-<h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h2><p><strong>多点单向重分发</strong></p>
-<p>下图所示 ，在 R1 和 R2 上进行单向重分发（RIP 重分发进入 OSPF）。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/aJ6fuZ2vhNwQ7yc.jpg"><img src="https://i.loli.net/2021/11/28/aJ6fuZ2vhNwQ7yc.jpg" class="img-center" /></a></p>
-<p>观察 R2 上的路由表发现去往 RIP 外部网络 10.0.0.0 的路由下一跳地址是 R1 的 12.1.1.1 ，产生了次优路由。正确路径的下一跳应是 R3 的 23.1.1.3 。R1 上执行 <em><strong>clear ip ospf redistribution</strong></em> 命令，再观察 R1 路由表发现去往 RIP 外部网络 10.0.0.0 的路由下一跳地址是 R1 的 12.1.1.2 ，产生了次优路由。正确路径的下一跳应是 R3 的 13.1.1.3 。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/hdbmjRwiTvepCa4.gif"><img src="https://i.loli.net/2021/11/28/hdbmjRwiTvepCa4.gif" class="img-center" /></a></p>
-<p>产生次优路由的原因和 <em><strong>Part 1</strong></em> 中是类似的，解决方法类似。</p>
-<h2 id="Part-3"><a href="#Part-3" class="headerlink" title="Part 3"></a>Part 3</h2><p><strong>多点多向重分发</strong></p>
-<p>下图所示 ，在 R1 和 R2 上进行双向重分发。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/HsXxUZ3JLcBWpja.jpg"><img src="https://i.loli.net/2021/11/28/HsXxUZ3JLcBWpja.jpg" class="img-center" /></a></p>
-<p>观察 R1 和 R2 去往 EIGRP 外部网络 192.168.1.0 和 192.168.2.0 的路由表项，发现 R1 上去往外部网络路径下一跳是 R2 ，R2 上去往外部网络路径下一跳是 R1 ，出现了<strong>次优路由</strong>和<strong>路由环路</strong>。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/AwWzrbkBn8mQtIl.jpg"><img src="https://i.loli.net/2021/11/28/AwWzrbkBn8mQtIl.jpg" class="img-center" /></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/JiAYCQ571LOSoFg.jpg"><img src="https://i.loli.net/2021/11/28/JiAYCQ571LOSoFg.jpg" class="img-center" /></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/eBifcXS3QyoEFY8.gif"><img src="https://i.loli.net/2021/11/28/eBifcXS3QyoEFY8.gif" class="img-center" /></a></p>
-<p>产生上述问题的原因是，在 R1 上把 EIGRP 重分发进 OSPF ，R2 上又把重分发进 OSPF 的路由重分发回 EIGRP ，R1 上收到 R2 和 R3 发过来关于 192.168.1.0/192.168.2.0 的外部路由更新，对比度量值后，选取度量值小的加载到路由表。R1 上查看输出：</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/28/pe1M8UgSCrvo3n7.jpg"><img src="https://i.loli.net/2021/11/28/pe1M8UgSCrvo3n7.jpg" class="img-center" /></a></p>
-<p><strong>解决方法：</strong>阻断重分发进对方路由域的路由更新再次重分发回原路由域 。定义名称为 <strong>in2ospf</strong> 的 route-map ，序号 10 的语句对匹配 TAG 为 <strong>100</strong> 的路由条目拒绝重分发；序号 20 的语句对 TAG 不是 <strong>100</strong> 的路由条目设置 TAG 为 200 。定义名称为 <strong>in2eigrp</strong> 的 route-map ，序号 10 的语句对匹配 TAG 为 <strong>200</strong> 的路由条目拒绝重分发；序号 20 的语句对 TAG 不是 <strong>200</strong> 的路由条目设置 TAG 为 100 。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R2 上定义 route-map ，R1 上也做这样的操作</span><br><span class="line">!</span><br><span class="line">route-map in2ospf deny 10</span><br><span class="line"> match tag 100</span><br><span class="line">!</span><br><span class="line">route-map in2ospf permit 20</span><br><span class="line"> set tag 200</span><br><span class="line">!</span><br><span class="line">route-map in2eigrp deny 10</span><br><span class="line"> match tag 200</span><br><span class="line">!</span><br><span class="line">route-map in2eigrp permit 20</span><br><span class="line"> set tag 100</span><br><span class="line">!</span><br><span class="line">! -- 重分发时调用 route-map ，R1 上也做这样的操作</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> redistribute ospf 100 metric 10000 100 255 1 1500 route-map in2eigrp</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> redistribute eigrp 100 metric 100 subnets route-map in2ospf</span><br><span class="line">! </span><br></pre></td></tr></table></figure>
-
-<p>还可以使用更精简的方式</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- R2 上定义 route-map ，R1 上也做这样</span><br><span class="line">!</span><br><span class="line">route-map R-TAGS deny 10</span><br><span class="line"> match tag 100</span><br><span class="line">!</span><br><span class="line">route-map R-TAGS permit 20</span><br><span class="line"> set tag 100</span><br><span class="line">!</span><br><span class="line">! -- 重分发时调用 route-map ，R1 上也做这样的操作</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> redistribute ospf 100 metric 10000 100 255 1 1500 route-map R-TAGS</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> redistribute eigrp 100 metric 100 subnets route-map R-TAGS</span><br><span class="line">! </span><br></pre></td></tr></table></figure>
-
-<p>做完以上步骤后，查看 R1 和 R2 的路由表，发现环路路由问题解决了，但是还存在次优路由。</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/9FjXYtfGx5sinKD.jpg"><img src="https://i.loli.net/2021/11/29/9FjXYtfGx5sinKD.jpg" class="img-center" /></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/nSZVpNFzc1Ti78M.jpg"><img src="https://i.loli.net/2021/11/29/nSZVpNFzc1Ti78M.jpg" class="img-center" /></a></p>
-<p>修改 OSPF 外部路由的管理距离，使之大于 EIGRP 外部路由 （170），这样处理就可以使路由器选择加载 EIGRP 学习到的外部路由。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! -- 方式 1 ，定义 ACL 匹配外部网络，在 OSPF 进程下针对该 ACL 修改管理距离</span><br><span class="line">!</span><br><span class="line">access-list 10 permit 192.168.1.0 0.0.0.255</span><br><span class="line">access-list 10 permit 192.168.2.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance 171 0.0.0.0 255.255.255.255 10</span><br><span class="line">!</span><br><span class="line">! -- 方式 2 ，直接在 OSPF 进程下针对外部网络修改管理距离</span><br><span class="line">!</span><br><span class="line">router ospf 100</span><br><span class="line"> distance ospf external 171</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<p>最终解决问题</p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/noHTCkGxhsVfl9A.jpg"><img src="https://i.loli.net/2021/11/29/noHTCkGxhsVfl9A.jpg" class="img-center" /></a></p>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/11/29/okR8upbOfKC3Tz6.jpg"><img src="https://i.loli.net/2021/11/29/okR8upbOfKC3Tz6.jpg" class="img-center" /></a></p>
-<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
-<li>做路由重分发的时候要考虑到操作后是否产生环路路由、次优路由和网络不可达的情况。</li>
-<li>对于产生环路路由、次优路由和网络不可达的情况，要是合理使用 route-map、修改管理距离等手段修正。</li>
-<li>当然合理的规划网络也很重要。必要的进行路由汇总，设置 passive-interface ……，使设备路由表尽可能的精简而又能高效的完成转发工作，这是很好的思路。</li>
-<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
-<li>欢迎“<del>来电</del>”来函探讨。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>PNETLab</category>
-      </categories>
-      <tags>
-        <tag>Network Emulator</tag>
-        <tag>PNETLab</tag>
-        <tag>Cisco</tag>
       </tags>
   </entry>
   <entry>
