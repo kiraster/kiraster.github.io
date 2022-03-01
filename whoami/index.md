@@ -16,5 +16,5 @@ layout: false
 <h3 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h3>
 <div class="my-links img-center">
   <li><a class="gradient-text" href="https://weibo.com/u/5870396569" target="_blank" rel="noopener"><span class=" iconfont icon-weibo1"></span></a><a href="https://weibo.com/u/5870396569" target="_blank" rel="noopener">&nbsp;&nbsp;微博</a></li>
-  <li><a class="gradient-text" href="mailto:kir_aster@qq.com" target="_blank" rel="noopener"><span class=" iconfont icon-mail"></span></a><a href="mailto:kir_aster@qq.com" target="_blank" rel="noopener">&nbsp;&nbsp;邮箱</a></li>
+  <li><a class="gradient-text" href="mailto:kir_aster@foxmail.com" target="_blank" rel="noopener"><span class=" iconfont icon-mail"></span></a><a href="mailto:kir_aster@foxmail.com" target="_blank" rel="noopener">&nbsp;&nbsp;邮箱</a></li>
 
