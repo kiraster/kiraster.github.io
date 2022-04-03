@@ -319,6 +319,13 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
+    <lastmod>2022-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/tags/Update/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
@@ -340,13 +347,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/H3C-Cloud-Lab/</loc>
-    <lastmod>2022-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/%E5%8F%8C%E5%87%BA%E5%8F%A3%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
@@ -355,6 +355,20 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/Router/</loc>
+    <lastmod>2022-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E5%B7%A1%E6%A3%80%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2022-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/H3C/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -389,14 +403,14 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/%E5%B7%A1%E6%A3%80%E8%84%9A%E6%9C%AC/</loc>
+    <loc>https://kiraster.github.io/tags/%E5%8D%97%E5%B1%B1%E5%8D%97/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/H3C/</loc>
+    <loc>https://kiraster.github.io/tags/%E5%8C%97%E7%A7%8B%E6%82%B2/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -410,14 +424,14 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/%E5%8D%97%E5%B1%B1%E5%8D%97/</loc>
+    <loc>https://kiraster.github.io/tags/Blog/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/%E5%8C%97%E7%A7%8B%E6%82%B2/</loc>
+    <loc>https://kiraster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -480,14 +494,21 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/Blog/</loc>
+    <loc>https://kiraster.github.io/tags/%E7%BA%BF%E8%B7%AF%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/</loc>
+    <loc>https://kiraster.github.io/tags/%E5%89%B2%E6%8E%A5%E5%B7%A5%E4%BD%9C/</loc>
+    <lastmod>2022-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Python%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -523,27 +544,6 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/TI10/</loc>
-    <lastmod>2022-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/%E7%BA%BF%E8%B7%AF%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2022-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/%E5%89%B2%E6%8E%A5%E5%B7%A5%E4%BD%9C/</loc>
-    <lastmod>2022-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Python%E8%84%9A%E6%9C%AC/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -620,6 +620,13 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/tags/BGP/</loc>
+    <lastmod>2022-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/tags/IPv6/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
@@ -675,13 +682,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://kiraster.github.io/tags/BGP/</loc>
-    <lastmod>2022-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   
   <url>
@@ -713,6 +713,13 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
+    <lastmod>2022-04-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/categories/Update/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
@@ -721,13 +728,6 @@
   
   <url>
     <loc>https://kiraster.github.io/categories/Notes/</loc>
-    <lastmod>2022-04-03</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/categories/H3C-Cloud-Lab/</loc>
     <lastmod>2022-04-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
