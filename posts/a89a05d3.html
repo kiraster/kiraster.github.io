@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-site-verification" content="WJYkORGaCKpmTo5KTO23-HtGay4kqsa1kvMVMad6DMY" />
+<meta name="msvalidate.01" content="B0C0B3C5A32207C648603D179C10C991" /><script src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-209914470-1');</script><title>Kir's Blog</title><meta name="author" content="Kir Aster"><link rel="shortcut icon" href="/img/favicon.png"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&amp;display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.bootcss.com/flexboxgrid/6.3.1/flexboxgrid.min.css"></head><body><header id="page_header"><div class="header_wrap"><div id="blog_name"><a class="blog_title" id="site-name" href="/">Kir's Blog</a></div><button class="menus_icon"><div class="navicon"></div></button><ul class="menus_items"><li class="menus_item"><a class="site-page" href="/archives"> Archive</a></li><li class="menus_item"><a class="site-page" href="/whoami"> About</a></li><li class="menus_item"><a class="site-page" href="/search"> Search</a></li></ul></div></header><main id="page_main_post"><div class="page" itemscope itemtype="http://schema.org/CreativeWork"><h1 class="page-title">HCL_FW_IRF_LAB</h1><article><p><strong>拓扑图</strong></p>
+ <a data-fancybox="gallery" target="_blank" rel="noopener" href="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png">
+ <img src="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png" class="img-center" /></a>
+
+<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ul>
+<li>验证 H3C 防火墙 IRF 堆叠和主备模式</li>
+<li>基于项目中部分核心网络的模拟器测试</li>
+<li>线路交叉互联的问题</li>
+</ul>
+<h2 id="实验描述"><a href="#实验描述" class="headerlink" title="实验描述"></a>实验描述</h2><h3 id="IP-地址规划和端口互联"><a href="#IP-地址规划和端口互联" class="headerlink" title="IP 地址规划和端口互联"></a>IP 地址规划和端口互联</h3><table>
+<thead>
+<tr>
+<th align="left">互联设备</th>
+<th align="left">互联地址</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">核心防火墙&lt;–&gt;核心交换机</td>
+<td align="left">10.1.1.0/30</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">核心防火墙&lt;–&gt;服务器汇聚</td>
+<td align="left">10.1.1.4/30</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">核心防火墙&lt;–&gt;外联交换机</td>
+<td align="left">VLAN10:192.168.10.254</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>A端设备</th>
+<th>端口</th>
+<th>B端设备</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FW1</td>
+<td>GE0/23</td>
+<td>FW2</td>
+<td>GE0/23</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/1</td>
+<td>SW5</td>
+<td>GE0/1</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/2</td>
+<td>SW6</td>
+<td>GE0/2</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/3</td>
+<td>SW3</td>
+<td>GE0/3</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/4</td>
+<td>SW4</td>
+<td>GE0/4</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/11</td>
+<td>SW7</td>
+<td>GE0/1</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/1</td>
+<td>SW6</td>
+<td>GE0/1</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/2</td>
+<td>SW5</td>
+<td>GE0/2</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/3</td>
+<td>SW4</td>
+<td>GE0/3</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/4</td>
+<td>SW3</td>
+<td>GE0/4</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/11</td>
+<td>SW7</td>
+<td>GE0/2</td>
+</tr>
+</tbody></table>
+<h3 id="防火墙安全域划分"><a href="#防火墙安全域划分" class="headerlink" title="防火墙安全域划分"></a>防火墙安全域划分</h3><p>核心交换机：Trust</p>
+<p>服务器汇聚：Server</p>
+<p>外联交换机：Untrust</p>
+<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
+<li>FW1 与 FW2 之间 IRF 堆叠；SW3 与 SW4 之间 IRF 堆叠；SW5 与 SW6 之间 IRF 堆叠；</li>
+<li>设备互联的端口聚合配置，配置系统优先级和端口优先级，使流量优先流经“主”用设备</li>
+<li>配置互联地址，确保逻辑直连的互通</li>
+<li>配置防火墙安全域和安全策略</li>
+<li>配置 PC IP地址确保与网关的连通性</li>
+<li>配置静态路由确保网络互通</li>
+<li>进行倒换倒回观察网络连通性</li>
+<li>模拟线路故障观察网络连通性</li>
+</ol>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
+<li>见文末</li>
+</ul>
+<h2 id="聊点什么"><a href="#聊点什么" class="headerlink" title="聊点什么"></a>聊点什么</h2><ul>
+<li><p>就线路交叉互联问题，与老友交谈，据他说这种互联方式可能导致丢包现象，例如，流量分别从SW3的G0/3接口和SW4的G0/4接口进入FW1，G0/4的流量会被认为非法流量而丢弃，盲猜是因为会话状态机模式设为严格模式，而运行中出现了来回路径不一致的问题导致丢包。</p>
+</li>
+<li><p>就这个交叉互联问题与华三400聊了近半小时，对方给出的方案是按完美的主备处理方式进行组网，（在网络正常的情况下）即流量永远只走一边，只要防火墙上有一个端口出现故障，冗余组全部切换到备。</p>
+</li>
+<li><p>主备模式下，设置冗余组，主成员下的端口有任一出现问题，就会整体切换到备，而备设备如在整体切换就有部分端口故障，此时主成员设备的UP状态的端口会在 DOWN 和  DOWN(redundancy down) 之间反复恒跳，而Status出现两个 Secondary，Slot1 的Track优先级也会随着端口的两个 DOWN 状态不同而变化。注意，此时网络并没有中断。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Redundancy group 11 (ID 1):</span><br><span class="line">  Node ID      Slot          Priority   Status        Track weight</span><br><span class="line">  1            Slot1         1          Secondary     -1020</span><br><span class="line">  2            Slot2         1          Secondary     -255</span><br></pre></td></tr></table></figure></li>
+<li><p>要严格控制流量走一边的情况，就需要接入层网上的设备互联都使用双线互联。而万一“主”设备上联到上一层“主”设备的线路故障了，那么恭喜你可能网络瘫痪了，举个例子，拓扑中SW3与SW11的G0/1接口down，因为SW11上联的两根线路做了聚合，SW11上联的流量会通过G0/2向上走，相当于在核心交换机的SW4上接了一台 PC ，你觉得流量再往上层该怎么走？走到FW2备成员？而FW2是备用状态不处理流量。写到这我才想起来原来华三400建议做两个聚合组是有道理的，SW4 G0/4和G0/3做一个聚合组，就可以人为限制流量又走到FW1，秒啊。</p>
+</li>
+<li><p>继续上一条，不使用两组聚合的方式，关闭IRF的本地优先转发，核心交换机上就出现跨框流量，即进入SW4的流量要往上走，要绕道SW3上去，这明显不合理了。</p>
+</li>
+<li><p>继续上一条，假如使用核心交换机上联防火墙4根线做一个三层聚合组，FW1往下回流量的时候，由于负载分担的方式，又有可能把流量回给SW4。综合一下，在聚合组配置selected-port maximum 1 同时配置lacp的端口优先级呢，是不是觉得这个方法又蠢又无奈又有用。</p>
+</li>
+<li><p>对于要把外联区（SW7）的网关设置在防火墙上的问题，还有一种方式是用 RETH 接口，但是我模拟器配置了，且SW7 查看arp都能看到网关的条目了，就是不通，希望是模拟器bug了，有机会去真机上测试一下再回来聊聊。</p>
+</li>
+<li><p>不知道是不是我的错觉，用HCL模拟器做这种冗余类实验，老是出现一些不能理解的问题，这边十万八千里shutdown个端口，那边会受影响那种。</p>
+</li>
+</ul>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
+<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
+<li>配置存阿里云盘了，这是链接：[<a target="_blank" rel="noopener" href="https://www.aliyundrive.com/s/1waTfsXdwdm">分享的文件</a>]</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+</article><p class="page-date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Published：<realdate>May 03, 2022</realdate></strong></p><p class="page-tags"><strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags：<a class="page-tags-item" href="/tags/H3C%E9%98%B2%E7%81%AB%E5%A2%99/">H3C防火墙</a><a class="page-tags-item" href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E5%A0%86%E5%8F%A0/">防火墙堆叠</a><a class="page-tags-item" href="/tags/IRF/">IRF</a><a class="page-tags-item" href="/tags/%E4%B8%BB%E5%A4%87%E6%A8%A1%E5%BC%8F/">主备模式</a><a class="page-tags-item" href="/tags/%E6%A8%A1%E6%8B%9F%E6%B5%8B%E8%AF%95/">模拟测试</a><a class="page-tags-item" href="/tags/%E5%86%97%E4%BD%99%E7%BB%84/">冗余组</a></strong></p></div></main><div class="nav-wrap"><div class="nav"><button class="site-nav"><div class="navicon"></div></button><ul class="nav_items"><li class="nav_item"><a class="nav-page" href="/archives"> Archive</a></li><li class="nav_item"><a class="nav-page" href="/whoami"> About</a></li><li class="nav_item"><a class="nav-page" href="/search"> Search</a></li></ul></div><div class="cd-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></div></div><footer id="page_footer"><div class="footer_wrap"><div class="copyright">&copy;2021 - 2022 by Kir Aster</div><div class="theme-info">Powered by <a target="_blank" href="https://hexo.io" rel="nofollow noopener">Hexo</a> & <a target="_blank" href="https://github.com/PhosphorW/hexo-theme-academia" rel="nofollow noopener">Academia Theme</a></div></div><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '3a4045a27e1262a56b8fe2f8b7b42ff1';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script></footer><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery-pjax@latest/jquery.pjax.min.js"></script><script src="/js/main.js"></script><script src="/js/search.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script></body></html>
