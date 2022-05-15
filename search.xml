@@ -53,34 +53,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。<span id="more"></span></p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Methods</category>
-      </categories>
-      <tags>
-        <tag>Methods</tag>
-        <tag>Feynman</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ENSP_防火墙初始密码问题</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。<span id="more"></span></p>
@@ -120,6 +92,61 @@
       <tags>
         <tag>eNSP</tag>
         <tag>USG防火墙</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。<span id="more"></span></p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Methods</category>
+      </categories>
+      <tags>
+        <tag>Methods</tag>
+        <tag>Feynman</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>九十年代</title>
+    <url>/posts/8847b633.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
+<p>那时候人事物，我稍微回忆一下</p>
+<p>老爸买的黑白电视机，带有车牌号的自行车……<span id="more"></span></p>
+<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
+<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
+<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起 VCD 机</p>
+<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
+<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是 BB                                                  机，我老爸有一个</p>
+<p>那时候村里起房子，砖是从田里挖泥造的</p>
+<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
+<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
+<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
+<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
+<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
+<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -199,30 +226,67 @@
       </tags>
   </entry>
   <entry>
-    <title>九十年代</title>
-    <url>/posts/8847b633.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
-<p>那时候人事物，我稍微回忆一下</p>
-<p>老爸买的黑白电视机，带有车牌号的自行车……<span id="more"></span></p>
-<p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着</p>
-<p>对了，那是亲戚的一辆山地自行车，当然那时候我还不知道分类</p>
-<p>那时候看电影，都是去镇上租碟，村里面稍微“富裕”的人家才买的起 VCD 机</p>
-<p>在我老爸没买电视机前，晚上想要看电视节目是去村里有电视的人家围观看，隐约记得晚上回来晚了，村里几乎没有灯亮着，借着月光摸黑回来，大门锁了，找到放大门钥匙的地方，蹑手蹑脚开门关门睡觉</p>
-<p>那时候通信是挺落后的，村里有固定电话的没多少人家，看到路边电信杠上挂着一块木制用红色油漆写着号码的才是有固定电话的，那时候普遍用的还是 BB                                                  机，我老爸有一个</p>
-<p>那时候村里起房子，砖是从田里挖泥造的</p>
-<p>那时候贪玩，回到家会被殴打，那时候贪玩，眉弓往右眼部位被铁片扎了，万幸右眼没有失明，但是留下了疤痕，导致后来照镜子看显得有点“社会”</p>
-<p>小时候生病，会被老爸背去打针，当时我应该是哭了，每次打完针后，会有一碗饭馆的面吃，来抚慰幼小的我，对当时的家庭经济状况来说应该算是“大餐”</p>
-<p>那时的作业都是早上起来写的，晚上可能是去邻居家看电视，或者跑去看碟片电影了</p>
-<p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了</p>
-<p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了</p>
-<p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回</p>
-<p>……</p>
+    <title>简明现代汉语语法_学习</title>
+    <url>/posts/51f223b9.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
+<h2 id="字词、词性、成分之间的关系"><a href="#字词、词性、成分之间的关系" class="headerlink" title="字词、词性、成分之间的关系"></a>字词、词性、成分之间的关系</h2><p>一般规律：</p>
+<ul>
+<li>名词和代词一般更适合做主语和宾语</li>
+<li>动词一般更适合做谓语</li>
+<li>副词和形容词一般更适合做定语和状语</li>
+<li>主谓宾是一般顺序</li>
+<li>定语一般在主语和宾语前面</li>
+<li>状语一般在谓语前面</li>
+<li>顺序颠倒了就是倒装</li>
+</ul>
+<h2 id="词性"><a href="#词性" class="headerlink" title="词性"></a>词性</h2><p>实词 vs 虚词</p>
+<ul>
+<li>实词：意义编辑具体的词，包括：名词、动词、形容词、数词、量词、代词</li>
+<li>虚词：一般不能单独成句，意义比较抽象，有帮助造句作用的词，包括：副词、介词、连词、助词、叹词、拟声词</li>
+</ul>
+<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
+<p>表示人或事物名称<br>表示人：姑娘、青年、工人<br>表示具体事物：锤子、坚果、手机<br>表示抽象事物：理想、精神、感情<br>表示时间：春天、昨天、早上、下午</p>
+</blockquote>
+<blockquote>
+<p>方位名词<br>上下左右前后左右东西南北里头外边以上之下<br>大多数情况下，方位名词用在其他名词性词语的后边，表示事物所在的位置和范围</p>
+</blockquote>
+<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><blockquote>
+<p>表示人或事物的动作行为、心里活动、发展变化<br>表示动作行为：走、跑、滚、唱、跳、打<br>表示心里活动：爱、恨、喜欢、讨厌、想念、忘记、佩服<br>表示事物发展变化：增加、减少、扩大、提高、降低、发生、出现</p>
+</blockquote>
+<blockquote>
+<p>表示可能、应该、意愿<br>能、不能、能够、会、可能、可以、可、要、应该、应当、肯、敢、愿、愿意<br>这类词常放在一般动词的前面</p>
+</blockquote>
+<blockquote>
+<p>表示动作趋向<br>下、去、来、进、出、到、过、过去、上来、回去、起来<br>这类动词往往放在表示动作行为的动词后边，用来表示动作行为的方向</p>
+</blockquote>
+<blockquote>
+<p>表示判断：是vs不是</p>
+</blockquote>
+<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><blockquote>
+<p>用来描摹人或事物<br>表示状态：快、慢、软、硬、忙碌、悠闲、激动<br>表示性质：好、坏、美、丑、存粹、清脆<br>表示颜色：赤橙黄绿青蓝紫、苍白、绿油由、红彤彤<br>表示形状：大、小、宽、长、窄、笔直、弯曲</p>
+</blockquote>
+<h4 id="一词多性"><a href="#一词多性" class="headerlink" title="一词多性"></a>一词多性</h4><blockquote>
+<p>结合语境判断</p>
+</blockquote>
+<h3 id="数词和量词"><a href="#数词和量词" class="headerlink" title="数词和量词"></a>数词和量词</h3><blockquote>
+<p>数词：表示确数、序数和概数:<br>确数：一、八千、七万八千<br>概述：十来（个）、三十几（个）、八九（辆）<br>序数：第一、老二、初八</p>
+</blockquote>
+<blockquote>
+<p>量词：表示单位<br>表示事物的单位：个、台、辆、条<br>表示度量单位：米、吨、克<br>表示动作行为的单位：次、回、趟，轮</p>
+</blockquote>
+<blockquote>
+<p>数量：数词和量词一般结合起来使用表示数量<br>一个、八千次、十来吨、第一轮</p>
+</blockquote>
+<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><blockquote>
+<p>代替名词、动词、形容词、数词、量词、副词<br>代替人或事物：你、你们、我、我们、他、它、她、咱们、自己<br>具有指示作用：那、这、这里、那里、这里、这样、那么、每、各<br>表示疑问：哪里、什么、谁、怎样、怎么样、哪、哪呢</p>
+</blockquote>
 ]]></content>
       <categories>
-        <category>扯谈</category>
+        <category>Notes</category>
       </categories>
       <tags>
-        <tag>扯谈</tag>
+        <tag>汉语语法</tag>
+        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -326,90 +390,6 @@
       </tags>
   </entry>
   <entry>
-    <title>简明现代汉语语法_学习</title>
-    <url>/posts/51f223b9.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
-<h2 id="字词、词性、成分之间的关系"><a href="#字词、词性、成分之间的关系" class="headerlink" title="字词、词性、成分之间的关系"></a>字词、词性、成分之间的关系</h2><p>一般规律：</p>
-<ul>
-<li>名词和代词一般更适合做主语和宾语</li>
-<li>动词一般更适合做谓语</li>
-<li>副词和形容词一般更适合做定语和状语</li>
-<li>主谓宾是一般顺序</li>
-<li>定语一般在主语和宾语前面</li>
-<li>状语一般在谓语前面</li>
-<li>顺序颠倒了就是倒装</li>
-</ul>
-<h2 id="词性"><a href="#词性" class="headerlink" title="词性"></a>词性</h2><p>实词 vs 虚词</p>
-<ul>
-<li>实词：意义编辑具体的词，包括：名词、动词、形容词、数词、量词、代词</li>
-<li>虚词：一般不能单独成句，意义比较抽象，有帮助造句作用的词，包括：副词、介词、连词、助词、叹词、拟声词</li>
-</ul>
-<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
-<p>表示人或事物名称<br>表示人：姑娘、青年、工人<br>表示具体事物：锤子、坚果、手机<br>表示抽象事物：理想、精神、感情<br>表示时间：春天、昨天、早上、下午</p>
-</blockquote>
-<blockquote>
-<p>方位名词<br>上下左右前后左右东西南北里头外边以上之下<br>大多数情况下，方位名词用在其他名词性词语的后边，表示事物所在的位置和范围</p>
-</blockquote>
-<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><blockquote>
-<p>表示人或事物的动作行为、心里活动、发展变化<br>表示动作行为：走、跑、滚、唱、跳、打<br>表示心里活动：爱、恨、喜欢、讨厌、想念、忘记、佩服<br>表示事物发展变化：增加、减少、扩大、提高、降低、发生、出现</p>
-</blockquote>
-<blockquote>
-<p>表示可能、应该、意愿<br>能、不能、能够、会、可能、可以、可、要、应该、应当、肯、敢、愿、愿意<br>这类词常放在一般动词的前面</p>
-</blockquote>
-<blockquote>
-<p>表示动作趋向<br>下、去、来、进、出、到、过、过去、上来、回去、起来<br>这类动词往往放在表示动作行为的动词后边，用来表示动作行为的方向</p>
-</blockquote>
-<blockquote>
-<p>表示判断：是vs不是</p>
-</blockquote>
-<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><blockquote>
-<p>用来描摹人或事物<br>表示状态：快、慢、软、硬、忙碌、悠闲、激动<br>表示性质：好、坏、美、丑、存粹、清脆<br>表示颜色：赤橙黄绿青蓝紫、苍白、绿油由、红彤彤<br>表示形状：大、小、宽、长、窄、笔直、弯曲</p>
-</blockquote>
-<h4 id="一词多性"><a href="#一词多性" class="headerlink" title="一词多性"></a>一词多性</h4><blockquote>
-<p>结合语境判断</p>
-</blockquote>
-<h3 id="数词和量词"><a href="#数词和量词" class="headerlink" title="数词和量词"></a>数词和量词</h3><blockquote>
-<p>数词：表示确数、序数和概数:<br>确数：一、八千、七万八千<br>概述：十来（个）、三十几（个）、八九（辆）<br>序数：第一、老二、初八</p>
-</blockquote>
-<blockquote>
-<p>量词：表示单位<br>表示事物的单位：个、台、辆、条<br>表示度量单位：米、吨、克<br>表示动作行为的单位：次、回、趟，轮</p>
-</blockquote>
-<blockquote>
-<p>数量：数词和量词一般结合起来使用表示数量<br>一个、八千次、十来吨、第一轮</p>
-</blockquote>
-<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><blockquote>
-<p>代替名词、动词、形容词、数词、量词、副词<br>代替人或事物：你、你们、我、我们、他、它、她、咱们、自己<br>具有指示作用：那、这、这里、那里、这里、这样、那么、每、各<br>表示疑问：哪里、什么、谁、怎样、怎么样、哪、哪呢</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>汉语语法</tag>
-        <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗<span id="more"></span></p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HCL_路由器双出口策略配置实验</title>
     <url>/posts/4e82271c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="网络拓扑模拟："><a href="#网络拓扑模拟：" class="headerlink" title="网络拓扑模拟："></a>网络拓扑模拟：</h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"><img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png" width="61.8%" class="img-center" ></a></p>
@@ -444,6 +424,26 @@
       <tags>
         <tag>双出口策略配置</tag>
         <tag>Router</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗<span id="more"></span></p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
       </tags>
   </entry>
   <entry>
@@ -837,6 +837,21 @@
       </tags>
   </entry>
   <entry>
+    <title>archive_test</title>
+    <url>/posts/515317e3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
+<ul>
+<li>This is a test page .</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PNETLab试用</title>
     <url>/posts/13f1a9a7.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>PNETLab</strong> <strong>(<em>Packet Network Emulator Tool Lab</em></strong>)is a platform that allows you to download and share labs with the community.  这句话摘抄自<a href="https://pnetlab.com/pages/documentation">官网</a>介绍，这是链接：<a href="https://pnetlab.com/pages/documentation">What is PNETLab?</a></p>
@@ -868,21 +883,6 @@
         <tag>PNETLab</tag>
         <tag>EVE-NG</tag>
         <tag>Cisco</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>archive_test</title>
-    <url>/posts/515317e3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
-<ul>
-<li>This is a test page .</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>Blog</tag>
       </tags>
   </entry>
   <entry>
@@ -1339,6 +1339,47 @@
       </tags>
   </entry>
   <entry>
+    <title>来自非网管交换机的教训</title>
+    <url>/posts/e906be86.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="不重要的开头"><a href="#不重要的开头" class="headerlink" title="不重要的开头"></a>不重要的开头</h2><p> 来自 <a href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F">以太网帧格式</a></p>
+<blockquote>
+<p><a data-fancybox="gallery" href="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg"><img src="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg" class="img-center" /></a><br>以太帧类型</p>
+<p>以太帧有很多种类型。不同类型的帧具有不同的格式和MTU值。但在同种物理媒体上都可同时存在。</p>
+<p>以太网第二版[note 3] 或者称之为Ethernet II 帧，DIX帧，是最常见的帧类型。并通常直接被IP协议使用。</p>
+<p>Novell的非标准IEEE 802.3帧变种。</p>
+<p>IEEE 802.2 逻辑链路控制 (LLC) 帧</p>
+<p>子网接入协议(SNAP)帧 </p>
+<p>所有四种以太帧类型都可包含一个IEEE 802.1Q选项来确定它属于哪个 VLAN 以及他的IEEE 802.1p优先级(QoS)。这个封装由IEEE 802.3ac定义并将帧大小从64字节扩充到1522字节(注：不包含7个前导字节和1个字节的帧开始符以及12个帧间距字节)。</p>
+<p>IEEE 802.1Q标签，如果出现，需要放在源地址字段和以太类型或长度字段的中间。这个标签的前两个字节是标签协议标识符(TPID)值0x8100。这与没有标签帧的以太类型/长度字段的位置相同，所以以太类型0x8100就表示包含标签的帧，而实际的以太类型/长度字段则放在Q-标签的后面。TPID后面是两个字节的标签控制信息(TCI)。(IEEE 802.1p 优先级(QoS)和 VLAN  ID)。Q标签后面就是通常的帧内容。 </p>
+<p>Ethernet II</p>
+<p>以太 II 帧 (也称作DIX以太网，是以这个设计的主要成员，DEC,Intel和Xerox的名字命名的。[1]),把紧接在目标和源MAC地址后面的这个两字节定义为以太网帧数据类型字段。</p>
+<p>例如，一个0x0800的以太类型说明这个帧包含的是IPv4数据报。同样的，一个0x0806的以太类型说明这个帧是一个ARP帧，0x8100说明这是一个IEEE 802.1Q帧，而0x86DD说明这是一个IPv6帧。</p>
+<p>当这个工业界的标准通过正式的IEEE标准化过程后，在802.3标准中以太类型字段变成了一个(数据)长度字段。(最初的以太包通过包括他们的帧来确定它们的长度，而不是以一个明确的数值。)但是包的接收层仍需知道如何解析包，因此标准要求将IEEE802.2头跟在长度字段后面，定义包的类型。多年之后，802.3x-1997标准，一个802.3标准的后继版本，正式允许两种类型的数据包同时存在。实际上，两种数据包都被广泛使用，而最初的以太数据包在以太局域网中被广泛应用，因为他的简便和低开销。</p>
+<p>为了允许一些使用以太II版本的数据报和一些使用802.3封装的最初版本的数据包能够在同一个以太网段使用，以太类型值必须大于等于1536(0x0600)。这个值比802.3数据包的最大长度1500byte (0x05DC)要更大。因此如果这个字段的值大于等于1536，则这个帧是以太II帧，而那个字段是类型字段。否则(小于1500而大于46字节)，他是一个IEEE 802.3帧，而那个字段是长度字段。1500～1536(不包含)的数值未定义。[2] </p>
+</blockquote>
+<h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h2><p>前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。<br><a data-fancybox="gallery" href="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg"><img src="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg" class="img-center" /></a><br>组网结构如上图，AP地址段 VLAN 和 STA 地址段 VLAN 不同，AP 的 STA 的 DHCP server 在汇聚交换机上（DHCP 的网关均设置在汇聚交换机上？），汇聚连接各楼层的非网管 PoE 交换机，查看了汇聚交换机配置，虽说是隧道转发，但连接楼层交换机的接口全放行了业务 STA  的 VLAN（我觉得这是个错误配置），</p>
+<p>决定改直接转发，扩大 STA 地址池范围，修改租期为更短时间，手动调优一次（该单位因装修调整过线路和AP，再加上AP布放相当不合理（壁挂安装，楼层里 AP 相隔两三米斜对角线安装））</p>
+<p>修改完配置后，问题更大了，仅有少数无线终端能获取IP正常接入，绝大多无线终端无法接入无线网络，长时间处在获取 IP 地址，然而修改成隧道转发后，可正常接入。最终排查出最大的可能性是这非网管交换机的问题，无法转发透传包含两个及以上的 802.1Q 的数据帧到汇聚交换机，这就触及本人知识盲区了，折腾了许久。</p>
+<p>接下来有两种方案，一是修改 AP 和  STA  的地址网段和 VLAN 为同一个，二是还是使用隧道转发，第一个方案改动太大了，最终使用第二方案。</p>
+<p>回来后一顿搜索非网管交换机的工作原理，有说非网管交换机所有口都是属于 VLAN 1 的说法，这简直是胡说八道的。有说能否转发带 VLAN  tag 数据和该交换机支持转发的最大传输单元（MTU）有关系，我查了各大非网管交换机的特性参数，均没有提及这一个参数。理论上这个参数确实会影响转发，就是说非网管交换机设定了一个转发的最大帧长度，当交换机接收到大于这个设定的帧长度就丢弃不转发，毕竟支持更大帧转发意味着消耗更多的硬件资源，基于成本控制我是可以理解硬件厂商这么做的原因。而且像 Jambo frame 这种格式在我接触到的项目中毕竟小众，使用场景比标准的802.3要少的多。</p>
+<p>也翻看了一些做了测试的网站文章，也没有一个定论说肯定支持转发或不支持转发802.1q的数据帧，看多了都使我抑郁了，更多的是论坛下的一些讨论。</p>
+<p>长教训了，这哪怕换成工作在物理层的 HUB 都能正常工作，反而……，看来将来再遇到这种非网管PoE交换机接入的情况要相当注意了，别再踩坑了。</p>
+<p>还有个别 AP 未上线问题，查看原因  <strong>Negotiation CAPWAP tunnel failed</strong> ，就去检查物理线路吧，特别是使用光收发这种设备的，【能不能通，能通有丢包，AP就是不上线】</p>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
+<li>文中可能有些内容术语表述的不规范，请见谅。</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Fantasy</category>
+      </categories>
+      <tags>
+        <tag>WLAN</tag>
+        <tag>unmanged switch</tag>
+        <tag>PoE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>BGP综合实验拓扑</title>
     <url>/posts/48f55792.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在B站看了一个UP主（<a href="https://space.bilibili.com/455975406">155和150</a>）上传的视频，感觉挺有意思的，就搭拓扑玩一玩。现在这个视频已经不见了，视频里使用的eNSP模拟器搭建的，我用PNET搭建，模拟器类型不关键。已经删减了一些内容，并加了一些实验需求。</p>
@@ -1412,47 +1453,6 @@
         <tag>PNETLab</tag>
         <tag>Cisco</tag>
         <tag>BGP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>来自非网管交换机的教训</title>
-    <url>/posts/e906be86.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="不重要的开头"><a href="#不重要的开头" class="headerlink" title="不重要的开头"></a>不重要的开头</h2><p> 来自 <a href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F">以太网帧格式</a></p>
-<blockquote>
-<p><a data-fancybox="gallery" href="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg"><img src="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg" class="img-center" /></a><br>以太帧类型</p>
-<p>以太帧有很多种类型。不同类型的帧具有不同的格式和MTU值。但在同种物理媒体上都可同时存在。</p>
-<p>以太网第二版[note 3] 或者称之为Ethernet II 帧，DIX帧，是最常见的帧类型。并通常直接被IP协议使用。</p>
-<p>Novell的非标准IEEE 802.3帧变种。</p>
-<p>IEEE 802.2 逻辑链路控制 (LLC) 帧</p>
-<p>子网接入协议(SNAP)帧 </p>
-<p>所有四种以太帧类型都可包含一个IEEE 802.1Q选项来确定它属于哪个 VLAN 以及他的IEEE 802.1p优先级(QoS)。这个封装由IEEE 802.3ac定义并将帧大小从64字节扩充到1522字节(注：不包含7个前导字节和1个字节的帧开始符以及12个帧间距字节)。</p>
-<p>IEEE 802.1Q标签，如果出现，需要放在源地址字段和以太类型或长度字段的中间。这个标签的前两个字节是标签协议标识符(TPID)值0x8100。这与没有标签帧的以太类型/长度字段的位置相同，所以以太类型0x8100就表示包含标签的帧，而实际的以太类型/长度字段则放在Q-标签的后面。TPID后面是两个字节的标签控制信息(TCI)。(IEEE 802.1p 优先级(QoS)和 VLAN  ID)。Q标签后面就是通常的帧内容。 </p>
-<p>Ethernet II</p>
-<p>以太 II 帧 (也称作DIX以太网，是以这个设计的主要成员，DEC,Intel和Xerox的名字命名的。[1]),把紧接在目标和源MAC地址后面的这个两字节定义为以太网帧数据类型字段。</p>
-<p>例如，一个0x0800的以太类型说明这个帧包含的是IPv4数据报。同样的，一个0x0806的以太类型说明这个帧是一个ARP帧，0x8100说明这是一个IEEE 802.1Q帧，而0x86DD说明这是一个IPv6帧。</p>
-<p>当这个工业界的标准通过正式的IEEE标准化过程后，在802.3标准中以太类型字段变成了一个(数据)长度字段。(最初的以太包通过包括他们的帧来确定它们的长度，而不是以一个明确的数值。)但是包的接收层仍需知道如何解析包，因此标准要求将IEEE802.2头跟在长度字段后面，定义包的类型。多年之后，802.3x-1997标准，一个802.3标准的后继版本，正式允许两种类型的数据包同时存在。实际上，两种数据包都被广泛使用，而最初的以太数据包在以太局域网中被广泛应用，因为他的简便和低开销。</p>
-<p>为了允许一些使用以太II版本的数据报和一些使用802.3封装的最初版本的数据包能够在同一个以太网段使用，以太类型值必须大于等于1536(0x0600)。这个值比802.3数据包的最大长度1500byte (0x05DC)要更大。因此如果这个字段的值大于等于1536，则这个帧是以太II帧，而那个字段是类型字段。否则(小于1500而大于46字节)，他是一个IEEE 802.3帧，而那个字段是长度字段。1500～1536(不包含)的数值未定义。[2] </p>
-</blockquote>
-<h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h2><p>前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。<br><a data-fancybox="gallery" href="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg"><img src="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg" class="img-center" /></a><br>组网结构如上图，AP地址段 VLAN 和 STA 地址段 VLAN 不同，AP 的 STA 的 DHCP server 在汇聚交换机上（DHCP 的网关均设置在汇聚交换机上？），汇聚连接各楼层的非网管 PoE 交换机，查看了汇聚交换机配置，虽说是隧道转发，但连接楼层交换机的接口全放行了业务 STA  的 VLAN（我觉得这是个错误配置），</p>
-<p>决定改直接转发，扩大 STA 地址池范围，修改租期为更短时间，手动调优一次（该单位因装修调整过线路和AP，再加上AP布放相当不合理（壁挂安装，楼层里 AP 相隔两三米斜对角线安装））</p>
-<p>修改完配置后，问题更大了，仅有少数无线终端能获取IP正常接入，绝大多无线终端无法接入无线网络，长时间处在获取 IP 地址，然而修改成隧道转发后，可正常接入。最终排查出最大的可能性是这非网管交换机的问题，无法转发透传包含两个及以上的 802.1Q 的数据帧到汇聚交换机，这就触及本人知识盲区了，折腾了许久。</p>
-<p>接下来有两种方案，一是修改 AP 和  STA  的地址网段和 VLAN 为同一个，二是还是使用隧道转发，第一个方案改动太大了，最终使用第二方案。</p>
-<p>回来后一顿搜索非网管交换机的工作原理，有说非网管交换机所有口都是属于 VLAN 1 的说法，这简直是胡说八道的。有说能否转发带 VLAN  tag 数据和该交换机支持转发的最大传输单元（MTU）有关系，我查了各大非网管交换机的特性参数，均没有提及这一个参数。理论上这个参数确实会影响转发，就是说非网管交换机设定了一个转发的最大帧长度，当交换机接收到大于这个设定的帧长度就丢弃不转发，毕竟支持更大帧转发意味着消耗更多的硬件资源，基于成本控制我是可以理解硬件厂商这么做的原因。而且像 Jambo frame 这种格式在我接触到的项目中毕竟小众，使用场景比标准的802.3要少的多。</p>
-<p>也翻看了一些做了测试的网站文章，也没有一个定论说肯定支持转发或不支持转发802.1q的数据帧，看多了都使我抑郁了，更多的是论坛下的一些讨论。</p>
-<p>长教训了，这哪怕换成工作在物理层的 HUB 都能正常工作，反而……，看来将来再遇到这种非网管PoE交换机接入的情况要相当注意了，别再踩坑了。</p>
-<p>还有个别 AP 未上线问题，查看原因  <strong>Negotiation CAPWAP tunnel failed</strong> ，就去检查物理线路吧，特别是使用光收发这种设备的，【能不能通，能通有丢包，AP就是不上线】</p>
-<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
-<li>文中可能有些内容术语表述的不规范，请见谅。</li>
-<li>欢迎“<del>来电</del>”来函探讨。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Fantasy</category>
-      </categories>
-      <tags>
-        <tag>WLAN</tag>
-        <tag>unmanged switch</tag>
-        <tag>PoE</tag>
       </tags>
   </entry>
   <entry>
@@ -1654,6 +1654,85 @@
       </tags>
   </entry>
   <entry>
+    <title>H3C_Python_SSH_Config_Auto</title>
+    <url>/posts/54cb8229.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>两个 Python 脚本</strong></p>
+<ul>
+<li>Python 脚本 SSH 登陆华三设备，使用定义好的 display 脚本批量导出配置和一些设备状态</li>
+<li>Python 脚本 SSH 登陆华三设备，使用定义好的配置命令批量增加配置</li>
+<li>主要使用的是 netmiko 这个模块里的 ConnectHandler 命令</li>
+<li>单线程</li>
+<li>脚本运行完成后输出 成功和失败的记录log</li>
+<li>ip_list.txt，cmd_list.txt，cmd_config_list.txt 格式简单，修改方便</li>
+<li>未做多账号密码的 if 语句判断</li>
+<li>肯定有冗余繁重的代码</li>
+</ul>
+<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><p><strong>py01.py</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> netmiko <span class="keyword">import</span> ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">time_str1 = time.strftime(<span class="string">&#x27;%Y_%m_%d&#x27;</span>, time.localtime())</span><br><span class="line">time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">path = <span class="string">&quot;F:\\XXXXX\\py_net&quot;</span></span><br><span class="line">title = <span class="string">&quot;%s&quot;</span> % time_str1</span><br><span class="line"><span class="comment"># mkdir path &amp; touch file</span></span><br><span class="line">new_path = os.path.join(path, title)</span><br><span class="line">config_path = <span class="string">&quot;%s\\configuration_backup&quot;</span> % new_path</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(new_path):</span><br><span class="line">    os.makedirs(new_path)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(config_path):</span><br><span class="line">    os.makedirs(config_path)</span><br><span class="line"><span class="comment"># 创建日志文件，记录运行结果</span></span><br><span class="line">log_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s.log&#x27;</span> % (config_path, time_str1), <span class="string">&#x27;a+&#x27;</span>,</span><br><span class="line">              encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========START TIME &quot;</span> + time_str3 + <span class="string">&quot;=========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 读取 ip_list.txt 里的 ip 地址</span></span><br><span class="line">ip_list = <span class="built_in">open</span>(<span class="string">&#x27;ip_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">ip_addr = ip_list.readlines()</span><br><span class="line">ip_list.close()</span><br><span class="line"><span class="comment"># display 命令</span></span><br><span class="line">cmd_list = <span class="built_in">open</span>(<span class="string">&#x27;cmd_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">cmd_line = cmd_list.readlines()</span><br><span class="line">cmd_list.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历 ip_addr 列表里面的 ip 进行连接</span></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> <span class="built_in">iter</span>(ip_addr):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        S5130 = &#123;</span><br><span class="line">            <span class="string">&#x27;device_type&#x27;</span>: <span class="string">&#x27;hp_comware&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;ip&#x27;</span>: ip,</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;admin&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;xxxxxxxxxx&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        net_connect = ConnectHandler(**S5130)</span><br><span class="line">        <span class="comment"># 禁用输出屏幕分屏</span></span><br><span class="line">        screen_d = net_connect.send_command(<span class="string">&#x27;screen-length disable&#x27;</span>)</span><br><span class="line">        <span class="comment"># current_time as part of filename</span></span><br><span class="line">        time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="comment"># sysname as part of fielname</span></span><br><span class="line">        sysn = net_connect.send_command(<span class="string">&#x27;dis cur | inc sysname&#x27;</span>)</span><br><span class="line">        <span class="comment"># split 空格分割回显内容</span></span><br><span class="line">        sysn = re.split(<span class="string">r&#x27;[ ]+&#x27;</span>, sysn)</span><br><span class="line">        sysn = sysn[<span class="number">2</span>]</span><br><span class="line">        <span class="comment"># 创建文件, 格式为 sysname + time_str2</span></span><br><span class="line">        config_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s_%s_config.txt&#x27;</span> % (config_path, sysn, time_str2), <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">                         encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="built_in">print</span>(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip)</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip)</span><br><span class="line">        <span class="keyword">for</span> cmd <span class="keyword">in</span> <span class="built_in">iter</span>(cmd_line):</span><br><span class="line">            cmd_result = net_connect.send_command(cmd)</span><br><span class="line">            <span class="built_in">print</span>(cmd)</span><br><span class="line">            <span class="built_in">print</span>(cmd_result)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;===================================================================&#x27;</span>)</span><br><span class="line">            config_fo.write(<span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                            + <span class="string">&#x27;===================================================================&#x27;</span></span><br><span class="line">                            + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                            + cmd</span><br><span class="line">                            + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                            + cmd_result)</span><br><span class="line">        net_connect.disconnect()</span><br><span class="line">        config_fo.close()</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoTimeoutException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Can not connect to Device &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Can not connect to Device &#x27;</span> + ip)</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoAuthenticationException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;username/password wrong! &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; username/password wrong! &#x27;</span> + ip)</span><br><span class="line">time_str4 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========END TIME &quot;</span> + time_str4 + <span class="string">&quot;==========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">log_fo.close()</span><br><span class="line"><span class="built_in">print</span>(log_fo)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>py02.py</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> netmiko <span class="keyword">import</span> ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">time_str1 = time.strftime(<span class="string">&#x27;%Y_%m_%d&#x27;</span>, time.localtime())</span><br><span class="line">time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">path = <span class="string">&quot;F:\\XXXXX\\py_net&quot;</span></span><br><span class="line">title = <span class="string">&quot;%s&quot;</span> % time_str1</span><br><span class="line"><span class="comment"># mkdir file &amp; touch file</span></span><br><span class="line">new_path = os.path.join(path, title)</span><br><span class="line">config_path = <span class="string">&quot;%s\\configure_device&quot;</span> % new_path</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(new_path):</span><br><span class="line">    os.makedirs(new_path)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(config_path):</span><br><span class="line">    os.makedirs(config_path)</span><br><span class="line"><span class="comment"># 创建日志文件，记录运行结果</span></span><br><span class="line">log_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s.log&#x27;</span> % (config_path, time_str1), <span class="string">&#x27;a+&#x27;</span>,</span><br><span class="line">              encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========START TIME &quot;</span> + time_str3 + <span class="string">&quot;=========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 读取 ip_list.txt 里的 ip 地址</span></span><br><span class="line">ip_list = <span class="built_in">open</span>(<span class="string">&#x27;ip_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">ip_addr = ip_list.readlines()</span><br><span class="line">ip_list.close()</span><br><span class="line"><span class="comment"># 读取 cmd_config_list.txt 文件的配置命令</span></span><br><span class="line">cmd_config_list = <span class="built_in">open</span>(<span class="string">&#x27;cmd_config_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">cmd_line = cmd_config_list.readlines()</span><br><span class="line"><span class="built_in">print</span>(cmd_line)</span><br><span class="line">cmd_config_list.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历 ip_addr 列表里面的 ip 进行连接</span></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> <span class="built_in">iter</span>(ip_addr):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        S5130 = &#123;</span><br><span class="line">            <span class="string">&#x27;device_type&#x27;</span>: <span class="string">&#x27;hp_comware&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;ip&#x27;</span>: ip,</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;admin&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;xxxxxxxxxx&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        net_connect = ConnectHandler(**S5130)</span><br><span class="line">        <span class="comment"># 禁用输出屏幕分屏</span></span><br><span class="line">        screen_d = net_connect.send_command(<span class="string">&#x27;screen-length disable&#x27;</span>)</span><br><span class="line">        <span class="comment"># current_time as part of filename</span></span><br><span class="line">        time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="comment"># sysname as part of fielname</span></span><br><span class="line">        sysn = net_connect.send_command(<span class="string">&#x27;dis cur | inc sysname&#x27;</span>)</span><br><span class="line">        <span class="comment"># split 空格分割回显内容</span></span><br><span class="line">        sysn = re.split(<span class="string">r&quot;[ ]+&quot;</span>, sysn)</span><br><span class="line">        sysn = sysn[<span class="number">2</span>]</span><br><span class="line">        <span class="comment"># 创建文件, 格式为 sysname + time_str2</span></span><br><span class="line">        config_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s_%s_add_config.txt&#x27;</span> % (config_path, sysn, time_str2), <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">                         encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="built_in">print</span>(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip + <span class="string">&#x27; Configuring...&#x27;</span>)</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Configuration complete: &#x27;</span> + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip)</span><br><span class="line">        cmd_result = net_connect.send_config_set(cmd_line)</span><br><span class="line">        <span class="built_in">print</span>(cmd_result)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;===================================================================&#x27;</span>)</span><br><span class="line">        config_fo.write(<span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                        + <span class="string">&#x27;===================================================================&#x27;</span></span><br><span class="line">                        + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                        + cmd_result)</span><br><span class="line">        net_connect.disconnect()</span><br><span class="line">        config_fo.close()</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoTimeoutException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Can not connect to Device &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Configuration Fail: &#x27;</span> + <span class="string">&#x27; Can not connect to Device! &#x27;</span> + ip)</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoAuthenticationException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;username/password wrong! &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Configuration Fail: &#x27;</span> + <span class="string">&#x27; username/password wrong! &#x27;</span> + ip)</span><br><span class="line">time_str4 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========END TIME &quot;</span> + time_str4 + <span class="string">&quot;==========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">log_fo.close()</span><br><span class="line"><span class="built_in">print</span>(log_fo)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><ol>
+<li>Python3，理论上 Python3 版本都可运行，没看到新版本更新日志说哪里有变动<ul>
+<li>在 win7 系统 3.8.10 版本运行测试无问题</li>
+<li>在 win10 系统 3.9.7 版本运行测试无问题</li>
+<li>在 win10 系统 3.10.4 版本运行测试无问题</li>
+</ul>
+</li>
+<li>安装 netmiko </li>
+<li>测试连接 HCL_Setup_V3.0.1 模拟器设备无问题</li>
+<li>测试连接真实 H3C 设备，无问题</li>
+<li>运行速度取决与设备的连接反应和脚本行数</li>
+</ol>
+<h2 id="三个文件"><a href="#三个文件" class="headerlink" title="三个文件"></a>三个文件</h2><p><strong>ip_list.txt</strong>  （faker）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10.1.1.1</span><br><span class="line">10.1.1.2</span><br><span class="line">10.1.1.3</span><br><span class="line">10.1.1.4</span><br><span class="line">10.1.1.5</span><br></pre></td></tr></table></figure>
+
+<p><strong>cmd_list.txt</strong> （faker）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">display cur </span><br><span class="line">display ip interface brief</span><br><span class="line">display interface brief des</span><br><span class="line">display vlan</span><br><span class="line">display vlan brief</span><br><span class="line">display ip routing-table</span><br><span class="line">display version</span><br><span class="line">display cpu-usage</span><br><span class="line">display memory</span><br><span class="line">display power</span><br><span class="line">display fan</span><br><span class="line">display device manuinfo</span><br><span class="line">display device verbose </span><br><span class="line">display environment</span><br><span class="line">dir</span><br><span class="line">display irf</span><br><span class="line">display irf configuration</span><br><span class="line">display irf link </span><br><span class="line">display irf topology</span><br><span class="line">display link-aggregation summary</span><br><span class="line">display link-aggregation member-port </span><br><span class="line">display link-aggregation verbose </span><br><span class="line">display current-configuration configuration system</span><br><span class="line">display boot-loader</span><br><span class="line">save force</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
+
+<p><strong>cmd_config_list.txt</strong> （faker）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vlan 22</span><br><span class="line">des MMT22</span><br><span class="line">dis th</span><br><span class="line">int vlan 22</span><br><span class="line">des MMT22</span><br><span class="line">ip add 192.168.22.22 24</span><br><span class="line">dis th</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h2><ul>
+<li><p><strong>py01.py</strong>  运行结束后会在 本 <strong>py01.py</strong> 文件所在的目录创建一个名为 20xx_xx_xx （运行此脚本当日年月日）的文件夹</p>
+</li>
+<li><p><strong>py02.py</strong>  运行结束后会在 本 <strong>py02.py</strong> 文件所在的目录创建一个名为 20xx_xx_xx（运行此脚本当日年月日） 的文件夹</p>
+</li>
+<li><p>以上创建的文件夹，脚本会判断是否存在，如存在则跳过；不存在则创建</p>
+</li>
+<li><p>假设已经各运行完成一次以上两个脚本，则名为 20xx_xx_xx 的文件夹下会创建 “configuration_backup” 和 “configure_device”两个文件夹</p>
+<ul>
+<li><p>configuration_backup 保存导出的配置和一些设备状态信息</p>
+</li>
+<li><p>configure_device 保存批量增加配置的记录过程</p>
+<p><a data-fancybox="gallery" a href="https://s2.loli.net/2022/05/11/AGgbNWjTlzyr5FS.png" target="_blank"><img src="https://s2.loli.net/2022/05/11/AGgbNWjTlzyr5FS.png" class="img-center" ></a></p>
+</li>
+</ul>
+</li>
+<li><p> “configuration_backup” 和 “configure_device”两个文件夹下，会生成文件名称为 “ 20xx_xx_xx.log”（当天日期）的文件，用来记录执行成功和执行失败的log</p>
+</li>
+<li><p> “configuration_backup” 和 “configure_device”两个文件夹下，有文件名称为 “sysname + time_str2_config.txt” （设备名+创建时间）的 TXT 文件，或  “sysname + time_str2_add_config.txt” （设备名+创建时间）的 TXT 文件</p>
+</li>
+</ul>
+<p>  <a data-fancybox="gallery" a href="https://s2.loli.net/2022/05/11/uRM4ScqWdgn2Dep.png" target="_blank"><img src="https://s2.loli.net/2022/05/11/uRM4ScqWdgn2Dep.png" class="img-center" ></a><br>  <a data-fancybox="gallery" a href="https://s2.loli.net/2022/05/11/vej59thDfGEsQW6.png" target="_blank"><img src="https://s2.loli.net/2022/05/11/vej59thDfGEsQW6.png" class="img-center" ></a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- Python-交换机自动化巡检脚本笔记 by 02EVA on 2021-04-22 : https://blog.csdn.net/weixin_42065669/article/details/116009445</span><br><span class="line">-「Python 网络自动化」Netmiko ——Netmiko 常用方法 by 某呆啊 on 2021-02-04 : https://blog.csdn.net/q965844841qq/article/details/113619281</span><br><span class="line">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020</span><br><span class="line">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03  : https://555.xdai.vip/posts/26e9de3c.html</span><br><span class="line">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>H3C</category>
+      </categories>
+      <tags>
+        <tag>Scripts</tag>
+        <tag>H3C设备</tag>
+        <tag>Python脚本</tag>
+        <tag>配置文件批量导出</tag>
+        <tag>配置批量增加</tag>
+        <tag>SSH登陆</tag>
+        <tag>netmiko</tag>
+        <tag>log</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HCL_FW_IRF_LAB</title>
     <url>/posts/a89a05d3.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>拓扑图</strong></p>
@@ -1830,85 +1909,6 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># File： py_net_config.py</span></span><br><span class="line"><span class="comment"># Time： 2022/05/13 12:19:59</span></span><br><span class="line"><span class="comment"># Author： Kir</span></span><br><span class="line"><span class="comment"># Ver： 2.0</span></span><br><span class="line"><span class="comment"># Description：AutoConfig/SSH/Log</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> netmiko <span class="keyword">import</span> ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> msvcrt</span><br><span class="line"><span class="keyword">import</span> getpass</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 校验账户交给netmiko模块，仅输入</span></span><br><span class="line">    login_user = <span class="built_in">input</span>(<span class="string">&#x27;Login:&#x27;</span>)</span><br><span class="line">    login_pwd = getpass.getpass(<span class="string">&#x27;Passwd:&#x27;</span>)</span><br><span class="line">    <span class="comment"># 时间格式蒸鹅心，冒号不能用做文件名字符</span></span><br><span class="line">    time_str1 = time.strftime(<span class="string">&#x27;%Y%m%d&#x27;</span>, time.localtime())</span><br><span class="line">    time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">    time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">    <span class="comment"># 获取当前工作目录</span></span><br><span class="line">    path = os.getcwd()</span><br><span class="line">    title = <span class="string">&quot;%s&quot;</span> % time_str1</span><br><span class="line">    <span class="comment"># mkdir path &amp; touch file</span></span><br><span class="line">    new_path = os.path.join(path, title)</span><br><span class="line">    config_path = <span class="string">&quot;%s\\configure_device&quot;</span> % new_path</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(new_path):</span><br><span class="line">        os.makedirs(new_path)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(config_path):</span><br><span class="line">        os.makedirs(config_path)</span><br><span class="line">    <span class="comment"># 创建日志文件，记录运行结果</span></span><br><span class="line">    log_fo = <span class="built_in">open</span>(</span><br><span class="line">        <span class="string">&#x27;%s\\%s.log&#x27;</span> % (config_path, time_str1),</span><br><span class="line">        <span class="string">&#x27;a+&#x27;</span>,</span><br><span class="line">        encoding=<span class="string">&#x27;utf-8&#x27;</span>,</span><br><span class="line">    )</span><br><span class="line">    log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========START TIME &quot;</span> + time_str3 + <span class="string">&quot;=========&quot;</span> +</span><br><span class="line">                 <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="comment"># 读取 ip_list.txt 里的 ip 地址</span></span><br><span class="line">    ip_list = <span class="built_in">open</span>(<span class="string">&#x27;ip_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">    ip_addr = ip_list.readlines()</span><br><span class="line">    ip_list.close()</span><br><span class="line">    <span class="comment"># 读取 cmd_config_list.txt 文件的配置命令</span></span><br><span class="line">    cmd_config_list = <span class="built_in">open</span>(<span class="string">&#x27;cmd_config_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">    cmd_line = cmd_config_list.readlines()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;AddCommand-line: &#x27;</span> + <span class="built_in">str</span>(cmd_line))</span><br><span class="line">    cmd_config_list.close()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历 ip_addr 列表里面的 ip 进行连接</span></span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> <span class="built_in">iter</span>(ip_addr):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            S5130 = &#123;</span><br><span class="line">                <span class="string">&#x27;device_type&#x27;</span>: <span class="string">&#x27;hp_comware&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;ip&#x27;</span>: ip,</span><br><span class="line">                <span class="string">&#x27;username&#x27;</span>: login_user,</span><br><span class="line">                <span class="string">&#x27;password&#x27;</span>: login_pwd,</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            net_connect = ConnectHandler(**S5130)</span><br><span class="line">            <span class="comment"># 禁用输出屏幕分屏</span></span><br><span class="line">            screen_d = net_connect.send_command(<span class="string">&#x27;screen-length disable&#x27;</span>)</span><br><span class="line">            <span class="comment"># current_time as part of filename</span></span><br><span class="line">            time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">            <span class="comment"># sysname as part of fielname</span></span><br><span class="line">            sysn = net_connect.send_command(<span class="string">&#x27;dis cur | inc sysname&#x27;</span>)</span><br><span class="line">            <span class="comment"># split 空格分割回显内容</span></span><br><span class="line">            sysn = re.split(<span class="string">r&#x27;[ ]+&#x27;</span>, sysn)</span><br><span class="line">            sysn = sysn[<span class="number">2</span>]</span><br><span class="line">            <span class="comment"># 创建文件, 格式为 sysname + time_str2</span></span><br><span class="line">            config_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s_%s_add_config.txt&#x27;</span> %</span><br><span class="line">                             (config_path, sysn, time_str2),</span><br><span class="line">                             <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">                             encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">            time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">            <span class="built_in">print</span>(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Successfully connected to &#x27;</span> +</span><br><span class="line">                  ip + <span class="string">&#x27; Configuring...&#x27;</span>)</span><br><span class="line">            log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 +</span><br><span class="line">                         <span class="string">&#x27; Configuration complete: &#x27;</span> +</span><br><span class="line">                         <span class="string">&#x27; Successfully connected to &#x27;</span> + ip)</span><br><span class="line">            <span class="comment"># 发送 cmd_line</span></span><br><span class="line">            cmd_result = net_connect.send_config_set(cmd_line)</span><br><span class="line">            <span class="built_in">print</span>(cmd_result)</span><br><span class="line">            <span class="built_in">print</span>(</span><br><span class="line">                <span class="string">&#x27;===================================================================&#x27;</span></span><br><span class="line">            )</span><br><span class="line">            config_fo.write(</span><br><span class="line">                <span class="string">&#x27;\n&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;===================================================================&#x27;</span></span><br><span class="line">                + <span class="string">&#x27;\n&#x27;</span> + cmd_result)</span><br><span class="line">            net_connect.disconnect()</span><br><span class="line">            config_fo.close()</span><br><span class="line">        <span class="keyword">except</span> (EOFError, NetMikoTimeoutException):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Can not connect to Device &#x27;</span> + ip)</span><br><span class="line">            time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">            log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 +</span><br><span class="line">                         <span class="string">&#x27; Configuration Fail: &#x27;</span> +</span><br><span class="line">                         <span class="string">&#x27; Can not connect to Device! &#x27;</span> + ip)</span><br><span class="line">        <span class="keyword">except</span> (EOFError, NetMikoAuthenticationException):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;username/password wrong! &#x27;</span> + ip)</span><br><span class="line">            time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">            log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 +</span><br><span class="line">                         <span class="string">&#x27; Configuration Fail: &#x27;</span> +</span><br><span class="line">                         <span class="string">&#x27; username/password wrong! &#x27;</span> + ip)</span><br><span class="line">    time_str4 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">    log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========END TIME &quot;</span> + time_str4 + <span class="string">&quot;==========&quot;</span> +</span><br><span class="line">                 <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    log_fo.close()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;A log file is available in &#x27;</span> + <span class="string">&#x27;\&quot;&#x27;</span> + config_path + <span class="string">&#x27;\\&#x27;</span> +</span><br><span class="line">          time_str1 + <span class="string">&#x27;.log&#x27;</span> + <span class="string">&#x27;\&quot;&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Press any key to quit program.&#x27;</span>)</span><br><span class="line">    <span class="built_in">ord</span>(msvcrt.getch())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- Python-交换机自动化巡检脚本笔记 by 02EVA on 2021-04-22 : https://blog.csdn.net/weixin_42065669/article/details/116009445</span><br><span class="line">-「Python 网络自动化」Netmiko ——Netmiko 常用方法 by 某呆啊 on 2021-02-04 : https://blog.csdn.net/q965844841qq/article/details/113619281</span><br><span class="line">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020</span><br><span class="line">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03  : https://555.xdai.vip/posts/26e9de3c.html</span><br><span class="line">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819</span><br><span class="line">- Python实现“按任意键返回”和无回显输入 by dongfuguo on 2020-03-25 : https://blog.csdn.net/dongfuguo/article/details/105103446</span><br><span class="line">- Python3文件路径/目录获取教程 by 诸子流 on 2020-07-09 : `https://www.cnblogs.com/lsdb/p/13265688.html</span><br><span class="line">- 如何让python不打印转义字符串？by 流芳 on 2020-07-07 : https://www.py.cn/jishu/jichu/19480.html</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>H3C</category>
-      </categories>
-      <tags>
-        <tag>Scripts</tag>
-        <tag>H3C设备</tag>
-        <tag>Python脚本</tag>
-        <tag>配置文件批量导出</tag>
-        <tag>配置批量增加</tag>
-        <tag>SSH登陆</tag>
-        <tag>netmiko</tag>
-        <tag>log</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_Python_SSH_Config_Auto</title>
-    <url>/posts/54cb8229.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>两个 Python 脚本</strong></p>
-<ul>
-<li>Python 脚本 SSH 登陆华三设备，使用定义好的 display 脚本批量导出配置和一些设备状态</li>
-<li>Python 脚本 SSH 登陆华三设备，使用定义好的配置命令批量增加配置</li>
-<li>主要使用的是 netmiko 这个模块里的 ConnectHandler 命令</li>
-<li>单线程</li>
-<li>脚本运行完成后输出 成功和失败的记录log</li>
-<li>ip_list.txt，cmd_list.txt，cmd_config_list.txt 格式简单，修改方便</li>
-<li>未做多账号密码的 if 语句判断</li>
-<li>肯定有冗余繁重的代码</li>
-</ul>
-<h2 id="脚本文件"><a href="#脚本文件" class="headerlink" title="脚本文件"></a>脚本文件</h2><p><strong>py01.py</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> netmiko <span class="keyword">import</span> ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">time_str1 = time.strftime(<span class="string">&#x27;%Y_%m_%d&#x27;</span>, time.localtime())</span><br><span class="line">time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">path = <span class="string">&quot;F:\\XXXXX\\py_net&quot;</span></span><br><span class="line">title = <span class="string">&quot;%s&quot;</span> % time_str1</span><br><span class="line"><span class="comment"># mkdir path &amp; touch file</span></span><br><span class="line">new_path = os.path.join(path, title)</span><br><span class="line">config_path = <span class="string">&quot;%s\\configuration_backup&quot;</span> % new_path</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(new_path):</span><br><span class="line">    os.makedirs(new_path)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(config_path):</span><br><span class="line">    os.makedirs(config_path)</span><br><span class="line"><span class="comment"># 创建日志文件，记录运行结果</span></span><br><span class="line">log_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s.log&#x27;</span> % (config_path, time_str1), <span class="string">&#x27;a+&#x27;</span>,</span><br><span class="line">              encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========START TIME &quot;</span> + time_str3 + <span class="string">&quot;=========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 读取 ip_list.txt 里的 ip 地址</span></span><br><span class="line">ip_list = <span class="built_in">open</span>(<span class="string">&#x27;ip_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">ip_addr = ip_list.readlines()</span><br><span class="line">ip_list.close()</span><br><span class="line"><span class="comment"># display 命令</span></span><br><span class="line">cmd_list = <span class="built_in">open</span>(<span class="string">&#x27;cmd_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">cmd_line = cmd_list.readlines()</span><br><span class="line">cmd_list.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历 ip_addr 列表里面的 ip 进行连接</span></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> <span class="built_in">iter</span>(ip_addr):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        S5130 = &#123;</span><br><span class="line">            <span class="string">&#x27;device_type&#x27;</span>: <span class="string">&#x27;hp_comware&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;ip&#x27;</span>: ip,</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;admin&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;xxxxxxxxxx&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        net_connect = ConnectHandler(**S5130)</span><br><span class="line">        <span class="comment"># 禁用输出屏幕分屏</span></span><br><span class="line">        screen_d = net_connect.send_command(<span class="string">&#x27;screen-length disable&#x27;</span>)</span><br><span class="line">        <span class="comment"># current_time as part of filename</span></span><br><span class="line">        time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="comment"># sysname as part of fielname</span></span><br><span class="line">        sysn = net_connect.send_command(<span class="string">&#x27;dis cur | inc sysname&#x27;</span>)</span><br><span class="line">        <span class="comment"># split 空格分割回显内容</span></span><br><span class="line">        sysn = re.split(<span class="string">r&#x27;[ ]+&#x27;</span>, sysn)</span><br><span class="line">        sysn = sysn[<span class="number">2</span>]</span><br><span class="line">        <span class="comment"># 创建文件, 格式为 sysname + time_str2</span></span><br><span class="line">        config_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s_%s_config.txt&#x27;</span> % (config_path, sysn, time_str2), <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">                         encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="built_in">print</span>(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip)</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip)</span><br><span class="line">        <span class="keyword">for</span> cmd <span class="keyword">in</span> <span class="built_in">iter</span>(cmd_line):</span><br><span class="line">            cmd_result = net_connect.send_command(cmd)</span><br><span class="line">            <span class="built_in">print</span>(cmd)</span><br><span class="line">            <span class="built_in">print</span>(cmd_result)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;===================================================================&#x27;</span>)</span><br><span class="line">            config_fo.write(<span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                            + <span class="string">&#x27;===================================================================&#x27;</span></span><br><span class="line">                            + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                            + cmd</span><br><span class="line">                            + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                            + cmd_result)</span><br><span class="line">        net_connect.disconnect()</span><br><span class="line">        config_fo.close()</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoTimeoutException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Can not connect to Device &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Can not connect to Device &#x27;</span> + ip)</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoAuthenticationException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;username/password wrong! &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; username/password wrong! &#x27;</span> + ip)</span><br><span class="line">time_str4 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========END TIME &quot;</span> + time_str4 + <span class="string">&quot;==========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">log_fo.close()</span><br><span class="line"><span class="built_in">print</span>(log_fo)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>py02.py</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> netmiko <span class="keyword">import</span> ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">time_str1 = time.strftime(<span class="string">&#x27;%Y_%m_%d&#x27;</span>, time.localtime())</span><br><span class="line">time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">path = <span class="string">&quot;F:\\XXXXX\\py_net&quot;</span></span><br><span class="line">title = <span class="string">&quot;%s&quot;</span> % time_str1</span><br><span class="line"><span class="comment"># mkdir file &amp; touch file</span></span><br><span class="line">new_path = os.path.join(path, title)</span><br><span class="line">config_path = <span class="string">&quot;%s\\configure_device&quot;</span> % new_path</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(new_path):</span><br><span class="line">    os.makedirs(new_path)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(config_path):</span><br><span class="line">    os.makedirs(config_path)</span><br><span class="line"><span class="comment"># 创建日志文件，记录运行结果</span></span><br><span class="line">log_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s.log&#x27;</span> % (config_path, time_str1), <span class="string">&#x27;a+&#x27;</span>,</span><br><span class="line">              encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========START TIME &quot;</span> + time_str3 + <span class="string">&quot;=========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="comment"># 读取 ip_list.txt 里的 ip 地址</span></span><br><span class="line">ip_list = <span class="built_in">open</span>(<span class="string">&#x27;ip_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">ip_addr = ip_list.readlines()</span><br><span class="line">ip_list.close()</span><br><span class="line"><span class="comment"># 读取 cmd_config_list.txt 文件的配置命令</span></span><br><span class="line">cmd_config_list = <span class="built_in">open</span>(<span class="string">&#x27;cmd_config_list.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line">cmd_line = cmd_config_list.readlines()</span><br><span class="line"><span class="built_in">print</span>(cmd_line)</span><br><span class="line">cmd_config_list.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历 ip_addr 列表里面的 ip 进行连接</span></span><br><span class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> <span class="built_in">iter</span>(ip_addr):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        S5130 = &#123;</span><br><span class="line">            <span class="string">&#x27;device_type&#x27;</span>: <span class="string">&#x27;hp_comware&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;ip&#x27;</span>: ip,</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;admin&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;xxxxxxxxxx&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        net_connect = ConnectHandler(**S5130)</span><br><span class="line">        <span class="comment"># 禁用输出屏幕分屏</span></span><br><span class="line">        screen_d = net_connect.send_command(<span class="string">&#x27;screen-length disable&#x27;</span>)</span><br><span class="line">        <span class="comment"># current_time as part of filename</span></span><br><span class="line">        time_str2 = time.strftime(<span class="string">&#x27;%H%M%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="comment"># sysname as part of fielname</span></span><br><span class="line">        sysn = net_connect.send_command(<span class="string">&#x27;dis cur | inc sysname&#x27;</span>)</span><br><span class="line">        <span class="comment"># split 空格分割回显内容</span></span><br><span class="line">        sysn = re.split(<span class="string">r&quot;[ ]+&quot;</span>, sysn)</span><br><span class="line">        sysn = sysn[<span class="number">2</span>]</span><br><span class="line">        <span class="comment"># 创建文件, 格式为 sysname + time_str2</span></span><br><span class="line">        config_fo = <span class="built_in">open</span>(<span class="string">&#x27;%s\\%s_%s_add_config.txt&#x27;</span> % (config_path, sysn, time_str2), <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">                         encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        <span class="built_in">print</span>(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip + <span class="string">&#x27; Configuring...&#x27;</span>)</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Configuration complete: &#x27;</span> + <span class="string">&#x27; Successfully connected to &#x27;</span> + ip)</span><br><span class="line">        cmd_result = net_connect.send_config_set(cmd_line)</span><br><span class="line">        <span class="built_in">print</span>(cmd_result)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;===================================================================&#x27;</span>)</span><br><span class="line">        config_fo.write(<span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                        + <span class="string">&#x27;===================================================================&#x27;</span></span><br><span class="line">                        + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">                        + cmd_result)</span><br><span class="line">        net_connect.disconnect()</span><br><span class="line">        config_fo.close()</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoTimeoutException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Can not connect to Device &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Configuration Fail: &#x27;</span> + <span class="string">&#x27; Can not connect to Device! &#x27;</span> + ip)</span><br><span class="line">    <span class="keyword">except</span> (EOFError, NetMikoAuthenticationException):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;username/password wrong! &#x27;</span> + ip)</span><br><span class="line">        time_str3 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">        log_fo.write(time_str1 + <span class="string">&quot;_&quot;</span> + time_str3 + <span class="string">&#x27; Configuration Fail: &#x27;</span> + <span class="string">&#x27; username/password wrong! &#x27;</span> + ip)</span><br><span class="line">time_str4 = time.strftime(<span class="string">&#x27;%H:%M:%S&#x27;</span>, time.localtime())</span><br><span class="line">log_fo.write(<span class="string">&#x27;\n&#x27;</span> + <span class="string">&quot;==========END TIME &quot;</span> + time_str4 + <span class="string">&quot;==========&quot;</span> + <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">log_fo.close()</span><br><span class="line"><span class="built_in">print</span>(log_fo)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><ol>
-<li>Python3，理论上 Python3 版本都可运行，没看到新版本更新日志说哪里有变动<ul>
-<li>在 win7 系统 3.8.10 版本运行测试无问题</li>
-<li>在 win10 系统 3.9.7 版本运行测试无问题</li>
-<li>在 win10 系统 3.10.4 版本运行测试无问题</li>
-</ul>
-</li>
-<li>安装 netmiko </li>
-<li>测试连接 HCL_Setup_V3.0.1 模拟器设备无问题</li>
-<li>测试连接真实 H3C 设备，无问题</li>
-<li>运行速度取决与设备的连接反应和脚本行数</li>
-</ol>
-<h2 id="三个文件"><a href="#三个文件" class="headerlink" title="三个文件"></a>三个文件</h2><p><strong>ip_list.txt</strong>  （faker）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10.1.1.1</span><br><span class="line">10.1.1.2</span><br><span class="line">10.1.1.3</span><br><span class="line">10.1.1.4</span><br><span class="line">10.1.1.5</span><br></pre></td></tr></table></figure>
-
-<p><strong>cmd_list.txt</strong> （faker）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">display cur </span><br><span class="line">display ip interface brief</span><br><span class="line">display interface brief des</span><br><span class="line">display vlan</span><br><span class="line">display vlan brief</span><br><span class="line">display ip routing-table</span><br><span class="line">display version</span><br><span class="line">display cpu-usage</span><br><span class="line">display memory</span><br><span class="line">display power</span><br><span class="line">display fan</span><br><span class="line">display device manuinfo</span><br><span class="line">display device verbose </span><br><span class="line">display environment</span><br><span class="line">dir</span><br><span class="line">display irf</span><br><span class="line">display irf configuration</span><br><span class="line">display irf link </span><br><span class="line">display irf topology</span><br><span class="line">display link-aggregation summary</span><br><span class="line">display link-aggregation member-port </span><br><span class="line">display link-aggregation verbose </span><br><span class="line">display current-configuration configuration system</span><br><span class="line">display boot-loader</span><br><span class="line">save force</span><br><span class="line">#</span><br></pre></td></tr></table></figure>
-
-<p><strong>cmd_config_list.txt</strong> （faker）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vlan 22</span><br><span class="line">des MMT22</span><br><span class="line">dis th</span><br><span class="line">int vlan 22</span><br><span class="line">des MMT22</span><br><span class="line">ip add 192.168.22.22 24</span><br><span class="line">dis th</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行过程"><a href="#运行过程" class="headerlink" title="运行过程"></a>运行过程</h2><ul>
-<li><p><strong>py01.py</strong>  运行结束后会在 本 <strong>py01.py</strong> 文件所在的目录创建一个名为 20xx_xx_xx （运行此脚本当日年月日）的文件夹</p>
-</li>
-<li><p><strong>py02.py</strong>  运行结束后会在 本 <strong>py02.py</strong> 文件所在的目录创建一个名为 20xx_xx_xx（运行此脚本当日年月日） 的文件夹</p>
-</li>
-<li><p>以上创建的文件夹，脚本会判断是否存在，如存在则跳过；不存在则创建</p>
-</li>
-<li><p>假设已经各运行完成一次以上两个脚本，则名为 20xx_xx_xx 的文件夹下会创建 “configuration_backup” 和 “configure_device”两个文件夹</p>
-<ul>
-<li><p>configuration_backup 保存导出的配置和一些设备状态信息</p>
-</li>
-<li><p>configure_device 保存批量增加配置的记录过程</p>
-<p><a data-fancybox="gallery" a href="https://s2.loli.net/2022/05/11/AGgbNWjTlzyr5FS.png" target="_blank"><img src="https://s2.loli.net/2022/05/11/AGgbNWjTlzyr5FS.png" class="img-center" ></a></p>
-</li>
-</ul>
-</li>
-<li><p> “configuration_backup” 和 “configure_device”两个文件夹下，会生成文件名称为 “ 20xx_xx_xx.log”（当天日期）的文件，用来记录执行成功和执行失败的log</p>
-</li>
-<li><p> “configuration_backup” 和 “configure_device”两个文件夹下，有文件名称为 “sysname + time_str2_config.txt” （设备名+创建时间）的 TXT 文件，或  “sysname + time_str2_add_config.txt” （设备名+创建时间）的 TXT 文件</p>
-</li>
-</ul>
-<p>  <a data-fancybox="gallery" a href="https://s2.loli.net/2022/05/11/uRM4ScqWdgn2Dep.png" target="_blank"><img src="https://s2.loli.net/2022/05/11/uRM4ScqWdgn2Dep.png" class="img-center" ></a><br>  <a data-fancybox="gallery" a href="https://s2.loli.net/2022/05/11/vej59thDfGEsQW6.png" target="_blank"><img src="https://s2.loli.net/2022/05/11/vej59thDfGEsQW6.png" class="img-center" ></a></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- Python-交换机自动化巡检脚本笔记 by 02EVA on 2021-04-22 : https://blog.csdn.net/weixin_42065669/article/details/116009445</span><br><span class="line">-「Python 网络自动化」Netmiko ——Netmiko 常用方法 by 某呆啊 on 2021-02-04 : https://blog.csdn.net/q965844841qq/article/details/113619281</span><br><span class="line">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020</span><br><span class="line">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03  : https://555.xdai.vip/posts/26e9de3c.html</span><br><span class="line">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>H3C</category>
