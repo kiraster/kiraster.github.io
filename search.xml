@@ -53,6 +53,34 @@
       </tags>
   </entry>
   <entry>
+    <title>我理解的费曼学习方法</title>
+    <url>/posts/237b6272.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。<span id="more"></span></p>
+<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
+<ol>
+<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
+</li>
+<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
+</li>
+<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
+</li>
+<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
+</li>
+</ol>
+<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
+<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
+<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Methods</category>
+      </categories>
+      <tags>
+        <tag>Methods</tag>
+        <tag>Feynman</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ENSP_防火墙初始密码问题</title>
     <url>/posts/ab67d7a4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。<span id="more"></span></p>
@@ -95,34 +123,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我理解的费曼学习方法</title>
-    <url>/posts/237b6272.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 <a href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95">Wiki费曼学习法</a>，或者你也可以自行搜索。<span id="more"></span></p>
-<h2 id="我的理解①"><a href="#我的理解①" class="headerlink" title="我的理解①"></a>我的理解①</h2><p>在我们的学习、工作、或者生活中，或多或少的会接触了解使用一些知识。学习就不用多说，因为你学习的目标是为了使用这些知识或者应对测试。对于工作，往往自己要求或者被动的学习来提升自己的工作技能和业务水平。对于生活，学会生活。</p>
-<ol>
-<li><p><strong>选定知识点或者概念</strong><br>选定一个知识点或者概念后，试想着用正常人理解的词汇来理解它，比如你要向别人讲解一个东西的时候，不要用复杂的专业术语和你自己都不明白的词语来糊弄，用简单的词汇理解知识点，在你表达的时候听的人也更能明白。</p>
-</li>
-<li><p><strong>回顾知识点或者概念</strong><br>在上面提到的方法后，自己回想这个知识点或者概念会有遗忘的内容或者不理解的点，这时候带着遗忘的内容和知识点重新学习，直到你能用简单的词汇和基本术语理解通透。</p>
-</li>
-<li><p><strong>简洁的语言组织</strong><br>当自己理解后，把自己理解的知识点或者概念有逻辑有条理，尽可能用简洁的语言组织出来，这个很重要，如果不归纳总结，你自己是明白了，但你使用的时候或者对别人表达就会很混乱容易出错。</p>
-</li>
-<li><p><strong>检验</strong><br>检验你的理解有没有问题，在实际工作生活中，尝试用“教”的方法向别人表达，或者面对别人能清晰的解释他的疑问。</p>
-</li>
-</ol>
-<h2 id="我的理解②"><a href="#我的理解②" class="headerlink" title="我的理解②"></a>我的理解②</h2><ul>
-<li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……</li>
-<li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Methods</category>
-      </categories>
-      <tags>
-        <tag>Methods</tag>
-        <tag>Feynman</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>九十年代</title>
     <url>/posts/8847b633.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世</p>
@@ -147,6 +147,70 @@
       </categories>
       <tags>
         <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简明现代汉语语法_学习</title>
+    <url>/posts/51f223b9.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
+<h2 id="字词、词性、成分之间的关系"><a href="#字词、词性、成分之间的关系" class="headerlink" title="字词、词性、成分之间的关系"></a>字词、词性、成分之间的关系</h2><p>一般规律：</p>
+<ul>
+<li>名词和代词一般更适合做主语和宾语</li>
+<li>动词一般更适合做谓语</li>
+<li>副词和形容词一般更适合做定语和状语</li>
+<li>主谓宾是一般顺序</li>
+<li>定语一般在主语和宾语前面</li>
+<li>状语一般在谓语前面</li>
+<li>顺序颠倒了就是倒装</li>
+</ul>
+<h2 id="词性"><a href="#词性" class="headerlink" title="词性"></a>词性</h2><p>实词 vs 虚词</p>
+<ul>
+<li>实词：意义编辑具体的词，包括：名词、动词、形容词、数词、量词、代词</li>
+<li>虚词：一般不能单独成句，意义比较抽象，有帮助造句作用的词，包括：副词、介词、连词、助词、叹词、拟声词</li>
+</ul>
+<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
+<p>表示人或事物名称<br>表示人：姑娘、青年、工人<br>表示具体事物：锤子、坚果、手机<br>表示抽象事物：理想、精神、感情<br>表示时间：春天、昨天、早上、下午</p>
+</blockquote>
+<blockquote>
+<p>方位名词<br>上下左右前后左右东西南北里头外边以上之下<br>大多数情况下，方位名词用在其他名词性词语的后边，表示事物所在的位置和范围</p>
+</blockquote>
+<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><blockquote>
+<p>表示人或事物的动作行为、心里活动、发展变化<br>表示动作行为：走、跑、滚、唱、跳、打<br>表示心里活动：爱、恨、喜欢、讨厌、想念、忘记、佩服<br>表示事物发展变化：增加、减少、扩大、提高、降低、发生、出现</p>
+</blockquote>
+<blockquote>
+<p>表示可能、应该、意愿<br>能、不能、能够、会、可能、可以、可、要、应该、应当、肯、敢、愿、愿意<br>这类词常放在一般动词的前面</p>
+</blockquote>
+<blockquote>
+<p>表示动作趋向<br>下、去、来、进、出、到、过、过去、上来、回去、起来<br>这类动词往往放在表示动作行为的动词后边，用来表示动作行为的方向</p>
+</blockquote>
+<blockquote>
+<p>表示判断：是vs不是</p>
+</blockquote>
+<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><blockquote>
+<p>用来描摹人或事物<br>表示状态：快、慢、软、硬、忙碌、悠闲、激动<br>表示性质：好、坏、美、丑、存粹、清脆<br>表示颜色：赤橙黄绿青蓝紫、苍白、绿油由、红彤彤<br>表示形状：大、小、宽、长、窄、笔直、弯曲</p>
+</blockquote>
+<h4 id="一词多性"><a href="#一词多性" class="headerlink" title="一词多性"></a>一词多性</h4><blockquote>
+<p>结合语境判断</p>
+</blockquote>
+<h3 id="数词和量词"><a href="#数词和量词" class="headerlink" title="数词和量词"></a>数词和量词</h3><blockquote>
+<p>数词：表示确数、序数和概数:<br>确数：一、八千、七万八千<br>概述：十来（个）、三十几（个）、八九（辆）<br>序数：第一、老二、初八</p>
+</blockquote>
+<blockquote>
+<p>量词：表示单位<br>表示事物的单位：个、台、辆、条<br>表示度量单位：米、吨、克<br>表示动作行为的单位：次、回、趟，轮</p>
+</blockquote>
+<blockquote>
+<p>数量：数词和量词一般结合起来使用表示数量<br>一个、八千次、十来吨、第一轮</p>
+</blockquote>
+<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><blockquote>
+<p>代替名词、动词、形容词、数词、量词、副词<br>代替人或事物：你、你们、我、我们、他、它、她、咱们、自己<br>具有指示作用：那、这、这里、那里、这里、这样、那么、每、各<br>表示疑问：哪里、什么、谁、怎样、怎么样、哪、哪呢</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Notes</category>
+      </categories>
+      <tags>
+        <tag>汉语语法</tag>
+        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -223,70 +287,6 @@
       </categories>
       <tags>
         <tag>H3C Cloud Lab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>简明现代汉语语法_学习</title>
-    <url>/posts/51f223b9.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p> <strong>作者：重庆市江津中学校 王征老师</strong></p>
-<h2 id="字词、词性、成分之间的关系"><a href="#字词、词性、成分之间的关系" class="headerlink" title="字词、词性、成分之间的关系"></a>字词、词性、成分之间的关系</h2><p>一般规律：</p>
-<ul>
-<li>名词和代词一般更适合做主语和宾语</li>
-<li>动词一般更适合做谓语</li>
-<li>副词和形容词一般更适合做定语和状语</li>
-<li>主谓宾是一般顺序</li>
-<li>定语一般在主语和宾语前面</li>
-<li>状语一般在谓语前面</li>
-<li>顺序颠倒了就是倒装</li>
-</ul>
-<h2 id="词性"><a href="#词性" class="headerlink" title="词性"></a>词性</h2><p>实词 vs 虚词</p>
-<ul>
-<li>实词：意义编辑具体的词，包括：名词、动词、形容词、数词、量词、代词</li>
-<li>虚词：一般不能单独成句，意义比较抽象，有帮助造句作用的词，包括：副词、介词、连词、助词、叹词、拟声词</li>
-</ul>
-<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><blockquote>
-<p>表示人或事物名称<br>表示人：姑娘、青年、工人<br>表示具体事物：锤子、坚果、手机<br>表示抽象事物：理想、精神、感情<br>表示时间：春天、昨天、早上、下午</p>
-</blockquote>
-<blockquote>
-<p>方位名词<br>上下左右前后左右东西南北里头外边以上之下<br>大多数情况下，方位名词用在其他名词性词语的后边，表示事物所在的位置和范围</p>
-</blockquote>
-<h3 id="动词"><a href="#动词" class="headerlink" title="动词"></a>动词</h3><blockquote>
-<p>表示人或事物的动作行为、心里活动、发展变化<br>表示动作行为：走、跑、滚、唱、跳、打<br>表示心里活动：爱、恨、喜欢、讨厌、想念、忘记、佩服<br>表示事物发展变化：增加、减少、扩大、提高、降低、发生、出现</p>
-</blockquote>
-<blockquote>
-<p>表示可能、应该、意愿<br>能、不能、能够、会、可能、可以、可、要、应该、应当、肯、敢、愿、愿意<br>这类词常放在一般动词的前面</p>
-</blockquote>
-<blockquote>
-<p>表示动作趋向<br>下、去、来、进、出、到、过、过去、上来、回去、起来<br>这类动词往往放在表示动作行为的动词后边，用来表示动作行为的方向</p>
-</blockquote>
-<blockquote>
-<p>表示判断：是vs不是</p>
-</blockquote>
-<h3 id="形容词"><a href="#形容词" class="headerlink" title="形容词"></a>形容词</h3><blockquote>
-<p>用来描摹人或事物<br>表示状态：快、慢、软、硬、忙碌、悠闲、激动<br>表示性质：好、坏、美、丑、存粹、清脆<br>表示颜色：赤橙黄绿青蓝紫、苍白、绿油由、红彤彤<br>表示形状：大、小、宽、长、窄、笔直、弯曲</p>
-</blockquote>
-<h4 id="一词多性"><a href="#一词多性" class="headerlink" title="一词多性"></a>一词多性</h4><blockquote>
-<p>结合语境判断</p>
-</blockquote>
-<h3 id="数词和量词"><a href="#数词和量词" class="headerlink" title="数词和量词"></a>数词和量词</h3><blockquote>
-<p>数词：表示确数、序数和概数:<br>确数：一、八千、七万八千<br>概述：十来（个）、三十几（个）、八九（辆）<br>序数：第一、老二、初八</p>
-</blockquote>
-<blockquote>
-<p>量词：表示单位<br>表示事物的单位：个、台、辆、条<br>表示度量单位：米、吨、克<br>表示动作行为的单位：次、回、趟，轮</p>
-</blockquote>
-<blockquote>
-<p>数量：数词和量词一般结合起来使用表示数量<br>一个、八千次、十来吨、第一轮</p>
-</blockquote>
-<h3 id="代词"><a href="#代词" class="headerlink" title="代词"></a>代词</h3><blockquote>
-<p>代替名词、动词、形容词、数词、量词、副词<br>代替人或事物：你、你们、我、我们、他、它、她、咱们、自己<br>具有指示作用：那、这、这里、那里、这里、这样、那么、每、各<br>表示疑问：哪里、什么、谁、怎样、怎么样、哪、哪呢</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Notes</category>
-      </categories>
-      <tags>
-        <tag>汉语语法</tag>
-        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -427,72 +427,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的母亲</title>
-    <url>/posts/221a99d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
-<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
-<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗<span id="more"></span></p>
-<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
-<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
-<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
-<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
-<p>她还喜欢“狡辩”，这是针对我爸的</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>扯谈</category>
-      </categories>
-      <tags>
-        <tag>扯谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_SecureCRT巡检脚本</title>
-    <url>/posts/21b002a6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h4><ul>
-<li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击  “Script” –&gt; “Run” 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）</li>
-<li>可以根据你的实际需要修改 “Send” 后面的内容</li>
-<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……<span id="more"></span></li>
-</ul>
-<figure class="highlight vbscript"><table><tr><td class="code"><pre><span class="line">#$language = <span class="string">&quot;VBScript&quot;</span></span><br><span class="line">#$interface = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; This automatically generated script may need to be</span></span><br><span class="line"><span class="comment">&#x27; edited in order to work correctly.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> Main</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;#start right now&quot;</span>&amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.WaitForString <span class="string">&quot;&gt;&quot;</span></span><br><span class="line">	crt.Screen.Send <span class="string">&quot;screen-length disable&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cur &quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip interface brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display interface brief des&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip routing-table&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display version&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cpu-usage&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display memory&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display device manuinfo&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Scripts</category>
-      </categories>
-      <tags>
-        <tag>巡检脚本</tag>
-        <tag>H3C</tag>
-        <tag>Scripts</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_V5_V7设备巡检信息提取</title>
-    <url>/posts/80e04e00.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。<span id="more"></span></p>
-<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
-<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
-</ul>
-<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
-<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/3/21 23:26</span></span><br><span class="line"><span class="comment"># Description：Device_info</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/111.txt&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="comment"># 首行显示50个“=”号，提取设备版本信息，开头注释</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;display version&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line01 = <span class="string">&#x27;=&#x27;</span> * <span class="number">50</span> + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line02 = <span class="string">&#x27;Device Name:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">r&#x27;[&lt;](.*?)[&gt;]&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            <span class="built_in">print</span>(result_line01)</span><br><span class="line">            <span class="built_in">print</span>(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        <span class="comment"># 提取设备版本信息      </span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Comware Software&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line03 = <span class="string">&#x27;Comware Software:\t&#x27;</span> +<span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=Software, ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        <span class="comment"># 提取设备运行时间</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;uptime is&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line04 = <span class="string">&#x27;Uptime:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=uptime is ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        <span class="comment"># 提取设备序列号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;DEVICE_SERIAL_NUMBER&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line05 = <span class="string">&#x27;SN:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=:).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line05 = result_line05.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU 0 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line06 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line06 = result_line06[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line06 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line06.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line066 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line066 = result_line066[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line066 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line066.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式3</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Unit CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line0666 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line0666 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line0666.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Used Rate&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line07 = lines[-<span class="number">4</span>:]</span><br><span class="line">            result_line07 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line07.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Mem:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line08 = lines[-<span class="number">6</span>:]</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27;%&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = <span class="number">100</span> - <span class="built_in">float</span>(result_line08)</span><br><span class="line">            result_line08 = <span class="string">&#x27;%.1f%%&#x27;</span> % result_line08</span><br><span class="line">            result_line08 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line08 + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
-<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
-<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
-<li>生成的文件为 word 或 excel 等都是可以实现的</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Scripts</category>
-      </categories>
-      <tags>
-        <tag>Scripts</tag>
-        <tag>H3C设备</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HCL_VPN不同实例互通实验</title>
     <url>/posts/eb7e5d69.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="实验拓扑和需求"><a href="#实验拓扑和需求" class="headerlink" title="实验拓扑和需求"></a><strong>实验拓扑和需求</strong></h2><p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"><img src = "https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"   class="img-center"/></a></p>
@@ -530,6 +464,134 @@
         <tag>H3C Cloud Lab</tag>
         <tag>vpn-instance</tag>
         <tag>VPN实例</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_SecureCRT巡检脚本</title>
+    <url>/posts/21b002a6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h4 id="脚本介绍和使用"><a href="#脚本介绍和使用" class="headerlink" title="脚本介绍和使用"></a><strong>脚本介绍和使用</strong></h4><ul>
+<li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击  “Script” –&gt; “Run” 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）</li>
+<li>可以根据你的实际需要修改 “Send” 后面的内容</li>
+<li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……<span id="more"></span></li>
+</ul>
+<figure class="highlight vbscript"><table><tr><td class="code"><pre><span class="line">#$language = <span class="string">&quot;VBScript&quot;</span></span><br><span class="line">#$interface = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"></span><br><span class="line">crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; This automatically generated script may need to be</span></span><br><span class="line"><span class="comment">&#x27; edited in order to work correctly.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> Main</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;#start right now&quot;</span>&amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.WaitForString <span class="string">&quot;&gt;&quot;</span></span><br><span class="line">	crt.Screen.Send <span class="string">&quot;screen-length disable&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cur &quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip interface brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display interface brief des&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display vlan brief&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display ip routing-table&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display version&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display cpu-usage&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display memory&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;display device manuinfo&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">	crt.Screen.Send <span class="string">&quot;save force&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Scripts</category>
+      </categories>
+      <tags>
+        <tag>巡检脚本</tag>
+        <tag>H3C</tag>
+        <tag>Scripts</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的母亲</title>
+    <url>/posts/221a99d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的母亲，一个普通的平凡的中年妇女</p>
+<p>可能是由于家庭环境的缘故使得她文化水平不高</p>
+<p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗<span id="more"></span></p>
+<p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外</p>
+<p>她有着固有的传统思想方式，就是别人都怎么样我也要怎么样</p>
+<p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了</p>
+<p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋</p>
+<p>她还喜欢“狡辩”，这是针对我爸的</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>扯谈</category>
+      </categories>
+      <tags>
+        <tag>扯谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>H3C_V5_V7设备巡检信息提取</title>
+    <url>/posts/80e04e00.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有<strong>设备名称</strong>、<strong>当前软件版本</strong>、<strong>设备运行时间</strong>、<strong>设备 CPU 使用率</strong>、<strong>设备内存使用率</strong>、<strong>设备序列号</strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。<span id="more"></span></p>
+<h2 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a><strong>如何操作</strong></h2><ul>
+<li><strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）</strong></li>
+</ul>
+<p><a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg"><img src = "https://i.loli.net/2021/04/22/GomHu92VZDfFjp1.jpg" class="img-center"></a></p>
+<h3 id="Python-脚本"><a href="#Python-脚本" class="headerlink" title="Python 脚本"></a>Python 脚本</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/3/21 23:26</span></span><br><span class="line"><span class="comment"># Description：Device_info</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/111.txt&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="comment"># 首行显示50个“=”号，提取设备版本信息，开头注释</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;display version&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line01 = <span class="string">&#x27;=&#x27;</span> * <span class="number">50</span> + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line02 = <span class="string">&#x27;Device Name:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">r&#x27;[&lt;](.*?)[&gt;]&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_txt.write(result_line01)  </span><br><span class="line">            <span class="built_in">print</span>(result_line01)</span><br><span class="line">            <span class="built_in">print</span>(result_line02)</span><br><span class="line">            result_txt.write(result_line02)   </span><br><span class="line">        <span class="comment"># 提取设备版本信息      </span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Comware Software&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line03 = <span class="string">&#x27;Comware Software:\t&#x27;</span> +<span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=Software, ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line03)</span><br><span class="line">            result_txt.write(result_line03)    </span><br><span class="line">        <span class="comment"># 提取设备运行时间</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;uptime is&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line04 = <span class="string">&#x27;Uptime:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=uptime is ).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line04)</span><br><span class="line">            result_txt.write(result_line04)    </span><br><span class="line">        <span class="comment"># 提取设备序列号</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;DEVICE_SERIAL_NUMBER&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line05 = <span class="string">&#x27;SN:\t&#x27;</span> + <span class="string">&#x27;&#x27;</span>.join(re.findall(<span class="string">&#x27;(?&lt;=:).*$&#x27;</span>, lines)) + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line05 = result_line05.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line05)</span><br><span class="line">            result_txt.write(result_line05)  </span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU 0 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line06 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line06 = result_line06[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line06 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line06.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line06)</span><br><span class="line">            result_txt.write(result_line06)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Slot 1 CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line066 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line066 = result_line066[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line066 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line066.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line066)</span><br><span class="line">            result_txt.write(result_line066)</span><br><span class="line">        <span class="comment"># 提取设备cpu使用率方式3</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Unit CPU usage:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line0666 = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            result_line0666 = result_line0666[<span class="number">5</span>:<span class="number">9</span>] + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            result_line0666 = <span class="string">&#x27;cpu-usage:\t&#x27;</span> + result_line0666.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line0666)</span><br><span class="line">            result_txt.write(result_line0666)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Used Rate&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line07 = lines[-<span class="number">4</span>:]</span><br><span class="line">            result_line07 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line07.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line07)</span><br><span class="line">            result_txt.write(result_line07)</span><br><span class="line">        <span class="comment"># 提取设备memory使用率方式2</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Mem:&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            result_line08 = lines[-<span class="number">6</span>:]</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = result_line08.replace(<span class="string">&#x27;%&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            result_line08 = <span class="number">100</span> - <span class="built_in">float</span>(result_line08)</span><br><span class="line">            result_line08 = <span class="string">&#x27;%.1f%%&#x27;</span> % result_line08</span><br><span class="line">            result_line08 = <span class="string">&#x27;memory-usage:\t&#x27;</span> + result_line08 + <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(result_line08)</span><br><span class="line">            result_txt.write(result_line08)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="生成信息"><a href="#生成信息" class="headerlink" title="生成信息"></a>生成信息</h3><p>  <a data-fancybox="gallery" href="https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg"><img src = "https://i.loli.net/2021/04/22/9SqglxZG1N8aI7K.jpg" class="img-center"></a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><ul>
+<li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等</li>
+<li>根据实际需要可以修改脚本中的内容提取更多信息</li>
+<li>生成的文件为 word 或 excel 等都是可以实现的</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Scripts</category>
+      </categories>
+      <tags>
+        <tag>Scripts</tag>
+        <tag>H3C设备</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的一些blog常用小操作</title>
+    <url>/posts/c1906682.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是 ^_^"></a>这是 ^_^</h2><p>自己日常操作的一些小命令和插件。</p>
+<h3 id="bat启动-hexo-本地服务"><a href="#bat启动-hexo-本地服务" class="headerlink" title="bat启动 hexo 本地服务"></a>bat启动 hexo 本地服务</h3><p>前提条件：已完成博客搭建。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>新建后缀为bat的脚本文件</li>
+<li>复制以上命令粘贴（注意修改路径 ），保存</li>
+<li>双击此脚本运行的结果相当于在你的 blog 路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo s” 运行</li>
+</ol>
+<h3 id="bat-推送至-github"><a href="#bat-推送至-github" class="headerlink" title="bat 推送至 github"></a>bat 推送至 github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>新建后缀为bat的脚本文件</li>
+<li>复制以上命令粘贴（注意修改路径 ），保存</li>
+<li>双击此脚本运行的结果相当于在你的blog路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s” 运行（如果只输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
+</ol>
+<h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
+<ol>
+<li>添加 js/css 到网站代码中，每个博客的存放代码的文件和位置可能不一样，有的是在 styl 文件中，有的可能在 EJS/PUG/SWIG 文件中，我使用的模版是在主题目录下的 _config.yml 文件中</li>
+</ol>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">css:</span><br><span class="line">  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css</span><br><span class="line">js:</span><br><span class="line">  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js</span><br><span class="line">  - https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在 .md 文件里插入图片，添加代码</li>
+</ol>
+  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">data-fancybox</span>=<span class="string">&quot;gallery&quot;</span> <span class="attr">href</span>=<span class="string">&quot;big_1.jpg&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;small_1.jpg&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"># 其中 big_1.jpg 和 small_1.jpg 可以是一致的，可以设置 width 参数来设置网页图片显示为小图。例如:</span><br><span class="line"> <span class="tag">&lt;<span class="name">a</span> <span class="attr">data-fancybox</span>=<span class="string">&quot;gallery&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://i.loli.net/xxxxx.jpg&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://i.loli.net/xxxxx.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;61.8%&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
+<p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
+<p>具体设置点上面网址。</p>
+<h3 id="添加文章链接-abbrlink"><a href="#添加文章链接-abbrlink" class="headerlink" title="添加文章链接 abbrlink"></a>添加文章链接 abbrlink</h3><ul>
+<li>安装插件</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改<strong>网站根目录</strong>配置文件 _config_yml</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> alg 和 rep 不同组合生成的链接</li>
+</ul>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
+
+<p>  hexo g 生成后，md 文件的 Front-matter 增加 abbrlink  属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。</p>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>Scripts</tag>
+        <tag>Blog</tag>
+        <tag>hexo命令</tag>
       </tags>
   </entry>
   <entry>
@@ -640,65 +702,73 @@
       </tags>
   </entry>
   <entry>
-    <title>我的一些blog常用小操作</title>
-    <url>/posts/c1906682.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="这是"><a href="#这是" class="headerlink" title="这是 ^_^"></a>这是 ^_^</h2><p>自己日常操作的一些小命令和插件。</p>
-<h3 id="bat启动-hexo-本地服务"><a href="#bat启动-hexo-本地服务" class="headerlink" title="bat启动 hexo 本地服务"></a>bat启动 hexo 本地服务</h3><p>前提条件：已完成博客搭建。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>新建后缀为bat的脚本文件</li>
-<li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的 blog 路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo s” 运行</li>
-</ol>
-<h3 id="bat-推送至-github"><a href="#bat-推送至-github" class="headerlink" title="bat 推送至 github"></a>bat 推送至 github</h3><p>前提条件：已完成博客搭建和推送github的设置。</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">start D:\Program&quot; &quot;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s&quot;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>新建后缀为bat的脚本文件</li>
-<li>复制以上命令粘贴（注意修改路径 ），保存</li>
-<li>双击此脚本运行的结果相当于在你的blog路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d &amp;&amp; hexo s” 运行（如果只输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）</li>
-</ol>
-<h3 id="文章页图片放大（灯箱效果）"><a href="#文章页图片放大（灯箱效果）" class="headerlink" title="文章页图片放大（灯箱效果）"></a>文章页图片放大（灯箱效果）</h3><p><strong>相关链接</strong>：<a href="https://github.com/fancyapps/fancybox">https://github.com/fancyapps/fancybox</a></p>
-<ol>
-<li>添加 js/css 到网站代码中，每个博客的存放代码的文件和位置可能不一样，有的是在 styl 文件中，有的可能在 EJS/PUG/SWIG 文件中，我使用的模版是在主题目录下的 _config.yml 文件中</li>
-</ol>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">css:</span><br><span class="line">  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css</span><br><span class="line">js:</span><br><span class="line">  - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js</span><br><span class="line">  - https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>在 .md 文件里插入图片，添加代码</li>
-</ol>
-  <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">data-fancybox</span>=<span class="string">&quot;gallery&quot;</span> <span class="attr">href</span>=<span class="string">&quot;big_1.jpg&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;small_1.jpg&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"># 其中 big_1.jpg 和 small_1.jpg 可以是一致的，可以设置 width 参数来设置网页图片显示为小图。例如:</span><br><span class="line"> <span class="tag">&lt;<span class="name">a</span> <span class="attr">data-fancybox</span>=<span class="string">&quot;gallery&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://i.loli.net/xxxxx.jpg&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://i.loli.net/xxxxx.jpg&quot;</span> <span class="attr">width</span>=<span class="string">&quot;61.8%&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="404-页面"><a href="#404-页面" class="headerlink" title="404 页面"></a>404 页面</h3><p><strong>相关链接</strong>：<a href="https://www.qq.com/404/">https://www.qq.com/404/</a></p>
-<p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。</p>
-<p>具体设置点上面网址。</p>
-<h3 id="添加文章链接-abbrlink"><a href="#添加文章链接-abbrlink" class="headerlink" title="添加文章链接 abbrlink"></a>添加文章链接 abbrlink</h3><ul>
-<li>安装插件</li>
+    <title>H3C_线路测试脚本</title>
+    <url>/posts/60e83b3d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="记录会话日志（log-session）"><a href="#记录会话日志（log-session）" class="headerlink" title="记录会话日志（log session）"></a>记录会话日志（log session）</h3><ul>
+<li>设置会话属性参数（可单独设置串口会话、telnet 会话和 ssh 会话，右键会话属性修改即可）</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install eslint@<span class="number">4.</span>x babel-eslint@<span class="number">8</span> --save-dev</span><br></pre></td></tr></table></figure>
+<p><a data-fancybox="gallery" a href="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" class="img-center" ></a></p>
+<ul>
+<li>设置 log file 参数（设置保存路径，选项，日志的开头和结束位置插入信息（脚本用于判断结束的位置））</li>
+</ul>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg"  class="img-center"></a></p>
+<h3 id="制作端口和-IP-信息的-txt-文件"><a href="#制作端口和-IP-信息的-txt-文件" class="headerlink" title="制作端口和 IP 信息的 txt 文件"></a>制作端口和 IP 信息的 txt 文件</h3><p>说明：第一列为网络中心路由器接口，第二列为对端网点设备的 IP 地址（接口和IP我已经处理过了，假的，真的不会贴出来）</p>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg"  class="img-center"></a></p>
+<h3 id="编写-ping-测试-Python-脚本"><a href="#编写-ping-测试-Python-脚本" class="headerlink" title="编写 ping 测试 Python 脚本"></a>编写 ping 测试 Python 脚本</h3><ul>
+<li>脚本内容</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $language = &quot;python&quot;</span></span><br><span class="line"><span class="comment"># $interface = &quot;1.0&quot;</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> SecureCRT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;F:/SR66_Test/SR66.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> rfile:</span><br><span class="line">        ping_list = rfile.readlines()</span><br><span class="line">        <span class="comment"># 遍历SR66文件里的每一行，把第1列赋值给 port_info，第二列赋值给 ping_ip</span></span><br><span class="line">        <span class="keyword">for</span> ping_info <span class="keyword">in</span> ping_list:</span><br><span class="line">            port_info = ping_info.split()[<span class="number">0</span>]</span><br><span class="line">            ping_ip = ping_info.split()[<span class="number">1</span>]</span><br><span class="line">            crt.Screen.Send(<span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            <span class="comment"># 在路由器命令行界面输入#+port_info并回车，例如：#GE4/1/0.111</span></span><br><span class="line">            crt.Screen.Send(<span class="string">&#x27;#&#x27;</span> + port_info + <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            <span class="comment"># 在路由器命令行界面输入ping -c + ping_ip并回车，例如：ping -c 3 100.10.142.30</span></span><br><span class="line">            crt.Screen.Send(<span class="string">&#x27;ping -c 3 &#x27;</span> + ping_ip + <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>修改<strong>网站根目录</strong>配置文件 _config_yml</li>
+<li>SceureCRT 登陆路由器，点击 “Script” –&gt; “Run” 选择脚本，运行脚本。运行时间取决于线路的正常连通和测试的数量</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">permalink: posts/:abbrlink.html  </span><br><span class="line"><span class="attr">abbrlink</span>:</span><br><span class="line">    alg: crc32</span><br><span class="line">    <span class="attr">rep</span>: hex</span><br></pre></td></tr></table></figure>
+<h3 id="编写结果统计-Python-脚本"><a href="#编写结果统计-Python-脚本" class="headerlink" title="编写结果统计 Python 脚本"></a>编写结果统计 Python 脚本</h3><ol>
+<li>处理 ping 测试后的 log session 日志记录</li>
+<li>提取 ping 测试的结果信息（会同时生成一个 result.txt 的文件）</li>
+<li>对 result.txt 文件的信息进行处理生成 Excel 表格</li>
+</ol>
+<ul>
+<li>脚本内容：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/x/x x:x</span></span><br><span class="line"><span class="comment"># Description：</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> xlsxwriter <span class="keyword">as</span> xw</span><br><span class="line"><span class="keyword">from</span> xlsxwriter <span class="keyword">import</span> Workbook</span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/SR66_Test/xxx.log&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/SR66_Test/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/SR66_Test/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;GE&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="comment">#  # 提取GE开头的行，也就是端口和IP信息的txt文件里的第一列，并且换行符替换制表符</span></span><br><span class="line">            result_line1 = re.sub(<span class="string">r&#x27;^.*?#_&#x27;</span>, <span class="string">&#x27;&#x27;</span>, lines)</span><br><span class="line">            result_line1 = result_line1.replace(<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line1)</span><br><span class="line">            result_txt.write(result_line1)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;--- Ping statistics&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="comment"># 提取包含“--- Ping statistics”这一行，替换成“ping + IP”，并且换行符替换制表符</span></span><br><span class="line">            result_line2 = re.sub(<span class="string">r&#x27;^.*?for&#x27;</span>, <span class="string">&#x27;ping&#x27;</span>, lines)</span><br><span class="line">            result_line2 = result_line2.replace(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">            result_line2 = result_line2.replace(<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line2)</span><br><span class="line">            result_txt.write(result_line2)</span><br><span class="line">            lines = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            <span class="comment"># 提取下一行，替换成“result: 0.0% packet loss”</span></span><br><span class="line">            result_line3 = re.sub(<span class="string">r&#x27;^.*?received,&#x27;</span>, <span class="string">&#x27;result:&#x27;</span>, lines)</span><br><span class="line">            <span class="built_in">print</span>(result_line3)</span><br><span class="line">            result_txt.write(result_line3)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="comment"># 遍历到“结束记录时间”这行，中断循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">workbook: Workbook = xw.Workbook(<span class="string">&#x27;F:/SR66_Test/result.xlsx&#x27;</span>)</span><br><span class="line"></span><br><span class="line">sheet0 = workbook.add_worksheet(<span class="string">&#x27;测试结果&#x27;</span>)</span><br><span class="line">centered = workbook.add_format(&#123;<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>&#125;)</span><br><span class="line">red_style = workbook.add_format(&#123;</span><br><span class="line">    <span class="string">&quot;fg_color&quot;</span>: <span class="string">&quot;red&quot;</span>,<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>,<span class="string">&#x27;bold&#x27;</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">green_style = workbook.add_format(&#123;</span><br><span class="line">    <span class="string">&quot;fg_color&quot;</span>: <span class="string">&quot;green&quot;</span>,<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>,<span class="string">&#x27;bold&#x27;</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">blue_style = workbook.add_format(&#123;</span><br><span class="line">    <span class="string">&quot;fg_color&quot;</span>: <span class="string">&quot;#8DB4E2&quot;</span>,<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>&#125;)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;检测端口&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">1</span>, <span class="string">&#x27;对端IP地址&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">2</span>, <span class="string">&#x27;返回结果&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">3</span>, <span class="string">&#x27;检测结果&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">4</span>, <span class="string">&#x27;线路正常&#x27;</span>, green_style)</span><br><span class="line"><span class="comment"># sheet0.write(0, 5, &#x27;&#x27;, green_style)</span></span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">6</span>, <span class="string">&#x27;检测失败&#x27;</span>, red_style)</span><br><span class="line"><span class="comment"># sheet0.write(0, 7, &#x27;&#x27;, red_style)</span></span><br><span class="line">sheet0.set_column(<span class="number">0</span>, <span class="number">0</span>, width=<span class="number">20</span>)</span><br><span class="line">sheet0.set_column(<span class="number">1</span>, <span class="number">1</span>, width=<span class="number">24</span>)</span><br><span class="line">sheet0.set_column(<span class="number">2</span>, <span class="number">2</span>, width=<span class="number">28</span>)</span><br><span class="line">sheet0.set_column(<span class="number">3</span>, <span class="number">3</span>, width=<span class="number">12.38</span>)</span><br><span class="line">sheet0.set_column(<span class="number">4</span>, <span class="number">4</span>, width=<span class="number">12.38</span>)</span><br><span class="line">sheet0.set_column(<span class="number">5</span>, <span class="number">5</span>, width=<span class="number">5</span>)</span><br><span class="line">sheet0.set_column(<span class="number">6</span>, <span class="number">6</span>, width=<span class="number">12.38</span>)</span><br><span class="line">sheet0.set_column(<span class="number">7</span>, <span class="number">7</span>, width=<span class="number">5</span>)</span><br><span class="line">sheet0.freeze_panes(<span class="number">1</span>, <span class="number">8</span>, top_row=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># sheet0.filter_column_list(&quot;D&quot;, [&#x27;正常&#x27;, &#x27;检测失败&#x27;])</span></span><br><span class="line">sheet0.filter_column_list(<span class="number">3</span>, <span class="string">&#x27;x = &quot;正常&quot;&#x27;</span>)</span><br><span class="line">sheet0.write_formula(<span class="string">&#x27;D2&#x27;</span>, <span class="string">&#x27;&#123;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;检测失败&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;正常&quot;))&#125;&#x27;</span>)</span><br><span class="line">sheet0.write_formula(<span class="string">&#x27;F1&#x27;</span>, <span class="string">&#x27;&#123;=SUMPRODUCT((D2:D999=&quot;正常&quot;)*1)&#125;&#x27;</span>)</span><br><span class="line">sheet0.write_formula(<span class="string">&#x27;H1&#x27;</span>, <span class="string">&#x27;&#123;=SUMPRODUCT((D2:D999=&quot;检测失败&quot;)*1)&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:/SR6608_Test/result.txt&#x27;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    lines = file_object.readlines()</span><br><span class="line">    file_object.close()</span><br><span class="line"></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line">x = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> xls_line <span class="keyword">in</span> lines:</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;GE&quot;</span> <span class="keyword">in</span> xls_line:</span><br><span class="line">        xls_line = xls_line.strip(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        xls_line = xls_line.split(<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(xls_line)</span><br><span class="line">        port_info = xls_line[<span class="number">0</span>]</span><br><span class="line">        ip_addr = xls_line[<span class="number">1</span>]</span><br><span class="line">        return_info = xls_line[<span class="number">2</span>]</span><br><span class="line">        sheet0.write(i, <span class="number">0</span>, port_info, )</span><br><span class="line">        sheet0.write(i, <span class="number">1</span>, ip_addr, )</span><br><span class="line">        sheet0.write(i, <span class="number">2</span>, return_info, )</span><br><span class="line">        <span class="comment"># sheet0.write_formula(x, 3, &#x27;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;正常&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;检测失败&quot;))&#x27;)</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        x += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">workbook.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li> alg 和 rep 不同组合生成的链接</li>
+<li>ping 测试的 log session 文件</li>
 </ul>
-  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/1234.html</span></span><br><span class="line"></span><br><span class="line">crc16 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345.html</span></span><br><span class="line">crc32 &amp; hex</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/12345678.html</span></span><br><span class="line"></span><br><span class="line">crc32 &amp; dec</span><br><span class="line"><span class="attr">https</span>:<span class="comment">//xx.github.io/posts/123456789a.html</span></span><br></pre></td></tr></table></figure>
-
-<p>  hexo g 生成后，md 文件的 Front-matter 增加 abbrlink  属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。</p>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" class="img-center" ></a></p>
+<ul>
+<li>生成的 result.txt 文件</li>
+</ul>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" class="img-center" ></a></p>
+<ul>
+<li>生成的 Exce 表格</li>
+</ul>
+<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" class="img-center" ></a></p>
+]]></content>
+      <categories>
+        <category>Scripts</category>
+      </categories>
+      <tags>
+        <tag>Scripts</tag>
+        <tag>线路测试</tag>
+        <tag>割接工作</tag>
+        <tag>Python脚本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>archive_test</title>
+    <url>/posts/515317e3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
+<ul>
+<li>This is a test page .</li>
+</ul>
 ]]></content>
       <categories>
         <category>Blog</category>
       </categories>
       <tags>
-        <tag>Scripts</tag>
         <tag>Blog</tag>
-        <tag>hexo命令</tag>
       </tags>
   </entry>
   <entry>
@@ -782,76 +852,6 @@
       </tags>
   </entry>
   <entry>
-    <title>archive_test</title>
-    <url>/posts/515317e3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Test Page</p>
-<ul>
-<li>This is a test page .</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>Blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>H3C_线路测试脚本</title>
-    <url>/posts/60e83b3d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。</p>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="记录会话日志（log-session）"><a href="#记录会话日志（log-session）" class="headerlink" title="记录会话日志（log session）"></a>记录会话日志（log session）</h3><ul>
-<li>设置会话属性参数（可单独设置串口会话、telnet 会话和 ssh 会话，右键会话属性修改即可）</li>
-</ul>
-<p><a data-fancybox="gallery" a href="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/N17ytdC6MGSKu4e.jpg" class="img-center" ></a></p>
-<ul>
-<li>设置 log file 参数（设置保存路径，选项，日志的开头和结束位置插入信息（脚本用于判断结束的位置））</li>
-</ul>
-<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/zIWMxF45NcX3Lli.jpg"  class="img-center"></a></p>
-<h3 id="制作端口和-IP-信息的-txt-文件"><a href="#制作端口和-IP-信息的-txt-文件" class="headerlink" title="制作端口和 IP 信息的 txt 文件"></a>制作端口和 IP 信息的 txt 文件</h3><p>说明：第一列为网络中心路由器接口，第二列为对端网点设备的 IP 地址（接口和IP我已经处理过了，假的，真的不会贴出来）</p>
-<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/qN5caRwgkxTWeC7.jpg"  class="img-center"></a></p>
-<h3 id="编写-ping-测试-Python-脚本"><a href="#编写-ping-测试-Python-脚本" class="headerlink" title="编写 ping 测试 Python 脚本"></a>编写 ping 测试 Python 脚本</h3><ul>
-<li>脚本内容</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># $language = &quot;python&quot;</span></span><br><span class="line"><span class="comment"># $interface = &quot;1.0&quot;</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> SecureCRT</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;F:/SR66_Test/SR66.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> rfile:</span><br><span class="line">        ping_list = rfile.readlines()</span><br><span class="line">        <span class="comment"># 遍历SR66文件里的每一行，把第1列赋值给 port_info，第二列赋值给 ping_ip</span></span><br><span class="line">        <span class="keyword">for</span> ping_info <span class="keyword">in</span> ping_list:</span><br><span class="line">            port_info = ping_info.split()[<span class="number">0</span>]</span><br><span class="line">            ping_ip = ping_info.split()[<span class="number">1</span>]</span><br><span class="line">            crt.Screen.Send(<span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            <span class="comment"># 在路由器命令行界面输入#+port_info并回车，例如：#GE4/1/0.111</span></span><br><span class="line">            crt.Screen.Send(<span class="string">&#x27;#&#x27;</span> + port_info + <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            <span class="comment"># 在路由器命令行界面输入ping -c + ping_ip并回车，例如：ping -c 3 100.10.142.30</span></span><br><span class="line">            crt.Screen.Send(<span class="string">&#x27;ping -c 3 &#x27;</span> + ping_ip + <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>SceureCRT 登陆路由器，点击 “Script” –&gt; “Run” 选择脚本，运行脚本。运行时间取决于线路的正常连通和测试的数量</li>
-</ul>
-<h3 id="编写结果统计-Python-脚本"><a href="#编写结果统计-Python-脚本" class="headerlink" title="编写结果统计 Python 脚本"></a>编写结果统计 Python 脚本</h3><ol>
-<li>处理 ping 测试后的 log session 日志记录</li>
-<li>提取 ping 测试的结果信息（会同时生成一个 result.txt 的文件）</li>
-<li>对 result.txt 文件的信息进行处理生成 Excel 表格</li>
-</ol>
-<ul>
-<li>脚本内容：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Author：KIRASTER</span></span><br><span class="line"><span class="comment"># Time：2021/x/x x:x</span></span><br><span class="line"><span class="comment"># Description：</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> xlsxwriter <span class="keyword">as</span> xw</span><br><span class="line"><span class="keyword">from</span> xlsxwriter <span class="keyword">import</span> Workbook</span><br><span class="line"></span><br><span class="line">filename = <span class="string">&#x27;F:/SR66_Test/xxx.log&#x27;</span></span><br><span class="line">resultfilename = <span class="string">&#x27;F:/SR66_Test/result.txt&#x27;</span></span><br><span class="line"><span class="keyword">if</span> os.path.exists(resultfilename):</span><br><span class="line">    os.remove(resultfilename)</span><br><span class="line">result_txt = <span class="built_in">open</span>(<span class="string">&#x27;F:/SR66_Test/result.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf8&#x27;</span>) <span class="keyword">as</span> file_to_read:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        lines = file_to_read.readline()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;GE&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="comment">#  # 提取GE开头的行，也就是端口和IP信息的txt文件里的第一列，并且换行符替换制表符</span></span><br><span class="line">            result_line1 = re.sub(<span class="string">r&#x27;^.*?#_&#x27;</span>, <span class="string">&#x27;&#x27;</span>, lines)</span><br><span class="line">            result_line1 = result_line1.replace(<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line1)</span><br><span class="line">            result_txt.write(result_line1)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;--- Ping statistics&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="comment"># 提取包含“--- Ping statistics”这一行，替换成“ping + IP”，并且换行符替换制表符</span></span><br><span class="line">            result_line2 = re.sub(<span class="string">r&#x27;^.*?for&#x27;</span>, <span class="string">&#x27;ping&#x27;</span>, lines)</span><br><span class="line">            result_line2 = result_line2.replace(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">            result_line2 = result_line2.replace(<span class="string">&quot;\n&quot;</span>, <span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(result_line2)</span><br><span class="line">            result_txt.write(result_line2)</span><br><span class="line">            lines = <span class="built_in">next</span>(file_to_read)</span><br><span class="line">            <span class="comment"># 提取下一行，替换成“result: 0.0% packet loss”</span></span><br><span class="line">            result_line3 = re.sub(<span class="string">r&#x27;^.*?received,&#x27;</span>, <span class="string">&#x27;result:&#x27;</span>, lines)</span><br><span class="line">            <span class="built_in">print</span>(result_line3)</span><br><span class="line">            result_txt.write(result_line3)</span><br><span class="line">            result_txt.flush()</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;结束记录时间&quot;</span> <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="comment"># 遍历到“结束记录时间”这行，中断循环</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">workbook: Workbook = xw.Workbook(<span class="string">&#x27;F:/SR66_Test/result.xlsx&#x27;</span>)</span><br><span class="line"></span><br><span class="line">sheet0 = workbook.add_worksheet(<span class="string">&#x27;测试结果&#x27;</span>)</span><br><span class="line">centered = workbook.add_format(&#123;<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>&#125;)</span><br><span class="line">red_style = workbook.add_format(&#123;</span><br><span class="line">    <span class="string">&quot;fg_color&quot;</span>: <span class="string">&quot;red&quot;</span>,<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>,<span class="string">&#x27;bold&#x27;</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">green_style = workbook.add_format(&#123;</span><br><span class="line">    <span class="string">&quot;fg_color&quot;</span>: <span class="string">&quot;green&quot;</span>,<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>,<span class="string">&#x27;bold&#x27;</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">blue_style = workbook.add_format(&#123;</span><br><span class="line">    <span class="string">&quot;fg_color&quot;</span>: <span class="string">&quot;#8DB4E2&quot;</span>,<span class="string">&#x27;align&#x27;</span>: <span class="string">&#x27;center&#x27;</span>&#125;)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">0</span>, <span class="string">&#x27;检测端口&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">1</span>, <span class="string">&#x27;对端IP地址&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">2</span>, <span class="string">&#x27;返回结果&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">3</span>, <span class="string">&#x27;检测结果&#x27;</span>, blue_style)</span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">4</span>, <span class="string">&#x27;线路正常&#x27;</span>, green_style)</span><br><span class="line"><span class="comment"># sheet0.write(0, 5, &#x27;&#x27;, green_style)</span></span><br><span class="line">sheet0.write(<span class="number">0</span>, <span class="number">6</span>, <span class="string">&#x27;检测失败&#x27;</span>, red_style)</span><br><span class="line"><span class="comment"># sheet0.write(0, 7, &#x27;&#x27;, red_style)</span></span><br><span class="line">sheet0.set_column(<span class="number">0</span>, <span class="number">0</span>, width=<span class="number">20</span>)</span><br><span class="line">sheet0.set_column(<span class="number">1</span>, <span class="number">1</span>, width=<span class="number">24</span>)</span><br><span class="line">sheet0.set_column(<span class="number">2</span>, <span class="number">2</span>, width=<span class="number">28</span>)</span><br><span class="line">sheet0.set_column(<span class="number">3</span>, <span class="number">3</span>, width=<span class="number">12.38</span>)</span><br><span class="line">sheet0.set_column(<span class="number">4</span>, <span class="number">4</span>, width=<span class="number">12.38</span>)</span><br><span class="line">sheet0.set_column(<span class="number">5</span>, <span class="number">5</span>, width=<span class="number">5</span>)</span><br><span class="line">sheet0.set_column(<span class="number">6</span>, <span class="number">6</span>, width=<span class="number">12.38</span>)</span><br><span class="line">sheet0.set_column(<span class="number">7</span>, <span class="number">7</span>, width=<span class="number">5</span>)</span><br><span class="line">sheet0.freeze_panes(<span class="number">1</span>, <span class="number">8</span>, top_row=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># sheet0.filter_column_list(&quot;D&quot;, [&#x27;正常&#x27;, &#x27;检测失败&#x27;])</span></span><br><span class="line">sheet0.filter_column_list(<span class="number">3</span>, <span class="string">&#x27;x = &quot;正常&quot;&#x27;</span>)</span><br><span class="line">sheet0.write_formula(<span class="string">&#x27;D2&#x27;</span>, <span class="string">&#x27;&#123;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;检测失败&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;正常&quot;))&#125;&#x27;</span>)</span><br><span class="line">sheet0.write_formula(<span class="string">&#x27;F1&#x27;</span>, <span class="string">&#x27;&#123;=SUMPRODUCT((D2:D999=&quot;正常&quot;)*1)&#125;&#x27;</span>)</span><br><span class="line">sheet0.write_formula(<span class="string">&#x27;H1&#x27;</span>, <span class="string">&#x27;&#123;=SUMPRODUCT((D2:D999=&quot;检测失败&quot;)*1)&#125;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:/SR6608_Test/result.txt&#x27;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">    lines = file_object.readlines()</span><br><span class="line">    file_object.close()</span><br><span class="line"></span><br><span class="line">i = <span class="number">1</span></span><br><span class="line">x = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> xls_line <span class="keyword">in</span> lines:</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;GE&quot;</span> <span class="keyword">in</span> xls_line:</span><br><span class="line">        xls_line = xls_line.strip(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        xls_line = xls_line.split(<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(xls_line)</span><br><span class="line">        port_info = xls_line[<span class="number">0</span>]</span><br><span class="line">        ip_addr = xls_line[<span class="number">1</span>]</span><br><span class="line">        return_info = xls_line[<span class="number">2</span>]</span><br><span class="line">        sheet0.write(i, <span class="number">0</span>, port_info, )</span><br><span class="line">        sheet0.write(i, <span class="number">1</span>, ip_addr, )</span><br><span class="line">        sheet0.write(i, <span class="number">2</span>, return_info, )</span><br><span class="line">        <span class="comment"># sheet0.write_formula(x, 3, &#x27;=IF(ISNUMBER(FIND(&quot;100.0%&quot;,C2)),&quot;正常&quot;,IF(ISNUMBER(FIND(&quot;0.0%&quot;,C2)),&quot;检测失败&quot;))&#x27;)</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        x += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">workbook.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>ping 测试的 log session 文件</li>
-</ul>
-<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/CLrzYM5tlVOENs3.jpg" class="img-center" ></a></p>
-<ul>
-<li>生成的 result.txt 文件</li>
-</ul>
-<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3kAIXCifLcr9jTa.jpg" class="img-center" ></a></p>
-<ul>
-<li>生成的 Exce 表格</li>
-</ul>
-<p><a data-fancybox="gallery"  href="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" target="_blank"><img src="https://i.loli.net/2021/10/16/3VRdct6raI8Nu7h.jpg" class="img-center" ></a></p>
-]]></content>
-      <categories>
-        <category>Scripts</category>
-      </categories>
-      <tags>
-        <tag>Scripts</tag>
-        <tag>线路测试</tag>
-        <tag>割接工作</tag>
-        <tag>Python脚本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PNETLab试用</title>
     <url>/posts/13f1a9a7.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>PNETLab</strong> <strong>(<em>Packet Network Emulator Tool Lab</em></strong>)is a platform that allows you to download and share labs with the community.  这句话摘抄自<a href="https://pnetlab.com/pages/documentation">官网</a>介绍，这是链接：<a href="https://pnetlab.com/pages/documentation">What is PNETLab?</a></p>
@@ -882,98 +882,6 @@
         <tag>Network Emulator</tag>
         <tag>PNETLab</tag>
         <tag>EVE-NG</tag>
-        <tag>Cisco</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>No.001 Simple Case</title>
-    <url>/posts/8ac5ac4a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html">【有点儿意思系列 06】一个看起来简单的案例</a>，再上图。<span id="more"></span></p>
- <a data-fancybox="gallery" href="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg">
- <img src="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg" class="img-center" /></a>
-
-<h2 id="Request-and-Solution"><a href="#Request-and-Solution" class="headerlink" title="Request and Solution"></a>Request and Solution</h2><ol>
-<li><p>PC1、PC2 分属 VLAN10 和 VLAN20；DHCP 服务器属 VLAN30 ，PC1 和 PC2 从 DHCP 服务器自动获取地址。</p>
-<p>   <strong>S</strong>：根据上下文需求，确定 R3 和 R4 是热备组网。R3 和 R4 上配置子接口，配置 VRRP ；业务地址段和 DHCPServer 不在同一网段，所以需要在业务网段的网关上配置 DHCP 中继。实验中使用一台路由器模拟 DHCPServer，上面配置分配给 VLAN10,VLAN20 的地址池。</p>
-   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- DHCPServer 配置</span><br><span class="line">!</span><br><span class="line">ip dhcp excluded-address 10.1.10.252 10.1.10.254</span><br><span class="line">ip dhcp excluded-address 10.1.20.252 10.1.20.254</span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan10</span><br><span class="line"> network 10.1.10.0 255.255.255.0</span><br><span class="line"> default-router 10.1.10.254 </span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan20</span><br><span class="line"> network 10.1.20.0 255.255.255.0</span><br><span class="line"> default-router 10.1.20.254 </span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> encapsulation dot1Q 10</span><br><span class="line"> ip address 10.1.10.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 10 ip 10.1.10.254</span><br><span class="line"> vrrp 10 priority 120</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.20</span><br><span class="line"> encapsulation dot1Q 20</span><br><span class="line"> ip address 10.1.20.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 20 ip 10.1.20.254</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.30</span><br><span class="line"> encapsulation dot1Q 30</span><br><span class="line"> ip address 10.1.30.252 255.255.255.0</span><br><span class="line"> vrrp 30 ip 10.1.30.254</span><br><span class="line"> vrrp 30 priority 120</span><br><span class="line"> vrrp 30 track 1 decrement 21</span><br><span class="line">! --- 网管地址网关</span><br><span class="line">interface Ethernet0/1.99</span><br><span class="line"> encapsulation dot1Q 99</span><br><span class="line"> ip address 20.1.1.252 255.255.255.0</span><br><span class="line"> vrrp 99 ip 20.1.1.254</span><br><span class="line"> vrrp 99 priority 120</span><br><span class="line"> vrrp 99 track 1 decrement 21</span><br><span class="line">!       </span><br></pre></td></tr></table></figure></li>
-<li><p>SW4 是内网用户接入交换机（仅具二层功能），要求内网两个网段的用户均能 telnet 到该设备。</p>
-<p>   <strong>S</strong>：配置 VLAN ，划分接口，配置 Trunk，配置默认网关和远程网管</p>
-   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW4 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/1</span><br><span class="line"> switchport access vlan 10</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/2</span><br><span class="line"> switchport access vlan 20</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/3</span><br><span class="line"> switchport access vlan 30</span><br><span class="line">! --- 网管IP地址</span><br><span class="line">interface Vlan99</span><br><span class="line"> ip address 20.1.1.10 255.255.255.0</span><br><span class="line">! -- 本想使用 ip default-gateway，但是不起作用，下面这条效果是一样</span><br><span class="line">ip route 0.0.0.0 0.0.0.0 20.1.1.254</span><br><span class="line">! --- 网管配置 略</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
-<p>   由于 VPCS 不支持 Telnet ，此处使用 DHCPServer 做测试。</p>
-   <a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg">
-<img src="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg" class="img-center" /></a>
- 
-</li>
-<li><p>R3 和 R4 作为内网用户的网关设备，互为热备份。</p>
-<p>  <strong>S</strong>：这一条前面提过了，整个拓扑完整配置后边发，我打个包。</p>
-</li>
-<li><p>R3、R4、SW2 及 SW3 上不允许出现任何手工配置的静态路由条目。 </p>
-<p>  <strong>S</strong>：好的，满足你。</p>
-</li>
-<li><p>SW1 采用重发布的方式，将直连的服务器网段路由（如10.1.100.0/24）注入 EIGRP。</p>
-<p>  <strong>S</strong>：好的，满足你。</p>
-</li>
-<li><p>内网用户（PC1、PC2）访问核心服务器 Server（10.1.100.1）的数据流走向如下：</p>
-<p> PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</p>
-<p> PC2 访问 Server：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</p>
-<p> 沿途任何设备上到达 Server 的路由不允许出现负载均衡，且 PC 访问 Server 的流量往返路径一致。</p>
-<p>  <strong>S</strong>：在配置完路由协议后，查看沿途设备路由表发现到达 Server 的路由出现负载均衡是正常现象，旁观大局，逐个处理就行。</p>
-<p>  但是有一个现象我不知是模拟器的 Bug 还是镜像的问题，查看 SW3 和 SW4  ，总有一台设备到达 Server 的路由是这样的：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D EX     10.1.100.0/24 [170/307200]</span><br></pre></td></tr></table></figure>
-<p>  另一台学习到去往 Server 网段的路由是从上面这台学习到的外部路由，重启两台交换机的 OSPF 进程，这条路由又可能显示在第二台了。我又用 GNS3 做了测试，也是这种情况，按理说加载到路由表的不应该是管理距离为 110 的 OSPF 外部路由么？</p>
-<p> 我思考了一番，可能是 OSPF 进程启动先后顺序的问题，先启动的交换机 OSPF 进程加载了 EIGRP 外部路由，而后启动的交换机 OSPF 进程学习到 EIGRP 外部路由和 OSPF 外部路由，按照规则选择了管理距离值较小的 OSPF 路由条目。</p>
-<p> <strong>PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R1 配置，修改 OSPF 入向接口的 cost ，使从 e0/0 收到去往10.1.100.0网段的路由更优</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置, 在 OSPF 进程下过滤入方向收到的去往 10.1.100.0 网段的条目，为什么这么做呢，从后面需求看，断掉 SW2/SW3 与 SW1 的线路之一，去往 Server的流量就不需要经过断掉线路这台交换机，而且断掉线路还要流量经过这台设备，走了个直角线路，并不是最优路径</span><br><span class="line">!</span><br><span class="line">router ospf 200</span><br><span class="line"> distribute-list 10 in</span><br><span class="line">!</span><br><span class="line">access-list 10 deny   10.1.100.0 0.0.0.255</span><br><span class="line">access-list 10 permit any</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-<p> <strong>PC2 访问 Server ：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</strong></p>
-<p> 思路和 PC1 访问 Server 一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
-<p> <strong>PC1 访问 Server 回程路径： Server&gt; SW1 &gt; SW2 &gt; R1 &gt;R3 ；</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW1 配置，观察到去往内网网段的路由条目是负载均衡，配置偏移列表和指定入向接口，增加希望不要出现在路由表里的条目 metric 偏移，影响路由表加载</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> offset-list 20 in 1024 Ethernet0/2 </span><br><span class="line"> offset-list 10 in 1024 Ethernet0/1 </span><br><span class="line">!</span><br><span class="line">access-list 10 permit 10.1.20.0 0.0.0.255</span><br><span class="line">access-list 20 permit 10.1.10.0 0.0.0.255</span><br><span class="line"> !</span><br></pre></td></tr></table></figure>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，修改 e0/3 接口 cost，使得从该接口学习到去往 10.1.10.0 和 10.1.20.0 网段的路由不是最优路由</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3</span><br><span class="line">  ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-<p>  <strong>PC2 访问 Server 回程路径： Server&gt; SW1 &gt; SW3 &gt; R2 &gt;R3 ；</strong></p>
-<p>  思路和 PC1 访问 Server 回程路径一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
-</li>
-<li><p>要求 SW2 和 SW3 访问 Server 都走最优路径，即 SW2 前往 Server 的数据流走 SW1，SW3 前往 Server 的数据流也直接到 SW1。</p>
-<p>   <strong>S</strong>：这一条也佐证了我在上面说到的流量走直角路径不是最优的想法。说的通俗一点就是：SW1 上的有流量要去往 Server 只能从 e0/1 出去，不走直角。即使 SW1 上的出口线路故障了也不走，走的路径是：拓扑上的对角线。退一步来说当 SW2/SW3 的出口线路故障了，下联的 R1/R2 不会从 SW2/SW3 学习到去往 Server 的路由条目。SW2 也是这个道理。</p>
-</li>
-</ol>
-<a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg">
- <img src="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg" class="img-center" /></a>
-
-<ol start="8">
-<li><p>SW1 上关于 10.1.10.0/24 和 10.1.20.0/24 的路由不应该出现等价负载均衡，正常情况下访问 10.0/24 网段的数据流走 SW2，访问2 0.0/24 网段的数据流走 SW3。</p>
-<p>   <strong>S</strong>：在 PC1/PC2 访问 Server 的回程路径时候已经解决这一条，不占用篇幅了（懒得码字）。</p>
-</li>
-<li><p>当 SW1-SW2 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径： R3&gt;R1&gt;SW3&gt;SW1&gt;Server，且往返路径一致。而当 SW1-SW3 之间的链路 DOWN 掉时，PC2 应该仍然能够访问 Server，情况类似。</p>
-<p>  <strong>S</strong>：正如我前面所说的：当 SW2/SW3 的出口线路故障了，下联的 R1/R2 也不会从 SW2/SW3 学习到去往 Server 的路由条目。此时去往 Server 的流量已经在 R1/R2 通过走对角线的路径来到 SW3/SW2 上。</p>
-<p>重点解决回程的路径。因为前面已经修改了 SW2 和 SW3 上的 e0/3 的 cost ，这就使得当 SW1-SW2 之间的链路 DOWN 掉或者 SW1-SW3 之间的链路 DOWN 掉时，SW3/SW2 去往 10.1.10.0 和 10.1.20.0 网段都是直线往下经过 R2 或者 R1 回程到业务网段，并不符合需求。需要添加策略路由 PBR 实现往返路径一致。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，配置匹配去往 10.1.20.0 网段的 ACL，配置 route-map 匹配 ACL ，设置去往10.1.20.0 网段的下一跳地址，配置 SLA 监测，最后在 e0/1 调用</span><br><span class="line">!</span><br><span class="line">access-list 101 permit ip any 10.1.20.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">route-map pbr_20.0 permit 10</span><br><span class="line"> match ip address 101</span><br><span class="line"> set ip next-hop verify-availability 10.1.254.105 1 track 1</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 10.1.254.105 source-interface Ethernet0/3</span><br><span class="line"> frequency 5</span><br><span class="line">! 设置 delay 是为了及时观察现象，实际生产环境不需这么做</span><br><span class="line"> track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip policy route-map pbr_20.0</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
-
-<p>当SW1-SW3之间的链路DOWN掉时，PC2应该仍然能够访问Server，情况类似。解决思路和上面一样，懒-码-字。</p>
-</li>
-<li><p>当 SW2-R1 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径：R3&gt;R1&gt;SW3&gt;SW1&gt;Server，此时不要求流量往返路径完全一致。当 SW3-R2 之间的链路 DOWN 掉时，PC2 应该仍能够访问到 Server。</p>
-<p>  <strong>S</strong>：当 SW2-R1 之间的链路 DOWN 掉时，R1 是能够从 SW3 学习到去往 Server 的路由的，只是回程的时候路径是： Server&gt; SW1 &gt; SW2 &gt; R2 &gt;R4 ，不要求流量往返路径完全一致，本条需求已经自动实现了。当SW3-R2之间的链路DOWN掉时同理。</p>
-</li>
-<li><p>R3、R4 任意一台路由器与内网交换机直连链路 DOWN 掉，不影响内网 PC 访问外网。</p>
-<p>  <strong>S</strong>：配置的 VRRP 可以实现。 </p>
-</li>
-<li><p>【可选】若 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，以上两种情况，R3 都能检测到，要求此两种情况发生时内网用户访问 SERVER 都不受影响，R4 同理。</p>
-<p>  <strong>S</strong>：R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，明显要求配置 SLA 特性，我的做法是在 SW3 和 SW2 上配置一个环回地址，R3/R4 检测这个地址的可达性。举例：当 R3 配置了监测 SW3 的环回地址可达性，无论是 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN 其中一个条件达成，都会导致监测失败不可达，再在相应的内网子接口下配置 Track 联动降低 VRRP 组的优先级，使其成为 Backup 状态，另一台路由器成为 Master ，此时内网用户访问 Server 路径自动切换不受影响（其实还是会掉包的，取决于你配置的监测周期，抢占延时，生成树协议）。R4 同理。</p>
-<p>（11月10日发现，可以使用 <strong>Track list</strong> 的方式实现）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 33.33.33.33 source-interface Ethernet0/0</span><br><span class="line"> frequency 5</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
-<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/VsEkNTBjuxy">分享的文件</a>]</li>
-<li>欢迎“<del>来电</del>”来函探讨。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>PNETLab</category>
-      </categories>
-      <tags>
-        <tag>Network Emulator</tag>
-        <tag>PNETLab</tag>
         <tag>Cisco</tag>
       </tags>
   </entry>
@@ -1071,6 +979,98 @@
 <li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/k8tnrEpqc46">分享的文件</a>]</li>
 <li>欢迎“<del>来电</del>”来函探讨。</li>
 <li>下一篇文更有意思^_^，To be continued.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>PNETLab</category>
+      </categories>
+      <tags>
+        <tag>Network Emulator</tag>
+        <tag>PNETLab</tag>
+        <tag>Cisco</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>No.001 Simple Case</title>
+    <url>/posts/8ac5ac4a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:<a href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html">【有点儿意思系列 06】一个看起来简单的案例</a>，再上图。<span id="more"></span></p>
+ <a data-fancybox="gallery" href="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg">
+ <img src="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg" class="img-center" /></a>
+
+<h2 id="Request-and-Solution"><a href="#Request-and-Solution" class="headerlink" title="Request and Solution"></a>Request and Solution</h2><ol>
+<li><p>PC1、PC2 分属 VLAN10 和 VLAN20；DHCP 服务器属 VLAN30 ，PC1 和 PC2 从 DHCP 服务器自动获取地址。</p>
+<p>   <strong>S</strong>：根据上下文需求，确定 R3 和 R4 是热备组网。R3 和 R4 上配置子接口，配置 VRRP ；业务地址段和 DHCPServer 不在同一网段，所以需要在业务网段的网关上配置 DHCP 中继。实验中使用一台路由器模拟 DHCPServer，上面配置分配给 VLAN10,VLAN20 的地址池。</p>
+   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- DHCPServer 配置</span><br><span class="line">!</span><br><span class="line">ip dhcp excluded-address 10.1.10.252 10.1.10.254</span><br><span class="line">ip dhcp excluded-address 10.1.20.252 10.1.20.254</span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan10</span><br><span class="line"> network 10.1.10.0 255.255.255.0</span><br><span class="line"> default-router 10.1.10.254 </span><br><span class="line">!</span><br><span class="line">ip dhcp pool vlan20</span><br><span class="line"> network 10.1.20.0 255.255.255.0</span><br><span class="line"> default-router 10.1.20.254 </span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> encapsulation dot1Q 10</span><br><span class="line"> ip address 10.1.10.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 10 ip 10.1.10.254</span><br><span class="line"> vrrp 10 priority 120</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.20</span><br><span class="line"> encapsulation dot1Q 20</span><br><span class="line"> ip address 10.1.20.252 255.255.255.0</span><br><span class="line"> ip helper-address 10.1.30.1</span><br><span class="line"> vrrp 20 ip 10.1.20.254</span><br><span class="line">!         </span><br><span class="line">interface Ethernet0/1.30</span><br><span class="line"> encapsulation dot1Q 30</span><br><span class="line"> ip address 10.1.30.252 255.255.255.0</span><br><span class="line"> vrrp 30 ip 10.1.30.254</span><br><span class="line"> vrrp 30 priority 120</span><br><span class="line"> vrrp 30 track 1 decrement 21</span><br><span class="line">! --- 网管地址网关</span><br><span class="line">interface Ethernet0/1.99</span><br><span class="line"> encapsulation dot1Q 99</span><br><span class="line"> ip address 20.1.1.252 255.255.255.0</span><br><span class="line"> vrrp 99 ip 20.1.1.254</span><br><span class="line"> vrrp 99 priority 120</span><br><span class="line"> vrrp 99 track 1 decrement 21</span><br><span class="line">!       </span><br></pre></td></tr></table></figure></li>
+<li><p>SW4 是内网用户接入交换机（仅具二层功能），要求内网两个网段的用户均能 telnet 到该设备。</p>
+<p>   <strong>S</strong>：配置 VLAN ，划分接口，配置 Trunk，配置默认网关和远程网管</p>
+   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW4 配置</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/0</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> switchport trunk allowed vlan 10,20,30,99</span><br><span class="line"> switchport trunk encapsulation dot1q</span><br><span class="line"> switchport mode trunk</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/1</span><br><span class="line"> switchport access vlan 10</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/2</span><br><span class="line"> switchport access vlan 20</span><br><span class="line">!</span><br><span class="line">interface Ethernet1/3</span><br><span class="line"> switchport access vlan 30</span><br><span class="line">! --- 网管IP地址</span><br><span class="line">interface Vlan99</span><br><span class="line"> ip address 20.1.1.10 255.255.255.0</span><br><span class="line">! -- 本想使用 ip default-gateway，但是不起作用，下面这条效果是一样</span><br><span class="line">ip route 0.0.0.0 0.0.0.0 20.1.1.254</span><br><span class="line">! --- 网管配置 略</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<p>   由于 VPCS 不支持 Telnet ，此处使用 DHCPServer 做测试。</p>
+   <a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg">
+<img src="https://i.loli.net/2021/11/07/cuPSatd6w2E18Hq.jpg" class="img-center" /></a>
+ 
+</li>
+<li><p>R3 和 R4 作为内网用户的网关设备，互为热备份。</p>
+<p>  <strong>S</strong>：这一条前面提过了，整个拓扑完整配置后边发，我打个包。</p>
+</li>
+<li><p>R3、R4、SW2 及 SW3 上不允许出现任何手工配置的静态路由条目。 </p>
+<p>  <strong>S</strong>：好的，满足你。</p>
+</li>
+<li><p>SW1 采用重发布的方式，将直连的服务器网段路由（如10.1.100.0/24）注入 EIGRP。</p>
+<p>  <strong>S</strong>：好的，满足你。</p>
+</li>
+<li><p>内网用户（PC1、PC2）访问核心服务器 Server（10.1.100.1）的数据流走向如下：</p>
+<p> PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</p>
+<p> PC2 访问 Server：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</p>
+<p> 沿途任何设备上到达 Server 的路由不允许出现负载均衡，且 PC 访问 Server 的流量往返路径一致。</p>
+<p>  <strong>S</strong>：在配置完路由协议后，查看沿途设备路由表发现到达 Server 的路由出现负载均衡是正常现象，旁观大局，逐个处理就行。</p>
+<p>  但是有一个现象我不知是模拟器的 Bug 还是镜像的问题，查看 SW3 和 SW4  ，总有一台设备到达 Server 的路由是这样的：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D EX     10.1.100.0/24 [170/307200]</span><br></pre></td></tr></table></figure>
+<p>  另一台学习到去往 Server 网段的路由是从上面这台学习到的外部路由，重启两台交换机的 OSPF 进程，这条路由又可能显示在第二台了。我又用 GNS3 做了测试，也是这种情况，按理说加载到路由表的不应该是管理距离为 110 的 OSPF 外部路由么？</p>
+<p> 我思考了一番，可能是 OSPF 进程启动先后顺序的问题，先启动的交换机 OSPF 进程加载了 EIGRP 外部路由，而后启动的交换机 OSPF 进程学习到 EIGRP 外部路由和 OSPF 外部路由，按照规则选择了管理距离值较小的 OSPF 路由条目。</p>
+<p> <strong>PC1 访问 Server：R3 &gt; R1 &gt; SW2 &gt; SW1 &gt; Server；</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R1 配置，修改 OSPF 入向接口的 cost ，使从 e0/0 收到去往10.1.100.0网段的路由更优</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置, 在 OSPF 进程下过滤入方向收到的去往 10.1.100.0 网段的条目，为什么这么做呢，从后面需求看，断掉 SW2/SW3 与 SW1 的线路之一，去往 Server的流量就不需要经过断掉线路这台交换机，而且断掉线路还要流量经过这台设备，走了个直角线路，并不是最优路径</span><br><span class="line">!</span><br><span class="line">router ospf 200</span><br><span class="line"> distribute-list 10 in</span><br><span class="line">!</span><br><span class="line">access-list 10 deny   10.1.100.0 0.0.0.255</span><br><span class="line">access-list 10 permit any</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<p> <strong>PC2 访问 Server ：R4 &gt; R2 &gt; SW3 &gt; SW1 &gt; Server；</strong></p>
+<p> 思路和 PC1 访问 Server 一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
+<p> <strong>PC1 访问 Server 回程路径： Server&gt; SW1 &gt; SW2 &gt; R1 &gt;R3 ；</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW1 配置，观察到去往内网网段的路由条目是负载均衡，配置偏移列表和指定入向接口，增加希望不要出现在路由表里的条目 metric 偏移，影响路由表加载</span><br><span class="line">!</span><br><span class="line">router eigrp 100</span><br><span class="line"> offset-list 20 in 1024 Ethernet0/2 </span><br><span class="line"> offset-list 10 in 1024 Ethernet0/1 </span><br><span class="line">!</span><br><span class="line">access-list 10 permit 10.1.20.0 0.0.0.255</span><br><span class="line">access-list 20 permit 10.1.10.0 0.0.0.255</span><br><span class="line"> !</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，修改 e0/3 接口 cost，使得从该接口学习到去往 10.1.10.0 和 10.1.20.0 网段的路由不是最优路由</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3</span><br><span class="line">  ip ospf cost 11</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+<p>  <strong>PC2 访问 Server 回程路径： Server&gt; SW1 &gt; SW3 &gt; R2 &gt;R3 ；</strong></p>
+<p>  思路和 PC1 访问 Server 回程路径一样，逆推一下即可，不占用篇幅了（懒得码字）</p>
+</li>
+<li><p>要求 SW2 和 SW3 访问 Server 都走最优路径，即 SW2 前往 Server 的数据流走 SW1，SW3 前往 Server 的数据流也直接到 SW1。</p>
+<p>   <strong>S</strong>：这一条也佐证了我在上面说到的流量走直角路径不是最优的想法。说的通俗一点就是：SW1 上的有流量要去往 Server 只能从 e0/1 出去，不走直角。即使 SW1 上的出口线路故障了也不走，走的路径是：拓扑上的对角线。退一步来说当 SW2/SW3 的出口线路故障了，下联的 R1/R2 不会从 SW2/SW3 学习到去往 Server 的路由条目。SW2 也是这个道理。</p>
+</li>
+</ol>
+<a data-fancybox="gallery" href="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg">
+ <img src="https://i.loli.net/2021/11/07/VG6mjtd1Ww49iSv.jpg" class="img-center" /></a>
+
+<ol start="8">
+<li><p>SW1 上关于 10.1.10.0/24 和 10.1.20.0/24 的路由不应该出现等价负载均衡，正常情况下访问 10.0/24 网段的数据流走 SW2，访问2 0.0/24 网段的数据流走 SW3。</p>
+<p>   <strong>S</strong>：在 PC1/PC2 访问 Server 的回程路径时候已经解决这一条，不占用篇幅了（懒得码字）。</p>
+</li>
+<li><p>当 SW1-SW2 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径： R3&gt;R1&gt;SW3&gt;SW1&gt;Server，且往返路径一致。而当 SW1-SW3 之间的链路 DOWN 掉时，PC2 应该仍然能够访问 Server，情况类似。</p>
+<p>  <strong>S</strong>：正如我前面所说的：当 SW2/SW3 的出口线路故障了，下联的 R1/R2 也不会从 SW2/SW3 学习到去往 Server 的路由条目。此时去往 Server 的流量已经在 R1/R2 通过走对角线的路径来到 SW3/SW2 上。</p>
+<p>重点解决回程的路径。因为前面已经修改了 SW2 和 SW3 上的 e0/3 的 cost ，这就使得当 SW1-SW2 之间的链路 DOWN 掉或者 SW1-SW3 之间的链路 DOWN 掉时，SW3/SW2 去往 10.1.10.0 和 10.1.20.0 网段都是直线往下经过 R2 或者 R1 回程到业务网段，并不符合需求。需要添加策略路由 PBR 实现往返路径一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- SW2 配置，配置匹配去往 10.1.20.0 网段的 ACL，配置 route-map 匹配 ACL ，设置去往10.1.20.0 网段的下一跳地址，配置 SLA 监测，最后在 e0/1 调用</span><br><span class="line">!</span><br><span class="line">access-list 101 permit ip any 10.1.20.0 0.0.0.255</span><br><span class="line">!</span><br><span class="line">route-map pbr_20.0 permit 10</span><br><span class="line"> match ip address 101</span><br><span class="line"> set ip next-hop verify-availability 10.1.254.105 1 track 1</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 10.1.254.105 source-interface Ethernet0/3</span><br><span class="line"> frequency 5</span><br><span class="line">! 设置 delay 是为了及时观察现象，实际生产环境不需这么做</span><br><span class="line"> track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip policy route-map pbr_20.0</span><br><span class="line">!</span><br></pre></td></tr></table></figure>
+
+<p>当SW1-SW3之间的链路DOWN掉时，PC2应该仍然能够访问Server，情况类似。解决思路和上面一样，懒-码-字。</p>
+</li>
+<li><p>当 SW2-R1 之间的链路 DOWN 掉时，PC1 访问 Server 的数据流切换至路径：R3&gt;R1&gt;SW3&gt;SW1&gt;Server，此时不要求流量往返路径完全一致。当 SW3-R2 之间的链路 DOWN 掉时，PC2 应该仍能够访问到 Server。</p>
+<p>  <strong>S</strong>：当 SW2-R1 之间的链路 DOWN 掉时，R1 是能够从 SW3 学习到去往 Server 的路由的，只是回程的时候路径是： Server&gt; SW1 &gt; SW2 &gt; R2 &gt;R4 ，不要求流量往返路径完全一致，本条需求已经自动实现了。当SW3-R2之间的链路DOWN掉时同理。</p>
+</li>
+<li><p>R3、R4 任意一台路由器与内网交换机直连链路 DOWN 掉，不影响内网 PC 访问外网。</p>
+<p>  <strong>S</strong>：配置的 VRRP 可以实现。 </p>
+</li>
+<li><p>【可选】若 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，以上两种情况，R3 都能检测到，要求此两种情况发生时内网用户访问 SERVER 都不受影响，R4 同理。</p>
+<p>  <strong>S</strong>：R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN，明显要求配置 SLA 特性，我的做法是在 SW3 和 SW2 上配置一个环回地址，R3/R4 检测这个地址的可达性。举例：当 R3 配置了监测 SW3 的环回地址可达性，无论是 R3 的出口 DOWN 或 R1 的两条上联链路都 DOWN 其中一个条件达成，都会导致监测失败不可达，再在相应的内网子接口下配置 Track 联动降低 VRRP 组的优先级，使其成为 Backup 状态，另一台路由器成为 Master ，此时内网用户访问 Server 路径自动切换不受影响（其实还是会掉包的，取决于你配置的监测周期，抢占延时，生成树协议）。R4 同理。</p>
+<p>（11月10日发现，可以使用 <strong>Track list</strong> 的方式实现）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">! --- R3 配置</span><br><span class="line">interface Ethernet0/1.10</span><br><span class="line"> vrrp 10 track 1 decrement 21</span><br><span class="line">!</span><br><span class="line">ip sla 1</span><br><span class="line"> icmp-echo 33.33.33.33 source-interface Ethernet0/0</span><br><span class="line"> frequency 5</span><br><span class="line">ip sla schedule 1 life forever start-time now</span><br><span class="line">!</span><br><span class="line">track 1 ip sla 1 reachability</span><br><span class="line"> delay down 5 up 3</span><br><span class="line">!</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
+<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/VsEkNTBjuxy">分享的文件</a>]</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1380,6 +1380,242 @@
       </tags>
   </entry>
   <entry>
+    <title>BGP综合实验拓扑</title>
+    <url>/posts/48f55792.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在B站看了一个UP主（<a href="https://space.bilibili.com/455975406">155和150</a>）上传的视频，感觉挺有意思的，就搭拓扑玩一玩。现在这个视频已经不见了，视频里使用的eNSP模拟器搭建的，我用PNET搭建，模拟器类型不关键。已经删减了一些内容，并加了一些实验需求。</p>
+<p>实验主要涉及到的BGP技术的运用，包括有BGP邻居建立、路由加载、路由传递、BGP联盟、路由聚合、路由拆分、团体属性、路由选路、正则表达式、路由过滤、BGP特性、路由阻尼等。</p>
+<p>拓扑如图：</p>
+<p><a data-fancybox="gallery" href="https://s2.loli.net/2022/02/24/6S5qGjeiQCaPcHb.jpg"><img src="https://s2.loli.net/2022/02/24/6S5qGjeiQCaPcHb.jpg" class="img-center" /></a></p>
+<h2 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h2><h3 id="BGP邻居建立"><a href="#BGP邻居建立" class="headerlink" title="BGP邻居建立"></a>BGP邻居建立</h3><ol>
+<li>eBGP之间使用接口建立(联盟内部子AS eBGP除外)，iBGP使用环回接口Lo0建立</li>
+<li>R2、R7、R9使用对等体组方式配置</li>
+<li>R4、R7、R9为路由反射器</li>
+</ol>
+<h3 id="BGP路由加载"><a href="#BGP路由加载" class="headerlink" title="BGP路由加载"></a>BGP路由加载</h3><ol>
+<li><p>R5将ISIS重分布进BGP，R6、R7、R8将ISIS重分布进BGP</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R5</span><br><span class="line">router bgp 64100</span><br><span class="line"> redistribute isis level-1</span><br><span class="line"></span><br><span class="line">R6、R7、R8</span><br><span class="line">router bgp 64200</span><br><span class="line"> redistribute isis level-2</span><br></pre></td></tr></table></figure></li>
+<li><p>R5能够正常接收到100.1.1.X的路由，R4不能使用next-hop-self</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R4</span><br><span class="line">route-map SET_NH permit 10</span><br><span class="line"> set ip next-hop 120.1.4.4</span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor iBGP route-map SET_NH out</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="BGP路由传递"><a href="#BGP路由传递" class="headerlink" title="BGP路由传递"></a>BGP路由传递</h3><ol>
+<li><p>100.1.1.x之间可以通信</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R3</span><br><span class="line">neighbor 200.1.103.10 as-override</span><br><span class="line">R6</span><br><span class="line">neighbor 200.1.116.11 as-override</span><br><span class="line">R7</span><br><span class="line">neighbor 200.1.127.12 as-override</span><br></pre></td></tr></table></figure></li>
+<li><p>R3、R6、R7针对AS 64520移除私有AS号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R3</span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor 200.1.103.10 remove-private-as all replace-as</span><br><span class="line">R6</span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.116.11 remove-private-as all replace-as</span><br><span class="line">R7</span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.127.12 remove-private-as all replace-as</span><br></pre></td></tr></table></figure></li>
+<li><p>AS 64540 内部联邦配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R11</span><br><span class="line">router bgp 64530</span><br><span class="line"> bgp log-neighbor-changes</span><br><span class="line"> bgp confederation identifier 64540</span><br><span class="line"> bgp confederation peers 64531 </span><br><span class="line"> neighbor 100.1.1.12 remote-as 64531</span><br><span class="line"> neighbor 100.1.1.12 disable-connected-check</span><br><span class="line"> neighbor 100.1.1.12 update-source Loopback0</span><br><span class="line"> neighbor 100.1.1.12 next-hop-self</span><br><span class="line"> neighbor 200.1.116.6 remote-as 64200</span><br><span class="line"> </span><br><span class="line">R12</span><br><span class="line">router bgp 64531</span><br><span class="line"> bgp log-neighbor-changes</span><br><span class="line"> bgp confederation identifier 64540</span><br><span class="line"> bgp confederation peers 64530 </span><br><span class="line"> redistribute eigrp 90</span><br><span class="line"> neighbor 100.1.1.11 remote-as 64530</span><br><span class="line"> neighbor 100.1.1.11 disable-connected-check</span><br><span class="line"> neighbor 100.1.1.11 update-source Loopback0</span><br><span class="line"> neighbor 100.1.1.11 next-hop-self</span><br><span class="line"> neighbor 100.1.1.13 remote-as 64531</span><br><span class="line"> neighbor 100.1.1.13 update-source Loopback0</span><br><span class="line"> neighbor 100.1.1.13 next-hop-self</span><br><span class="line"> neighbor 200.1.127.7 remote-as 64200</span><br><span class="line"> </span><br><span class="line">R13</span><br><span class="line">router bgp 64531</span><br><span class="line"> bgp log-neighbor-changes</span><br><span class="line"> bgp confederation identifier 64540</span><br><span class="line"> network 111.1.2.0 mask 255.255.255.0</span><br><span class="line"> network 111.1.3.0 mask 255.255.255.0</span><br><span class="line"> aggregate-address 111.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line"> neighbor 100.1.1.12 remote-as 64531</span><br><span class="line"> neighbor 100.1.1.12 update-source Loopback0</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="BGP路由聚合、路由拆分"><a href="#BGP路由聚合、路由拆分" class="headerlink" title="BGP路由聚合、路由拆分"></a>BGP路由聚合、路由拆分</h3><ol>
+<li><p>R5、R6、R7、R8对AS内的互联地址与主机路由汇总为子网掩码为16位的聚合路由（例如：120.1.0.0/16），并防止路由回愦</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R5</span><br><span class="line">router bgp 64100</span><br><span class="line"> aggregate-address 123.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line"> aggregate-address 120.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line">R6、R7、R8</span><br><span class="line">router bgp 64200</span><br><span class="line"> aggregate-address 145.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line"> aggregate-address 140.1.0.0 255.255.0.0 as-set summary-only</span><br></pre></td></tr></table></figure></li>
+<li><p>R5的汇总主机路由，不抑制120.1.4.4/32和 120.1.5.5/32</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R5</span><br><span class="line">ip prefix-list UNSUPPRESS seq 5 permit 120.1.4.4/32</span><br><span class="line">ip prefix-list UNSUPPRESS seq 10 permit 120.1.5.5/32</span><br><span class="line"></span><br><span class="line">route-map UNSUPPRESS permit 10</span><br><span class="line"> match ip address prefix-list UNSUPPRESS</span><br><span class="line"></span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor 120.1.4.4 unsuppress-map UNSUPPRESS</span><br></pre></td></tr></table></figure></li>
+<li><p>R6、R7、R8的汇总主机路由，仅抑制145.1.9.9/32 ，并调整聚合路由起源属性为 igp</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R6、R7、R8</span><br><span class="line">ip prefix-list SUPPRESS seq 5 permit 140.1.9.9/32</span><br><span class="line"></span><br><span class="line">route-map SUPPRESS permit 10</span><br><span class="line"> match ip address prefix-list SUPPRESS</span><br><span class="line">route-map SET_IGP permit 10</span><br><span class="line"> set origin igp</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> aggregate-address 140.1.0.0 255.255.0.0 as-set summary-only attribute-map SET_IGP suppress-map SUPPRESS</span><br></pre></td></tr></table></figure></li>
+<li><p>R1去往111.1.0.0/24和111.1.1.0/24下一跳走R5；R2去往111.1.2.0/24和111.1.3.0/24下一跳走R8</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1</span><br><span class="line">ip prefix-list SOURCE_AS64100 seq 5 permit 200.1.15.5/32</span><br><span class="line">ip prefix-list huizong seq 5 permit 111.1.0.0/16</span><br><span class="line">ip prefix-list mingxi seq 5 permit 111.1.0.0/24</span><br><span class="line">ip prefix-list mingxi seq 10 permit 111.1.1.0/24</span><br><span class="line"></span><br><span class="line">route-map mingxi permit 10</span><br><span class="line"> set ip address prefix-list mingxi</span><br><span class="line"> set community no-export</span><br><span class="line"></span><br><span class="line">route-map huizong permit 10</span><br><span class="line"> match ip address prefix-list huizong</span><br><span class="line"> match ip route-source prefix-list SOURCE_AS64100</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> bgp inject-map mingxi exist-map huizong copy-attributes</span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">ip prefix-list SOURCE_AS64200 seq 5 permit 200.1.28.8/32</span><br><span class="line">ip prefix-list huizong seq 5 permit 111.1.0.0/16</span><br><span class="line">ip prefix-list mingxi seq 5 permit 111.1.2.0/24</span><br><span class="line">ip prefix-list mingxi seq 10 permit 111.1.3.0/24</span><br><span class="line"></span><br><span class="line">route-map mingxi permit 10</span><br><span class="line"> set ip address prefix-list mingxi</span><br><span class="line"> set community no-export</span><br><span class="line">route-map huizong permit 10</span><br><span class="line"> match ip address prefix-list huizong</span><br><span class="line"> match ip route-source prefix-list SOURCE_AS64200</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> bgp inject-map mingxi exist-map huizong copy-attributes</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="BGP选路-MED、AS-Path、Local-Pref"><a href="#BGP选路-MED、AS-Path、Local-Pref" class="headerlink" title="BGP选路(MED、AS-Path、Local-Pref)"></a>BGP选路(MED、AS-Path、Local-Pref)</h3><ol>
+<li><p>R8上配置，实现AS 64200访问 120.1.X.X，X为偶数，走R4和R8互联链路；X为奇数，走R3和R6互联链路</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R8</span><br><span class="line">access-list 10 permit 120.1.0.0 0.0.254.254</span><br><span class="line">access-list 20 permit 120.1.1.1 0.0.254.254</span><br><span class="line"></span><br><span class="line">route-map SET_LP permit 10</span><br><span class="line"> match ip address 10</span><br><span class="line"> set local-preference 120</span><br><span class="line">route-map SET_LP permit 20</span><br><span class="line"> match ip address 20</span><br><span class="line"> set local-preference 99</span><br><span class="line">route-map SET_LP permit 30</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.48.4 route-map SET_LP in</span><br></pre></td></tr></table></figure></li>
+<li><p>R6、R8上配置，实现AS 64100 访问 140.1.X.X/32，X为偶数，走R4和R8互联链路；X为奇数，走R3和R6互联链路</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R6</span><br><span class="line">access-list 30 permit 140.1.0.0 0.0.254.254</span><br><span class="line">access-list 40 permit 140.1.1.1 0.0.254.254</span><br><span class="line"></span><br><span class="line">route-map SET_MED permit 10</span><br><span class="line"> match ip address 30</span><br><span class="line"> set metric 200</span><br><span class="line">route-map SET_MED permit 20</span><br><span class="line"> match ip address 40</span><br><span class="line"> set metric 100</span><br><span class="line">route-map SET_MED permit 30</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.36.3 route-map SET_MED out</span><br><span class="line"></span><br><span class="line">R8</span><br><span class="line">access-list 30 permit 140.1.0.0 0.0.254.254</span><br><span class="line">access-list 40 permit 140.1.1.1 0.0.254.254</span><br><span class="line"></span><br><span class="line">route-map SET_MED permit 10</span><br><span class="line"> match ip address 30</span><br><span class="line"> set metric 100</span><br><span class="line">route-map SET_MED permit 20</span><br><span class="line"> match ip address 40</span><br><span class="line"> set metric 200</span><br><span class="line">route-map SET_MED permit 30</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.48.4 route-map SET_MED out</span><br></pre></td></tr></table></figure></li>
+<li><p>R1上对起始于AS 64540的任意前缀，AS 64520总是通过R2转发（路由拆分的明细条目除外）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置 ip as-path列表，匹配AS 64540 开头的路径路由条目，route-map 设置追加AS号使路径变长</span><br><span class="line">R1</span><br><span class="line">ip as-path access-list 100 permit _64540$</span><br><span class="line"></span><br><span class="line">route-map AS_PREPEND permit 10</span><br><span class="line"> match as-path 100</span><br><span class="line"> set as-path prepend last-as 3</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 200.1.15.5 route-map AS_PREPEND in</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="BGP路由过滤"><a href="#BGP路由过滤" class="headerlink" title="BGP路由过滤"></a>BGP路由过滤</h3><ol>
+<li><p>R6、R7仅通告 200.1.XY.0/24 与 100.1.1.X/32的路由到 R11、R12</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">route-map 设置匹配，向R11，R12通告路由进行过滤</span><br><span class="line">R6</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 5 permit 200.1.0.0/16 le 24</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 10 permit 100.1.1.0/24 le 32</span><br><span class="line"></span><br><span class="line">route-map ADV_TO_64540 permit 10</span><br><span class="line"> match ip address prefix-list ADV_TO_64540</span><br><span class="line"> </span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.116.11 route-map ADV_TO_64540 out</span><br><span class="line"> </span><br><span class="line">R7</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 5 permit 200.1.0.0/16 le 24</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 10 permit 100.1.1.0/24 le 32</span><br><span class="line"></span><br><span class="line">route-map ADV_TO_64540 permit 10</span><br><span class="line"> match ip address prefix-list ADV_TO_64540</span><br><span class="line"> </span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.127.12 route-map ADV_TO_64540 out</span><br></pre></td></tr></table></figure></li>
+<li><p>R3、R10上配置ORF，使AS 64100仅通告 200.1.XY.0/24 与 100.1.1.X/32的前缀到R10</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">通过向对等体通告ORF能力可以激活这一feature。表示接受从对等体来的，前缀列表，并把这个前缀列表应用到针对对等体的出站方向。</span><br><span class="line">R10</span><br><span class="line">ip prefix-list FROM_64100 seq 5 permit 200.1.0.0/16 le 24</span><br><span class="line">ip prefix-list FROM_64100 seq 10 permit 100.1.1.0/24 le 32</span><br><span class="line"></span><br><span class="line">router bgp 64540</span><br><span class="line"> neighbor 200.1.103.3 capability orf prefix-list send</span><br><span class="line"> neighbor 200.1.103.3 prefix-list FROM_64100 in</span><br><span class="line"> </span><br><span class="line">R3</span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor 200.1.103.10 capability orf prefix-list receive</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="BGP-特性"><a href="#BGP-特性" class="headerlink" title="BGP 特性"></a>BGP 特性</h3><ol>
+<li><p>AS 64520 不作为传输型AS 不能使用BGP路由过滤</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">no-export团体属性</span><br><span class="line">R1</span><br><span class="line">route-map SET_COMM permit 10</span><br><span class="line"> set community no-export</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 10.1.2.2 send-community</span><br><span class="line"> neighbor 10.1.2.2 route-map SET_COMM out</span><br><span class="line"> </span><br><span class="line">R2</span><br><span class="line">route-map SET_COMM permit 10</span><br><span class="line"> set community no-export</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 10.1.1.1 send-community</span><br><span class="line"> neighbor 10.1.1.1 route-map SET_COMM out</span><br></pre></td></tr></table></figure></li>
+<li><p>R1与R2之间的iBGP邻居启用MD5认证，密码为cisco</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1</span><br><span class="line">neighbor 10.1.1.1 password cisco</span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">neighbor 10.1.2.2 password cisco</span><br></pre></td></tr></table></figure></li>
+<li><p>R3上配置，若100.1.1.10/32不稳定，震荡2次抑制传递，并在5min后自动恢复</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置BGP路由惩罚</span><br><span class="line">R3</span><br><span class="line">ip prefix-list DAMPENING seq 5 permit 100.1.1.10/32</span><br><span class="line"></span><br><span class="line">route-map DAMPENING permit 10</span><br><span class="line"> match ip address prefix-list DAMPENING</span><br><span class="line"> set dampening 4 750 2000 16</span><br><span class="line"> </span><br><span class="line">router bgp 64100</span><br><span class="line"> bgp dampening route-map DAMPENING</span><br></pre></td></tr></table></figure></li>
+<li><p>R1上配置，若100.1.1.10路由条目存在，通告默认路由到R2</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1</span><br><span class="line">ip prefix-list EXIST_10 seq 5 permit 100.1.1.10/32</span><br><span class="line"></span><br><span class="line">route-map DEFAULT_CONDITION permit 10</span><br><span class="line"> match ip address prefix-list EXIST_10</span><br><span class="line"> set community no-export</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 10.1.2.2 default-originate route-map DEFAULT_CONDITION</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h3><ul>
+<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
+<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/ekTf1JRqVFa">分享的文件</a>]</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>PNETLab</category>
+      </categories>
+      <tags>
+        <tag>Network Emulator</tag>
+        <tag>PNETLab</tag>
+        <tag>Cisco</tag>
+        <tag>BGP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HCL_FW_IRF_LAB</title>
+    <url>/posts/a89a05d3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>拓扑图</strong></p>
+ <a data-fancybox="gallery" href="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png">
+ <img src="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png" class="img-center" /></a>
+
+<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ul>
+<li>验证 H3C 防火墙 IRF 堆叠和主备模式</li>
+<li>基于项目中部分核心网络的模拟器测试</li>
+<li>线路交叉互联的问题</li>
+</ul>
+<h2 id="实验描述"><a href="#实验描述" class="headerlink" title="实验描述"></a>实验描述</h2><h3 id="IP-地址规划和端口互联"><a href="#IP-地址规划和端口互联" class="headerlink" title="IP 地址规划和端口互联"></a>IP 地址规划和端口互联</h3><table>
+<thead>
+<tr>
+<th align="left">互联设备</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">核心防火墙&lt;–&gt;核心交换机</td>
+<td align="left">10.1.1.0/30</td>
+</tr>
+<tr>
+<td align="left">核心防火墙&lt;–&gt;服务器汇聚</td>
+<td align="left">10.1.1.4/30</td>
+</tr>
+<tr>
+<td align="left">核心防火墙&lt;–&gt;外联交换机</td>
+<td align="left">VLAN10:192.168.10.254</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>A端设备</th>
+<th>端口</th>
+<th>B端设备</th>
+<th>端口</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FW1</td>
+<td>GE0/23</td>
+<td>FW2</td>
+<td>GE0/23</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/1</td>
+<td>SW5</td>
+<td>GE0/1</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/2</td>
+<td>SW6</td>
+<td>GE0/2</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/3</td>
+<td>SW3</td>
+<td>GE0/3</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/4</td>
+<td>SW4</td>
+<td>GE0/4</td>
+</tr>
+<tr>
+<td>FW1</td>
+<td>GE0/11</td>
+<td>SW7</td>
+<td>GE0/1</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/1</td>
+<td>SW6</td>
+<td>GE0/1</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/2</td>
+<td>SW5</td>
+<td>GE0/2</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/3</td>
+<td>SW4</td>
+<td>GE0/3</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/4</td>
+<td>SW3</td>
+<td>GE0/4</td>
+</tr>
+<tr>
+<td>FW2</td>
+<td>GE0/11</td>
+<td>SW7</td>
+<td>GE0/2</td>
+</tr>
+</tbody></table>
+<h3 id="防火墙安全域划分"><a href="#防火墙安全域划分" class="headerlink" title="防火墙安全域划分"></a>防火墙安全域划分</h3><p>核心交换机：Trust</p>
+<p>服务器汇聚：Server</p>
+<p>外联交换机：Untrust</p>
+<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
+<li>FW1 与 FW2 之间 IRF 堆叠；SW3 与 SW4 之间 IRF 堆叠；SW5 与 SW6 之间 IRF 堆叠；</li>
+<li>设备互联的端口聚合配置，配置系统优先级和端口优先级，使流量优先流经“主”用设备</li>
+<li>配置互联地址，确保逻辑直连的互通</li>
+<li>配置防火墙安全域和安全策略</li>
+<li>配置 PC IP地址确保与网关的连通性</li>
+<li>配置静态路由确保网络互通</li>
+<li>进行倒换倒回观察网络连通性</li>
+<li>模拟线路故障观察网络连通性</li>
+</ol>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
+<li>见文末</li>
+</ul>
+<h2 id="聊点什么"><a href="#聊点什么" class="headerlink" title="聊点什么"></a>聊点什么</h2><ul>
+<li><p>就线路交叉互联问题，与老友交谈，据他说这种互联方式可能导致丢包现象，例如，流量分别从SW3的G0/3接口和SW4的G0/4接口进入FW1，G0/4的流量会被认为非法流量而丢弃，盲猜是因为会话状态机模式设为严格模式，而运行中出现了来回路径不一致的问题导致丢包。</p>
+</li>
+<li><p>就这个交叉互联问题与华三400聊了近半小时，对方给出的方案是按完美的主备处理方式进行组网，（在网络正常的情况下）即流量永远只走一边，只要防火墙上有一个端口出现故障，冗余组全部切换到备。</p>
+</li>
+<li><p>主备模式下，设置冗余组，主成员下的端口有任一出现问题，就会整体切换到备，而备设备如在整体切换就有部分端口故障，此时主成员设备的UP状态的端口会在 DOWN 和  DOWN(redundancy down) 之间反复恒跳，而Status出现两个 Secondary，Slot1 的Track优先级也会随着端口的两个 DOWN 状态不同而变化。注意，此时网络并没有中断。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redundancy group 11 (ID 1):</span><br><span class="line">  Node ID      Slot          Priority   Status        Track weight</span><br><span class="line">  1            Slot1         1          Secondary     -1020</span><br><span class="line">  2            Slot2         1          Secondary     -255</span><br></pre></td></tr></table></figure></li>
+<li><p>要严格控制流量走一边的情况，就需要接入层网上的设备互联都使用双线互联。而万一“主”设备上联到上一层“主”设备的线路故障了，那么恭喜你可能网络瘫痪了，举个例子，拓扑中SW3与SW11的G0/1接口down，因为SW11上联的两根线路做了聚合，SW11上联的流量会通过G0/2向上走，相当于在核心交换机的SW4上接了一台 PC ，你觉得流量再往上层该怎么走？走到FW2备成员？而FW2是备用状态不处理流量。写到这我才想起来原来华三400建议做两个聚合组是有道理的，SW4 G0/4和G0/3做一个聚合组，就可以人为限制流量又走到FW1，秒啊。</p>
+</li>
+<li><p>继续上一条，不使用两组聚合的方式，关闭IRF的本地优先转发，核心交换机上就出现跨框流量，即进入SW4的流量要往上走，要绕道SW3上去，这明显不合理了。</p>
+</li>
+<li><p>继续上一条，假如使用核心交换机上联防火墙4根线做一个三层聚合组，FW1往下回流量的时候，由于负载分担的方式，又有可能把流量回给SW4。综合一下，在聚合组配置selected-port maximum 1 同时配置lacp的端口优先级呢，是不是觉得这个方法又蠢又无奈又有用。</p>
+</li>
+<li><p>对于要把外联区（SW7）的网关设置在防火墙上的问题，还有一种方式是用 RETH 接口，但是我模拟器配置了，且SW7 查看arp都能看到网关的条目了，就是不通，希望是模拟器bug了，有机会去真机上测试一下再回来聊聊。</p>
+</li>
+<li><p>不知道是不是我的错觉，用HCL模拟器做这种冗余类实验，老是出现一些不能理解的问题，这边十万八千里shutdown个端口，那边会受影响那种。</p>
+</li>
+</ul>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
+<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
+<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/1waTfsXdwdm">分享的文件</a>]</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>H3C Cloud Lab</category>
+      </categories>
+      <tags>
+        <tag>H3C防火墙</tag>
+        <tag>防火墙堆叠</tag>
+        <tag>IRF</tag>
+        <tag>主备模式</tag>
+        <tag>模拟测试</tag>
+        <tag>冗余组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>IPv6 Tunnels/Manual/6to4/GRE/ISATAP/mGRE/Lab</title>
     <url>/posts/2e964a67.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近看了很多关于 IPv6 的内容。老早前，大概2000年前后运营商就开始研究推进发展 IPv6 网络技术了，可能是是由于某些我等不知道的原因，这个推进的进程所演化出的表象让我等普通网民没什么感觉。部分科研机构、高校、金融、IT 大厂已经在使用了，一个比较大的使用群体也就是家用部分普及的不大开（我猜的，没有依据）。</p>
@@ -1578,263 +1814,6 @@
       </tags>
   </entry>
   <entry>
-    <title>BGP综合实验拓扑</title>
-    <url>/posts/48f55792.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在B站看了一个UP主（<a href="https://space.bilibili.com/455975406">155和150</a>）上传的视频，感觉挺有意思的，就搭拓扑玩一玩。现在这个视频已经不见了，视频里使用的eNSP模拟器搭建的，我用PNET搭建，模拟器类型不关键。已经删减了一些内容，并加了一些实验需求。</p>
-<p>实验主要涉及到的BGP技术的运用，包括有BGP邻居建立、路由加载、路由传递、BGP联盟、路由聚合、路由拆分、团体属性、路由选路、正则表达式、路由过滤、BGP特性、路由阻尼等。</p>
-<p>拓扑如图：</p>
-<p><a data-fancybox="gallery" href="https://s2.loli.net/2022/02/24/6S5qGjeiQCaPcHb.jpg"><img src="https://s2.loli.net/2022/02/24/6S5qGjeiQCaPcHb.jpg" class="img-center" /></a></p>
-<h2 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h2><h3 id="BGP邻居建立"><a href="#BGP邻居建立" class="headerlink" title="BGP邻居建立"></a>BGP邻居建立</h3><ol>
-<li>eBGP之间使用接口建立(联盟内部子AS eBGP除外)，iBGP使用环回接口Lo0建立</li>
-<li>R2、R7、R9使用对等体组方式配置</li>
-<li>R4、R7、R9为路由反射器</li>
-</ol>
-<h3 id="BGP路由加载"><a href="#BGP路由加载" class="headerlink" title="BGP路由加载"></a>BGP路由加载</h3><ol>
-<li><p>R5将ISIS重分布进BGP，R6、R7、R8将ISIS重分布进BGP</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R5</span><br><span class="line">router bgp 64100</span><br><span class="line"> redistribute isis level-1</span><br><span class="line"></span><br><span class="line">R6、R7、R8</span><br><span class="line">router bgp 64200</span><br><span class="line"> redistribute isis level-2</span><br></pre></td></tr></table></figure></li>
-<li><p>R5能够正常接收到100.1.1.X的路由，R4不能使用next-hop-self</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R4</span><br><span class="line">route-map SET_NH permit 10</span><br><span class="line"> set ip next-hop 120.1.4.4</span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor iBGP route-map SET_NH out</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="BGP路由传递"><a href="#BGP路由传递" class="headerlink" title="BGP路由传递"></a>BGP路由传递</h3><ol>
-<li><p>100.1.1.x之间可以通信</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R3</span><br><span class="line">neighbor 200.1.103.10 as-override</span><br><span class="line">R6</span><br><span class="line">neighbor 200.1.116.11 as-override</span><br><span class="line">R7</span><br><span class="line">neighbor 200.1.127.12 as-override</span><br></pre></td></tr></table></figure></li>
-<li><p>R3、R6、R7针对AS 64520移除私有AS号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R3</span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor 200.1.103.10 remove-private-as all replace-as</span><br><span class="line">R6</span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.116.11 remove-private-as all replace-as</span><br><span class="line">R7</span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.127.12 remove-private-as all replace-as</span><br></pre></td></tr></table></figure></li>
-<li><p>AS 64540 内部联邦配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R11</span><br><span class="line">router bgp 64530</span><br><span class="line"> bgp log-neighbor-changes</span><br><span class="line"> bgp confederation identifier 64540</span><br><span class="line"> bgp confederation peers 64531 </span><br><span class="line"> neighbor 100.1.1.12 remote-as 64531</span><br><span class="line"> neighbor 100.1.1.12 disable-connected-check</span><br><span class="line"> neighbor 100.1.1.12 update-source Loopback0</span><br><span class="line"> neighbor 100.1.1.12 next-hop-self</span><br><span class="line"> neighbor 200.1.116.6 remote-as 64200</span><br><span class="line"> </span><br><span class="line">R12</span><br><span class="line">router bgp 64531</span><br><span class="line"> bgp log-neighbor-changes</span><br><span class="line"> bgp confederation identifier 64540</span><br><span class="line"> bgp confederation peers 64530 </span><br><span class="line"> redistribute eigrp 90</span><br><span class="line"> neighbor 100.1.1.11 remote-as 64530</span><br><span class="line"> neighbor 100.1.1.11 disable-connected-check</span><br><span class="line"> neighbor 100.1.1.11 update-source Loopback0</span><br><span class="line"> neighbor 100.1.1.11 next-hop-self</span><br><span class="line"> neighbor 100.1.1.13 remote-as 64531</span><br><span class="line"> neighbor 100.1.1.13 update-source Loopback0</span><br><span class="line"> neighbor 100.1.1.13 next-hop-self</span><br><span class="line"> neighbor 200.1.127.7 remote-as 64200</span><br><span class="line"> </span><br><span class="line">R13</span><br><span class="line">router bgp 64531</span><br><span class="line"> bgp log-neighbor-changes</span><br><span class="line"> bgp confederation identifier 64540</span><br><span class="line"> network 111.1.2.0 mask 255.255.255.0</span><br><span class="line"> network 111.1.3.0 mask 255.255.255.0</span><br><span class="line"> aggregate-address 111.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line"> neighbor 100.1.1.12 remote-as 64531</span><br><span class="line"> neighbor 100.1.1.12 update-source Loopback0</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="BGP路由聚合、路由拆分"><a href="#BGP路由聚合、路由拆分" class="headerlink" title="BGP路由聚合、路由拆分"></a>BGP路由聚合、路由拆分</h3><ol>
-<li><p>R5、R6、R7、R8对AS内的互联地址与主机路由汇总为子网掩码为16位的聚合路由（例如：120.1.0.0/16），并防止路由回愦</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R5</span><br><span class="line">router bgp 64100</span><br><span class="line"> aggregate-address 123.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line"> aggregate-address 120.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line">R6、R7、R8</span><br><span class="line">router bgp 64200</span><br><span class="line"> aggregate-address 145.1.0.0 255.255.0.0 as-set summary-only</span><br><span class="line"> aggregate-address 140.1.0.0 255.255.0.0 as-set summary-only</span><br></pre></td></tr></table></figure></li>
-<li><p>R5的汇总主机路由，不抑制120.1.4.4/32和 120.1.5.5/32</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R5</span><br><span class="line">ip prefix-list UNSUPPRESS seq 5 permit 120.1.4.4/32</span><br><span class="line">ip prefix-list UNSUPPRESS seq 10 permit 120.1.5.5/32</span><br><span class="line"></span><br><span class="line">route-map UNSUPPRESS permit 10</span><br><span class="line"> match ip address prefix-list UNSUPPRESS</span><br><span class="line"></span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor 120.1.4.4 unsuppress-map UNSUPPRESS</span><br></pre></td></tr></table></figure></li>
-<li><p>R6、R7、R8的汇总主机路由，仅抑制145.1.9.9/32 ，并调整聚合路由起源属性为 igp</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R6、R7、R8</span><br><span class="line">ip prefix-list SUPPRESS seq 5 permit 140.1.9.9/32</span><br><span class="line"></span><br><span class="line">route-map SUPPRESS permit 10</span><br><span class="line"> match ip address prefix-list SUPPRESS</span><br><span class="line">route-map SET_IGP permit 10</span><br><span class="line"> set origin igp</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> aggregate-address 140.1.0.0 255.255.0.0 as-set summary-only attribute-map SET_IGP suppress-map SUPPRESS</span><br></pre></td></tr></table></figure></li>
-<li><p>R1去往111.1.0.0/24和111.1.1.0/24下一跳走R5；R2去往111.1.2.0/24和111.1.3.0/24下一跳走R8</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1</span><br><span class="line">ip prefix-list SOURCE_AS64100 seq 5 permit 200.1.15.5/32</span><br><span class="line">ip prefix-list huizong seq 5 permit 111.1.0.0/16</span><br><span class="line">ip prefix-list mingxi seq 5 permit 111.1.0.0/24</span><br><span class="line">ip prefix-list mingxi seq 10 permit 111.1.1.0/24</span><br><span class="line"></span><br><span class="line">route-map mingxi permit 10</span><br><span class="line"> set ip address prefix-list mingxi</span><br><span class="line"> set community no-export</span><br><span class="line"></span><br><span class="line">route-map huizong permit 10</span><br><span class="line"> match ip address prefix-list huizong</span><br><span class="line"> match ip route-source prefix-list SOURCE_AS64100</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> bgp inject-map mingxi exist-map huizong copy-attributes</span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">ip prefix-list SOURCE_AS64200 seq 5 permit 200.1.28.8/32</span><br><span class="line">ip prefix-list huizong seq 5 permit 111.1.0.0/16</span><br><span class="line">ip prefix-list mingxi seq 5 permit 111.1.2.0/24</span><br><span class="line">ip prefix-list mingxi seq 10 permit 111.1.3.0/24</span><br><span class="line"></span><br><span class="line">route-map mingxi permit 10</span><br><span class="line"> set ip address prefix-list mingxi</span><br><span class="line"> set community no-export</span><br><span class="line">route-map huizong permit 10</span><br><span class="line"> match ip address prefix-list huizong</span><br><span class="line"> match ip route-source prefix-list SOURCE_AS64200</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> bgp inject-map mingxi exist-map huizong copy-attributes</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="BGP选路-MED、AS-Path、Local-Pref"><a href="#BGP选路-MED、AS-Path、Local-Pref" class="headerlink" title="BGP选路(MED、AS-Path、Local-Pref)"></a>BGP选路(MED、AS-Path、Local-Pref)</h3><ol>
-<li><p>R8上配置，实现AS 64200访问 120.1.X.X，X为偶数，走R4和R8互联链路；X为奇数，走R3和R6互联链路</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R8</span><br><span class="line">access-list 10 permit 120.1.0.0 0.0.254.254</span><br><span class="line">access-list 20 permit 120.1.1.1 0.0.254.254</span><br><span class="line"></span><br><span class="line">route-map SET_LP permit 10</span><br><span class="line"> match ip address 10</span><br><span class="line"> set local-preference 120</span><br><span class="line">route-map SET_LP permit 20</span><br><span class="line"> match ip address 20</span><br><span class="line"> set local-preference 99</span><br><span class="line">route-map SET_LP permit 30</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.48.4 route-map SET_LP in</span><br></pre></td></tr></table></figure></li>
-<li><p>R6、R8上配置，实现AS 64100 访问 140.1.X.X/32，X为偶数，走R4和R8互联链路；X为奇数，走R3和R6互联链路</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R6</span><br><span class="line">access-list 30 permit 140.1.0.0 0.0.254.254</span><br><span class="line">access-list 40 permit 140.1.1.1 0.0.254.254</span><br><span class="line"></span><br><span class="line">route-map SET_MED permit 10</span><br><span class="line"> match ip address 30</span><br><span class="line"> set metric 200</span><br><span class="line">route-map SET_MED permit 20</span><br><span class="line"> match ip address 40</span><br><span class="line"> set metric 100</span><br><span class="line">route-map SET_MED permit 30</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.36.3 route-map SET_MED out</span><br><span class="line"></span><br><span class="line">R8</span><br><span class="line">access-list 30 permit 140.1.0.0 0.0.254.254</span><br><span class="line">access-list 40 permit 140.1.1.1 0.0.254.254</span><br><span class="line"></span><br><span class="line">route-map SET_MED permit 10</span><br><span class="line"> match ip address 30</span><br><span class="line"> set metric 100</span><br><span class="line">route-map SET_MED permit 20</span><br><span class="line"> match ip address 40</span><br><span class="line"> set metric 200</span><br><span class="line">route-map SET_MED permit 30</span><br><span class="line"></span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.48.4 route-map SET_MED out</span><br></pre></td></tr></table></figure></li>
-<li><p>R1上对起始于AS 64540的任意前缀，AS 64520总是通过R2转发（路由拆分的明细条目除外）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置 ip as-path列表，匹配AS 64540 开头的路径路由条目，route-map 设置追加AS号使路径变长</span><br><span class="line">R1</span><br><span class="line">ip as-path access-list 100 permit _64540$</span><br><span class="line"></span><br><span class="line">route-map AS_PREPEND permit 10</span><br><span class="line"> match as-path 100</span><br><span class="line"> set as-path prepend last-as 3</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 200.1.15.5 route-map AS_PREPEND in</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="BGP路由过滤"><a href="#BGP路由过滤" class="headerlink" title="BGP路由过滤"></a>BGP路由过滤</h3><ol>
-<li><p>R6、R7仅通告 200.1.XY.0/24 与 100.1.1.X/32的路由到 R11、R12</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">route-map 设置匹配，向R11，R12通告路由进行过滤</span><br><span class="line">R6</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 5 permit 200.1.0.0/16 le 24</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 10 permit 100.1.1.0/24 le 32</span><br><span class="line"></span><br><span class="line">route-map ADV_TO_64540 permit 10</span><br><span class="line"> match ip address prefix-list ADV_TO_64540</span><br><span class="line"> </span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.116.11 route-map ADV_TO_64540 out</span><br><span class="line"> </span><br><span class="line">R7</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 5 permit 200.1.0.0/16 le 24</span><br><span class="line">ip prefix-list ADV_TO_64540 seq 10 permit 100.1.1.0/24 le 32</span><br><span class="line"></span><br><span class="line">route-map ADV_TO_64540 permit 10</span><br><span class="line"> match ip address prefix-list ADV_TO_64540</span><br><span class="line"> </span><br><span class="line">router bgp 64200</span><br><span class="line"> neighbor 200.1.127.12 route-map ADV_TO_64540 out</span><br></pre></td></tr></table></figure></li>
-<li><p>R3、R10上配置ORF，使AS 64100仅通告 200.1.XY.0/24 与 100.1.1.X/32的前缀到R10</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">通过向对等体通告ORF能力可以激活这一feature。表示接受从对等体来的，前缀列表，并把这个前缀列表应用到针对对等体的出站方向。</span><br><span class="line">R10</span><br><span class="line">ip prefix-list FROM_64100 seq 5 permit 200.1.0.0/16 le 24</span><br><span class="line">ip prefix-list FROM_64100 seq 10 permit 100.1.1.0/24 le 32</span><br><span class="line"></span><br><span class="line">router bgp 64540</span><br><span class="line"> neighbor 200.1.103.3 capability orf prefix-list send</span><br><span class="line"> neighbor 200.1.103.3 prefix-list FROM_64100 in</span><br><span class="line"> </span><br><span class="line">R3</span><br><span class="line">router bgp 64100</span><br><span class="line"> neighbor 200.1.103.10 capability orf prefix-list receive</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="BGP-特性"><a href="#BGP-特性" class="headerlink" title="BGP 特性"></a>BGP 特性</h3><ol>
-<li><p>AS 64520 不作为传输型AS 不能使用BGP路由过滤</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">no-export团体属性</span><br><span class="line">R1</span><br><span class="line">route-map SET_COMM permit 10</span><br><span class="line"> set community no-export</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 10.1.2.2 send-community</span><br><span class="line"> neighbor 10.1.2.2 route-map SET_COMM out</span><br><span class="line"> </span><br><span class="line">R2</span><br><span class="line">route-map SET_COMM permit 10</span><br><span class="line"> set community no-export</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 10.1.1.1 send-community</span><br><span class="line"> neighbor 10.1.1.1 route-map SET_COMM out</span><br></pre></td></tr></table></figure></li>
-<li><p>R1与R2之间的iBGP邻居启用MD5认证，密码为cisco</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1</span><br><span class="line">neighbor 10.1.1.1 password cisco</span><br><span class="line"></span><br><span class="line">R2</span><br><span class="line">neighbor 10.1.2.2 password cisco</span><br></pre></td></tr></table></figure></li>
-<li><p>R3上配置，若100.1.1.10/32不稳定，震荡2次抑制传递，并在5min后自动恢复</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置BGP路由惩罚</span><br><span class="line">R3</span><br><span class="line">ip prefix-list DAMPENING seq 5 permit 100.1.1.10/32</span><br><span class="line"></span><br><span class="line">route-map DAMPENING permit 10</span><br><span class="line"> match ip address prefix-list DAMPENING</span><br><span class="line"> set dampening 4 750 2000 16</span><br><span class="line"> </span><br><span class="line">router bgp 64100</span><br><span class="line"> bgp dampening route-map DAMPENING</span><br></pre></td></tr></table></figure></li>
-<li><p>R1上配置，若100.1.1.10路由条目存在，通告默认路由到R2</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1</span><br><span class="line">ip prefix-list EXIST_10 seq 5 permit 100.1.1.10/32</span><br><span class="line"></span><br><span class="line">route-map DEFAULT_CONDITION permit 10</span><br><span class="line"> match ip address prefix-list EXIST_10</span><br><span class="line"> set community no-export</span><br><span class="line"> </span><br><span class="line">router bgp 64520</span><br><span class="line"> neighbor 10.1.2.2 default-originate route-map DEFAULT_CONDITION</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h3><ul>
-<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
-<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/ekTf1JRqVFa">分享的文件</a>]</li>
-<li>欢迎“<del>来电</del>”来函探讨。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>PNETLab</category>
-      </categories>
-      <tags>
-        <tag>Network Emulator</tag>
-        <tag>PNETLab</tag>
-        <tag>Cisco</tag>
-        <tag>BGP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CDN_error</title>
-    <url>/posts/ded21811.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近发现我这个小破博客网站访问贼慢 ，FancyBox下的图片打开不是显示相册的模式而是跳转到图床网站显示，起初以为是网络不稳定，平时也不怎么关注，今天才注意到是cdn资源访问异常。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thank you all for your tests, feedback and support. I am personally sorry for the issues we had today.</span><br><span class="line">We can consider the issue as resolved, now its a question of DNS propagation getting to everyone.</span><br><span class="line"></span><br><span class="line">Our official announcement regarding the problems today:</span><br><span class="line"></span><br><span class="line">    Unfortunately today jsDelivr unexpectedly lost its ICP license in China. As effect the regional CDN disabled our account.</span><br><span class="line"></span><br><span class="line">    This resulted in the extended outage we had in mainland China and Taiwan.</span><br><span class="line"></span><br><span class="line">    Other regions were unaffected.</span><br><span class="line"></span><br><span class="line">    We understand how difficult it was for our users to experience this unique situation.</span><br><span class="line"></span><br><span class="line">    From now on all Chinese traffic will be served by &quot;near China&quot; locations provided by global CDN providers.</span><br><span class="line"></span><br><span class="line">    This will have the additional benefit of better failover logic in the future.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>以上大概意思是 jsDelivr ICP 证书在中国大陆失效，无法访问jsDelivr资源。</p>
-<p>再看看github上的说法，GFW 巴拉巴拉……</p>
-<p>通过搜索引擎发现，当然还是有解决方法能处理这种情况。</p>
-<p>心情好了再弄吧，心累。</p>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>jsDelivr</tag>
-        <tag>CDN_error</tag>
-        <tag>CDN disabled</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HCL_FW_IRF_LAB</title>
-    <url>/posts/a89a05d3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>拓扑图</strong></p>
- <a data-fancybox="gallery" href="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png">
- <img src="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png" class="img-center" /></a>
-
-<h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ul>
-<li>验证 H3C 防火墙 IRF 堆叠和主备模式</li>
-<li>基于项目中部分核心网络的模拟器测试</li>
-<li>线路交叉互联的问题</li>
-</ul>
-<h2 id="实验描述"><a href="#实验描述" class="headerlink" title="实验描述"></a>实验描述</h2><h3 id="IP-地址规划和端口互联"><a href="#IP-地址规划和端口互联" class="headerlink" title="IP 地址规划和端口互联"></a>IP 地址规划和端口互联</h3><table>
-<thead>
-<tr>
-<th align="left">互联设备</th>
-<th align="left"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">核心防火墙&lt;–&gt;核心交换机</td>
-<td align="left">10.1.1.0/30</td>
-</tr>
-<tr>
-<td align="left">核心防火墙&lt;–&gt;服务器汇聚</td>
-<td align="left">10.1.1.4/30</td>
-</tr>
-<tr>
-<td align="left">核心防火墙&lt;–&gt;外联交换机</td>
-<td align="left">VLAN10:192.168.10.254</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>A端设备</th>
-<th>端口</th>
-<th>B端设备</th>
-<th>端口</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>FW1</td>
-<td>GE0/23</td>
-<td>FW2</td>
-<td>GE0/23</td>
-</tr>
-<tr>
-<td>FW1</td>
-<td>GE0/1</td>
-<td>SW5</td>
-<td>GE0/1</td>
-</tr>
-<tr>
-<td>FW1</td>
-<td>GE0/2</td>
-<td>SW6</td>
-<td>GE0/2</td>
-</tr>
-<tr>
-<td>FW1</td>
-<td>GE0/3</td>
-<td>SW3</td>
-<td>GE0/3</td>
-</tr>
-<tr>
-<td>FW1</td>
-<td>GE0/4</td>
-<td>SW4</td>
-<td>GE0/4</td>
-</tr>
-<tr>
-<td>FW1</td>
-<td>GE0/11</td>
-<td>SW7</td>
-<td>GE0/1</td>
-</tr>
-<tr>
-<td>FW2</td>
-<td>GE0/1</td>
-<td>SW6</td>
-<td>GE0/1</td>
-</tr>
-<tr>
-<td>FW2</td>
-<td>GE0/2</td>
-<td>SW5</td>
-<td>GE0/2</td>
-</tr>
-<tr>
-<td>FW2</td>
-<td>GE0/3</td>
-<td>SW4</td>
-<td>GE0/3</td>
-</tr>
-<tr>
-<td>FW2</td>
-<td>GE0/4</td>
-<td>SW3</td>
-<td>GE0/4</td>
-</tr>
-<tr>
-<td>FW2</td>
-<td>GE0/11</td>
-<td>SW7</td>
-<td>GE0/2</td>
-</tr>
-</tbody></table>
-<h3 id="防火墙安全域划分"><a href="#防火墙安全域划分" class="headerlink" title="防火墙安全域划分"></a>防火墙安全域划分</h3><p>核心交换机：Trust</p>
-<p>服务器汇聚：Server</p>
-<p>外联交换机：Untrust</p>
-<h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><ol>
-<li>FW1 与 FW2 之间 IRF 堆叠；SW3 与 SW4 之间 IRF 堆叠；SW5 与 SW6 之间 IRF 堆叠；</li>
-<li>设备互联的端口聚合配置，配置系统优先级和端口优先级，使流量优先流经“主”用设备</li>
-<li>配置互联地址，确保逻辑直连的互通</li>
-<li>配置防火墙安全域和安全策略</li>
-<li>配置 PC IP地址确保与网关的连通性</li>
-<li>配置静态路由确保网络互通</li>
-<li>进行倒换倒回观察网络连通性</li>
-<li>模拟线路故障观察网络连通性</li>
-</ol>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
-<li>见文末</li>
-</ul>
-<h2 id="聊点什么"><a href="#聊点什么" class="headerlink" title="聊点什么"></a>聊点什么</h2><ul>
-<li><p>就线路交叉互联问题，与老友交谈，据他说这种互联方式可能导致丢包现象，例如，流量分别从SW3的G0/3接口和SW4的G0/4接口进入FW1，G0/4的流量会被认为非法流量而丢弃，盲猜是因为会话状态机模式设为严格模式，而运行中出现了来回路径不一致的问题导致丢包。</p>
-</li>
-<li><p>就这个交叉互联问题与华三400聊了近半小时，对方给出的方案是按完美的主备处理方式进行组网，（在网络正常的情况下）即流量永远只走一边，只要防火墙上有一个端口出现故障，冗余组全部切换到备。</p>
-</li>
-<li><p>主备模式下，设置冗余组，主成员下的端口有任一出现问题，就会整体切换到备，而备设备如在整体切换就有部分端口故障，此时主成员设备的UP状态的端口会在 DOWN 和  DOWN(redundancy down) 之间反复恒跳，而Status出现两个 Secondary，Slot1 的Track优先级也会随着端口的两个 DOWN 状态不同而变化。注意，此时网络并没有中断。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Redundancy group 11 (ID 1):</span><br><span class="line">  Node ID      Slot          Priority   Status        Track weight</span><br><span class="line">  1            Slot1         1          Secondary     -1020</span><br><span class="line">  2            Slot2         1          Secondary     -255</span><br></pre></td></tr></table></figure></li>
-<li><p>要严格控制流量走一边的情况，就需要接入层网上的设备互联都使用双线互联。而万一“主”设备上联到上一层“主”设备的线路故障了，那么恭喜你可能网络瘫痪了，举个例子，拓扑中SW3与SW11的G0/1接口down，因为SW11上联的两根线路做了聚合，SW11上联的流量会通过G0/2向上走，相当于在核心交换机的SW4上接了一台 PC ，你觉得流量再往上层该怎么走？走到FW2备成员？而FW2是备用状态不处理流量。写到这我才想起来原来华三400建议做两个聚合组是有道理的，SW4 G0/4和G0/3做一个聚合组，就可以人为限制流量又走到FW1，秒啊。</p>
-</li>
-<li><p>继续上一条，不使用两组聚合的方式，关闭IRF的本地优先转发，核心交换机上就出现跨框流量，即进入SW4的流量要往上走，要绕道SW3上去，这明显不合理了。</p>
-</li>
-<li><p>继续上一条，假如使用核心交换机上联防火墙4根线做一个三层聚合组，FW1往下回流量的时候，由于负载分担的方式，又有可能把流量回给SW4。综合一下，在聚合组配置selected-port maximum 1 同时配置lacp的端口优先级呢，是不是觉得这个方法又蠢又无奈又有用。</p>
-</li>
-<li><p>对于要把外联区（SW7）的网关设置在防火墙上的问题，还有一种方式是用 RETH 接口，但是我模拟器配置了，且SW7 查看arp都能看到网关的条目了，就是不通，希望是模拟器bug了，有机会去真机上测试一下再回来聊聊。</p>
-</li>
-<li><p>不知道是不是我的错觉，用HCL模拟器做这种冗余类实验，老是出现一些不能理解的问题，这边十万八千里shutdown个端口，那边会受影响那种。</p>
-</li>
-</ul>
-<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
-<li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
-<li>配置存阿里云盘了，这是链接：[<a href="https://www.aliyundrive.com/s/1waTfsXdwdm">分享的文件</a>]</li>
-<li>欢迎“<del>来电</del>”来函探讨。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>H3C Cloud Lab</category>
-      </categories>
-      <tags>
-        <tag>H3C防火墙</tag>
-        <tag>防火墙堆叠</tag>
-        <tag>IRF</tag>
-        <tag>主备模式</tag>
-        <tag>模拟测试</tag>
-        <tag>冗余组</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>H3C_Python_SSH_Config_Auto</title>
     <url>/posts/54cb8229.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>两个 Python 脚本</strong></p>
@@ -1943,6 +1922,27 @@
         <tag>SSH登陆</tag>
         <tag>netmiko</tag>
         <tag>log</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CDN_error</title>
+    <url>/posts/ded21811.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近发现我这个小破博客网站访问贼慢 ，FancyBox下的图片打开不是显示相册的模式而是跳转到图床网站显示，起初以为是网络不稳定，平时也不怎么关注，今天才注意到是cdn资源访问异常。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thank you all for your tests, feedback and support. I am personally sorry for the issues we had today.</span><br><span class="line">We can consider the issue as resolved, now its a question of DNS propagation getting to everyone.</span><br><span class="line"></span><br><span class="line">Our official announcement regarding the problems today:</span><br><span class="line"></span><br><span class="line">    Unfortunately today jsDelivr unexpectedly lost its ICP license in China. As effect the regional CDN disabled our account.</span><br><span class="line"></span><br><span class="line">    This resulted in the extended outage we had in mainland China and Taiwan.</span><br><span class="line"></span><br><span class="line">    Other regions were unaffected.</span><br><span class="line"></span><br><span class="line">    We understand how difficult it was for our users to experience this unique situation.</span><br><span class="line"></span><br><span class="line">    From now on all Chinese traffic will be served by &quot;near China&quot; locations provided by global CDN providers.</span><br><span class="line"></span><br><span class="line">    This will have the additional benefit of better failover logic in the future.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以上大概意思是 jsDelivr ICP 证书在中国大陆失效，无法访问jsDelivr资源。</p>
+<p>再看看github上的说法，GFW 巴拉巴拉……</p>
+<p>通过搜索引擎发现，当然还是有解决方法能处理这种情况。</p>
+<p>心情好了再弄吧，心累。</p>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>jsDelivr</tag>
+        <tag>CDN_error</tag>
+        <tag>CDN disabled</tag>
       </tags>
   </entry>
 </search>
