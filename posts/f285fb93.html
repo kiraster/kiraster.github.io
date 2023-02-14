@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+<meta charset="utf-8">
+<title>H3C 防火墙（v7）提取导出安全策略至表格 - Kir&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<meta name="description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+<meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+    <meta name="description" content="当前日期时间： 20221201 版本:H3C Comware Software, Version 7.1.064, Release 9628P2416还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告 本文介绍使用python脚本语言编写一个根据display回显内容提取安全策略和对象组到表格的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H3C 防火墙（v7）提取导出安全策略至表格">
+<meta property="og:url" content="https://kiraster.github.io/posts/f285fb93.html">
+<meta property="og:site_name" content="Kir&#39;s Blog">
+<meta property="og:description" content="当前日期时间： 20221201 版本:H3C Comware Software, Version 7.1.064, Release 9628P2416还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告 本文介绍使用python脚本语言编写一个根据display回显内容提取安全策略和对象组到表格的方法">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2022/12/01/cNp1hXCz5uKmWFf.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/12/01/WvI5YhTPaqpdbzB.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/12/01/TSWYCOPrbImcez3.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/12/01/tygZYhBfMFrmjQS.png">
+<meta property="article:published_time" content="2022-12-01T13:01:44.000Z">
+<meta property="article:modified_time" content="2023-02-14T08:59:47.208Z">
+<meta property="article:author" content="Kir Aster">
+<meta property="article:tag" content="H3C防火墙">
+<meta property="article:tag" content="导出安全策略">
+<meta property="article:tag" content="安全策略表格">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="openpyxl">
+<meta property="article:tag" content="导出对象组">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/12/01/cNp1hXCz5uKmWFf.jpg">
+
+
+
+<link rel="icon" href="https://s2.loli.net/2022/11/07/nR4jdLTGEq6kZ2S.png">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<!--引入思源黑体 rel-->
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3a4045a27e1262a56b8fe2f8b7b42ff1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-209914470-1');
+</script>
+
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    Kir&#39;s
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/gallery">Gallery</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#提取工作过程">1&nbsp;&nbsp;<b>提取工作过程</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#命令行登陆设备导出display回显内容">1.1&nbsp;&nbsp;命令行登陆设备导出display回显内容</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#运行的代码">1.2&nbsp;&nbsp;运行的代码</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#导出的表格">1.3&nbsp;&nbsp;导出的表格</a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
+              H3C 防火墙（v7）提取导出安全策略至表格
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspDec 1st 22&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/H3C-Cloud-Lab/">H3C Cloud Lab</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              17 minutes read (About 2497 words)
+          </span>
+          
+      </div>
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>当前日期时间： <code>20221201</code> 版本:<code>H3C Comware Software, Version 7.1.064, Release 9628P2416</code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告</p>
+<p>本文介绍使用<code>python</code>脚本语言编写一个根据<code>display</code>回显内容提取安全策略和对象组到表格的方法<span id="more"></span></p>
+<p><strong>环境介绍：</strong></p>
+<blockquote><p>Python  3.9.7</p>
+<p>openpyxl  3.0.10</p>
+<p>HCL  3.0.1 （现网环境都为敏感内容，勉为其难用模拟器）</p>
+<p>VScode  1.73.1</p>
+</blockquote>
+
+<h2 id="提取工作过程"><a href="#提取工作过程" class="headerlink" title="提取工作过程"></a>提取工作过程</h2><h3 id="命令行登陆设备导出display回显内容"><a href="#命令行登陆设备导出display回显内容" class="headerlink" title="命令行登陆设备导出display回显内容"></a>命令行登陆设备导出display回显内容</h3><p>利用<code>SecureCRT</code>的<code>Log Session</code>(记录日志)功能生成一个包含回显内容的<code>log文件</code>，放置在与脚本文件相同目录</p>
+<p>本次使用的是<code>205550.log'</code>，在下面代码中更换为自己的文件名称</p>
+<p><strong>使用的命令</strong></p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 查看安全策略</span><br><span class="line">dis security-policy ip</span><br><span class="line"># 查看地址对象组</span><br><span class="line">dis object-group ip address </span><br><span class="line"># 查看服务对象组</span><br><span class="line">dis object-group service </span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;Core_FW&gt;dis security-policy ip</span><br><span class="line">Security-policy ip </span><br><span class="line"></span><br><span class="line"> rule 2 name management-local</span><br><span class="line">  action pass</span><br><span class="line">  source-zone management</span><br><span class="line">  destination-zone local</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">&lt;Core_FW&gt;dis object-group ip address </span><br><span class="line">Ip address object group api.test.com: 1 object(in use)</span><br><span class="line"> 0 network host name api.test.com</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">&lt;Core_FW&gt;dis object-group service </span><br><span class="line">Service object group A服务器端口服务: 3 objects(in use)</span><br><span class="line"> 0 service tcp destination eq 1433</span><br><span class="line"> 10 service tcp destination range 300 3010</span><br><span class="line"> 20 service udp destination eq 2222</span><br><span class="line"></span><br><span class="line">Service object group 访问test.comAPI接口: 2 objects(in use)</span><br><span class="line"> 0 service tcp destination eq 443</span><br><span class="line"> 10 service tcp destination range 9000 9100</span><br><span class="line"></span><br><span class="line">&lt;Core_FW&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="运行的代码"><a href="#运行的代码" class="headerlink" title="运行的代码"></a>运行的代码</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> openpyxl <span class="hljs-keyword">import</span> Workbook</span><br><span class="line"><span class="hljs-keyword">from</span> openpyxl.styles <span class="hljs-keyword">import</span> PatternFill</span><br><span class="line"><span class="hljs-keyword">import</span> openpyxl</span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">class</span> <span class="title class_">SecPolicy2XLSX</span>:</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 初始化参数</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">__init__</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 文件名时间部分，用于区别新旧</span></span><br><span class="line">        self.create_time = datetime.now().strftime(<span class="hljs-string">"%Y%m%d%H%M%S"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 读取文件，填写同目录从防火墙命令巴拉下来的文件</span></span><br><span class="line">        self.export_cfg = <span class="hljs-string">'205550.log'</span></span><br><span class="line">        self.f = <span class="hljs-built_in">open</span>(self.export_cfg, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf8'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 表格 - 表头数据</span></span><br><span class="line">        self.sheet1_th = [[</span><br><span class="line">            <span class="hljs-string">'名称'</span>, <span class="hljs-string">'ID'</span>, <span class="hljs-string">'源安全域'</span>, <span class="hljs-string">'目的安全域'</span>, <span class="hljs-string">'类型'</span>, <span class="hljs-string">'描述'</span>, <span class="hljs-string">'源地址'</span>, \</span><br><span class="line">            <span class="hljs-string">'目的地址'</span>, <span class="hljs-string">'服务'</span>, <span class="hljs-string">'用户'</span>,</span><br><span class="line">            <span class="hljs-string">'动作'</span>, <span class="hljs-string">'内容安全'</span>, <span class="hljs-string">'记录日志'</span>, <span class="hljs-string">'策略匹配统计'</span>, <span class="hljs-string">'启用'</span></span><br><span class="line">        ]]</span><br><span class="line">        self.sheet2_th = [[<span class="hljs-string">'对象组名称和被引用'</span>, <span class="hljs-string">'对象'</span>]]</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 表格初始数据</span></span><br><span class="line">        self.wb = Workbook()</span><br><span class="line">        self.ws1 = self.wb.active</span><br><span class="line">        self.ws1.title = <span class="hljs-string">'安全策略'</span></span><br><span class="line">        self.ws2 = self.wb.create_sheet(<span class="hljs-string">'地址对象组'</span>)</span><br><span class="line">        self.ws3 = self.wb.create_sheet(<span class="hljs-string">'服务对象组'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 写入表头</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> self.sheet1_th:</span><br><span class="line">            self.ws1.append(i)</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> self.sheet2_th:</span><br><span class="line">            self.ws2.append(i)</span><br><span class="line">            self.ws3.append(i)</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 提取安全策略信息</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">sp_comtent</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 保存单条策略内容的字典</span></span><br><span class="line">        comtent_dict = {}</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 保存以下几项内容的字典，原因在于命令行中显示为多个（每个一行）</span></span><br><span class="line">        src_zone_list = []</span><br><span class="line">        dst_zone_list = []</span><br><span class="line">        src_ip_list = []</span><br><span class="line">        dst_ip_list = []</span><br><span class="line">        service_list = []</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">            cfg_line = self.f.readline()</span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'rule'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                name = cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">3</span>)[<span class="hljs-number">3</span>]</span><br><span class="line">                <span class="hljs-built_in">id</span> = cfg_line.split()[<span class="hljs-number">1</span>]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'name'</span>] = name</span><br><span class="line">                comtent_dict[<span class="hljs-string">'id'</span>] = <span class="hljs-built_in">id</span></span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'source-zone'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                src_zone_list.append(cfg_line.strip().split()[<span class="hljs-number">1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'profile'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                profile_type = cfg_line.strip().split()[<span class="hljs-number">1</span>].split(<span class="hljs-string">'_'</span>)[<span class="hljs-number">1</span>]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'profile_type'</span>] = profile_type</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'description'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                desc = cfg_line.strip()[<span class="hljs-number">12</span>:]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'desc'</span>] = desc</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'destination-zone'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                dst_zone_list.append(cfg_line.strip().split()[<span class="hljs-number">1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'source-ip'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                src_ip_list.append(cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'destination-ip'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                dst_ip_list.append(cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'action'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                action = cfg_line.strip().split()[<span class="hljs-number">1</span>]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'action'</span>] = action</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'logging '</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                logg = cfg_line.strip().split()[<span class="hljs-number">1</span>]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'logg'</span>] = logg</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'counting '</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                count = cfg_line.strip().split()[<span class="hljs-number">1</span>]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'count'</span>] = count</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'disable'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                <span class="hljs-comment"># enable = cfg_line.strip()</span></span><br><span class="line">                comtent_dict[<span class="hljs-string">'enable'</span>] = <span class="hljs-string">'disable'</span></span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'service'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                service_list.append(cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])</span><br><span class="line"></span><br><span class="line">            <span class="hljs-comment"># display 回显的内容 空行分割一条安全策略</span></span><br><span class="line">            <span class="hljs-keyword">if</span> cfg_line.strip() == <span class="hljs-string">''</span>:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">            <span class="hljs-comment"># 把最终列表拼接到字符串</span></span><br><span class="line">            src_zone = <span class="hljs-string">','</span>.join(src_zone_list)</span><br><span class="line">            dst_zone = <span class="hljs-string">','</span>.join(dst_zone_list)</span><br><span class="line">            src_ip = <span class="hljs-string">','</span>.join(src_ip_list)</span><br><span class="line">            dst_ip = <span class="hljs-string">','</span>.join(dst_ip_list)</span><br><span class="line">            service = <span class="hljs-string">','</span>.join(service_list)</span><br><span class="line"></span><br><span class="line">            <span class="hljs-comment"># 把最终列表拼接到字符串写入comtent_dict字典</span></span><br><span class="line">            comtent_dict[<span class="hljs-string">'src_zone'</span>] = src_zone</span><br><span class="line">            comtent_dict[<span class="hljs-string">'dst_zone'</span>] = dst_zone</span><br><span class="line">            comtent_dict[<span class="hljs-string">'src_ip'</span>] = src_ip</span><br><span class="line">            comtent_dict[<span class="hljs-string">'dst_ip'</span>] = dst_ip</span><br><span class="line">            comtent_dict[<span class="hljs-string">'service'</span>] = service</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 返回值是单条安全策略的字典</span></span><br><span class="line">        <span class="hljs-keyword">return</span> comtent_dict</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 提取地址对象组信息</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">ip_obj_comtent</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        comtent_dict = {}</span><br><span class="line">        networw_list = []</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">            cfg_line = self.f.readline()</span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'Ip address object group'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                name = cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">4</span>)[<span class="hljs-number">4</span>]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'name'</span>] = name</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'network '</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                networw_list.append(cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">2</span>)[<span class="hljs-number">2</span>])</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> cfg_line.strip() == <span class="hljs-string">''</span>:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">        networw_list = <span class="hljs-string">','</span>.join(networw_list)</span><br><span class="line">        comtent_dict[<span class="hljs-string">'networw_list'</span>] = networw_list</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 返回值是单个地址对象组的字典</span></span><br><span class="line">        <span class="hljs-keyword">return</span> comtent_dict</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 提取服务对象组信息</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">service_obj_comtent</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        comtent_dict = {}</span><br><span class="line">        service_list = []</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">            cfg_line = self.f.readline()</span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'Service object group'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                name = cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">3</span>)[<span class="hljs-number">3</span>]</span><br><span class="line">                comtent_dict[<span class="hljs-string">'name'</span>] = name</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'service tcp'</span> <span class="hljs-keyword">in</span> cfg_line <span class="hljs-keyword">or</span> <span class="hljs-string">'service udp'</span> <span class="hljs-keyword">in</span> cfg_line:</span><br><span class="line">                service_list.append(cfg_line.strip().split(<span class="hljs-string">' '</span>, <span class="hljs-number">2</span>)[<span class="hljs-number">2</span>])</span><br><span class="line">            <span class="hljs-keyword">if</span> cfg_line.strip() == <span class="hljs-string">''</span>:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">        service_list = <span class="hljs-string">','</span>.join(service_list)</span><br><span class="line">        comtent_dict[<span class="hljs-string">'service_list'</span>] = service_list</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 返回值是单个服务对象组的字典</span></span><br><span class="line">        <span class="hljs-keyword">return</span> comtent_dict</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 循环 返回全部安全策略的生成器</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">more_sp_comtent</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 找到文件末 的指针，用于判断是否读取完整个文件</span></span><br><span class="line">        eof = self.f.seek(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)</span><br><span class="line">        self.f.seek(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">            res = self.sp_comtent()</span><br><span class="line">            <span class="hljs-keyword">yield</span> res</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> self.f.tell() &gt;= eof:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 循环 返回全部地址对象组的生成器</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">more_ip_comtent</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        eof = self.f.seek(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)</span><br><span class="line">        self.f.seek(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">            res = self.ip_obj_comtent()</span><br><span class="line">            <span class="hljs-keyword">yield</span> res</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> self.f.tell() &gt;= eof:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 循环 返回全部服务对象组的生成器</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">more_service_comtent</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        eof = self.f.seek(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>)</span><br><span class="line">        self.f.seek(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:</span><br><span class="line">            res = self.service_obj_comtent()</span><br><span class="line">            <span class="hljs-keyword">yield</span> res</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">if</span> self.f.tell() &gt;= eof:</span><br><span class="line">                <span class="hljs-keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 安全策略，移除和填充内容字典元素</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">sp_fill_task</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 生成器 转 列表套字典</span></span><br><span class="line">        res = self.more_sp_comtent()</span><br><span class="line">        comtent_list = <span class="hljs-built_in">list</span>(res)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 移除不相干元素，列表套字典中字典不包含 'name' 键的字典</span></span><br><span class="line">        index_list = []</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> comtent_list:</span><br><span class="line"></span><br><span class="line">            key_list = <span class="hljs-built_in">list</span>(i.keys())</span><br><span class="line">            <span class="hljs-keyword">if</span> <span class="hljs-string">'name'</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> key_list:</span><br><span class="line">                <span class="hljs-comment"># 字典中不包含 'name' 键的字典在comtent_list列表的索引值</span></span><br><span class="line">                index_list.append(comtent_list.index(i))</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 索引列表去重--&gt;&gt;降序排列--&gt;&gt;删元素</span></span><br><span class="line">        index_list = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">set</span>(index_list))</span><br><span class="line">        index_list.sort(reverse=<span class="hljs-literal">True</span>)</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> index_list:</span><br><span class="line">            comtent_list.pop(i)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># comtent_list列表去重</span></span><br><span class="line">        ret_comtent_list = []</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> comtent_list:</span><br><span class="line">            <span class="hljs-keyword">if</span> i <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> ret_comtent_list:</span><br><span class="line">                ret_comtent_list.append(i)</span><br><span class="line">        <span class="hljs-comment"># 去头</span></span><br><span class="line">        ret_comtent_list = ret_comtent_list[<span class="hljs-number">1</span>:]</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 添加一些默认值，一些安全策略值在display回显的内容不显示</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> ret_comtent_list:</span><br><span class="line">            i[<span class="hljs-string">'user'</span>] = <span class="hljs-string">'Any'</span></span><br><span class="line">            <span class="hljs-comment"># 一般应用安全都是使用默认配置文件中default策略，如有自定义的配置文件就增加一个提取函数</span></span><br><span class="line">            i[<span class="hljs-string">'ap_profile'</span>] = <span class="hljs-string">'default'</span></span><br><span class="line">            i.setdefault(<span class="hljs-string">'desc'</span>, <span class="hljs-string">'-'</span>)</span><br><span class="line">            <span class="hljs-comment"># 安全策略没有启用显示disable，启用了display没有显示</span></span><br><span class="line">            i.setdefault(<span class="hljs-string">'enable'</span>, <span class="hljs-string">'enable'</span>)</span><br><span class="line">            <span class="hljs-comment"># IPv4 网络环境默认</span></span><br><span class="line">            i.setdefault(<span class="hljs-string">'profile_type'</span>, <span class="hljs-string">'IPv4'</span>)</span><br><span class="line">            <span class="hljs-comment"># 命中计数和流量统计，没有启用不在display显示</span></span><br><span class="line">            i.setdefault(<span class="hljs-string">'count'</span>, <span class="hljs-string">'disable'</span>)</span><br><span class="line">            <span class="hljs-comment"># 记录日志</span></span><br><span class="line">            i.setdefault(<span class="hljs-string">'logg'</span>, <span class="hljs-string">'enable'</span>)</span><br><span class="line">            <span class="hljs-comment"># print(i)</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 键的值为空则替换为 Any</span></span><br><span class="line">        ret_comtent_list = [{k: v <span class="hljs-keyword">if</span> v <span class="hljs-keyword">and</span> k != <span class="hljs-string">'desc'</span> <span class="hljs-keyword">else</span> <span class="hljs-string">'Any'</span></span><br><span class="line">                             <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> i.items()} <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> ret_comtent_list]</span><br><span class="line">        <span class="hljs-comment"># 最后一条拒绝所有策略的描述</span></span><br><span class="line">        ret_comtent_list[-<span class="hljs-number">1</span>][<span class="hljs-string">'desc'</span>] = <span class="hljs-string">''</span></span><br><span class="line"></span><br><span class="line">        self.ret_comtent_list = ret_comtent_list</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 返回一个完整的列表套字典</span></span><br><span class="line">        <span class="hljs-keyword">return</span> self.ret_comtent_list</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 地址对象组，移除和填充内容字典元素</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">ip_fill_task</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 生成器 转 列表套字典</span></span><br><span class="line">        res = self.more_ip_comtent()</span><br><span class="line">        comtent_list = <span class="hljs-built_in">list</span>(res)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 列表去重</span></span><br><span class="line">        ret_comtent_list = []</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> comtent_list:</span><br><span class="line">            <span class="hljs-keyword">if</span> i <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> ret_comtent_list:</span><br><span class="line">                ret_comtent_list.append(i)</span><br><span class="line">        <span class="hljs-comment"># 去头</span></span><br><span class="line">        ret_comtent_list = ret_comtent_list[<span class="hljs-number">1</span>:]</span><br><span class="line"></span><br><span class="line">        self.ret_comtent_list = ret_comtent_list</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> self.ret_comtent_list</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">service_fill_task</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 生成器 转 列表套字典</span></span><br><span class="line">        res = self.more_service_comtent()</span><br><span class="line">        comtent_list = <span class="hljs-built_in">list</span>(res)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 列表去重</span></span><br><span class="line">        ret_comtent_list = []</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> comtent_list:</span><br><span class="line">            <span class="hljs-keyword">if</span> i <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> ret_comtent_list:</span><br><span class="line">                ret_comtent_list.append(i)</span><br><span class="line">        <span class="hljs-comment"># 去头</span></span><br><span class="line">        ret_comtent_list = ret_comtent_list[<span class="hljs-number">1</span>:]</span><br><span class="line"></span><br><span class="line">        self.ret_comtent_list = ret_comtent_list</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 在此处关闭文件</span></span><br><span class="line">        self.f.close()</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> self.ret_comtent_list</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 写入数据到表格 - 安全策略工作表</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">write2ws1</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 从第二行开始写入</span></span><br><span class="line">        row = <span class="hljs-number">2</span></span><br><span class="line">        big_list = self.sp_fill_task()</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> big_list:</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">1</span>, value=i[<span class="hljs-string">'name'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">2</span>, value=i[<span class="hljs-string">'id'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">3</span>, value=i[<span class="hljs-string">'src_zone'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">4</span>, value=i[<span class="hljs-string">'dst_zone'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">5</span>, value=i[<span class="hljs-string">'profile_type'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">6</span>, value=i[<span class="hljs-string">'desc'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">7</span>, value=i[<span class="hljs-string">'src_ip'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">8</span>, value=i[<span class="hljs-string">'dst_ip'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">9</span>, value=i[<span class="hljs-string">'service'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">10</span>, value=i[<span class="hljs-string">'user'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">11</span>, value=i[<span class="hljs-string">'action'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">12</span>, value=i[<span class="hljs-string">'ap_profile'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">13</span>, value=i[<span class="hljs-string">'logg'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">14</span>, value=i[<span class="hljs-string">'count'</span>])</span><br><span class="line">            self.ws1.cell(row=row, column=<span class="hljs-number">15</span>, value=i[<span class="hljs-string">'enable'</span>])</span><br><span class="line">            row += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 写入数据到表格 - 地址对象组工作表</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">write2ws2</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        row = <span class="hljs-number">2</span></span><br><span class="line">        big_list = self.ip_fill_task()</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> big_list:</span><br><span class="line">            self.ws2.cell(row=row, column=<span class="hljs-number">1</span>, value=i[<span class="hljs-string">'name'</span>])</span><br><span class="line">            self.ws2.cell(row=row, column=<span class="hljs-number">2</span>, value=i[<span class="hljs-string">'networw_list'</span>])</span><br><span class="line">            row += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 写入数据到表格 - 地址对象组工作表</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">write2ws3</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        row = <span class="hljs-number">2</span></span><br><span class="line">        big_list = self.service_fill_task()</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> big_list:</span><br><span class="line">            self.ws3.cell(row=row, column=<span class="hljs-number">1</span>, value=i[<span class="hljs-string">'name'</span>])</span><br><span class="line">            self.ws3.cell(row=row, column=<span class="hljs-number">2</span>, value=i[<span class="hljs-string">'service_list'</span>])</span><br><span class="line">            row += <span class="hljs-number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 调整表格显示 保存xlsx表格</span></span><br><span class="line">    <span class="hljs-keyword">def</span> <span class="title function_">save_to_file</span>(<span class="hljs-params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 修改ws1列宽</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'A'</span>].width = <span class="hljs-number">50</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'B'</span>].width = <span class="hljs-number">4</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'C'</span>].width = <span class="hljs-number">46</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'D'</span>].width = <span class="hljs-number">38</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'F'</span>].width = <span class="hljs-number">50</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'G'</span>].width = <span class="hljs-number">50</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'H'</span>].width = <span class="hljs-number">50</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'I'</span>].width = <span class="hljs-number">50</span></span><br><span class="line">        self.ws1.column_dimensions[<span class="hljs-string">'N'</span>].width = <span class="hljs-number">12</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 修改ws2列宽</span></span><br><span class="line">        self.ws2.column_dimensions[<span class="hljs-string">'A'</span>].width = <span class="hljs-number">50</span></span><br><span class="line">        self.ws2.column_dimensions[<span class="hljs-string">'B'</span>].width = <span class="hljs-number">255</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 修改ws3列宽</span></span><br><span class="line">        self.ws3.column_dimensions[<span class="hljs-string">'A'</span>].width = <span class="hljs-number">50</span></span><br><span class="line">        self.ws3.column_dimensions[<span class="hljs-string">'B'</span>].width = <span class="hljs-number">255</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 修改列 垂直居中 自动换行，表头背景色 ，冻结首行</span></span><br><span class="line">        self.ws1.freeze_panes = <span class="hljs-string">'A2'</span></span><br><span class="line">        self.ws2.freeze_panes = <span class="hljs-string">'A2'</span></span><br><span class="line">        self.ws3.freeze_panes = <span class="hljs-string">'A2'</span></span><br><span class="line"></span><br><span class="line">        th_color_fill = PatternFill(<span class="hljs-string">'solid'</span>, fgColor=<span class="hljs-string">'D3D3D3'</span>)</span><br><span class="line">        <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">16</span>):</span><br><span class="line">            self.ws1.cell(row=<span class="hljs-number">1</span>, column=col).fill = th_color_fill</span><br><span class="line">        <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>):</span><br><span class="line">            self.ws2.cell(row=<span class="hljs-number">1</span>, column=col).fill = th_color_fill</span><br><span class="line">        <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>):</span><br><span class="line">            self.ws3.cell(row=<span class="hljs-number">1</span>, column=col).fill = th_color_fill</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> self.ws1:</span><br><span class="line">            <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> r:</span><br><span class="line">                c.alignment = openpyxl.styles.Alignment(vertical=<span class="hljs-string">'center'</span>,</span><br><span class="line">                                                        wrapText=<span class="hljs-literal">True</span>)</span><br><span class="line">        <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> self.ws2:</span><br><span class="line">            <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> r:</span><br><span class="line">                c.alignment = openpyxl.styles.Alignment(vertical=<span class="hljs-string">'center'</span>,</span><br><span class="line">                                                        wrapText=<span class="hljs-literal">True</span>)</span><br><span class="line">        <span class="hljs-keyword">for</span> r <span class="hljs-keyword">in</span> self.ws3:</span><br><span class="line">            <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> r:</span><br><span class="line">                c.alignment = openpyxl.styles.Alignment(vertical=<span class="hljs-string">'center'</span>,</span><br><span class="line">                                                        wrapText=<span class="hljs-literal">True</span>)</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment"># 保存并生成文件</span></span><br><span class="line">        self.wb.save(<span class="hljs-string">f'XXX防火墙安全策略统计<span class="hljs-subst">{self.create_time}</span>.xlsx'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 类实例化</span></span><br><span class="line">    x = SecPolicy2XLSX()</span><br><span class="line">    <span class="hljs-comment"># res = x.sp_comtent()</span></span><br><span class="line">    <span class="hljs-comment"># res = x.more_comtent()</span></span><br><span class="line">    <span class="hljs-comment"># res = x.more_ip_comtent()</span></span><br><span class="line">    <span class="hljs-comment"># for i in res:</span></span><br><span class="line">    <span class="hljs-comment">#     print(i)</span></span><br><span class="line">    <span class="hljs-comment"># x.ip_fill_task()</span></span><br><span class="line">    x.write2ws1()</span><br><span class="line">    x.write2ws2()</span><br><span class="line">    x.write2ws3()</span><br><span class="line">    x.save_to_file()</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'搞快点--&gt;&gt;搞快点--&gt;&gt;'</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="导出的表格"><a href="#导出的表格" class="headerlink" title="导出的表格"></a>导出的表格</h3><p><img src="https://s2.loli.net/2022/12/01/cNp1hXCz5uKmWFf.jpg" alt="ScreenCaputure221201214539"></p>
+<p><img src="https://s2.loli.net/2022/12/01/WvI5YhTPaqpdbzB.jpg" alt="ScreenCaputure221201214703"></p>
+<p><img src="https://s2.loli.net/2022/12/01/TSWYCOPrbImcez3.jpg" alt="ScreenCaputure221201214728"></p>
+<p><img src="https://s2.loli.net/2022/12/01/tygZYhBfMFrmjQS.png" alt="20221201220702"></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/H3C%E9%98%B2%E7%81%AB%E5%A2%99/">#H3C防火墙</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%AF%BC%E5%87%BA%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/">#导出安全策略</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5%E8%A1%A8%E6%A0%BC/">#安全策略表格</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/python/">#python</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/openpyxl/">#openpyxl</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%AF%BC%E5%87%BA%E5%AF%B9%E8%B1%A1%E7%BB%84/">#导出对象组</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/posts/5826b49.html">Hexo推送提示输入账号密码问题</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/posts/4eda38e9.html">Ubuntu 22.04 安装iNode管理中心和定制客户端</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+DO NOT APPLY COMMENTS
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+-->
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2023 Kir Aster&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+<div id="totop" class="ctotop">
+<a title="返回顶部"><img src="/images/scrollup.png"/></a>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/totop.js"></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</body>
+</html>

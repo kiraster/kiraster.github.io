@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+<meta charset="utf-8">
+<title>来自非网管交换机的教训 - Kir&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<meta name="description" content="前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。">
+
+
+<meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+    <meta name="description" content="前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="来自非网管交换机的教训">
+<meta property="og:url" content="https://kiraster.github.io/posts/e906be86.html">
+<meta property="og:site_name" content="Kir&#39;s Blog">
+<meta property="og:description" content="前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg">
+<meta property="og:image" content="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg">
+<meta property="article:published_time" content="2021-12-27T08:33:28.000Z">
+<meta property="article:modified_time" content="2023-02-14T08:59:47.191Z">
+<meta property="article:author" content="Kir Aster">
+<meta property="article:tag" content="WLAN">
+<meta property="article:tag" content="unmanged switch">
+<meta property="article:tag" content="PoE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg">
+
+
+
+<link rel="icon" href="https://s2.loli.net/2022/11/07/nR4jdLTGEq6kZ2S.png">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<!--引入思源黑体 rel-->
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3a4045a27e1262a56b8fe2f8b7b42ff1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-209914470-1');
+</script>
+
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    Kir&#39;s
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/gallery">Gallery</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#Part-2">1&nbsp;&nbsp;<b>Part 2</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#Ending">2&nbsp;&nbsp;<b>Ending</b></a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
+              来自非网管交换机的教训
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspDec 27th 21&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/Fantasy/">Fantasy</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              13 minutes read (About 1888 words)
+          </span>
+          
+      </div>
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p> 来自 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F">以太网帧格式</a></p>
+<blockquote>
+<p><img src="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg"><span id="more"></span></p>
+</blockquote>
+<blockquote><blockquote>
+<p>以太帧类型</p>
+<p>以太帧有很多种类型。不同类型的帧具有不同的格式和MTU值。但在同种物理媒体上都可同时存在。</p>
+<p>以太网第二版[note 3] 或者称之为Ethernet II 帧，DIX帧，是最常见的帧类型。并通常直接被IP协议使用。</p>
+<p>Novell的非标准IEEE 802.3帧变种。</p>
+<p>IEEE 802.2 逻辑链路控制 (LLC) 帧</p>
+<p>子网接入协议(SNAP)帧 </p>
+<p>所有四种以太帧类型都可包含一个IEEE 802.1Q选项来确定它属于哪个 VLAN 以及他的IEEE 802.1p优先级(QoS)。这个封装由IEEE 802.3ac定义并将帧大小从64字节扩充到1522字节(注：不包含7个前导字节和1个字节的帧开始符以及12个帧间距字节)。</p>
+<p>IEEE 802.1Q标签，如果出现，需要放在源地址字段和以太类型或长度字段的中间。这个标签的前两个字节是标签协议标识符(TPID)值0x8100。这与没有标签帧的以太类型/长度字段的位置相同，所以以太类型0x8100就表示包含标签的帧，而实际的以太类型/长度字段则放在Q-标签的后面。TPID后面是两个字节的标签控制信息(TCI)。(IEEE 802.1p 优先级(QoS)和 VLAN  ID)。Q标签后面就是通常的帧内容。 </p>
+<p>Ethernet II</p>
+<p>以太 II 帧 (也称作DIX以太网，是以这个设计的主要成员，DEC,Intel和Xerox的名字命名的。[1]),把紧接在目标和源MAC地址后面的这个两字节定义为以太网帧数据类型字段。</p>
+<p>例如，一个0x0800的以太类型说明这个帧包含的是IPv4数据报。同样的，一个0x0806的以太类型说明这个帧是一个ARP帧，0x8100说明这是一个IEEE 802.1Q帧，而0x86DD说明这是一个IPv6帧。</p>
+<p>当这个工业界的标准通过正式的IEEE标准化过程后，在802.3标准中以太类型字段变成了一个(数据)长度字段。(最初的以太包通过包括他们的帧来确定它们的长度，而不是以一个明确的数值。)但是包的接收层仍需知道如何解析包，因此标准要求将IEEE802.2头跟在长度字段后面，定义包的类型。多年之后，802.3x-1997标准，一个802.3标准的后继版本，正式允许两种类型的数据包同时存在。实际上，两种数据包都被广泛使用，而最初的以太数据包在以太局域网中被广泛应用，因为他的简便和低开销。</p>
+<p>为了允许一些使用以太II版本的数据报和一些使用802.3封装的最初版本的数据包能够在同一个以太网段使用，以太类型值必须大于等于1536(0x0600)。这个值比802.3数据包的最大长度1500byte (0x05DC)要更大。因此如果这个字段的值大于等于1536，则这个帧是以太II帧，而那个字段是类型字段。否则(小于1500而大于46字节)，他是一个IEEE 802.3帧，而那个字段是长度字段。1500～1536(不包含)的数值未定义。[2] 
+ </p>
+</blockquote>
+</blockquote>
+
+<h2 id="Part-2"><a href="#Part-2" class="headerlink" title="Part 2"></a>Part 2</h2><p>前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。<br><img src="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg"><br>组网结构如上图，AP地址段 VLAN 和 STA 地址段 VLAN 不同，AP 的 STA 的 DHCP server 在汇聚交换机上（DHCP 的网关均设置在汇聚交换机上？），汇聚连接各楼层的非网管 PoE 交换机，查看了汇聚交换机配置，虽说是隧道转发，但连接楼层交换机的接口全放行了业务 STA  的 VLAN（我觉得这是个错误配置），</p>
+<p>决定改直接转发，扩大 STA 地址池范围，修改租期为更短时间，手动调优一次（该单位因装修调整过线路和AP，再加上AP布放相当不合理（壁挂安装，楼层里 AP 相隔两三米斜对角线安装））</p>
+<p>修改完配置后，问题更大了，仅有少数无线终端能获取IP正常接入，绝大多无线终端无法接入无线网络，长时间处在获取 IP 地址，然而修改成隧道转发后，可正常接入。最终排查出最大的可能性是这非网管交换机的问题，无法转发透传包含两个及以上的 802.1Q 的数据帧到汇聚交换机，这就触及本人知识盲区了，折腾了许久。</p>
+<p>接下来有两种方案，一是修改 AP 和  STA  的地址网段和 VLAN 为同一个，二是还是使用隧道转发，第一个方案改动太大了，最终使用第二方案。</p>
+<p>回来后一顿搜索非网管交换机的工作原理，有说非网管交换机所有口都是属于 VLAN 1 的说法，这简直是胡说八道的。有说能否转发带 VLAN  tag 数据和该交换机支持转发的最大传输单元（MTU）有关系，我查了各大非网管交换机的特性参数，均没有提及这一个参数。理论上这个参数确实会影响转发，就是说非网管交换机设定了一个转发的最大帧长度，当交换机接收到大于这个设定的帧长度就丢弃不转发，毕竟支持更大帧转发意味着消耗更多的硬件资源，基于成本控制我是可以理解硬件厂商这么做的原因。而且像 Jambo frame 这种格式在我接触到的项目中毕竟小众，使用场景比标准的802.3要少的多。</p>
+<p>也翻看了一些做了测试的网站文章，也没有一个定论说肯定支持转发或不支持转发802.1q的数据帧，看多了都使我抑郁了，更多的是论坛下的一些讨论。</p>
+<p>长教训了，这哪怕换成工作在物理层的 HUB 都能正常工作，反而……，看来将来再遇到这种非网管PoE交换机接入的情况要相当注意了，别再踩坑了。</p>
+<p>还有个别 AP 未上线问题，查看原因  <strong>Negotiation CAPWAP tunnel failed</strong> ，就去检查物理线路吧，特别是使用光收发这种设备的，【能不能通，能通有丢包，AP就是不上线】</p>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><ul>
+<li>文中可能有些内容术语表述的不规范，请见谅。</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/WLAN/">#WLAN</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/unmanged-switch/">#unmanged switch</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/PoE/">#PoE</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/posts/48f55792.html">BGP综合实验拓扑</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/posts/1b6d0fec.html">几种重分发方式可能带来的问题和处理</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+DO NOT APPLY COMMENTS
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+-->
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2023 Kir Aster&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+<div id="totop" class="ctotop">
+<a title="返回顶部"><img src="/images/scrollup.png"/></a>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/totop.js"></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</body>
+</html>

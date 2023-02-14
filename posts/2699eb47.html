@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+<meta charset="utf-8">
+<title>H3C_Python_SSH_Config_Auto_2 - Kir&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<meta name="description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+<meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+    <meta name="description" content="针对上一版的脚本进行改进 增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出” 修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入 修改文件当前目录为代码自动获取 os.getcwd() 修改执行完成后显示  “A log file is available in……” 记录log路径 想改多线程，threading 模块逻辑没搞清楚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H3C_Python_SSH_Config_Auto_2">
+<meta property="og:url" content="https://kiraster.github.io/posts/2699eb47.html">
+<meta property="og:site_name" content="Kir&#39;s Blog">
+<meta property="og:description" content="针对上一版的脚本进行改进 增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出” 修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入 修改文件当前目录为代码自动获取 os.getcwd() 修改执行完成后显示  “A log file is available in……” 记录log路径 想改多线程，threading 模块逻辑没搞清楚">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-13T05:59:08.000Z">
+<meta property="article:modified_time" content="2023-02-14T08:59:47.198Z">
+<meta property="article:author" content="Kir Aster">
+<meta property="article:tag" content="Scripts">
+<meta property="article:tag" content="H3C设备">
+<meta property="article:tag" content="Python脚本">
+<meta property="article:tag" content="配置文件批量导出">
+<meta property="article:tag" content="配置批量增加">
+<meta property="article:tag" content="SSH登陆">
+<meta property="article:tag" content="netmiko">
+<meta property="article:tag" content="log">
+<meta name="twitter:card" content="summary">
+
+
+
+<link rel="icon" href="https://s2.loli.net/2022/11/07/nR4jdLTGEq6kZ2S.png">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<!--引入思源黑体 rel-->
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3a4045a27e1262a56b8fe2f8b7b42ff1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-209914470-1');
+</script>
+
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    Kir&#39;s
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/gallery">Gallery</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#两个脚本">1&nbsp;&nbsp;<b>两个脚本</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#01">1.1&nbsp;&nbsp;01</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#02">1.2&nbsp;&nbsp;02</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#参考资料">2&nbsp;&nbsp;<b>参考资料:</b></a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
+              H3C_Python_SSH_Config_Auto_2
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspMay 13th 22&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/H3C/">H3C</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              10 minutes read (About 1427 words)
+          </span>
+          
+      </div>
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><ul>
+<li>针对上一版的脚本进行改进</li>
+<li>增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出”</li>
+<li>修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入</li>
+<li>修改文件当前目录为代码自动获取 os.getcwd()</li>
+<li>修改执行完成后显示  “A log file is available in……” 记录log路径</li>
+<li>想改多线程，threading 模块逻辑没搞清楚<span id="more"></span></li>
+</ul>
+<h2 id="两个脚本"><a href="#两个脚本" class="headerlink" title="两个脚本"></a>两个脚本</h2><h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># File： py_net.py</span></span><br><span class="line"><span class="hljs-comment"># Time： 2022/05/13 12:20:35</span></span><br><span class="line"><span class="hljs-comment"># Author： Kir</span></span><br><span class="line"><span class="hljs-comment"># Ver： 2.0</span></span><br><span class="line"><span class="hljs-comment"># Description： AutoOutput/SSH/Log</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> netmiko <span class="hljs-keyword">import</span> ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException</span><br><span class="line"><span class="hljs-keyword">import</span> os</span><br><span class="line"><span class="hljs-keyword">import</span> re</span><br><span class="line"><span class="hljs-keyword">import</span> msvcrt</span><br><span class="line"><span class="hljs-keyword">import</span> getpass</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">try</span>:</span><br><span class="line">    <span class="hljs-comment"># 校验账户交给netmiko模块，仅输入</span></span><br><span class="line">    login_user = <span class="hljs-built_in">input</span>(<span class="hljs-string">'Login:'</span>)</span><br><span class="line">    login_pwd = getpass.getpass(<span class="hljs-string">'Passwd:'</span>)</span><br><span class="line">    <span class="hljs-comment"># 时间格式蒸鹅心，冒号不能用做文件名字符</span></span><br><span class="line">    time_str1 = time.strftime(<span class="hljs-string">'%Y%m%d'</span>, time.localtime())</span><br><span class="line">    time_str2 = time.strftime(<span class="hljs-string">'%H%M%S'</span>, time.localtime())</span><br><span class="line">    time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">    <span class="hljs-comment"># 获取当前工作目录</span></span><br><span class="line">    path = os.getcwd()</span><br><span class="line">    title = <span class="hljs-string">"%s"</span> % time_str1</span><br><span class="line">    <span class="hljs-comment"># mkdir path &amp; touch file</span></span><br><span class="line">    new_path = os.path.join(path, title)</span><br><span class="line">    config_path = <span class="hljs-string">"%s\\configuration_backup"</span> % new_path</span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.isdir(new_path):</span><br><span class="line">        os.makedirs(new_path)</span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.isdir(config_path):</span><br><span class="line">        os.makedirs(config_path)</span><br><span class="line">    <span class="hljs-comment"># 创建日志文件，记录运行结果</span></span><br><span class="line">    log_fo = <span class="hljs-built_in">open</span>(</span><br><span class="line">        <span class="hljs-string">'%s\\%s.log'</span> % (config_path, time_str1),</span><br><span class="line">        <span class="hljs-string">'a+'</span>,</span><br><span class="line">        encoding=<span class="hljs-string">'utf-8'</span>,</span><br><span class="line">    )</span><br><span class="line">    log_fo.write(<span class="hljs-string">'\n'</span> + <span class="hljs-string">"==========START TIME "</span> + time_str3 + <span class="hljs-string">"========="</span> +</span><br><span class="line">                 <span class="hljs-string">'\n'</span>)</span><br><span class="line">    <span class="hljs-comment"># 读取 ip_list.txt 里的 ip 地址</span></span><br><span class="line">    ip_list = <span class="hljs-built_in">open</span>(<span class="hljs-string">'ip_list.txt'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'ascii'</span>)</span><br><span class="line">    ip_addr = ip_list.readlines()</span><br><span class="line">    ip_list.close()</span><br><span class="line">    <span class="hljs-comment"># display 命令</span></span><br><span class="line">    cmd_list = <span class="hljs-built_in">open</span>(<span class="hljs-string">'cmd_list.txt'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'ascii'</span>)</span><br><span class="line">    cmd_line = cmd_list.readlines()</span><br><span class="line">    cmd_list.close()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 遍历 ip_addr 列表里面的 ip 进行连接</span></span><br><span class="line">    <span class="hljs-keyword">for</span> ip <span class="hljs-keyword">in</span> <span class="hljs-built_in">iter</span>(ip_addr):</span><br><span class="line">        <span class="hljs-keyword">try</span>:</span><br><span class="line">            S5130 = {</span><br><span class="line">                <span class="hljs-string">'device_type'</span>: <span class="hljs-string">'hp_comware'</span>,</span><br><span class="line">                <span class="hljs-string">'ip'</span>: ip,</span><br><span class="line">                <span class="hljs-string">'username'</span>: login_user,</span><br><span class="line">                <span class="hljs-string">'password'</span>: login_pwd,</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            net_connect = ConnectHandler(**S5130)</span><br><span class="line">            <span class="hljs-comment"># 禁用输出屏幕分屏</span></span><br><span class="line">            screen_d = net_connect.send_command(<span class="hljs-string">'screen-length disable'</span>)</span><br><span class="line">            <span class="hljs-comment"># current_time as part of filename</span></span><br><span class="line">            time_str2 = time.strftime(<span class="hljs-string">'%H%M%S'</span>, time.localtime())</span><br><span class="line">            <span class="hljs-comment"># sysname as part of fielname</span></span><br><span class="line">            sysn = net_connect.send_command(<span class="hljs-string">'dis cur | inc sysname'</span>)</span><br><span class="line">            <span class="hljs-comment"># split 空格分割回显内容</span></span><br><span class="line">            sysn = re.split(<span class="hljs-string">r'[ ]+'</span>, sysn)</span><br><span class="line">            sysn = sysn[<span class="hljs-number">2</span>]</span><br><span class="line">            <span class="hljs-comment"># 创建文件, 格式为 sysname + time_str2</span></span><br><span class="line">            config_fo = <span class="hljs-built_in">open</span>(<span class="hljs-string">'%s\\%s_%s_config.txt'</span> %</span><br><span class="line">                             (config_path, sysn, time_str2),</span><br><span class="line">                             <span class="hljs-string">'a'</span>,</span><br><span class="line">                             encoding=<span class="hljs-string">'utf-8'</span>)</span><br><span class="line">            time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">            <span class="hljs-built_in">print</span>(time_str1 + <span class="hljs-string">"_"</span> + time_str3 + <span class="hljs-string">' Successfully connected to '</span> +</span><br><span class="line">                  ip)</span><br><span class="line">            log_fo.write(time_str1 + <span class="hljs-string">"_"</span> + time_str3 +</span><br><span class="line">                         <span class="hljs-string">' Successfully connected to '</span> + ip)</span><br><span class="line">            <span class="hljs-keyword">for</span> cmd <span class="hljs-keyword">in</span> <span class="hljs-built_in">iter</span>(cmd_line):</span><br><span class="line">                <span class="hljs-comment"># 发送 cmd</span></span><br><span class="line">                cmd_result = net_connect.send_command(cmd)</span><br><span class="line">                <span class="hljs-built_in">print</span>(cmd)</span><br><span class="line">                <span class="hljs-built_in">print</span>(cmd_result)</span><br><span class="line">                <span class="hljs-built_in">print</span>(</span><br><span class="line">                    <span class="hljs-string">'==================================================================='</span></span><br><span class="line">                )</span><br><span class="line">                config_fo.write(</span><br><span class="line">                    <span class="hljs-string">'\n'</span> +</span><br><span class="line">                    <span class="hljs-string">'==================================================================='</span></span><br><span class="line">                    + <span class="hljs-string">'\n'</span> + cmd + <span class="hljs-string">'\n'</span> + cmd_result)</span><br><span class="line">            net_connect.disconnect()</span><br><span class="line">            config_fo.close()</span><br><span class="line">        <span class="hljs-keyword">except</span> (EOFError, NetMikoTimeoutException):</span><br><span class="line">            <span class="hljs-built_in">print</span>(<span class="hljs-string">'Can not connect to Device '</span> + ip)</span><br><span class="line">            time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">            log_fo.write(time_str1 + <span class="hljs-string">"_"</span> + time_str3 +</span><br><span class="line">                         <span class="hljs-string">' Can not connect to Device '</span> + ip)</span><br><span class="line">        <span class="hljs-keyword">except</span> (EOFError, NetMikoAuthenticationException):</span><br><span class="line">            <span class="hljs-built_in">print</span>(<span class="hljs-string">'username/password wrong! '</span> + ip)</span><br><span class="line">            time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">            log_fo.write(time_str1 + <span class="hljs-string">"_"</span> + time_str3 +</span><br><span class="line">                         <span class="hljs-string">' username/password wrong! '</span> + ip)</span><br><span class="line">    time_str4 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">    log_fo.write(<span class="hljs-string">'\n'</span> + <span class="hljs-string">"==========END TIME "</span> + time_str4 + <span class="hljs-string">"=========="</span> +</span><br><span class="line">                 <span class="hljs-string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">    log_fo.close()</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'\n'</span>)</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'A log file is available in '</span> + <span class="hljs-string">'\"'</span> + config_path + <span class="hljs-string">'\\'</span> +</span><br><span class="line">          time_str1 + <span class="hljs-string">'.log'</span> + <span class="hljs-string">'\"'</span>)</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'\n'</span>)</span><br><span class="line"><span class="hljs-keyword">finally</span>:</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'Press any key to quit program.'</span>)</span><br><span class="line">    <span class="hljs-built_in">ord</span>(msvcrt.getch())</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="02"><a href="#02" class="headerlink" title="02"></a>02</h3><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># File： py_net_config.py</span></span><br><span class="line"><span class="hljs-comment"># Time： 2022/05/13 12:19:59</span></span><br><span class="line"><span class="hljs-comment"># Author： Kir</span></span><br><span class="line"><span class="hljs-comment"># Ver： 2.0</span></span><br><span class="line"><span class="hljs-comment"># Description：AutoConfig/SSH/Log</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> time</span><br><span class="line"><span class="hljs-keyword">from</span> netmiko <span class="hljs-keyword">import</span> ConnectHandler, NetMikoAuthenticationException, NetMikoTimeoutException</span><br><span class="line"><span class="hljs-keyword">import</span> os</span><br><span class="line"><span class="hljs-keyword">import</span> re</span><br><span class="line"><span class="hljs-keyword">import</span> msvcrt</span><br><span class="line"><span class="hljs-keyword">import</span> getpass</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">try</span>:</span><br><span class="line">    <span class="hljs-comment"># 校验账户交给netmiko模块，仅输入</span></span><br><span class="line">    login_user = <span class="hljs-built_in">input</span>(<span class="hljs-string">'Login:'</span>)</span><br><span class="line">    login_pwd = getpass.getpass(<span class="hljs-string">'Passwd:'</span>)</span><br><span class="line">    <span class="hljs-comment"># 时间格式蒸鹅心，冒号不能用做文件名字符</span></span><br><span class="line">    time_str1 = time.strftime(<span class="hljs-string">'%Y%m%d'</span>, time.localtime())</span><br><span class="line">    time_str2 = time.strftime(<span class="hljs-string">'%H%M%S'</span>, time.localtime())</span><br><span class="line">    time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">    <span class="hljs-comment"># 获取当前工作目录</span></span><br><span class="line">    path = os.getcwd()</span><br><span class="line">    title = <span class="hljs-string">"%s"</span> % time_str1</span><br><span class="line">    <span class="hljs-comment"># mkdir path &amp; touch file</span></span><br><span class="line">    new_path = os.path.join(path, title)</span><br><span class="line">    config_path = <span class="hljs-string">"%s\\configure_device"</span> % new_path</span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.isdir(new_path):</span><br><span class="line">        os.makedirs(new_path)</span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.isdir(config_path):</span><br><span class="line">        os.makedirs(config_path)</span><br><span class="line">    <span class="hljs-comment"># 创建日志文件，记录运行结果</span></span><br><span class="line">    log_fo = <span class="hljs-built_in">open</span>(</span><br><span class="line">        <span class="hljs-string">'%s\\%s.log'</span> % (config_path, time_str1),</span><br><span class="line">        <span class="hljs-string">'a+'</span>,</span><br><span class="line">        encoding=<span class="hljs-string">'utf-8'</span>,</span><br><span class="line">    )</span><br><span class="line">    log_fo.write(<span class="hljs-string">'\n'</span> + <span class="hljs-string">"==========START TIME "</span> + time_str3 + <span class="hljs-string">"========="</span> +</span><br><span class="line">                 <span class="hljs-string">'\n'</span>)</span><br><span class="line">    <span class="hljs-comment"># 读取 ip_list.txt 里的 ip 地址</span></span><br><span class="line">    ip_list = <span class="hljs-built_in">open</span>(<span class="hljs-string">'ip_list.txt'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'ascii'</span>)</span><br><span class="line">    ip_addr = ip_list.readlines()</span><br><span class="line">    ip_list.close()</span><br><span class="line">    <span class="hljs-comment"># 读取 cmd_config_list.txt 文件的配置命令</span></span><br><span class="line">    cmd_config_list = <span class="hljs-built_in">open</span>(<span class="hljs-string">'cmd_config_list.txt'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'ascii'</span>)</span><br><span class="line">    cmd_line = cmd_config_list.readlines()</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'AddCommand-line: '</span> + <span class="hljs-built_in">str</span>(cmd_line))</span><br><span class="line">    cmd_config_list.close()</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 遍历 ip_addr 列表里面的 ip 进行连接</span></span><br><span class="line">    <span class="hljs-keyword">for</span> ip <span class="hljs-keyword">in</span> <span class="hljs-built_in">iter</span>(ip_addr):</span><br><span class="line">        <span class="hljs-keyword">try</span>:</span><br><span class="line">            S5130 = {</span><br><span class="line">                <span class="hljs-string">'device_type'</span>: <span class="hljs-string">'hp_comware'</span>,</span><br><span class="line">                <span class="hljs-string">'ip'</span>: ip,</span><br><span class="line">                <span class="hljs-string">'username'</span>: login_user,</span><br><span class="line">                <span class="hljs-string">'password'</span>: login_pwd,</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            net_connect = ConnectHandler(**S5130)</span><br><span class="line">            <span class="hljs-comment"># 禁用输出屏幕分屏</span></span><br><span class="line">            screen_d = net_connect.send_command(<span class="hljs-string">'screen-length disable'</span>)</span><br><span class="line">            <span class="hljs-comment"># current_time as part of filename</span></span><br><span class="line">            time_str2 = time.strftime(<span class="hljs-string">'%H%M%S'</span>, time.localtime())</span><br><span class="line">            <span class="hljs-comment"># sysname as part of fielname</span></span><br><span class="line">            sysn = net_connect.send_command(<span class="hljs-string">'dis cur | inc sysname'</span>)</span><br><span class="line">            <span class="hljs-comment"># split 空格分割回显内容</span></span><br><span class="line">            sysn = re.split(<span class="hljs-string">r'[ ]+'</span>, sysn)</span><br><span class="line">            sysn = sysn[<span class="hljs-number">2</span>]</span><br><span class="line">            <span class="hljs-comment"># 创建文件, 格式为 sysname + time_str2</span></span><br><span class="line">            config_fo = <span class="hljs-built_in">open</span>(<span class="hljs-string">'%s\\%s_%s_add_config.txt'</span> %</span><br><span class="line">                             (config_path, sysn, time_str2),</span><br><span class="line">                             <span class="hljs-string">'a'</span>,</span><br><span class="line">                             encoding=<span class="hljs-string">'utf-8'</span>)</span><br><span class="line">            time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">            <span class="hljs-built_in">print</span>(time_str1 + <span class="hljs-string">"_"</span> + time_str3 + <span class="hljs-string">' Successfully connected to '</span> +</span><br><span class="line">                  ip + <span class="hljs-string">' Configuring...'</span>)</span><br><span class="line">            log_fo.write(time_str1 + <span class="hljs-string">"_"</span> + time_str3 +</span><br><span class="line">                         <span class="hljs-string">' Configuration complete: '</span> +</span><br><span class="line">                         <span class="hljs-string">' Successfully connected to '</span> + ip)</span><br><span class="line">            <span class="hljs-comment"># 发送 cmd_line</span></span><br><span class="line">            cmd_result = net_connect.send_config_set(cmd_line)</span><br><span class="line">            <span class="hljs-built_in">print</span>(cmd_result)</span><br><span class="line">            <span class="hljs-built_in">print</span>(</span><br><span class="line">                <span class="hljs-string">'==================================================================='</span></span><br><span class="line">            )</span><br><span class="line">            config_fo.write(</span><br><span class="line">                <span class="hljs-string">'\n'</span> +</span><br><span class="line">                <span class="hljs-string">'==================================================================='</span></span><br><span class="line">                + <span class="hljs-string">'\n'</span> + cmd_result)</span><br><span class="line">            net_connect.disconnect()</span><br><span class="line">            config_fo.close()</span><br><span class="line">        <span class="hljs-keyword">except</span> (EOFError, NetMikoTimeoutException):</span><br><span class="line">            <span class="hljs-built_in">print</span>(<span class="hljs-string">'Can not connect to Device '</span> + ip)</span><br><span class="line">            time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">            log_fo.write(time_str1 + <span class="hljs-string">"_"</span> + time_str3 +</span><br><span class="line">                         <span class="hljs-string">' Configuration Fail: '</span> +</span><br><span class="line">                         <span class="hljs-string">' Can not connect to Device! '</span> + ip)</span><br><span class="line">        <span class="hljs-keyword">except</span> (EOFError, NetMikoAuthenticationException):</span><br><span class="line">            <span class="hljs-built_in">print</span>(<span class="hljs-string">'username/password wrong! '</span> + ip)</span><br><span class="line">            time_str3 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">            log_fo.write(time_str1 + <span class="hljs-string">"_"</span> + time_str3 +</span><br><span class="line">                         <span class="hljs-string">' Configuration Fail: '</span> +</span><br><span class="line">                         <span class="hljs-string">' username/password wrong! '</span> + ip)</span><br><span class="line">    time_str4 = time.strftime(<span class="hljs-string">'%H:%M:%S'</span>, time.localtime())</span><br><span class="line">    log_fo.write(<span class="hljs-string">'\n'</span> + <span class="hljs-string">"==========END TIME "</span> + time_str4 + <span class="hljs-string">"=========="</span> +</span><br><span class="line">                 <span class="hljs-string">'\n'</span>)</span><br><span class="line">    log_fo.close()</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'\n'</span>)</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'A log file is available in '</span> + <span class="hljs-string">'\"'</span> + config_path + <span class="hljs-string">'\\'</span> +</span><br><span class="line">          time_str1 + <span class="hljs-string">'.log'</span> + <span class="hljs-string">'\"'</span>)</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'\n'</span>)</span><br><span class="line"><span class="hljs-keyword">finally</span>:</span><br><span class="line">    <span class="hljs-built_in">print</span>(<span class="hljs-string">'Press any key to quit program.'</span>)</span><br><span class="line">    <span class="hljs-built_in">ord</span>(msvcrt.getch())</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料:"></a>参考资料:</h2><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- Python-交换机自动化巡检脚本笔记 by 02EVA on 2021-04-22 : https://blog.csdn.net/weixin_42065669/article/details/116009445</span><br><span class="line">-「Python 网络自动化」Netmiko ——Netmiko 常用方法 by 某呆啊 on 2021-02-04 : https://blog.csdn.net/q965844841qq/article/details/113619281</span><br><span class="line">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020</span><br><span class="line">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03  : https://555.xdai.vip/posts/26e9de3c.html</span><br><span class="line">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819</span><br><span class="line">- Python实现“按任意键返回”和无回显输入 by dongfuguo on 2020-03-25 : https://blog.csdn.net/dongfuguo/article/details/105103446</span><br><span class="line">- Python3文件路径/目录获取教程 by 诸子流 on 2020-07-09 : `https://www.cnblogs.com/lsdb/p/13265688.html</span><br><span class="line">- 如何让python不打印转义字符串？by 流芳 on 2020-07-07 : https://www.py.cn/jishu/jichu/19480.html</span><br></pre></td></tr></tbody></table></figure>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Scripts/">#Scripts</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/H3C%E8%AE%BE%E5%A4%87/">#H3C设备</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python%E8%84%9A%E6%9C%AC/">#Python脚本</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%89%B9%E9%87%8F%E5%AF%BC%E5%87%BA/">#配置文件批量导出</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E9%85%8D%E7%BD%AE%E6%89%B9%E9%87%8F%E5%A2%9E%E5%8A%A0/">#配置批量增加</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/SSH%E7%99%BB%E9%99%86/">#SSH登陆</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/netmiko/">#netmiko</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/log/">#log</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/posts/ded21811.html">CDN_error</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/posts/54cb8229.html">H3C_Python_SSH_Config_Auto</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+DO NOT APPLY COMMENTS
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+-->
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2023 Kir Aster&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+<div id="totop" class="ctotop">
+<a title="返回顶部"><img src="/images/scrollup.png"/></a>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/totop.js"></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</body>
+</html>
