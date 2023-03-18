@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+<meta charset="utf-8">
+<title>H3C自动配置-HTTP Python方式 - Kir&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<meta name="description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+<meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+    <meta name="description" content="一个小测试，实现HCL模拟器下利用python脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H3C自动配置-HTTP Python方式">
+<meta property="og:url" content="https://kiraster.github.io/posts/c69db7e2.html">
+<meta property="og:site_name" content="Kir&#39;s Blog">
+<meta property="og:description" content="一个小测试，实现HCL模拟器下利用python脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/YhVtMfHBAaFOSIZ.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/iICgQ9ZMDotjbVk.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/vnz8uXmyatZfPqi.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/ChqJuWxT59BOQ7z.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/M6WgyK7xONael5B.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/W1PQbp7dITu9vnN.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/23YpwFZsAyEPavi.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/7OMIJQRbpiaTnAz.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/2j8Z71DLnxRAX9g.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/bHQ6R9YPXlLo7vg.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/iRkwHB8UTflVjuE.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/X56uDBxOsQdhgEF.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/03/18/izDftqmedHPpgwB.jpg">
+<meta property="article:published_time" content="2023-03-18T05:18:59.000Z">
+<meta property="article:modified_time" content="2023-03-18T09:11:21.509Z">
+<meta property="article:author" content="Kir Aster">
+<meta property="article:tag" content="H3C设备">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="自动配置">
+<meta property="article:tag" content="http">
+<meta property="article:tag" content="批量配置">
+<meta property="article:tag" content="DHCP">
+<meta property="article:tag" content="TFTP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/03/18/YhVtMfHBAaFOSIZ.jpg">
+
+
+
+<link rel="icon" href="https://s2.loli.net/2022/11/07/nR4jdLTGEq6kZ2S.png">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<!--引入思源黑体 rel-->
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3a4045a27e1262a56b8fe2f8b7b42ff1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-209914470-1');
+</script>
+
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    Kir&#39;s
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/gallery">Gallery</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#步骤">1&nbsp;&nbsp;<b>步骤</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#编写python脚本">1.1&nbsp;&nbsp;编写python脚本</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#准备设备配置文件">1.2&nbsp;&nbsp;准备设备配置文件</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#启动HTTP服务端">1.3&nbsp;&nbsp;启动HTTP服务端</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#配置TFTP服务端和DHCP服务端参数">1.4&nbsp;&nbsp;配置TFTP服务端和DHCP服务端参数</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#启动测试">2&nbsp;&nbsp;<b>启动测试</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#结束">3&nbsp;&nbsp;<b>结束</b></a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
+              H3C自动配置-HTTP Python方式
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspMar 18th 23&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/H3C/">H3C</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              9 minutes read (About 1289 words)
+          </span>
+          
+      </div>
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>一个小测试，实现<code>HCL</code>模拟器下利用<code>python</code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。<span id="more"></span></p>
+<p><strong>环境介绍：</strong></p>
+<p><img src="https://s2.loli.net/2023/03/18/YhVtMfHBAaFOSIZ.jpg" alt="ScreenCaputure230318161432"></p>
+<ul>
+<li>HCL v5.7.1</li>
+<li>Python 3.10.10</li>
+<li>Tftpd64 version 4.60</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="编写python脚本"><a href="#编写python脚本" class="headerlink" title="编写python脚本"></a>编写python脚本</h3><p>制作一个后缀名为<code>.py</code>的脚本。主要作用是空配置交换机开机执行自动配置，下载到本地并执行文件</p>
+<p>由于HCL模拟器里的交换机序列号都一样的，勉为其难改用背板MAC地址；如果是真机设备直接用序列号；脚本中预留了序列号的代码，简单修改一下便可</p>
+<ul>
+<li>设备 H3C S6850_1:  MAC_ADDRESS:68-bf-6d-ad-01-04</li>
+<li>设备 H3C S6850_2:  MAC_ADDRESS:68-45-dc-f1-02-04</li>
+</ul>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python</span><br><span class="line">#-*-coding:utf-8-*-</span><br><span class="line"></span><br><span class="line">import comware</span><br><span class="line">import platformtools</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def do_reboot():</span><br><span class="line">    # scheduler job reboot</span><br><span class="line">    platformtools.CLI('system-view ;scheduler job startup_reboot ;command 1 reboot force ;quit')</span><br><span class="line">    # exec-delay </span><br><span class="line">    platformtools.CLI('system-view ;scheduler schedule do_reboot ;job  startup_reboot ;time once delay 1')</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def apply_sw1_config():</span><br><span class="line">    # Specify system startup</span><br><span class="line">    platformtools.CLI('restore startup-configuration from 172.31.100.2 sw1_config.cfg')</span><br><span class="line">    do_reboot()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def apply_sw2_config():</span><br><span class="line">    # Specify system startup</span><br><span class="line">    platformtools.CLI('restore startup-configuration from 172.31.100.2 sw2_config.cfg')</span><br><span class="line">    do_reboot()</span><br><span class="line"></span><br><span class="line"># add other device ...</span><br><span class="line"># def apply_sw3_config():</span><br><span class="line">#     # Specify system startup</span><br><span class="line">#     platformtools.CLI('restore startup-configuration from 172.31.100.2 sw3_config.cfg')</span><br><span class="line">#     do_reboot()</span><br><span class="line"></span><br><span class="line"># find DEVICE_SERIAL_NUMBER</span><br><span class="line">res = platformtools.CLI('dis dev man', False)</span><br><span class="line"></span><br><span class="line">for i in res.get_output():</span><br><span class="line">    # if 'DEVICE_SERIAL_NUMBER' in i:</span><br><span class="line">    if '68-bf-6d-ad-01-04' in i:</span><br><span class="line">        apply_sw1_config()</span><br><span class="line">        break</span><br><span class="line">    if '68-45-dc-f1-02-04' in i:</span><br><span class="line">        apply_sw2_config()</span><br><span class="line">        break</span><br><span class="line">    # add other device ...</span><br><span class="line">    # if 'DEVICE_SERIAL_NUMBER' in i:</span><br><span class="line">    #     apply_sw2_config()</span><br><span class="line">    #     break</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="准备设备配置文件"><a href="#准备设备配置文件" class="headerlink" title="准备设备配置文件"></a>准备设备配置文件</h3><ul>
+<li><code>sw1_config.cfg</code></li>
+<li><code>sw2_config.cfg</code></li>
+</ul>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"></span><br><span class="line"> sysname sw1_s6850</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line"> telnet server enable</span><br><span class="line"> ssh server enable</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">vlan 10 to 20</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">int vlan 1</span><br><span class="line">ip add 172.31.100.10 24</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">int vlan 10</span><br><span class="line">ip add 192.168.10.254 24</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">interface GigabitEthernet 1/0/23</span><br><span class="line"> port link-type trunk</span><br><span class="line"> port trunk permit vlan all</span><br><span class="line"> undo shutdown </span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">interface GigabitEthernet 1/0/24</span><br><span class="line"> port link-type trunk</span><br><span class="line"> port trunk permit vlan all</span><br><span class="line"> undo shutdown </span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">local-user admin</span><br><span class="line">password simple Cisco123!@#</span><br><span class="line">authorization-attribute user-role network-admin</span><br><span class="line">authorization-attribute user-role network-operator</span><br><span class="line">service-type ssh telnet</span><br><span class="line">quit</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">line vty 0 63</span><br><span class="line">authentication-mode scheme</span><br><span class="line">user-role network-operator</span><br><span class="line"></span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">return</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="启动HTTP服务端"><a href="#启动HTTP服务端" class="headerlink" title="启动HTTP服务端"></a>启动HTTP服务端</h3><p>搭建一个简单的http服务端（可以使用网上的各种小工具，安全性自己判断），如果有<code>python</code>环境可以直接启动一个简易的http服务端，搭建完成后使用浏览器打开链接，确保<code>url</code>能正确指向第一步中的python脚本文件。</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\TEMP\tftpd64.460&gt; python -m http.server</span><br><span class="line">Serving HTTP on :: port 8000 (http://[::]:8000/) ...</span><br></pre></td></tr></tbody></table></figure>
+
+<p>浏览器URL测试</p>
+<p><img src="https://s2.loli.net/2023/03/18/iICgQ9ZMDotjbVk.jpg" alt="ScreenCaputure230318155751"></p>
+<h3 id="配置TFTP服务端和DHCP服务端参数"><a href="#配置TFTP服务端和DHCP服务端参数" class="headerlink" title="配置TFTP服务端和DHCP服务端参数"></a>配置TFTP服务端和DHCP服务端参数</h3><ul>
+<li>TFTP目录选择设备配置文件的目录</li>
+<li>如果电脑有多块网卡，选择绑定需要用到的网卡IP地址</li>
+<li>DHCP填写的Boot File 是python脚本文件的URL</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><img src="https://s2.loli.net/2023/03/18/vnz8uXmyatZfPqi.jpg" alt="ScreenCaputure230318155000"></th>
+<th><img src="https://s2.loli.net/2023/03/18/ChqJuWxT59BOQ7z.jpg" alt="ScreenCaputure230318155038"></th>
+</tr>
+</thead>
+</table>
+<p><strong>Tips：为了方便使用建议把<code>device.py</code>和设备<code>.cfg</code>配置文件统一放到TFTP的目录下，http服务端的启动命令也在TFTP目录下启动。</strong></p>
+<p><img src="https://s2.loli.net/2023/03/18/M6WgyK7xONael5B.jpg" alt="ScreenCaputure230318164825"></p>
+<h2 id="启动测试"><a href="#启动测试" class="headerlink" title="启动测试"></a>启动测试</h2><ol>
+<li>临时关闭本机环境中的其他DHCP服务端</li>
+<li>HCL模拟器里的交换机桥接到本地</li>
+<li>模拟器设备开机</li>
+</ol>
+<p>TFTP软件观察发现已经分配两个地址</p>
+<p><img src="https://s2.loli.net/2023/03/18/W1PQbp7dITu9vnN.jpg" alt="ScreenCaputure230318161954"></p>
+<p>第一台S6850 启动，观察发现下载了<code>device.py</code>文件，并按照<code>py脚本</code>命令执行了一些配置</p>
+<p><img src="https://s2.loli.net/2023/03/18/23YpwFZsAyEPavi.jpg" alt="ScreenCaputure230318161917"></p>
+<p>第二台S6850 启动，观察发现下载了<code>device.py</code>文件，并按照<code>py脚本</code>命令执行了一些配置</p>
+<p><img src="https://s2.loli.net/2023/03/18/7OMIJQRbpiaTnAz.jpg" alt="ScreenCaputure230318161928"></p>
+<p>按照设定的1分钟后重启设备，观察到出现两次<code>Press ENTER to get started.</code>表示已经重启了；设备名称也按照配置文件里的更改了</p>
+<p><img src="https://s2.loli.net/2023/03/18/2j8Z71DLnxRAX9g.jpg" alt="ScreenCaputure230318162531"></p>
+<p><img src="https://s2.loli.net/2023/03/18/bHQ6R9YPXlLo7vg.jpg" alt="ScreenCaputure230318162541"></p>
+<p>使用SSH登陆设备，能通过配置文件里配置的IP地址登陆设备</p>
+<p><img src="https://s2.loli.net/2023/03/18/iRkwHB8UTflVjuE.jpg" alt="ScreenCaputure230318162808"></p>
+<p><img src="https://s2.loli.net/2023/03/18/X56uDBxOsQdhgEF.jpg" alt="ScreenCaputure230318162820"></p>
+<p>查看sw1的一些配置</p>
+<p><img src="https://s2.loli.net/2023/03/18/izDftqmedHPpgwB.jpg" alt="ScreenCaputure230318163152"></p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><ol>
+<li>HCL模拟器的序列号一致不能通过序列号操作，实为憾事</li>
+<li>这个方法可应用在一定规模的组网，前提条件是安装前要记录安装位置与设备序列号的对应关系</li>
+<li>这个方法只能应用在完全空配置的设备，保存过配置的交换机就不能操作了</li>
+<li>如果是真实设备使用，注意本机电脑的防火墙设置</li>
+<li>前线安装人员要确定设备已加电和设备端口的指示灯状态</li>
+<li>方法操作没有问题，但是有时候去实施，甲方看到你老是在电脑面前操作，这个提现不出工作量，需要注意；两天的活你半小时不到干完了</li>
+<li>修改一下脚本，还能用在没有console线的环境下应急，同样确保设备是空配置启动</li>
+<li><code>device.py</code>文件里的代码有一个重启设备的定时任务，由于是做实验我设置了1分钟后重启，如果是真实环境这个延时重启建议配置时间大一点</li>
+</ol>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/H3C%E8%AE%BE%E5%A4%87/">#H3C设备</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python/">#Python</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE/">#自动配置</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/http/">#http</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%89%B9%E9%87%8F%E9%85%8D%E7%BD%AE/">#批量配置</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/DHCP/">#DHCP</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/TFTP/">#TFTP</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/posts/5c8077d9.html">观察OSPF虚链路和虚链路的替代办法</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+DO NOT APPLY COMMENTS
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+-->
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2023 Kir Aster&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+<div id="totop" class="ctotop">
+<a title="返回顶部"><img src="/images/scrollup.png"/></a>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/totop.js"></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</body>
+</html>
