@@ -13,28 +13,28 @@
 <meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
 
 
-    <meta name="description" content="一个使用nornir框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解nornir后，一直就想把功能移植过来，现在搞的差不多了，分享一下。 之前的结构： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546">
+    <meta name="description" content="一个使用nornir框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解nornir后，一直就想把功能移植过来，现在搞的差不多了，分享一下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个使用nornir框架编写的跑脚本工具">
 <meta property="og:url" content="https://kiraster.github.io/posts/9571d5ee.html">
 <meta property="og:site_name" content="Kir&#39;s Blog">
-<meta property="og:description" content="一个使用nornir框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解nornir后，一直就想把功能移植过来，现在搞的差不多了，分享一下。 之前的结构： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546">
+<meta property="og:description" content="一个使用nornir框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解nornir后，一直就想把功能移植过来，现在搞的差不多了，分享一下">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414224200.jpeg">
 <meta property="og:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414223905.jpeg">
 <meta property="og:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414224201.png">
 <meta property="article:published_time" content="2023-04-14T19:33:58.000Z">
-<meta property="article:modified_time" content="2023-04-14T19:40:02.991Z">
+<meta property="article:modified_time" content="2023-04-14T19:43:04.124Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="H3C">
 <meta property="article:tag" content="netmiko">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="venv">
 <meta property="article:tag" content="nornir">
 <meta property="article:tag" content="异步并发">
 <meta property="article:tag" content="脚本">
 <meta property="article:tag" content="批量导出">
-<meta property="article:tag" content="Github">
-<meta property="article:tag" content="venv">
 <meta property="article:tag" content="批量配置">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414224200.jpeg">
@@ -229,7 +229,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>一个使用<code>nornir</code>框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解<code>nornir</code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下。</p>
+        <html><head></head><body><p>一个使用<code>nornir</code>框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解<code>nornir</code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下<span id="more"></span></p>
 <p>之前的结构：</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">│  dev_mgt_data.xlsx</span><br><span class="line">│  netops_start.py</span><br><span class="line">│  README.md</span><br><span class="line">│</span><br><span class="line">├─conf</span><br><span class="line">│  │  settings.py</span><br><span class="line">│</span><br><span class="line">├─core</span><br><span class="line">│  │  admin.py</span><br><span class="line">│  │  src.py</span><br><span class="line">│  │  user.py</span><br><span class="line">│</span><br><span class="line">├─db</span><br><span class="line">│  │  db_handler.py</span><br><span class="line">│  │</span><br><span class="line">│  ├─user_data</span><br><span class="line">│  │      admin.json</span><br><span class="line">│  │      bob.json</span><br><span class="line">│  │      cidy.json</span><br><span class="line">│  │      dubu.json</span><br><span class="line">│  │      ellon.json</span><br><span class="line">│  │      fule.json</span><br><span class="line">│  │      kir.json</span><br><span class="line">│</span><br><span class="line">├─EXPORT</span><br><span class="line">│  ├─20220803</span><br><span class="line">│  │  │  configure_result_1130.log</span><br><span class="line">│  │  │  export_result_1130.log</span><br><span class="line">│  │  │  ping_test_result_1131.log</span><br><span class="line">│  │  │  ssh_test_result_1131.log</span><br><span class="line">│  │  │</span><br><span class="line">│  │  ├─export_conf</span><br><span class="line">│  │  └─modify_conf</span><br><span class="line">│  │</span><br><span class="line">│  └─FTP_PATH</span><br><span class="line">│          FTPlog.log</span><br><span class="line">│          startup.cfg</span><br><span class="line">│</span><br><span class="line">├─interface</span><br><span class="line">│  │  admin_interface.py</span><br><span class="line">│  │  export_interface.py</span><br><span class="line">│  │  operate_interface.py</span><br><span class="line">│  │  reliable_interface.py</span><br><span class="line">│</span><br><span class="line">├─lib</span><br><span class="line">│  │  ClassNetOps.py</span><br><span class="line">│  │  common.py</span><br><span class="line">│  │  ftp_service.py</span><br><span class="line">│</span><br><span class="line">└─log</span><br><span class="line">        Operatelog.log</span><br><span class="line">        Syslog.log</span><br></pre></td></tr></tbody></table></figure>
 
@@ -383,6 +383,10 @@ var _hmt = _hmt || [];
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python/">#Python</a></span>
     
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Github/">#Github</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/venv/">#venv</a></span>
+    
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/nornir/">#nornir</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91/">#异步并发</a></span>
@@ -390,10 +394,6 @@ var _hmt = _hmt || [];
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E8%84%9A%E6%9C%AC/">#脚本</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%89%B9%E9%87%8F%E5%AF%BC%E5%87%BA/">#批量导出</a></span>
-    
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Github/">#Github</a></span>
-    
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/venv/">#venv</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%89%B9%E9%87%8F%E9%85%8D%E7%BD%AE/">#批量配置</a></span>
     

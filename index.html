@@ -159,149 +159,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>一个使用<code>nornir</code>框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解<code>nornir</code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下。</p>
-<p>之前的结构：</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">│  dev_mgt_data.xlsx</span><br><span class="line">│  netops_start.py</span><br><span class="line">│  README.md</span><br><span class="line">│</span><br><span class="line">├─conf</span><br><span class="line">│  │  settings.py</span><br><span class="line">│</span><br><span class="line">├─core</span><br><span class="line">│  │  admin.py</span><br><span class="line">│  │  src.py</span><br><span class="line">│  │  user.py</span><br><span class="line">│</span><br><span class="line">├─db</span><br><span class="line">│  │  db_handler.py</span><br><span class="line">│  │</span><br><span class="line">│  ├─user_data</span><br><span class="line">│  │      admin.json</span><br><span class="line">│  │      bob.json</span><br><span class="line">│  │      cidy.json</span><br><span class="line">│  │      dubu.json</span><br><span class="line">│  │      ellon.json</span><br><span class="line">│  │      fule.json</span><br><span class="line">│  │      kir.json</span><br><span class="line">│</span><br><span class="line">├─EXPORT</span><br><span class="line">│  ├─20220803</span><br><span class="line">│  │  │  configure_result_1130.log</span><br><span class="line">│  │  │  export_result_1130.log</span><br><span class="line">│  │  │  ping_test_result_1131.log</span><br><span class="line">│  │  │  ssh_test_result_1131.log</span><br><span class="line">│  │  │</span><br><span class="line">│  │  ├─export_conf</span><br><span class="line">│  │  └─modify_conf</span><br><span class="line">│  │</span><br><span class="line">│  └─FTP_PATH</span><br><span class="line">│          FTPlog.log</span><br><span class="line">│          startup.cfg</span><br><span class="line">│</span><br><span class="line">├─interface</span><br><span class="line">│  │  admin_interface.py</span><br><span class="line">│  │  export_interface.py</span><br><span class="line">│  │  operate_interface.py</span><br><span class="line">│  │  reliable_interface.py</span><br><span class="line">│</span><br><span class="line">├─lib</span><br><span class="line">│  │  ClassNetOps.py</span><br><span class="line">│  │  common.py</span><br><span class="line">│  │  ftp_service.py</span><br><span class="line">│</span><br><span class="line">└─log</span><br><span class="line">        Operatelog.log</span><br><span class="line">        Syslog.log</span><br></pre></td></tr></tbody></table></figure>
-
-<p>之前的菜单：</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、批量备份配置</span><br><span class="line">2、批量修改配置</span><br><span class="line">3、批量ssh可达性测试</span><br><span class="line">4、批量ping可达性测试</span><br><span class="line">5、查看指定设备配置</span><br><span class="line">6、端口扫描</span><br><span class="line">7、保存配置（华为）</span><br><span class="line">8、用户功能</span><br><span class="line">9、登陆/切换用户</span><br><span class="line">0、退出</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="重构原因"><a href="#重构原因" class="headerlink" title="重构原因"></a>重构原因</h2><ol>
-<li>摒弃旧版本自己写的异步并发和文件写入，使用<code>nornir</code>自带的并发机制，专注于功能的实现</li>
-<li><code>nornir</code>具有与其他开源模块的联动功能，如<code>netbox</code>、<code>sql</code>、<code>scrapli</code>、<code>napalm</code>等，具有强扩展性</li>
-<li>原有代码结构臃肿、难维护、设计不合理、功能杂乱</li>
-</ol>
-<p><strong>新版界面和结构：</strong></p>
-<p><img src="F:/Picture_2020/Screen_Capture/ScreenCaputure230414224200.jpeg" alt="ScreenCaputure230414224200"></p>
-<p><img src="F:/Picture_2020/Screen_Capture/ScreenCaputure230414223905.jpeg" alt="ScreenCaputure230414223905"></p>
-<h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><ol>
-<li>批量备份配置<ul>
-<li>根据加载的设备清单，读取<code>ssh</code>登陆信息登陆设备，执行<code>display</code>列中的<code>display</code>命令，将回显内容写入到<code>EXPORT\当天日期\export_conf</code>文件夹下，每个设备的回显内容分别记录在一个<code>txt</code>文件(格式：name + ip + 当前时间.txt)，运行结果记录在<code>result_当前日期.log</code>文件</li>
-</ul>
-</li>
-<li>批量修改配置<ul>
-<li>根据加载的设备清单，读取<code>ssh</code>登陆信息登陆设备，执行<code>config</code>列中的<code>config</code>命令，将回显内容写入到<code>EXPORT\当天日期\modify_conf</code>文件夹下，每个设备的回显内容分别记录在一个<code>txt</code>文件(格式：name + ip + 当前时间.txt)，运行结果记录在<code>result_当前日期.log</code>文件</li>
-</ul>
-</li>
-<li>筛选–&gt;执行<ul>
-<li>选择该功能选项后，会在二级菜单显示主菜单中的1、2、6、7、8功能</li>
-<li>选择对应功能后进入筛选菜单</li>
-<li>筛选菜单：<ul>
-<li>IP地址-筛选</li>
-<li>平台-筛选</li>
-<li>设备型号-筛选</li>
-<li>区域-筛选</li>
-<li>组合筛选（未编写）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>获取交换机 端口-MAC地址  <ul>
-<li>该功能通过获取交换机MAC地址表和trunk接口信息，求差集获取到非trunk接口的MAC地址表</li>
-<li>强烈建议在代码<code>task.run</code>前进行filter过滤接入交换机的<code>nr对象</code></li>
-<li>运行结果记录在<code>result_当前日期.log</code>文件</li>
-</ul>
-</li>
-<li>搜索MAC地址对应设备<ul>
-<li>本功能依赖功能4中生成的MAC地址表，需要使用本功能先执行功能4</li>
-<li>输入的MAC地址格式任意，可以是全匹配如：4426-0f92-0d06，也可以是其中部分如：0d06 或 4426，或者任意字符（没有意义）</li>
-</ul>
-</li>
-<li>批量ssh可达性测试<ul>
-<li>根据加载的设备清单，读取<code>ssh</code>登陆信息登陆设备，以获取到设备的<code>prompt</code>作为依据判断<code>ssh</code>可达，运行结果记录在<code>result_当前日期.log</code>文件</li>
-</ul>
-</li>
-<li>批量ping可达性测试<ul>
-<li>根据加载的设备清单，执行ping操作，以没有异常作为依据判断<code>ping</code>可达，运行结果记录在<code>result_当前日期.log</code>文件</li>
-</ul>
-</li>
-<li>批量保存配置<ul>
-<li>根据加载的设备清单，执行<code>netmiko_save_config</code>操作，以没有异常作为依据判断保存成功，运行结果记录在<code>result_当前日期.log</code>文件</li>
-</ul>
-</li>
-</ol>
-<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><code>Github</code>仓库地址：<a target="_blank" rel="noopener" href="https://github.com/kiraster/NetOps_v2.0_beta">https://github.com/kiraster/NetOps_v2.0_beta</a></p>
-<h3 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h3><p>由于运行代码需要安装非常多的库，可能与你当前python环境会有冲突，建议在虚拟环境下运行</p>
-<p>以<code>vscode</code>软件举例:</p>
-<ol>
-<li><p>代码编辑打开目录并控制台切换到代码根目录</p>
-</li>
-<li><p>创建虚拟环境</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m venv venv</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>激活虚拟环境</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\venv\Scripts\Activate.ps1</span><br></pre></td></tr></tbody></table></figure></li>
-</ol>
-<h3 id="安装python-库"><a href="#安装python-库" class="headerlink" title="安装python 库"></a>安装python 库</h3><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></tbody></table></figure>
-
-<p>安装库的时候可能遇到<code>timeout</code>提示，检查网络；如遇报错看提示去Google</p>
-<h2 id="运行前说明"><a href="#运行前说明" class="headerlink" title="运行前说明"></a>运行前说明</h2><ol>
-<li><p>查看<code>nornir.yaml</code>文件，发现<code>plugin: ExcelInventory</code>，是因为本代码使用了<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html">【nornir_table_inventory 插件】</a> </p>
-</li>
-<li><p><code>excel_file: "inventory/inventory_unprotected.xlsx"</code>，这行配置指示了需要的excel文件，注意看文件名（unprotected），这是一个不带保护密码的excel文件，具体说明见<code>README</code>文件</p>
-</li>
-<li><p>inventory文件夹下还有一个<code>inventory_protected.xlsx</code>文件，这是一个有保护密码的文件</p>
-</li>
-<li><p><code>inventory_protected.xlsx</code>文件需要自行制作并设置一个保护密码，以下是本机环境中的格式，可参照插件作者的示例增删改</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>hostname</th>
-<th>username</th>
-<th>password</th>
-<th>platform</th>
-<th>port</th>
-<th>model</th>
-<th>device_type</th>
-<th>area</th>
-<th>location</th>
-<th>version</th>
-<th>sn</th>
-<th>netmiko_timeout</th>
-<th>netmiko_secret</th>
-<th>netmiko_fast_cli</th>
-<th>display</th>
-<th>config</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>SW1</td>
-<td>192.168.100.10</td>
-<td>admin</td>
-<td>Admin@123456</td>
-<td>hp_comware</td>
-<td>22</td>
-<td>H3C S5820V2-54QS-GE</td>
-<td>ACC_SW</td>
-<td>WW</td>
-<td>RDJ-01</td>
-<td>COMWAREV700R001</td>
-<td>2013AYU0711103</td>
-<td>30</td>
-<td></td>
-<td>1</td>
-<td>display version,display current-configuration</td>
-<td>vlan 22,desc mgmt_vlan,int vlan 22,desc mgmt_ip</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>可以根据实际情况修改<code>num_workers</code>并发进程数和日志记录</p>
-</li>
-<li><p>如修改inventory路径和excel文件名，自行更新代码中对应的路径变量</p>
-</li>
-</ol>
-<h2 id="代码执行逻辑"><a href="#代码执行逻辑" class="headerlink" title="代码执行逻辑"></a>代码执行逻辑</h2><p><img src="F:/Picture_2020/Screen_Capture/ScreenCaputure230414224201.png" alt="ScreenCaputure230414224201"></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
-<li>总有不足之处，可以提，但不一定改</li>
-<li>我总觉得使用display和show等命令去采集设备信息不是一个很妥的方式，特别是配合textfsm形成列表套字典再写入表格；且不说速度慢，每一个命令对应一个模板导致代码结构不简洁和繁多，每个厂商的命令也不尽相同，有时同厂商同命令的回显也有差异导致要修改模板；同一源IP地址过度使用ssh登陆可能会被安全设备记录异常行为，特别是设备不可达或密码错会被识别为爆破攻击。</li>
-<li>采集就由专业的snmp去干就好，速度快。很多公共的OID一轮询就得出结果。实在不济可以弄得专业点写个针对厂商和型号的snmp轮询模板（我不会），再专业点可以去下载设备的MIB文件鼓捣鼓捣（你来），很多厂商的网管平台号称可以纳管友商设备靠的不就是这个</li>
-<li>对于批量修改配置，我的看法是慎用，特别是涉及控制层面的配置；如果要使用尽量在风险可控的前提下使用，如改个设备名称，添加描述，设备开局的批量调试等等；如确实要跑脚本建议先验证再验证，先小范围跑一两台设备，重要设备就手敲；随时做好提桶跑路。</li>
-<li>现网运行业务的时候不要乱搞，看过一个运维的采购文件，中断一次扣多少钱，多长时间内不能恢复又扣钱，看的胆战心惊的，这很大程度上让我理解了为什么一个看似不大规模的运维项目最终报价高的离谱，可能也许包含了一部分这些风险</li>
-<li>欢乐的时光总是特别短，又到时候讲byebye</li>
-<li>欢迎“<del>来电</del>”来函探讨。</li>
-</ul>
-</body></html>
+        <html><head></head><body><p>一个使用<code>nornir</code>框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解<code>nornir</code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下</p></body></html>
+        <p class="article-more-link">
+            <a href="/posts/9571d5ee.html#more">Read More</a>
+        </p>
     
     </div>
     
@@ -487,7 +348,7 @@ DO NOT APPLY COMMENTS
           <span class="column is-narrow">
               
               
-              21 minutes read (About 3204 words)
+              21 minutes read (About 3208 words)
           </span>
           
       </div>
