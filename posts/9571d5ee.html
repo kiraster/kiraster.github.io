@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
 <meta charset="utf-8">
-<title>Kir&#39;s Blog</title>
+<title>一个使用nornir框架编写的跑脚本工具 - Kir&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -13,16 +13,31 @@
 <meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
 
 
-    <meta name="description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kir&#39;s Blog">
-<meta property="og:url" content="https://kiraster.github.io/index.html">
+    <meta name="description" content="一个使用nornir框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解nornir后，一直就想把功能移植过来，现在搞的差不多了，分享一下。 之前的结构： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个使用nornir框架编写的跑脚本工具">
+<meta property="og:url" content="https://kiraster.github.io/posts/9571d5ee.html">
 <meta property="og:site_name" content="Kir&#39;s Blog">
-<meta property="og:description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+<meta property="og:description" content="一个使用nornir框架编写的跑脚本工具，之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解nornir后，一直就想把功能移植过来，现在搞的差不多了，分享一下。 之前的结构： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414224200.jpeg">
+<meta property="og:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414223905.jpeg">
+<meta property="og:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414224201.png">
+<meta property="article:published_time" content="2023-04-14T19:33:58.000Z">
+<meta property="article:modified_time" content="2023-04-14T19:40:02.991Z">
 <meta property="article:author" content="Kir Aster">
-<meta property="article:tag" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+<meta property="article:tag" content="H3C">
+<meta property="article:tag" content="netmiko">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="nornir">
+<meta property="article:tag" content="异步并发">
+<meta property="article:tag" content="脚本">
+<meta property="article:tag" content="批量导出">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="venv">
+<meta property="article:tag" content="批量配置">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/Picture_2020/Screen_Capture/ScreenCaputure230414224200.jpeg">
 
 
 
@@ -118,6 +133,62 @@ var _hmt = _hmt || [];
             </a>
             
             
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#重构原因">1&nbsp;&nbsp;<b>重构原因</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#功能说明">2&nbsp;&nbsp;<b>功能说明</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#如何使用">3&nbsp;&nbsp;<b>如何使用</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#下载">3.1&nbsp;&nbsp;下载</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#虚拟环境">3.2&nbsp;&nbsp;虚拟环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#安装python-库">3.3&nbsp;&nbsp;安装python 库</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#运行前说明">4&nbsp;&nbsp;<b>运行前说明</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#代码执行逻辑">5&nbsp;&nbsp;<b>代码执行逻辑</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#最后">6&nbsp;&nbsp;<b>最后</b></a>
+                    
+                </div>
+            </div>
+            
             
         </div>
     </div>
@@ -125,12 +196,11 @@ var _hmt = _hmt || [];
 
 <section class="section">
     <div class="container">
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
+    <article class="article content gallery" itemscope itemprop="blogPost">
     
       <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
           
-              <a href="/posts/9571d5ee.html" itemprop="url">一个使用nornir框架编写的跑脚本工具</a>
+              一个使用nornir框架编写的跑脚本工具
           
       </h1>
     
@@ -305,490 +375,70 @@ var _hmt = _hmt || [];
     
     </div>
     
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/H3C/">#H3C</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/netmiko/">#netmiko</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python/">#Python</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/nornir/">#nornir</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91/">#异步并发</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E8%84%9A%E6%9C%AC/">#脚本</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%89%B9%E9%87%8F%E5%AF%BC%E5%87%BA/">#批量导出</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Github/">#Github</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/venv/">#venv</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%89%B9%E9%87%8F%E9%85%8D%E7%BD%AE/">#批量配置</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/posts/c69db7e2.html">H3C自动配置(HTTP Python方式)</a>
+            
+        </span>
+    </div>
     
 </article>
 <!-- 
 DO NOT APPLY SHAREBOX
 
-DO NOT APPLY COMMENTS
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
 
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/c69db7e2.html" itemprop="url">H3C自动配置(HTTP Python方式)</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspMar 18th 23&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/H3C/">H3C</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              9 minutes read (About 1289 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>一个小测试，实现<code>HCL</code>模拟器下利用<code>python</code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/c69db7e2.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
+</div>
 
 DO NOT APPLY COMMENTS
 
--->
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
     
-        <article class="article content gallery" itemscope itemprop="blogPost">
+<div id="disqus_thread">
     
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/5c8077d9.html" itemprop="url">观察OSPF虚链路和虚链路的替代办法</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspMar 16th 23&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/PNETLab/">PNETLab</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              7 minutes read (About 977 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>一个小实验，观察<code>OSPF</code>虚链路、虚链路的替代办法。</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/5c8077d9.html#more">Read More</a>
-        </p>
-    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
     </div>
     
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
 
 -->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/d70f2b4c.html" itemprop="url">基于Django编写的SNMP轮询Demo</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspMar 13th 23&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/H3C/">H3C</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              9 minutes read (About 1415 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>一个基于<code>Django</code>编写的<code>SNMP</code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行<code>SNMP</code>轮询，<code>icmp</code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的<code>Gallery</code>相册查看。</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/d70f2b4c.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/c0ba4ae2.html" itemprop="url">配置跨域的Option C MPLS VPN（Cisco）</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspMar 7th 23&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/PNETLab/">PNETLab</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              21 minutes read (About 3204 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p><strong>Introduction</strong></p>
-<p>This document describes how to configure and verify the Inter-AS  Layer 3 Multiprotocol Label Switching (MPLS) VPN, option C feature.  A sample network scenario and its  configuration and outputs are shown for a better understanding.</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/c0ba4ae2.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/ed7bc2e7.html" itemprop="url">Ubuntu Server 22.04 安装 Gitlab-ce</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspFeb 23rd 23&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/Fantasy/">Fantasy</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              13 minutes read (About 1982 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>本文记录<code>VMware Workstation</code> 环境下<code>Ubuntu server 22.04</code>系统安装<code>gitlab-ce_15.8.3</code>的过程。</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/ed7bc2e7.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/567e6fc3.html" itemprop="url">Hexo环境新电脑环境重构</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspDec 7th 22&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/Blog/">Blog</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              7 minutes read (About 1067 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>在上上篇博文中描述了如何将博客源文件推送到<code>GitHub</code>私有仓库备份，这篇文将讲述如何从<code>GitHub</code>私有仓库clone至本地重构 Hexo 环境来写博客</p>
-<p>网上也有很多文章描述如何操作，也可以去参考，我记录我的操作过程如下</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/567e6fc3.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/e1203792.html" itemprop="url">Hexo 几个bat脚本</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspDec 5th 22&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/Blog/">Blog</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              3 minutes read (About 502 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>自己日常操作的几个脚本</p>
-<ul>
-<li>bat启动 Hexo 本地服务</li>
-<li>bat 推送至 Github</li>
-<li>自动打开markdown编辑器</li>
-</ul></body></html>
-        <p class="article-more-link">
-            <a href="/posts/e1203792.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/310ece77.html" itemprop="url">自动备份Hexo源文件到私有仓库</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspDec 5th 22&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/Blog/">Blog</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              8 minutes read (About 1173 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>Hexo 部署到<code>Github</code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段</p>
-<p>还有一种方法就是把这些文件也推送到<code>Github</code>仓库，网上看到有一个<code>hexo-git-backup</code>可以把源码推送到仓库分支实现备份。但是我觉得这样不妥，由于部署到<code>Github</code>的静态网站仓库是公开的，把源文推送这个分支，意味着所有人都可以看到源文件的配置，包括一些个人的信息，可能有网站统计，收录的<code>token</code>，这样就不太好</p>
-<p>看到一篇博文（<a target="_blank" rel="noopener" href="https://0skyu.cn/p/a8bd.html%EF%BC%89">https://0skyu.cn/p/a8bd.html）</a> 就整的非常好，其中原理过程可以自行去研究</p>
-<p>我参考这篇文章记录我自己的过程和操作</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/310ece77.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/5826b49.html" itemprop="url">Hexo推送提示输入账号密码问题</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspDec 1st 22&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/Blog/">Blog</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              a minute read (About 156 words)
-          </span>
-          
-      </div>
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>今天推送 <code>Github Pages</code> 博客发现需要输入账号密码，网页端检查<code>SSH Keys </code>和本地检查<code>公钥pub</code>都没问题 </p>
-<p>最后通过搜索引擎助力，修改 https 方式为 git 方式，成功推送</p>
-<p><strong>方法</strong>：修改博客目录下的<code>_config.yml</code>文件配置（不是主题目录下的配置文件）</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/5826b49.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-    
-        
-<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
-    <div class="pagination-previous is-invisible is-hidden-mobile">
-        <a href="/page/0/">Prev</a>
-    </div>
-    <div class="pagination-next">
-        <a href="/page/2/">Next</a>
-    </div>
-    <ul class="pagination-list is-hidden-mobile">
-        
-        <li><a class="pagination-link is-current" href="/">1</a></li>
-        
-        <li><a class="pagination-link" href="/page/2/">2</a></li>
-        
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        
-        <li><a class="pagination-link" href="/page/5/">5</a></li>
-        
-    </ul>
-</nav>
-    
     </div>
 </section>
 <footer class="footer">
