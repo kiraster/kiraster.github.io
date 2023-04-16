@@ -204,8 +204,7 @@ a.tag.article-tag {
   all: initial; }
 
 .sharebox {
-  margin-top: 3rem;
-  color: black; }
+  margin-top: 3rem; }
 
 .comments {
   margin-top: 3rem;
@@ -314,7 +313,8 @@ a.tag.article-tag {
 
 code, pre {
   font-size: 0.85rem;
-  font-family: "Source Code Pro", monospace, "Microsoft YaHei"; }
+  font-family: "Source Code Pro", monospace, "Microsoft YaHei";
+  color: #000; }
 
 figure.highlight {
   padding: 0;
