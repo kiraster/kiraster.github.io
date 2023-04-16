@@ -204,7 +204,8 @@ a.tag.article-tag {
   all: initial; }
 
 .sharebox {
-  margin-top: 3rem; }
+  margin-top: 3rem;
+  color: black; }
 
 .comments {
   margin-top: 3rem;
