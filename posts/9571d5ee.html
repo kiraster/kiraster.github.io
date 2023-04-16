@@ -20,12 +20,18 @@
 <meta property="og:site_name" content="Kir&#39;s Blog">
 <meta property="og:description" content="一个使用nornir框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解nornir后，一直就想把功能移植过来，现在搞的差不多了，分享一下">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s2.loli.net/2023/04/15/FrKiJqmw3suOkD4.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/04/16/fsAOMmUNaqG9RhI.gif">
+<meta property="og:image" content="https://s2.loli.net/2023/04/16/5AOdVGItbfqMrmx.gif">
+<meta property="og:image" content="https://s2.loli.net/2023/04/16/pkYRiZQMaG15HSd.gif">
+<meta property="og:image" content="https://preview.cloud.189.cn/image/imageAction?param=0A8E044CF36F75D1A4DB6B8E4F1BCF8896893CDEF91BCFE3E5111A27BCDBF08DAD32B9C4FFE1F373B6A4C720863F4A0C3F1C2C813A6FADD7521DFDDB0BB0730869052812C68B16451DE270BD02DCCB78691E22E4E2DD5920B4735DBCFD00EFD745987F0FE6979CF25F2529167C7C2E6CEABC616C">
+<meta property="og:image" content="https://preview.cloud.189.cn/image/imageAction?param=BEA7E863BEF17DF2AB1CD4402198A09212780B5699AF13B34D6EF9EAF592BE8DDE4A1FE99B063C3B8274A65429068D8541F1A2BF00D6924B7517E1E58EE1168DCBF4FEDD91C8A30D1D37B39C84A0B6E043D314236FACC007F5E6F5779323259C4DFBA2FBD948D469135EAA82D75EB1BAEF07FD07">
+<meta property="og:image" content="https://preview.cloud.189.cn/image/imageAction?param=6E82331FAFBA6F0A21A90AEEB690431D37B4554651C1124F646E87A9D90049429A332019DA0F6FBFD0919B8F1BBFC71E16216DDE791DF17DF8C74F2CC8853148D013E9057EA1C94F64EC6B5914D7D986E59B5ACEC29438EBDB18C0D912A2A24B391D23B66F81D63F80E6244AD1C20F7AE919A746">
+<meta property="og:image" content="https://preview.cloud.189.cn/image/imageAction?param=FA1B16547C40FCAB2F2678E369D82AE5924DA1B6D3A3ADE654D4F26894C03CA8DF9CD71667DB5DC75733D1ECF129D806DB6A08A40BAC35D4FBB5AB9E3CC54A764A6265FA7E9DE805D241E56440E7072EC8400EC1F79D5490F76B97C642BF45EF9790C436DC51964B1075977C73198EAEF5711CCF">
 <meta property="og:image" content="https://s2.loli.net/2023/04/15/7cxvIJfLQU85kGD.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/15/JdRLjDWpNcut3eQ.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/16/qDljtFx7Iem9Kog.jpg">
 <meta property="article:published_time" content="2023-04-14T19:33:58.000Z">
-<meta property="article:modified_time" content="2023-04-16T08:09:34.812Z">
+<meta property="article:modified_time" content="2023-04-16T09:51:39.330Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="H3C">
 <meta property="article:tag" content="netmiko">
@@ -38,7 +44,7 @@
 <meta property="article:tag" content="脚本">
 <meta property="article:tag" content="批量导出">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2023/04/15/FrKiJqmw3suOkD4.jpg">
+<meta name="twitter:image" content="https://s2.loli.net/2023/04/16/fsAOMmUNaqG9RhI.gif">
 
 
 
@@ -223,7 +229,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              12 minutes read (About 1836 words)
+              15 minutes read (About 2178 words)
           </span>
           
       </div>
@@ -237,7 +243,21 @@ var _hmt = _hmt || [];
 <li>原有代码结构臃肿、难维护、设计不合理、功能杂乱</li>
 </ol>
 <p><strong>新版界面和结构：</strong></p>
-<p><img src="https://s2.loli.net/2023/04/15/FrKiJqmw3suOkD4.jpg" alt="ScreenCaputure230414224200"></p>
+<p><strong>脚本启动界面：</strong></p>
+<p><img src="https://s2.loli.net/2023/04/16/fsAOMmUNaqG9RhI.gif" alt="1"></p>
+<p><strong>执行批量备份配置</strong></p>
+<p><img src="https://s2.loli.net/2023/04/16/5AOdVGItbfqMrmx.gif" alt="2"></p>
+<p><strong>执行 筛选–&gt;执行</strong></p>
+<p><img src="https://s2.loli.net/2023/04/16/pkYRiZQMaG15HSd.gif" alt="3"></p>
+<p><strong>执行获取交换机 端口-MAC地址 和 搜索MAC地址对应设备</strong> </p>
+<p><img src="https://preview.cloud.189.cn/image/imageAction?param=0A8E044CF36F75D1A4DB6B8E4F1BCF8896893CDEF91BCFE3E5111A27BCDBF08DAD32B9C4FFE1F373B6A4C720863F4A0C3F1C2C813A6FADD7521DFDDB0BB0730869052812C68B16451DE270BD02DCCB78691E22E4E2DD5920B4735DBCFD00EFD745987F0FE6979CF25F2529167C7C2E6CEABC616C" alt="4"></p>
+<p><strong>执行批量ssh可达性测试 和 批量ping可达性测试</strong></p>
+<p><img src="https://preview.cloud.189.cn/image/imageAction?param=BEA7E863BEF17DF2AB1CD4402198A09212780B5699AF13B34D6EF9EAF592BE8DDE4A1FE99B063C3B8274A65429068D8541F1A2BF00D6924B7517E1E58EE1168DCBF4FEDD91C8A30D1D37B39C84A0B6E043D314236FACC007F5E6F5779323259C4DFBA2FBD948D469135EAA82D75EB1BAEF07FD07" alt="5"></p>
+<p><strong>执行批量保存配置</strong></p>
+<p><img src="https://preview.cloud.189.cn/image/imageAction?param=6E82331FAFBA6F0A21A90AEEB690431D37B4554651C1124F646E87A9D90049429A332019DA0F6FBFD0919B8F1BBFC71E16216DDE791DF17DF8C74F2CC8853148D013E9057EA1C94F64EC6B5914D7D986E59B5ACEC29438EBDB18C0D912A2A24B391D23B66F81D63F80E6244AD1C20F7AE919A746" alt="6"></p>
+<p><strong>生成的文件</strong></p>
+<p><img src="https://preview.cloud.189.cn/image/imageAction?param=FA1B16547C40FCAB2F2678E369D82AE5924DA1B6D3A3ADE654D4F26894C03CA8DF9CD71667DB5DC75733D1ECF129D806DB6A08A40BAC35D4FBB5AB9E3CC54A764A6265FA7E9DE805D241E56440E7072EC8400EC1F79D5490F76B97C642BF45EF9790C436DC51964B1075977C73198EAEF5711CCF" alt="7"></p>
+<p><strong>文件根目录</strong></p>
 <p><img src="https://s2.loli.net/2023/04/15/7cxvIJfLQU85kGD.jpg" alt="ScreenCaputure230415040303"></p>
 <h2 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h2><ol>
 <li>批量备份配置<ul>
