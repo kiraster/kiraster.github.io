@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
 <meta charset="utf-8">
-<title>电脑开机和注销邮件提醒 - Kir&#39;s Blog</title>
+<title>电脑开关机邮件提醒 - Kir&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -15,7 +15,7 @@
 
     <meta name="description" content="心血来潮测试了python脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。 突然想到自己的台式电脑是来电自动开机的设置，略有所思后想到把开关机事件自动发送邮件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="电脑开机和注销邮件提醒">
+<meta property="og:title" content="电脑开关机邮件提醒">
 <meta property="og:url" content="https://kiraster.github.io/posts/1e32fc6d.html">
 <meta property="og:site_name" content="Kir&#39;s Blog">
 <meta property="og:description" content="心血来潮测试了python脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。 突然想到自己的台式电脑是来电自动开机的设置，略有所思后想到把开关机事件自动发送邮件。">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/04/22/3SOAGXLNpdzVnBj.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/22/7JpBndN5HbhMcSs.jpg">
 <meta property="article:published_time" content="2023-04-22T08:20:52.000Z">
-<meta property="article:modified_time" content="2023-04-22T09:42:39.618Z">
+<meta property="article:modified_time" content="2023-04-22T09:47:03.892Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="邮件">
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
     
       <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
           
-              电脑开机和注销邮件提醒
+              电脑开关机邮件提醒
           
       </h1>
     
@@ -221,7 +221,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              8 minutes read (About 1152 words)
+              8 minutes read (About 1150 words)
           </span>
           
       </div>
@@ -233,10 +233,10 @@ var _hmt = _hmt || [];
 <p>本人平生不知道注册多少个邮箱，想到163邮箱用的很少，所有就用它。登陆后发现里头有很多未读邮件，有安全提示和各种广告，都是几年前的了，估计是邮箱被盗用，全球各地的IP地址登陆和某位苹果玩家拿我邮箱修改了Apple ID……</p>
 <p>一顿操作后把授权码弄出来了（1毛短信费），这个钉钉机器人就不记录操作步骤了，搜索引擎遍地都是，下面记录电脑开关机事件自动发送邮件过程。</p>
 <h2 id="获取邮箱授权码"><a href="#获取邮箱授权码" class="headerlink" title="获取邮箱授权码"></a>获取邮箱授权码</h2><p>这个步骤各大在线邮箱都差不多，基本都能在设置中找到</p>
-<h2 id="安装yagmail库"><a href="#安装yagmail库" class="headerlink" title="安装yagmail库"></a>安装yagmail库</h2><p>这是个第三方库，看到搜索引擎上满满的手写一大段代码填写邮件参数，这玩意儿还能这么不智能，不就是跟foxmail客户端一样填那几样参数么，所以使用yagmail，简单。</p>
+<h2 id="安装yagmail库"><a href="#安装yagmail库" class="headerlink" title="安装yagmail库"></a>安装yagmail库</h2><p>这是个第三方库，看到搜索引擎上满满的手写一大段代码填写邮件参数，这玩意儿还能这么不智能，不就是跟foxmail客户端一样填那几样参数么，所以使用yagmail，简单</p>
 <figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install yagmail</span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>由于是两个不同的事件邮件，我分了两个python脚本</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>由于是两个不同的事件邮件，我分两个python脚本</p>
 <p><code>auto_email_strtup.py</code></p>
 <figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> yagmail</span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 连接服务器</span></span><br><span class="line">yag = yagmail.SMTP(user=<span class="hljs-string">"一三九啤酒白酒葡萄酒@163.com"</span>, password=<span class="hljs-string">"此处填写授权码"</span>,host=<span class="hljs-string">'smtp.163.com'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 编辑邮件内容</span></span><br><span class="line">time_str = datetime.now().strftime(<span class="hljs-string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">content = [<span class="hljs-string">f'时间：<span class="hljs-subst">{time_str}</span>'</span>, <span class="hljs-string">'事件：台式电脑开机'</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 发送邮件，to = 收件人邮箱 </span></span><br><span class="line">yag.send(to = <span class="hljs-string">'一三八吃吧吃吧吃吧吃吧@139.com'</span>, subject=<span class="hljs-string">'电脑开关机事件'</span>, contents = content)</span><br></pre></td></tr></tbody></table></figure>
 
