@@ -27,13 +27,13 @@
 <meta property="og:image" content="https://s2.loli.net/2023/04/22/ItfYEZo8DCFV24s.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/22/2Nngy97KV5tZAUC.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/22/Mi3YkeW7zJrOpT5.jpg">
-<meta property="og:image" content="https://s2.loli.net/2023/04/22/Uf6M2xF37VaJ5gO.jpg">
-<meta property="og:image" content="https://s2.loli.net/2023/04/22/z5qiL4pDPZtFMyO.jpg">
-<meta property="og:image" content="https://s2.loli.net/2023/04/22/RvZNSg6UA2VIm5M.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/04/22/jinzWR1w4v9YmO2.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/04/22/RTsoFMV8bYGHtwj.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/04/22/e8iNBJhZLoO9rxT.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/22/3SOAGXLNpdzVnBj.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/22/7JpBndN5HbhMcSs.jpg">
 <meta property="article:published_time" content="2023-04-22T08:20:52.000Z">
-<meta property="article:modified_time" content="2023-04-22T10:20:46.666Z">
+<meta property="article:modified_time" content="2023-04-22T13:38:24.414Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="邮件">
@@ -221,7 +221,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              8 minutes read (About 1148 words)
+              8 minutes read (About 1161 words)
           </span>
           
       </div>
@@ -240,15 +240,15 @@ var _hmt = _hmt || [];
 <p><code>auto_email_strtup.py</code></p>
 <figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> yagmail</span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 连接服务器</span></span><br><span class="line">yag = yagmail.SMTP(user=<span class="hljs-string">"一三九啤酒白酒葡萄酒@163.com"</span>, password=<span class="hljs-string">"此处填写授权码"</span>,host=<span class="hljs-string">'smtp.163.com'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 编辑邮件内容</span></span><br><span class="line">time_str = datetime.now().strftime(<span class="hljs-string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">content = [<span class="hljs-string">f'时间：<span class="hljs-subst">{time_str}</span>'</span>, <span class="hljs-string">'事件：台式电脑开机'</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 发送邮件，to = 收件人邮箱 </span></span><br><span class="line">yag.send(to = <span class="hljs-string">'一三八吃吧吃吧吃吧吃吧@139.com'</span>, subject=<span class="hljs-string">'电脑开关机事件'</span>, contents = content)</span><br></pre></td></tr></tbody></table></figure>
 
-<p><code>auto_email_logoff.py</code></p>
+<p><code>auto_email_shutdown.py</code></p>
 <figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> yagmail</span><br><span class="line"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 连接服务器</span></span><br><span class="line">yag = yagmail.SMTP(user=<span class="hljs-string">"一三九啤酒白酒葡萄酒@163.com"</span>, password=<span class="hljs-string">"此处填写授权码"</span>,host=<span class="hljs-string">'smtp.163.com'</span>)</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 编辑邮件内容</span></span><br><span class="line">time_str = datetime.now().strftime(<span class="hljs-string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">content = [<span class="hljs-string">f'时间：<span class="hljs-subst">{time_str}</span>'</span>, <span class="hljs-string">'事件：台式电脑关机'</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 发送邮件，to = 收件人邮箱 </span></span><br><span class="line">yag.send(to = <span class="hljs-string">'一三八吃吧吃吧吃吧吃吧@139.com'</span>, subject=<span class="hljs-string">'电脑开关机事件'</span>, contents = content)</span><br></pre></td></tr></tbody></table></figure>
 
 <p>由于是windows电脑，还需要编写两个bat脚本中转运行以上代码</p>
 <p><code>auto_email_strtup.bat</code></p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python F:\xxxx\auto_email_startup.py</span><br></pre></td></tr></tbody></table></figure>
 
-<p><code>auto_email_logoff.bat</code></p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python F:\xxxx\auto_email_logoff.py</span><br></pre></td></tr></tbody></table></figure>
+<p><code>auto_email_shutdown.bat</code> (需手动指定python解释器路径)</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Python3.x.x\python.exe F:\xxxx\auto_email_shutdown.py</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="window设置计划任务和组策略"><a href="#window设置计划任务和组策略" class="headerlink" title="window设置计划任务和组策略"></a>window设置计划任务和组策略</h2><h3 id="开机自动邮件的设置"><a href="#开机自动邮件的设置" class="headerlink" title="开机自动邮件的设置"></a>开机自动邮件的设置</h3><p><img src="https://s2.loli.net/2023/04/22/cKrUfsE3tnFHlX6.jpg" alt="ScreenCaputure230422165806"></p>
 <p><img src="https://s2.loli.net/2023/04/22/QL1UZdf35OVlnau.jpg" alt="ScreenCaputure230422170340"></p>
@@ -257,9 +257,9 @@ var _hmt = _hmt || [];
 <p><img src="https://s2.loli.net/2023/04/22/ItfYEZo8DCFV24s.jpg" alt="ScreenCaputure230422170421"></p>
 <p><img src="https://s2.loli.net/2023/04/22/2Nngy97KV5tZAUC.jpg" alt="ScreenCaputure230422170440"></p>
 <p><img src="https://s2.loli.net/2023/04/22/Mi3YkeW7zJrOpT5.jpg" alt="ScreenCaputure230422170550"></p>
-<h3 id="关机自动邮件的设置"><a href="#关机自动邮件的设置" class="headerlink" title="关机自动邮件的设置"></a>关机自动邮件的设置</h3><p><img src="https://s2.loli.net/2023/04/22/Uf6M2xF37VaJ5gO.jpg" alt="ScreenCaputure230422170923"></p>
-<p><img src="https://s2.loli.net/2023/04/22/z5qiL4pDPZtFMyO.jpg" alt="ScreenCaputure230422171010"></p>
-<p><img src="https://s2.loli.net/2023/04/22/RvZNSg6UA2VIm5M.jpg" alt="ScreenCaputure230422180414"></p>
+<h3 id="关机自动邮件的设置"><a href="#关机自动邮件的设置" class="headerlink" title="关机自动邮件的设置"></a>关机自动邮件的设置</h3><p><img src="https://s2.loli.net/2023/04/22/jinzWR1w4v9YmO2.jpg" alt="ScreenCaputure230422213012"></p>
+<p><img src="https://s2.loli.net/2023/04/22/RTsoFMV8bYGHtwj.jpg" alt="ScreenCaputure230422213535"></p>
+<p><img src="https://s2.loli.net/2023/04/22/e8iNBJhZLoO9rxT.jpg" alt="ScreenCaputure230422213610"></p>
 <h2 id="dingtalkchatbot插件"><a href="#dingtalkchatbot插件" class="headerlink" title="dingtalkchatbot插件"></a>dingtalkchatbot插件</h2><p>夹带钉钉机器人发消息的代码，使用到以上这个库，具体见<a target="_blank" rel="noopener" href="https://github.com/zhuifengshen/DingtalkChatbot">dingtalkchatbot插件</a> </p>
 <p>首先登陆钉钉，创建一个群，添加机器人，记录生成的webhook等参数</p>
 <p>可以把以下代码组装成一个可传参的函数，调用的时候传递参数msg</p>
