@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/04/29/ke9thlyvnjLNmPF.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/04/29/1TEwZhltcpQ3ieD.png">
 <meta property="article:published_time" content="2023-04-28T16:11:07.000Z">
-<meta property="article:modified_time" content="2023-04-29T07:26:25.384Z">
+<meta property="article:modified_time" content="2023-04-29T08:13:04.285Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="ubuntu">
@@ -221,7 +221,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              7 minutes read (About 1107 words)
+              7 minutes read (About 1102 words)
           </span>
           
       </div>
@@ -256,7 +256,7 @@ var _hmt = _hmt || [];
 <li><p>测试</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="code"><pre><span class="line">kir@kir:~/my_repo/netops_v2.0_branch/netops_v2.0_beta$ ssh -T git@github.com</span><br><span class="line">The authenticity of host 'github.com (20.205.243.166)' can't be established.</span><br><span class="line">ED25519 key fingerprint is SHA256:xxxxxx</span><br><span class="line">This key is not known by any other names</span><br><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="line">Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.</span><br><span class="line">Hi weeaster! You've successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></tbody></table></figure>
 </li>
-<li><p>设置远程仓库地址（默认的是origin https//xxxx不好使，换成git@xxxx）</p>
+<li><p>设置远程仓库地址（https//xxxx不好使，换成git@xxxx）</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="hljs-language-bash">git remote <span class="hljs-built_in">rm</span> origin</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="hljs-language-bash">git remote add origin git@github.com:weeaster/netops_v2.0_beta.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="hljs-language-bash">git remote -v</span></span><br><span class="line">origin  git@github.com:weeaster/netops_v2.0_beta.git (fetch)</span><br><span class="line">origin  git@github.com:weeaster/netops_v2.0_beta.git (push)</span><br></pre></td></tr></tbody></table></figure>
 </li>
 <li><p>三板斧<code>git add</code>,<code>git commit</code>,<code>git push</code>，推送到ubuntu-branch分支</p>
