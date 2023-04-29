@@ -34,9 +34,9 @@
 <meta property="article:modified_time" content="2023-04-29T08:13:27.194Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="pull requests">
 <meta property="article:tag" content="branch">
-<meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="提交分支">
 <meta property="article:tag" content="提交代码">
 <meta property="article:tag" content="拒绝PR">
@@ -321,11 +321,11 @@ var _hmt = _hmt || [];
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Python/">#Python</a></span>
     
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/ubuntu/">#ubuntu</a></span>
+    
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/pull-requests/">#pull requests</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/branch/">#branch</a></span>
-    
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/ubuntu/">#ubuntu</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%8F%90%E4%BA%A4%E5%88%86%E6%94%AF/">#提交分支</a></span>
     
@@ -473,69 +473,6 @@ DO NOT APPLY COMMENTS
 
     
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-    <style>
-        .hljs {
-            position: relative;
-        }
-
-        .hljs .clipboard-btn {
-            float: right;
-            color: #9a9a9a;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .hljs .clipboard-btn:hover {
-          color: #8a8a8a;
-        }
-
-        .hljs > .clipboard-btn {
-            display: none;
-            position: absolute;
-            right: 4px;
-            top: 4px;
-        }
-
-        .hljs:hover > .clipboard-btn {
-            display: inline;
-        }
-
-        .hljs > figcaption > .clipboard-btn {
-            margin-right: 4px;
-        }
-    </style>
-    <script>
-      $(document).ready(function () {
-        $('figure.hljs').each(function(i, figure) {
-          var codeId = 'code-' + i;
-          var code = figure.querySelector('.code');
-          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
-          code.id = codeId;
-          copyButton.addClass('clipboard-btn');
-          copyButton.attr('data-clipboard-target-id', codeId);
-
-          var figcaption = figure.querySelector('figcaption');
-
-          if (figcaption) {
-            figcaption.append(copyButton[0]);
-          } else {
-            figure.prepend(copyButton[0]);
-          }
-        })
-
-        var clipboard = new ClipboardJS('.clipboard-btn', {
-          target: function(trigger) {
-            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
-          }
-        });
-        clipboard.on('success', function(e) {
-          e.clearSelection();
-        })
-      })
-    </script>
-
     
     
     
