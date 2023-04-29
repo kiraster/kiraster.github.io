@@ -197,7 +197,7 @@ var _hmt = _hmt || [];
 <span id="more"></span>
 
 <h2 id="bat启动-Hexo-本地服务"><a href="#bat启动-Hexo-本地服务" class="headerlink" title="bat启动 Hexo 本地服务"></a>bat启动 Hexo 本地服务</h2><p>前提条件：已完成博客搭建。</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">:: 切换至博客源文件目录</span><br><span class="line">d:</span><br><span class="line">cd D:\blog5</span><br><span class="line">:: 执行 清除缓存文件&amp;&amp;生成静态文件&amp;&amp;启用本地服务</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">:: 切换至博客源文件目录</span><br><span class="line">d:</span><br><span class="line">cd D:\blog5</span><br><span class="line">:: 执行 清除缓存文件&amp;&amp;生成静态文件&amp;&amp;启用本地服务</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></tbody></table></figure>
 
 <ol>
 <li>新建后缀为bat的脚本文件</li>
@@ -205,7 +205,7 @@ var _hmt = _hmt || [];
 <li>双击此脚本运行的结果相当于在你的博客路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo s” 运行.<!--more--></li>
 </ol>
 <h2 id="bat-推送至-Github"><a href="#bat-推送至-Github" class="headerlink" title="bat 推送至 Github"></a>bat 推送至 Github</h2><p>前提条件：已完成博客搭建和推送 Github 的设置。</p>
-  <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">:: 切换至博客源文件目录</span><br><span class="line">d:</span><br><span class="line">cd D:\blog5</span><br><span class="line">:: 执行 清除缓存文件&amp;&amp;生成静态文件&amp;&amp;部署网站</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></tbody></table></figure>
+  <figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">:: 切换至博客源文件目录</span><br><span class="line">d:</span><br><span class="line">cd D:\blog5</span><br><span class="line">:: 执行 清除缓存文件&amp;&amp;生成静态文件&amp;&amp;部署网站</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></tbody></table></figure>
 
 <ol>
 <li>新建后缀为 bat 的脚本文件</li>
@@ -213,7 +213,7 @@ var _hmt = _hmt || [];
 <li>双击此脚本运行的结果相当于在你的博客路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;&amp; hexo g ” 运行，如果只执行 “hexo clean &amp;&amp; hexo g &amp;&amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，后边加”hexo s“启用本地服务保持窗口不关闭（由于还有自动推送博客源文件的步骤，我不加这个），运行完成后确认是否推送成功，Ctrl+C结束即可</li>
 </ol>
 <h2 id="自动打开markdown编辑器"><a href="#自动打开markdown编辑器" class="headerlink" title="自动打开markdown编辑器"></a>自动打开markdown编辑器</h2><p>在执行<code>hexo n xxxx</code>后自动打开 markdown 编辑器打开 md 文件，在博客目录下的<code>scripts</code>目录新建<code>js</code>文件（我使用的是<code>Typora</code>）</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var spawn = require('child_process').exec;</span><br><span class="line">hexo.on('new', function(data){</span><br><span class="line">  spawn('start  "D:\Program Files\Typora\Typora.exe" ' + data.path);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">var spawn = require('child_process').exec;</span><br><span class="line">hexo.on('new', function(data){</span><br><span class="line">  spawn('start  "D:\Program Files\Typora\Typora.exe" ' + data.path);</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
 
 <ol>
 <li>新建后缀为 js 的脚本文件</li>

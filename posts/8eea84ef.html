@@ -209,7 +209,7 @@ var _hmt = _hmt || [];
 <blockquote><p>根端口<br>所谓根端口，是指非根桥设备上离根桥最近的端口。根端口负责与根桥进行通信。非根桥设备上有且只有一个根端口，根桥上没有根端口。</p>
 </blockquote>
 
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;CORE_SW1&gt;dis stp brief </span><br><span class="line"> MST ID   Port                                Role  STP State   Protection</span><br><span class="line"> 0        Bridge-Aggregation101               ROOT  FORWARDING  NONE</span><br><span class="line"> 0        Bridge-Aggregation102               DESI  FORWARDING  NONE</span><br><span class="line">&lt;CORE_SW1&gt;</span><br><span class="line">&lt;CORE_SW1&gt;dis stp ro</span><br><span class="line">&lt;CORE_SW1&gt;dis stp root </span><br><span class="line"> MST ID   Root Bridge ID        ExtPathCost IntPathCost Root Port</span><br><span class="line"> 0        32768.186d-08c1-0100  58          0           BAGG101</span><br><span class="line">&lt;CORE_SW1&gt;</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">&lt;CORE_SW1&gt;dis stp brief </span><br><span class="line"> MST ID   Port                                Role  STP State   Protection</span><br><span class="line"> 0        Bridge-Aggregation101               ROOT  FORWARDING  NONE</span><br><span class="line"> 0        Bridge-Aggregation102               DESI  FORWARDING  NONE</span><br><span class="line">&lt;CORE_SW1&gt;</span><br><span class="line">&lt;CORE_SW1&gt;dis stp ro</span><br><span class="line">&lt;CORE_SW1&gt;dis stp root </span><br><span class="line"> MST ID   Root Bridge ID        ExtPathCost IntPathCost Root Port</span><br><span class="line"> 0        32768.186d-08c1-0100  58          0           BAGG101</span><br><span class="line">&lt;CORE_SW1&gt;</span><br></pre></td></tr></tbody></table></figure>
 </li>
 <li><p>为什么会出现这种情况</p>
 <p>首先根据 MST 域 的定义，结合 H3C 官网说明，判断出上图中每个交换机都是不同 MST 域，上面拓扑图中本质就由 6 个 MST 域组成，尽管它们域的配置除了域名不一样，其他参数都一样。剩下的就是 MST 域与 MST 域 的生成树关系。</p>
@@ -223,13 +223,13 @@ var _hmt = _hmt || [];
 <h2 id="可能导致的问题"><a href="#可能导致的问题" class="headerlink" title="可能导致的问题"></a>可能导致的问题</h2><ul>
 <li><p>依照上面拓扑图搭建网络会出现什么问题</p>
 <p>查看 AGGE_SW1 生成树信息，发现汇聚交换机下联接入交换机的端口是 Alternate Port 角色，不转发业务流量。造成的具体表现就是从核心交换机方向的流量要回到 ACC_SW1 上的终端设备会绕道 ACC_SW2 再到 ACC_SW1 的终端。是不是很不合理 </p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;AGGE_SW1&gt;dis stp brief </span><br><span class="line"> MST ID   Port                                Role  STP State   Protection</span><br><span class="line"> 0        Bridge-Aggregation23                DESI  FORWARDING  NONE</span><br><span class="line"> 0        GigabitEthernet1/0/1                ALTE  DISCARDING  NONE</span><br><span class="line"> 0        GigabitEthernet1/0/2                ROOT  FORWARDING  NONE</span><br><span class="line">&lt;AGGE_SW1&gt;</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">&lt;AGGE_SW1&gt;dis stp brief </span><br><span class="line"> MST ID   Port                                Role  STP State   Protection</span><br><span class="line"> 0        Bridge-Aggregation23                DESI  FORWARDING  NONE</span><br><span class="line"> 0        GigabitEthernet1/0/1                ALTE  DISCARDING  NONE</span><br><span class="line"> 0        GigabitEthernet1/0/2                ROOT  FORWARDING  NONE</span><br><span class="line">&lt;AGGE_SW1&gt;</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <h2 id="解决之道"><a href="#解决之道" class="headerlink" title="解决之道"></a>解决之道</h2><ul>
 <li><p>要扭转 <strong>说2</strong>  中这种不合理的流量路径，方法也很简单，保证核心交换机是根桥即可</p>
 </li>
 <li><p>配置核心交换机为根桥</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[CORE_SW1]stp instance 0 root primary </span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">[CORE_SW1]stp instance 0 root primary </span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
 <li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
