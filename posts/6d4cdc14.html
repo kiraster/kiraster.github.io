@@ -224,7 +224,7 @@ var _hmt = _hmt || [];
 <li><p>交换机和路由器设备，可以使用配置高级 ACL 的方式进行规避</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 配置高级 ACL</span><br><span class="line">acl advanced 3456</span><br><span class="line"> description FIX_FOR_CVE-1999-0524</span><br><span class="line"> rule 0 deny icmp icmp-type timestamp-request</span><br><span class="line"> rule 5 deny icmp icmp-type 17 0</span><br><span class="line"> rule 10 permit ip</span><br><span class="line"># 接口过滤调用</span><br><span class="line">interface Vlan-interface XXX</span><br><span class="line"> packet-filter 3456 inbound hardware-count</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
-<!-- hexo injector body_end start --><script src="/js/timelinesstips.js"></script><!-- hexo injector body_end end --></body></html>
+</body></html>
     
     </div>
     
