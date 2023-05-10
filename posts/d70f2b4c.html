@@ -25,13 +25,13 @@
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="H3C">
 <meta property="article:tag" content="python">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="venv">
 <meta property="article:tag" content="Django">
 <meta property="article:tag" content="SNMP">
 <meta property="article:tag" content="sqlite">
 <meta property="article:tag" content="ORM">
 <meta property="article:tag" content="OID">
-<meta property="article:tag" content="Github">
-<meta property="article:tag" content="venv">
 <meta name="twitter:card" content="summary">
 
 
@@ -296,7 +296,7 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><p><strong>clone&nbsp;仓库代码至本地或使用浏览器下载压缩包</strong></p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">git clone https://github.com/kiraster/ndgv_demo.git</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/kiraster/ndgv_demo.git</span><br></pre></td></tr></tbody></table></figure>
 
 <p>或 <a target="_blank" rel="noopener" href="https://github.com/kiraster/ndgv_demo">https://github.com/kiraster/ndgv_demo</a>  <strong>Code</strong>    –&gt;&gt;  <strong>Download ZIP</strong></p>
 <h3 id="本地处理"><a href="#本地处理" class="headerlink" title="本地处理"></a>本地处理</h3><p>使用任意支持Python&nbsp;的 IDE工具，将代码目录添加</p>
@@ -305,20 +305,20 @@ var _hmt = _hmt || [];
 <li><p>IDE工具控制台切换到代码根目录</p>
 </li>
 <li><p>创建虚拟环境</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">python -m venv venv</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m venv venv</span><br></pre></td></tr></tbody></table></figure>
 </li>
 <li><p>激活虚拟环境</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">.\venv\Scripts\Activate.ps1</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\venv\Scripts\Activate.ps1</span><br></pre></td></tr></tbody></table></figure>
 
 <p>可能遇到不能执行脚本的错误，可以以管理员身份打开<code>powershell</code>，执行<code> set-executionpolicy remotesigned</code>，选择<code>y</code></p>
 </li>
 </ol>
-<h4 id="安装python-库"><a href="#安装python-库" class="headerlink" title="安装python&nbsp;库"></a>安装python&nbsp;库</h4><figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="安装python-库"><a href="#安装python-库" class="headerlink" title="安装python&nbsp;库"></a>安装python&nbsp;库</h4><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><ol>
 <li>修改<code>ndgv1/settings.py </code>文件(78行开始)（以下是使用<code>sqlite</code>数据的配置，如需使用<code>MySQL</code>，把<code>sqlite</code>部分注释，再把<code>MySQL</code>注释部分取消即可）</li>
 </ol>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">DATABASES = {</span><br><span class="line">    'default': {</span><br><span class="line">        'ENGINE': 'django.db.backends.sqlite3',</span><br><span class="line">        'NAME': BASE_DIR / 'db.sqlite3',</span><br><span class="line">    # 'default': {</span><br><span class="line">    #     'ENGINE': 'django.db.backends.mysql',</span><br><span class="line">    #     'NAME': 'ndgv1.3',  # 数据库名称</span><br><span class="line">    #     'USER': 'root',</span><br><span class="line">    #     'PASSWORD': 'xxxxxxxx',</span><br><span class="line">    #     'HOST': '127.0.0.1',</span><br><span class="line">    #     'PORT': 3306,</span><br><span class="line">    #     'CHARSET': 'utf8'</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = {</span><br><span class="line">    'default': {</span><br><span class="line">        'ENGINE': 'django.db.backends.sqlite3',</span><br><span class="line">        'NAME': BASE_DIR / 'db.sqlite3',</span><br><span class="line">    # 'default': {</span><br><span class="line">    #     'ENGINE': 'django.db.backends.mysql',</span><br><span class="line">    #     'NAME': 'ndgv1.3',  # 数据库名称</span><br><span class="line">    #     'USER': 'root',</span><br><span class="line">    #     'PASSWORD': 'xxxxxxxx',</span><br><span class="line">    #     'HOST': '127.0.0.1',</span><br><span class="line">    #     'PORT': 3306,</span><br><span class="line">    #     'CHARSET': 'utf8'</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
 <ol start="2">
 <li><p>删除<code>device_app/migrations</code> 和 <code>scheduler_app/migrations</code> 除<code>_init_.py </code>外的所有文件</p>
@@ -326,12 +326,12 @@ var _hmt = _hmt || [];
 <li><p>删除 <code>db.sqlite3</code> 文件</p>
 </li>
 <li><p>执行数据库迁移命令</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></tbody></table></figure></li>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
 <h3 id="修改清空数据功能代码"><a href="#修改清空数据功能代码" class="headerlink" title="修改清空数据功能代码"></a>修改<code>清空数据</code>功能代码</h3><p>修改<code>device_app/views</code>文件(683行开始)，以下是使用<code>sqlite</code>数据的配置，如需使用<code>MySQL</code>，把<code>sqlite</code>部分注释，再把<code>MySQL</code>注释部分取消即可</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">只直接使用原生 sql 语句 更快</span><br><span class="line">from django.db import connection</span><br><span class="line"># sqlite 数据库</span><br><span class="line">sqlite_db = connection.cursor()</span><br><span class="line"># MySQL 数据库</span><br><span class="line"># mysql_db = connection.cursor()</span><br><span class="line"># 执行 命令 重置 自增ID</span><br><span class="line">sqlite_db.execute('DELETE FROM sqlite_sequence')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_device')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_devicedetail')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_devicestate')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_devicelocation')</span><br><span class="line">sqlite_db.execute('DELETE FROM scheduler_app_schedulerdetail')</span><br><span class="line">sqlite_db.execute('DELETE FROM django_apscheduler_djangojob')</span><br><span class="line">sqlite_db.execute('DELETE FROM django_apscheduler_djangojobexecution')</span><br><span class="line">sqlite_db.execute('DELETE FROM sqlite_sequence')</span><br><span class="line"># 取消外键约束</span><br><span class="line"># mysql_db.execute('SET FOREIGN_KEY_CHECKS=0')</span><br><span class="line"># mysql_db.execute('truncate table device_app_device')</span><br><span class="line"># mysql_db.execute('truncate table device_app_devicedetail')</span><br><span class="line"># mysql_db.execute('truncate table device_app_devicestate')</span><br><span class="line"># mysql_db.execute('truncate table device_app_devicelocation')</span><br><span class="line"># mysql_db.execute('truncate table scheduler_app_schedulerdetail')</span><br><span class="line"># mysql_db.execute('truncate table django_apscheduler_djangojob')</span><br><span class="line"># mysql_db.execute('truncate table django_apscheduler_djangojobexecution')</span><br><span class="line"># 设置外键约束</span><br><span class="line"># mysql_db.execute('SET FORE</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">只直接使用原生 sql 语句 更快</span><br><span class="line">from django.db import connection</span><br><span class="line"># sqlite 数据库</span><br><span class="line">sqlite_db = connection.cursor()</span><br><span class="line"># MySQL 数据库</span><br><span class="line"># mysql_db = connection.cursor()</span><br><span class="line"># 执行 命令 重置 自增ID</span><br><span class="line">sqlite_db.execute('DELETE FROM sqlite_sequence')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_device')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_devicedetail')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_devicestate')</span><br><span class="line">sqlite_db.execute('DELETE FROM device_app_devicelocation')</span><br><span class="line">sqlite_db.execute('DELETE FROM scheduler_app_schedulerdetail')</span><br><span class="line">sqlite_db.execute('DELETE FROM django_apscheduler_djangojob')</span><br><span class="line">sqlite_db.execute('DELETE FROM django_apscheduler_djangojobexecution')</span><br><span class="line">sqlite_db.execute('DELETE FROM sqlite_sequence')</span><br><span class="line"># 取消外键约束</span><br><span class="line"># mysql_db.execute('SET FOREIGN_KEY_CHECKS=0')</span><br><span class="line"># mysql_db.execute('truncate table device_app_device')</span><br><span class="line"># mysql_db.execute('truncate table device_app_devicedetail')</span><br><span class="line"># mysql_db.execute('truncate table device_app_devicestate')</span><br><span class="line"># mysql_db.execute('truncate table device_app_devicelocation')</span><br><span class="line"># mysql_db.execute('truncate table scheduler_app_schedulerdetail')</span><br><span class="line"># mysql_db.execute('truncate table django_apscheduler_djangojob')</span><br><span class="line"># mysql_db.execute('truncate table django_apscheduler_djangojobexecution')</span><br><span class="line"># 设置外键约束</span><br><span class="line"># mysql_db.execute('SET FORE</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h2><figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">python .\manage.py runserver</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="运行代码"><a href="#运行代码" class="headerlink" title="运行代码"></a>运行代码</h2><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\manage.py runserver</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="代码弊端"><a href="#代码弊端" class="headerlink" title="代码弊端"></a>代码弊端</h2><ol>
 <li>代码写死华三设备的oid</li>
@@ -384,6 +384,10 @@ var _hmt = _hmt || [];
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/python/">#python</a></span>
     
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Github/">#Github</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/venv/">#venv</a></span>
+    
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Django/">#Django</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/SNMP/">#SNMP</a></span>
@@ -393,10 +397,6 @@ var _hmt = _hmt || [];
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/ORM/">#ORM</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/OID/">#OID</a></span>
-    
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Github/">#Github</a></span>
-    
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/venv/">#venv</a></span>
     
     </div>
     

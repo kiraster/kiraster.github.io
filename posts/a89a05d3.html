@@ -343,7 +343,7 @@ var _hmt = _hmt || [];
 <li><p>就这个交叉互联问题与华三400聊了近半小时，对方给出的方案是按完美的主备处理方式进行组网，（在网络正常的情况下）即流量永远只走一边，只要防火墙上有一个端口出现故障，冗余组全部切换到备。</p>
 </li>
 <li><p>主备模式下，设置冗余组，主成员下的端口有任一出现问题，就会整体切换到备，而备设备如在整体切换就有部分端口故障，此时主成员设备的UP状态的端口会在 DOWN 和  DOWN(redundancy down) 之间反复恒跳，而Status出现两个 Secondary，Slot1 的Track优先级也会随着端口的两个 DOWN 状态不同而变化。注意，此时网络并没有中断。</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="code"><pre><span class="line">Redundancy group 11 (ID 1):</span><br><span class="line">  Node ID      Slot          Priority   Status        Track weight</span><br><span class="line">  1            Slot1         1          Secondary     -1020</span><br><span class="line">  2            Slot2         1          Secondary     -255</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Redundancy group 11 (ID 1):</span><br><span class="line">  Node ID      Slot          Priority   Status        Track weight</span><br><span class="line">  1            Slot1         1          Secondary     -1020</span><br><span class="line">  2            Slot2         1          Secondary     -255</span><br></pre></td></tr></tbody></table></figure>
 </li>
 <li><p>要严格控制流量走一边的情况，就需要接入层网上的设备互联都使用双线互联。而万一“主”设备上联到上一层“主”设备的线路故障了，那么恭喜你可能网络瘫痪了，举个例子，拓扑中SW3与SW11的G0/1接口down，因为SW11上联的两根线路做了聚合，SW11上联的流量会通过G0/2向上走，相当于在核心交换机的SW4上接了一台 PC ，你觉得流量再往上层该怎么走？走到FW2备成员？而FW2是备用状态不处理流量。写到这我才想起来原来华三400建议做两个聚合组是有道理的，SW4 G0/4和G0/3做一个聚合组，就可以人为限制流量又走到FW1，秒啊。</p>
 </li>
