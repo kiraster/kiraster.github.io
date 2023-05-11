@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
 <meta charset="utf-8">
-<title>Category: category - Kir&#39;s Blog</title>
+<title>Tag: notips - Kir&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -16,7 +16,7 @@
     <meta name="description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kir&#39;s Blog">
-<meta property="og:url" content="https://kiraster.github.io/categories/category/index.html">
+<meta property="og:url" content="https://kiraster.github.io/tags/notips/index.html">
 <meta property="og:site_name" content="Kir&#39;s Blog">
 <meta property="og:description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
 <meta property="og:locale" content="en_US">
@@ -126,7 +126,7 @@ var _hmt = _hmt || [];
 <section class="section section-heading">
     <div class="container">
         <div class="content">
-            <h5><i class="far fa-folder"></i>category</h5>
+            <h5>#notips</h5>
         </div>
     </div>
 </section>
@@ -137,7 +137,7 @@ var _hmt = _hmt || [];
     
       <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
           
-              <a href="/posts/9481f4f2.html" itemprop="url">add-timeliness-tips</a>
+              <a href="/posts/9481f4f2.html" itemprop="url">添加hexo文章时效性提示</a>
           
       </h1>
     
@@ -152,14 +152,14 @@ var _hmt = _hmt || [];
           
           <span class="column is-narrow article-category">
               <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/category/">category</a>
+              <a class="article-category-link" href="/categories/Blog/">Blog</a>
           </span>
           
           
           <span class="column is-narrow">
               
               
-              3 minutes read (About 464 words)
+              5 minutes read (About 810 words)
           </span>
           
       </div>
@@ -172,26 +172,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>-start here</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- add timeliness tips date:20230510 --&gt;</span><br><span class="line">&lt;% if (typeof post.notips === 'undefined' || !post.notips) { %&gt;</span><br><span class="line">  &lt;% var days = moment().diff(moment(post.date), 'days'); %&gt;</span><br><span class="line">  &lt;% if (days &gt; 180) { %&gt;</span><br><span class="line">    &lt;div class="alert alert-warning"&gt;</span><br><span class="line">      &lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; </span><br><span class="line">      This is an article that was created &lt;%= days %&gt; days ago, and the information may have evolved or changed.  </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">  &lt;% } %&gt;</span><br><span class="line">&lt;% } %&gt;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这段 EJS 代码主要实现以下功能：</p>
-<ol>
-<li>判断文章是否需要显示警告信息，如果需要显示警告信息，则执行接下来的代码块；</li>
-<li>计算文章发布时间与当前时间之间的天数，并判断是否超过 180 天；</li>
-<li>如果超过 180 天，则显示一个带有警告图标的提示框，告知读者文章内容可能已经过时或发生变化。</li>
-</ol>
-<p>下面逐行分析代码的具体含义：</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;% if (typeof post.notips === 'undefined' || !post.notips) { %&gt;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这一行代码首先判断 <code>post.notips</code> 是否有定义。如果没有定义，即 <code>typeof post.notips === 'undefined'</code> 为真，或者定义了但值为假（0、false、null、空字符串等），即 <code>!post.notips</code> 为真，那么就执行接下来的代码块，否则跳过。</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;% var days = moment().diff(moment(post.date), 'days'); %&gt;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这一行代码使用 moment.js 库计算当前时间与文章发布时间之间的天数。具体来说，<code>moment().diff(moment(post.date), 'days')</code> 表示当前时间与 <code>post.date</code> 这个 moment 对象之间的天数差值。将计算结果赋值给 <code>days</code> 变量，以便后续使用。</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;% if (days &gt; 180) { %&gt;</span><br><span class="line">    &lt;div class="alert alert-warning"&gt;</span><br><span class="line">      &lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; </span><br><span class="line">      This is an article that was created &lt;%= days %&gt; days ago, and the information may have evolved or changed.  </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">&lt;% } %&gt;</span><br></pre></td></tr></tbody></table></figure>
-
-<p>这一段代码实现了在文章过时时显示一个警告提示信息。具体来说，如果 <code>days</code> 大于 180，即文章发布时间距今已经超过 180 天，则显示一个带有警告图标的提示框，里面包含了提示文字和当前时间与发布时间之间的天数差值。</p>
-</body></html>
+        <html><head></head><body><p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推</p>
+<p>出新版本或新特性或变更不再适用当前。</p>
+<p>在这些文章页面给出提示信息，提示注意甄别。</p></body></html>
+        <p class="article-more-link">
+            <a href="/posts/9481f4f2.html#more">Read More</a>
+        </p>
     
     </div>
     
