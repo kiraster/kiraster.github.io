@@ -13,16 +13,16 @@
 <meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
 
 
-    <meta name="description" content="之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推 出新版本或新特性或变更不再适用当前。 在这些文章页面给出提示信息，提示注意甄别。">
+    <meta name="description" content="之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。 在这些文章页面给出提示信息，提示注意甄别。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="添加hexo文章时效性提示">
 <meta property="og:url" content="https://kiraster.github.io/posts/9481f4f2.html">
 <meta property="og:site_name" content="Kir&#39;s Blog">
-<meta property="og:description" content="之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推 出新版本或新特性或变更不再适用当前。 在这些文章页面给出提示信息，提示注意甄别。">
+<meta property="og:description" content="之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。 在这些文章页面给出提示信息，提示注意甄别。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2023/05/11/PMvTXZxS3C5tLKA.jpg">
 <meta property="article:published_time" content="2023-05-11T05:30:19.000Z">
-<meta property="article:modified_time" content="2023-05-11T07:15:59.560Z">
+<meta property="article:modified_time" content="2023-05-11T07:19:50.659Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="时效性提示">
@@ -193,7 +193,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              6 minutes read (About 866 words)
+              6 minutes read (About 865 words)
           </span>
           
       </div>
@@ -206,14 +206,11 @@ var _hmt = _hmt || [];
     
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推</p>
-<p>出新版本或新特性或变更不再适用当前。</p>
+        <html><head></head><body><p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。</p>
 <p>在这些文章页面给出提示信息，提示注意甄别。<span id="more"></span></p>
 <p><strong>效果如下：</strong></p>
 <p><img src="https://s2.loli.net/2023/05/11/PMvTXZxS3C5tLKA.jpg" alt="ScreenCaputure230511143012"></p>
-<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>在主题文件夹的 layout 目录下找到文章页面的模板文件，一般为<code>post.ejs</code>或者<code>article.ejs</code>（这个要根据主题</p>
-<p>来确定，我使用的主题是 post.ejs 包了一层 article.ejs，所以在 article.ejs 中添加代码比较合适），在该文件中找</p>
-<p>到文章正文之上的行添加如下代码：</p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>在主题文件夹的 layout 目录下找到文章页面的模板文件，一般为<code>post.ejs</code>或者<code>article.ejs</code>（这个要根据主题来确定，我使用的主题是 post.ejs 包了一层 article.ejs，所以在 article.ejs 中添加代码比较合适），在该文件中找到文章正文之上的行添加如下代码：</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- add timeliness tips date:20230510 --&gt;</span><br><span class="line">&lt;% if (typeof post.notips === 'undefined' || !post.notips) { %&gt;</span><br><span class="line">  &lt;% var days = moment().diff(moment(post.date), 'days'); %&gt;</span><br><span class="line">  &lt;% if (days &gt; 180) { %&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; </span><br><span class="line">      This is an article that was created &lt;%= days %&gt; days ago, and the information may have evolved or changed.  </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">  &lt;% } %&gt;</span><br><span class="line">&lt;% } %&gt;</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h2><p>这段 EJS 代码主要实现以下功能：</p>
@@ -225,9 +222,7 @@ var _hmt = _hmt || [];
 <h3 id="notips字段的使用"><a href="#notips字段的使用" class="headerlink" title="notips字段的使用"></a>notips字段的使用</h3><p>在 Hexo 的文章 Front-matter 中定义<code>notips</code> 字段，因为有一些类型的文章并不需要这个提示，比如一些感想思考想法。</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (typeof post.notips === 'undefined' || !post.notips) { %&gt;</span><br></pre></td></tr></tbody></table></figure>
 
-<p>这一行代码首先判断 <code>post.notips</code> 是否有定义。如果没有定义，即 <code>typeof post.notips === 'undefined'</code> </p>
-<p>为真，或者定义了但值为假（0、false、null、空字符串等），即 <code>!post.notips</code> 为真，那么就执行接下来的代码</p>
-<p>块，否则跳过。</p>
+<p>这一行代码首先判断 <code>post.notips</code> 是否有定义。如果没有定义，即 <code>typeof post.notips === 'undefined'</code> 为真，或者定义了但值为假（0、false、null、空字符串等），即 <code>!post.notips</code> 为真，那么就执行接下来的代码块，否则跳过。</p>
 <p><strong>如果需要在文章中显示提示信息，则留空就行，不定义<code>notips</code>就行</strong></p>
 <p><strong>如果不需要在文章中显示提示信息，则把<code>post.notips</code> 的值设置为真（即非零、非空、非 false）</strong></p>
 <p><strong>如果想要又不想要，你自己分裂去</strong></p>
@@ -236,14 +231,10 @@ var _hmt = _hmt || [];
 
 <h3 id="其他行代码说明"><a href="#其他行代码说明" class="headerlink" title="其他行代码说明"></a>其他行代码说明</h3><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% var days = moment().diff(moment(post.date), 'days'); %&gt;</span><br></pre></td></tr></tbody></table></figure>
 
-<p>这一行代码使用 moment.js 库计算当前时间与文章发布时间之间的天数。具体来说，</p>
-<p><code>moment().diff(moment(post.date), 'days')</code> 表示当前时间与 <code>post.date</code> 这个 moment 对象之间的天数</p>
-<p>差值。将计算结果赋值给 <code>days</code> 变量，以便后续使用。</p>
+<p>这一行代码使用 moment.js 库计算当前时间与文章发布时间之间的天数。具体来说<code>moment().diff(moment(post.date), 'days')</code> 表示当前时间与 <code>post.date</code> 这个 moment 对象之间的天数差值。将计算结果赋值给 <code>days</code> 变量，以便后续使用。</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (days &gt; 180) { %&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; </span><br><span class="line">      This is an article that was created &lt;%= days %&gt; days ago, and the information may have evolved or changed.  </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">&lt;% } %&gt;</span><br></pre></td></tr></tbody></table></figure>
 
-<p>这一段代码实现了在文章过时时显示一个警告提示信息。具体来说，如果 <code>days</code> 大于 180，即文章发布时间距今</p>
-<p>已经超过 180 天，则显示一个带警告图标开头的提示信息，里面包含了提示文字和当前时间与发布时间之间的天</p>
-<p>数差值。</p>
+<p>这一段代码实现了在文章过时时显示一个警告提示信息。具体来说，如果 <code>days</code> 大于 180，即文章发布时间距今已经超过 180 天，则显示一个带警告图标开头的提示信息，里面包含了提示文字和当前时间与发布时间之间的天数差值。</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
 <li>以上方案部分代码内容来自GPT，但是点开参考来源是404页面，让人费解</li>
 </ul>
