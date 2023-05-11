@@ -130,6 +130,77 @@ var _hmt = _hmt || [];
     
       <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
           
+              <a href="/posts/9481f4f2.html" itemprop="url">add-timeliness-tips</a>
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspMay 11th 23&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/category/">category</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              3 minutes read (About 464 words)
+          </span>
+          
+      </div>
+    
+    <!-- add timeliness tips date:20230510 -->
+    
+      
+      
+    
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>-start here</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- add timeliness tips date:20230510 --&gt;</span><br><span class="line">&lt;% if (typeof post.notips === 'undefined' || !post.notips) { %&gt;</span><br><span class="line">  &lt;% var days = moment().diff(moment(post.date), 'days'); %&gt;</span><br><span class="line">  &lt;% if (days &gt; 180) { %&gt;</span><br><span class="line">    &lt;div class="alert alert-warning"&gt;</span><br><span class="line">      &lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; </span><br><span class="line">      This is an article that was created &lt;%= days %&gt; days ago, and the information may have evolved or changed.  </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">  &lt;% } %&gt;</span><br><span class="line">&lt;% } %&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这段 EJS 代码主要实现以下功能：</p>
+<ol>
+<li>判断文章是否需要显示警告信息，如果需要显示警告信息，则执行接下来的代码块；</li>
+<li>计算文章发布时间与当前时间之间的天数，并判断是否超过 180 天；</li>
+<li>如果超过 180 天，则显示一个带有警告图标的提示框，告知读者文章内容可能已经过时或发生变化。</li>
+</ol>
+<p>下面逐行分析代码的具体含义：</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;% if (typeof post.notips === 'undefined' || !post.notips) { %&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这一行代码首先判断 <code>post.notips</code> 是否有定义。如果没有定义，即 <code>typeof post.notips === 'undefined'</code> 为真，或者定义了但值为假（0、false、null、空字符串等），即 <code>!post.notips</code> 为真，那么就执行接下来的代码块，否则跳过。</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;% var days = moment().diff(moment(post.date), 'days'); %&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这一行代码使用 moment.js 库计算当前时间与文章发布时间之间的天数。具体来说，<code>moment().diff(moment(post.date), 'days')</code> 表示当前时间与 <code>post.date</code> 这个 moment 对象之间的天数差值。将计算结果赋值给 <code>days</code> 变量，以便后续使用。</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;% if (days &gt; 180) { %&gt;</span><br><span class="line">    &lt;div class="alert alert-warning"&gt;</span><br><span class="line">      &lt;i class="fa fa-exclamation-triangle"&gt;&lt;/i&gt; </span><br><span class="line">      This is an article that was created &lt;%= days %&gt; days ago, and the information may have evolved or changed.  </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">&lt;% } %&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这一段代码实现了在文章过时时显示一个警告提示信息。具体来说，如果 <code>days</code> 大于 180，即文章发布时间距今已经超过 180 天，则显示一个带有警告图标的提示框，里面包含了提示文字和当前时间与发布时间之间的天数差值。</p>
+</body></html>
+    
+    </div>
+    
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+DO NOT APPLY COMMENTS
+
+-->
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
               <a href="/posts/cce1f96e.html" itemprop="url">H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</a>
           
       </h1>
@@ -621,61 +692,6 @@ DO NOT APPLY COMMENTS
         <html><head></head><body><p>一个小实验，观察<code>OSPF</code>虚链路、虚链路的替代办法。</p></body></html>
         <p class="article-more-link">
             <a href="/posts/5c8077d9.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
-              <a href="/posts/d70f2b4c.html" itemprop="url">基于Django编写的SNMP轮询Demo</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspMar 13th 23&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/H3C/">H3C</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              9 minutes read (About 1415 words)
-          </span>
-          
-      </div>
-    
-    <!-- add timeliness tips date:20230510 -->
-    
-      
-      
-    
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>一个基于<code>Django</code>编写的<code>SNMP</code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行<code>SNMP</code>轮询，<code>icmp</code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的<code>Gallery</code>相册查看。</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/d70f2b4c.html#more">Read More</a>
         </p>
     
     </div>
