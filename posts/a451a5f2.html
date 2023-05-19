@@ -29,9 +29,9 @@
 <meta property="og:image" content="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/05/20/6MGFkfhVWr2AKgR.jpg">
 <meta property="article:published_time" content="2023-05-19T16:55:54.000Z">
-<meta property="article:modified_time" content="2023-05-19T18:40:23.110Z">
+<meta property="article:modified_time" content="2023-05-19T18:49:43.751Z">
 <meta property="article:author" content="Kir Aster">
-<meta property="article:tag" content="CentOs 8">
+<meta property="article:tag" content="CentOS 8">
 <meta property="article:tag" content="VNC">
 <meta property="article:tag" content="TigerVNC">
 <meta property="article:tag" content="5901">
@@ -208,7 +208,7 @@ var _hmt = _hmt || [];
                     
                     
                     
-                    <a class="navbar-item" href="#从-root-切换到-vncuser-设置配置文件中定义的用户的连接密码">3.5&nbsp;&nbsp;从 root 切换到 vncuser 设置配置文件中定义的用户的连接密码</a>
+                    <a class="navbar-item" href="#从-root-切换到-vncuser，配置文件中定义的用户的连接密码">3.5&nbsp;&nbsp;从 root 切换到 vncuser，配置文件中定义的用户的连接密码</a>
                     
                     
                     
@@ -252,7 +252,7 @@ var _hmt = _hmt || [];
                     
                     
                     
-                    <a class="navbar-item" href="#运行-vncserver-等以下旧格式命令的提示">5.2&nbsp;&nbsp;运行 vncserver 等以下旧格式命令的提示</a>
+                    <a class="navbar-item" href="#运行-vncserver-等旧格式命令的提示">5.2&nbsp;&nbsp;运行 vncserver 等旧格式命令的提示</a>
                     
                     
                     <hr class="navbar-divider">
@@ -296,7 +296,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              13 minutes read (About 1877 words)
+              13 minutes read (About 1876 words)
           </span>
           
       </div>
@@ -350,7 +350,7 @@ var _hmt = _hmt || [];
 <p><img src="https://s2.loli.net/2023/05/20/JobT3SVD6OiMhkK.jpg" alt="ScreenCaputure230519172613"></p>
 <p><img src="https://s2.loli.net/2023/05/20/pHfTQuhFBtClPvz.jpg" alt="ScreenCaputure230519172631"></p>
 <p><img src="https://s2.loli.net/2023/05/20/UlDIh8WmETvdA2V.jpg" alt="ScreenCaputure230519172807"></p>
-<h2 id="安装-VNC-Server-服务"><a href="#安装-VNC-Server-服务" class="headerlink" title="安装 VNC Server 服务"></a><strong>安装 VNC Server 服务</strong></h2><h3 id="安装-TigerVNC"><a href="#安装-TigerVNC" class="headerlink" title="安装 TigerVNC"></a>安装 <strong>TigerVNC</strong></h3><p>以 <code>root</code> 用户身份运行以下命令，基本都使用<code>root</code>用户权限操作（提示权限不足要在命令前加 sudo 很烦），需要切换<code>vncuser </code>用户会说明</p>
+<h2 id="安装-VNC-Server-服务"><a href="#安装-VNC-Server-服务" class="headerlink" title="安装 VNC Server 服务"></a><strong>安装 VNC Server 服务</strong></h2><h3 id="安装-TigerVNC"><a href="#安装-TigerVNC" class="headerlink" title="安装 TigerVNC"></a>安装 <strong>TigerVNC</strong></h3><p>以 <code>root</code> 用户身份运行以下命令，基本都使用<code>root</code>用户权限操作（提示权限不足要在命令前加 sudo 很烦），需要切换<code>vncuser</code>用户会说明</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]#  dnf install tigervnc-server -y</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">Installed:</span><br><span class="line">  tigervnc-selinux-1.11.0-9.el8.noarch                       tigervnc-server-1.11.0-9.el8.x86_64                      </span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line">[root@centos-106 ~]#</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="创建-vnc-用户并设置密码（前面已创建可跳过）"><a href="#创建-vnc-用户并设置密码（前面已创建可跳过）" class="headerlink" title="创建 vnc 用户并设置密码（前面已创建可跳过）"></a>创建 vnc 用户并设置密码（前面已创建可跳过）</h3><p>如不想使用在上一步骤建立的用户，可在这一步骤中新建用户</p>
@@ -368,7 +368,7 @@ var _hmt = _hmt || [];
 </blockquote>
 <h3 id="在-x2F-etc-x2F-tigervnc-x2F-vncserver-users-中为端口1配置用户-vncuser（即：1-x3D-vncuser）"><a href="#在-x2F-etc-x2F-tigervnc-x2F-vncserver-users-中为端口1配置用户-vncuser（即：1-x3D-vncuser）" class="headerlink" title="在 /etc/tigervnc/vncserver.users 中为端口1配置用户 vncuser（即：1=vncuser）"></a>在 /etc/tigervnc/vncserver.users 中为端口1配置用户 vncuser（即：1=vncuser）</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 system]# nano /etc/tigervnc/vncserver.users </span><br><span class="line"></span><br><span class="line">添加：</span><br><span class="line">:1=vncuser</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="从-root-切换到-vncuser-设置配置文件中定义的用户的连接密码"><a href="#从-root-切换到-vncuser-设置配置文件中定义的用户的连接密码" class="headerlink" title="从 root 切换到 vncuser 设置配置文件中定义的用户的连接密码"></a>从 root 切换到 vncuser 设置配置文件中定义的用户的连接密码</h3><p>这一步骤中需要设置一个连接密码(最长八个字符，多出的字符会被切掉），在<code>view-only password (y/n)? </code> 选 <code>n</code>，选<code>y</code>只能查看不能输入</p>
+<h3 id="从-root-切换到-vncuser，配置文件中定义的用户的连接密码"><a href="#从-root-切换到-vncuser，配置文件中定义的用户的连接密码" class="headerlink" title="从 root 切换到 vncuser，配置文件中定义的用户的连接密码"></a>从 root 切换到 vncuser，配置文件中定义的用户的连接密码</h3><p>这一步骤中需要设置一个连接密码(最长八个字符，多出的字符会被切掉）；在<code>view-only password (y/n)? </code> 选 <code>n</code>；选<code>y</code>只能查看不能输入</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]# su - vncuser </span><br><span class="line">[vncuser@centos-106 ~]$ vncpasswd </span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">Would you like to enter a view-only password (y/n)? n</span><br><span class="line">A view-only password is not used</span><br><span class="line">[vncuser@centos-106 ~]$ exit</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="查看-5901-端口-VNC-server-的监听状态"><a href="#查看-5901-端口-VNC-server-的监听状态" class="headerlink" title="查看 5901 端口 VNC server 的监听状态"></a>查看 5901 端口 VNC server 的监听状态</h3><p><strong>lsof -i :5901</strong> 或 <strong>netstat -tulpn | grep 5901</strong></p>
@@ -386,17 +386,17 @@ var _hmt = _hmt || [];
 <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h3 id="运行-yum-update-之后，repo-文件的变化"><a href="#运行-yum-update-之后，repo-文件的变化" class="headerlink" title="运行 yum update 之后，repo 文件的变化"></a>运行 yum update 之后，repo 文件的变化</h3><p>在配置华为云CentOS-Vault yum源之后，运行<code>yum update</code>，好家伙把<code>/etc/yum.repos.d/</code>目录下<code>*.repo</code>文件给干掉了，又得重复一次<code>配置华为云CentOS-Vault yum源</code>的步骤</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 yum.repos.d]# ll</span><br><span class="line">total 12</span><br><span class="line">-rw-r--r--. 1 root root 2218 May 18 13:03 CentOS-Base.repo</span><br><span class="line">drwxr-xr-x. 2 root root 4096 May 18 12:41 repo_back</span><br><span class="line">drwxr-xr-x. 2 root root 4096 May 18 13:03 repo_back2</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="运行-vncserver-等以下旧格式命令的提示"><a href="#运行-vncserver-等以下旧格式命令的提示" class="headerlink" title="运行 vncserver 等以下旧格式命令的提示"></a>运行 vncserver 等以下旧格式命令的提示</h3><p>在运行<code>vncserver</code>开头的命令后，会有一行提示如下</p>
+<h3 id="运行-vncserver-等旧格式命令的提示"><a href="#运行-vncserver-等旧格式命令的提示" class="headerlink" title="运行 vncserver 等旧格式命令的提示"></a>运行 vncserver 等旧格式命令的提示</h3><p>在运行<code>vncserver</code>开头的命令后，会有一行提示如下</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARNING: vncserver has been replaced by a systemd unit and is about to be removed in future releases.</span><br><span class="line">Please read /usr/share/doc/tigervnc/HOWTO.md for more information.</span><br></pre></td></tr></tbody></table></figure>
 
 <p>在处理这个步骤耗费了本人非常多的时间，例如启动报错，启动不报错能连接但是黑屏各种问题。最后在CentOS论坛看到一篇帖子，看到提示去找 Red Hat 官网手册才处理好这个问题；顺便说一句搜索引擎各种关于安装VNC Server 的中文资料没一个能用（没标明环境和版本，索骥失败），最终还是去看官网手册；看来少吃别人嚼过的东西</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
 <li>参考资料:</li>
 </ul>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- vncserver failed by ShinShin on 2020/11/17 : </span><br><span class="line">https://forums.centos.org/viewtopic.php?f=54&amp;t=76387</span><br><span class="line">- Red Hat Enterprise Linux 7 Deployment, configuration, and administration of RHEL 7 Chapter 13. TigerVNC: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-tigervnc</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- vncserver failed by ShinShin on 2020/11/17 : </span><br><span class="line">https://forums.centos.org/viewtopic.php?f=54&amp;t=76387</span><br><span class="line">- Red Hat Enterprise Linux 7 Deployment, configuration, and administration of RHEL 7 Chapter 13. TigerVNC:</span><br><span class="line">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-tigervnc</span><br></pre></td></tr></tbody></table></figure>
 
 <ul>
-<li>如有需要玩这个的话，强烈建议现在虚拟机多轮测试再去操作，多建立快照</li>
+<li>如有需要玩这个的话，强烈建议先在虚拟机多轮测试再去实际操作，多建立快照</li>
 <li>配置完成后别忘了开防火墙策略SELINUX=enforcing，重开SELINUX真耗时间</li>
 <li>业余选手，勿喷</li>
 <li>欢迎“<del>来电</del>”来函探讨</li>
@@ -407,7 +407,7 @@ var _hmt = _hmt || [];
     
     <div class="columns is-variable is-1 is-multiline is-mobile">
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/CentOs-8/">#CentOs 8</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/CentOS-8/">#CentOS 8</a></span>
     
         <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/VNC/">#VNC</a></span>
     
