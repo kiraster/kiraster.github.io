@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/05/20/6MGFkfhVWr2AKgR.jpg">
 <meta property="article:published_time" content="2023-05-19T16:55:54.000Z">
-<meta property="article:modified_time" content="2023-05-19T18:29:29.214Z">
+<meta property="article:modified_time" content="2023-05-19T18:40:23.110Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="CentOs 8">
 <meta property="article:tag" content="VNC">
@@ -170,11 +170,11 @@ var _hmt = _hmt || [];
                     
                     
                     
-                    <a class="navbar-item" href="#设置-GNOME-图形界面为默认运行级别">2.3&nbsp;&nbsp;设置 GNOME 图形界面为默认运行级别</a>
+                    <a class="navbar-item" href="#设置图形界面为默认运行级别">2.3&nbsp;&nbsp;设置图形界面为默认运行级别</a>
                     
                     
                     
-                    <a class="navbar-item" href="#启动-GNOME-图形界面">2.4&nbsp;&nbsp;启动 GNOME 图形界面</a>
+                    <a class="navbar-item" href="#启动图形界面">2.4&nbsp;&nbsp;启动图形界面</a>
                     
                     
                     
@@ -188,7 +188,7 @@ var _hmt = _hmt || [];
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#安装VNC-Server服务">3&nbsp;&nbsp;<b>安装VNC Server服务</b></a>
+                    <a class="navbar-item" href="#安装-VNC-Server-服务">3&nbsp;&nbsp;<b>安装 VNC Server 服务</b></a>
                     
                     
                     
@@ -196,27 +196,27 @@ var _hmt = _hmt || [];
                     
                     
                     
-                    <a class="navbar-item" href="#创建vnc用户并设置密码（前面已创建可跳过）">3.2&nbsp;&nbsp;创建vnc用户并设置密码（前面已创建可跳过）</a>
+                    <a class="navbar-item" href="#创建-vnc-用户并设置密码（前面已创建可跳过）">3.2&nbsp;&nbsp;创建 vnc 用户并设置密码（前面已创建可跳过）</a>
                     
                     
                     
-                    <a class="navbar-item" href="#拷贝vncserver-service文件">3.3&nbsp;&nbsp;拷贝vncserver@.service文件</a>
+                    <a class="navbar-item" href="#拷贝-vncserver-service-文件">3.3&nbsp;&nbsp;拷贝 vncserver@.service 文件</a>
                     
                     
                     
-                    <a class="navbar-item" href="#在-etc-tigervnc-vncserver-users中为端口1配置用户-vncuser（即：1-x3D-vncuser）">3.4&nbsp;&nbsp;在/etc/tigervnc/vncserver.users中为端口1配置用户 vncuser（即：1=vncuser）</a>
+                    <a class="navbar-item" href="#在-x2F-etc-x2F-tigervnc-x2F-vncserver-users-中为端口1配置用户-vncuser（即：1-x3D-vncuser）">3.4&nbsp;&nbsp;在 /etc/tigervnc/vncserver.users 中为端口1配置用户 vncuser（即：1=vncuser）</a>
                     
                     
                     
-                    <a class="navbar-item" href="#从-root-切换到vncuser设置配置文件中定义的用户的连接密码">3.5&nbsp;&nbsp;从 root 切换到vncuser设置配置文件中定义的用户的连接密码</a>
+                    <a class="navbar-item" href="#从-root-切换到-vncuser-设置配置文件中定义的用户的连接密码">3.5&nbsp;&nbsp;从 root 切换到 vncuser 设置配置文件中定义的用户的连接密码</a>
                     
                     
                     
-                    <a class="navbar-item" href="#查看5901端口-VNC-server-的监听状态">3.6&nbsp;&nbsp;查看5901端口 VNC server 的监听状态</a>
+                    <a class="navbar-item" href="#查看-5901-端口-VNC-server-的监听状态">3.6&nbsp;&nbsp;查看 5901 端口 VNC server 的监听状态</a>
                     
                     
                     
-                    <a class="navbar-item" href="#配置防火墙，开放5901端口：">3.7&nbsp;&nbsp;配置防火墙，开放5901端口：</a>
+                    <a class="navbar-item" href="#配置防火墙，开放-5901-端口：">3.7&nbsp;&nbsp;配置防火墙，开放 5901 端口：</a>
                     
                     
                     
@@ -226,7 +226,19 @@ var _hmt = _hmt || [];
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#本地使用VNC客户端进行远程桌面连接">4&nbsp;&nbsp;<b>本地使用VNC客户端进行远程桌面连接</b></a>
+                    <a class="navbar-item" href="#本地使用-VNC-客户端进行远程桌面连接">4&nbsp;&nbsp;<b>本地使用 VNC 客户端进行远程桌面连接</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#打开软件，输入-服务器地址-端口号-，点击-Connect">4.1&nbsp;&nbsp;打开软件，输入 服务器地址:端口号 ，点击 Connect</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#输入连接密码，点击-Log-On">4.2&nbsp;&nbsp;输入连接密码，点击 Log On</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#登陆界面">4.3&nbsp;&nbsp;登陆界面</a>
                     
                     
                     <hr class="navbar-divider">
@@ -236,11 +248,11 @@ var _hmt = _hmt || [];
                     
                     
                     
-                    <a class="navbar-item" href="#运行yum-update之后，repo文件的变化">5.1&nbsp;&nbsp;运行yum update之后，repo文件的变化</a>
+                    <a class="navbar-item" href="#运行-yum-update-之后，repo-文件的变化">5.1&nbsp;&nbsp;运行 yum update 之后，repo 文件的变化</a>
                     
                     
                     
-                    <a class="navbar-item" href="#运行vncserver等以下旧格式命令的提示">5.2&nbsp;&nbsp;运行vncserver等以下旧格式命令的提示</a>
+                    <a class="navbar-item" href="#运行-vncserver-等以下旧格式命令的提示">5.2&nbsp;&nbsp;运行 vncserver 等以下旧格式命令的提示</a>
                     
                     
                     <hr class="navbar-divider">
@@ -284,7 +296,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              12 minutes read (About 1863 words)
+              13 minutes read (About 1877 words)
           </span>
           
       </div>
@@ -328,9 +340,9 @@ var _hmt = _hmt || [];
 
 <h3 id="安装图形化桌面环境"><a href="#安装图形化桌面环境" class="headerlink" title="安装图形化桌面环境"></a>安装图形化桌面环境</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 yum.repos.d]# dnf groupinstall "Server with GUI" -y</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">……                                                    </span><br><span class="line">Complete!</span><br><span class="line">[root@centos-106 yum.repos.d]# </span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="设置-GNOME-图形界面为默认运行级别"><a href="#设置-GNOME-图形界面为默认运行级别" class="headerlink" title="设置 GNOME 图形界面为默认运行级别"></a>设置 GNOME 图形界面为默认运行级别</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="设置图形界面为默认运行级别"><a href="#设置图形界面为默认运行级别" class="headerlink" title="设置图形界面为默认运行级别"></a>设置图形界面为默认运行级别</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="启动-GNOME-图形界面"><a href="#启动-GNOME-图形界面" class="headerlink" title="启动 GNOME 图形界面"></a>启动 GNOME 图形界面</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start graphical.target</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="启动图形界面"><a href="#启动图形界面" class="headerlink" title="启动图形界面"></a>启动图形界面</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start graphical.target</span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></tbody></table></figure>
 
@@ -338,46 +350,43 @@ var _hmt = _hmt || [];
 <p><img src="https://s2.loli.net/2023/05/20/JobT3SVD6OiMhkK.jpg" alt="ScreenCaputure230519172613"></p>
 <p><img src="https://s2.loli.net/2023/05/20/pHfTQuhFBtClPvz.jpg" alt="ScreenCaputure230519172631"></p>
 <p><img src="https://s2.loli.net/2023/05/20/UlDIh8WmETvdA2V.jpg" alt="ScreenCaputure230519172807"></p>
-<h2 id="安装VNC-Server服务"><a href="#安装VNC-Server服务" class="headerlink" title="安装VNC Server服务"></a><strong>安装VNC Server服务</strong></h2><h3 id="安装-TigerVNC"><a href="#安装-TigerVNC" class="headerlink" title="安装 TigerVNC"></a>安装 <strong>TigerVNC</strong></h3><p>以 <code>root</code> 用户身份运行以下命令，基本都使用root用户权限操作（少输入点 sudo），会后切换vncuser 用户会说明</p>
+<h2 id="安装-VNC-Server-服务"><a href="#安装-VNC-Server-服务" class="headerlink" title="安装 VNC Server 服务"></a><strong>安装 VNC Server 服务</strong></h2><h3 id="安装-TigerVNC"><a href="#安装-TigerVNC" class="headerlink" title="安装 TigerVNC"></a>安装 <strong>TigerVNC</strong></h3><p>以 <code>root</code> 用户身份运行以下命令，基本都使用<code>root</code>用户权限操作（提示权限不足要在命令前加 sudo 很烦），需要切换<code>vncuser </code>用户会说明</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]#  dnf install tigervnc-server -y</span><br><span class="line">……</span><br><span class="line">……</span><br><span class="line">Installed:</span><br><span class="line">  tigervnc-selinux-1.11.0-9.el8.noarch                       tigervnc-server-1.11.0-9.el8.x86_64                      </span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line">[root@centos-106 ~]#</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="创建vnc用户并设置密码（前面已创建可跳过）"><a href="#创建vnc用户并设置密码（前面已创建可跳过）" class="headerlink" title="创建vnc用户并设置密码（前面已创建可跳过）"></a>创建vnc用户并设置密码（前面已创建可跳过）</h3><p>如不想使用在上一步骤建立的用户，可在这一步骤中新建用户</p>
+<h3 id="创建-vnc-用户并设置密码（前面已创建可跳过）"><a href="#创建-vnc-用户并设置密码（前面已创建可跳过）" class="headerlink" title="创建 vnc 用户并设置密码（前面已创建可跳过）"></a>创建 vnc 用户并设置密码（前面已创建可跳过）</h3><p>如不想使用在上一步骤建立的用户，可在这一步骤中新建用户</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]# useradd vnc_user</span><br><span class="line">[root@centos-106 ~]# passwd vnc_user</span><br><span class="line">Changing password for user uservnc.</span><br><span class="line">New password: </span><br><span class="line">Retype new password: </span><br><span class="line">passwd: all authentication tokens updated successfully.</span><br><span class="line">[root@centos-106 ~]#</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="拷贝vncserver-service文件"><a href="#拷贝vncserver-service文件" class="headerlink" title="拷贝vncserver@.service文件"></a>拷贝vncserver@.service文件</h3><p>创建<code>/etc/systemd/system/vncserver@.service</code> 配置文件。要创建这个文件，从<code>/usr/lib/systemd/system/vncserver@.service</code> 复制						</p>
+<h3 id="拷贝-vncserver-service-文件"><a href="#拷贝-vncserver-service-文件" class="headerlink" title="拷贝 vncserver@.service 文件"></a>拷贝 vncserver@.service 文件</h3><p>创建<code>/etc/systemd/system/vncserver@.service</code> 配置文件。要创建这个文件，从<code>/usr/lib/systemd/system/vncserver@.service</code> 复制						</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]# ~]# cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service</span><br></pre></td></tr></tbody></table></figure>
 
 <p>不需要在文件名中包含显示号，因为 <code>systemd 会自动根据需要</code> 在内存中创建适当的命名实例，将服务文件中的 <code>'%i'</code> 替换为显示号。对于单个用户，无需重命名该文件。</p>
-<blockquote><p>VNC 桌面的默认大小为 1024x768。 							</p>
+<blockquote>
+<p>VNC 桌面的默认大小为 1024x768。 							</p>
 <p>可以使用 <code>~/.vnc/config</code> 文件进一步配置用户的 VNC 会话。 							</p>
 <p>例如，要更改 VNC 窗口大小，请添加以下行： 							</p>
 <p>geometry= <width> x <height> </height></width></p>
-<footer><strong>info</strong></footer></blockquote>				
+</blockquote>
+<h3 id="在-x2F-etc-x2F-tigervnc-x2F-vncserver-users-中为端口1配置用户-vncuser（即：1-x3D-vncuser）"><a href="#在-x2F-etc-x2F-tigervnc-x2F-vncserver-users-中为端口1配置用户-vncuser（即：1-x3D-vncuser）" class="headerlink" title="在 /etc/tigervnc/vncserver.users 中为端口1配置用户 vncuser（即：1=vncuser）"></a>在 /etc/tigervnc/vncserver.users 中为端口1配置用户 vncuser（即：1=vncuser）</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 system]# nano /etc/tigervnc/vncserver.users </span><br><span class="line"></span><br><span class="line">添加：</span><br><span class="line">:1=vncuser</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="在-etc-tigervnc-vncserver-users中为端口1配置用户-vncuser（即：1-x3D-vncuser）"><a href="#在-etc-tigervnc-vncserver-users中为端口1配置用户-vncuser（即：1-x3D-vncuser）" class="headerlink" title="在/etc/tigervnc/vncserver.users中为端口1配置用户 vncuser（即：1=vncuser）"></a>在<code>/etc/tigervnc/vncserver.users</code>中为端口1配置用户 <code>vncuser</code>（即：1=vncuser）</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 system]# nano /etc/tigervnc/vncserver.users </span><br><span class="line"></span><br><span class="line">添加：</span><br><span class="line">:1=vncuser</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="从-root-切换到vncuser设置配置文件中定义的用户的连接密码"><a href="#从-root-切换到vncuser设置配置文件中定义的用户的连接密码" class="headerlink" title="从 root 切换到vncuser设置配置文件中定义的用户的连接密码"></a>从 <code>root</code> 切换到<code>vncuser</code>设置配置文件中定义的用户的连接密码</h3><p>这一步骤中需要设置一个连接密码(最长八个字符（多出的字符会被切掉），并且在<code>view-only password (y/n)? </code> 选 <code>n</code></p>
+<h3 id="从-root-切换到-vncuser-设置配置文件中定义的用户的连接密码"><a href="#从-root-切换到-vncuser-设置配置文件中定义的用户的连接密码" class="headerlink" title="从 root 切换到 vncuser 设置配置文件中定义的用户的连接密码"></a>从 root 切换到 vncuser 设置配置文件中定义的用户的连接密码</h3><p>这一步骤中需要设置一个连接密码(最长八个字符，多出的字符会被切掉），在<code>view-only password (y/n)? </code> 选 <code>n</code>，选<code>y</code>只能查看不能输入</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]# su - vncuser </span><br><span class="line">[vncuser@centos-106 ~]$ vncpasswd </span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br><span class="line">Would you like to enter a view-only password (y/n)? n</span><br><span class="line">A view-only password is not used</span><br><span class="line">[vncuser@centos-106 ~]$ exit</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="查看5901端口-VNC-server-的监听状态"><a href="#查看5901端口-VNC-server-的监听状态" class="headerlink" title="查看5901端口 VNC server 的监听状态"></a>查看5901端口 VNC server 的监听状态</h3><p><strong>lsof -i :5901</strong> 或 <strong>netstat -tulpn | grep 5901</strong></p>
+<h3 id="查看-5901-端口-VNC-server-的监听状态"><a href="#查看-5901-端口-VNC-server-的监听状态" class="headerlink" title="查看 5901 端口 VNC server 的监听状态"></a>查看 5901 端口 VNC server 的监听状态</h3><p><strong>lsof -i :5901</strong> 或 <strong>netstat -tulpn | grep 5901</strong></p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[vncuser@centos-106 ~]$ lsof -i :5901</span><br><span class="line">COMMAND  PID    USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span><br><span class="line">Xvnc    2385 vncuser    6u  IPv4  46911      0t0  TCP *:5901 (LISTEN)</span><br><span class="line">Xvnc    2385 vncuser    7u  IPv6  46912      0t0  TCP *:5901 (LISTEN)</span><br><span class="line">[vncuser@centos-106 ~]$ netstat -tulpn | grep 5901</span><br><span class="line">(Not all processes could be identified, non-owned process info</span><br><span class="line"> will not be shown, you would have to be root to see it all.)</span><br><span class="line">tcp        0      0 0.0.0.0:5901            0.0.0.0:*               LISTEN      2385/Xvnc           </span><br><span class="line">tcp6       0      0 :::5901                 :::*                    LISTEN      2385/Xvnc           </span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="配置防火墙，开放5901端口："><a href="#配置防火墙，开放5901端口：" class="headerlink" title="配置防火墙，开放5901端口："></a>配置防火墙，开放5901端口：</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]# firewall-cmd --permanent --zone=public --add-port=5901/tcp</span><br><span class="line">success</span><br><span class="line">[root@centos-106 ~]# firewall-cmd --reload</span><br><span class="line">success</span><br><span class="line">[root@centos-106 ~]# </span><br></pre></td></tr></tbody></table></figure>
+<h3 id="配置防火墙，开放-5901-端口："><a href="#配置防火墙，开放-5901-端口：" class="headerlink" title="配置防火墙，开放 5901 端口："></a>配置防火墙，开放 5901 端口：</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 ~]# firewall-cmd --permanent --zone=public --add-port=5901/tcp</span><br><span class="line">success</span><br><span class="line">[root@centos-106 ~]# firewall-cmd --reload</span><br><span class="line">success</span><br><span class="line">[root@centos-106 ~]# </span><br></pre></td></tr></tbody></table></figure>
 
 <h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">重新加载systemd守护程序配置</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">将VNC服务器服务vncserver@:1.service设置为开机自启动</span></span><br><span class="line">systemctl enable vncserver@:1.service</span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">将VNC服务器服务vncserver@:1.service启动</span></span><br><span class="line">systemctl start vncserver@:1.service</span><br><span class="line"><span class="meta prompt_">#</span><span class="hljs-language-bash"></span></span><br><span class="line"><span class="hljs-language-bash"><span class="hljs-comment"># 在终端上输出有关VNC服务器服务vncserver@:1.service的当前状态信息</span></span></span><br><span class="line">systemctl status vncserver@:1.service</span><br><span class="line"><span class="meta prompt_">#</span></span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="本地使用VNC客户端进行远程桌面连接"><a href="#本地使用VNC客户端进行远程桌面连接" class="headerlink" title="本地使用VNC客户端进行远程桌面连接"></a>本地使用<code>VNC</code>客户端进行远程桌面连接</h2><p><code>VNC</code>客户端的选择有很多，例如以下用到的<code>UltraVNC Viewer</code>；还有<code>VNC Viewer</code>、<code>MobaXterm</code>，随意选择</p>
-<p>打开软件，输入 服务器地址:端口号 ，点击 Connect</p>
-<p><img src="https://s2.loli.net/2023/05/20/eokPTcQ9DN1mqfx.jpg" alt="ScreenCaputure230519175406"></p>
-<p>输入连接密码，点击 Log On</p>
-<p><img src="https://s2.loli.net/2023/05/20/7ki35TpPR9ursC1.jpg" alt="ScreenCaputure230519174918"></p>
-<p>登陆界面</p>
-<p><img src="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg" alt="ScreenCaputure230520005726"></p>
+<h2 id="本地使用-VNC-客户端进行远程桌面连接"><a href="#本地使用-VNC-客户端进行远程桌面连接" class="headerlink" title="本地使用 VNC 客户端进行远程桌面连接"></a>本地使用 VNC 客户端进行远程桌面连接</h2><p><code>VNC</code>客户端的选择有很多，例如以下用到的<code>UltraVNC Viewer</code>；还有<code>VNC Viewer</code>、<code>MobaXterm</code>，任君选择</p>
+<h3 id="打开软件，输入-服务器地址-端口号-，点击-Connect"><a href="#打开软件，输入-服务器地址-端口号-，点击-Connect" class="headerlink" title="打开软件，输入 服务器地址:端口号 ，点击 Connect"></a>打开软件，输入 服务器地址:端口号 ，点击 Connect</h3><p><img src="https://s2.loli.net/2023/05/20/eokPTcQ9DN1mqfx.jpg" alt="ScreenCaputure230519175406"></p>
+<h3 id="输入连接密码，点击-Log-On"><a href="#输入连接密码，点击-Log-On" class="headerlink" title="输入连接密码，点击 Log On"></a>输入连接密码，点击 Log On</h3><p><img src="https://s2.loli.net/2023/05/20/7ki35TpPR9ursC1.jpg" alt="ScreenCaputure230519174918"></p>
+<h3 id="登陆界面"><a href="#登陆界面" class="headerlink" title="登陆界面"></a>登陆界面</h3><p><img src="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg" alt="ScreenCaputure230520005726"></p>
 <p><img src="https://s2.loli.net/2023/05/20/6MGFkfhVWr2AKgR.jpg" alt="ScreenCaputure230520005831"></p>
-<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h3 id="运行yum-update之后，repo文件的变化"><a href="#运行yum-update之后，repo文件的变化" class="headerlink" title="运行yum update之后，repo文件的变化"></a>运行<code>yum update</code>之后，repo文件的变化</h3><p>在配置华为云CentOS-Vault yum源之后，运行<code>yum update</code>，好家伙把<code>/etc/yum.repos.d/</code>目录下<code>*.repo</code>文件给干掉了，又得重复一次<code>配置华为云CentOS-Vault yum源</code>的步骤</p>
+<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><h3 id="运行-yum-update-之后，repo-文件的变化"><a href="#运行-yum-update-之后，repo-文件的变化" class="headerlink" title="运行 yum update 之后，repo 文件的变化"></a>运行 yum update 之后，repo 文件的变化</h3><p>在配置华为云CentOS-Vault yum源之后，运行<code>yum update</code>，好家伙把<code>/etc/yum.repos.d/</code>目录下<code>*.repo</code>文件给干掉了，又得重复一次<code>配置华为云CentOS-Vault yum源</code>的步骤</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos-106 yum.repos.d]# ll</span><br><span class="line">total 12</span><br><span class="line">-rw-r--r--. 1 root root 2218 May 18 13:03 CentOS-Base.repo</span><br><span class="line">drwxr-xr-x. 2 root root 4096 May 18 12:41 repo_back</span><br><span class="line">drwxr-xr-x. 2 root root 4096 May 18 13:03 repo_back2</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="运行vncserver等以下旧格式命令的提示"><a href="#运行vncserver等以下旧格式命令的提示" class="headerlink" title="运行vncserver等以下旧格式命令的提示"></a>运行<code>vncserver</code>等以下旧格式命令的提示</h3><p>在运行<code>vncserver</code>开头的命令后，会有一行提示如下</p>
+<h3 id="运行-vncserver-等以下旧格式命令的提示"><a href="#运行-vncserver-等以下旧格式命令的提示" class="headerlink" title="运行 vncserver 等以下旧格式命令的提示"></a>运行 vncserver 等以下旧格式命令的提示</h3><p>在运行<code>vncserver</code>开头的命令后，会有一行提示如下</p>
 <figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARNING: vncserver has been replaced by a systemd unit and is about to be removed in future releases.</span><br><span class="line">Please read /usr/share/doc/tigervnc/HOWTO.md for more information.</span><br></pre></td></tr></tbody></table></figure>
 
 <p>在处理这个步骤耗费了本人非常多的时间，例如启动报错，启动不报错能连接但是黑屏各种问题。最后在CentOS论坛看到一篇帖子，看到提示去找 Red Hat 官网手册才处理好这个问题；顺便说一句搜索引擎各种关于安装VNC Server 的中文资料没一个能用（没标明环境和版本，索骥失败），最终还是去看官网手册；看来少吃别人嚼过的东西</p>
