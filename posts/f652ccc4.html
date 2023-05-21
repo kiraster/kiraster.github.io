@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://s2.loli.net/2023/05/21/pnHIKCo9XtAkdDc.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/05/21/Txmqoa9A34tjNkg.jpg">
 <meta property="article:published_time" content="2023-05-20T10:18:21.000Z">
-<meta property="article:modified_time" content="2023-05-20T22:13:43.359Z">
+<meta property="article:modified_time" content="2023-05-21T06:14:17.131Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="CentOS 8">
 <meta property="article:tag" content="VNC">
@@ -160,81 +160,83 @@ var _hmt = _hmt || [];
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#下载软件包">2&nbsp;&nbsp;<b>下载软件包</b></a>
+                    <a class="navbar-item" href="#下载软件包和导出软件包到本地">2&nbsp;&nbsp;<b>下载软件包和导出软件包到本地</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#创建一个目录来保存软件包。创建-root-packages-目录">2.1&nbsp;&nbsp;创建一个目录来保存软件包。创建 /root/packages 目录</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#打包tar，导出软件包到本地">2.2&nbsp;&nbsp;打包tar，导出软件包到本地</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#还原快照和上传软件包">2.3&nbsp;&nbsp;还原快照和上传软件包</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#导出软件包到本地">3&nbsp;&nbsp;<b>导出软件包到本地</b></a>
+                    <a class="navbar-item" href="#安装软件包和配置服务">3&nbsp;&nbsp;<b>安装软件包和配置服务</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#关闭SELINUX，后面配置完成再启用">3.1&nbsp;&nbsp;关闭SELINUX，后面配置完成再启用</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#将上传的packages-tar解压">3.2&nbsp;&nbsp;将上传的packages.tar解压</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#在-x2F-root-x2F-packages-目录下创建-local-repo-文件">3.3&nbsp;&nbsp;在/root/packages 目录下创建 local.repo 文件</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#运行以下命令以安装组件及其依赖项">3.4&nbsp;&nbsp;运行以下命令以安装组件及其依赖项</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#设置图形界面为默认运行级别">3.5&nbsp;&nbsp;设置图形界面为默认运行级别</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#启动图形界面">3.6&nbsp;&nbsp;启动图形界面</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#查看看服务状态">3.7&nbsp;&nbsp;查看看服务状态</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#重启">3.8&nbsp;&nbsp;重启</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#还原快照和上传软件包">4&nbsp;&nbsp;<b>还原快照和上传软件包</b></a>
+                    <a class="navbar-item" href="#重启后进入图形化桌面">4&nbsp;&nbsp;<b>重启后进入图形化桌面</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#检查graphical-target服务">4.1&nbsp;&nbsp;检查graphical.target服务</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#检查GDM-服务设置">4.2&nbsp;&nbsp;检查GDM 服务设置</a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#关闭SELINUX，后面配置完成再启用">5&nbsp;&nbsp;<b>关闭SELINUX，后面配置完成再启用</b></a>
+                    <a class="navbar-item" href="#截图">5&nbsp;&nbsp;<b>截图</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#安装软件包和配置服务">6&nbsp;&nbsp;<b>安装软件包和配置服务</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#将上传的packages-tar解压">6.1&nbsp;&nbsp;将上传的packages.tar解压</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#在-root-packages-目录下创建local-repo-文件">6.2&nbsp;&nbsp;在/root/packages 目录下创建local.repo 文件</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#运行以下命令以安装组件及其依赖项">6.3&nbsp;&nbsp;运行以下命令以安装组件及其依赖项</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#设置图形界面为默认运行级别">6.4&nbsp;&nbsp;设置图形界面为默认运行级别</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#启动图形界面">6.5&nbsp;&nbsp;启动图形界面</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#重启">6.6&nbsp;&nbsp;重启</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#重启后进入图形化桌面">7&nbsp;&nbsp;<b>重启后进入图形化桌面</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#检查graphical-target服务">7.1&nbsp;&nbsp;检查graphical.target服务</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#检查GDM-服务设置">7.2&nbsp;&nbsp;检查GDM 服务设置</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#截图">8&nbsp;&nbsp;<b>截图</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#最后">9&nbsp;&nbsp;<b>最后</b></a>
+                    <a class="navbar-item" href="#最后">6&nbsp;&nbsp;<b>最后</b></a>
                     
                 </div>
             </div>
@@ -272,7 +274,7 @@ var _hmt = _hmt || [];
           <span class="column is-narrow">
               
               
-              7 minutes read (About 1033 words)
+              7 minutes read (About 1062 words)
           </span>
           
       </div>
@@ -310,59 +312,60 @@ var _hmt = _hmt || [];
 <h2 id="配置华为云CentOS-Vault-yum源"><a href="#配置华为云CentOS-Vault-yum源" class="headerlink" title="配置华为云CentOS-Vault yum源"></a>配置华为云CentOS-Vault yum源</h2><p>使用华为云CentOS-Vault</p>
 <p>官网链接： <a target="_blank" rel="noopener" href="https://mirrors.huaweicloud.com/home">https://mirrors.huaweicloud.com/home</a></p>
 <p><img src="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg" alt="ScreenCaputure230518002717"></p>
-<h3 id="备份-x2F-etc-x2F-yum-repos-d-目录下的文件"><a href="#备份-x2F-etc-x2F-yum-repos-d-目录下的文件" class="headerlink" title="备份/etc/yum.repos.d 目录下的文件"></a>备份/etc/yum.repos.d 目录下的文件</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash"><span class="hljs-built_in">cp</span> -a /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="备份-x2F-etc-x2F-yum-repos-d-目录下的文件"><a href="#备份-x2F-etc-x2F-yum-repos-d-目录下的文件" class="headerlink" title="备份/etc/yum.repos.d 目录下的文件"></a>备份/etc/yum.repos.d 目录下的文件</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -a /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak</span><br></pre></td></tr></tbody></table></figure>
 
 <p>或</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash"><span class="hljs-built_in">cd</span>命令进入/etc/yum.repos.d/目录创建备份目录</span></span><br><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash"><span class="hljs-built_in">mkdir</span> backup_repo</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">移动 *.repo 到 backup_repo 目录</span></span><br><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash"><span class="hljs-built_in">mv</span> *.repo backup_repo/</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /etc/yum.repos.d/backup_repo</span><br><span class="line">mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup_repo/</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="配置华为云CentOS-Vault-yum源-1"><a href="#配置华为云CentOS-Vault-yum源-1" class="headerlink" title="配置华为云CentOS-Vault yum源"></a>配置华为云CentOS-Vault yum源</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">wget -O /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="配置华为云CentOS-Vault-yum源-1"><a href="#配置华为云CentOS-Vault-yum源-1" class="headerlink" title="配置华为云CentOS-Vault yum源"></a>配置华为云CentOS-Vault yum源</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo</span><br></pre></td></tr></tbody></table></figure>
 
 <p>执行<strong>yum clean all</strong>清除原有yum缓存。</p>
 <p>执行<strong>yum makecache</strong>（刷新缓存）或者<strong>yum repolist all</strong>（查看所有配置可以使用的文件，会自动刷新缓存）</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">yum clean all</span></span><br><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">yum makecache</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="下载软件包"><a href="#下载软件包" class="headerlink" title="下载软件包"></a>下载软件包</h2><p>创建一个目录来保存软件包。创建 <code>/root/server_with_gui_packages</code> 目录</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash"><span class="hljs-built_in">mkdir</span> /root/packages</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="下载软件包和导出软件包到本地"><a href="#下载软件包和导出软件包到本地" class="headerlink" title="下载软件包和导出软件包到本地"></a>下载软件包和导出软件包到本地</h2><h3 id="创建一个目录来保存软件包。创建-root-packages-目录"><a href="#创建一个目录来保存软件包。创建-root-packages-目录" class="headerlink" title="创建一个目录来保存软件包。创建 /root/packages 目录"></a>创建一个目录来保存软件包。创建 <code>/root/packages</code> 目录</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/packages</span><br></pre></td></tr></tbody></table></figure>
 
 <p>运行以下命令以下载 “Server with GUI” 组件及其所有依赖项和TigerVNC 组件及其依赖项</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">dnf -y group install <span class="hljs-string">"Server with GUI"</span> --downloadonly --downloaddir=/root/packages</span></span><br><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">dnf -y install tigervnc-server --downloadonly --downloaddir=/root/packages</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dnf -y group install "Server with GUI" --downloadonly --downloaddir=/root/packages</span><br><span class="line">dnf -y install tigervnc-server --downloadonly --downloaddir=/root/packages</span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="导出软件包到本地"><a href="#导出软件包到本地" class="headerlink" title="导出软件包到本地"></a>导出软件包到本地</h2><p>打包tar</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">tar -cvf packages.tar /root/packages/</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="打包tar，导出软件包到本地"><a href="#打包tar，导出软件包到本地" class="headerlink" title="打包tar，导出软件包到本地"></a>打包tar，导出软件包到本地</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf packages.tar /root/packages/</span><br></pre></td></tr></tbody></table></figure>
 
 <p>使用工具将<code>packages.tar</code>导出到本地存储上</p>
-<h2 id="还原快照和上传软件包"><a href="#还原快照和上传软件包" class="headerlink" title="还原快照和上传软件包"></a>还原快照和上传软件包</h2><p><img src="https://s2.loli.net/2023/05/21/LUjqTFuv4bJtXg9.jpg" alt="ScreenCaputure230521051856"></p>
+<h3 id="还原快照和上传软件包"><a href="#还原快照和上传软件包" class="headerlink" title="还原快照和上传软件包"></a>还原快照和上传软件包</h3><p><img src="https://s2.loli.net/2023/05/21/LUjqTFuv4bJtXg9.jpg" alt="ScreenCaputure230521051856"></p>
 <p><img src="https://s2.loli.net/2023/05/21/lmgV6IwjMNSenJz.jpg" alt="ScreenCaputure230521051752"></p>
-<h2 id="关闭SELINUX，后面配置完成再启用"><a href="#关闭SELINUX，后面配置完成再启用" class="headerlink" title="关闭SELINUX，后面配置完成再启用"></a>关闭SELINUX，后面配置完成再启用</h2><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">nano /etc/selinux/config</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">将SELINUX设置为disabled</span></span><br><span class="line">……</span><br><span class="line">SELINUX=disabled</span><br><span class="line">……</span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">reboot 重启</span></span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h2 id="安装软件包和配置服务"><a href="#安装软件包和配置服务" class="headerlink" title="安装软件包和配置服务"></a>安装软件包和配置服务</h2><h3 id="关闭SELINUX，后面配置完成再启用"><a href="#关闭SELINUX，后面配置完成再启用" class="headerlink" title="关闭SELINUX，后面配置完成再启用"></a>关闭SELINUX，后面配置完成再启用</h3><p>使用命令<code> nano /etc/selinux/config</code>编辑该文件，将<strong>SELINUX</strong>设置为<strong>disabled</strong>，然后 <strong>reboot</strong> 重启</p>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELINUX=disabled</span><br></pre></td></tr></tbody></table></figure>
 
-<p><strong>查看防火墙状态</strong></p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">sestatus</span></span><br><span class="line">SELinux status:                 disabled</span><br></pre></td></tr></tbody></table></figure>
+<p>使用命令<code> sestatus</code>查看防火墙状态，输出结果如下：</p>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELinux status:                 disabled</span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="安装软件包和配置服务"><a href="#安装软件包和配置服务" class="headerlink" title="安装软件包和配置服务"></a>安装软件包和配置服务</h2><h3 id="将上传的packages-tar解压"><a href="#将上传的packages-tar解压" class="headerlink" title="将上传的packages.tar解压"></a>将上传的<code>packages.tar</code>解压</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">tar -xvf /root/packages.tar</span> </span><br></pre></td></tr></tbody></table></figure>
+<h3 id="将上传的packages-tar解压"><a href="#将上传的packages-tar解压" class="headerlink" title="将上传的packages.tar解压"></a>将上传的<code>packages.tar</code>解压</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf /root/packages.tar </span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="在-root-packages-目录下创建local-repo-文件"><a href="#在-root-packages-目录下创建local-repo-文件" class="headerlink" title="在/root/packages 目录下创建local.repo 文件"></a>在<code>/root/packages</code> 目录下创建<code>local.repo</code> 文件</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">nano /root/packages/local.repo</span></span><br></pre></td></tr></tbody></table></figure>
-
+<h3 id="在-x2F-root-x2F-packages-目录下创建-local-repo-文件"><a href="#在-x2F-root-x2F-packages-目录下创建-local-repo-文件" class="headerlink" title="在/root/packages 目录下创建 local.repo 文件"></a>在/root/packages 目录下创建 local.repo 文件</h3><p>使用命令<code> nano /root/packages/local.repo</code>创建文件，添加以下内容</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[packages]</span><br><span class="line">name=Local Repository</span><br><span class="line">baseurl=file:///root/packages</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="运行以下命令以安装组件及其依赖项"><a href="#运行以下命令以安装组件及其依赖项" class="headerlink" title="运行以下命令以安装组件及其依赖项"></a>运行以下命令以安装组件及其依赖项</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">dnf -c /root/packages/local.repo install /root/packages/*.rpm -y</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="运行以下命令以安装组件及其依赖项"><a href="#运行以下命令以安装组件及其依赖项" class="headerlink" title="运行以下命令以安装组件及其依赖项"></a>运行以下命令以安装组件及其依赖项</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dnf -c /root/packages/local.repo install /root/packages/*.rpm -y</span><br></pre></td></tr></tbody></table></figure>
 
 <p>在安装完以上软件包后，我的虚拟机貌似出问题了，执行之后步骤提示权限不足，明明是root用户下的操作，<strong>强制重启</strong>虚拟机后再进行以下步骤</p>
-<h3 id="设置图形界面为默认运行级别"><a href="#设置图形界面为默认运行级别" class="headerlink" title="设置图形界面为默认运行级别"></a>设置图形界面为默认运行级别</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">systemctl set-default graphical.target</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="设置图形界面为默认运行级别"><a href="#设置图形界面为默认运行级别" class="headerlink" title="设置图形界面为默认运行级别"></a>设置图形界面为默认运行级别</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl set-default graphical.target</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="启动图形界面"><a href="#启动图形界面" class="headerlink" title="启动图形界面"></a>启动图形界面</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">systemctl start graphical.target</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="hljs-language-bash">查看看服务状态</span></span><br><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">systemctl status graphical.target</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="启动图形界面"><a href="#启动图形界面" class="headerlink" title="启动图形界面"></a>启动图形界面</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start graphical.target</span><br></pre></td></tr></tbody></table></figure>
 
-<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">reboot</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="查看看服务状态"><a href="#查看看服务状态" class="headerlink" title="查看看服务状态"></a>查看看服务状态</h3><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status graphical.target</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></tbody></table></figure>
 
 <h2 id="重启后进入图形化桌面"><a href="#重启后进入图形化桌面" class="headerlink" title="重启后进入图形化桌面"></a>重启后进入图形化桌面</h2><h3 id="检查graphical-target服务"><a href="#检查graphical-target服务" class="headerlink" title="检查graphical.target服务"></a>检查graphical.target服务</h3><p>重启后发现没能自动进入图形化桌面，检查<code>systemctl status graphical.target</code>输出结果是<code>Active</code></p>
 <h3 id="检查GDM-服务设置"><a href="#检查GDM-服务设置" class="headerlink" title="检查GDM 服务设置"></a>检查GDM 服务设置</h3><p>检查 GDM 服务的设置。使用以下命令检查 GDM 服务是否已启用：</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">systemctl is-enabled gdm.service</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl is-enabled gdm.service</span><br></pre></td></tr></tbody></table></figure>
 
 <p>如果输出结果为 <code>disabled</code>，请使用以下命令启用 GDM 服务：</p>
-<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">~]# </span><span class="hljs-language-bash">systemctl <span class="hljs-built_in">enable</span> gdm.service</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable gdm.service</span><br></pre></td></tr></tbody></table></figure>
 
 <p>我的环境操作下启用GDM服务后reboot重启，可以进入图形化桌面</p>
 <p><img src="https://s2.loli.net/2023/05/21/qtECgPLpSUzH139.jpg" alt="ScreenCaputure230521035750"></p>
-<p>接下来的步骤与上一篇文的步骤一直，不多耗费篇幅</p>
+<p>接下来的步骤与上一篇文的步骤一致，不多耗费篇幅</p>
 <h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><p><img src="https://s2.loli.net/2023/05/21/Is4ejZHX8Woihbu.jpg" alt="ScreenCaputure230521042304"></p>
 <p><img src="https://s2.loli.net/2023/05/21/pnHIKCo9XtAkdDc.jpg" alt="ScreenCaputure230521042318"></p>
 <p><img src="https://s2.loli.net/2023/05/21/Txmqoa9A34tjNkg.jpg" alt="ScreenCaputure230521042357"></p>
