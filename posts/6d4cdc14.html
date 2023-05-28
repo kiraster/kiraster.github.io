@@ -197,6 +197,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
+        
         <html><head></head><body><p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在<code>CVE 2015-0204</code>,<code>CVE 1999-0524</code>漏洞，处理过程记录。<span id="more"></span></p>
 <h2 id="SSL-x2F-TLS-已弃用的TLSv1-0和TLSv1-1协议检测-CVE-2015-0204"><a href="#SSL-x2F-TLS-已弃用的TLSv1-0和TLSv1-1协议检测-CVE-2015-0204" class="headerlink" title="SSL/TLS:已弃用的TLSv1.0和TLSv1.1协议检测(CVE-2015-0204)"></a>SSL/TLS:已弃用的TLSv1.0和TLSv1.1协议检测(CVE-2015-0204)</h2><blockquote><p>漏洞描述：</p>
 <p>CVE-2015-0204:OpenSSL是OpenSSL团队开发的一个开源的能够实现安全套接层（SSL v2/v3）和安全传输层（TLS v1）协议的通用加密库，它支持多种加密算法，包括对称密码、哈希算法、安全散列算法等. OpenSSL的s3_clnt.c文件中的‘ssl3_get_key_exchange’函数存在安全漏洞.远程攻击者可通过提供临时的RSA密钥利用该漏洞实施RSA-to-EXPORT_RSA降级攻击，加快暴力破解进度.以下版本受到影响：OpenSSL 0.9.8zd之前版本，1.0.0p之前1.0.0版本，1.0.1k之前1.0.1版本.</p>
