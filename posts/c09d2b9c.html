@@ -25,9 +25,12 @@
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/bOxdoBuIFlzCATX.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/7WlX5ZyMtTa8LEu.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/KnxfOaRvjBH5Yi1.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/07/25/USyG7lB56bWgw1N.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/07/25/PGK3UTDeWnLu2Sd.jpg">
+<meta property="og:image" content="https://s2.loli.net/2023/07/25/rFqgtB1Vm6WJsdL.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/07/24/BrCt6YqPvRUK7c3.jpg">
 <meta property="article:published_time" content="2023-07-24T12:42:28.000Z">
-<meta property="article:modified_time" content="2023-07-24T14:34:10.246Z">
+<meta property="article:modified_time" content="2023-07-25T07:42:57.869Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="信锐控制器">
 <meta property="article:tag" content="华为无线控制器">
@@ -213,7 +216,7 @@
           <span class="column is-narrow">
               
               
-              10 minutes read (About 1431 words)
+              9 minutes read (About 1397 words)
           </span>
           
       </div>
@@ -240,23 +243,25 @@
 <p>根据【信锐控制器对接华为AC6005系列_V3.8.0.3.pdf】文档第2页，可以看到两行红色字提示</p>
 <p>但是，【SUNDRAY_NMC_3.10.0_20221203.pdf】NMC手册第170页也给出了“角色将会通过 RADIUS 报文中的 Class 字段，以字符串的形式返回给 RADIUS 客户端”，这就留下了可操作的空间</p>
 <p><img src="https://s2.loli.net/2023/07/24/bOxdoBuIFlzCATX.jpg" alt="ScreenCaputure230724215525"></p>
-<h3 id="华为控制器产品手册中的RADIUS属性说明"><a href="#华为控制器产品手册中的RADIUS属性说明" class="headerlink" title="华为控制器产品手册中的RADIUS属性说明"></a>华为控制器产品手册中的RADIUS属性说明</h3><p>【无线接入控制器(AC和FIT AP) V200R022C00 产品文档】–【配置】–【配置指南（通过命令行）】–【用户接入与认证配置】–【AAA配置】–【AAA原理描述】–【RADIUS认证、授权和计费】–【RADIUS属性】</p>
+<h3 id="华为控制器产品手册中的RADIUS属性说明"><a href="#华为控制器产品手册中的RADIUS属性说明" class="headerlink" title="华为控制器产品手册中的RADIUS属性说明"></a>华为控制器产品手册中的RADIUS属性说明</h3><p>【无线接入控制器(AC和FIT AP) V200R022C00 产品文档】-【配置】-【配置指南（通过命令行）】-【用户接入与认证配置】-【AAA配置】-【AAA原理描述】-【RADIUS认证、授权和计费】-【RADIUS属性】</p>
 <p><img src="https://s2.loli.net/2023/07/24/7WlX5ZyMtTa8LEu.jpg" alt="ScreenCaputure230724213107"></p>
 <p><img src="https://s2.loli.net/2023/07/24/KnxfOaRvjBH5Yi1.jpg" alt="ScreenCaputure230724213215"></p>
 <h3 id="华为ACL编号授权说明"><a href="#华为ACL编号授权说明" class="headerlink" title="华为ACL编号授权说明"></a>华为ACL编号授权说明</h3><p><a target="_blank" rel="noopener" href="https://support.huawei.com/enterprise/zh/doc/EDOC1000113778/f42e57ed">https://support.huawei.com/enterprise/zh/doc/EDOC1000113778/f42e57ed</a></p>
-<p>RADIUS服务器上配置了ACL编号下发功能，则授权信息中含有下发的ACL编号，设备端根据下发的ACL编号匹配相应的ACL规则，对用户权限进行控制。</p>
+<p>RADIUS服务器上配置了ACL编号下发功能，则授权信息中含有下发的ACL编号，设备端根据下发的ACL编号匹配相应的ACL规则，对用户权限进行控制</p>
 <ul>
-<li>ACL编号下发，使用的RADIUS属性为：(011)Filter-Id。</li>
-<li>AC上支持接受的ACL编号取值范围为3000～3031。</li>
+<li>ACL编号下发，使用的RADIUS属性为：(011)<strong>Filter-Id</strong></li>
+<li>AC上支持接受的ACL编号取值范围为3000～3031</li>
 </ul>
-<h3 id="抓包分析信锐NMC返回的radius属性"><a href="#抓包分析信锐NMC返回的radius属性" class="headerlink" title="抓包分析信锐NMC返回的radius属性"></a>抓包分析信锐NMC返回的radius属性</h3><p>首先在信锐NMC上配置角色，名称同华为无线控制器的配置ACL编号一致，只需填写名称，其他规则什么的都不用</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 华为无线控制器访客授权ACL示例，如要放行访客可以访问部分内网资源，按需修改</span><br><span class="line"># 10.10.10.10 为信锐设备互联IP（不给看真实的，胡编一个），</span><br><span class="line">acl number 3020  </span><br><span class="line"> rule 5 permit ip destination 10.10.10.10 0 </span><br><span class="line"> rule 10 deny ip destination 10.0.0.0 0.255.255.255 </span><br><span class="line"> rule 15 deny ip destination 172.16.0.0 0.15.255.255 </span><br><span class="line"> rule 20 deny ip destination 192.168.0.0 0.0.255.255 </span><br><span class="line"> rule 25 permit ip </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="抓包分析信锐NMC返回的radius属性"><a href="#抓包分析信锐NMC返回的radius属性" class="headerlink" title="抓包分析信锐NMC返回的radius属性"></a>抓包分析信锐NMC返回的radius属性</h3><p>首先在信锐NMC上配置角色，名称同华为无线控制器的配置ACL编号一致，只需填写名称，其他选项都不用</p>
+<p><img src="https://s2.loli.net/2023/07/25/USyG7lB56bWgw1N.jpg" alt="ScreenCaputure230725115751"></p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 华为无线控制器访客授权ACL示例，如要放行访客可以访问部分内网资源，按需修改</span><br><span class="line"># 10.10.10.10 为信锐设备互联IP（不给看真实的，胡编一个）</span><br><span class="line">#</span><br><span class="line">acl number 3020  </span><br><span class="line"> rule 5 permit ip destination 10.10.10.10 0 </span><br><span class="line"> rule 10 deny ip destination 10.0.0.0 0.255.255.255 </span><br><span class="line"> rule 15 deny ip destination 172.16.0.0 0.15.255.255 </span><br><span class="line"> rule 20 deny ip destination 192.168.0.0 0.0.255.255 </span><br><span class="line"> rule 25 permit ip </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
 
-<p>抓包前在信锐NMC上配置了名称为 3020 的角色，并且在【WEB 认证策略】-【权限匹配】中设置了规则【认证类型-访客认证】认证通过后应用 3020 角色，此步骤对应华为NCE中的【授权规则】和【授权结果】</p>
+<p>在【WEB 认证策略】-【权限设定】-【使用规则】-添加【认证类型条件】满足条件后分配角色 3020 ，此步骤对应华为NCE中的【授权规则】和【授权结果】</p>
+<p><img src="https://s2.loli.net/2023/07/25/PGK3UTDeWnLu2Sd.jpg" alt="ScreenCaputure230725115816"></p>
+<p><img src="https://s2.loli.net/2023/07/25/rFqgtB1Vm6WJsdL.jpg" alt="ScreenCaputure230725115835"></p>
+<p>如下图，radius认证过程中，在信锐NMC返回给华为无线控制器的 Access-Accept 报文中，观察到Class属性中的值为 3020，正是在信锐NMC上配置的角色名称</p>
 <p><img src="https://s2.loli.net/2023/07/24/BrCt6YqPvRUK7c3.jpg" alt="ScreenCaputure230724214334"></p>
-<p>如上图，radius认证过程中，在信锐NMC返回给华为无线控制器的 Access-Accept 报文中，观察到Class属性中的值为 3020，正是在信锐NMC上配置的角色名称</p>
-<h3 id="华为无线控制器配置radius属性转换"><a href="#华为无线控制器配置radius属性转换" class="headerlink" title="华为无线控制器配置radius属性转换"></a>华为无线控制器配置radius属性转换</h3><p>根据上面的华为ACL编号授权说明，使用的RADIUS属性为：(011)Filter-Id，AC上支持接受的ACL编号取值范围为3000～3031</p>
-<p>RADIUS属性转换功能，属性转换主要是为了兼容不同厂商RADIUS属性定义的差别。</p>
+<h3 id="华为无线控制器配置radius属性转换"><a href="#华为无线控制器配置radius属性转换" class="headerlink" title="华为无线控制器配置radius属性转换"></a>华为无线控制器配置radius属性转换</h3><p>华为无线控制器RADIUS属性转换功能，属性转换主要是为了兼容不同厂商RADIUS属性定义的差别。</p>
 <p>在本次对接中，需要将信锐返回的radius Class属性转换成Filter-Id属性，这样就实现了华为系的授权ACL下发功能（已验证，好使）</p>
 <p>在RADIUS服务器模板视图下添加如下命令</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">radius-server attribute translate</span><br><span class="line">radius-attribute translate Class Filter-Id receive </span><br></pre></td></tr></tbody></table></figure>
