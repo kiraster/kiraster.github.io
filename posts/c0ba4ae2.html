@@ -22,8 +22,8 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2023/03/07/oZLaRtUIcxgjFqe.jpg">
 <meta property="og:image" content="https://s2.loli.net/2023/03/07/S4HEnAgOUe6QYpj.jpg">
-<meta property="article:published_time" content="2023-03-07T09:05:34.000Z">
-<meta property="article:modified_time" content="2023-08-04T04:36:12.936Z">
+<meta property="article:published_time" content="2023-03-03T17:05:34.000Z">
+<meta property="article:modified_time" content="2023-08-04T04:41:29.372Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="Network Emulator">
 <meta property="article:tag" content="PNETLab">
@@ -232,7 +232,7 @@
           <span class="column is-narrow">
               
                   <i class="far fa-clock"></i>
-                  <span>&nbspMar 7th 23&nbsp</span>
+                  <span>&nbspMar 4th 23&nbsp</span>
               
           </span>
           
@@ -245,7 +245,7 @@
           <span class="column is-narrow">
               
               
-              21 minutes read (About 3212 words)
+              21 minutes read (About 3213 words)
           </span>
           
       </div>
@@ -261,7 +261,7 @@
         
         <html><head></head><body><p><strong>Introduction</strong></p>
 <p>This document describes how to configure and verify the Inter-AS  Layer 3 Multiprotocol Label Switching (MPLS) VPN, option C feature.  A sample network scenario and its  configuration and outputs are shown for a better understanding. <span id="more"></span></p>
-<p>本文描述的是根据思科网站一篇配置文档（<a target="_blank" rel="noopener" href="https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/200523-Configuration-and-Verification-of-Layer.html#%EF%BC%89">https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/200523-Configuration-and-Verification-of-Layer.html#）</a> 修改搭建的一个实验。</p>
+<p>本文描述的是根据思科网站一篇配置文档（<a target="_blank" rel="noopener" href="https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/200523-Configuration-and-Verification-of-Layer.html#%EF%BC%89%E4%BF%AE%E6%94%B9%E6%90%AD%E5%BB%BA%E7%9A%84%E4%B8%80%E4%B8%AA%E5%AE%9E%E9%AA%8C%E3%80%82">https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/200523-Configuration-and-Verification-of-Layer.html#）修改搭建的一个实验。</a></p>
 <hr>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>模拟器：PNET 4.2.10 </li>
@@ -272,7 +272,7 @@
 <p><strong>搭建的拓扑</strong></p>
 <p><img src="https://s2.loli.net/2023/03/07/S4HEnAgOUe6QYpj.jpg" alt="ScreenCaputure230304012642"></p>
 <h3 id="拓扑规划"><a href="#拓扑规划" class="headerlink" title="拓扑规划"></a>拓扑规划</h3><ol>
-<li>每台路由配置环回接口 0 ，例如 R1 格式为： 1.1.1.1/32</li>
+<li>每台路由配置环回接口 0 ，格式为 R1： 1.1.1.1/32</li>
 <li>互联接口为：设备编号1 + 设备编号2  + .1.1 + 设备编号1，例如 R1 e0/0 接口IP地址：12.1.1.1/24</li>
 <li>R7、R8、R9、R10 为 CE，R11 和 R12 为 反射器</li>
 <li>ISP1，ISP2 底层 IGP 运行 OSPF 协议</li>
@@ -303,7 +303,7 @@
 <li><h4 id="配置-PE-的-VRF，配置与-CE-互联的接口划分到-VRF"><a href="#配置-PE-的-VRF，配置与-CE-互联的接口划分到-VRF" class="headerlink" title="配置 PE 的 VRF，配置与 CE 互联的接口划分到 VRF"></a>配置 PE 的 VRF，配置与 CE 互联的接口划分到 VRF</h4><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">!--- R1 commands.</span><br><span class="line"></span><br><span class="line">ip vrf a</span><br><span class="line"> rd 7:100</span><br><span class="line"> route-target export 7:7</span><br><span class="line"> route-target import 9:9</span><br><span class="line">ip vrf b</span><br><span class="line"> rd 8:100</span><br><span class="line"> route-target export 8:8</span><br><span class="line"> route-target import 10:10</span><br><span class="line"> </span><br><span class="line">!</span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip vrf forwarding a</span><br><span class="line"> ip address 17.1.1.1 255.255.255.0</span><br><span class="line"></span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> ip vrf forwarding b</span><br><span class="line"> ip address 18.1.1.1 255.255.255.0</span><br><span class="line"></span><br><span class="line">!--- R6 commands.</span><br><span class="line"></span><br><span class="line">ip vrf a</span><br><span class="line"> rd 9:200</span><br><span class="line"> route-target export 9:9</span><br><span class="line"> route-target import 7:7</span><br><span class="line">ip vrf b</span><br><span class="line"> rd 10:200</span><br><span class="line"> route-target export 10:10</span><br><span class="line"> route-target import 8:8</span><br><span class="line"> </span><br><span class="line">interface Ethernet0/1</span><br><span class="line"> ip vrf forwarding a</span><br><span class="line"> ip address 69.1.1.6 255.255.255.0</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/2</span><br><span class="line"> ip vrf forwarding b</span><br><span class="line"> ip address 106.1.1.6 255.255.255.0</span><br></pre></td></tr></tbody></table></figure>
 
 <p><strong>验证：</strong>查看 VRF 路由表，以 R1 为例</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">!--- R1 output.</span><br><span class="line"></span><br><span class="line">R1#sh ip route vrf a | b Gate</span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      17.0.0.0/8 is variably subnetted, 2 subnets, 2 masks</span><br><span class="line">C        17.1.1.0/24 is directly connected, Ethernet0/1</span><br><span class="line">L        17.1.1.1/32 is directly connected, Ethernet0/1</span><br><span class="line">R1#</span><br><span class="line">R1#sh ip route vrf b | b Gate</span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      18.0.0.0/8 is variably subnetted, 2 subnets, 2 masks</span><br><span class="line">C        18.1.1.0/24 is directly connected, Ethernet0/2</span><br><span class="line">L        18.1.1.1/32 is directly connected, Ethernet0/2</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">!--- R1 output.</span><br><span class="line"></span><br><span class="line">R1#sh ip route vrf a | b Gate</span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      7.0.0.0/32 is subnetted, 1 subnets</span><br><span class="line">O        7.7.7.7 [110/11] via 17.1.1.7, 02:15:47, Ethernet0/1</span><br><span class="line">      17.0.0.0/8 is variably subnetted, 2 subnets, 2 masks</span><br><span class="line">C        17.1.1.0/24 is directly connected, Ethernet0/1</span><br><span class="line">L        17.1.1.1/32 is directly connected, Ethernet0/1</span><br><span class="line">R1#</span><br><span class="line">R1#sh ip route vrf b | b Gate</span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      8.0.0.0/32 is subnetted, 1 subnets</span><br><span class="line">B        8.8.8.8 [20/0] via 18.1.1.8, 02:16:08</span><br><span class="line">      18.0.0.0/8 is variably subnetted, 2 subnets, 2 masks</span><br><span class="line">C        18.1.1.0/24 is directly connected, Ethernet0/2</span><br><span class="line">L        18.1.1.1/32 is directly connected, Ethernet0/2</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
 </li>
 <li><h4 id="配置-ISP-的-BGP-邻居"><a href="#配置-ISP-的-BGP-邻居" class="headerlink" title="配置 ISP 的 BGP 邻居"></a>配置 ISP 的 BGP 邻居</h4><p><strong>R3 与 R4 配置 IPv4 BGP 邻居，R3 宣告 1.1.1.1 和 11.11.11.11，R4 宣告 6.6.6.6 和 12.12.12.12</strong></p>
 <p><strong>将 BGP 路由重分布进底层 OSPF 协议，为了学习到对端 RR 和 PE 路由，建立 MP-BGP 需要</strong></p>
@@ -383,10 +383,7 @@
 <p><strong>R8 和 R10 之间的 Traceroute 操作</strong></p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">R8#traceroute 10.10.10.10 source 8.8.8.8</span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">Tracing the route to 10.10.10.10</span><br><span class="line">VRF info: (vrf in name/id, vrf out name/id)</span><br><span class="line">  1 18.1.1.1 2 msec 1 msec 1 msec</span><br><span class="line">  2 12.1.1.2 [MPLS: Labels 24/28 Exp 0] 8 msec 9 msec 9 msec</span><br><span class="line">  3 23.1.1.3 [MPLS: Labels 26/28 Exp 0] 9 msec 9 msec 9 msec</span><br><span class="line">  4 34.1.1.4 [MPLS: Labels 27/28 Exp 0] 10 msec 8 msec 10 msec</span><br><span class="line">  5 45.1.1.5 [MPLS: Labels 22/28 Exp 0] 7 msec 9 msec 8 msec</span><br><span class="line">  6 106.1.1.6 [MPLS: Label 28 Exp 0] 8 msec 7 msec 9 msec</span><br><span class="line">  7 106.1.1.10 8 msec *  10 msec</span><br><span class="line">R8#</span><br><span class="line">R10#traceroute 8.8.8.8 source 10.10.10.10</span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">Tracing the route to 8.8.8.8</span><br><span class="line">VRF info: (vrf in name/id, vrf out name/id)</span><br><span class="line">  1 106.1.1.6 1 msec 2 msec 1 msec</span><br><span class="line">  2 56.1.1.5 [MPLS: Labels 25/28 Exp 0] 8 msec 8 msec 11 msec</span><br><span class="line">  3 45.1.1.4 [MPLS: Labels 23/28 Exp 0] 8 msec 28 msec 8 msec</span><br><span class="line">  4 34.1.1.3 [MPLS: Labels 21/28 Exp 0] 8 msec 11 msec 8 msec</span><br><span class="line">  5 23.1.1.2 [MPLS: Labels 19/28 Exp 0] 9 msec 8 msec 10 msec</span><br><span class="line">  6 18.1.1.1 [MPLS: Label 28 Exp 0] 16 msec 6 msec 7 msec</span><br><span class="line">  7 18.1.1.8 9 msec *  10 msec</span><br><span class="line">R10#</span><br></pre></td></tr></tbody></table></figure>
 
-<h2 id="一个视频"><a href="#一个视频" class="headerlink" title="一个视频"></a>一个视频</h2><style>.bbplayer{width: 100%; max-width: 850px; margin: auto}</style><div class="bbplayer"><iframe class="bbplayer" id="mmedia-sfTRsTuiBfYYGOuc" src="https://player.bilibili.com/player.html?bvid=BV1Lv4y1a7tG&amp;page=1&amp;high_quality=1&amp;danmaku=true" allowfullscreen="allowfullscreen" scrolling="no" border="0" frameborder="0" framespacing="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe></div><script> document.getElementById("mmedia-sfTRsTuiBfYYGOuc").style.height=document.getElementById("mmedia-sfTRsTuiBfYYGOuc").scrollWidth*0.76+"px";
-    window.onresize = function(){
-      document.getElementById("mmedia-sfTRsTuiBfYYGOuc").style.height=document.getElementById("mmedia-sfTRsTuiBfYYGOuc").scrollWidth*0.76+"px";
-    }; </script>
+<h2 id="一个视频"><a href="#一个视频" class="headerlink" title="一个视频"></a>一个视频</h2><div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;"><iframe src="//player.bilibili.com/player.html?aid=568047941&amp;bvid=BV1Lv4y1a7tG&amp;cid=1043048450&amp;page=1&amp;high_quality=1&amp;autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; Left: 0; top: 0;" sandbox=""></iframe></div>
 
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
 <li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li>
@@ -419,7 +416,7 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/posts/d70f2b4c.html">基于Django编写的SNMP轮询Demo</a>
+            <a href="/posts/c0ba4ae2.html">配置跨域的Option C MPLS VPN（Cisco）</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
