@@ -129,68 +129,6 @@
     
       <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
           
-              <a href="/posts/62d0e673.html" itemprop="url">No.003 Simple Case</a>
-          
-      </h1>
-    
-    
-      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-          <span class="column is-narrow">
-              
-                  <i class="far fa-clock"></i>
-                  <span>&nbspNov 11th 21&nbsp</span>
-              
-          </span>
-          
-          <span class="column is-narrow article-category">
-              <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/PNETLab/">PNETLab</a>
-          </span>
-          
-          
-          <span class="column is-narrow">
-              
-              
-              19 minutes read (About 2905 words)
-          </span>
-          
-      </div>
-    
-    <!-- add timeliness tips date:20230510 -->
-    
-      
-      
-        <div>
-          <i class="fa fa-exclamation-triangle"></i> 
-          This is an article that was created 632 days ago, and the information may have evolved or changed.  
-        </div>
-        <br>
-      
-    
-    
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>红茶三杯的原文 ：<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html">【有点儿意思系列 04】哎哟喂停不下来了</a> ，根据问题延续中的表述， 实验拓扑增加了两台出口路由器，两台防火墙，一台服务器。本次拓扑实验依托上一个拓扑演变而来，大部分基础配置与上一个相同，如果您是初次看到本文，请参阅上文 <strong>【<a href="https://kiraster.github.io/posts/2da7a7a9.html">No.002 Simple Case</a>】</strong>，本文不在赘述。</p>
-<p>可能你看到拓扑中防火墙名称就懵了，我解释一下，由于我这是台古董级 AMD CPU 的电脑，跑不起 Cisco ASAv 的镜像（报错：Unsupport CPU type，无限重启），再加上内存有限，就不折腾了，考虑到文中只提到 NAT 的需求，我就用两台路由器换个图标和名称代替了。最终实现了原文中源地址转换及静态映射的需求，虽然牺牲了安全策略配置和 HA 配置。</p></body></html>
-        <p class="article-more-link">
-            <a href="/posts/62d0e673.html#more">Read More</a>
-        </p>
-    
-    </div>
-    
-    
-</article>
-<!-- 
-DO NOT APPLY SHAREBOX
-
-DO NOT APPLY COMMENTS
-
--->
-    
-        <article class="article content gallery" itemscope itemprop="blogPost">
-    
-      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-          
               <a href="/posts/2da7a7a9.html" itemprop="url">No.002 Simple Case</a>
           
       </h1>
@@ -728,6 +666,72 @@ DO NOT APPLY COMMENTS
 <p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了</p></body></html>
         <p class="article-more-link">
             <a href="/posts/2703fb4a.html#more">Read More</a>
+        </p>
+    
+    </div>
+    
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+DO NOT APPLY COMMENTS
+
+-->
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
+              <a href="/posts/e765d177.html" itemprop="url">H3C_S5500-52C-EI升级步骤</a>
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspSep 14th 21&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/H3C/">H3C</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              7 minutes read (About 1114 words)
+          </span>
+          
+      </div>
+    
+    <!-- add timeliness tips date:20230510 -->
+    
+      
+      
+        <div>
+          <i class="fa fa-exclamation-triangle"></i> 
+          This is an article that was created 690 days ago, and the information may have evolved or changed.  
+        </div>
+        <br>
+      
+    
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p><strong>准备工作</strong></p>
+<p>下载升级所需要的两个文件：</p>
+<p><strong>S5500EI-BTM-721.btm</strong>（新版本 Bootrom 程序）</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">名称: S5500EI-BTM-721.btm</span><br><span class="line">大小: 483732 字节 (472 KiB)</span><br><span class="line">CRC32: 4B9436E9</span><br><span class="line">CRC64: 928CB6227DE9AF69</span><br><span class="line">SHA256: C0EDB2FA02C5F8804E8D983F4DD197F1D321C21C317ED5BB10BF002CB4973CE8</span><br><span class="line">SHA1: F8B345BC2012C8183CE01F092E4181FC15495867</span><br><span class="line">BLAKE2sp: 6A5E362D8A4DA8FA74B6A9F4568627FA07C53126DB67F5FF287C9BE893C33502</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>S5500EI-CMW520-R2222P12.bin</strong>（新版本主机软件）</p></body></html>
+        <p class="article-more-link">
+            <a href="/posts/e765d177.html#more">Read More</a>
         </p>
     
     </div>
