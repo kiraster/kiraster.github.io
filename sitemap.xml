@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kiraster.github.io/posts/c0ba4ae2.html</loc>
+    
+    <lastmod>2023-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/posts/14423df7.html</loc>
     
     <lastmod>2023-08-28</lastmod>
@@ -648,20 +657,6 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/tags/Methods/</loc>
-    <lastmod>2023-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kiraster.github.io/tags/Feynman/</loc>
-    <lastmod>2023-08-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kiraster.github.io/tags/eNSP/</loc>
     <lastmod>2023-08-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -670,6 +665,20 @@
   
   <url>
     <loc>https://kiraster.github.io/tags/USG%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
+    <lastmod>2023-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Methods/</loc>
+    <lastmod>2023-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Feynman/</loc>
     <lastmod>2023-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1348,6 +1357,34 @@
   </url>
   
   <url>
+    <loc>https://kiraster.github.io/tags/MPLS-VPN/</loc>
+    <lastmod>2023-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/Option-C/</loc>
+    <lastmod>2023-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/%E8%B7%A8%E5%9F%9F/</loc>
+    <lastmod>2023-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kiraster.github.io/tags/nter-AS/</loc>
+    <lastmod>2023-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kiraster.github.io/tags/Django/</loc>
     <lastmod>2023-08-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -1791,14 +1828,14 @@
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/Methods/</loc>
+    <loc>https://kiraster.github.io/categories/eNSP/</loc>
     <lastmod>2023-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kiraster.github.io/categories/eNSP/</loc>
+    <loc>https://kiraster.github.io/categories/Methods/</loc>
     <lastmod>2023-08-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
