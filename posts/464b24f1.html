@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+<meta charset="utf-8">
+<title>MPLS排错练习题-故障排除 - Kir&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<meta name="description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+<meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+    <meta name="description" content="在51cto博客https:&#x2F;&#x2F;blog.51cto.com&#x2F;dashu666&#x2F;2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩 MPLS 环境如下图，现由于前面负责实施的工程师离职，留下烂尾工程，请按下面截图找出目前配置存在的错误并修复，要求项目部署完毕之后所有检查命令输出要和下面截图一致。要求R7 和R8两个站点通信必须经过R6的全局处理、要求R6 的 vrfA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MPLS排错练习题-故障排除">
+<meta property="og:url" content="https://kiraster.github.io/posts/464b24f1.html">
+<meta property="og:site_name" content="Kir&#39;s Blog">
+<meta property="og:description" content="在51cto博客https:&#x2F;&#x2F;blog.51cto.com&#x2F;dashu666&#x2F;2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩 MPLS 环境如下图，现由于前面负责实施的工程师离职，留下烂尾工程，请按下面截图找出目前配置存在的错误并修复，要求项目部署完毕之后所有检查命令输出要和下面截图一致。要求R7 和R8两个站点通信必须经过R6的全局处理、要求R6 的 vrfA">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2024/02/01/cmZPLOSuElAsx3N.jpg">
+<meta property="article:published_time" content="2024-02-01T08:57:52.000Z">
+<meta property="article:modified_time" content="2024-02-01T09:11:06.441Z">
+<meta property="article:author" content="Kir Aster">
+<meta property="article:tag" content="BGP">
+<meta property="article:tag" content="OSPF">
+<meta property="article:tag" content="MPLS">
+<meta property="article:tag" content="MP-BGP">
+<meta property="article:tag" content="CISCO">
+<meta property="article:tag" content="Pnetlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/02/01/cmZPLOSuElAsx3N.jpg">
+
+
+
+<link rel="icon" href="https://s2.loli.net/2022/11/07/nR4jdLTGEq6kZ2S.png">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<!--引入思源黑体 rel-->
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-209914470-1');
+</script>
+
+
+    
+    
+<!-- Clarity tracking code for https://kiraster.github.io/ -->
+<script>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "heff72hdac");
+</script>
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    Kir&#39;s
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/gallery">Gallery</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#排查R1到10-1-1-2-x2F-32的MPLS标签转发问题">1&nbsp;&nbsp;<b>排查R1到10.1.1.2/32的MPLS标签转发问题</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#排查MPLS网络中其他设备标签转发问题">2&nbsp;&nbsp;<b>排查MPLS网络中其他设备标签转发问题</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#排查R6，R7和R8的路由问题">3&nbsp;&nbsp;<b>排查R6，R7和R8的路由问题</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#流量模型分析">3.1&nbsp;&nbsp;流量模型分析</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#排查步骤">3.2&nbsp;&nbsp;排查步骤</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#排查R1，R4和R5是否学习到客户CE上的路由">3.3&nbsp;&nbsp;排查R1，R4和R5是否学习到客户CE上的路由</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#排查CE路由表未完全学习R6上路由">4&nbsp;&nbsp;<b>排查CE路由表未完全学习R6上路由</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#总结">5&nbsp;&nbsp;<b>总结</b></a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
+              MPLS排错练习题-故障排除
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspFeb 1st 24&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/PNETLab/">PNETLab</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              an hour read (About 11515 words)
+          </span>
+          
+      </div>
+    
+    <!-- add timeliness tips date:20230510 -->
+    
+      
+      
+    
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        
+        <html><head></head><body><p>在51cto博客<a target="_blank" rel="noopener" href="https://blog.51cto.com/dashu666/2163481">https://blog.51cto.com/dashu666/2163481</a> 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩</p>
+<p>MPLS 环境如下图，现由于前面负责实施的工程师离职，留下烂尾工程，请按下面截图找出目前配置存在的错误并修复，要求项目部署完毕之后所有检查命令输出要和下面截图一致。<br>要求R7 和R8两个站点通信必须经过R6的全局处理、要求R6 的 vrfA 和 R7、R8能够直接通信<span id="more"></span></p>
+<p>同时要求交一份排除故障的文档。<br>要求在文档中指出配置错误的地方，以及产生的影响，解决的方案。<br>不能使用任何静态路由、不允许修改 R4、R5 的 VRF 配置、不允许修改 R6的BGP配置</p>
+<hr>
+<p><img src="https://s2.loli.net/2024/02/01/cmZPLOSuElAsx3N.jpg" alt="ScreenCaputure240201002259"></p>
+<h2 id="排查R1到10-1-1-2-x2F-32的MPLS标签转发问题"><a href="#排查R1到10-1-1-2-x2F-32的MPLS标签转发问题" class="headerlink" title="排查R1到10.1.1.2/32的MPLS标签转发问题"></a>排查R1到10.1.1.2/32的MPLS标签转发问题</h2><ol>
+<li><p>在R1上输入命令ping mpls ipv4 10.1.1.2/32 source 10.1.1.1，验证R1到10.1.1.2/32的MPLS标签转发过程问题存在</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R1#ping mpls ipv4 10.1.1.2/32 source 10.1.1.1</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.2/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">.....</span><br><span class="line">Success rate is 0 percent (0/5)</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>在R1上使用命令show mpls forwarding-table 查看LFIB</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">R1#show mpls forwarding-table </span><br><span class="line">Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop    </span><br><span class="line">Label      Label      or Tunnel Id     Switched      interface              </span><br><span class="line">102        Pop Label  10.1.1.3/32      0             Et0/0      13.1.1.3    </span><br><span class="line">103        304        10.1.1.2/32      0             Et0/0      13.1.1.3    </span><br><span class="line">104        307        10.1.1.5/32      0             Et0/0      13.1.1.3    </span><br><span class="line">105        306        10.1.1.4/32      0             Et0/0      13.1.1.3    </span><br><span class="line">106        No Label   10.6.6.6/32[V]   0             Et0/1.1    16.1.1.6    </span><br><span class="line">107        No Label   0.0.0.0/0[V]     0             Et0/1.2    16.1.2.6    </span><br><span class="line">108        No Label   10.6.6.6/32[V]   0             Et0/1.2    16.1.2.6    </span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R1去往R2的10.1.1.2有出方向标签，下一步检查R3设备的LFIB</p>
+</li>
+<li><p>在R3上使用命令show mpls forwarding-table 查看LFIB</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">R3#sh mpls forwarding-table </span><br><span class="line">Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop    </span><br><span class="line">Label      Label      or Tunnel Id     Switched      interface              </span><br><span class="line">300        No Label   13.1.1.0/24      0             drop       </span><br><span class="line">301        No Label   23.1.1.0/24      0             drop       </span><br><span class="line">302        No Label   34.1.1.0/24      0             drop       </span><br><span class="line">303        No Label   35.1.1.0/24      0             drop       </span><br><span class="line">304        No Label   10.1.1.2/32      0             drop       </span><br><span class="line">305        No Label   10.1.1.1/32      0             drop       </span><br><span class="line">306        No Label   10.1.1.4/32      0             drop       </span><br><span class="line">307        No Label   10.1.1.5/32      0             drop       </span><br><span class="line">R3#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R3没有去往10.1.1.1/32和10.1.1.2/32的出方向标签，下一步检查R3上的LDP邻居关系</p>
+</li>
+<li><p>在R3上使用命令show mpls ldp neighbor 查看LDP邻居</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R3#show mpls ldp neighbor </span><br><span class="line">    Peer LDP Ident: 10.1.1.1:0; Local LDP Ident 10.1.1.3:0</span><br><span class="line">        TCP connection: 10.1.1.1.646 - 10.1.1.3.59329</span><br><span class="line">        State: Oper; Msgs sent/rcvd: 56/52; Downstream</span><br><span class="line">        Up time: 00:37:37</span><br><span class="line">        LDP discovery sources:</span><br><span class="line">          Ethernet0/0, Src IP addr: 13.1.1.1</span><br><span class="line">        Addresses bound to peer LDP Ident:</span><br><span class="line">          13.1.1.1        10.1.1.1        16.1.3.1   </span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R3上有与R1的LDP邻居，没有与R2建立LDP邻居，下一步检查R3上LDP进程</p>
+</li>
+<li><p>在R3上使用命令show mpls ldp discovery 查看LDP进程信息</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">R3#show mpls ldp discovery </span><br><span class="line"> Local LDP Identifier:</span><br><span class="line">    10.1.1.3:0</span><br><span class="line">    Discovery Sources:</span><br><span class="line">    Interfaces:</span><br><span class="line">        Ethernet0/0 (ldp): xmit/recv</span><br><span class="line">            LDP Id: 10.1.1.1:0</span><br><span class="line">        Ethernet0/1 (ldp): xmit/recv</span><br><span class="line">            LDP Id: 10.22.22.22:0; no route</span><br><span class="line">        Ethernet0/2 (ldp): xmit</span><br><span class="line">        Ethernet0/3 (ldp): xmit</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R3使用10.1.1.3为LDP router-id与对端建立LDP邻居，在Ethernet0/1收到 LDP ID为10.22.22.22的LDP报文且提示没有路由到达，而Ethernet0/1连接的是R2，怀疑R2上手动指定了10.22.22.22为LDP的router-id或LDP自动选举了该地址作为router-id，且该地址没有宣告底层IGP协议；R3与R1能建立LDP邻居，下一步检查R3的cef特性是否启用</p>
+</li>
+<li><p>在R3上使用用命令show ip cef  查看cef是否启用</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R3#show ip cef </span><br><span class="line">%IPv4 CEF not running</span><br><span class="line">R3#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R3没有启用cef特性，而FIB的形成依赖cef特性，因此需要启用设备的cef特性</p>
+<p>在R3上使用命令ip cef 启用cef</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R3(config)#ip cef </span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>在R3上使用命令show mpls forwarding-table 查看LFIB</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">R3#sh mpls forwarding-table </span><br><span class="line">Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop    </span><br><span class="line">Label      Label      or Tunnel Id     Switched      interface              </span><br><span class="line">304        No Label   10.1.1.2/32      0             Et0/1      23.1.1.2    </span><br><span class="line">305        Pop Label  10.1.1.1/32      0             Et0/0      13.1.1.1    </span><br><span class="line">306        No Label   10.1.1.5/32      0             Et0/3      35.1.1.5    </span><br><span class="line">307        No Label   10.1.1.4/32      0             Et0/2      34.1.1.4    </span><br><span class="line">R3#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R3上已经有去往10.1.1.1/32的出方向标签，下一步检查R2的LDP配置</p>
+</li>
+<li><p>在R上使用命令show mpls ldp discovery 查看LDP进程信息</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">R2#show mpls ldp discovery </span><br><span class="line"> Local LDP Identifier:</span><br><span class="line">    10.22.22.22:0</span><br><span class="line">    Discovery Sources:</span><br><span class="line">    Interfaces:</span><br><span class="line">        Ethernet0/1 (ldp): xmit/recv</span><br><span class="line">            LDP Id: 10.1.1.3:0</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R2使用10.22.22.22作为LDP的router-id，下一步检查R2上是否手动指定了10.22.22.22为LDP的router-id或LDP自动选举了该地址作为router-id</p>
+</li>
+<li><p>在R2上使用命令show run | include router-id查看是否手动指定了LDP的router-id</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R2#show run | include router-id</span><br><span class="line">mpls ldp router-id Loopback1 force</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R2上手动指定了Loopback1接口地址为router-id，下一步查看R2的所有环回接口地址配置</p>
+</li>
+<li><p>在R2上使用命令show ip interface brief | include Loopback 查看环回接口地址配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R2#show ip interface brief | include Loopback </span><br><span class="line">Loopback0                  10.1.1.2        YES TFTP   up                    up      </span><br><span class="line">Loopback1                  10.22.22.22     YES TFTP   up                    up      </span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>继续使用命令show running-config interface loopback 0 和 show running-config interface loopback 1 查看两个环回接口的配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">R2#show running-config interface loopback 0</span><br><span class="line">Building configuration...</span><br><span class="line"></span><br><span class="line">Current configuration : 82 bytes</span><br><span class="line">!</span><br><span class="line">interface Loopback0</span><br><span class="line"> ip address 10.1.1.2 255.255.255.0</span><br><span class="line"> ip ospf 110 area 0</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">R2#show running-config interface loopback 1</span><br><span class="line">Building configuration...</span><br><span class="line"></span><br><span class="line">Current configuration : 67 bytes</span><br><span class="line">!</span><br><span class="line">interface Loopback1</span><br><span class="line"> ip address 10.22.22.22 255.255.255.255</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>综合以上结果显示，R2使用了手动设置LDP的router-id，这样手动指定router-id的配置本身没有问题，然而Loopback1并没有宣告进OSPF 110 进程，导致R3上没有10.22.22.22/32的路由，双方不能形成LDP邻居关系；</p>
+<p>LDP邻居关系的建立是标签相互学习的的前提，需要解决R2和R3的LDP邻居建立问题</p>
+<p>解决方案：</p>
+<p>在R3使用命令手动指定Loopback0接口为LDP的router-id</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R2(config)#mpls ldp router-id Loopback0 force</span><br></pre></td></tr></tbody></table></figure>
+
+<p>从命令show running-config interface loopback 0查看到的结果显示Loopback0配置24位掩码的地址，在ospf网络中思科路由器会默认认为环回接口的ospf网络类型为LOOPBACK，无论环回接口是否配置32位掩码地址都会以32位掩码地址宣告进ospf进程中</p>
+<p>R2本地LDP标签分配会为10.1.1.0/24分配标签，并不会为R2上不存在的10.1.1.2/32分配标签，R3虽然本地为10.1.1.2/32分配的本地标签，但是没有从R2上学习到10.1.1.2/32的标签</p>
+<p>解决方案如下</p>
+<p>R2上修改Loopback0的地址掩码为32位掩码</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R2(config)#interface loopback 0</span><br><span class="line">R2(config-if)# ip address 10.1.1.2 255.255.255.255</span><br><span class="line">R2(config-if)#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>在R1上输入命令ping mpls ipv4 10.1.1.2/32 source 10.1.1.1，验证R1到10.1.1.2/32的MPLS标签转发过程问题是否存在</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R1#ping mpls ipv4 10.1.1.2/32 source 10.1.1.1</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.2/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 38/138/181 ms</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R1到10.1.1.2/32的MPLS标签转发过程问题已经解决</p>
+</li>
+</ol>
+<h2 id="排查MPLS网络中其他设备标签转发问题"><a href="#排查MPLS网络中其他设备标签转发问题" class="headerlink" title="排查MPLS网络中其他设备标签转发问题"></a>排查MPLS网络中其他设备标签转发问题</h2><p>在上一步骤中在R3查看到没有R4和R5的LDP邻居，MPLS网络中IGP网络的标签转发出现问题，客户CE设备流量进入MPLS网络将不能转发到远端目的地。</p>
+<ol>
+<li><p>检查R4的LDP配置</p>
+<ol>
+<li><p>R4上使用show mpls ldp discovery 检查LDP进程</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">R4#show mpls ldp discovery </span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示没有信息，下一步检查接口是否启用mpls ip和是否全局启用mpls ip</p>
+</li>
+<li><p>R4上使用show mpls interfaces 检查LDP接口信息</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R4#show mpls interfaces </span><br><span class="line">Interface              IP            Tunnel   BGP Static Operational</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R4的Ethernet0/2接口没有启用mpls ip，下一步在R4将接口启用mpls ip</p>
+</li>
+<li><p>在R4上使用命令mpls ip将ethernet 0/2启用LDP</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R4(config)#interface ethernet 0/2</span><br><span class="line">R4(config-if)#mpls ip</span><br><span class="line">R4(config-if)#</span><br><span class="line">*Jan 30 17:52:31.200: %LDP-5-NBRCHG: LDP Neighbor 10.1.1.3:0 (1) is UP</span><br><span class="line">R4(config-if)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R4与10.1.1.3建立LDP邻居，下一步检查R4是否学习到MPLS网络中其他设备的出接口标签</p>
+</li>
+<li><p>在R4上使用命令show mpls forwarding-table 查看FLIB</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">R4#show mpls forwarding-table </span><br><span class="line">Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop    </span><br><span class="line">Label      Label      or Tunnel Id     Switched      interface              </span><br><span class="line">400        305        10.1.1.1/32      0             Et0/2      34.1.1.3    </span><br><span class="line">401        302        10.1.1.2/32      0             Et0/2      34.1.1.3    </span><br><span class="line">402        Pop Label  10.1.1.3/32      0             Et0/2      34.1.1.3    </span><br><span class="line">403        306        10.1.1.5/32      0             Et0/2      34.1.1.3    </span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R4上有到MPLS网络中其他设备的出接口标签</p>
+</li>
+</ol>
+</li>
+<li><p>检查R5的LDP配置</p>
+<ol>
+<li><p>在R5上使用命令show mpls ldp discovery 检查LDP进程</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">R5#show mpls ldp discovery </span><br><span class="line"> Local LDP Identifier:</span><br><span class="line">    10.1.1.5:0</span><br><span class="line">    Discovery Sources:</span><br><span class="line">    Interfaces:</span><br><span class="line">        Ethernet0/3 (tdp): xmit</span><br><span class="line">R5#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R5的Ethernet0/3使用标签协议为tdp，而R3上使用的是LDP协议，下一步修改R5使用LDP协议</p>
+</li>
+<li><p>在R5上使用命令mpls label protocol ldp 修改标签协议为LDP</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R5(config)#mpls label protocol ldp </span><br><span class="line">R5(config)#</span><br><span class="line">*Jan 30 18:07:49.748: %LDP-5-NBRCHG: LDP Neighbor 10.1.1.3:0 (1) is UP</span><br><span class="line">R5(config)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示在R5上修改标签协议后已经和10.1.1.3建立了邻居，下一步检查R5是否学习到MPLS网络中其他设备的出接口标签</p>
+</li>
+<li><p>在R5上使用命令show mpls forwarding-table 查看LFIB</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">R5#show mpls forwarding-table </span><br><span class="line">Local      Outgoing   Prefix           Bytes Label   Outgoing   Next Hop    </span><br><span class="line">Label      Label      or Tunnel Id     Switched      interface              </span><br><span class="line">501        307        10.1.1.4/32      0             Et0/3      35.1.1.3    </span><br><span class="line">502        Pop Label  10.1.1.3/32      0             Et0/3      35.1.1.3    </span><br><span class="line">503        302        10.1.1.2/32      0             Et0/3      35.1.1.3    </span><br><span class="line">504        305        10.1.1.1/32      0             Et0/3      35.1.1.3    </span><br><span class="line">R5#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R5上有到MPLS网络中其他设备的出接口标签</p>
+</li>
+</ol>
+</li>
+<li><p>检查各PE设备环回接口之间的标签转发是否正常</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">R1#ping mpls ipv4 10.1.1.2/32 source 10.1.1.1</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.2/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 113/170/211 ms</span><br><span class="line">R1#ping mpls ipv4 10.1.1.3/32 source 10.1.1.1</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.3/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 53/214/497 ms</span><br><span class="line">R1#ping mpls ipv4 10.1.1.4/32 source 10.1.1.1</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.4/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 144/193/312 ms</span><br><span class="line">R1#ping mpls ipv4 10.1.1.5/32 source 10.1.1.1</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.5/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 166/227/293 ms</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">R2#ping mpls ipv4 10.1.1.1/32 source 10.1.1.2</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.1/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 81/167/201 ms</span><br><span class="line">R2#ping mpls ipv4 10.1.1.3/32 source 10.1.1.2</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.3/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 69/144/169 ms</span><br><span class="line">R2#ping mpls ipv4 10.1.1.4/32 source 10.1.1.2</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.4/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 47/205/442 ms</span><br><span class="line">R2#ping mpls ipv4 10.1.1.5/32 source 10.1.1.2</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.5/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 26/146/196 ms</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">R3#ping mpls ipv4 10.1.1.1/32 source 10.1.1.3</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.1/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 186/201/231 ms</span><br><span class="line">R3#ping mpls ipv4 10.1.1.2/32 source 10.1.1.3</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.2/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 191/218/281 ms</span><br><span class="line">R3#ping mpls ipv4 10.1.1.4/32 source 10.1.1.3</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.4/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 192/201/213 ms</span><br><span class="line">R3#ping mpls ipv4 10.1.1.5/32 source 10.1.1.3</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.5/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 189/224/314 ms</span><br><span class="line">R3#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">R4#ping mpls ip 10.1.1.1/32 source 10.1.1.4</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.1/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 187/221/309 ms</span><br><span class="line">R4#ping mpls ip 10.1.1.2/32 source 10.1.1.4</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.2/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 187/224/273 ms</span><br><span class="line">R4#ping mpls ip 10.1.1.3/32 source 10.1.1.4</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.3/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 193/201/210 ms</span><br><span class="line">R4#ping mpls ip 10.1.1.5/32 source 10.1.1.4</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.5/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 193/216/230 ms</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">R5#ping mpls ip 10.1.1.1/32 source 10.1.1.5</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.1/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 64/177/230 ms</span><br><span class="line">R5#ping mpls ip 10.1.1.2/32 source 10.1.1.5</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.2/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 103/213/464 ms</span><br><span class="line">R5#ping mpls ip 10.1.1.3/32 source 10.1.1.5</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.3/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 62/154/187 ms</span><br><span class="line">R5#ping mpls ip 10.1.1.4/32 source 10.1.1.5</span><br><span class="line">Sending 5, 100-byte MPLS Echos to 10.1.1.4/32, </span><br><span class="line">     timeout is 2 seconds, send interval is 0 msec:</span><br><span class="line"></span><br><span class="line">Codes: '!' - success, 'Q' - request not sent, '.' - timeout,</span><br><span class="line">  'L' - labeled output interface, 'B' - unlabeled output interface, </span><br><span class="line">  'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,</span><br><span class="line">  'M' - malformed request, 'm' - unsupported tlvs, 'N' - no label entry, </span><br><span class="line">  'P' - no rx intf label prot, 'p' - premature termination of LSP, </span><br><span class="line">  'R' - transit router, 'I' - unknown upstream index,</span><br><span class="line">  'X' - unknown return code, 'x' - return code 0</span><br><span class="line"></span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is 100 percent (5/5), round-trip min/avg/max = 173/278/642 ms</span><br><span class="line">R5#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R1，R2，R3，R4，R5的标签转发为正常状态</p>
+</li>
+<li><p>MPLS优化</p>
+<ol>
+<li><p>手动指定LDP的router-id</p>
+<p>R1，R3，R4，R5的LDP router-id为自动选举，当后续在这些路由器上创建的IP地址比loopback 0地址大时，LDP进程重启或设备重启，这些设备将自动选举地址大的环回接口为router-id，而这些环回接口地址很可能没有宣告进OSPF 100 ，这会导致LDP邻居不能建立从而产生MPLS标签断裂问题</p>
+<p>在R1，R3，R4，R5上使用命令mpls ldp router-id Loopback0 force手动指定LDP的router-id</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R1(config)#mpls ldp router-id loopback 0 force </span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R3(config)#mpls ldp router-id loopback 0 force </span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R4(config)#mpls ldp router-id loopback 0 force </span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R5(config)#mpls ldp router-id loopback 0 force </span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>R5上使用命令show running-config interface e 0/3查看Ethernet0/3接口配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R5#show running-config interface e 0/3</span><br><span class="line">Building configuration...</span><br><span class="line"></span><br><span class="line">Current configuration : 182 bytes</span><br><span class="line">!</span><br><span class="line">interface Ethernet0/3</span><br><span class="line"> ip address 35.1.1.5 255.255.255.0</span><br><span class="line"> ip ospf network point-to-point</span><br><span class="line"> ip ospf demand-circuit</span><br><span class="line"> ip ospf 110 area 0</span><br><span class="line"> duplex auto</span><br><span class="line"> mpls propagate-cos</span><br><span class="line"> mpls ip</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">R5#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示该接口下配置了mpls propagate-cos，该命令用于在PE-CE接口的出口处启用，此命令从MPLS报头中的EXP值派生IP DSCP值，然后在IP报头中重写此值。由于拓扑中的MPLS网络没有配置QoS内容，删除该命令不会对现有网络造成影响</p>
+<p>在R5上使用命令no mpls propagate-cos 删除该配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R5(config)#interface ethernet 0/3</span><br><span class="line">R5(config-if)#no mpls propagate-cos</span><br><span class="line">R5(config-if)#</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="排查R6，R7和R8的路由问题"><a href="#排查R6，R7和R8的路由问题" class="headerlink" title="排查R6，R7和R8的路由问题"></a>排查R6，R7和R8的路由问题</h2><p>要求R7 和R8两个站点通信必须经过R6的全局处理、要求R6 的 vrfA 和 R7、R8能够直接通信</p>
+<p>不能使用任何静态路由、不允许修改 R4、R5 的 VRF 配置、不允许修改 R6的BGP配置</p>
+<h3 id="流量模型分析"><a href="#流量模型分析" class="headerlink" title="流量模型分析"></a>流量模型分析</h3><p>要求R7 和R8两个站点通信必须经过R6的全局处理</p>
+<ol>
+<li>根据需求可以判断出这是一个HUB-SPOKE组网结构，R6为HUB，R7和R8为SPOKE</li>
+<li>PE学习到总部CE和分支CE的路由，然后通过MPLS VPNV4传递到对端PE，总部CE和分支CE再从PE学习路由</li>
+<li>总部和分支同时使用BGP 200 AS号码，根据as-path防环原则，总部不会学习到分支路由，分支也不会学习到总部路由，需要在PE上设置as-override或在CE设备配置 allowas-in</li>
+<li>R7和R8处于BGP 200，且同时接入相同BGP 100 的不同PE，需要考虑R7和R8之间的不合理次优路径问题</li>
+</ol>
+<h3 id="排查步骤"><a href="#排查步骤" class="headerlink" title="排查步骤"></a>排查步骤</h3><ol>
+<li>排查R1，R4和R5是否学习到客户CE上的路由</li>
+<li>排查R1，R4和R5是否能学习对应PE的路由</li>
+<li>排查R7和R8是否存在次优路径</li>
+</ol>
+<h3 id="排查R1，R4和R5是否学习到客户CE上的路由"><a href="#排查R1，R4和R5是否学习到客户CE上的路由" class="headerlink" title="排查R1，R4和R5是否学习到客户CE上的路由"></a>排查R1，R4和R5是否学习到客户CE上的路由</h3><ol>
+<li><p>在R1上使用命令show bgp vpnv4 unicast all 查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R1#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 4, local router ID is 10.1.1.1</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf SPOKE)</span><br><span class="line"> *&gt;   0.0.0.0          16.1.2.6                               0 200 i</span><br><span class="line"> *&gt;   10.6.6.6/32      16.1.2.6                 0             0 200 i</span><br><span class="line">Route Distinguisher: 200:100 (default for vrf HUB)</span><br><span class="line"> *&gt;   10.6.6.6/32      16.1.1.6                 0             0 200 i</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R1学习到了R6上的10.6.6.6/32路由，下一步检查R4和R5</p>
+</li>
+<li><p>在R4上使用命令show bgp vpnv4 unicast all 查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">R4#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 4, local router ID is 10.1.1.4</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;   10.7.7.7/32      47.1.1.7                 0             0 200 i</span><br><span class="line"> *&gt;i  10.8.8.8/32      10.1.1.5                 0    100      0 200 i</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R4上学习到R7和R8上的路由，下一步检查R3上的VPNV4路由</p>
+</li>
+<li><p>在R3上使用命令show bgp vpnv4 unicast all 查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">R3#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 18, local router ID is 10.1.1.3</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200</span><br><span class="line"> *&gt;i  0.0.0.0          10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.7.7.7/32      10.1.1.4                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.8.8.8/32      10.1.1.5                 0    100      0 200 i</span><br><span class="line">Route Distinguisher: 200:100</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line">R3#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R3上能学习到R6，R7和R8的路由，这说明R3与R1，R4和R5的VPNV4邻居关系正常，怀疑是R1，R4和R5上的VRF RT配置有问题，下一步检查R1，R4和R5上的VRF RT配置</p>
+</li>
+<li><p>在R1上使用命令</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">R1#show running-config | section vrf</span><br><span class="line">ip vrf HUB</span><br><span class="line"> rd 200:100</span><br><span class="line">ip vrf SPOKE</span><br><span class="line"> rd 100:200</span><br><span class="line"> ip vrf forwarding HUB</span><br><span class="line"> ip vrf forwarding SPOKE</span><br><span class="line"> address-family ipv4 vrf HUB</span><br><span class="line">  neighbor 16.1.1.6 remote-as 200</span><br><span class="line">  neighbor 16.1.1.6 activate</span><br><span class="line"> address-family ipv4 vrf SPOKE</span><br><span class="line">  neighbor 16.1.2.6 remote-as 200</span><br><span class="line">  neighbor 16.1.2.6 activate</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R1上没有没有配置export RT和import RT，下一步查看R4和R5上的RT，然后在R1上配置RT</p>
+</li>
+<li><p>在R4和R5上分别使用命令show running-config | section vrf 查看VRF配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">R4#show running-config | section vrf</span><br><span class="line">vrf definition A</span><br><span class="line"> rd 100:200</span><br><span class="line"> !</span><br><span class="line"> address-family ipv4</span><br><span class="line">  route-target export 47:47</span><br><span class="line">  route-target import 16:16</span><br><span class="line">  route-target import 26:26</span><br><span class="line">  route-target import 58:58</span><br><span class="line"> exit-address-family</span><br><span class="line"> vrf forwarding A</span><br><span class="line"> address-family ipv4 vrf A</span><br><span class="line">  neighbor 47.1.1.7 remote-as 200</span><br><span class="line">  neighbor 47.1.1.7 activate</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">R5#show running-config | section vrf</span><br><span class="line">ip vrf A</span><br><span class="line"> rd 100:200</span><br><span class="line"> route-target export 58:58</span><br><span class="line"> route-target import 16:16</span><br><span class="line"> route-target import 26:26</span><br><span class="line"> route-target import 47:47</span><br><span class="line"> ip vrf forwarding A</span><br><span class="line"> address-family ipv4 vrf A</span><br><span class="line">  neighbor 58.1.1.8 remote-as 200</span><br><span class="line">  neighbor 58.1.1.8 activate</span><br><span class="line">R5#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R4和R5上配置了RT，下一步需要在R1上添加RT配置</p>
+</li>
+<li><p>在R1上使用命令route-target export/import ASN:nn配置RT</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">R1(config)#ip vrf HUB</span><br><span class="line">R1(config-vrf)#route-target import 47:47</span><br><span class="line">R1(config-vrf)#route-target import 58:58 </span><br><span class="line"></span><br><span class="line">R1(config)#ip vrf SPOKE</span><br><span class="line">R1(config-vrf)#route-target export 16:16</span><br><span class="line">R1(config-vrf)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在R1上使用命令show bgp vpnv4 unicast all查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">R1#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 10, local router ID is 10.1.1.1</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf SPOKE)</span><br><span class="line"> *&gt;   0.0.0.0          16.1.2.6                               0 200 i</span><br><span class="line"> *&gt;   10.6.6.6/32      16.1.2.6                 0             0 200 i</span><br><span class="line"> *&gt;i  10.7.7.7/32      10.1.1.4                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.8.8.8/32      10.1.1.5                 0    100      0 200 i</span><br><span class="line">Route Distinguisher: 200:100 (default for vrf HUB)</span><br><span class="line"> *&gt;   10.6.6.6/32      16.1.1.6                 0             0 200 i</span><br><span class="line"> *&gt;i  10.7.7.7/32      10.1.1.4                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.8.8.8/32      10.1.1.5                 0    100      0 200 i</span><br><span class="line">R1# </span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示在配置RT后，R1可以学习到R4和R5传递过来的路由</p>
+<p>在R4和R5上分别使用命令show bgp vpnv4 unicast all查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R4#show bgp vpnv4 unicast all       </span><br><span class="line">BGP table version is 8, local router ID is 10.1.1.4</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;i  0.0.0.0          10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;   10.7.7.7/32      47.1.1.7                 0             0 200 i</span><br><span class="line"> *&gt;i  10.8.8.8/32      10.1.1.5                 0    100      0 200 i</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R5#show bgp vpnv4 unicast all       </span><br><span class="line">BGP table version is 8, local router ID is 10.1.1.5</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;i  0.0.0.0          10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.7.7.7/32      10.1.1.4                 0    100      0 200 i</span><br><span class="line"> *&gt;   10.8.8.8/32      58.1.1.8                 0             0 200 i</span><br><span class="line">R5#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R1，R4和R5上都学习到了PE传递过来的VPNV4路由，下一步检查R6，R7和R8上的路由学习情况</p>
+</li>
+<li><p>在R6，R7和R8上分布使用命令show ip route bgp 查看bgp路由学习情况</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R6#show ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      6.0.0.0/32 is subnetted, 1 subnets</span><br><span class="line">B        6.6.6.6 [20/0] via 16.1.3.1, 00:31:13</span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">R7#sh ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">R7#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">R8#sh ip route  b</span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">R8#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示，R6，R7和R8上没有从PE上学习的路由不符合要求，下一步检查PE和CE上是否配置as-override和 allowas-in</p>
+</li>
+<li><p>在PE和CE设备上使用命令show running-config | include as-override和show running-config | include allowas-in 检查设备是否设置了as-override和 allowas-in</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R1#show running-config | include as-override</span><br><span class="line">R1#show running-config | include allowas-in </span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R上没有配置as-override和 allowas-in，经检查R1，R4，R5，R7，R8均没有设置这两项参数</p>
+<p>在当前组网情况下，有两种解决方案</p>
+<p>方案一：在R1，R4和R5上针对CE的BGP邻居设置as-override</p>
+<p>方案二：在R1上针对CE的BGP邻居设置as-override，在R7和R8上针对PE的BGP邻居设置allowas-in</p>
+<p>结合组网情况，本次使用方案一，下一步在R1，R4和R5上针对CE的BGP邻居设置as-override</p>
+</li>
+<li><p>在R1，R4和R5上使用命令neighbor x.x.x.x as-override </p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">R1(config)#router bgp 100</span><br><span class="line">R1(config-router)# address-family ipv4 vrf HUB</span><br><span class="line">R1(config-router-af)# neighbor 16.1.1.6 as-override </span><br><span class="line">R1(config-router-af)#exit</span><br><span class="line">R1(config-router)# address-family ipv4 vrf SPOKE</span><br><span class="line">R1(config-router-af)# neighbor 16.1.2.6 as-override </span><br><span class="line">R1(config-router-af)#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R4(config)#router  bgp 100</span><br><span class="line">R4(config-router)# address-family ipv4 vrf A</span><br><span class="line">R4(config-router-af)# neighbor 47.1.1.7 as-override </span><br><span class="line">R4(config-router-af)#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R5(config)#router bgp 100</span><br><span class="line">R5(config-router)# address-family ipv4 vrf A</span><br><span class="line">R5(config-router-af)# neighbor 58.1.1.8 as-override </span><br><span class="line">R5(config-router-af)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在R6，R7和R8上分布使用命令show ip route bgp 查看bgp路由学习情况</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">R6#show ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      6.0.0.0/32 is subnetted, 1 subnets</span><br><span class="line">B        6.6.6.6 [20/0] via 16.1.3.1, 00:47:49</span><br><span class="line">      10.0.0.0/32 is subnetted, 3 subnets</span><br><span class="line">B        10.7.7.7 [20/0] via 16.1.1.1, 00:02:31</span><br><span class="line">B        10.8.8.8 [20/0] via 16.1.1.1, 00:02:31</span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">R7#sh ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is 47.1.1.4 to network 0.0.0.0</span><br><span class="line"></span><br><span class="line">B*    0.0.0.0/0 [20/0] via 47.1.1.4, 00:00:54</span><br><span class="line">      10.0.0.0/32 is subnetted, 3 subnets</span><br><span class="line">B        10.6.6.6 [20/0] via 47.1.1.4, 00:00:54</span><br><span class="line">B        10.8.8.8 [20/0] via 47.1.1.4, 00:00:54</span><br><span class="line">R7#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">R8#show ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is 58.1.1.5 to network 0.0.0.0</span><br><span class="line"></span><br><span class="line">B*    0.0.0.0/0 [20/0] via 58.1.1.5, 00:00:51</span><br><span class="line">      10.0.0.0/32 is subnetted, 3 subnets</span><br><span class="line">B        10.6.6.6 [20/0] via 58.1.1.5, 00:00:51</span><br><span class="line">B        10.7.7.7 [20/0] via 58.1.1.5, 00:00:51</span><br><span class="line">R8#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R6，R7和R8已经从对应PE学习到路由，下一步traceroute测试R7到R8的10.8.8.8</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R7#traceroute 10.8.8.8 source loopback 0 numeric </span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">Tracing the route to 10.8.8.8</span><br><span class="line">VRF info: (vrf in name/id, vrf out name/id)</span><br><span class="line">  1 47.1.1.4 [AS 100] 1 msec 3 msec 1 msec</span><br><span class="line">  2 34.1.1.3 [AS 100] [MPLS: Labels 307/500 Exp 0] 5 msec 5 msec 6 msec</span><br><span class="line">  3 58.1.1.5 [AS 100] [MPLS: Label 500 Exp 0] 3 msec 3 msec 3 msec</span><br><span class="line">  4 58.1.1.8 [AS 100] 5 msec *  11 msec</span><br><span class="line">R7#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R7到R8的10.8.8.8连通性正常，但是不符合R7 和R8两个站点通信必须经过R6的全局处理设计要求</p>
+<p>按照拓扑图显示R7和R8应该建立IBGP邻居关系，给出的预配缺少配置，我猜这里考察的客户双CE接入同一AS不同PE的SOO防环知识点</p>
+<p>而添加IBGP配置后R7和R8互相通信又会走IBGP或IGP，又要配置策略阻止R7和R8的互相学习，我就不自己加戏了</p>
+<p>如果按照提供的预配来解决方案，只能在R4和R5编写route-map将R7和R8上的路由进行过滤，经过过滤后R4上不能学习到R8上的路由，R5上不能学习到R7的路由，最后结果符合设计要求</p>
+<p>下一步在R4和R5上配置route-map对路由进行过滤的解决方案</p>
+</li>
+<li><p>在R4和R5上配置route-map对路由进行过滤</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R4(config)#ip prefix-list DENY-R8 permit 10.8.8.8/32</span><br><span class="line">R4(config)#route-map DENY-R8 deny 10 </span><br><span class="line">R4(config-route-map)#match ip address prefix-list DENY-R8           </span><br><span class="line">R4(config-route-map)#route-map DENY-R8 permit 20</span><br><span class="line">R4(config-route-map)#exit</span><br><span class="line">R4(config)#router bgp 100</span><br><span class="line">R4(config-router)#address-family vpnv4 unicast </span><br><span class="line">R4(config-router-af)#neighbor 10.1.1.3 route-map  DENY-R8 in </span><br><span class="line">R4(config-router-af)#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R5(config)#ip prefix-list DENY-R7 permit 10.7.7.7/32</span><br><span class="line">R5(config)#route-map DENY-R7 deny 10</span><br><span class="line">R5(config-route-map)#match ip address prefix-list DENY-R7</span><br><span class="line">R5(config-route-map)#route-map DENY-R7 permit 20         </span><br><span class="line">R5(config-route-map)#exit</span><br><span class="line">R5(config)#router bgp 100</span><br><span class="line">R5(config-router)#address-family vpnv4 unicast </span><br><span class="line">R5(config-router-af)#nei 10.1.1.3 route-map DENY-R7 in </span><br><span class="line">R5(config-router-af)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在R4和R5上分别使用命令show bgp vpnv4 unicast all查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">R4#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 10, local router ID is 10.1.1.4</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;i  0.0.0.0          10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;   10.7.7.7/32      47.1.1.7                 0             0 200 i</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">R5#sh run | s route-m</span><br><span class="line">  neighbor 10.1.1.3 route-map DENY-R7 in</span><br><span class="line">route-map DENY-R7 deny 10</span><br><span class="line"> match ip address prefix-list DENY-R7</span><br><span class="line">route-map DENY-R7 permit 20</span><br><span class="line">R5#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 10, local router ID is 10.1.1.5</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;i  0.0.0.0          10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;   10.8.8.8/32      58.1.1.8                 0             0 200 i</span><br><span class="line">R5#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示经过过滤后R4上不能学习到R8上的路由，R5上不能学习到R7的路由</p>
+</li>
+<li><p>在R7和R8上分布使用命令show ip route bgp 查看bgp路由学习情况</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">R7#show ip route bgp</span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is 47.1.1.4 to network 0.0.0.0</span><br><span class="line"></span><br><span class="line">B*    0.0.0.0/0 [20/0] via 47.1.1.4, 00:19:47</span><br><span class="line">      10.0.0.0/32 is subnetted, 2 subnets</span><br><span class="line">B        10.6.6.6 [20/0] via 47.1.1.4, 00:19:47</span><br><span class="line">R7#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">R8#show ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is 58.1.1.5 to network 0.0.0.0</span><br><span class="line"></span><br><span class="line">B*    0.0.0.0/0 [20/0] via 58.1.1.5, 00:19:20</span><br><span class="line">      10.0.0.0/32 is subnetted, 2 subnets</span><br><span class="line">B        10.6.6.6 [20/0] via 58.1.1.5, 00:19:20</span><br><span class="line">R8#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R7和R8不再通过PE学习到对端的路由，下一步traceroute测试R7到R8的10.8.8.8</p>
+</li>
+<li><p>在R7上使用命令traceroute 10.8.8.8 source loopback 0 numeric 进行traceroute测试</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">R7#traceroute 10.8.8.8 source loopback 0 numeric </span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">Tracing the route to 10.8.8.8</span><br><span class="line">VRF info: (vrf in name/id, vrf out name/id)</span><br><span class="line">  1 47.1.1.4 [AS 100] 1 msec 2 msec 1 msec</span><br><span class="line">  2 34.1.1.3 [AS 100] [MPLS: Labels 306/106 Exp 0] 18 msec 5 msec 5 msec</span><br><span class="line">  3 16.1.2.1 [AS 100] [MPLS: Label 106 Exp 0] 5 msec 6 msec 5 msec</span><br><span class="line">  4 16.1.2.6 [AS 100] 6 msec 5 msec 5 msec</span><br><span class="line">  5 16.1.1.1 [AS 100] 5 msec 5 msec 6 msec</span><br><span class="line">  6 13.1.1.3 [AS 100] [MPLS: Labels 307/500 Exp 0] 10 msec 14 msec 11 msec</span><br><span class="line">  7 58.1.1.5 [AS 100] [MPLS: Label 500 Exp 0] 10 msec 9 msec 10 msec</span><br><span class="line">  8 58.1.1.8 [AS 100] 10 msec *  14 msec</span><br><span class="line">R7#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示符合设计要求，R7以loopback 0 测试到10.8.8.8 的路径从R4进入MPLS网络到达R6再穿过MPLS网络到底R8，数据流量穿越MPLS网络中的标签值不符合截图输出没有影响,这是由于设备本地自主分配然后LDP邻居学习到的</p>
+</li>
+</ol>
+<hr>
+<h2 id="排查CE路由表未完全学习R6上路由"><a href="#排查CE路由表未完全学习R6上路由" class="headerlink" title="排查CE路由表未完全学习R6上路由"></a>排查CE路由表未完全学习R6上路由</h2><p>经过前面步骤的排查，R1，R3，R4，R5，R6，R7和R8并没有学习到10.66.66.66和26.1.1.0的路由，下一步在R2上检查是否通过S1/1接口学习到R6的路由条目</p>
+<ol>
+<li><p>在R2上使用命令show ip route vrf A查看路由表</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R2#show ip route vrf A</span><br><span class="line"></span><br><span class="line">Routing Table: A</span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R2上没有学习到R6的路由，且连直连接口路由都没有，下一步检查R2的S1/1接口配置</p>
+</li>
+<li><p>在R2上使用命令show running-config interface serial 1/1查看接口配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">R2#show running-config interface serial 1/1</span><br><span class="line">Building configuration...</span><br><span class="line"></span><br><span class="line">Current configuration : 169 bytes</span><br><span class="line">!</span><br><span class="line">interface Serial1/1</span><br><span class="line"> ip vrf forwarding A</span><br><span class="line"> ip address 26.1.1.2 255.255.255.0</span><br><span class="line"> encapsulation ppp</span><br><span class="line"> ip ospf 1 area 0</span><br><span class="line"> ppp authentication chap</span><br><span class="line"> serial restart-delay 0</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示该接口已经划入VRF A，启用了OSPF 1，并且配置了chap认证，下一步检查S1/1接口状态</p>
+</li>
+<li><p>在R2上使用命令show interfaces serial 1/1检查S1/1接口状态</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">R2#show interfaces serial 1/1</span><br><span class="line">Serial1/1 is up, line protocol is down </span><br><span class="line">  Hardware is M4T</span><br><span class="line">  Internet address is 26.1.1.2/24</span><br><span class="line">  MTU 1500 bytes, BW 1544 Kbit/sec, DLY 20000 usec, </span><br><span class="line">     reliability 255/255, txload 1/255, rxload 1/255</span><br><span class="line">  Encapsulation PPP, LCP Closed, crc 16, loopback not set</span><br><span class="line">  Keepalive set (10 sec)</span><br><span class="line">  Restart-Delay is 0 secs</span><br><span class="line">  Last input 00:00:00, output 00:00:00, output hang never</span><br><span class="line">  Last clearing of "show interface" counters 00:15:24</span><br><span class="line">  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0</span><br><span class="line">  Queueing strategy: fifo</span><br><span class="line">  Output queue: 0/40 (size/max)</span><br><span class="line">  5 minute input rate 0 bits/sec, 0 packets/sec</span><br><span class="line">  5 minute output rate 0 bits/sec, 0 packets/sec</span><br><span class="line">     1689 packets input, 33540 bytes, 0 no buffer</span><br><span class="line">     Received 0 broadcasts (0 IP multicasts)</span><br><span class="line">     0 runts, 0 giants, 0 throttles </span><br><span class="line">     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort</span><br><span class="line">     2102 packets output, 45387 bytes, 0 underruns</span><br><span class="line">     0 output errors, 0 collisions, 410 interface resets</span><br><span class="line">     0 unknown protocol drops</span><br><span class="line">     0 output buffer failures, 0 output buffers swapped out</span><br><span class="line">     410 carrier transitions     DCD=up  DSR=up  DTR=up  RTS=up  CTS=up</span><br><span class="line"></span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示line protocol is down ，该结果显示链路层故障，联系到上一步骤中查看到ppp封装和chap认证，怀疑是认证出现了问题，下一步检查R6和R1之间的串口链路认证</p>
+</li>
+<li><p>在R2上使用debug ppp authentication  查看ppp认证交互信息，同时准备命令no debug all 随时终止debug消息</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">R2#debug ppp authentication  </span><br><span class="line">PPP authentication debugging is on</span><br><span class="line">R2#</span><br><span class="line">*Jan 31 14:21:10.131: Se1/1 PPP: Using default call direction</span><br><span class="line">*Jan 31 14:21:10.131: Se1/1 PPP: Treating connection as a dedicated line</span><br><span class="line">*Jan 31 14:21:10.131: Se1/1 PPP: Session handle[B200026C] Session id[620]</span><br><span class="line">*Jan 31 14:21:10.168: Se1/1 CHAP: O CHALLENGE id 1 len 23 from "R2"</span><br><span class="line">*Jan 31 14:21:10.183: Se1/1 CHAP: I RESPONSE id 1 len 23 from "R6"</span><br><span class="line">*Jan 31 14:21:10.183: Se1/1 PPP: Sent CHAP LOGIN Request</span><br><span class="line">*Jan 31 14:21:10.183: Se1/1 PPP: Received LOGIN Response FAIL</span><br><span class="line">*Jan 31 14:21:10.183: Se1/1 CHAP: O FAILURE id 1 len 25 msg is "Authentication failed"</span><br><span class="line">R2#</span><br><span class="line">*Jan 31 14:21:12.223: Se1/1 PPP: Using default call direction</span><br><span class="line">*Jan 31 14:21:12.223: Se1/1 PPP: Treating connection as a dedicated line</span><br><span class="line">*Jan 31 14:21:12.223: Se1/1 PPP: Session handle[FD00026D] Session id[621]</span><br><span class="line">*Jan 31 14:21:12.251: Se1/1 CHAP: O CHALLENGE id 1 len 23 from "R2"</span><br><span class="line">*Jan 31 14:21:12.268: Se1/1 CHAP: I RESPONSE id 1 len 23 from "R6"</span><br><span class="line">*Jan 31 14:21:12.268: Se1/1 PPP: Sent CHAP LOGIN Request</span><br><span class="line">*Jan 31 14:21:12.268: Se1/1 PPP: Received LOGIN Response FAIL</span><br><span class="line">*Jan 31 14:21:12.268: Se1/1 CHAP: O FAILURE id 1 len 25 msg is "Authentication failed"</span><br><span class="line">R2#no debu</span><br><span class="line">*Jan 31 14:21:14.329: Se1/1 PPP: Using default call direction</span><br><span class="line">*Jan 31 14:21:14.329: Se1/1 PPP: Treating connection as a dedicated line</span><br><span class="line">*Jan 31 14:21:14.329: Se1/1 PPP: Session handle[E600026E] Session id[622]</span><br><span class="line">*Jan 31 14:21:14.367: Se1/1 CHAP: O CHALLENGE id 1 len 23 from "R2"</span><br><span class="line">*Jan 31 14:21:14.385: Se1/1 CHAP: I RESPONSE id 1 len 23 from "R6"</span><br><span class="line">*Jan 31 14:21:14.385: Se1/1 PPP: Sent CHAP LOGIN Request</span><br><span class="line">*Jan 31 14:21:14.385: Se1/1 PPP: Received LOGIN Response FAIL</span><br><span class="line">*Jan 31 14:21:14.385: Se1/1 CHAP: O FAILURE id 1 len 25 msg is "Authentication failed"</span><br><span class="line">R2#no debu</span><br><span class="line">R2#no debug all</span><br><span class="line">All possible debugging has been turned off</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示S1/1接口Authentication failed，下一步检查R2和R6上的chap认证密码配置</p>
+</li>
+<li><p>在R2和R6上使用命令show running-config | section user 检查用户名密码配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R2#show running-config | section user</span><br><span class="line">username R6 password 0 cisco</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R6#show running-config | section user</span><br><span class="line">username R2 password 0 cisc0</span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示两端密码不一致，虽然R6的S1/1接口配置了与R2相同的密码，但是思科路由器会优先使用全局配置的密码进行认证流程</p>
+<p>处理该认证失败故障有如下两种解决方案</p>
+<p>方案一：在R2上修改密码为cisc0</p>
+<p>方案二：在R6上修改密码为cisco</p>
+<p>本次故障排除采用方案一，在R2上使用命令username R6 password 0 cisc0修改密码</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R2(config)#username R6 password 0 cisc0</span><br><span class="line">*Jan 31 15:08:27.909: %SYS-5-CONFIG_I: Configured from console by console</span><br><span class="line">*Jan 31 15:08:27.926: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/1, changed state to up</span><br><span class="line">*Jan 31 15:08:28.024: %OSPF-5-ADJCHG: Process 1, Nbr 10.66.66.66 on Serial1/1 from LOADING to FULL, Loading Done</span><br><span class="line">R2(config)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示修改密码后，S1/1的链路层协议UP，且R2与R6的OSPF邻居已经建立，下一步检查R2的路由学习情况</p>
+</li>
+<li><p>在R2上使用命令show bgp vpnv4 unicast all 查看VPNV4路由标</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">R2#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 11, local router ID is 10.22.22.22</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;   10.66.66.66/32   26.1.1.6                65         32768 ?</span><br><span class="line"> *&gt;   26.1.1.0/24      0.0.0.0                  0         32768 ?</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R2已经学习到R6的路由，且VRF A的路由已经重分布进BGP，下一步检查其他PE是否学习到R2的VPNV4路由</p>
+</li>
+<li><p>在R4上使用命令show bgp vpnv4 unicast all 查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">R4#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 10, local router ID is 10.1.1.4</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;i  0.0.0.0          10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;   10.7.7.7/32      47.1.1.7                 0             0 200 i</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R4没有学习到R2上的VPNV4路由，下一步检查R2的VRF RT配置</p>
+</li>
+<li><p>在R2上使用命令show running-config | section vrf查看VRF配置</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R2#show running-config | section vrf</span><br><span class="line">ip vrf A</span><br><span class="line"> rd 100:200</span><br><span class="line"> ip vrf forwarding A</span><br><span class="line">router ospf 1 vrf A</span><br><span class="line"> redistribute bgp 100 subnets</span><br><span class="line"> address-family ipv4 vrf A</span><br><span class="line">  redistribute ospf 1</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示VRF A没有配置RT，下一步配置R2的RT</p>
+</li>
+<li><p>在R2上使用命令route-target export/import ASN:nn配置RT</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">R2(config)#ip vrf A</span><br><span class="line">R2(config-vrf)#route-target export 26:26</span><br><span class="line">R2(config-vrf)#route-target import 16:16</span><br><span class="line">R2(config-vrf)#route-target import 47:47</span><br><span class="line">R2(config-vrf)#route-target import 58:58</span><br><span class="line">R2(config-vrf)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在R4上使用命令show bgp vpnv4 unicast all 查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">R4#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 14, local router ID is 10.1.1.4</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf A)</span><br><span class="line"> *&gt;i  0.0.0.0          10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.6.6.6/32      10.1.1.1                 0    100      0 200 i</span><br><span class="line"> *&gt;   10.7.7.7/32      47.1.1.7                 0             0 200 i</span><br><span class="line"> *&gt;i  10.66.66.66/32   10.1.1.2                65    100      0 ?</span><br><span class="line"> *&gt;i  26.1.1.0/24      10.1.1.2                 0    100      0 ?</span><br><span class="line">R4#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R4已经学习到R2上的VPNV4路由，下一步检查R6，R7和R8上的路由学习情况</p>
+</li>
+<li><p>在R7和R8上使用命令show ip route bgp查看路由学习</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">R7#show ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is 47.1.1.4 to network 0.0.0.0</span><br><span class="line"></span><br><span class="line">B*    0.0.0.0/0 [20/0] via 47.1.1.4, 01:53:22</span><br><span class="line">      10.0.0.0/32 is subnetted, 3 subnets</span><br><span class="line">B        10.6.6.6 [20/0] via 47.1.1.4, 01:53:22</span><br><span class="line">B        10.66.66.66 [20/0] via 47.1.1.4, 00:04:31</span><br><span class="line">      26.0.0.0/24 is subnetted, 1 subnets</span><br><span class="line">B        26.1.1.0 [20/0] via 47.1.1.4, 00:04:31</span><br><span class="line">R7#</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">R8#show ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is 58.1.1.5 to network 0.0.0.0</span><br><span class="line"></span><br><span class="line">B*    0.0.0.0/0 [20/0] via 58.1.1.5, 01:53:11</span><br><span class="line">      10.0.0.0/32 is subnetted, 3 subnets</span><br><span class="line">B        10.6.6.6 [20/0] via 58.1.1.5, 01:53:11</span><br><span class="line">B        10.66.66.66 [20/0] via 58.1.1.5, 00:04:51</span><br><span class="line">      26.0.0.0/24 is subnetted, 1 subnets</span><br><span class="line">B        26.1.1.0 [20/0] via 58.1.1.5, 00:04:51</span><br><span class="line">R8#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R7和R8学习到了对应的路由条目，且符合要求</p>
+<p>下一步配置R1上的VRF RT，之前排查PE路由学习的时候没有添加针对R2的 RT import 配置</p>
+</li>
+<li><p>在R1上使用命令route-target import ASN:nn配置RT</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R1(config)#ip vrf HUB</span><br><span class="line">R1(config-vrf)# route-target import 26:26</span><br><span class="line">R1(config-vrf)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在R1上使用命令show bgp vpnv4 unicast all 查看VPNV4路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">R1#show bgp vpnv4 unicast all </span><br><span class="line">BGP table version is 20, local router ID is 10.1.1.1</span><br><span class="line">Status codes: s suppressed, d damped, h history, * valid, &gt; best, i - internal, </span><br><span class="line">              r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter, </span><br><span class="line">              x best-external, a additional-path, c RIB-compressed, </span><br><span class="line">              t secondary path, </span><br><span class="line">Origin codes: i - IGP, e - EGP, ? - incomplete</span><br><span class="line">RPKI validation codes: V valid, I invalid, N Not found</span><br><span class="line"></span><br><span class="line">     Network          Next Hop            Metric LocPrf Weight Path</span><br><span class="line">Route Distinguisher: 100:200 (default for vrf SPOKE)</span><br><span class="line"> *&gt;   0.0.0.0          16.1.2.6                               0 200 i</span><br><span class="line"> *&gt;   10.6.6.6/32      16.1.2.6                 0             0 200 i</span><br><span class="line"> *&gt;i  10.7.7.7/32      10.1.1.4                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.8.8.8/32      10.1.1.5                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.66.66.66/32   10.1.1.2                65    100      0 ?</span><br><span class="line"> *&gt;i  26.1.1.0/24      10.1.1.2                 0    100      0 ?</span><br><span class="line">Route Distinguisher: 200:100 (default for vrf HUB)</span><br><span class="line"> *&gt;   10.6.6.6/32      16.1.1.6                 0             0 200 i</span><br><span class="line"> *&gt;i  10.7.7.7/32      10.1.1.4                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.8.8.8/32      10.1.1.5                 0    100      0 200 i</span><br><span class="line"> *&gt;i  10.66.66.66/32   10.1.1.2                65    100      0 ?</span><br><span class="line"> *&gt;i  26.1.1.0/24      10.1.1.2                 0    100      0 ?</span><br><span class="line">R1#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R1已经学习到R2的VPNV4路由条目，下一步检查R6是否学习到路由条目</p>
+</li>
+<li><p>在R6上使用命令show ip route bgp查看路由学习</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">R6#show ip route bgp </span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      6.0.0.0/32 is subnetted, 1 subnets</span><br><span class="line">B        6.6.6.6 [20/0] via 16.1.3.1, 02:30:57</span><br><span class="line">      10.0.0.0/32 is subnetted, 4 subnets</span><br><span class="line">B        10.7.7.7 [20/0] via 16.1.1.1, 02:30:45</span><br><span class="line">B        10.8.8.8 [20/0] via 16.1.1.1, 02:30:45</span><br><span class="line">B        10.66.66.66 [20/0] via 16.1.1.1, 00:01:57</span><br><span class="line">      26.0.0.0/24 is subnetted, 1 subnets</span><br><span class="line">B        26.1.1.0 [20/0] via 16.1.1.1, 00:01:57</span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R6已经学习到对应路由条目，且符合要求</p>
+</li>
+<li><p>在R6上使用命令show ip route vrf A ospf查看路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">R6#show ip route vrf A ospf</span><br><span class="line"></span><br><span class="line">Routing Table: A</span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示没有路由条目，下一步在R2上检查是否把BGP路由重分布进VRF A 所在的路由协议</p>
+</li>
+<li><p>在R2上使用命令sh run | s r o 查看路由重复分布</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">R2#sh run | s r o</span><br><span class="line">router ospf 1 vrf A</span><br><span class="line"> redistribute bgp 100 subnets</span><br><span class="line">router ospf 110</span><br><span class="line"> prefix-suppression</span><br><span class="line">R2#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示已经将BGP路由重分布进OSPF 1进程</p>
+<p>能学习到R6的路由说明R2与R6的邻居建立没有问题，且在R2上没有发现针对R6的路由过滤，</p>
+<p>在R6和R2上发现使用划入VRF的接口进行互联，且将BGP重分布进ospf进程，这种组网情况要在PE上的ospf进程下启用vrf-lite</p>
+<p>思科的OSPF防环机制当绑定到 VRF 的 OSPF 进程在收到邻居的5类LSA或7类LSA会检查Tag，当Tag与VPN-TAG时，这些5类LSA或7类LSA不会参与SFP算法计算路由</p>
+<p>在R2使用命令capability vrf-lite 启用vrf-lite</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">R2(config)# router ospf 1</span><br><span class="line">R2(config-router)#capability vrf-lite </span><br><span class="line">R2(config-router)#</span><br><span class="line">*Jan 31 15:46:59.140: %OSPF-5-ADJCHG: Process 1, Nbr 10.66.66.66 on Serial1/1 from FULL to DOWN, Neighbor Down: Interface down or detached</span><br><span class="line">*Jan 31 15:46:59.204: %OSPF-5-ADJCHG: Process 1, Nbr 10.66.66.66 on Serial1/1 from LOADING to FULL, Loading Done</span><br><span class="line">R2(config-router)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示启用vrf-lite 后，R2与R6的ospf邻居重置，下一步检查R6是否学习到路由条目</p>
+</li>
+<li><p>在R6上使用命令show ip route vrf A ospf查看路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">R6#show ip route vrf A ospf</span><br><span class="line"></span><br><span class="line">Routing Table: A</span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is not set</span><br><span class="line"></span><br><span class="line">      10.0.0.0/32 is subnetted, 4 subnets</span><br><span class="line">O E2     10.6.6.6 [110/1] via 26.1.1.2, 00:24:28, Serial1/1</span><br><span class="line">O E2     10.7.7.7 [110/1] via 26.1.1.2, 00:24:28, Serial1/1</span><br><span class="line">O E2     10.8.8.8 [110/1] via 26.1.1.2, 00:24:28, Serial1/1</span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R6与学习到对应路由条目，下一步在R2的OSPF 1 进程下发默认路由</p>
+</li>
+<li><p>在R2上使用命令default-information originate 下发ospf默认路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R2(config)# router ospf 1</span><br><span class="line">R2(config-router)#default-information originate </span><br><span class="line">R2(config-router)#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在R6上使用命令show ip route vrf A ospf查看路由</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">R6#show ip route vrf A ospf</span><br><span class="line"></span><br><span class="line">Routing Table: A</span><br><span class="line">Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP</span><br><span class="line">       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area </span><br><span class="line">       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2</span><br><span class="line">       E1 - OSPF external type 1, E2 - OSPF external type 2</span><br><span class="line">       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2</span><br><span class="line">       ia - IS-IS inter area, * - candidate default, U - per-user static route</span><br><span class="line">       o - ODR, P - periodic downloaded static route, H - NHRP, l - LISP</span><br><span class="line">       a - application route</span><br><span class="line">       + - replicated route, % - next hop override, p - overrides from PfR</span><br><span class="line"></span><br><span class="line">Gateway of last resort is 26.1.1.2 to network 0.0.0.0</span><br><span class="line"></span><br><span class="line">O*E2  0.0.0.0/0 [110/1] via 26.1.1.2, 00:01:10, Serial1/1</span><br><span class="line">      10.0.0.0/32 is subnetted, 4 subnets</span><br><span class="line">O E2     10.6.6.6 [110/1] via 26.1.1.2, 00:29:54, Serial1/1</span><br><span class="line">O E2     10.7.7.7 [110/1] via 26.1.1.2, 00:29:54, Serial1/1</span><br><span class="line">O E2     10.8.8.8 [110/1] via 26.1.1.2, 00:29:54, Serial1/1</span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示R6已经学习到默认路由，且所以OSPF路由条目符合要求</p>
+</li>
+<li><p>在R6上使用命令traceroute vrf A 10.7.7.7 source loopback 1 numeric 跟踪路径</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R6#traceroute vrf A 10.7.7.7 source loopback 1 numeric </span><br><span class="line">Type escape sequence to abort.</span><br><span class="line">Tracing the route to 10.7.7.7</span><br><span class="line">VRF info: (vrf in name/id, vrf out name/id)</span><br><span class="line">  1 26.1.1.2 [AS 100] 13 msec 16 msec 16 msec</span><br><span class="line">  2 23.1.1.3 [MPLS: Labels 304/405 Exp 0] 20 msec 21 msec 16 msec</span><br><span class="line">  3 47.1.1.4 [MPLS: Label 405 Exp 0] 14 msec 19 msec 16 msec</span><br><span class="line">  4 47.1.1.7 21 msec *  19 msec</span><br><span class="line">R6#</span><br></pre></td></tr></tbody></table></figure>
+
+<p>结果显示符合要求</p>
+</li>
+</ol>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>这份拓扑中包含了MP-BGP的大部分知识点</li>
+<li>完成MPLS网络的vpnv4邻居建立，接下来就靠VRF的RT控制接收和发送路由条目</li>
+<li>熟悉查看vpnv4的路由表很重要</li>
+<li>其实早几年我是玩过这个排错拓扑的，奈何脑子不够用学过等于又还回去了</li>
+<li>不知道大家对这种学习过的技术，而工作中又接触不到这些项目，技术的知识点淡忘如何看待</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/BGP/">#BGP</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/OSPF/">#OSPF</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/MPLS/">#MPLS</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/MP-BGP/">#MP-BGP</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/CISCO/">#CISCO</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Pnetlab/">#Pnetlab</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/posts/f36f6dd3.html">网神 NSG 3600 和网神 SecSSL 3600 重置密码</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+DO NOT APPLY COMMENTS
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+-->
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2024 Kir Aster&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-blue" title="About" href="/about">
+                    
+                    About
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-blue" title="Privacy" href="/privacy-statement">
+                    
+                    Privacy
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-blue" title="GitHub" target="_blank" rel="noopener" href="https://github.com/kiraster">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+<div id="totop" class="ctotop">
+<a title="返回顶部"><img src="/images/scrollup.png"/></a>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/totop.js"></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</body>
+</html>
