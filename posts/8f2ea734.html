@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+<meta charset="utf-8">
+<title>2022-2023华为ICT大赛（全国）实验题研究 - Kir&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+<meta name="description" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+<meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
+
+
+    <meta name="description" content="上一篇文整了个大阵仗（内容太多，浏览器好像有些受不了） 经过在搜索引擎遨游，最终发现这些题其实在华为的ICT学院课程网站上有 https:&#x2F;&#x2F;talent.shixizhi.huawei.com  –&gt;&gt; 搜索ICT  –&gt;&gt; 华为ICT大赛 - 网络赛道学习空间（中国区） 还有其他内容，有兴趣可以点击看看 本次研究研究，搓一搓的图如标题所示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022-2023华为ICT大赛（全国）实验题研究">
+<meta property="og:url" content="https://kiraster.github.io/posts/8f2ea734.html">
+<meta property="og:site_name" content="Kir&#39;s Blog">
+<meta property="og:description" content="上一篇文整了个大阵仗（内容太多，浏览器好像有些受不了） 经过在搜索引擎遨游，最终发现这些题其实在华为的ICT学院课程网站上有 https:&#x2F;&#x2F;talent.shixizhi.huawei.com  –&gt;&gt; 搜索ICT  –&gt;&gt; 华为ICT大赛 - 网络赛道学习空间（中国区） 还有其他内容，有兴趣可以点击看看 本次研究研究，搓一搓的图如标题所示">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2024/07/24/n4ubkLNCS3E2PXa.jpg">
+<meta property="og:image" content="https://s2.loli.net/2024/07/24/bpNLtzCIxgWQ4S9.png">
+<meta property="og:image" content="https://s2.loli.net/2024/07/24/mFkQPCidowfUa4I.png">
+<meta property="og:image" content="https://s2.loli.net/2024/07/24/H7yilKcuSU4jg69.png">
+<meta property="article:published_time" content="2024-07-24T08:16:07.000Z">
+<meta property="article:modified_time" content="2024-07-24T10:23:18.776Z">
+<meta property="article:author" content="Kir Aster">
+<meta property="article:tag" content="ICT">
+<meta property="article:tag" content="ensp实验">
+<meta property="article:tag" content="解题">
+<meta property="article:tag" content="华为">
+<meta property="article:tag" content="搓一搓">
+<meta property="article:tag" content="真的卡">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2024/07/24/n4ubkLNCS3E2PXa.jpg">
+
+
+
+<link rel="icon" href="https://s2.loli.net/2022/11/07/nR4jdLTGEq6kZ2S.png">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<!--引入思源黑体 rel-->
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-209914470-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-209914470-1');
+</script>
+
+
+    
+    
+<!-- Clarity tracking code for https://kiraster.github.io/ -->
+<script>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "heff72hdac");
+</script>
+
+    
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    Kir&#39;s
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/gallery">Gallery</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="Table of Contents">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#说明">1&nbsp;&nbsp;<b>说明</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#实验拓扑">2&nbsp;&nbsp;<b>实验拓扑</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#配置">3&nbsp;&nbsp;<b>配置</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务1：VLAN">3.1&nbsp;&nbsp;任务1：VLAN</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务2：IP地址">3.2&nbsp;&nbsp;任务2：IP地址</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务3：MSTP配置">3.3&nbsp;&nbsp;任务3：MSTP配置</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务4：防火墙安全域配置">3.4&nbsp;&nbsp;任务4：防火墙安全域配置</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务5：防火墙VRRP、双机热备和安全策略配置">3.5&nbsp;&nbsp;任务5：防火墙VRRP、双机热备和安全策略配置</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务6：公网静态路由配置">3.6&nbsp;&nbsp;任务6：公网静态路由配置</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务7：公网动态路由配置">3.7&nbsp;&nbsp;任务7：公网动态路由配置</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务8：MPLS-VPN">3.8&nbsp;&nbsp;任务8：MPLS VPN</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务9：GRE">3.9&nbsp;&nbsp;任务9：GRE</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#任务10：WLAN">3.10&nbsp;&nbsp;任务10：WLAN</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#综合测试">4&nbsp;&nbsp;<b>综合测试</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#最后">5&nbsp;&nbsp;<b>最后</b></a>
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    
+      <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+          
+              2022-2023华为ICT大赛（全国）实验题研究
+          
+      </h1>
+    
+    
+      <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+          <span class="column is-narrow">
+              
+                  <i class="far fa-clock"></i>
+                  <span>&nbspJul 24th 24&nbsp</span>
+              
+          </span>
+          
+          <span class="column is-narrow article-category">
+              <i class="far fa-folder"></i>
+              <a class="article-category-link" href="/categories/Huawei/">Huawei</a>
+          </span>
+          
+          
+          <span class="column is-narrow">
+              
+              
+              11 minutes read (About 1592 words)
+          </span>
+          
+      </div>
+    
+    <!-- add timeliness tips date:20230510 -->
+    
+      
+      
+    
+    
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        
+        <html><head></head><body><p>上一篇文整了个大阵仗（内容太多，浏览器好像有些受不了）</p>
+<p>经过在搜索引擎遨游，最终发现这些题其实在华为的ICT学院课程网站上有</p>
+<p><a target="_blank" rel="noopener" href="https://talent.shixizhi.huawei.com/">https://talent.shixizhi.huawei.com</a>  –&gt;&gt; 搜索ICT  –&gt;&gt; 华为ICT大赛 - 网络赛道学习空间（中国区）</p>
+<p>还有其他内容，有兴趣可以点击看看</p>
+<p>本次研究研究，搓一搓的图如标题所示<span id="more"></span></p>
+<p>文章末尾，附上ensp拓扑文件和配置导出文件</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>ensp版本：1.3.00.100 V100R003C00SPC100</li>
+<li>电脑：Win10 ltsc （CPU：不配拥有名称，RAM=16GB）</li>
+<li>我电脑跑这图是真的卡</li>
+<li>遇到FW启动错误代码40，建议先启动FW，再启动其他设备</li>
+<li>AR路由器我整不出G0/0/3接口，使用G3/0/0代替</li>
+</ul>
+<h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="https://s2.loli.net/2024/07/24/n4ubkLNCS3E2PXa.jpg" alt="ENSP拓扑"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="任务1：VLAN"><a href="#任务1：VLAN" class="headerlink" title="任务1：VLAN"></a>任务1：VLAN</h3><ul>
+<li>按照给出的表格数据配置对应设备的vlan、Trunk、Access</li>
+<li>路由器接口注意配置子接口dot1q termination vid xx ，arp broadcast enable</li>
+<li>防火墙接口注意配置 vlan-type dot1q xx</li>
+</ul>
+<h3 id="任务2：IP地址"><a href="#任务2：IP地址" class="headerlink" title="任务2：IP地址"></a>任务2：IP地址</h3><ul>
+<li>按照给出的表格数据配置对应设备的IP地址</li>
+</ul>
+<h3 id="任务3：MSTP配置"><a href="#任务3：MSTP配置" class="headerlink" title="任务3：MSTP配置"></a>任务3：MSTP配置</h3><ul>
+<li><p>SW1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">stp mode mstp</span><br><span class="line">#</span><br><span class="line">stp region-configuration</span><br><span class="line"> region-name RG1</span><br><span class="line"> instance 1 vlan 2 to 9</span><br><span class="line"> instance 2 vlan 10 to 20</span><br><span class="line"> active region-configuration</span><br><span class="line">#</span><br><span class="line">interface Ethernet0/0/1</span><br><span class="line"> stp edged-port enable</span><br><span class="line">#</span><br><span class="line">interface Ethernet0/0/2</span><br><span class="line"> stp edged-port enable</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>SW2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">stp mode mstp</span><br><span class="line">#</span><br><span class="line">stp region-configuration</span><br><span class="line"> region-name RG1</span><br><span class="line"> instance 1 vlan 2 to 9</span><br><span class="line"> instance 2 vlan 10 to 20</span><br><span class="line"> active region-configuration</span><br><span class="line">#</span><br><span class="line">stp instance 1 priority 0</span><br><span class="line">stp instance 2 priority 4096</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1</span><br><span class="line"> stp root-protection</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/5</span><br><span class="line"> stp disable</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>SW3</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">stp mode mstp</span><br><span class="line">#</span><br><span class="line">stp region-configuration</span><br><span class="line"> region-name RG1</span><br><span class="line"> instance 1 vlan 2 to 9</span><br><span class="line"> instance 2 vlan 10 to 20</span><br><span class="line"> active region-configuration</span><br><span class="line">#</span><br><span class="line">stp instance 1 priority 4096</span><br><span class="line">stp instance 2 priority 0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1</span><br><span class="line"> stp edged-port enable</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/2</span><br><span class="line"> stp root-protection</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/5</span><br><span class="line"> stp disable</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>验证: dis stp</p>
+</li>
+</ul>
+<h3 id="任务4：防火墙安全域配置"><a href="#任务4：防火墙安全域配置" class="headerlink" title="任务4：防火墙安全域配置"></a>任务4：防火墙安全域配置</h3><ul>
+<li><p>FW1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet1/0/5.1</span><br><span class="line"> add interface GigabitEthernet1/0/5.2</span><br><span class="line">#</span><br><span class="line">firewall zone untrust</span><br><span class="line"> add interface GigabitEthernet1/0/3</span><br><span class="line"> add interface GigabitEthernet1/0/3.1</span><br><span class="line">#</span><br><span class="line">firewall zone dmz</span><br><span class="line"> add interface GigabitEthernet1/0/1</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet1/0/5.1</span><br><span class="line"> add interface GigabitEthernet1/0/5.2</span><br><span class="line">#</span><br><span class="line">firewall zone untrust</span><br><span class="line"> add interface GigabitEthernet1/0/3</span><br><span class="line"> add interface GigabitEthernet1/0/3.1</span><br><span class="line">#</span><br><span class="line">firewall zone dmz</span><br><span class="line"> add interface GigabitEthernet1/0/1</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW3</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">firewall zone trust</span><br><span class="line"> add interface GigabitEthernet1/0/1</span><br><span class="line">#</span><br><span class="line">firewall zone untrust</span><br><span class="line"> add interface GigabitEthernet1/0/2</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>验证：dis zone interface</p>
+</li>
+</ul>
+<h3 id="任务5：防火墙VRRP、双机热备和安全策略配置"><a href="#任务5：防火墙VRRP、双机热备和安全策略配置" class="headerlink" title="任务5：防火墙VRRP、双机热备和安全策略配置"></a>任务5：防火墙VRRP、双机热备和安全策略配置</h3><ul>
+<li><p>FW1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">interface GigabitEthernet1/0/5.1</span><br><span class="line"> vrrp vrid 1 virtual-ip 192.168.1.254 active</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet1/0/5.2</span><br><span class="line"> vrrp vrid 2 virtual-ip 192.168.2.254 standby</span><br><span class="line">#</span><br><span class="line"> hrp enable</span><br><span class="line"> hrp interface GigabitEthernet1/0/1 remote 15.1.1.2</span><br><span class="line"> hrp mirror session enable</span><br><span class="line">#</span><br><span class="line">security-policy</span><br><span class="line"> rule name web</span><br><span class="line">  source-zone trust</span><br><span class="line">  destination-zone untrust</span><br><span class="line">  source-address 192.168.1.0 mask 255.255.255.0</span><br><span class="line">  destination-address 100.1.1.1 mask 255.255.255.255</span><br><span class="line">  service protocol tcp destination-port 8080</span><br><span class="line">  action permit</span><br><span class="line"> rule name Wireless</span><br><span class="line">  source-zone trust</span><br><span class="line">  destination-zone untrust</span><br><span class="line">  source-address 192.168.2.0 mask 255.255.255.0</span><br><span class="line">  action permit</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">interface GigabitEthernet1/0/5.1</span><br><span class="line"> vrrp vrid 1 virtual-ip 192.168.1.254 standby</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet1/0/5.2</span><br><span class="line"> vrrp vrid 2 virtual-ip 192.168.2.254 active</span><br><span class="line">#</span><br><span class="line"> hrp enable</span><br><span class="line"> hrp interface GigabitEthernet1/0/1 remote 15.1.1.1</span><br><span class="line"> hrp mirror session enable</span><br><span class="line">#</span><br><span class="line"># 配置hrp后，安全策略配置从HRP_M[FW1]同步，不能在HRP_S[FW2]配置</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW3</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">nat server 0 protocol tcp global 100.1.1.1 8080 inside 172.16.1.1 www</span><br><span class="line">#</span><br><span class="line">security-policy</span><br><span class="line"> rule name web</span><br><span class="line">  source-zone untrust</span><br><span class="line">  destination-zone trust</span><br><span class="line">  destination-address 172.16.1.0 mask 255.255.255.0</span><br><span class="line">  service http</span><br><span class="line">  action permit</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>验证</p>
+</li>
+</ul>
+<h3 id="任务6：公网静态路由配置"><a href="#任务6：公网静态路由配置" class="headerlink" title="任务6：公网静态路由配置"></a>任务6：公网静态路由配置</h3><ul>
+<li><p>FW1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 0.0.0.0 0.0.0.0 10.2.1.2</span><br><span class="line">ip route-static 100.1.1.1 255.255.255.255 10.2.2.2</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 0.0.0.0 0.0.0.0 10.3.1.2</span><br><span class="line">ip route-static 100.1.1.1 255.255.255.255 10.3.2.2</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW3</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 0.0.0.0 0.0.0.0 20.1.3.1</span><br><span class="line">ip route-static 100.1.1.1 255.255.255.255 NULL0</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>PE1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 192.168.2.0 255.255.255.0 10.2.1.1</span><br><span class="line">ip route-static 192.168.2.0 255.255.255.0 10.3.1.1</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="任务7：公网动态路由配置"><a href="#任务7：公网动态路由配置" class="headerlink" title="任务7：公网动态路由配置"></a>任务7：公网动态路由配置</h3><ul>
+<li><p>PE1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">isis 1</span><br><span class="line"> is-level level-2</span><br><span class="line"> network-entity 01.0000.0010.0100.1001.00</span><br><span class="line"> domain-authentication-mode md5 cipher ICTEXAM</span><br><span class="line">#</span><br><span class="line">interface LoopBack0</span><br><span class="line"> isis enable 1</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/2</span><br><span class="line"> isis enable 1</span><br><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> router-id 1.1.1.1</span><br><span class="line"> peer 2.2.2.2 as-number 100 </span><br><span class="line"> peer 2.2.2.2 connect-interface LoopBack0</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>PE2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">isis 1</span><br><span class="line"> is-level level-2</span><br><span class="line"> network-entity 01.0000.0020.0200.2002.00</span><br><span class="line"> domain-authentication-mode md5 cipher ICTEXAM</span><br><span class="line">#</span><br><span class="line">interface LoopBack0</span><br><span class="line"> isis enable 1</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1</span><br><span class="line"> isis enable 1</span><br><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> router-id 3.3.3.3</span><br><span class="line"> peer 2.2.2.2 as-number 100 </span><br><span class="line"> peer 2.2.2.2 connect-interface LoopBack0</span><br><span class="line"> peer 20.1.4.2 as-number 200  </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>P</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">isis 1</span><br><span class="line"> is-level level-2</span><br><span class="line"> network-entity 01.0000.0030.0300.3003.00</span><br><span class="line"> domain-authentication-mode md5 cipher ICTEXAM</span><br><span class="line">#</span><br><span class="line">interface LoopBack0</span><br><span class="line"> ip address 2.2.2.2 255.255.255.255 </span><br><span class="line"> isis enable 1</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1</span><br><span class="line"> isis enable 1</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/2</span><br><span class="line"> isis enable 1</span><br><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> router-id 2.2.2.2</span><br><span class="line"> group ibgpv4 internal</span><br><span class="line"> peer ibgpv4 connect-interface LoopBack0</span><br><span class="line"> peer 1.1.1.1 as-number 100 </span><br><span class="line"> peer 1.1.1.1 group ibgpv4 </span><br><span class="line"> peer 3.3.3.3 as-number 100 </span><br><span class="line"> peer 3.3.3.3 group ibgpv4 </span><br><span class="line">#</span><br><span class="line"> ipv4-family unicast</span><br><span class="line">  peer ibgpv4 enable</span><br><span class="line">  peer ibgpv4 reflect-client</span><br><span class="line">  peer 1.1.1.1 group ibgpv4 </span><br><span class="line">  peer 3.3.3.3 group ibgpv4 </span><br><span class="line"> # </span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Internet</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">bgp 200</span><br><span class="line"> router-id 16.16.16.16</span><br><span class="line"> peer 20.1.4.1 as-number 100 </span><br><span class="line"> network 16.16.16.16 255.255.255.255 </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW3</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">ospf 100</span><br><span class="line"> default-route-advertise</span><br><span class="line"> area 0.0.0.0</span><br><span class="line">  network 30.1.1.1 0.0.0.0</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet1/0/1</span><br><span class="line"> ospf network-type p2p</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>DC-GW</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1</span><br><span class="line"> ospf network-type p2p</span><br><span class="line">#</span><br><span class="line">ospf 100 router-id 11.11.11.11 </span><br><span class="line"> area 0.0.0.0 </span><br><span class="line">  network 11.11.11.11 0.0.0.0 </span><br><span class="line">  network 30.1.1.2 0.0.0.0 </span><br><span class="line">  network 30.1.2.1 0.0.0.0 </span><br><span class="line">  network 30.1.3.1 0.0.0.0 </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Leaf1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">ospf 100 router-id 12.12.12.12 </span><br><span class="line"> area 0.0.0.0 </span><br><span class="line">  network 12.12.12.12 0.0.0.0 </span><br><span class="line">  network 30.1.2.2 0.0.0.0 </span><br><span class="line">  network 172.16.1.254 0.0.0.0 </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Leaf2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">ospf 100 router-id 13.13.13.13 </span><br><span class="line"> area 0.0.0.0 </span><br><span class="line">  network 13.13.13.13 0.0.0.0 </span><br><span class="line">  network 30.1.3.2 0.0.0.0 </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>验证</p>
+</li>
+</ul>
+<h3 id="任务8：MPLS-VPN"><a href="#任务8：MPLS-VPN" class="headerlink" title="任务8：MPLS VPN"></a>任务8：MPLS VPN</h3><ul>
+<li><p>PE1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> #</span><br><span class="line"> ipv4-family unicast</span><br><span class="line">  import-route static</span><br><span class="line"> # </span><br><span class="line"> ipv4-family vpnv4</span><br><span class="line">  peer 2.2.2.2 enable</span><br><span class="line">#</span><br><span class="line">mpls lsr-id 1.1.1.1</span><br><span class="line">mpls</span><br><span class="line">#</span><br><span class="line">mpls ldp</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/2</span><br><span class="line"> mpls</span><br><span class="line"> mpls ldp</span><br><span class="line">#</span><br><span class="line">ip vpn-instance ToDC</span><br><span class="line">  route-distinguisher 100:1</span><br><span class="line">  vpn-target 200:1 both</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1.1</span><br><span class="line"> ip binding vpn-instance ToDC</span><br><span class="line"> ip address 10.2.2.2 255.255.255.252 </span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet3/0/0.1</span><br><span class="line"> ip binding vpn-instance ToDC</span><br><span class="line"> ip address 10.3.2.2 255.255.255.252 </span><br><span class="line">#</span><br><span class="line">ip route-static vpn-instance ToDC 192.168.0.0 255.255.0.0 10.2.2.1</span><br><span class="line">ip route-static vpn-instance ToDC 192.168.0.0 255.255.0.0 10.3.2.1</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> #</span><br><span class="line"> ipv4-family vpn-instance ToDC </span><br><span class="line">  import-route static</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>PE2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> #</span><br><span class="line"> ipv4-family unicast</span><br><span class="line">  peer 2.2.2.2 next-hop-local </span><br><span class="line"> # </span><br><span class="line"> ipv4-family vpnv4</span><br><span class="line">  peer 2.2.2.2 enable</span><br><span class="line">#</span><br><span class="line">mpls lsr-id 3.3.3.3</span><br><span class="line">mpls</span><br><span class="line">#</span><br><span class="line">mpls ldp</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1</span><br><span class="line"> mpls</span><br><span class="line"> mpls ldp</span><br><span class="line">#</span><br><span class="line">ip vpn-instance ToDC</span><br><span class="line">  route-distinguisher 100:1</span><br><span class="line">  vpn-target 200:1 both</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/2</span><br><span class="line"> ip binding vpn-instance ToDC</span><br><span class="line"> ip address 20.1.3.1 255.255.255.252 </span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> #</span><br><span class="line"> ipv4-family vpn-instance ToDC </span><br><span class="line">  peer 20.1.3.2 as-number 300 </span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>P</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">bgp 100</span><br><span class="line"> # </span><br><span class="line"> ipv4-family vpnv4</span><br><span class="line">  undo policy vpn-target</span><br><span class="line">  peer ibgpv4 enable</span><br><span class="line">  peer ibgpv4 reflect-client</span><br><span class="line">  peer 1.1.1.1 group ibgpv4 </span><br><span class="line">  peer 3.3.3.3 group ibgpv4 </span><br><span class="line">#</span><br><span class="line">mpls lsr-id 2.2.2.2</span><br><span class="line">mpls</span><br><span class="line">#</span><br><span class="line">mpls ldp</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/1</span><br><span class="line"> mpls</span><br><span class="line"> mpls ldp</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet0/0/2</span><br><span class="line"> mpls</span><br><span class="line"> mpls ldp</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>FW3</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">bgp 300</span><br><span class="line"> peer 20.1.3.1 as-number 100</span><br><span class="line"> #</span><br><span class="line"> ipv4-family unicast</span><br><span class="line">  import-route static</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+
+
+</li>
+<li><p>dis bgp vpnv4 all peer </p>
+</li>
+<li><p>dis mpls ldp int </p>
+</li>
+<li><p>dis mpls ldp peer</p>
+</li>
+<li><p>dis ip vpn-instance verbose</p>
+</li>
+<li><p>dis bgp vpnv4 all routing-table</p>
+</li>
+</ul>
+<h3 id="任务9：GRE"><a href="#任务9：GRE" class="headerlink" title="任务9：GRE"></a>任务9：GRE</h3><ul>
+<li><p>Leaf1</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">interface Tunnel0/0/0</span><br><span class="line"> ip address 173.1.2.1 255.255.255.252 </span><br><span class="line"> tunnel-protocol gre</span><br><span class="line"> source 12.12.12.12</span><br><span class="line"> destination 13.13.13.13</span><br><span class="line">#</span><br><span class="line">ip route-static 172.16.2.0 255.255.255.0 173.1.2.2</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Leaf2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">interface Tunnel0/0/0</span><br><span class="line"> ip address 173.1.2.2 255.255.255.252 </span><br><span class="line"> tunnel-protocol gre</span><br><span class="line"> source 13.13.13.13</span><br><span class="line"> destination 12.12.12.12</span><br><span class="line">#</span><br><span class="line">ip route-static 172.16.3.0 255.255.255.0 173.1.2.1</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h3 id="任务10：WLAN"><a href="#任务10：WLAN" class="headerlink" title="任务10：WLAN"></a>任务10：WLAN</h3><ul>
+<li><p>FW1/FW2</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">interface GigabitEthernet1/0/5.1</span><br><span class="line"> service-manage ping permit</span><br><span class="line">#</span><br><span class="line">interface GigabitEthernet1/0/5.2</span><br><span class="line"> service-manage ping permit</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>AC</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">vlan batch 19 to 20</span><br><span class="line">#</span><br><span class="line">dhcp enable</span><br><span class="line">#</span><br><span class="line">ip pool For_AP</span><br><span class="line"> gateway-list 192.168.19.254 </span><br><span class="line"> network 192.168.19.0 mask 255.255.255.0 </span><br><span class="line">#</span><br><span class="line">ip pool STA</span><br><span class="line"> gateway-list 192.168.2.254</span><br><span class="line"> network 192.168.2.0 mask 255.255.255.0 </span><br><span class="line"> excluded-ip-address 192.168.2.1 192.168.2.3 </span><br><span class="line">#</span><br><span class="line">interface Vlanif19</span><br><span class="line"> ip address 192.168.19.254 255.255.255.0</span><br><span class="line"> dhcp select global</span><br><span class="line">#</span><br><span class="line">interface Vlanif20</span><br><span class="line"> ip address 192.168.2.1 255.255.255.0</span><br><span class="line"> dhcp select global</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line">capwap source interface vlanif19</span><br><span class="line">#</span><br><span class="line">wlan</span><br><span class="line"> security-profile name s1</span><br><span class="line">  security wpa-wpa2 psk pass-phrase Huawei@123 aes</span><br><span class="line"> ssid-profile name s1</span><br><span class="line">  ssid ICT</span><br><span class="line"> vap-profile name p1</span><br><span class="line">  forward-mode tunnel</span><br><span class="line">  service-vlan vlan-id 20</span><br><span class="line">  ssid-profile s1</span><br><span class="line">  security-profile s1</span><br><span class="line"> ap-group name default</span><br><span class="line">  radio 0</span><br><span class="line">   vap-profile p1 wlan 1</span><br><span class="line"> ap-id 1 type-id 56 ap-mac 00e0-fcef-0250 ap-sn 2102354483100961AE61</span><br><span class="line">  ap-group default</span><br><span class="line">#</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<hr>
+<h2 id="综合测试"><a href="#综合测试" class="headerlink" title="综合测试"></a>综合测试</h2><ul>
+<li><p>Web-Client访问Web-Server</p>
+<p><img src="https://s2.loli.net/2024/07/24/bpNLtzCIxgWQ4S9.png" alt="image-20240724115158242"></p>
+</li>
+<li><p>FW3查看会话</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;FW3&gt;dis firewall session table verbose</span><br><span class="line">2024-07-24 03:54:01.520 </span><br><span class="line"> Current Total Sessions : 2</span><br><span class="line"> http  VPN: public --&gt; public  ID: c487fdedb993138324f66a07acf</span><br><span class="line"> Zone: untrust --&gt; trust  TTL: 00:00:10  Left: 00:00:05</span><br><span class="line"> Recv Interface: GigabitEthernet1/0/2</span><br><span class="line"> Interface: GigabitEthernet1/0/1  NextHop: 30.1.1.2  MAC: 00e0-fc45-0d43</span><br><span class="line"> &lt;--packets: 5 bytes: 515 --&gt; packets: 6 bytes: 399</span><br><span class="line"> 192.168.1.1:2050 --&gt; 100.1.1.1:8080[172.16.1.1:80] PolicyName: web</span><br><span class="line"> TCP State: close</span><br><span class="line"></span><br><span class="line"> bgp  VPN: public --&gt; public  ID: c487fdedb99d128393566a074da</span><br><span class="line"> Zone: untrust --&gt; local  TTL: 00:20:00  Left: 00:20:00</span><br><span class="line"> Recv Interface: GigabitEthernet1/0/2</span><br><span class="line"> Interface: InLoopBack0  NextHop: 127.0.0.1  MAC: 0000-0000-0000</span><br><span class="line"> &lt;--packets: 64 bytes: 3,158 --&gt; packets: 68 bytes: 3,404</span><br><span class="line"> 20.1.3.1:49928 --&gt; 20.1.3.2:179 PolicyName: ---</span><br><span class="line"> TCP State: established</span><br><span class="line"></span><br><span class="line">&lt;FW3&gt;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>VM1和VM2互相ping测试</p>
+<p><img src="https://s2.loli.net/2024/07/24/mFkQPCidowfUa4I.png" alt="image-20240724120153111"></p>
+</li>
+<li><p>无线客户端PC1 ping测试</p>
+<p><img src="https://s2.loli.net/2024/07/24/H7yilKcuSU4jg69.png" alt="image-20240724120408833"></p>
+</li>
+</ul>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
+<li>个人觉得整个拓扑的就必上一篇文的规模小多了，量也没那么大，技术要点也不考察那么细致</li>
+<li>貌似模拟器的USG防火墙有bug，拓扑中FW3与PE2建立EBGP，FW3与DC-GW建立OSPF，均不用配置安全策略就能建立起邻居关系</li>
+<li>就不过多总结了，都在敲击键盘的过程中了</li>
+<li>把文中的配置复制粘贴进对应设备最终就能实现综合测试的结果</li>
+<li>……</li>
+<li>可能有更好的实现需求的配置答案（山外有山）</li>
+<li>文件存阿里云盘了，这是链接：[<a target="_blank" rel="noopener" href="https://www.alipan.com/s/6HwHnenuSqn">分享的文件</a>]</li>
+<li>欢迎“<del>来电</del>”来函探讨。</li>
+</ul>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/ICT/">#ICT</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/ensp%E5%AE%9E%E9%AA%8C/">#ensp实验</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E8%A7%A3%E9%A2%98/">#解题</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%8D%8E%E4%B8%BA/">#华为</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E6%90%93%E4%B8%80%E6%90%93/">#搓一搓</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E7%9C%9F%E7%9A%84%E5%8D%A1/">#真的卡</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/posts/e6429fe7.html">2021-2022华为ICT大赛（全球）实验题研究</a>
+            
+        </span>
+    </div>
+    
+</article>
+<!-- 
+DO NOT APPLY SHAREBOX
+
+<div class="sharebox">
+    
+<div class="notification is-danger">
+    You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.
+</div>
+
+</div>
+
+DO NOT APPLY COMMENTS
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<div id="disqus_thread">
+    
+    <div class="notification is-danger">
+        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
+    </div>
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+-->
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2024 Kir Aster&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-blue" title="About" href="/about">
+                    
+                    About
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-blue" title="Privacy" href="/privacy-statement">
+                    
+                    Privacy
+                    
+                </a>
+                
+                    
+                <a class="column is-narrow has-text-blue" title="GitHub" target="_blank" rel="noopener" href="https://github.com/kiraster">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+<div id="totop" class="ctotop">
+<a title="返回顶部"><img src="/images/scrollup.png"/></a>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery > p > .gallery-item').unwrap();
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/totop.js"></script>
+
+
+<div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</body>
+</html>
