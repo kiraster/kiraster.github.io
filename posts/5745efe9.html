@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://s2.loli.net/2024/09/18/QbcJGNxt2U7wBDA.jpg">
 <meta property="og:image" content="https://s2.loli.net/2024/09/18/goN6IM5VJCRDSL1.jpg">
 <meta property="article:published_time" content="2024-09-18T03:22:42.000Z">
-<meta property="article:modified_time" content="2024-09-18T03:45:56.310Z">
+<meta property="article:modified_time" content="2024-09-18T08:39:08.409Z">
 <meta property="article:author" content="Kir Aster">
 <meta property="article:tag" content="Rocky Linux">
 <meta property="article:tag" content="Gogs">
@@ -194,19 +194,19 @@
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#再次进行初始化">7&nbsp;&nbsp;<b>再次进行初始化</b></a>
+                    <a class="navbar-item" href="#设置-Gogs-服务开机启动">7&nbsp;&nbsp;<b>设置 Gogs 服务开机启动</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#设置-Gogs-服务开机启动">8&nbsp;&nbsp;<b>设置 Gogs 服务开机启动</b></a>
+                    <a class="navbar-item" href="#外部仓库克隆测试">8&nbsp;&nbsp;<b>外部仓库克隆测试</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#外部仓库克隆测试">9&nbsp;&nbsp;<b>外部仓库克隆测试</b></a>
+                    <a class="navbar-item" href="#再次进行初始化">9&nbsp;&nbsp;<b>再次进行初始化</b></a>
                     
                 </div>
             </div>
@@ -325,6 +325,19 @@
 <p><img src="https://s2.loli.net/2024/09/18/Dg6ETvwxOZFCHMt.jpg" alt="ScreenCaputure5824"></p>
 </li>
 </ol>
+<h2 id="设置-Gogs-服务开机启动"><a href="#设置-Gogs-服务开机启动" class="headerlink" title="设置 Gogs 服务开机启动"></a>设置 Gogs 服务开机启动</h2><ol>
+<li><p>将<code>/opt/Gogs_0.13.0/gogs/scripts/systemd</code>路径下的<code>gogs.service</code>文件复制到<code>/etc/systemd/system </code></p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost systemd]# cp gogs.service /etc/systemd/system </span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>修改<code>/etc/systemd/system</code>路径下的<code>gogs.service</code>文件</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Gogs</span><br><span class="line">After=syslog.target</span><br><span class="line">After=network.target</span><br><span class="line"># After=mariadb.service mysql.service mysqld.service postgresql.service memcached.service $</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"># Modify these two values and uncomment them if you have</span><br><span class="line"># repos with lots of files and get an HTTP error 500 because</span><br><span class="line"># of that</span><br><span class="line">###</span><br><span class="line">#LimitMEMLOCK=infinity</span><br><span class="line">#LimitNOFILE=65535</span><br><span class="line">Type=simple</span><br><span class="line">User=root</span><br><span class="line">Group=root</span><br><span class="line">WorkingDirectory=/opt/Gogs_0.13.0/gogs</span><br><span class="line">ExecStart=/opt/Gogs_0.13.0/gogs/gogs web</span><br><span class="line">Restart=always</span><br><span class="line"># Environment=USER=git HOME=/home/root</span><br><span class="line"></span><br><span class="line"># Some distributions may not support these hardening directives. If you cannot start the s$</span><br><span class="line"># to an unknown option, comment out the ones not supported by your version of systemd.</span><br><span class="line">ProtectSystem=full</span><br><span class="line">PrivateDevices=yes</span><br><span class="line">PrivateTmp=yes</span><br><span class="line">NoNewPrivileges=true</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>重新加载 systemd 配置并启动 Gogs 服务</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl start gogs</span><br><span class="line">systemctl enable gogs</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="外部仓库克隆测试"><a href="#外部仓库克隆测试" class="headerlink" title="外部仓库克隆测试"></a>外部仓库克隆测试</h2><p>以https方式 git clone 一个仓库至本地，（github把https方式克隆仓库给ban了，现在都需要验证，去gitee克隆）</p>
+<p><img src="https://s2.loli.net/2024/09/18/QbcJGNxt2U7wBDA.jpg" alt="ScreenCaputure0823"></p>
+<p><img src="https://s2.loli.net/2024/09/18/goN6IM5VJCRDSL1.jpg" alt="ScreenCaputure0907"></p>
 <h2 id="再次进行初始化"><a href="#再次进行初始化" class="headerlink" title="再次进行初始化"></a>再次进行初始化</h2><p>种种原因可能需要再次进行初始化（比如修改数据库，更改管理员等）</p>
 <ol>
 <li><p>删除/root/gogs-repositories 目录</p>
@@ -339,19 +352,6 @@
 <li><p>提示端口已经在使用，关闭进程或重启系统解决</p>
 <figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 查找进程ID，终止进程</span><br><span class="line">[root@localhost gogs]# lsof -i :3000</span><br><span class="line">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span><br><span class="line">gogs    1543 root   10u  IPv6  29519      0t0  TCP *:hbci (LISTEN)</span><br><span class="line">[root@localhost gogs]# kill 1543</span><br><span class="line">[root@localhost gogs]# lsof -i :3000</span><br><span class="line">[root@localhost gogs]# </span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
-<h2 id="设置-Gogs-服务开机启动"><a href="#设置-Gogs-服务开机启动" class="headerlink" title="设置 Gogs 服务开机启动"></a>设置 Gogs 服务开机启动</h2><ol>
-<li><p>将<code>/opt/Gogs_0.13.0/gogs/scripts/systemd</code>路径下的<code>gogs.service</code>文件复制到<code>/etc/systemd/system </code></p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost systemd]# cp gogs.service /etc/systemd/system </span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>修改<code>/etc/systemd/system</code>路径下的<code>gogs.service</code>文件</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Gogs</span><br><span class="line">After=syslog.target</span><br><span class="line">After=network.target</span><br><span class="line"># After=mariadb.service mysql.service mysqld.service postgresql.service memcached.service $</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"># Modify these two values and uncomment them if you have</span><br><span class="line"># repos with lots of files and get an HTTP error 500 because</span><br><span class="line"># of that</span><br><span class="line">###</span><br><span class="line">#LimitMEMLOCK=infinity</span><br><span class="line">#LimitNOFILE=65535</span><br><span class="line">Type=simple</span><br><span class="line">User=root</span><br><span class="line">Group=root</span><br><span class="line">WorkingDirectory=/opt/Gogs_0.13.0/gogs</span><br><span class="line">ExecStart=/opt/Gogs_0.13.0/gogs/gogs web</span><br><span class="line">Restart=always</span><br><span class="line"># Environment=USER=git HOME=/home/root</span><br><span class="line"></span><br><span class="line"># Some distributions may not support these hardening directives. If you cannot start the s$</span><br><span class="line"># to an unknown option, comment out the ones not supported by your version of systemd.</span><br><span class="line">ProtectSystem=full</span><br><span class="line">PrivateDevices=yes</span><br><span class="line">PrivateTmp=yes</span><br><span class="line">NoNewPrivileges=true</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>重新加载 systemd 配置并启动 Gogs 服务</p>
-<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl start gogs</span><br><span class="line">systemctl enable gogs</span><br></pre></td></tr></tbody></table></figure></li>
-</ol>
-<h2 id="外部仓库克隆测试"><a href="#外部仓库克隆测试" class="headerlink" title="外部仓库克隆测试"></a>外部仓库克隆测试</h2><p>以https方式 git clone 一个仓库至本地，（github把https方式克隆仓库给ban了，现在都需要验证，去gitee克隆）</p>
-<p><img src="https://s2.loli.net/2024/09/18/QbcJGNxt2U7wBDA.jpg" alt="ScreenCaputure0823"></p>
-<p><img src="https://s2.loli.net/2024/09/18/goN6IM5VJCRDSL1.jpg" alt="ScreenCaputure0907"></p>
 </body></html>
     
     </div>
