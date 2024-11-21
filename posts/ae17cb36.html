@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
 <meta charset="utf-8">
-<title>H3C 防火墙（v7）SSLVPN 实验配置 - Kir&#39;s Blog</title>
+<title>修改Van Nav搜索结果不显示百度谷歌必应搜索 - Kir&#39;s Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
 
@@ -13,41 +13,26 @@
 <meta name="keywords" content="Kir的博客，网络设备配置，网络拓扑实验，华为华三路由交换无线安全HCIP,CISCO,NETWORK">
 
 
-    <meta name="description" content="本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验 后一篇文章中描述 在 Ubuntu 22.04 中安装 iNode 客户端拨号测试 本来只想写 Ubuntu 安装 iNode 的，想想还是一起记录下来 文中的所有操作方法都可在华三官网和搜索引擎找到">
+    <meta name="description" content="Van Nav是一个轻量的导航站 Github开源仓库：https:&#x2F;&#x2F;github.com&#x2F;Mereithhh&#x2F;van-nav 现在的浏览器地址栏都集成了搜索功能，用不上导航站里的在线搜索，以下列出去除该功能的操作步骤">
 <meta property="og:type" content="article">
-<meta property="og:title" content="H3C 防火墙（v7）SSLVPN 实验配置">
-<meta property="og:url" content="https://kiraster.github.io/posts/ed57c1e2.html">
+<meta property="og:title" content="修改Van Nav搜索结果不显示百度谷歌必应搜索">
+<meta property="og:url" content="https://kiraster.github.io/posts/ae17cb36.html">
 <meta property="og:site_name" content="Kir&#39;s Blog">
-<meta property="og:description" content="本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验 后一篇文章中描述 在 Ubuntu 22.04 中安装 iNode 客户端拨号测试 本来只想写 Ubuntu 安装 iNode 的，想想还是一起记录下来 文中的所有操作方法都可在华三官网和搜索引擎找到">
+<meta property="og:description" content="Van Nav是一个轻量的导航站 Github开源仓库：https:&#x2F;&#x2F;github.com&#x2F;Mereithhh&#x2F;van-nav 现在的浏览器地址栏都集成了搜索功能，用不上导航站里的在线搜索，以下列出去除该功能的操作步骤">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/PgNxjMhaKEzsO2i.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/2P1gsbxBkRCm3af.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/vHMoJfWuPDIN8mQ.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/D19bwngVfWil3rQ.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/9StT357Dfmk2lj8.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/CJVZL3STvasDp2G.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/e6ghlcyE2nKuYkj.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/tpb9CPyxr3kuRsI.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/KhsJiqZn4afRIQ1.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/iynU2qlutawKPsF.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/MWqR9i7eynPNrAH.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/ukL5VOaitIjWpch.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/zoRQuITFqvtxka4.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/1Imh2gkDJCzUjZ5.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/n6vmYPWJdAyFX8D.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/YIEbLd4NcaSzHFm.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/fd7ImtU6VzkhTvg.png">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/rfRhxltUH9MN2AX.jpg">
-<meta property="og:image" content="https://s2.loli.net/2022/11/26/C3F8pRToXzd9yi2.jpg">
-<meta property="article:published_time" content="2022-11-26T07:12:31.000Z">
-<meta property="article:modified_time" content="2023-02-14T08:59:47.205Z">
+<meta property="og:image" content="https://s2.loli.net/2024/11/21/bcrsQkaBHpdASVX.png">
+<meta property="og:image" content="https://s2.loli.net/2024/11/21/wblkB3sXCEJice7.png">
+<meta property="og:image" content="https://s2.loli.net/2024/11/21/jPsG4d69EC2gWnz.png">
+<meta property="og:image" content="https://s2.loli.net/2024/11/21/KT6WhIYeuVC1UNR.png">
+<meta property="og:image" content="https://s2.loli.net/2024/11/21/cWSvxRq36Dut4LC.png">
+<meta property="article:published_time" content="2024-11-21T09:36:11.000Z">
+<meta property="article:modified_time" content="2024-11-21T10:18:35.987Z">
 <meta property="article:author" content="Kir Aster">
-<meta property="article:tag" content="H3C防火墙">
-<meta property="article:tag" content="SSLVPN实验">
-<meta property="article:tag" content="SSLVPN配置">
-<meta property="article:tag" content="iNode">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="Van Nav">
+<meta property="article:tag" content="导航站">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2022/11/26/PgNxjMhaKEzsO2i.jpg">
+<meta name="twitter:image" content="https://s2.loli.net/2024/11/21/bcrsQkaBHpdASVX.png">
 
 
 
@@ -151,45 +136,43 @@
                     
                     
                     
-                    <a class="navbar-item" href="#拓扑图">1&nbsp;&nbsp;<b>拓扑图</b></a>
+                    <a class="navbar-item" href="#下载源码">1&nbsp;&nbsp;<b>下载源码</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#基操">2&nbsp;&nbsp;<b>基操</b></a>
+                    <a class="navbar-item" href="#修改npm为阿里云镜像">2&nbsp;&nbsp;<b>修改npm为阿里云镜像</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#防火墙配置-SSLVPN">3&nbsp;&nbsp;<b>防火墙配置 SSLVPN</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#配置-SSLVPN-网关">3.1&nbsp;&nbsp;配置 SSLVPN 网关</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#配置-IP-接入接口">3.2&nbsp;&nbsp;配置 IP 接入接口</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#创建SSL-VPN客户端地址池">3.3&nbsp;&nbsp;创建SSL  VPN客户端地址池</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#配置SSL-VPN访问实例">3.4&nbsp;&nbsp;配置SSL VPN访问实例</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#创建-SSLVPN-用户">3.5&nbsp;&nbsp;创建 SSLVPN 用户</a>
+                    <a class="navbar-item" href="#修改相应代码">3&nbsp;&nbsp;<b>修改相应代码</b></a>
                     
                     
                     <hr class="navbar-divider">
                     
                     
-                    <a class="navbar-item" href="#Windows平台-iNode-客户端测试">4&nbsp;&nbsp;<b>Windows平台 iNode 客户端测试</b></a>
+                    <a class="navbar-item" href="#构建镜像">4&nbsp;&nbsp;<b>构建镜像</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#创建容器">5&nbsp;&nbsp;<b>创建容器</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#访问Van-Nav">6&nbsp;&nbsp;<b>访问Van Nav</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#最后">7&nbsp;&nbsp;<b>最后</b></a>
                     
                 </div>
             </div>
@@ -205,7 +188,7 @@
     
       <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
           
-              H3C 防火墙（v7）SSLVPN 实验配置
+              修改Van Nav搜索结果不显示百度谷歌必应搜索
           
       </h1>
     
@@ -214,20 +197,20 @@
           <span class="column is-narrow">
               
                   <i class="far fa-clock"></i>
-                  <span>&nbspNov 26th 22&nbsp</span>
+                  <span>&nbspNov 21st 24&nbsp</span>
               
           </span>
           
           <span class="column is-narrow article-category">
               <i class="far fa-folder"></i>
-              <a class="article-category-link" href="/categories/H3C-Cloud-Lab/">H3C Cloud Lab</a>
+              <a class="article-category-link" href="/categories/Fantasy/">Fantasy</a>
           </span>
           
           
           <span class="column is-narrow">
               
               
-              4 minutes read (About 563 words)
+              5 minutes read (About 770 words)
           </span>
           
       </div>
@@ -236,148 +219,71 @@
     
       
       
-        <div>
-          <i class="fa fa-exclamation-triangle"></i> 
-          This is an article that was created 726 days ago, and the information may have evolved or changed.  
-        </div>
-        <br>
-      
     
     
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
         
-        <html><head></head><body><p> 本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验</p>
-<p>后一篇文章中描述 在 <code>Ubuntu 22.04</code> 中安装 <code>iNode</code> 客户端拨号测试</p>
-<p>本来只想写 Ubuntu 安装 iNode 的，想想还是一起记录下来</p>
-<p>文中的所有操作方法都可在华三官网和搜索引擎找到<span id="more"></span></p>
-<h2 id="拓扑图"><a href="#拓扑图" class="headerlink" title="拓扑图"></a>拓扑图</h2><p><img src="https://s2.loli.net/2022/11/26/PgNxjMhaKEzsO2i.jpg" alt="ScreenCaputure221126120646"></p>
-<h2 id="基操"><a href="#基操" class="headerlink" title="基操"></a>基操</h2><ol>
-<li>配置接口 IP 地址</li>
-<li>接口划入安全域（untrust，trust），新建安全域 SSLVPN</li>
-<li>配置路由（FW–&gt;&gt; ROUTER:172.16.1.0/24，ROUTER–&gt;&gt;FW:0.0.0.0/0）</li>
-<li>配置安全策略互通（any）</li>
-</ol>
-<h2 id="防火墙配置-SSLVPN"><a href="#防火墙配置-SSLVPN" class="headerlink" title="防火墙配置 SSLVPN"></a>防火墙配置 SSLVPN</h2><h3 id="配置-SSLVPN-网关"><a href="#配置-SSLVPN-网关" class="headerlink" title="配置 SSLVPN 网关"></a>配置 SSLVPN 网关</h3><ul>
-<li><p>Gateway Name:  SSLVPNGW</p>
-</li>
-<li><p>IP Address: 172.31.100.234</p>
-</li>
-<li><p>port: 4443</p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/2P1gsbxBkRCm3af.jpg" alt="ScreenCaputure221126121833"></p>
-<h3 id="配置-IP-接入接口"><a href="#配置-IP-接入接口" class="headerlink" title="配置 IP 接入接口"></a>配置 IP 接入接口</h3><ul>
-<li><p>安全域： SSLVPN</p>
-</li>
-<li><p>指定IP地址：172.31.200.254/24</p>
-</li>
-<li><p>本机接收可不选</p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/vHMoJfWuPDIN8mQ.jpg" alt="ScreenCaputure221126121924"></p>
-<p><img src="https://s2.loli.net/2022/11/26/D19bwngVfWil3rQ.jpg" alt="ScreenCaputure221126122310"></p>
-<h3 id="创建SSL-VPN客户端地址池"><a href="#创建SSL-VPN客户端地址池" class="headerlink" title="创建SSL  VPN客户端地址池"></a>创建SSL  VPN客户端地址池</h3><ul>
-<li><p>地址池名称： SSLVPNPOOL</p>
-</li>
-<li><p>172.31.200.10 - 172.31.200.100</p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/9StT357Dfmk2lj8.jpg" alt="ScreenCaputure221126122347"></p>
-<h3 id="配置SSL-VPN访问实例"><a href="#配置SSL-VPN访问实例" class="headerlink" title="配置SSL VPN访问实例"></a>配置SSL VPN访问实例</h3><ul>
-<li>访问实例： KIRIP</li>
-<li>关联网关：SSLVPNGW</li>
-<li>url acl: None</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/CJVZL3STvasDp2G.jpg" alt="ScreenCaputure221126122432"></p>
-<p><img src="https://s2.loli.net/2022/11/26/e6ghlcyE2nKuYkj.jpg" alt="ScreenCaputure221126122521"></p>
+        <html><head></head><body><p>Van Nav是一个轻量的导航站</p>
+<p>Github开源仓库：<a target="_blank" rel="noopener" href="https://github.com/Mereithhh/van-nav">https://github.com/Mereithhh/van-nav</a></p>
+<p>现在的浏览器地址栏都集成了搜索功能，用不上导航站里的在线搜索，以下列出去除该功能的操作步骤<span id="more"></span></p>
+<p>我将其定位为半内网使用的一个导航站</p>
+<h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>git clone 或 Download ZIP</p>
+<h2 id="修改npm为阿里云镜像"><a href="#修改npm为阿里云镜像" class="headerlink" title="修改npm为阿里云镜像"></a>修改npm为阿里云镜像</h2><p>国内连接官方的npm时常抽风，替换yarn.lock 里面的resolved为registry.npmmirror.com，从阿里云镜像源下载依赖.</p>
+<p>两个文件的路径为：</p>
 <ul>
-<li><p>IP业务：</p>
-<ul>
-<li><p>​	IP接入接口：SSLVPN-AC1 INTERFACE</p>
-</li>
-<li><p>​    客户端地址池：SSLVPNPOOL</p>
-</li>
-<li><p>IP接入资源：添加要被VPN接入客户端访问的网络  : ROUTERLIST:</p>
-</li>
+<li>ui/admin/yarn.lock</li>
+<li>ui/website/yarn.lock</li>
 </ul>
-<p>​						172.16.1.0/24</p>
-<p>​						……</p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/tpb9CPyxr3kuRsI.jpg" alt="ScreenCaputure221126122536"></p>
-<p><img src="https://s2.loli.net/2022/11/26/KhsJiqZn4afRIQ1.jpg" alt="ScreenCaputure221126122634"></p>
-<p><img src="https://s2.loli.net/2022/11/26/iynU2qlutawKPsF.jpg" alt="ScreenCaputure221126122716"></p>
-<p><img src="https://s2.loli.net/2022/11/26/MWqR9i7eynPNrAH.jpg" alt="ScreenCaputure221126122723"></p>
-<p><img src="https://s2.loli.net/2022/11/26/ukL5VOaitIjWpch.jpg" alt="ScreenCaputure221126122747"></p>
-<ul>
-<li><p>不配置快捷方式，next</p>
-</li>
-<li><p>配置资源组</p>
-<ul>
-<li>资源组名称：RESOURCEGROUP</li>
-<li>指定路由接入VPN：子网资源</li>
-<li>客户端地址池：SSLVPNPOOL</li>
-<li>客户端掩码：24</li>
-<li>acl：3999 (新建acl，rule permit ip)</li>
-</ul>
-</li>
-<li><p>完成配置，使能访问实例（勾上）</p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/zoRQuITFqvtxka4.jpg" alt="ScreenCaputure221126122917"></p>
-<h3 id="创建-SSLVPN-用户"><a href="#创建-SSLVPN-用户" class="headerlink" title="创建 SSLVPN 用户"></a>创建 SSLVPN 用户</h3><ul>
-<li><p>填写用户名–&gt;&gt;勾选SSL VPN</p>
-</li>
-<li><p>授权属性： SSL VPN 策略组： resourcegroup</p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/1Imh2gkDJCzUjZ5.jpg" alt="ScreenCaputure221126124924"></p>
-<p><img src="https://s2.loli.net/2022/11/26/n6vmYPWJdAyFX8D.jpg" alt="ScreenCaputure221126124934"></p>
-<h2 id="Windows平台-iNode-客户端测试"><a href="#Windows平台-iNode-客户端测试" class="headerlink" title="Windows平台 iNode 客户端测试"></a>Windows平台 iNode 客户端测试</h2><ul>
-<li>新建场景–&gt;&gt;创建连接</li>
-</ul>
-<table>
-    <tbody><tr>
-        <td><img src="https://s2.loli.net/2022/11/26/YIEbLd4NcaSzHFm.jpg"></td>
-        <td><img src="https://s2.loli.net/2022/11/26/fd7ImtU6VzkhTvg.png"></td>
-    </tr>
-</tbody></table>
+<h2 id="修改相应代码"><a href="#修改相应代码" class="headerlink" title="修改相应代码"></a>修改相应代码</h2><p>修改代码<code>ui\website\src\components\Content\index.tsx</code>文件</p>
+<p>Line：13 （删除此行import）</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import { generateSearchEngineCard } from "../../utils/serachEngine";</span><br></pre></td></tr></tbody></table></figure>
 
-<ul>
-<li>查看连接状态和分配到的客户端地址</li>
+<p>Line：87-116 （替换内容）</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">const filteredData = useMemo(() =&gt; {</span><br><span class="line">  if (!data.tools) {</span><br><span class="line">    return null; // 如果没有 tools 属性，直接返回 null</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  const localResult = data.tools</span><br><span class="line">    .filter((item: any) =&gt; {</span><br><span class="line">      const hide = item.hide;</span><br><span class="line">      if (!hide) return true; // 如果 item 没有 hide 属性，保留该项</span><br><span class="line">      if (hide &amp;&amp; isLogin()) return false; // 如果 item 隐藏且用户已登录，丢弃该项</span><br><span class="line">      return false; // 默认丢弃该项</span><br><span class="line">    })</span><br><span class="line">    .filter((item: any) =&gt; {</span><br><span class="line">      if (currTag === "全部工具") {</span><br><span class="line">        return true; // 如果当前标签是“全部工具”，保留该项</span><br><span class="line">      }</span><br><span class="line">      return item.catelog === currTag; // 只保留与当前标签匹配的项</span><br><span class="line">    })</span><br><span class="line">    .filter((item: any) =&gt; {</span><br><span class="line">      if (searchString === "") {</span><br><span class="line">        return true; // 如果搜索字符串为空，保留该项</span><br><span class="line">      }</span><br><span class="line">      // 保留与搜索字符串匹配的项</span><br><span class="line">      return (</span><br><span class="line">        mutiSearch(item.name, searchString) ||</span><br><span class="line">        mutiSearch(item.desc, searchString) ||</span><br><span class="line">        mutiSearch(item.url, searchString)</span><br><span class="line">      );</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">  return localResult; // 返回过滤后的结果</span><br><span class="line">}, [data, currTag, searchString]);</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><p>将代码文件夹上传至linux，需提前安装号docker（网络上教程多如牛毛，一搜便知）</p>
+<figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t my-nav:v0.1 .</span><br></pre></td></tr></tbody></table></figure>
+
+<p><img src="https://s2.loli.net/2024/11/21/bcrsQkaBHpdASVX.png" alt="image-20241121175134975"></p>
+<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name my-van-nav --restart always -p 6412:6412 -v /opt/superE/van-nav-data:/app/data my-nav:v0.1</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="访问Van-Nav"><a href="#访问Van-Nav" class="headerlink" title="访问Van Nav"></a>访问Van Nav</h2><p>地址栏输入访问服务器的IP+端口号（我本地自建了dns+nginx，所以显示如下）</p>
+<p><img src="https://s2.loli.net/2024/11/21/wblkB3sXCEJice7.png" alt="image-20241121175623917"></p>
+<p><img src="https://s2.loli.net/2024/11/21/jPsG4d69EC2gWnz.png" alt="image-20241121175700154"></p>
+<p><img src="https://s2.loli.net/2024/11/21/KT6WhIYeuVC1UNR.png" alt="image-20241121175740609"></p>
+<p><img src="https://s2.loli.net/2024/11/21/cWSvxRq36Dut4LC.png" alt="image-20241121175812069"></p>
+<p>通过观察发现，输入关键字后，结果中并没有必应谷歌百度的选项列出，效果达成</p>
+<hr>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><ul>
+<li>自动获取网站logo图标不好使，可F12查看–网络–image，将图标的URL地址手动添加</li>
+<li>图标会储存到数据库，我也不知道怎么实现的，设置完成后即使网络断开或对应的服务网站没开启导航站也能加载图标</li>
+<li>如果将导航站部署在服务器，所有人打开的页面都是一致的，不能做到每个人都自定义其访问链接（适合定位为统一入口）</li>
+<li>如果个人使用部署可以下载对应的安装包（各种跨平台的都有），需要设置开机自启，访问地址为：<a target="_blank" rel="noopener" href="http://localhost:6412/">http://localhost:6412</a></li>
+<li>惊叹到Go语言编写的程序占用空间如此之小</li>
 </ul>
-<p><img src="https://s2.loli.net/2022/11/26/rfRhxltUH9MN2AX.jpg" alt="ScreenCaputure221126125942"></p>
-<ul>
-<li>访问资源和跟踪路径</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/11/26/C3F8pRToXzd9yi2.jpg" alt="ScreenCaputure221126130413"></p>
 </body></html>
     
     </div>
     
     <div class="columns is-variable is-1 is-multiline is-mobile">
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/H3C%E9%98%B2%E7%81%AB%E5%A2%99/">#H3C防火墙</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/docker/">#docker</a></span>
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/SSLVPN%E5%AE%9E%E9%AA%8C/">#SSLVPN实验</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/Van-Nav/">#Van Nav</a></span>
     
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/SSLVPN%E9%85%8D%E7%BD%AE/">#SSLVPN配置</a></span>
-    
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/iNode/">#iNode</a></span>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/%E5%AF%BC%E8%88%AA%E7%AB%99/">#导航站</a></span>
     
     </div>
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
-            
-            <a href="/posts/4eda38e9.html">Ubuntu 22.04 安装iNode管理中心和定制客户端</a>
+        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/posts/6d4cdc14.html">H3C防火墙（v7）CVE2015-0204/CVE1999-0524</a>
+            <a href="/posts/297bc3bd.html">Rocky Linux 8.7 Flask应用docker容器化</a>
             
         </span>
     </div>
