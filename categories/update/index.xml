@@ -11,14 +11,14 @@ fill="currentColor">
 &lt;/a>&lt;/li>
 &lt;li>原因时之前的hexo主题，很多包提示过时（重装操作麻烦）&lt;/li>
 &lt;li>且主题仓库自2022年已是公开只读&lt;/li>
-&lt;li>主题设置抄了网上很多代码，已经尽量不花里胡哨了&lt;/li>
-&lt;li>不一一致谢了，也不知道是谁魔改了谁的&lt;/li>
+&lt;li>主题设置抄了网上很多代码，不一一致谢了&lt;/li>
+&lt;li>已经尽量不花里胡哨了&lt;/li>
 &lt;li>将就着用&lt;/li>
 &lt;/ul>
 &lt;h3 id="2023-05-10">2023-05-10
 &lt;/h3>&lt;ul>
-&lt;li>添加发布时间久远文章的提示&lt;/li>
-&lt;li>添加插件 &lt;a class="link" href="https://github.com/u2sb/hexo-tag-mmedia" target="_blank" rel="noopener"
+&lt;li>&lt;del>添加发布时间久远文章的提示&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加插件 &lt;a class="link" href="https://github.com/u2sb/hexo-tag-mmedia" target="_blank" rel="noopener"
 >hexo-tag-mmedia
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -26,20 +26,20 @@ height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-&lt;/a>&lt;/li>
-&lt;li>修改已插入的 bilibili 视频&lt;/li>
+&lt;/a>&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改已插入的 bilibili 视频&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;h3 id="2023-04-16">2023-04-16
 &lt;/h3>&lt;ul>
-&lt;li>更换行内代码字体颜色为 #000(黑色)&lt;/li>
+&lt;li>&lt;del>更换行内代码字体颜色为 #000(黑色)&lt;/del>&lt;/li>
 &lt;li>&lt;del>禁用代码块行号显示&lt;/del>&lt;/li>
-&lt;li>禁用代码块复制功能&lt;/li>
-&lt;li>更换部分文章图片尺寸&lt;/li>
-&lt;li>文章页是有目录的，鼠标向上滚动&amp;ndash;&amp;gt;导航栏最右侧的图标&lt;/li>
+&lt;li>&lt;del>禁用代码块复制功能&lt;/del>&lt;/li>
+&lt;li>&lt;del>更换部分文章图片尺寸&lt;/del>&lt;/li>
+&lt;li>&lt;del>文章页是有目录的，鼠标向上滚动&amp;ndash;&amp;gt;导航栏最右侧的图标&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;h3 id="2022-11-07">2022-11-07
 &lt;/h3>&lt;ul>
-&lt;li>更换博客主题为 :&lt;a class="link" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener"
+&lt;li>更换博客&lt;del>主题为 :&lt;a class="link" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener"
 >Minos
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -47,14 +47,14 @@ height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-&lt;/a>&lt;/li>
-&lt;li>移除 Minos 主题中分享和评论组件&lt;/li>
-&lt;li>移除 About 页面 发布日期/阅读时间 元素&lt;/li>
-&lt;li>修改网站字体为 思源黑体&lt;/li>
-&lt;li>修改归档页和标签页 不分页&lt;/li>
-&lt;li>添加相册页面（有点简陋）&lt;/li>
-&lt;li>其它边边角角修改&lt;/li>
-&lt;li>谢原作者https://github.com/ppoffice/&lt;/li>
+&lt;/a>&lt;/del>&lt;/li>
+&lt;li>&lt;del>移除 Minos 主题中分享和评论组件&lt;/del>&lt;/li>
+&lt;li>&lt;del>移除 About 页面 发布日期/阅读时间 元素&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改网站字体为 思源黑体&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改归档页和标签页 不分页&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加相册页面（有点简陋）&lt;/del>&lt;/li>
+&lt;li>&lt;del>其它边边角角修改&lt;/del>&lt;/li>
+&lt;li>&lt;del>谢原作者https://github.com/ppoffice/&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;h3 id="2021-11-20">2021-11-20
 &lt;/h3>&lt;ul>
