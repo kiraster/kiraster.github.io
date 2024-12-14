@@ -1312,7 +1312,16 @@ alt="ScreenCaputure230304012642"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7 18.1.1.8 9 msec * 10 msec
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R10#
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="一个视频">一个视频
-&lt;/h2>&lt;p>{% mmedia &amp;ldquo;bilibili&amp;rdquo; &amp;ldquo;bvid=BV1Lv4y1a7tG&amp;rdquo; %}&lt;/p>
+&lt;/h2>
+&lt;div class="video-wrapper">
+&lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;bvid=BV1Lv4y1a7tG"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+>
+&lt;/iframe>
+&lt;/div>
 &lt;h2 id="最后">最后
 &lt;/h2>&lt;ul>
 &lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
