@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VPN实例 on Kir's Blog</title><link>https://weeaster.github.io/tags/vpn%E5%AE%9E%E4%BE%8B/</link><description>Recent content in VPN实例 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 27 Apr 2021 11:35:32 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/vpn%E5%AE%9E%E4%BE%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>HCL_VPN不同实例互通实验</title><link>https://weeaster.github.io/posts/eb7e5d69/</link><pubDate>Tue, 27 Apr 2021 11:35:32 +0000</pubDate><guid>https://weeaster.github.io/posts/eb7e5d69/</guid><description>&lt;p>&lt;strong>实验拓扑和需求&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg">
+&lt;img src="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>实验模拟的是一个总部和一个分支站点的网络，网络中总部和分支相同 VPN 实例网络互通，不同 VPN 实例网络相互隔离，总部 VPN2 中特殊主机 PC_8 需要访问位于分支网络中的 VPN1 网络&lt;/p>
+&lt;hr>
+&lt;h2 id="思路和解决方法">&lt;strong>思路和解决方法&lt;/strong>
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>网络设备中配置 VPN instance 用来隔离不同网络数据&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在不做特殊配置的情况下，不同 VPN 实例的网络是不能互相通信的&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>然而在设备上 VPN 实例引入其他 VPN 实例网络又会造成不同实例间网络能互通的情况，进而要做各种 ACL 限制&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>实验中并不涉及 MPLS VPN 的场景，有点类似 H3C 文档中 MCE 的情况，但是不涉及 CE、PE、RD、RT……&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>RD 是用来做路由区分的，RT 是 BGP 协议中团体属性的内容，本实验中都不涉及，本来也考虑使用 MPLS VPN 的方式做，但是就当前这个场景完全不需要，客户只需要把原有不同的几套网络隔离，还要考虑到设备特性，设备性能等等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>实验中在路由经过的下一跳的设备上都要配置 VPN 实例，核心下联的二层设备不需要配置&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>由于不使用引入其他 VPN 实例的方式，需要在总部路由器和总部交换机上配置 VPN 静态路由&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="具体配置">&lt;strong>具体配置&lt;/strong>
+&lt;/h2>&lt;h3 id="site_sw">&lt;strong>SITE_SW&lt;/strong>
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sysname SITE_SW
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 100 绑定VPN1，宣告与总部互联的网络和分支VPN1的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 100 vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 10.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.10.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 200 绑定VPN2，宣告与总部互联的网络和分支VPN2的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 200 vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 20.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.20.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dhcp enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 172.16.10.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.10.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 172.16.20.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.20.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Vlan-interface10为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 172.16.10.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Vlan-interface20为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 172.16.20.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与总部互联物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与总部互联，绑定VPN1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/3.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与总部互联，绑定VPN2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/3.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 20.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port access vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp edged-port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port access vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp edged-port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="hq_router">&lt;strong>HQ_ROUTER&lt;/strong>
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sysname HQ_ROUTER
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 100 绑定VPN1，宣告与分支互联的网络，与HQ_SW互联的网络，引入手动配置的去往PC_8主机的路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 100 vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 10.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> import-route static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 200 绑定VPN2，宣告与分支互联的网络，与HQ_SW互联的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 200 vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 20.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_SW VPN1 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_SW VPN2 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与分支互联物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> combo enable copper
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与分支互联，绑定VPN1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vlan-type dot1q vid 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与分支互联，绑定VPN2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 20.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vlan-type dot1q vid 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_SW互联的物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode bridge
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> combo enable copper
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在vpn1网络中配置的去往PC_8主机的路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static vpn-instance vpn1 192.168.40.200 32 vpn-instance vpn2 100.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="hq_sw">&lt;strong>HQ_SW&lt;/strong>
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sysname HQ_SW
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 100 绑定VPN1，宣告与HQ_ROUTER互联的网络和总部VPN1的网络，注意有一条路由过滤，因为在HQ_ROUTER中引入了手动配置的静态的路由，而在HQ_SW VPN1网络中不需要
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 100 vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.30.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> filter-policy prefix-list filter_192.168.40.200 import
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 200 绑定VPN2，宣告与HQ_ROUTER互联的网络和总部VPN2的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 200 vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.40.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dhcp enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 40
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 192.168.30.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.30.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan40
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 192.168.40.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.40.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> forbidden-ip 192.168.40.200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># vlan30为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.30.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># vlan40为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface40
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.40.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> packet-filter 3001 inbound
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_ROUTER VPN1 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_ROUTER VPN2 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_ROUTER互联的物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode bridge
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> combo enable fiber
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置前缀列表，过滤从HQ_ROUTER学习到的特殊主机路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip prefix-list filter_192.168.40.200 index 10 deny 192.168.40.2 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip prefix-list filter_192.168.40.200 index 20 permit 0.0.0.0 0 less-equal 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置总部VPN2网络到分支VPN1网络的路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static vpn-instance vpn2 172.16.10.0 24 vpn-instance vpn1 100.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 限制除PC_8外去往分支VPN1网络的流量
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">acl advanced 3001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 0 permit ip source 192.168.40.200 0 destination 172.16.10.0 0.0.0.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 5 deny ip source 192.168.40.0 0.0.0.255 destination 172.16.10.0 0.0.0.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 10 permit ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

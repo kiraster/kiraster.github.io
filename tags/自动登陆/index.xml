@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>自动登陆 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E9%99%86/</link><description>Recent content in 自动登陆 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E9%99%86/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://weeaster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://weeaster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
+&lt;p>实现逻辑：微信启动后将窗口置顶，模拟输入回车键&lt;/p>
+&lt;p>前提：微信自动登陆已开启，启动微信后显示&lt;code>进入微信&lt;/code>按钮&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/12/06/LjwQXnR5bPqJTov.png">
+&lt;img src="https://s2.loli.net/2024/12/06/LjwQXnR5bPqJTov.png"
+loading="lazy"
+alt="image-20241206115449070"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="操作步骤">操作步骤
+&lt;/h2>&lt;h3 id="安装pywinauto库">安装pywinauto库
+&lt;/h3>&lt;p>全局安装或虚拟环境（我使用conda虚拟环境）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">conda create -n wechatautologin python=3.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install pywinauto
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="编写三个文件和创建快捷方式">编写三个文件和创建快捷方式
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>&lt;code> wechatautologin.py&lt;/code>，python代码文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">from pywinauto.application import Application
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">from pywinauto.keyboard import send_keys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 启动应用程序
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">app = Application(&amp;#39;uia&amp;#39;).start(r&amp;#34;D:\Program Files (x86)\Tencent\WeChat\WeChat.exe&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查找微信窗口，使用正则表达式匹配标题包含“微信”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg = app.window(title_re=&amp;#34;微信&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加等待时间，确保窗口加载完成
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg.wait(&amp;#39;visible&amp;#39;, timeout=30) # 等待窗口可见，最大等待 30 秒
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将窗口置顶并获取焦点
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg.set_focus()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 模拟按下 Enter 键
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">send_keys(&amp;#34;{ENTER}&amp;#34;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.bat&lt;/code>，bat文件，用于进入虚拟环境，运行&lt;code> wechatautologin.py&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 确保脚本运行时的工作目录是批处理文件所在的目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd /d %~dp0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 激活conda虚拟环境
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">call D:\miniconda3\Scripts\activate.bat wechatautologin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 启动应用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python wechatautologin.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.vbs&lt;/code>，单独运行bat文件会显示cmd窗口，套一层vbs解决&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Set WshShell = CreateObject(&amp;#34;WScript.Shell&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WshShell.Run &amp;#34;&amp;#34;&amp;#34;F:\wechatautologin\wechatautologin.bat&amp;#34;&amp;#34;&amp;#34;, 0, False
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.lnk&lt;/code>，&lt;code>wechatautologin.vbs&lt;/code>文件的快捷方式，右键&lt;code>wechatautologin.vbs&lt;/code>在菜单中点击&lt;code>创建快捷方式&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="添加开机启动">添加开机启动
+&lt;/h3>&lt;p>将上一步骤创建的快捷方式复制或剪切到以下路径（两个位置，二选一）&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>C:\Users\xxx\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&lt;/code>&lt;/li>
+&lt;li>&lt;code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>&lt;code>Pywinauto&lt;/code>文档 &lt;a class="link" href="https://static.kancloud.cn/gnefnuy/pywinauto_doc/1193035" target="_blank" rel="noopener"
+>https://static.kancloud.cn/gnefnuy/pywinauto_doc/1193035
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;li>如果出现微信启动后没有自动点击&lt;code>进入微信&lt;/code>按钮，可添加一定时间&lt;code>time.sleep&lt;/code>等待&lt;/li>
+&lt;li>注意替换微信安装位置，我这安装在D盘&lt;/li>
+&lt;li>小玩意儿，省一个点击鼠标或敲回车的时间&lt;/li>
+&lt;/ul></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://weeaster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://weeaster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
+&lt;p>Selenium官网链接： &lt;a class="link" href="https://www.selenium.dev/" target="_blank" rel="noopener"
+>https://www.selenium.dev/
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>官网介绍说主要用于自动化web应用程序的测试目的，但当然不限于此。无聊的基于web的管理任务也可以(也应该)自动化。&lt;/p>
+&lt;p>当然也表示了：What you do with that power is entirely up to you.&lt;/p>
+&lt;p>如标题所说，我也就想自动签到。&lt;/p>
+&lt;h2 id="安装">安装
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">selenium&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果这一步出现什么问题去查看官方文档&lt;/p>
+&lt;p>&lt;strong>当前日期（20230828）自动安装的版本是：selenium==4.11.2&lt;/strong>&lt;/p>
+&lt;h2 id="代码">代码
+&lt;/h2>&lt;p>&lt;strong>网站URL和用户密码就不贴出来了&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">webdriver&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.common.by&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">By&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.chrome.options&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Options&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">selenium.webdriver.chrome.service&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加option --headless 参数为不弹窗运行&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">options&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Options&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">options&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">add_argument&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;--headless&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 4.6版本前需要指定路径，使用本地驱动 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 指定浏览器驱动路径，以Chrome为例，需要下载对应版本的ChromeDriver并指定其路径&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># driver_path = &amp;#39;D:/xx/xx/chromedriver.exe&amp;#39; # 将路径替换为实际保存的ChromeDriver的路径&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># service = Service(executable_path=driver_path)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># driver = webdriver.Chrome(options=options, service=service)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># driver = webdriver.Chrome(service=service)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 4.6版本之后使用如下代码, 当然使用上面代码指定路径也可以运行&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">service&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Service&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">driver&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webdriver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Chrome&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">options&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">options&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">service&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">service&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 打开指定网站登陆页面URL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;https://www.xxx.com/login.html&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 找到用户名和密码输入框&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">username_input&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 根据实际情况修改用户名输入框的定位方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">password_input&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 根据实际情况修改密码输入框的定位方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 清空输入框&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">username_input&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">clear&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">password_input&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">clear&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 输入用户名和密码&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">username_input&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send_keys&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;username&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">password_input&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send_keys&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 提交登录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">login_button&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">LINK_TEXT&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;登录&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 根据实际情况 按钮的定位方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">login_button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1"># 点击登录按钮&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 跳转到指定页面（签到页面的URL），如果签到按钮在登陆成功后跳转的页面可以跳过此步骤&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">qd_url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;https://www.xxx.com/xx.html&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">qd_url&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 在跳转后的页面找到签到按钮并点击&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">qd_button&lt;/span> &lt;span class="o">=&lt;/span>&lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">LINK_TEXT&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;签到&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 根据实际情况修改签到按钮的定位方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># qd_button = driver.find_element(By.LINK_TEXT, &amp;#39;退出&amp;#39;) # 根据实际情况修改签到按钮的定位方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">qd_button&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">click&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 根据网页弹出对话框确认是否完成操作，一般签到成功后都有一个弹窗，如果没有，可以定位是否有“已签到”对应的元素来判断&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res_confirm&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">find_element&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">By&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ID&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;tt-from&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">res_confirm&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;DONE&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;BAD&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;OPS,ERROR&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">finally&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 关闭浏览器驱动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">driver&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">quit&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="注意">注意
+&lt;/h2>&lt;p>使用以下代码，需要本地能访问 &lt;a class="link" href="https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json" target="_blank" rel="noopener"
+>https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> 该文件，然后访问 &lt;a class="link" href="https://edgedl.me.gvt1.com" target="_blank" rel="noopener"
+>https://edgedl.me.gvt1.com
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> 下载对应的 &lt;strong>ChromeDriver&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 4.6版本之后使用如下代码, 当然使用上面代码指定路径也可以运行
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">service = Service()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">driver = webdriver.Chrome(options=options, service=service)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如此说来，这种方式需要实时联网操作，对于本地内部使用不是很友好&lt;/p>
+&lt;p>如本地内部使用，还是去下载对应版本的 ChromeDriver&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>20230922 补充&lt;/strong>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

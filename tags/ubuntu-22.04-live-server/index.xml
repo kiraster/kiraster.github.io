@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ubuntu-22.04-Live-Server on Kir's Blog</title><link>https://weeaster.github.io/tags/ubuntu-22.04-live-server/</link><description>Recent content in Ubuntu-22.04-Live-Server on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 23 Feb 2023 12:11:20 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/ubuntu-22.04-live-server/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu Server 22.04 安装 Gitlab-ce</title><link>https://weeaster.github.io/posts/ed7bc2e7/</link><pubDate>Thu, 23 Feb 2023 12:11:20 +0000</pubDate><guid>https://weeaster.github.io/posts/ed7bc2e7/</guid><description>&lt;p>本文记录&lt;code>VMware Workstation&lt;/code> 环境下&lt;code>Ubuntu server 22.04&lt;/code>系统安装&lt;code>gitlab-ce_15.8.3&lt;/code>的过程。&lt;/p>
+&lt;h2 id="准备环境">准备环境
+&lt;/h2>&lt;ul>
+&lt;li>一台安装好 &lt;code>ubuntu server&lt;/code>的虚拟机&lt;/li>
+&lt;li>ubuntu可联网&lt;/li>
+&lt;li>SecureCRT软件（或其它带SSH登陆功能的工具）&lt;/li>
+&lt;/ul>
+&lt;h2 id="更新软件包信息和安装软件">更新软件包信息和安装软件
+&lt;/h2>&lt;p>首先设置好国内更新源，在安装&lt;code>Ubuntu&lt;/code>的时候我已经填写了阿里云的站点（mirrors.aliyun.com/ubuntu），如果你没有修改这一项，登陆服务器后修改 &lt;code>/etc/apt/sources.list&lt;/code>即可&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt-get update
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>安装或更新以下软件&lt;/strong>（虽然安装&lt;code>Ubuntu&lt;/code>的时候勾选了&lt;code>Openssh&lt;/code>但是不是最新版本，提示升级）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> sudo apt-get install curl openssh-server ca-certificates postfix
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>命令回显&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">kir&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="nx">gitlabserver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">etc&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">apt&lt;/span>&lt;span class="err">$&lt;/span> &lt;span class="nx">sudo&lt;/span> &lt;span class="nx">apt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">get&lt;/span> &lt;span class="nx">install&lt;/span> &lt;span class="nx">curl&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span> &lt;span class="nx">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">certificates&lt;/span> &lt;span class="nx">postfix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Reading&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">lists&lt;/span>&lt;span class="o">...&lt;/span> &lt;span class="nx">Done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Building&lt;/span> &lt;span class="nx">dependency&lt;/span> &lt;span class="nx">tree&lt;/span>&lt;span class="o">...&lt;/span> &lt;span class="nx">Done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Reading&lt;/span> &lt;span class="nx">state&lt;/span> &lt;span class="nx">information&lt;/span>&lt;span class="o">...&lt;/span> &lt;span class="nx">Done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">The&lt;/span> &lt;span class="nx">following&lt;/span> &lt;span class="nx">additional&lt;/span> &lt;span class="nx">packages&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">installed&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">libcurl4&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">client&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sftp&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span> &lt;span class="nx">ssl&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">cert&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Suggested&lt;/span> &lt;span class="nx">packages&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">keychain&lt;/span> &lt;span class="nx">libpam&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">ssh&lt;/span> &lt;span class="nx">monkeysphere&lt;/span> &lt;span class="nx">ssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">askpass&lt;/span> &lt;span class="nx">molly&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">guard&lt;/span> &lt;span class="nx">procmail&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">mysql&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">pgsql&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">ldap&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">pcre&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">lmdb&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sqlite&lt;/span> &lt;span class="nx">sasl2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">bin&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="nx">dovecot&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">common&lt;/span> &lt;span class="nx">resolvconf&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">cdb&lt;/span> &lt;span class="nx">mail&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">reader&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">mta&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sts&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">resolver&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">doc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">The&lt;/span> &lt;span class="nx">following&lt;/span> &lt;span class="nx">NEW&lt;/span> &lt;span class="nx">packages&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">installed&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">postfix&lt;/span> &lt;span class="nx">ssl&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">cert&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">The&lt;/span> &lt;span class="nx">following&lt;/span> &lt;span class="nx">packages&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">upgraded&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">certificates&lt;/span> &lt;span class="nx">curl&lt;/span> &lt;span class="nx">libcurl4&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">client&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sftp&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="mi">6&lt;/span> &lt;span class="nx">upgraded&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="nx">newly&lt;/span> &lt;span class="nx">installed&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="nx">remove&lt;/span> &lt;span class="nx">and&lt;/span> &lt;span class="mi">181&lt;/span> &lt;span class="nx">not&lt;/span> &lt;span class="nx">upgraded&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Need&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="nx">get&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">271&lt;/span> &lt;span class="nx">kB&lt;/span> &lt;span class="nx">of&lt;/span> &lt;span class="nx">archives&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">After&lt;/span> &lt;span class="nx">this&lt;/span> &lt;span class="nx">operation&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">243&lt;/span> &lt;span class="nx">kB&lt;/span> &lt;span class="nx">of&lt;/span> &lt;span class="nx">additional&lt;/span> &lt;span class="nx">disk&lt;/span> &lt;span class="nx">space&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">used&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Do&lt;/span> &lt;span class="nx">you&lt;/span> &lt;span class="nx">want&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="k">continue&lt;/span>&lt;span class="err">?&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">Y&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">n&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nx">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Get&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="nx">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//mirrors.aliyun.com/ubuntu jammy-updates/main amd64 openssh-sftp-server amd64 1:8.9p1-3ubuntu0.1 [38.7 kB]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Get&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="nx">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//mirrors.aliyun.com/ubuntu jammy-updates/main amd64 openssh-server amd64 1:8.9p1-3ubuntu0.1 [434 kB]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Get&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">3&lt;/span> &lt;span class="nx">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//mirrors.aliyun.com/ubuntu jammy-updates/main amd64 openssh-client amd64 1:8.9p1-3ubuntu0.1 [908 kB]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="err">……&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">……&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">……&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>postfix 软件安装后会弹出一个&amp;quot;Postfix Configuration&amp;quot;向导，直接选&lt;code>No configuration&lt;/code>不进行配置（本地环境不实用）&lt;/p>
+&lt;h2 id="下载和安装gitlab-ce_1583">下载和安装gitlab-ce_15.8.3
+&lt;/h2>&lt;p>这个看各自网络的网速，官网下载（&lt;a class="link" href="https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/jammy/gitlab-ce_15.8.3-ce.0_amd64.deb" target="_blank" rel="noopener"
+>ubuntu/jammy/gitlab-ce_15.8.3-ce.0_amd64.deb - gitlab/gitlab-ce · packages.gitlab.com
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/tThZFerj2pGD1i5.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/tThZFerj2pGD1i5.jpg"
+loading="lazy"
+alt="ScreenCaputure230223130323"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>清华镜像站下载（&lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu/pool/jammy/main/g/gitlab-ce/" target="_blank" rel="noopener"
+>Index of /gitlab-ce/ubuntu/pool/jammy/main/g/gitlab-ce/ | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/LpATQmUwvO89XCF.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/LpATQmUwvO89XCF.jpg"
+loading="lazy"
+alt="ScreenCaputure230223130553"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>下载完成后，校验一下MD5值，对比官网提供的校验信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:~$ sudo md5sum gitlab-ce_15.8.3-ce.0_amd64.deb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">feaecd81f1b2a39600114c873b1b9085 gitlab-ce_15.8.3-ce.0_amd64.deb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>命令回显&lt;/strong>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-mysql" data-lang="mysql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">kir&lt;/span>&lt;span class="o">@&lt;/span>&lt;span class="n">gitlabserver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">~&lt;/span>&lt;span class="err">$&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sudo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">dpkg&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce_15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="n">_amd64&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">deb&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Selecting&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">previously&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unselected&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">package&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Reading&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">database&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">73398&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">files&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">directories&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">currently&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">installed&lt;/span>&lt;span class="p">.)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Preparing&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">to&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce_15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="n">_amd64&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">deb&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Unpacking&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nf">ce&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Setting&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">up&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nf">ce&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">It&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">looks&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">like&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">has&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">not&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">been&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">configured&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">yet&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skipping&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">upgrade&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">script&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">***&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">***&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*****&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*****&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="o">******&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*******&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">********&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">********&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,,,&lt;/span>&lt;span class="o">***********&lt;/span>&lt;span class="p">,,,,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,,,,,&lt;/span>&lt;span class="o">*********&lt;/span>&lt;span class="p">,,,,,,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.,,,,,,,,,,,&lt;/span>&lt;span class="o">*******&lt;/span>&lt;span class="p">,,,,,,,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,,,&lt;/span>&lt;span class="o">*****&lt;/span>&lt;span class="p">,,,,,,,,,.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,&lt;/span>&lt;span class="o">****&lt;/span>&lt;span class="p">,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.,,,&lt;/span>&lt;span class="o">***&lt;/span>&lt;span class="p">,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">,.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">_______&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">____&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">____&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">___&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="n">____&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_____&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">___&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Thank&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">you&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">installing&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">was&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unable&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">to&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">detect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">valid&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">hostname&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Please&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">configure&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">URL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">setting&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">external_url&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">configuration&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">etc&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">rb&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">file&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">Then&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">you&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">can&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">running&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">following&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">command&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">sudo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ctl&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">reconfigure&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">For&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">comprehensive&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">of&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">configuration&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">options&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">please&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">see&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Omnibus&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">readme&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">org&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">omnibus&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="kt">blob&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">master&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">README&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">md&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Help&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">us&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">improve&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">installation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">experience&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">us&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">know&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">how&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">we&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">did&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">with&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">minute&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">survey&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fra1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">qualtrics&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">jfe&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">form&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">SV_6kVqZANThUQ1bZb&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="n">installation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">omnibus&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="k">release&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="修改外部url和reconfigure">修改外部url和reconfigure
+&lt;/h2>&lt;ol>
+&lt;li>修改&lt;code>/etc/gitlab/&lt;/code>下的&lt;code>gitlab.rb&lt;/code>文件，external_url直接修改为&lt;code>ubuntu系统&lt;/code>的的&lt;code>IP&lt;/code>地址，如果 80 端口有冲突可在后边加上端口号&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">external_url &amp;#39;http://192.168.x.x&amp;#39;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:~$ cd /etc/gitlab
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 148
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 2 root root 4096 Feb 23 03:49 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 102 root root 4096 Feb 23 03:49 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw------- 1 root root 140235 Feb 23 03:49 gitlab.rb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ sudo cp gitlab.rb gitlab.rb_bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 288
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 2 root root 4096 Feb 23 03:50 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 102 root root 4096 Feb 23 03:49 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw------- 1 root root 140235 Feb 23 03:49 gitlab.rb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw------- 1 root root 140235 Feb 23 03:50 gitlab.rb_bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ sudo nano gitlab.rb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>&lt;strong>重配置&lt;/strong>（这一步骤耗时较长）&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/opt/gitlab/bin$ sudo gitlab-ctl reconfigure
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:56+00:00] INFO: Started Cinc Zero at chefzero://localhost:1 with repository at /opt/gitlab/embedded (One version per cookbook)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cinc Client, version 17.10.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Patents: https://www.chef.io/patents
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Infra Phase starting
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:57+00:00] INFO: *** Cinc Client 17.10.0 ***
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:57+00:00] INFO: Platform: x86_64-linux
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:57+00:00] INFO: Cinc-client pid: 18551
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Setting the run_list to [&amp;#34;recipe[gitlab]&amp;#34;] from CLI options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Run List is [recipe[gitlab]]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Run List expands to [gitlab]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Starting Cinc Client Run for gitlabserver
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Running start handlers
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Start handlers complete.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Resolving cookbooks for run list: [&amp;#34;gitlab&amp;#34;]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Notes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Default admin account has been configured with following details:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Username: root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password: You didn&amp;#39;t opt-in to print initial root password to STDOUT.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NOTE: Because these credentials might be present in your log files in plain text, it is highly recommended to reset the password following https://docs.gitlab.com/ee/security/reset_user_password.html#reset-your-root-password.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gitlab Reconfigured!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>&lt;strong>重启gitlab&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">kir&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">gitlabserver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">opt&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ctl&lt;/span> &lt;span class="n">restart&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">alertmanager&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21046&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitaly&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21058&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21077&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">kas&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21085&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">workhorse&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21095&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">logrotate&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21107&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">nginx&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21115&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">node&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21123&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">postgres&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21129&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">postgresql&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21144&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">prometheus&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21153&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">puma&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21166&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">redis&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21171&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">redis&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21177&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">sidekiq&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21260&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="修改-root-密码">&lt;strong>修改 root 密码&lt;/strong>
+&lt;/h2>&lt;p>根据&lt;code>重配置&lt;/code>步骤后的提示&lt;code>Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.&lt;/code>，root的初始密码储存在&lt;code>initial_root_password&lt;/code>，文件在第一次reconfigure 24小时后清除。&lt;/p>
+&lt;ol>
+&lt;li>使用&lt;code>initial_root_password&lt;/code>文件里的密码 web登陆，&amp;ldquo;Edit profile&amp;rdquo;&amp;ndash;&amp;ldquo;Panssword&amp;quot;修改&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/ucU9k3tOLToKnsi.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/ucU9k3tOLToKnsi.jpg"
+loading="lazy"
+alt="ScreenCaputure230223133138"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="2">
+&lt;li>使用命令修改&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ sudo gitlab-rake &amp;#34;gitlab:password:reset[root]&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Confirm password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password successfully updated for user with username root.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>控制台修改&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">切换路径
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd /opt/gitlab/bin/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/opt/gitlab/bin$ sudo gitlab-rails console -e production
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Ruby: ruby 2.7.7p221 (2022-11-24 revision 168ec2b1e5) [x86_64-linux]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitLab: 15.8.3 (22f43167474) FOSS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitLab Shell: 14.15.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PostgreSQL: 13.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------------------------------[ booted in 90.93s ]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loading production environment (Rails 6.1.6.1)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):001:0&amp;gt; u=User.where(id:1).first
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):001:0&amp;gt; u=User.where(id:1).first
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; #&amp;lt;User id:1 @root&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):002:0&amp;gt; u.password=12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; 12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):003:0&amp;gt; u.password_confirmation=12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; 12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):004:0&amp;gt; u.save!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):005:0&amp;gt; quit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="注册和登陆gitlab">注册和登陆Gitlab
+&lt;/h2>&lt;p>在启动gitlab后，直接用浏览器登陆可能出现下图所示502错误，等一会儿再打开就ok了，猜测是服务没有完全运行起来，也有可能是我物理机配置差劲。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/XNk16rxecUfpKEG.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/XNk16rxecUfpKEG.jpg"
+loading="lazy"
+alt="ScreenCaputure230223121024"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol>
+&lt;li>注册，由于是本地使用，之前也没配置邮件Postfix，填上舒服的信息即可&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/6VkKojL49PCDX2z.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/6VkKojL49PCDX2z.jpg"
+loading="lazy"
+alt="ScreenCaputure230223121304"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="2">
+&lt;li>注册完后登陆出错，看提示是账号被挂起，使用root管理员账户登陆进行审批通过即可&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/ealpAjghxZ2d3w4.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/ealpAjghxZ2d3w4.jpg"
+loading="lazy"
+alt="ScreenCaputure230223122038"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="3">
+&lt;li>登陆管理员账户进行审批通过&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/eKQHUtWXu8CjYwz.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/eKQHUtWXu8CjYwz.jpg"
+loading="lazy"
+alt="ScreenCaputure230223123908"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/Xm7auVMRgS6Exvj.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/Xm7auVMRgS6Exvj.jpg"
+loading="lazy"
+alt="ScreenCaputure230223123923"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/C5UvfrQnHxSL9Yw.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/C5UvfrQnHxSL9Yw.jpg"
+loading="lazy"
+alt="ScreenCaputure230223123957"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/Drnp8B4sWuemOfo.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/Drnp8B4sWuemOfo.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124009"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/K1C9nwf5TdPARBi.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/K1C9nwf5TdPARBi.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124018"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="4">
+&lt;li>退出管理员登陆，使用刚才注册的账号登陆，确认后，选择一个角色&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/jqkSmRvPwy7BQlh.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/jqkSmRvPwy7BQlh.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124141"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/6S8RON2sDP147fn.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/6S8RON2sDP147fn.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124150"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>为什么写这篇文，因为我的一块硬盘报废了，整块硬盘直接奔溃，各种尝试后放弃了，因为这块500G的硬盘是大学时候台式电脑的，间接原因是使用时间和寿命，直接原因是电脑死机强制关机。&lt;/li>
+&lt;li>然后京东购了一块固态盘，一看价格现在同容量的固态硬盘比机械硬盘还便宜了。都说固态硬盘一坏文件全扑街，机械硬盘还有抢救的机会，这个只能靠自己掌控了，临近使用寿命或电脑出现异常就要考虑换硬盘了，最好的方法是做备份。&lt;/li>
+&lt;li>虽然这块盘报废了，也丢失了一些文件，但是由于我把重要的文件都做有备份，但是像这种虚拟机的环境一般都不留备份（文件太大太多）。&lt;/li>
+&lt;li>得益于硬盘报废，实操了一把前面文章写的&lt;a class="link" href="https://kiraster.github.io/posts/310ece77.html" target="_blank" rel="noopener"
+>自动备份Hexo源文件到私有仓库
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>和&lt;a class="link" href="https://kiraster.github.io/posts/567e6fc3.html" target="_blank" rel="noopener"
+>Hexo环境新电脑环境重构
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>，博客源文件回来了。&lt;/li>
+&lt;li>&lt;strong>备份很重要-备份很重要-备份很重要&lt;/strong>&lt;/li>
+&lt;/ul></description></item></channel></rss>

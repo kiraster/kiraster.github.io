@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3CCloudLab on Kir's Blog</title><link>https://weeaster.github.io/tags/h3ccloudlab/</link><description>Recent content in H3CCloudLab on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 27 Apr 2021 11:35:32 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/h3ccloudlab/index.xml" rel="self" type="application/rss+xml"/><item><title>HCL_VPN不同实例互通实验</title><link>https://weeaster.github.io/posts/eb7e5d69/</link><pubDate>Tue, 27 Apr 2021 11:35:32 +0000</pubDate><guid>https://weeaster.github.io/posts/eb7e5d69/</guid><description>&lt;p>&lt;strong>实验拓扑和需求&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg">
+&lt;img src="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>实验模拟的是一个总部和一个分支站点的网络，网络中总部和分支相同 VPN 实例网络互通，不同 VPN 实例网络相互隔离，总部 VPN2 中特殊主机 PC_8 需要访问位于分支网络中的 VPN1 网络&lt;/p>
+&lt;hr>
+&lt;h2 id="思路和解决方法">&lt;strong>思路和解决方法&lt;/strong>
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>网络设备中配置 VPN instance 用来隔离不同网络数据&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在不做特殊配置的情况下，不同 VPN 实例的网络是不能互相通信的&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>然而在设备上 VPN 实例引入其他 VPN 实例网络又会造成不同实例间网络能互通的情况，进而要做各种 ACL 限制&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>实验中并不涉及 MPLS VPN 的场景，有点类似 H3C 文档中 MCE 的情况，但是不涉及 CE、PE、RD、RT……&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>RD 是用来做路由区分的，RT 是 BGP 协议中团体属性的内容，本实验中都不涉及，本来也考虑使用 MPLS VPN 的方式做，但是就当前这个场景完全不需要，客户只需要把原有不同的几套网络隔离，还要考虑到设备特性，设备性能等等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>实验中在路由经过的下一跳的设备上都要配置 VPN 实例，核心下联的二层设备不需要配置&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>由于不使用引入其他 VPN 实例的方式，需要在总部路由器和总部交换机上配置 VPN 静态路由&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="具体配置">&lt;strong>具体配置&lt;/strong>
+&lt;/h2>&lt;h3 id="site_sw">&lt;strong>SITE_SW&lt;/strong>
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sysname SITE_SW
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 100 绑定VPN1，宣告与总部互联的网络和分支VPN1的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 100 vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 10.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.10.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 200 绑定VPN2，宣告与总部互联的网络和分支VPN2的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 200 vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 20.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.20.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dhcp enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 172.16.10.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.10.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 172.16.20.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.20.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Vlan-interface10为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 172.16.10.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Vlan-interface20为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 172.16.20.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与总部互联物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与总部互联，绑定VPN1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/3.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与总部互联，绑定VPN2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/3.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 20.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port access vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp edged-port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port access vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp edged-port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="hq_router">&lt;strong>HQ_ROUTER&lt;/strong>
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sysname HQ_ROUTER
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 100 绑定VPN1，宣告与分支互联的网络，与HQ_SW互联的网络，引入手动配置的去往PC_8主机的路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 100 vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 10.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> import-route static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 200 绑定VPN2，宣告与分支互联的网络，与HQ_SW互联的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 200 vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 20.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_SW VPN1 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_SW VPN2 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与分支互联物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> combo enable copper
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与分支互联，绑定VPN1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vlan-type dot1q vid 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用子接口与分支互联，绑定VPN2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 20.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vlan-type dot1q vid 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_SW互联的物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode bridge
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> combo enable copper
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在vpn1网络中配置的去往PC_8主机的路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static vpn-instance vpn1 192.168.40.200 32 vpn-instance vpn2 100.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="hq_sw">&lt;strong>HQ_SW&lt;/strong>
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sysname HQ_SW
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 100 绑定VPN1，宣告与HQ_ROUTER互联的网络和总部VPN1的网络，注意有一条路由过滤，因为在HQ_ROUTER中引入了手动配置的静态的路由，而在HQ_SW VPN1网络中不需要
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 100 vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.30.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> filter-policy prefix-list filter_192.168.40.200 import
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置rip 200 绑定VPN2，宣告与HQ_ROUTER互联的网络和总部VPN2的网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rip 200 vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 100.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.40.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dhcp enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 40
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 192.168.30.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.30.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 不重要的dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp server ip-pool vlan40
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 192.168.40.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.40.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> forbidden-ip 192.168.40.200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># vlan30为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.30.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># vlan40为VPN1网络网关
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface40
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.40.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> packet-filter 3001 inbound
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_ROUTER VPN1 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_ROUTER VPN2 互联vlanif接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan-interface222
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance vpn2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 100.1.1.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 与HQ_ROUTER互联的物理接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode bridge
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> combo enable fiber
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置前缀列表，过滤从HQ_ROUTER学习到的特殊主机路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip prefix-list filter_192.168.40.200 index 10 deny 192.168.40.2 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip prefix-list filter_192.168.40.200 index 20 permit 0.0.0.0 0 less-equal 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置总部VPN2网络到分支VPN1网络的路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static vpn-instance vpn2 172.16.10.0 24 vpn-instance vpn1 100.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 限制除PC_8外去往分支VPN1网络的流量
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">acl advanced 3001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 0 permit ip source 192.168.40.200 0 destination 172.16.10.0 0.0.0.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 5 deny ip source 192.168.40.0 0.0.0.255 destination 172.16.10.0 0.0.0.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 10 permit ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>HCL_一个小实验的思路</title><link>https://weeaster.github.io/posts/c7ac5477/</link><pubDate>Thu, 21 Jan 2021 08:31:24 +0000</pubDate><guid>https://weeaster.github.io/posts/c7ac5477/</guid><description>&lt;p>&lt;strong>实验说明：&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>设备互联线路，IP 地址、路由协议、可靠性等配置自定义&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg">
+&lt;img src="https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="实验效果">实验效果：
+&lt;/h2>&lt;ul>
+&lt;li>PC_1 网段流量经R1出互联网&lt;/li>
+&lt;li>PC_2 网段流量经R2出互联网&lt;/li>
+&lt;li>当任意互联网线路故障后，全部流量走另一线路出互联网&lt;/li>
+&lt;/ul>
+&lt;h2 id="解决思路">解决思路：
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>设备互联，IP地址规划如图&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png">
+&lt;img src="https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Core_SW1、Core_SW2 做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为 BFD 检测线&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;Core_SW1&amp;gt;dis irf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">MemberID Role Priority CPU-Mac Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> *+1 Master 15 72f0-e201-0504 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 Standby 10 72f0-e6bc-0604 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * indicates the device is the master.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> + indicates the device through which the user logs in.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;Core_SW1&amp;gt;dis irf topology
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Topology Info
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> -------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IRF-Port1 IRF-Port2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MemberID Link neighbor Link neighbor Belong To
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 DIS --- UP 2 72f0-e201-0504
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 UP 1 DIS --- 72f0-e201-0504
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>核心交换机 Core_SW 与 R1, R2 之间启用三层聚合链路&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;Core_SW1&amp;gt;dis link-aggregation summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregation Interface Type:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BAGG -- Bridge-Aggregation, BLAGG -- Blade-Aggregation, RAGG -- Route-Aggregation, SCH-B -- Schannel-Bundle
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregation Mode: S -- Static, D -- Dynamic
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Actor System ID: 0x8000, 72f0-e201-0500
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">AGG AGG Partner ID Selected Unselected Individual Share
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interface Mode Ports Ports Ports Type
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BAGG3 S None 2 0 0 Shar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAGG1 S None 2 0 0 Shar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAGG2 S None 2 0 0 Shar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;Core_SW1&amp;gt;dis ip int b
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*down: administratively down
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(s): spoofing (l): loopback
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interface Physical Protocol IP Address Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE1/0/1 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE1/0/2 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE2/0/1 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE2/0/2 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">MGE0/0/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAGG1 up up 10.1.1.1 --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAGG2 up up 10.1.1.5 --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Vlan10 up up 192.168.10.254 --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Vlan20 up up 192.168.20.254 --
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;R1&amp;gt;dis link-aggregation verbose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Port: A -- Auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Port Status: S -- Selected, U -- Unselected, I -- Individual
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flags: A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> D -- Synchronization, E -- Collecting, F -- Distributing,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> G -- Defaulted, H -- Expired
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregate Interface: Route-Aggregation1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregation Mode: Static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loadsharing Type: Shar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Port Status Priority Oper-Key
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GE0/1 S 32768 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GE0/2 S 32768 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;R1&amp;gt;dis ip int b
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*down: administratively down
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(s): spoofing (l): loopback
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interface Physical Protocol IP Address Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE0/0 up up 101.1.1.1 --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE0/1 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE0/2 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE5/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE5/1 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE6/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE6/1 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAGG1 up up 10.1.1.2 --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser1/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser2/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser3/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser4/0 down down -- --
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;R2&amp;gt;dis link-aggregation verbose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Port: A -- Auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Port Status: S -- Selected, U -- Unselected, I -- Individual
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flags: A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> D -- Synchronization, E -- Collecting, F -- Distributing,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> G -- Defaulted, H -- Expired
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregate Interface: Route-Aggregation1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregation Mode: Static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loadsharing Type: Shar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Port Status Priority Oper-Key
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GE0/1 S 32768 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GE0/2 S 32768 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;R2&amp;gt;dis ip int b
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*down: administratively down
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(s): spoofing (l): loopback
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interface Physical Protocol IP Address Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE0/0 up up 201.1.1.1 --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE0/1 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE0/2 up up -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE5/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE5/1 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE6/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GE6/1 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAGG1 up up 10.1.1.6 --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser1/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser2/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser3/0 down down -- --
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ser4/0 down down -- --
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;strong>核心交换机 Core_SW 与 SW3 之间启用二层聚合链路&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;SW3&amp;gt;dis link-aggregation verbose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Port: A -- Auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Port Status: S -- Selected, U -- Unselected, I -- Individual
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flags: A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> D -- Synchronization, E -- Collecting, F -- Distributing,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> G -- Defaulted, H -- Expired
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregate Interface: Bridge-Aggregation1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Aggregation Mode: Static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loadsharing Type: Shar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Port Status Priority Oper-Key
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GE1/0/1 S 32768 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GE1/0/2 S 32768 1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;strong>核心交换机 Core_SW 配置静态路由；R1、R2 配置默认路由下一跳指向 ISP 设备地址、配置回程静态路由指向 Core_SW 三层聚合接口地址&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;Core_SW1&amp;gt;dis cur | inc route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">policy-based-route vlan20nexthop permit node 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip policy-based-route vlan20nexthop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static 0.0.0.0 0 10.1.1.2 track 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;R1&amp;gt;dis ip routing-table pro static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Static Routing table status : &amp;lt;Active&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Destination/Mask Proto Pre Cost NextHop Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0.0.0.0/0 Static 60 0 101.1.1.2 GE0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">192.168.10.0/24 Static 60 0 10.1.1.1 RAGG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">192.168.20.0/24 Static 60 0 10.1.1.1 RAGG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Static Routing table status : &amp;lt;Inactive&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;R2&amp;gt;dis ip routing-table pro static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Static Routing table status : &amp;lt;Active&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Destination/Mask Proto Pre Cost NextHop Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0.0.0.0/0 Static 60 0 201.1.1.2 GE0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">192.168.10.0/24 Static 60 0 10.1.1.5 RAGG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">192.168.20.0/24 Static 60 0 10.1.1.5 RAGG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Static Routing table status : &amp;lt;Inactive&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;strong>核心交换机 Core_SW 配置 NQA，检测 ISP_1, ISP_2 可达性，关联 Track 与静态路由、策略路由联动&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nqa entry admin isp_1_test
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> type icmp-echo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination ip 101.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> frequency 2000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> history-record enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> history-record number 5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> next-hop ip 10.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> probe count 5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> probe timeout 1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source ip 10.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nqa entry admin isp_2_test
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> type icmp-echo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination ip 201.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> frequency 2000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> history-record enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> history-record number 5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> next-hop ip 10.1.1.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> probe count 5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> probe timeout 1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source ip 10.1.1.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nqa schedule admin isp_1_test start-time now lifetime forever
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> nqa schedule admin isp_2_test start-time now lifetime forever
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">track 1 nqa entry admin isp_2_test reaction 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">track 2 nqa entry admin isp_1_test reaction 1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static 0.0.0.0 0 10.1.1.2 track 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip route-static 0.0.0.0 0 10.1.1.6 preference 80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">policy-based-route vlan20nexthop permit node 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if-match acl 3001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> apply next-hop 10.1.1.6 track 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">acl advanced 3001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 5 deny ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 10 permit ip source 192.168.20.0 0.0.0.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;strong>ISP 网络设备配置 OSPF&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;ISP_NETWORK&amp;gt;dis ip routing-table protocol ospf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">OSPF Routing table status : &amp;lt;Active&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Destination/Mask Proto Pre Cost NextHop Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">101.1.1.0/30 O_INTRA 10 2 101.1.1.5 GE0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">201.1.1.0/30 O_INTRA 10 2 201.1.1.5 GE0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">OSPF Routing table status : &amp;lt;Inactive&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary count : 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Destination/Mask Proto Pre Cost NextHop Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.2.3.4/32 O_INTRA 10 0 0.0.0.0 Loop0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">101.1.1.4/30 O_INTRA 10 1 0.0.0.0 GE0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">201.1.1.4/30 O_INTRA 10 1 0.0.0.0 GE0/2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>INode客户端 on Kir's Blog</title><link>https://weeaster.github.io/tags/inode%E5%AE%A2%E6%88%B7%E7%AB%AF/</link><description>Recent content in INode客户端 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 26 Nov 2022 16:34:36 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/inode%E5%AE%A2%E6%88%B7%E7%AB%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://weeaster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://weeaster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
+&lt;h2 id="官网下载安装文件">官网下载安装文件
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>从官网下载 iNode PC(PC客户端)（https://www.h3c.com/cn/Service/Document_Software/Software_Download/IP_Management/&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>解压后将&lt;code>Linux&lt;/code>目录下的&lt;code>iNodeManager_H3C_Linux64_7.30(E0598).tar.gz&lt;/code>上传至 &lt;code>Ubuntu &lt;/code>Downloads目录&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/OL74h15fEz9Wp3D.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/OL74h15fEz9Wp3D.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="解压和安装">解压和安装
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>解压文件，并将解压后的文件夹所有者更改为当前用户，&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>移动文件夹至 &lt;code>/home&lt;/code> 目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>修改文件夹下 &lt;code>install64.sh &lt;/code>的权限&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>安装文件&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">执行命令：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ sudo tar -zxvf iNodeManager_H3C_Linux64_7.30&lt;span class="se">\(&lt;/span>E0598&lt;span class="se">\)&lt;/span>.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ sudo chown -R kir iNodeManager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ sudo mv iNodeManager /home/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ &lt;span class="nb">cd&lt;/span> /home/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home$ &lt;span class="nb">cd&lt;/span> iNodeManager/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$ sudo chmod u+x install64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$ sudo sh install64.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">操作步骤记录：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~$ &lt;span class="nb">pwd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/home/kir
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~$ &lt;span class="nb">cd&lt;/span> Downloads/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">44368&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">2&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 11:40 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-x--- &lt;span class="m">16&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 01:51 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir kir &lt;span class="m">45422267&lt;/span> 6月 &lt;span class="m">30&lt;/span> 22:10 &lt;span class="s1">&amp;#39;iNodeManager_H3C_Linux64_7.30(E0598).tar.gz&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ sudo tar -zxvf iNodeManager_H3C_Linux64_7.30&lt;span class="se">\(&lt;/span>E0598&lt;span class="se">\)&lt;/span>.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>sudo&lt;span class="o">]&lt;/span> password &lt;span class="k">for&lt;/span> kir:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/7za
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/template/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/template/iNodeClient_Linux64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/install64.sh.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/Resources/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/Resources/Language_en.xml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/Resources/Language_zh.xml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/uninstall64.sh.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/qt_zh_CN.qm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/uninstall64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/install64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/makeDeb.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqmng.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqjpeg.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqsvg.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqico.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqtga.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqwbmp.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqtiff.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/imageformats/libqgif.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/platforms/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/platforms/libqoffscreen.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/platforms/libqminimal.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/platforms/libqxcb.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/platforms/libqlinuxfb.so
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/lib64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/iNodeManager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">./iNodeManager/iNode.vif
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">44372&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">3&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:29 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-x--- &lt;span class="m">16&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 01:51 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">6&lt;/span> &lt;span class="m">500&lt;/span> &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 iNodeManager/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir kir &lt;span class="m">45422267&lt;/span> 6月 &lt;span class="m">30&lt;/span> 22:10 &lt;span class="s1">&amp;#39;iNodeManager_H3C_Linux64_7.30(E0598).tar.gz&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ sudo chown -R kir iNodeManager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ sudo mv iNodeManager /home/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/Downloads$ &lt;span class="nb">cd&lt;/span> /home/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">16&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">4&lt;/span> root root &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:30 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">20&lt;/span> root root &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 01:28 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">6&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 iNodeManager/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-x--- &lt;span class="m">16&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 01:51 kir/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home$ &lt;span class="nb">cd&lt;/span> iNodeManager/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">19712&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">6&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">4&lt;/span> root root &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:30 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">1125104&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 7za
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">2&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 imageformats/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rwxrwxr-x &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">810603&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 iNodeManager*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">300&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 iNode.vif
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">63&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 install64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">959&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 install64.sh.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">18079733&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 lib64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">926&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 makeDeb.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">2&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 platforms/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">117337&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 qt_zh_CN.qm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">2&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 Resources/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">2&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 template/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">41&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 uninstall64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">924&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:13 uninstall64.sh.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$ sudo chmod u+x install64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$ sudo sh install64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5DBus.so.5.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5DBus.so.5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5DBus.so.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libicudata.so.51.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libicudata.so.51
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libicui18n.so.51.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libicui18n.so.51
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Core.so.5.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Core.so.5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Core.so.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Gui.so.5.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Xml.so.5.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Xml.so.5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Xml.so.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libicuuc.so.51.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libicuuc.so.51
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Network.so.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Gui.so.5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Gui.so.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Widgets.so.5.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Network.so.5.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Widgets.so.5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Widgets.so.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">lib64/libQt5Network.so.5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="启动管理中心和定制客户端">启动管理中心和定制客户端
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>启动管理中心（图形化界面操作），路径位于&lt;code>/home/iNodeManager&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/vAKgpmnkNDEJX1T.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/vAKgpmnkNDEJX1T.jpg"
+loading="lazy"
+alt="ScreenCaputure221126133607"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>仅勾选 SSL VPN 一项（按需勾选），点击 &lt;code>Advanced&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/S1sOGcjepK2TwdF.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/S1sOGcjepK2TwdF.jpg"
+loading="lazy"
+alt="ScreenCaputure221126133741"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>添加 网关地址 （与防火墙上配置的网关 SSLVPNGW 一致），点击 &lt;code>OK&lt;/code>，点击 &lt;code>Finish&lt;/code>&lt;/p>
+&lt;table>
+&lt;tr>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/9ZIKPc5pN2zVJjL.jpg">&lt;/td>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/Wrno8feNdcQVXvg.jpg">&lt;/td>
+&lt;/tr>
+&lt;/table>
+&lt;/li>
+&lt;li>
+&lt;p>填写一个标题，勾选第一项&lt;/p>
+&lt;table>
+&lt;tr>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/vsLUmVpIjHY9aFN.jpg">&lt;/td>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/jGFohdwHKceC1Vk.jpg">&lt;/td>
+&lt;/tr>
+&lt;/table>
+&lt;table>
+&lt;tr>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/367FWRI9YAbTCQf.jpg">&lt;/td>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/TsykZ6xc2qaMzUL.jpg">&lt;/td>
+&lt;/tr>
+&lt;/table>
+&lt;/li>
+&lt;li>
+&lt;p>定制完成后 生成的客户端文件位于&lt;code>/home/iNodeManager/iNodeSetup&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager$ &lt;span class="nb">cd&lt;/span> iNodeSetup/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager/iNodeSetup$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">25260&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">2&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:39 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">11&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:39 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir kir &lt;span class="m">25857547&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:39 &lt;span class="s1">&amp;#39;iNodeClient_Linux64_7.3 (E0598).tar.gz&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager/iNodeSetup$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="安装-inode-客户端">安装 iNode 客户端
+&lt;/h2>&lt;ol>
+&lt;li>将&lt;code>iNodeClient_Linux64_7.3 (E0598).tar.gz&lt;/code>文件解压，并移动&lt;code> iNodeClient&lt;/code> 文件夹至&lt;code>/home&lt;/code>目录&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager/iNodeSetup$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager/iNodeSetup$ sudo tar -zxvf iNodeClient_Linux64_7.3&lt;span class="se">\ \(&lt;/span>E0598&lt;span class="se">\)&lt;/span>.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager/iNodeSetup$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">25264&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">3&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:44 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">11&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:39 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">9&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:07 iNodeClient/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-rw-r-- &lt;span class="m">1&lt;/span> kir kir &lt;span class="m">25857547&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:39 &lt;span class="s1">&amp;#39;iNodeClient_Linux64_7.3 (E0598).tar.gz&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager/iNodeSetup$ sudo mv iNodeClient /home/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeManager/iNodeSetup$ &lt;span class="nb">cd&lt;/span> /home/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">20&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">5&lt;/span> root root &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:46 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">20&lt;/span> root root &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 01:28 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x &lt;span class="m">9&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 6月 &lt;span class="m">30&lt;/span> 20:07 iNodeClient/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x &lt;span class="m">11&lt;/span> kir &lt;span class="m">500&lt;/span> &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 13:39 iNodeManager/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-x--- &lt;span class="m">16&lt;/span> kir kir &lt;span class="m">4096&lt;/span> 11月 &lt;span class="m">26&lt;/span> 01:51 kir/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>
+&lt;p>切换至&lt;code>iNodeClient &lt;/code>文件夹 ，执行&lt;code> sh install_64.sh&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kir@kir:/home$ &lt;span class="nb">cd&lt;/span> iNodeClient/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:/home/iNodeClient$ sudo sh install_64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Nothing special &lt;span class="k">for&lt;/span> Ubuntu 22.04.1 LTS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="se">\l&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Starting AuthenMngService: OK
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="启动-inode-客户端">启动 iNode 客户端
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>图形界面 进入&lt;code>/home/iNodeClient/.iNode&lt;/code>目录（看不到&lt;code>.iNode &lt;/code>文件夹，先勾选显示隐藏文件）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/M3O8v12pEfXNYUI.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/M3O8v12pEfXNYUI.jpg"
+loading="lazy"
+alt="ScreenCaputure221126134844"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/MfgB95kP7UC4yib.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/MfgB95kP7UC4yib.jpg"
+loading="lazy"
+alt="ScreenCaputure221126134939"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>双击&lt;code>iNodeClient&lt;/code>启动，创建一个连接（填写name,Username,Password)&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/gBDXQ95F4whp3RS.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/gBDXQ95F4whp3RS.jpg"
+loading="lazy"
+alt="ScreenCaputure221126135901"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/ZRIyCsTw6mjMXOF.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/ZRIyCsTw6mjMXOF.jpg"
+loading="lazy"
+alt="ScreenCaputure221126145223"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>SSLVPN 拨号&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/3nfAhOgMoV1d6Xr.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/3nfAhOgMoV1d6Xr.jpg"
+loading="lazy"
+alt="ScreenCaputure221126141137"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>查看获取到的客户端地址，并测试&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/UrCdGAZOYIV7Rqh.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/UrCdGAZOYIV7Rqh.jpg"
+loading="lazy"
+alt="ScreenCaputure221126141240"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/QMwqivFmZukJTzB.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/QMwqivFmZukJTzB.jpg"
+loading="lazy"
+alt="ScreenCaputure221126141546"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/DORpjqgZY2L6VPw.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/DORpjqgZY2L6VPw.jpg"
+loading="lazy"
+alt="ScreenCaputure221126142757"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="防火墙查看-sslvpn-会话信息">防火墙查看 SSLVPN 会话信息
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/cPgnirQuTqz81wI.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/cPgnirQuTqz81wI.jpg"
+loading="lazy"
+alt="ScreenCaputure221126142906"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>我电脑Windows + Ubuntu 22.04 双系统，在现网环境中都可正常使用 SSLVPN&lt;/li>
+&lt;li>Ubuntu 截图和写Markdown发博客不方便（最重要的 HCL 没有Linux版本），所以拉了个虚拟机&lt;/li>
+&lt;li>按照官方的安装指导手册以普通用户安装，最后定制生成客户端会&lt;code>无法生成文件&lt;/code>，需要在解压后将&lt;code>iNodeManager&lt;/code>文件夹所有者更改为当前普通用户&lt;/li>
+&lt;li>在客户端创建新连接时，认证类型要选择 &lt;code>Local&lt;/code>，否则拨号后提示网关参数错误&lt;/li>
+&lt;li>在定制客户端最后一步有三个选项
+&lt;ul>
+&lt;li>Generate customized client setup program(生成一个安装包，常用)&lt;/li>
+&lt;li>Generate customized client upgrade package(升级包，使用前本地已经安装有旧版本，理解为增量升级包)&lt;/li>
+&lt;li>Generate lightweight client upgrade package(用于放在服务端，在防火墙的&lt;code>SSL VPN&lt;/code>&amp;ndash;&amp;raquo;&lt;code>全局配置&lt;/code>&amp;ndash;&amp;raquo;&lt;code>上传客户端文件&lt;/code>位置，在浏览器输入&lt;code>SSLVPNGW:4443&lt;/code>可已打开页面，底下一行有下载的链接，就是下载这个文件)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://weeaster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://weeaster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="windows-端配置网络中心添加">windows 端配置—网络中心添加
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

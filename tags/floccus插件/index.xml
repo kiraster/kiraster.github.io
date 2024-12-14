@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Floccus插件 on Kir's Blog</title><link>https://weeaster.github.io/tags/floccus%E6%8F%92%E4%BB%B6/</link><description>Recent content in Floccus插件 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 27 Feb 2024 15:18:08 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/floccus%E6%8F%92%E4%BB%B6/index.xml" rel="self" type="application/rss+xml"/><item><title>使用floccus插件同步谷歌浏览器书签</title><link>https://weeaster.github.io/posts/1e210a39/</link><pubDate>Tue, 27 Feb 2024 15:18:08 +0000</pubDate><guid>https://weeaster.github.io/posts/1e210a39/</guid><description>&lt;p>谷歌浏览器由于特殊地区原因无法使用原生同步功能，之前也一直使用这个插件实现书签同步，本来用着也就没什么事&lt;/p>
+&lt;p>重装系统后想着能从云端把书签恢复回来，奈何忘记备份&lt;code>floccus插件&lt;/code>里面的加密密码了，而且是两台电脑都重装了，至此原先的书签彻底沦陷无法恢复，wc&lt;/p>
+&lt;p>错误造成的后果已经无法挽回&lt;/p>
+&lt;p>就写篇文记录一下floccus插件的安装使用过程&lt;/p>
+&lt;hr>
+&lt;h2 id="下载安装插件">下载安装插件
+&lt;/h2>&lt;p>网址：https://floccus.org/download/&lt;/p>
+&lt;p>github：https://github.com/floccusaddon/floccus/releases&lt;/p>
+&lt;p>从网站中可以看到支持三大浏览器，我只用到谷歌的，其他两浏览器使用自带的同步功能&lt;/p>
+&lt;p>如果不能从页面跳转后下载，自行&lt;code>想想办法&lt;/code>（比如github,gitee）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/yswfGhoZ5crUBtd.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/yswfGhoZ5crUBtd.jpg"
+loading="lazy"
+alt="ScreenCaputure240227153113"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="设置webdav">设置WebDAV
+&lt;/h2>&lt;p>从你使用的各种网盘中找一个支持&lt;code>WebDAV协议&lt;/code>的，我使用坚果云&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>登陆坚果云网页版，导航栏右侧点击&lt;code>用户名称&lt;/code>，点击&lt;code>账户信息&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/cDUu9P6vMNXylhs.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/cDUu9P6vMNXylhs.jpg"
+loading="lazy"
+alt="ScreenCaputure240227154328"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>选择&lt;code>安全选项&lt;/code>，点击&lt;code>添加应用&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/vZfNqecAWmCMsKD.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/vZfNqecAWmCMsKD.jpg"
+loading="lazy"
+alt="ScreenCaputure240227154829"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>输入&lt;code>应用名称&lt;/code>，&lt;code>生产密码&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/cwrz4h1WPjKlOpt.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/cwrz4h1WPjKlOpt.jpg"
+loading="lazy"
+alt="ScreenCaputure240227154911"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="创建xbel文件上传坚果云">创建.xbel文件上传坚果云
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>电脑本地创建一个&lt;code>.xbel&lt;/code>后缀的文件，文件命名没硬性要求，建议使用英文且标明文件用途的文件名，我使用&lt;code>bookmarks.xbel&lt;/code>。打开方式选记事本，输入以下内容后保存文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;!DOCTYPE xbel PUBLIC &amp;#34;+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML&amp;#34; &amp;#34;http://pyxml.sourceforge.net/topics/dtds/xbel.dtd&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;xbel version=&amp;#34;1.0&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;/xbel&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>坚果云网页版新建一个文件夹&lt;code>Floccus_2024&lt;/code>，把&lt;code>bookmarks.xbel&lt;/code>文件上传至该文件夹&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/SwAcinUoqPMsalO.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/SwAcinUoqPMsalO.jpg"
+loading="lazy"
+alt="ScreenCaputure240227155749"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="设置floccus参数">设置floccus参数
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>谷歌浏览器找到已经安装好的floccus插件，点击图标，点击新建账户&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/HB5knszTgYxFGRC.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/HB5knszTgYxFGRC.jpg"
+loading="lazy"
+alt="ScreenCaputure240227160106"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在要如何同步中选择WebDAV分享&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/IaoDeQSsv9w27Og.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/IaoDeQSsv9w27Og.jpg"
+loading="lazy"
+alt="ScreenCaputure240227160305"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在要同步到哪个服务器中填写参数，参数在坚果云网页版-安全选项，两个密码，第一个是坚果云的应用密码，第二个加密密码，我搞忘记的就第二个&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/WiYjGQHweL4vquZ.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/WiYjGQHweL4vquZ.jpg"
+loading="lazy"
+alt="ScreenCaputure240227160858"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>填写书签路径，坚果云网页版中上传的.xbel文件路径，本地文件夹选书签栏&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/o8Vr9bPAFR4HTNK.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/o8Vr9bPAFR4HTNK.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161215"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>设置同步间隔，同步策略，没特殊喜好保持默认即可&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/IQdHX4DKVwA7fzs.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/IQdHX4DKVwA7fzs.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161355"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>创建完成&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/ISL6sqTYh8OilK3.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/ISL6sqTYh8OilK3.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161520"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>点击floccus插件图标，查看有无报错信息，至此已完成所有设置&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/O6sqTI3vbzMKg8u.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/O6sqTI3vbzMKg8u.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161639"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="测试同步功能">测试同步功能
+&lt;/h2>&lt;p>在谷歌浏览器手动添加书签，然后点击floccus的同步按钮&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/HmdPSloOLKTurUs.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/HmdPSloOLKTurUs.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162047"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>再到坚果云网页版查看文件变化，从结果看已经添加了一个文件版本，由于使用了加密，将文件下载回本地打开查看会发现是类似乱码文件&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/3ebqxPsKUHNk9Zd.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/3ebqxPsKUHNk9Zd.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162226"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="其它电脑同步">其它电脑同步
+&lt;/h2>&lt;p>由于我还有另外的设备也使用谷歌浏览器，需要一并操作，可以手动操作重复上一步骤&lt;/p>
+&lt;p>机智如我使用导入/导出 账户功能，在另外一台电脑的操作就不演示了，过程：安装插件&amp;ndash;导入&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/hTXBgpMoEkSWHD5.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/hTXBgpMoEkSWHD5.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162705"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/2REQ7CewWJvo5rd.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/2REQ7CewWJvo5rd.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162830"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

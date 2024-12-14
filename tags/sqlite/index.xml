@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sqlite on Kir's Blog</title><link>https://weeaster.github.io/tags/sqlite/</link><description>Recent content in Sqlite on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Mon, 13 Mar 2023 14:12:11 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/sqlite/index.xml" rel="self" type="application/rss+xml"/><item><title>基于Django编写的SNMP轮询Demo</title><link>https://weeaster.github.io/posts/d70f2b4c/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://weeaster.github.io/posts/d70f2b4c/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
+&lt;h2 id="一个视频">一个视频
+&lt;/h2>&lt;p>&lt;strong>无解说无字幕，嫌BGM太吵可静音&lt;/strong>&lt;/p>
+&lt;p>{% mmedia &amp;ldquo;bilibili&amp;rdquo; &amp;ldquo;bvid=BV1d24y147SC&amp;rdquo; %}&lt;/p>
+&lt;hr>
+&lt;h2 id="缘由">缘由
+&lt;/h2>&lt;p>&lt;strong>声明：我不是搞软件的&lt;/strong>&lt;/p>
+&lt;p>当初仅为了在项目实施中显示设备的上线情况和快速查找到需要变更配置的设备；后来越搞越多，像首页，设备导出，修改页，查看配置，计划任务，清空数据等功能并不是我当初有计划要制作的；最后及时刹车，许多脑中风暴的功能没有继续写，也没有继续添加功能的计划。&lt;/p>
+&lt;h2 id="代码组成及工作流">代码组成及工作流
+&lt;/h2>&lt;p>&lt;strong>框架&lt;/strong>&lt;/p>
+&lt;p>&lt;code>Bootstrap-3.3.7&lt;/code>+&lt;code>Django4.0.7&lt;/code>+&lt;code>MySql-5.7.39&lt;/code>（或&lt;code>sqlite&lt;/code>）&lt;/p>
+&lt;p>&lt;strong>工作流&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>设备初始参数写入数据库&lt;/li>
+&lt;li>设备的轮询，并对结果进行写入数据库&lt;/li>
+&lt;li>前端页面对数据的展示&lt;/li>
+&lt;/ol>
+&lt;h2 id="页面及功能">页面及功能
+&lt;/h2>&lt;ol>
+&lt;li>首页
+&lt;ol>
+&lt;li>设备类型统计显示&lt;/li>
+&lt;li>设备在线/离线、CPU使用率、内存使用率概览饼状图显示&lt;/li>
+&lt;li>设备CPU使用率、内存使用率 TOP 10 显示&lt;/li>
+&lt;li>关于&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>设备管理
+&lt;ol>
+&lt;li>设备数据显示&lt;/li>
+&lt;li>设备添加
+&lt;ol>
+&lt;li>snmp测试&lt;/li>
+&lt;li>继续添加&lt;/li>
+&lt;li>添加并返回&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>设备导出&lt;/li>
+&lt;li>设备详情
+&lt;ol>
+&lt;li>刷新&lt;/li>
+&lt;li>执行查看配置&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>设备参数修改、同步、删除&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>计划任务
+&lt;ol>
+&lt;li>定时任务&lt;/li>
+&lt;li>手动任务&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>更多操作
+&lt;ol>
+&lt;li>批量导入&lt;/li>
+&lt;li>清空数据&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="如何使用">如何使用
+&lt;/h2>&lt;p>&lt;strong>clone 仓库代码至本地或使用浏览器下载压缩包&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git clone https://github.com/kiraster/ndgv_demo.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或 &lt;a class="link" href="https://github.com/kiraster/ndgv_demo" target="_blank" rel="noopener"
+>https://github.com/kiraster/ndgv_demo
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> &lt;strong>Code&lt;/strong> &amp;ndash;&amp;raquo; &lt;strong>Download ZIP&lt;/strong>&lt;/p>
+&lt;h3 id="本地处理">本地处理
+&lt;/h3>&lt;p>使用任意支持Python 的 IDE工具，将代码目录添加&lt;/p>
+&lt;h3 id="安装环境">安装环境
+&lt;/h3>&lt;p>&lt;strong>为了不影响你电脑的python环境，建议使用虚拟环境运行本代码&lt;/strong>（以下用&lt;strong>Visual Studio Code&lt;/strong> 软件举例）&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>IDE工具控制台切换到代码根目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>创建虚拟环境&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python -m venv venv
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>激活虚拟环境&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.\venv\Scripts\Activate.ps1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可能遇到不能执行脚本的错误，可以以管理员身份打开&lt;code>powershell&lt;/code>，执行&lt;code> set-executionpolicy remotesigned&lt;/code>，选择&lt;code>y&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="安装python库">安装python 库
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">pip install -r requirements.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="初始化数据库">初始化数据库
+&lt;/h3>&lt;ol>
+&lt;li>修改&lt;code>ndgv1/settings.py &lt;/code>文件(78行开始)（以下是使用&lt;code>sqlite&lt;/code>数据的配置，如需使用&lt;code>MySQL&lt;/code>，把&lt;code>sqlite&lt;/code>部分注释，再把&lt;code>MySQL&lt;/code>注释部分取消即可）&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">DATABASES = {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#39;default&amp;#39;: {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#39;ENGINE&amp;#39;: &amp;#39;django.db.backends.sqlite3&amp;#39;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;#39;NAME&amp;#39;: BASE_DIR / &amp;#39;db.sqlite3&amp;#39;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;default&amp;#39;: {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;ENGINE&amp;#39;: &amp;#39;django.db.backends.mysql&amp;#39;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;NAME&amp;#39;: &amp;#39;ndgv1.3&amp;#39;, # 数据库名称
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;USER&amp;#39;: &amp;#39;root&amp;#39;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;PASSWORD&amp;#39;: &amp;#39;xxxxxxxx&amp;#39;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;HOST&amp;#39;: &amp;#39;127.0.0.1&amp;#39;,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;PORT&amp;#39;: 3306,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # &amp;#39;CHARSET&amp;#39;: &amp;#39;utf8&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>
+&lt;p>删除&lt;code>device_app/migrations&lt;/code> 和 &lt;code>scheduler_app/migrations&lt;/code> 除&lt;code>_init_.py &lt;/code>外的所有文件&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>删除 &lt;code>db.sqlite3&lt;/code> 文件&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>执行数据库迁移命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python manage.py makemigrations
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python manage.py migrate
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h3 id="修改清空数据功能代码">修改&lt;code>清空数据&lt;/code>功能代码
+&lt;/h3>&lt;p>修改&lt;code>device_app/views&lt;/code>文件(683行开始)，以下是使用&lt;code>sqlite&lt;/code>数据的配置，如需使用&lt;code>MySQL&lt;/code>，把&lt;code>sqlite&lt;/code>部分注释，再把&lt;code>MySQL&lt;/code>注释部分取消即可&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">只直接使用原生 sql 语句 更快
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">from django.db import connection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># sqlite 数据库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db = connection.cursor()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># MySQL 数据库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db = connection.cursor()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 执行 命令 重置 自增ID
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM sqlite_sequence&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM device_app_device&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM device_app_devicedetail&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM device_app_devicestate&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM device_app_devicelocation&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM scheduler_app_schedulerdetail&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM django_apscheduler_djangojob&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM django_apscheduler_djangojobexecution&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sqlite_db.execute(&amp;#39;DELETE FROM sqlite_sequence&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 取消外键约束
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;SET FOREIGN_KEY_CHECKS=0&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;truncate table device_app_device&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;truncate table device_app_devicedetail&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;truncate table device_app_devicestate&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;truncate table device_app_devicelocation&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;truncate table scheduler_app_schedulerdetail&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;truncate table django_apscheduler_djangojob&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;truncate table django_apscheduler_djangojobexecution&amp;#39;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 设置外键约束
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># mysql_db.execute(&amp;#39;SET FORE
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="运行代码">运行代码
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python .\manage.py runserver
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="代码弊端">代码弊端
+&lt;/h2>&lt;ol>
+&lt;li>代码写死华三设备的oid&lt;/li>
+&lt;li>代码中写死设备命名规则&lt;/li>
+&lt;li>定时任务写死轮询时间&lt;/li>
+&lt;li>前端页面展示以1080P分辨率屏幕编写&lt;/li>
+&lt;li>首页展示，类别显示的规则写死华三设备型号&lt;/li>
+&lt;li>……&lt;/li>
+&lt;/ol>
+&lt;h2 id="可能的问题或错误">可能的问题或错误
+&lt;/h2>&lt;ol>
+&lt;li>&lt;code>PermissionError: [WinError 10013] &lt;/code>以一种访问权限不允许的方式做了一个访问套接字的尝试。
+&lt;ol>
+&lt;li>使用管理员权限运行IDE编辑器&lt;/li>
+&lt;li>检查是否端口占用&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>设备管理页面显示的数据不正确
+&lt;ol>
+&lt;li>由于是内置华三部分设备的&lt;code>OID&lt;/code>，有些设备的&lt;code>OID&lt;/code>值没有添加到代码&lt;/li>
+&lt;li>有些数据根据设备命名规则解析出来的，如果设备名称不符合命名规则会显示不正确&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>设备同步后显示同步成功，但是没有数据
+&lt;ol>
+&lt;li>可能是snmp团体字不正确，或IP地址不可达&lt;/li>
+&lt;li>或者本机防火墙限制&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>批量导入失败
+&lt;ol>
+&lt;li>上传文件中格式不准确或数据有误&lt;/li>
+&lt;li>上传文件中数据与已有数据冲突，可使用清空数据再进行导入&lt;/li>
+&lt;li>由于没有加入Django事务，对于已导入正确数据并不会进行回退&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>首页中类型统计不正确
+&lt;ol>
+&lt;li>统计规则是根据华三的设备型号中关键字定义的&lt;/li>
+&lt;li>其他厂商设备不通用&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>页面显示不全或内容挤压
+&lt;ol>
+&lt;li>编写时候是以1080P分辨率屏幕显示为准&lt;/li>
+&lt;li>没有对其他分辨率屏幕做调整&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>

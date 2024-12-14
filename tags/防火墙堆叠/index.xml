@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>防火墙堆叠 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E5%A0%86%E5%8F%A0/</link><description>Recent content in 防火墙堆叠 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 03 May 2022 01:09:15 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E5%A0%86%E5%8F%A0/index.xml" rel="self" type="application/rss+xml"/><item><title>HCL_FW_IRF_LAB</title><link>https://weeaster.github.io/posts/a89a05d3/</link><pubDate>Tue, 03 May 2022 01:09:15 +0000</pubDate><guid>https://weeaster.github.io/posts/a89a05d3/</guid><description>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png">
+&lt;img src="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="实验目的">实验目的
+&lt;/h2>&lt;ul>
+&lt;li>验证 H3C 防火墙 IRF 堆叠和主备模式&lt;/li>
+&lt;li>基于项目中部分核心网络的模拟器测试&lt;/li>
+&lt;li>线路交叉互联的问题&lt;/li>
+&lt;/ul>
+&lt;h2 id="实验描述">实验描述
+&lt;/h2>&lt;h3 id="ip-地址规划和端口互联">IP 地址规划和端口互联
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: left">互联设备&lt;/th>
+&lt;th style="text-align: left">&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: left">核心防火墙&amp;lt;&amp;ndash;&amp;gt;核心交换机&lt;/td>
+&lt;td style="text-align: left">10.1.1.0/30&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">核心防火墙&amp;lt;&amp;ndash;&amp;gt;服务器汇聚&lt;/td>
+&lt;td style="text-align: left">10.1.1.4/30&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">核心防火墙&amp;lt;&amp;ndash;&amp;gt;外联交换机&lt;/td>
+&lt;td style="text-align: left">VLAN10:192.168.10.254&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>A端设备&lt;/th>
+&lt;th>端口&lt;/th>
+&lt;th>B端设备&lt;/th>
+&lt;th>端口&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>FW1&lt;/td>
+&lt;td>GE0/23&lt;/td>
+&lt;td>FW2&lt;/td>
+&lt;td>GE0/23&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW1&lt;/td>
+&lt;td>GE0/1&lt;/td>
+&lt;td>SW5&lt;/td>
+&lt;td>GE0/1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW1&lt;/td>
+&lt;td>GE0/2&lt;/td>
+&lt;td>SW6&lt;/td>
+&lt;td>GE0/2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW1&lt;/td>
+&lt;td>GE0/3&lt;/td>
+&lt;td>SW3&lt;/td>
+&lt;td>GE0/3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW1&lt;/td>
+&lt;td>GE0/4&lt;/td>
+&lt;td>SW4&lt;/td>
+&lt;td>GE0/4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW1&lt;/td>
+&lt;td>GE0/11&lt;/td>
+&lt;td>SW7&lt;/td>
+&lt;td>GE0/1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW2&lt;/td>
+&lt;td>GE0/1&lt;/td>
+&lt;td>SW6&lt;/td>
+&lt;td>GE0/1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW2&lt;/td>
+&lt;td>GE0/2&lt;/td>
+&lt;td>SW5&lt;/td>
+&lt;td>GE0/2&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW2&lt;/td>
+&lt;td>GE0/3&lt;/td>
+&lt;td>SW4&lt;/td>
+&lt;td>GE0/3&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW2&lt;/td>
+&lt;td>GE0/4&lt;/td>
+&lt;td>SW3&lt;/td>
+&lt;td>GE0/4&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>FW2&lt;/td>
+&lt;td>GE0/11&lt;/td>
+&lt;td>SW7&lt;/td>
+&lt;td>GE0/2&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="防火墙安全域划分">防火墙安全域划分
+&lt;/h3>&lt;p>核心交换机：Trust&lt;/p>
+&lt;p>服务器汇聚：Server&lt;/p>
+&lt;p>外联交换机：Untrust&lt;/p>
+&lt;h2 id="配置思路">配置思路
+&lt;/h2>&lt;ol>
+&lt;li>FW1 与 FW2 之间 IRF 堆叠；SW3 与 SW4 之间 IRF 堆叠；SW5 与 SW6 之间 IRF 堆叠；&lt;/li>
+&lt;li>设备互联的端口聚合配置，配置系统优先级和端口优先级，使流量优先流经“主”用设备&lt;/li>
+&lt;li>配置互联地址，确保逻辑直连的互通&lt;/li>
+&lt;li>配置防火墙安全域和安全策略&lt;/li>
+&lt;li>配置 PC IP地址确保与网关的连通性&lt;/li>
+&lt;li>配置静态路由确保网络互通&lt;/li>
+&lt;li>进行倒换倒回观察网络连通性&lt;/li>
+&lt;li>模拟线路故障观察网络连通性&lt;/li>
+&lt;/ol>
+&lt;h2 id="配置文件">配置文件
+&lt;/h2>&lt;ul>
+&lt;li>见文末&lt;/li>
+&lt;/ul>
+&lt;h2 id="聊点什么">聊点什么
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>就线路交叉互联问题，与老友交谈，据他说这种互联方式可能导致丢包现象，例如，流量分别从SW3的G0/3接口和SW4的G0/4接口进入FW1，G0/4的流量会被认为非法流量而丢弃，盲猜是因为会话状态机模式设为严格模式，而运行中出现了来回路径不一致的问题导致丢包。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>就这个交叉互联问题与华三400聊了近半小时，对方给出的方案是按完美的主备处理方式进行组网，（在网络正常的情况下）即流量永远只走一边，只要防火墙上有一个端口出现故障，冗余组全部切换到备。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>主备模式下，设置冗余组，主成员下的端口有任一出现问题，就会整体切换到备，而备设备如在整体切换就有部分端口故障，此时主成员设备的UP状态的端口会在 DOWN 和 DOWN(redundancy down) 之间反复恒跳，而Status出现两个 Secondary，Slot1 的Track优先级也会随着端口的两个 DOWN 状态不同而变化。注意，此时网络并没有中断。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Redundancy group 11 (ID 1):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Node ID Slot Priority Status Track weight
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 Slot1 1 Secondary -1020
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 Slot2 1 Secondary -255
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>要严格控制流量走一边的情况，就需要接入层网上的设备互联都使用双线互联。而万一“主”设备上联到上一层“主”设备的线路故障了，那么恭喜你可能网络瘫痪了，举个例子，拓扑中SW3与SW11的G0/1接口down，因为SW11上联的两根线路做了聚合，SW11上联的流量会通过G0/2向上走，相当于在核心交换机的SW4上接了一台 PC ，你觉得流量再往上层该怎么走？走到FW2备成员？而FW2是备用状态不处理流量。写到这我才想起来原来华三400建议做两个聚合组是有道理的，SW4 G0/4和G0/3做一个聚合组，就可以人为限制流量又走到FW1，秒啊。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>继续上一条，不使用两组聚合的方式，关闭IRF的本地优先转发，核心交换机上就出现跨框流量，即进入SW4的流量要往上走，要绕道SW3上去，这明显不合理了。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>继续上一条，假如使用核心交换机上联防火墙4根线做一个三层聚合组，FW1往下回流量的时候，由于负载分担的方式，又有可能把流量回给SW4。综合一下，在聚合组配置selected-port maximum 1 同时配置lacp的端口优先级呢，是不是觉得这个方法又蠢又无奈又有用。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>对于要把外联区（SW7）的网关设置在防火墙上的问题，还有一种方式是用 RETH 接口，但是我模拟器配置了，且SW7 查看arp都能看到网关的条目了，就是不通，希望是模拟器bug了，有机会去真机上测试一下再回来聊聊。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>不知道是不是我的错觉，用HCL模拟器做这种冗余类实验，老是出现一些不能理解的问题，这边十万八千里shutdown个端口，那边会受影响那种。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="ending">Ending
+&lt;/h2>&lt;ul>
+&lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
+&lt;li>配置存阿里云盘了，这是链接：[&lt;a class="link" href="https://www.aliyundrive.com/s/1waTfsXdwdm" target="_blank" rel="noopener"
+>分享的文件
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>]&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
+&lt;/ul></description></item></channel></rss>

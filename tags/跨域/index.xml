@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>跨域 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E8%B7%A8%E5%9F%9F/</link><description>Recent content in 跨域 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 04 Mar 2023 01:05:34 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E8%B7%A8%E5%9F%9F/index.xml" rel="self" type="application/rss+xml"/><item><title>配置跨域的Option C MPLS VPN（Cisco）</title><link>https://weeaster.github.io/posts/c0ba4ae2/</link><pubDate>Sat, 04 Mar 2023 01:05:34 +0000</pubDate><guid>https://weeaster.github.io/posts/c0ba4ae2/</guid><description>&lt;p>&lt;strong>Introduction&lt;/strong>&lt;/p>
+&lt;p>This document describes how to configure and verify the Inter-AS Layer 3 Multiprotocol Label Switching (MPLS) VPN, option C feature. A sample network scenario and its configuration and outputs are shown for a better understanding.&lt;/p>
+&lt;p>本文描述的是根据思科网站一篇配置文档（https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/200523-Configuration-and-Verification-of-Layer.html#）修改搭建的一个实验。&lt;/p>
+&lt;hr>
+&lt;h2 id="环境">环境
+&lt;/h2>&lt;ul>
+&lt;li>模拟器：PNET 4.2.10&lt;/li>
+&lt;li>Cisco IOL： l3-ADVENTERPRISEK9-M-15.4-2T.bin&lt;/li>
+&lt;/ul>
+&lt;h2 id="配置">配置
+&lt;/h2>&lt;h3 id="网络拓扑">网络拓扑
+&lt;/h3>&lt;p>&lt;strong>网站原图&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/07/oZLaRtUIcxgjFqe.jpg">
+&lt;img src="https://s2.loli.net/2023/03/07/oZLaRtUIcxgjFqe.jpg"
+loading="lazy"
+alt="200523-Configuration-and-Verification-of-Layer-00"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>搭建的拓扑&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/07/S4HEnAgOUe6QYpj.jpg">
+&lt;img src="https://s2.loli.net/2023/03/07/S4HEnAgOUe6QYpj.jpg"
+loading="lazy"
+alt="ScreenCaputure230304012642"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="拓扑规划">拓扑规划
+&lt;/h3>&lt;ol>
+&lt;li>每台路由配置环回接口 0 ，格式为 R1： 1.1.1.1/32&lt;/li>
+&lt;li>互联接口为：设备编号1 + 设备编号2 + .1.1 + 设备编号1，例如 R1 e0/0 接口IP地址：12.1.1.1/24&lt;/li>
+&lt;li>R7、R8、R9、R10 为 CE，R11 和 R12 为 反射器&lt;/li>
+&lt;li>ISP1，ISP2 底层 IGP 运行 OSPF 协议&lt;/li>
+&lt;li>A1，A2 的 CE 与 PE 运行 OSPF 协议&lt;/li>
+&lt;li>B1，B2 的 CE 与 PE 运行 BGP 协议&lt;/li>
+&lt;/ol>
+&lt;h3 id="配置思路">配置思路
+&lt;/h3>&lt;ol>
+&lt;li>配置 ISP 底层 OSPF IGP ，验证：show ip os nei / show ip route ospf&lt;/li>
+&lt;li>配置 ISP 启用 MPLS LDP，验证：show mpls interface / show mpls ldp discovery&lt;/li>
+&lt;li>配置 PE VRF，配置与 CE 互联接口划分到 VRF，验证：show ip vrf int / show ip route vrf &lt;strong>X&lt;/strong>&lt;/li>
+&lt;li>配置 ISP 的 BGP 邻居，验证：show ip b summ / show ip b vpnv4 all summ&lt;/li>
+&lt;li>配置 RR1 和 RR2 的 MP-eBGP，验证：show ip b vpnv4 all summ&lt;/li>
+&lt;li>配置 CE 和 PE 间的路由协议，验证：show ip route vrf &lt;strong>X&lt;/strong> / show ip os nei / show ip b summ&lt;/li>
+&lt;li>配置 PE 上 双向重分布&lt;/li>
+&lt;/ol>
+&lt;h3 id="配置步骤">配置步骤
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;h4 id="配置-ip-地址-略">配置 IP 地址 （略）
+&lt;/h4>&lt;/li>
+&lt;li>
+&lt;h4 id="配置-isp-底层-igp-以-isp-1-为例isp2-同理">配置 ISP 底层 IGP （以 ISP 1 为例，ISP2 同理）
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R1 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e 0/0,e0/3,lo0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip os 100 a 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R2 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e0/0-1,e0/3,lo0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip os 100 a 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R3 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e 0/1,e0/3,lo0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip os 100 a 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R11 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e 0/1-3,lo0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip os 100 a 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>**验证：**查看 OSPF 邻居，查看 OSPF 路由，以 R2 为例&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R2 output.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R2#sh ip os nei
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Neighbor ID Pri State Dead Time Address Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11.11.11.11 1 FULL/BDR 00:00:39 112.1.1.11 Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">3.3.3.3 1 FULL/DR 00:00:30 23.1.1.3 Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.1.1.1 1 FULL/BDR 00:00:39 12.1.1.1 Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R2#sh ip route ospf | b Gate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Gateway of last resort is not set
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1.0.0.0/32 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O 1.1.1.1 [110/11] via 12.1.1.1, 02:06:04, Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3.0.0.0/32 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O 3.3.3.3 [110/11] via 23.1.1.3, 02:05:54, Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 11.0.0.0/32 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O 11.11.11.11 [110/11] via 112.1.1.11, 02:05:54, Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 111.0.0.0/24 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O 111.1.1.0 [110/20] via 12.1.1.1, 02:06:04, Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 113.0.0.0/24 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O 113.1.1.0 [110/20] via 23.1.1.3, 02:05:54, Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R2#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;h4 id="配置-isp-启用-mpls-ldp-以-isp-1-为例isp2-同理">配置 ISP 启用 MPLS LDP （以 ISP 1 为例，ISP2 同理）
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R1 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e 0/0,e0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R2 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e0/0-1,e0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R3 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e 0/1,e0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R11 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e 0/1-3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ip
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>验证：&lt;/strong> 查看 LDP 接口和 ldp 会话，以 R2 为例&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R2 output.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R2#sh mpls interfaces
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interface IP Tunnel BGP Static Operational
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ethernet0/0 Yes (ldp) No No No Yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ethernet0/1 Yes (ldp) No No No Yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ethernet0/3 Yes (ldp) No No No Yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R2#sh mpls ldp dis
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R2#sh mpls ldp discovery
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Local LDP Identifier:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2.2.2.2:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Discovery Sources:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Interfaces:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Ethernet0/0 (ldp): xmit/recv
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LDP Id: 1.1.1.1:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Ethernet0/1 (ldp): xmit/recv
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LDP Id: 3.3.3.3:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Ethernet0/3 (ldp): xmit/recv
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> LDP Id: 11.11.11.11:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R2#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;h4 id="配置-pe-的-vrf配置与-ce-互联的接口划分到-vrf">配置 PE 的 VRF，配置与 CE 互联的接口划分到 VRF
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">!---&lt;/span> &lt;span class="n">R1&lt;/span> &lt;span class="n">commands&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rd&lt;/span> &lt;span class="mi">7&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="k">export&lt;/span> &lt;span class="mi">7&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">7&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="n">import&lt;/span> &lt;span class="mi">9&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">9&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rd&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="k">export&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="n">import&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">forwarding&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.1&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">forwarding&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">18.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.1&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!---&lt;/span> &lt;span class="n">R6&lt;/span> &lt;span class="n">commands&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rd&lt;/span> &lt;span class="mi">9&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">200&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="k">export&lt;/span> &lt;span class="mi">9&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">9&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="n">import&lt;/span> &lt;span class="mi">7&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">7&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rd&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">200&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="k">export&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">route&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">target&lt;/span> &lt;span class="n">import&lt;/span> &lt;span class="mi">8&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">forwarding&lt;/span> &lt;span class="n">a&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">69.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.6&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">forwarding&lt;/span> &lt;span class="n">b&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">106.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.6&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>**验证：**查看 VRF 路由表，以 R1 为例&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">!---&lt;/span> &lt;span class="n">R1&lt;/span> &lt;span class="n">output&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#sh ip route vrf a | b Gate&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Gateway&lt;/span> &lt;span class="n">of&lt;/span> &lt;span class="n">last&lt;/span> &lt;span class="n">resort&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">set&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">7.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">subnets&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">O&lt;/span> &lt;span class="mf">7.7&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">7.7&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">110&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">via&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.7&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">02&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">47&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">17.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">variably&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="n">subnets&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="n">masks&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">C&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">directly&lt;/span> &lt;span class="n">connected&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">L&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">directly&lt;/span> &lt;span class="n">connected&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#sh ip route vrf b | b Gate&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Gateway&lt;/span> &lt;span class="n">of&lt;/span> &lt;span class="n">last&lt;/span> &lt;span class="n">resort&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">set&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">8.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">subnets&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">B&lt;/span> &lt;span class="mf">8.8&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">8.8&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">20&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">via&lt;/span> &lt;span class="mf">18.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.8&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">02&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">16&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">18.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">variably&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="n">subnets&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="n">masks&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">C&lt;/span> &lt;span class="mf">18.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">directly&lt;/span> &lt;span class="n">connected&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">L&lt;/span> &lt;span class="mf">18.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">directly&lt;/span> &lt;span class="n">connected&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;h4 id="配置-isp-的-bgp-邻居">配置 ISP 的 BGP 邻居
+&lt;/h4>&lt;p>&lt;strong>R3 与 R4 配置 IPv4 BGP 邻居，R3 宣告 1.1.1.1 和 11.11.11.11，R4 宣告 6.6.6.6 和 12.12.12.12&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>将 BGP 路由重分布进底层 OSPF 协议，为了学习到对端 RR 和 PE 路由，建立 MP-BGP 需要&lt;/strong>&lt;/p>
+&lt;p>由于底层 OSPF 协议的运行，R3 与 R4 已经学习到这些路由，在建立 eBGP 邻居后能传递到对端&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R3 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bgp log-neighbor-changes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 1.1.1.1 mask 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 11.11.11.11 mask 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 34.1.1.4 remote-as 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 34.1.1.4 send-label
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router ospf 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> redistribute bgp 100 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R4 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bgp log-neighbor-changes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 6.6.6.6 mask 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 12.12.12.12 mask 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 34.1.1.3 remote-as 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 34.1.1.3 send-label
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router ospf 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> redistribute bgp 200 subnets
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>验证：&lt;/strong>&lt;/p>
+&lt;p>R3 与 R4 的 eBGP 邻居&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R3#sh ip b summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP router identifier 3.3.3.3, local AS number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP table version is 75, main routing table version 75
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">4 network entries using 560 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">4 path entries using 320 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">4/4 BGP path/bestpath attribute entries using 576 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1 BGP AS-PATH entries using 24 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0 BGP route-map cache entries using 0 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0 BGP filter-list cache entries using 0 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP using 1480 total bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP activity 4/0 prefixes, 36/32 paths, scan interval 60 secs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Neighbor V AS MsgRcvd MsgSent TblVer InQ OutQ Up/Down State/PfxRcd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">34.1.1.4 4 200 90 90 75 0 0 01:16:45 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>R1 的 1.1.1.1 去往 R6 的 6.6.6.6 路由可达，标签路径连续&lt;/p>
+&lt;p>R11 的 11.11.11.11 去往 R12 的 12.12.12.12 路由可达，标签路径连续&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R1#ping 6.6.6.6 source 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Sending 5, 100-byte ICMP Echos to 6.6.6.6, timeout is 2 seconds:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Packet sent with a source address of 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!!!!!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Success rate is 100 percent (5/5), round-trip min/avg/max = 6/6/8 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R1#traceroute 6.6.6.6 source 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tracing the route to 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VRF info: (vrf in name/id, vrf out name/id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 12.1.1.2 [MPLS: Label 24 Exp 0] 5 msec 6 msec 6 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 23.1.1.3 [MPLS: Label 26 Exp 0] 6 msec 5 msec 6 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 34.1.1.4 [MPLS: Label 27 Exp 0] 7 msec 7 msec 5 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4 45.1.1.5 [MPLS: Label 22 Exp 0] 4 msec 5 msec 6 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 5 56.1.1.6 6 msec * 7 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R1#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R11#ping 12.12.12.12 source 11.11.11.11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Sending 5, 100-byte ICMP Echos to 12.12.12.12, timeout is 2 seconds:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Packet sent with a source address of 11.11.11.11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!!!!!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Success rate is 100 percent (5/5), round-trip min/avg/max = 3/3/4 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R11#trace 12.12.12.12 source 11.11.11.11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tracing the route to 12.12.12.12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VRF info: (vrf in name/id, vrf out name/id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 113.1.1.3 [MPLS: Label 27 Exp 0] 4 msec 4 msec 4 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 34.1.1.4 [MPLS: Label 25 Exp 0] 3 msec 2 msec 2 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 124.1.1.12 4 msec * 4 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R11#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>关于send-label 命令：&lt;/strong>&lt;/p>
+&lt;p>tell the router to send the lables of bgp prefix to its peer，为 BGP 路由传递标签，使用此命令后，对应接口自动配置 mpls bgp forwarding ，但是 no 掉后接口的这行配置并不会自动去掉&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">*Mar 4 05:54:10.850: %BGP_LMM-6-AUTOGEN1: The mpls bgp forwarding command has been configured on interface: Ethernet0/0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>未配置 &lt;strong>send-label&lt;/strong> 命令前，R3 去往 6.6.6.6 的标签 是空标签，R3 的动作是弹出所有标签，标签中断。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R3#sh mpls forwarding-table 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local Outgoing Prefix Bytes Label Outgoing Next Hop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Label Label or Tunnel Id Switched interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">26 No Label 6.6.6.6/32 0 Et0/0 34.1.1.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R3#sh ip b la
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R3#sh ip b labels
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Network Next Hop In label/Out label
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1.1.1.1/32 23.1.1.2 nolabel/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6.6.6.6/32 34.1.1.4 nolabel/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 11.11.11.11/32 113.1.1.11 nolabel/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 12.12.12.12/32 34.1.1.4 nolabel/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R3#sh ip b 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP routing table entry for 6.6.6.6/32, version 66
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Paths: (1 available, best #1, table default)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Not advertised to any peer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Refresh Epoch 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 34.1.1.4 from 34.1.1.4 (4.4.4.4)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Origin IGP, metric 21, localpref 100, valid, external, best
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rx pathid: 0, tx pathid: 0x0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R3#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>配置 &lt;strong>send-label&lt;/strong> 命令后，分配 27 标签&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R3#sh mpls forwarding-table 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local Outgoing Prefix Bytes Label Outgoing Next Hop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Label Label or Tunnel Id Switched interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">26 27 6.6.6.6/32 0 Et0/0 34.1.1.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R3#sh ip b labels
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Network Next Hop In label/Out label
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1.1.1.1/32 23.1.1.2 21/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6.6.6.6/32 34.1.1.4 nolabel/27
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 11.11.11.11/32 113.1.1.11 25/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 12.12.12.12/32 34.1.1.4 nolabel/25
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R3#sh ip b 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP routing table entry for 6.6.6.6/32, version 56
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Paths: (1 available, best #1, table default)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Not advertised to any peer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Refresh Epoch 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 34.1.1.4 from 34.1.1.4 (4.4.4.4)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Origin IGP, metric 21, localpref 100, valid, external, best
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls labels in/out nolabel/27
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rx pathid: 0, tx pathid: 0x0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在 R4 上查看到关于去往6.6.6.6 的 入向标签 27
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R4#sh ip bgp labels
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Network Next Hop In label/Out label
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1.1.1.1/32 34.1.1.3 nolabel/21
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6.6.6.6/32 45.1.1.5 27/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 11.11.11.11/32 34.1.1.3 nolabel/25
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 12.12.12.12/32 124.1.1.12 25/nolabel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R4#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>R1 与 R11 配置 BGP VPNV4 邻居&lt;/strong>&lt;/p>
+&lt;p>注意：R3 与 R11 不建立 BGP 邻居&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R1 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no bgp default ipv4-unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 remote-as 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 update-source Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 activate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R11 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bgp log-neighbor-changes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no bgp default ipv4-unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 1.1.1.1 remote-as 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 1.1.1.1 update-source Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 1.1.1.1 activate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 1.1.1.1 route-reflector-client
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>R6 与 R12 配置 BGP VPNV4 邻居&lt;/strong>&lt;/p>
+&lt;p>注意：R4 与 R12 不建立 BGP 邻居&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R6 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no bgp default ipv4-unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 remote-as 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 update-source Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 activate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R12 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no bgp default ipv4-unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 6.6.6.6 remote-as 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 6.6.6.6 update-source Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 6.6.6.6 activate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 6.6.6.6 route-reflector-client
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>**验证：**VPNV4 邻居&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sh ip b vpnv4 all summary
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>R11 与 R12 建立 MP-eBGP 邻居&lt;/strong>&lt;/p>
+&lt;p>设置 eBGP 多跳。不是物理直连的 eBGP 邻居&lt;/p>
+&lt;p>设置下一跳不改变。R11 与 R12 建立 MP-eBGP 邻居，传递路由时默认下一跳改变成自身，这样 ISP 两侧的流量互通都流经反射器不合理，设置下一跳不改变后，R1 上去往 ISP2 CE 的路由下一跳看到的是 R6 的 6.6.6.6 ，最后再在两个 ISP 内部控制底层 IGP 的路径，使得流量不经过反射器。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R11 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 remote-as 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 ebgp-multihop 255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 update-source Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 activate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 12.12.12.12 next-hop-unchanged
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R12 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 remote-as 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 ebgp-multihop 255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 update-source Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 activate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 11.11.11.11 next-hop-unchanged
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>验证：查看 R11 上的 BGP 邻居&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R11#sh ip b vpnv4 all summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP router identifier 11.11.11.11, local AS number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP table version is 67, main routing table version 67
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6 network entries using 912 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6 path entries using 480 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5/5 BGP path/bestpath attribute entries using 760 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">3 BGP AS-PATH entries using 72 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">4 BGP extended community entries using 128 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0 BGP route-map cache entries using 0 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0 BGP filter-list cache entries using 0 bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP using 2352 total bytes of memory
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BGP activity 6/0 prefixes, 6/0 paths, scan interval 60 secs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Neighbor V AS MsgRcvd MsgSent TblVer InQ OutQ Up/Down State/PfxRcd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.1.1.1 4 100 127 151 67 0 0 01:50:57 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">12.12.12.12 4 200 190 185 67 0 0 01:50:16 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R11#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;h4 id="配置-ce-和-pe-间的路由协议">配置 CE 和 PE 间的路由协议
+&lt;/h4>&lt;p>以 R7，R8，R1 为例， R9，R10，R6 同理&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R7 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran e 0/0,lo0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip os 7 a 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R8 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 300
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 8.8.8.8 mask 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 18.1.1.1 remote-as 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!--- R1 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router ospf 1 vrf a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 1.1.1.17
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 17.1.1.1 0.0.0.0 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family ipv4 vrf b
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor 18.1.1.8 remote-as 300
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>验证：&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">show ip os nei
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">show ip route ospf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">show ip route vrf a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">show ip route vrf b
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sh ip b summary
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;h4 id="配置-pe-上-双向重分布">配置 PE 上 双向重分布
+&lt;/h4>&lt;p>以 R1 为例，只需在 VRF a&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">!--- R1 commands.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 只需在 vrf a 和 BGP ipv4 vrf a 视图下配置重分布
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># R8 - R1 之间运行的是 BGP ，在 BGP ipv4 vrf b 视图下建立邻居即可
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router ospf 1 vrf a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> redistribute bgp 100 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">router bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family ipv4 vrf a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> redistribute ospf 1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;h4 id="优化isp-内部-ospf-下一跳">优化ISP 内部 OSPF 下一跳
+&lt;/h4>&lt;p>查看 R1 路由表发现，去往 9.9.9.9 下一跳是 6.6.6.6&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#sh ip b vpnv4 vrf a &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">BGP&lt;/span> &lt;span class="n">table&lt;/span> &lt;span class="n">version&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mi">166&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">local&lt;/span> &lt;span class="n">router&lt;/span> &lt;span class="n">ID&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mf">1.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Status&lt;/span> &lt;span class="n">codes&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">s&lt;/span> &lt;span class="n">suppressed&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">d&lt;/span> &lt;span class="n">damped&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">h&lt;/span> &lt;span class="n">history&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="n">valid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">best&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">internal&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">r&lt;/span> &lt;span class="n">RIB&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">failure&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">S&lt;/span> &lt;span class="n">Stale&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">m&lt;/span> &lt;span class="n">multipath&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="n">backup&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">f&lt;/span> &lt;span class="n">RT&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">Filter&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">x&lt;/span> &lt;span class="n">best&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">external&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">additional&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="n">RIB&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">compressed&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Origin&lt;/span> &lt;span class="n">codes&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">IGP&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">e&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">EGP&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">?&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">incomplete&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">RPKI&lt;/span> &lt;span class="n">validation&lt;/span> &lt;span class="n">codes&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">V&lt;/span> &lt;span class="n">valid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">I&lt;/span> &lt;span class="n">invalid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">N&lt;/span> &lt;span class="n">Not&lt;/span> &lt;span class="n">found&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Network&lt;/span> &lt;span class="n">Next&lt;/span> &lt;span class="n">Hop&lt;/span> &lt;span class="n">Metric&lt;/span> &lt;span class="n">LocPrf&lt;/span> &lt;span class="n">Weight&lt;/span> &lt;span class="ne">Path&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Route&lt;/span> &lt;span class="n">Distinguisher&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">7&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">100&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">default&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">vrf&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&amp;gt;&lt;/span> &lt;span class="mf">7.7&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">7.7&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.7&lt;/span> &lt;span class="mi">11&lt;/span> &lt;span class="mi">32768&lt;/span> &lt;span class="err">?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&amp;gt;&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="mf">9.9&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">9.9&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="mf">6.6&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">6.6&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">100&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="err">?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&amp;gt;&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">32768&lt;/span> &lt;span class="err">?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&amp;gt;&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="mf">69.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="mf">6.6&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">6.6&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">100&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="err">?&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#sh ip route vrf a | b Gate&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Gateway&lt;/span> &lt;span class="n">of&lt;/span> &lt;span class="n">last&lt;/span> &lt;span class="n">resort&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">set&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">7.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">subnets&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">O&lt;/span> &lt;span class="mf">7.7&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">7.7&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">110&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">11&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">via&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.7&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">04&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">21&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">9.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">subnets&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">B&lt;/span> &lt;span class="mf">9.9&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">9.9&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">200&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">via&lt;/span> &lt;span class="mf">6.6&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">6.6&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">03&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">42&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">17.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">variably&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="n">subnets&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="n">masks&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">C&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">directly&lt;/span> &lt;span class="n">connected&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">L&lt;/span> &lt;span class="mf">17.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">32&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">directly&lt;/span> &lt;span class="n">connected&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="mf">69.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">subnetted&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">subnets&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">B&lt;/span> &lt;span class="mf">69.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.0&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">200&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">via&lt;/span> &lt;span class="mf">6.6&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">6.6&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">03&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">42&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R1&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>再查找，去往 6.6.6.6 前缀有两条路径，管理和开销都一致，负载均衡？&lt;/p>
+&lt;p>这条路由是 R3 BGP 重分布进底层 IGP OSPF 而学习到的，有两条路径，管理距离110，metric 1 ，这时候需要比较forwarding metric，很不巧的是forwarding metric 也是一样，这样去往 6.6.6.6 就真负载均衡。forwarding metric 是本地到 ASBR 的 开销，修改 R11 e0/1-3 的开销。同理也需要修改 R12 的接口开销。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">O E2 12.12.12.12/32 [110/1] via 111.1.1.11, 01:37:27, Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> [110/1] via 12.1.1.2, 03:15:27, Ethernet0/0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R1#sh ip route | b Gate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Gateway of last resort is not set
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1.0.0.0/32 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">C 1.1.1.1 is directly connected, Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2.0.0.0/32 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O 2.2.2.2 [110/11] via 12.1.1.2, 04:26:59, Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3.0.0.0/32 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O 3.3.3.3 [110/21] via 111.1.1.11, 01:37:27, Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> [110/21] via 12.1.1.2, 04:26:49, Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6.0.0.0/32 is subnetted, 1 subnets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">O E2 6.6.6.6 [110/1] via 111.1.1.11, 01:37:27, Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> [110/1] via 12.1.1.2, 03:15:27, Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R1#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R1#sh ip route 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Routing entry for 6.6.6.6/32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Known via &amp;#34;ospf 100&amp;#34;, distance 110, metric 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tag 200, type extern 2, forward metric 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Last update from 12.1.1.2 on Ethernet0/0, 00:00:51 ago
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Routing Descriptor Blocks:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * 111.1.1.11, from 3.3.3.3, 00:31:15 ago, via Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route metric is 1, traffic share count is 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route tag 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 12.1.1.2, from 3.3.3.3, 00:00:51 ago, via Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route metric is 1, traffic share count is 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route tag 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R1#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 修改 R11 R12 的接口开销
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R11(config)#int ran e 0/1-/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R11(config-if-range)#ip ospf cost 1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R12(config-if)#int ran e 0/1-0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R12(config-if-range)#ip ospf cost 1000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 修改 R11 R12 的接口开销后
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R1#sh ip route 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Routing entry for 6.6.6.6/32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Known via &amp;#34;ospf 100&amp;#34;, distance 110, metric 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tag 200, type extern 2, forward metric 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Last update from 12.1.1.2 on Ethernet0/0, 00:08:51 ago
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Routing Descriptor Blocks:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * 12.1.1.2, from 3.3.3.3, 00:08:51 ago, via Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route metric is 1, traffic share count is 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route tag 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R1#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R6#sh ip rou 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Routing entry for 1.1.1.1/32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Known via &amp;#34;ospf 200&amp;#34;, distance 110, metric 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tag 100, type extern 2, forward metric 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Last update from 56.1.1.5 on Ethernet0/0, 00:02:30 ago
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Routing Descriptor Blocks:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * 56.1.1.5, from 4.4.4.4, 00:39:02 ago, via Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route metric is 1, traffic share count is 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route tag 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R6#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h3 id="测试">测试
+&lt;/h3>&lt;p>&lt;strong>R7 和 R9 之间的 ping 操作&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R7#ping 9.9.9.9 source 7.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Sending 5, 100-byte ICMP Echos to 9.9.9.9, timeout is 2 seconds:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Packet sent with a source address of 7.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!!!!!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Success rate is 100 percent (5/5), round-trip min/avg/max = 8/8/11 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R7#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R9#ping 7.7.7.7 source 9.9.9.9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Sending 5, 100-byte ICMP Echos to 7.7.7.7, timeout is 2 seconds:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Packet sent with a source address of 9.9.9.9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!!!!!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Success rate is 100 percent (5/5), round-trip min/avg/max = 8/8/10 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R9#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>R8 和 R10 之间的 ping 操作&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R8#ping 10.10.10.10 source 8.8.8.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Sending 5, 100-byte ICMP Echos to 10.10.10.10, timeout is 2 seconds:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Packet sent with a source address of 8.8.8.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!!!!!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Success rate is 100 percent (5/5), round-trip min/avg/max = 8/9/13 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R8#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R10#ping 8.8.8.8 source 10.10.10.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Packet sent with a source address of 10.10.10.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!!!!!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Success rate is 100 percent (5/5), round-trip min/avg/max = 8/9/10 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R10#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>R7 和 R9 之间的 Traceroute 操作&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R7#traceroute 9.9.9.9 source 7.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tracing the route to 9.9.9.9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VRF info: (vrf in name/id, vrf out name/id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 17.1.1.1 1 msec 1 msec 2 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 12.1.1.2 [MPLS: Labels 24/26 Exp 0] 8 msec 8 msec 8 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 23.1.1.3 [MPLS: Labels 26/26 Exp 0] 8 msec 12 msec 7 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4 34.1.1.4 [MPLS: Labels 27/26 Exp 0] 8 msec 9 msec 8 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 5 45.1.1.5 [MPLS: Labels 22/26 Exp 0] 9 msec 8 msec 8 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6 69.1.1.6 [MPLS: Label 26 Exp 0] 9 msec 7 msec 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7 69.1.1.9 9 msec * 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R7#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R9#traceroute 7.7.7.7 source 9.9.9.9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tracing the route to 7.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VRF info: (vrf in name/id, vrf out name/id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 69.1.1.6 2 msec 39 msec 2 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 56.1.1.5 [MPLS: Labels 25/26 Exp 0] 10 msec 9 msec 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 45.1.1.4 [MPLS: Labels 23/26 Exp 0] 12 msec 9 msec 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4 34.1.1.3 [MPLS: Labels 21/26 Exp 0] 10 msec 8 msec 10 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 5 23.1.1.2 [MPLS: Labels 19/26 Exp 0] 9 msec 10 msec 11 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6 17.1.1.1 [MPLS: Label 26 Exp 0] 7 msec 18 msec 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7 17.1.1.7 8 msec * 8 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R9#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>R8 和 R10 之间的 Traceroute 操作&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">R8#traceroute 10.10.10.10 source 8.8.8.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tracing the route to 10.10.10.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VRF info: (vrf in name/id, vrf out name/id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 18.1.1.1 2 msec 1 msec 1 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 12.1.1.2 [MPLS: Labels 24/28 Exp 0] 8 msec 9 msec 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 23.1.1.3 [MPLS: Labels 26/28 Exp 0] 9 msec 9 msec 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4 34.1.1.4 [MPLS: Labels 27/28 Exp 0] 10 msec 8 msec 10 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 5 45.1.1.5 [MPLS: Labels 22/28 Exp 0] 7 msec 9 msec 8 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6 106.1.1.6 [MPLS: Label 28 Exp 0] 8 msec 7 msec 9 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7 106.1.1.10 8 msec * 10 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R8#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R10#traceroute 8.8.8.8 source 10.10.10.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type escape sequence to abort.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tracing the route to 8.8.8.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VRF info: (vrf in name/id, vrf out name/id)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 106.1.1.6 1 msec 2 msec 1 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 56.1.1.5 [MPLS: Labels 25/28 Exp 0] 8 msec 8 msec 11 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 45.1.1.4 [MPLS: Labels 23/28 Exp 0] 8 msec 28 msec 8 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4 34.1.1.3 [MPLS: Labels 21/28 Exp 0] 8 msec 11 msec 8 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 5 23.1.1.2 [MPLS: Labels 19/28 Exp 0] 9 msec 8 msec 10 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6 18.1.1.1 [MPLS: Label 28 Exp 0] 16 msec 6 msec 7 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7 18.1.1.8 9 msec * 10 msec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">R10#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="一个视频">一个视频
+&lt;/h2>&lt;p>{% mmedia &amp;ldquo;bilibili&amp;rdquo; &amp;ldquo;bvid=BV1Lv4y1a7tG&amp;rdquo; %}&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
+&lt;li>配置存阿里云盘了，这是链接：[&lt;a class="link" href="https://www.aliyundrive.com/s/HueqNEaKSAx" target="_blank" rel="noopener"
+>分享的文件
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>]&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
+&lt;/ul></description></item></channel></rss>

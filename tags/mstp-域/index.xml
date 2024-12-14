@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MSTP 域 on Kir's Blog</title><link>https://weeaster.github.io/tags/mstp-%E5%9F%9F/</link><description>Recent content in MSTP 域 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 04 Nov 2022 13:28:31 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/mstp-%E5%9F%9F/index.xml" rel="self" type="application/rss+xml"/><item><title>关于组网中使用默认MSTP的问题</title><link>https://weeaster.github.io/posts/8eea84ef/</link><pubDate>Fri, 04 Nov 2022 13:28:31 +0000</pubDate><guid>https://weeaster.github.io/posts/8eea84ef/</guid><description>&lt;p>在一个项目中，或者说在一个不使用 VRRP 组网并且没有进行负载分担的核心网络中，项目初始时并没有刻意的去规划 生成树 这个协议。以华三设备为例，交换机默认开启了 MSTP 协议，所以在建设时有意或者无意的导致交换机的环路并不会使整个网络因此瘫痪.&lt;/p>
+&lt;p>关于生成树协议的工作原理，不在本文的要说明的范围内，可以自行Google或到各厂商官网查询，本文中用到的术语以华三厂商为例，可能与其他厂商叫法不一样，但是我想看这篇文的观众都知道，生成树协议不是私有协议（MSTP由IEEE制定的802.1s标准定义）。&lt;/p>
+&lt;p>写这篇文是想探讨一下一个网络中使用默认的 MSTP 可能导致的一些问题和关于生成树的调整&lt;/p>
+&lt;p>下面使用 HCL 搭建了一个经典的 核心/汇聚/接入 的三层网络，刻意构造的一个环路。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/04/d3u6pEmq2SGYfwJ.png">
+&lt;img src="https://s2.loli.net/2022/11/04/d3u6pEmq2SGYfwJ.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="分析网络中的生成树">分析网络中的生成树
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>在实际项目中，是很难确定最小的mac的交换机就是核心交换机，这样导致的结果就是生成树的根桥不一定就在核心交换机上，上图的实验拓扑中也刻意的把mac大的两台交换机放在了核心上&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>通过命令查看，核心交换机 (CORE_SW1) 聚合组101 为 ROOT 根端口，根桥是 32768.186d-08c1-0100&lt;/p>
+&lt;p>{% blockquote %}&lt;/p>
+&lt;p>根端口
+所谓根端口，是指非根桥设备上离根桥最近的端口。根端口负责与根桥进行通信。非根桥设备上有且只有一个根端口，根桥上没有根端口。&lt;/p>
+&lt;p>{% endblockquote %}&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;CORE_SW1&amp;gt;dis stp brief
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MST ID Port Role STP State Protection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 Bridge-Aggregation101 ROOT FORWARDING NONE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 Bridge-Aggregation102 DESI FORWARDING NONE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;CORE_SW1&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;CORE_SW1&amp;gt;dis stp ro
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;CORE_SW1&amp;gt;dis stp root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MST ID Root Bridge ID ExtPathCost IntPathCost Root Port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 32768.186d-08c1-0100 58 0 BAGG101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;CORE_SW1&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>为什么会出现这种情况&lt;/p>
+&lt;p>首先根据 MST 域 的定义，结合 H3C 官网说明，判断出上图中每个交换机都是不同 MST 域，上面拓扑图中本质就由 6 个 MST 域组成，尽管它们域的配置除了域名不一样，其他参数都一样。剩下的就是 MST 域与 MST 域 的生成树关系。&lt;/p>
+&lt;p>{% blockquote %}&lt;/p>
+&lt;p>MST域
+MST域（Multiple Spanning Tree Regions，多生成树域）是由交换网络中的多台设备以及它们之间的网段所构成。这些设备具有下列特点：
+· 都开启了生成树协议。
+· 域名相同。
+· VLAN与MSTI间映射关系的配置相同。
+· MSTP修订级别的配置相同。
+· 这些设备之间有物理链路连通&lt;/p>
+&lt;p>{% endblockquote %}&lt;/p>
+&lt;p>{% blockquote %}&lt;/p>
+&lt;p>CIST
+CIST（Common and Internal Spanning Tree，公共和内部生成树）是一棵连接交换网络内所有设备的单生成树，所有MST域的IST再加上CST就共同构成了整个交换网络的一棵完整的单生成树，即CIST。&lt;/p>
+&lt;p>CIST生成树的计算
+通过比较BPDU后，在整个网络中选择一个优先级最高的设备作为CIST的根桥。在每个MST域内MSTP通过计算生成IST；同时MSTP将每个MST域作为单台设备对待，通过计算在域间生成CST。CST和IST构成了整个网络的CIST。&lt;/p>
+&lt;p>{% endblockquote %}&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="可能导致的问题">可能导致的问题
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>依照上面拓扑图搭建网络会出现什么问题&lt;/p>
+&lt;p>查看 AGGE_SW1 生成树信息，发现汇聚交换机下联接入交换机的端口是 Alternate Port 角色，不转发业务流量。造成的具体表现就是从核心交换机方向的流量要回到 ACC_SW1 上的终端设备会绕道 ACC_SW2 再到 ACC_SW1 的终端。是不是很不合理&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;AGGE_SW1&amp;gt;dis stp brief
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MST ID Port Role STP State Protection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 Bridge-Aggregation23 DESI FORWARDING NONE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 GigabitEthernet1/0/1 ALTE DISCARDING NONE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0 GigabitEthernet1/0/2 ROOT FORWARDING NONE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;AGGE_SW1&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="解决之道">解决之道
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>要扭转 &lt;strong>说2&lt;/strong> 中这种不合理的流量路径，方法也很简单，保证核心交换机是根桥即可&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置核心交换机为根桥&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[CORE_SW1]stp instance 0 root primary
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
+&lt;/ul></description></item></channel></rss>

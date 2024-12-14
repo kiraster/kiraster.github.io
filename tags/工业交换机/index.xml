@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>工业交换机 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E5%B7%A5%E4%B8%9A%E4%BA%A4%E6%8D%A2%E6%9C%BA/</link><description>Recent content in 工业交换机 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 30 Jul 2022 22:53:41 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E5%B7%A5%E4%B8%9A%E4%BA%A4%E6%8D%A2%E6%9C%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>工业交换机电源线缆选择</title><link>https://weeaster.github.io/posts/cadda170/</link><pubDate>Sat, 30 Jul 2022 22:53:41 +0000</pubDate><guid>https://weeaster.github.io/posts/cadda170/</guid><description>&lt;h3 id="交流供电端至独立电源交流电源线">交流供电端至独立电源（交流电源线）
+&lt;/h3>&lt;h4 id="标准">标准
+&lt;/h4>&lt;p>&lt;strong>通信机房用阻燃软结构电缆，标识（RVVZ（ZRVVR))&lt;/strong>&lt;/p>
+&lt;p>RVVZ电缆是采用细丝合股多层复绞形式，具有良好的柔软性，弯曲性能高，同时具有高阻燃性能。
+R——软
+V——聚氯乙烯护套
+V——聚氯乙烯绝缘
+Z——阻燃
+RVVZ电缆常见型号
+RVZ&amp;ndash;铜芯阻燃聚氯乙烯绝缘软电缆　　　
+RVVZ&amp;ndash;铜芯阻燃聚氯乙烯绝缘和护套软电缆
+RVVZ22&amp;ndash;铜芯阻燃聚氯乙烯绝缘和护套钢带铠装软电缆
+RVFH&amp;ndash;铜芯阻燃聚氯乙烯绝缘防火软电缆
+RVVFH&amp;ndash;铜芯阻燃聚氯乙烯绝缘和护套防火软电缆
+RVVFH22&amp;ndash;铜芯阻燃聚氯乙烯绝缘和护套钢带铠装防火软电缆&lt;/p>
+&lt;p>&lt;strong>电压等级&lt;/strong>
+RVVZ、RVVZ22、RVVFH、RVVFH22型号的电缆为&lt;strong>0.6/1KV&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>适用范围&lt;/strong>
+适用于电信、邮电、铁路、化工、消防、通信等&lt;strong>通信机房配电系统的内部连接线&lt;/strong>，既适合于固定敷设也可做移动电缆使用，在特殊环境中尤为适用，本产品适用于通信机房、移动机站及高层建筑等电源的输、配电系统中**．交流额定电压**O.6／1kV及以下阻燃、耐火软电缆。&lt;/p>
+&lt;p>&lt;strong>RVV和RVVZ的区别&lt;/strong>&lt;/p>
+&lt;p>1、RVV一般叫做软电线，RVVZ(ZR-VVR)一般叫软电缆。&lt;/p>
+&lt;p>2、电压等级：RVV：300/500V， RVVZ：0.6/1KV&lt;/p>
+&lt;p>3、使用场合&lt;/p>
+&lt;p>​ RVV：主要应用于电器、仪表和电子设备及自动化装置用电源线、控制线及信号传输线，具体可用于防盗报警系统、楼宇对讲系统等。&lt;/p>
+&lt;p>​ &lt;strong>RVVZ：适用于交流额定电压为0.6/1KV及以下对柔软度要求非常高的的输配电线路上。&lt;/strong>&lt;/p>
+&lt;h4 id="选用建议">选用建议
+&lt;/h4>&lt;ul>
+&lt;li>选用 &lt;strong>3 芯 RVVZ&lt;/strong> 标准的线缆用于供电插座至 H3C DG-30-S24II 电源的交流供电。&lt;/li>
+&lt;/ul>
+&lt;h4 id="线缆标识">线缆标识：
+&lt;/h4>$$
+RVVZ--O.6／1kV --3* 1.0 m{m}^2
+$$&lt;hr>
+&lt;h3 id="独立电源至工业交换机接入端直流电源线">独立电源至工业交换机接入端（直流电源线）
+&lt;/h3>&lt;h4 id="标准-1">标准
+&lt;/h4>&lt;p>&lt;strong>根据官网资料查询，直流电源线的要求:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>铜制线缆&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线径：0.5mm^2 或 20AWG&amp;ndash;3mm^2 或 12 AWG&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">美国线规（英文是American wire gauge，缩写为AWG），是一种区分导线直径的标准，又被称为 Brown &amp;amp; Sharpe线规。这种标准化线规系统于1857年起在美国开始使用。导线的直径与导线承载电流的能力有很大关系。线规数字越小，表示线材直径越粗，所能承载的电流就越大；反之，线规数字越大，表示线材直径越细，所能承载的电流就越小。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">AWG表适用于单根、实心、圆形的导线。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="选用建议cwg-标准选购">选用建议(CWG 标准选购)
+&lt;/h4>&lt;p>&lt;strong>线芯&lt;/strong>：最小截面积为0.5mm^2， 最大截面积 3mm^2 的范围内选购线缆&lt;/p>
+&lt;p>&lt;strong>线芯数&lt;/strong>： 2芯&lt;/p>
+&lt;p>&lt;strong>套线&lt;/strong>： RVV软护套线&lt;/p>
+&lt;h4 id="线缆标识-1">线缆标识
+&lt;/h4>$$
+RVV - 2* 1.0 m{m}^2
+$$</description></item></channel></rss>

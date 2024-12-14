@@ -1,0 +1,272 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="在B站看了一个UP主（155和150 ）上传的视频，感觉挺有意思的，就搭拓扑玩一玩。现在这个视频已经不见了，视频里使用的eNSP模拟器搭建的，我用PNET搭建，模拟器类型不关键。已经删减了一些内容，并加了一些实验需求。\n实验主要涉及到的BGP技术的运用，包括有BGP邻居建立、路由加载、路由传递、BGP联盟、路由聚合、路由拆分、团体属性、路由选路、正则表达式、路由过滤、BGP特性、路由阻尼等。\n拓扑如图：\n"><title>BGP综合实验拓扑</title>
+<link rel=canonical href=https://weeaster.github.io/posts/48f55792/><link rel=stylesheet href=/scss/style.min.0cdcc3547834ff1ba7cd29db268c8b5ddb18dc682ab7cab64f22b4f0d42b3827.css><meta property='og:title' content="BGP综合实验拓扑"><meta property='og:description' content="在B站看了一个UP主（155和150 ）上传的视频，感觉挺有意思的，就搭拓扑玩一玩。现在这个视频已经不见了，视频里使用的eNSP模拟器搭建的，我用PNET搭建，模拟器类型不关键。已经删减了一些内容，并加了一些实验需求。\n实验主要涉及到的BGP技术的运用，包括有BGP邻居建立、路由加载、路由传递、BGP联盟、路由聚合、路由拆分、团体属性、路由选路、正则表达式、路由过滤、BGP特性、路由阻尼等。\n拓扑如图：\n"><meta property='og:url' content='https://weeaster.github.io/posts/48f55792/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Network Emulator'><meta property='article:tag' content='PNETLab'><meta property='article:tag' content='Cisco'><meta property='article:tag' content='BGP'><meta property='article:published_time' content='2022-02-25T01:32:49+00:00'><meta property='article:modified_time' content='2022-02-25T01:32:49+00:00'><meta name=twitter:title content="BGP综合实验拓扑"><meta name=twitter:description content="在B站看了一个UP主（155和150 ）上传的视频，感觉挺有意思的，就搭拓扑玩一玩。现在这个视频已经不见了，视频里使用的eNSP模拟器搭建的，我用PNET搭建，模拟器类型不关键。已经删减了一些内容，并加了一些实验需求。\n实验主要涉及到的BGP技术的运用，包括有BGP邻居建立、路由加载、路由传递、BGP联盟、路由聚合、路由拆分、团体属性、路由选路、正则表达式、路由过滤、BGP特性、路由阻尼等。\n拓扑如图：\n"><link rel="shortcut icon" href=/favicon.ico><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#实验需求>实验需求</a><ol><li><a href=#bgp邻居建立>BGP邻居建立</a></li><li><a href=#bgp路由加载>BGP路由加载</a></li><li><a href=#bgp路由传递>BGP路由传递</a></li><li><a href=#bgp路由聚合路由拆分>BGP路由聚合、路由拆分</a></li><li><a href=#bgp选路medas-pathlocal-pref>BGP选路(MED、AS-Path、Local-Pref)</a></li><li><a href=#bgp路由过滤>BGP路由过滤</a></li><li><a href=#bgp-特性>BGP 特性</a></li><li><a href=#ending>Ending</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/pnetlab/ style=background-color:#cae1ff;color:#fff>PNETLab</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/48f55792/>BGP综合实验拓扑</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Feb 25, 2022</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>5 minute read</time></div></footer></div></header><section class=article-content><p>在B站看了一个UP主（<a class=link href=https://space.bilibili.com/455975406 target=_blank rel=noopener>155和150
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span>
+</a>）上传的视频，感觉挺有意思的，就搭拓扑玩一玩。现在这个视频已经不见了，视频里使用的eNSP模拟器搭建的，我用PNET搭建，模拟器类型不关键。已经删减了一些内容，并加了一些实验需求。</p><p>实验主要涉及到的BGP技术的运用，包括有BGP邻居建立、路由加载、路由传递、BGP联盟、路由聚合、路由拆分、团体属性、路由选路、正则表达式、路由过滤、BGP特性、路由阻尼等。</p><p>拓扑如图：</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2022/02/24/6S5qGjeiQCaPcHb.jpg><img src=https://s2.loli.net/2022/02/24/6S5qGjeiQCaPcHb.jpg loading=lazy></a></div></p><h2 id=实验需求>实验需求</h2><h3 id=bgp邻居建立>BGP邻居建立</h3><ol><li>eBGP之间使用接口建立(联盟内部子AS eBGP除外)，iBGP使用环回接口Lo0建立</li><li>R2、R7、R9使用对等体组方式配置</li><li>R4、R7、R9为路由反射器</li></ol><h3 id=bgp路由加载>BGP路由加载</h3><ol><li><p>R5将ISIS重分布进BGP，R6、R7、R8将ISIS重分布进BGP</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R5
+</span></span><span class=line><span class=cl>router bgp 64100
+</span></span><span class=line><span class=cl> redistribute isis level-1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R6、R7、R8
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> redistribute isis level-2
+</span></span></code></pre></div></li><li><p>R5能够正常接收到100.1.1.X的路由，R4不能使用next-hop-self</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R4
+</span></span><span class=line><span class=cl>route-map SET_NH permit 10
+</span></span><span class=line><span class=cl> set ip next-hop 120.1.4.4
+</span></span><span class=line><span class=cl>router bgp 64100
+</span></span><span class=line><span class=cl> neighbor iBGP route-map SET_NH out
+</span></span></code></pre></div></li></ol><h3 id=bgp路由传递>BGP路由传递</h3><ol><li><p>100.1.1.x之间可以通信</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R3
+</span></span><span class=line><span class=cl>neighbor 200.1.103.10 as-override
+</span></span><span class=line><span class=cl>R6
+</span></span><span class=line><span class=cl>neighbor 200.1.116.11 as-override
+</span></span><span class=line><span class=cl>R7
+</span></span><span class=line><span class=cl>neighbor 200.1.127.12 as-override
+</span></span></code></pre></div></li><li><p>R3、R6、R7针对AS 64520移除私有AS号</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R3
+</span></span><span class=line><span class=cl>router bgp 64100
+</span></span><span class=line><span class=cl> neighbor 200.1.103.10 remove-private-as all replace-as
+</span></span><span class=line><span class=cl>R6
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> neighbor 200.1.116.11 remove-private-as all replace-as
+</span></span><span class=line><span class=cl>R7
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> neighbor 200.1.127.12 remove-private-as all replace-as
+</span></span></code></pre></div></li><li><p>AS 64540 内部联邦配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R11
+</span></span><span class=line><span class=cl>router bgp 64530
+</span></span><span class=line><span class=cl> bgp log-neighbor-changes
+</span></span><span class=line><span class=cl> bgp confederation identifier 64540
+</span></span><span class=line><span class=cl> bgp confederation peers 64531 
+</span></span><span class=line><span class=cl> neighbor 100.1.1.12 remote-as 64531
+</span></span><span class=line><span class=cl> neighbor 100.1.1.12 disable-connected-check
+</span></span><span class=line><span class=cl> neighbor 100.1.1.12 update-source Loopback0
+</span></span><span class=line><span class=cl> neighbor 100.1.1.12 next-hop-self
+</span></span><span class=line><span class=cl> neighbor 200.1.116.6 remote-as 64200
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R12
+</span></span><span class=line><span class=cl>router bgp 64531
+</span></span><span class=line><span class=cl> bgp log-neighbor-changes
+</span></span><span class=line><span class=cl> bgp confederation identifier 64540
+</span></span><span class=line><span class=cl> bgp confederation peers 64530 
+</span></span><span class=line><span class=cl> redistribute eigrp 90
+</span></span><span class=line><span class=cl> neighbor 100.1.1.11 remote-as 64530
+</span></span><span class=line><span class=cl> neighbor 100.1.1.11 disable-connected-check
+</span></span><span class=line><span class=cl> neighbor 100.1.1.11 update-source Loopback0
+</span></span><span class=line><span class=cl> neighbor 100.1.1.11 next-hop-self
+</span></span><span class=line><span class=cl> neighbor 100.1.1.13 remote-as 64531
+</span></span><span class=line><span class=cl> neighbor 100.1.1.13 update-source Loopback0
+</span></span><span class=line><span class=cl> neighbor 100.1.1.13 next-hop-self
+</span></span><span class=line><span class=cl> neighbor 200.1.127.7 remote-as 64200
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R13
+</span></span><span class=line><span class=cl>router bgp 64531
+</span></span><span class=line><span class=cl> bgp log-neighbor-changes
+</span></span><span class=line><span class=cl> bgp confederation identifier 64540
+</span></span><span class=line><span class=cl> network 111.1.2.0 mask 255.255.255.0
+</span></span><span class=line><span class=cl> network 111.1.3.0 mask 255.255.255.0
+</span></span><span class=line><span class=cl> aggregate-address 111.1.0.0 255.255.0.0 as-set summary-only
+</span></span><span class=line><span class=cl> neighbor 100.1.1.12 remote-as 64531
+</span></span><span class=line><span class=cl> neighbor 100.1.1.12 update-source Loopback0
+</span></span></code></pre></div></li></ol><h3 id=bgp路由聚合路由拆分>BGP路由聚合、路由拆分</h3><ol><li><p>R5、R6、R7、R8对AS内的互联地址与主机路由汇总为子网掩码为16位的聚合路由（例如：120.1.0.0/16），并防止路由回愦</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R5
+</span></span><span class=line><span class=cl>router bgp 64100
+</span></span><span class=line><span class=cl> aggregate-address 123.1.0.0 255.255.0.0 as-set summary-only
+</span></span><span class=line><span class=cl> aggregate-address 120.1.0.0 255.255.0.0 as-set summary-only
+</span></span><span class=line><span class=cl>R6、R7、R8
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> aggregate-address 145.1.0.0 255.255.0.0 as-set summary-only
+</span></span><span class=line><span class=cl> aggregate-address 140.1.0.0 255.255.0.0 as-set summary-only
+</span></span></code></pre></div></li><li><p>R5的汇总主机路由，不抑制120.1.4.4/32和 120.1.5.5/32</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R5
+</span></span><span class=line><span class=cl>ip prefix-list UNSUPPRESS seq 5 permit 120.1.4.4/32
+</span></span><span class=line><span class=cl>ip prefix-list UNSUPPRESS seq 10 permit 120.1.5.5/32
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map UNSUPPRESS permit 10
+</span></span><span class=line><span class=cl> match ip address prefix-list UNSUPPRESS
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64100
+</span></span><span class=line><span class=cl> neighbor 120.1.4.4 unsuppress-map UNSUPPRESS
+</span></span></code></pre></div></li><li><p>R6、R7、R8的汇总主机路由，仅抑制145.1.9.9/32 ，并调整聚合路由起源属性为 igp</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R6、R7、R8
+</span></span><span class=line><span class=cl>ip prefix-list SUPPRESS seq 5 permit 140.1.9.9/32
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map SUPPRESS permit 10
+</span></span><span class=line><span class=cl> match ip address prefix-list SUPPRESS
+</span></span><span class=line><span class=cl>route-map SET_IGP permit 10
+</span></span><span class=line><span class=cl> set origin igp
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> aggregate-address 140.1.0.0 255.255.0.0 as-set summary-only attribute-map SET_IGP suppress-map SUPPRESS
+</span></span></code></pre></div></li><li><p>R1去往111.1.0.0/24和111.1.1.0/24下一跳走R5；R2去往111.1.2.0/24和111.1.3.0/24下一跳走R8</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>R1</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>SOURCE_AS64100</span> <span class=n>seq</span> <span class=mi>5</span> <span class=n>permit</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>15.5</span><span class=o>/</span><span class=mi>32</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>huizong</span> <span class=n>seq</span> <span class=mi>5</span> <span class=n>permit</span> <span class=mf>111.1</span><span class=o>.</span><span class=mf>0.0</span><span class=o>/</span><span class=mi>16</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>mingxi</span> <span class=n>seq</span> <span class=mi>5</span> <span class=n>permit</span> <span class=mf>111.1</span><span class=o>.</span><span class=mf>0.0</span><span class=o>/</span><span class=mi>24</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>mingxi</span> <span class=n>seq</span> <span class=mi>10</span> <span class=n>permit</span> <span class=mf>111.1</span><span class=o>.</span><span class=mf>1.0</span><span class=o>/</span><span class=mi>24</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>mingxi</span> <span class=n>permit</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl> <span class=n>set</span> <span class=n>ip</span> <span class=n>address</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>mingxi</span>
+</span></span><span class=line><span class=cl> <span class=n>set</span> <span class=n>community</span> <span class=n>no</span><span class=o>-</span><span class=k>export</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>huizong</span> <span class=n>permit</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl> <span class=n>match</span> <span class=n>ip</span> <span class=n>address</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>huizong</span>
+</span></span><span class=line><span class=cl> <span class=n>match</span> <span class=n>ip</span> <span class=n>route</span><span class=o>-</span><span class=n>source</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>SOURCE_AS64100</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>router</span> <span class=n>bgp</span> <span class=mi>64520</span>
+</span></span><span class=line><span class=cl> <span class=n>bgp</span> <span class=n>inject</span><span class=o>-</span><span class=n>map</span> <span class=n>mingxi</span> <span class=n>exist</span><span class=o>-</span><span class=n>map</span> <span class=n>huizong</span> <span class=n>copy</span><span class=o>-</span><span class=n>attributes</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>R2</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>SOURCE_AS64200</span> <span class=n>seq</span> <span class=mi>5</span> <span class=n>permit</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>28.8</span><span class=o>/</span><span class=mi>32</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>huizong</span> <span class=n>seq</span> <span class=mi>5</span> <span class=n>permit</span> <span class=mf>111.1</span><span class=o>.</span><span class=mf>0.0</span><span class=o>/</span><span class=mi>16</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>mingxi</span> <span class=n>seq</span> <span class=mi>5</span> <span class=n>permit</span> <span class=mf>111.1</span><span class=o>.</span><span class=mf>2.0</span><span class=o>/</span><span class=mi>24</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>mingxi</span> <span class=n>seq</span> <span class=mi>10</span> <span class=n>permit</span> <span class=mf>111.1</span><span class=o>.</span><span class=mf>3.0</span><span class=o>/</span><span class=mi>24</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>mingxi</span> <span class=n>permit</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl> <span class=n>set</span> <span class=n>ip</span> <span class=n>address</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>mingxi</span>
+</span></span><span class=line><span class=cl> <span class=n>set</span> <span class=n>community</span> <span class=n>no</span><span class=o>-</span><span class=k>export</span>
+</span></span><span class=line><span class=cl><span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>huizong</span> <span class=n>permit</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl> <span class=n>match</span> <span class=n>ip</span> <span class=n>address</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>huizong</span>
+</span></span><span class=line><span class=cl> <span class=n>match</span> <span class=n>ip</span> <span class=n>route</span><span class=o>-</span><span class=n>source</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>SOURCE_AS64200</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>router</span> <span class=n>bgp</span> <span class=mi>64520</span>
+</span></span><span class=line><span class=cl> <span class=n>bgp</span> <span class=n>inject</span><span class=o>-</span><span class=n>map</span> <span class=n>mingxi</span> <span class=n>exist</span><span class=o>-</span><span class=n>map</span> <span class=n>huizong</span> <span class=n>copy</span><span class=o>-</span><span class=n>attributes</span>
+</span></span></code></pre></div></li></ol><h3 id=bgp选路medas-pathlocal-pref>BGP选路(MED、AS-Path、Local-Pref)</h3><ol><li><p>R8上配置，实现AS 64200访问 120.1.X.X，X为偶数，走R4和R8互联链路；X为奇数，走R3和R6互联链路</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R8
+</span></span><span class=line><span class=cl>access-list 10 permit 120.1.0.0 0.0.254.254
+</span></span><span class=line><span class=cl>access-list 20 permit 120.1.1.1 0.0.254.254
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map SET_LP permit 10
+</span></span><span class=line><span class=cl> match ip address 10
+</span></span><span class=line><span class=cl> set local-preference 120
+</span></span><span class=line><span class=cl>route-map SET_LP permit 20
+</span></span><span class=line><span class=cl> match ip address 20
+</span></span><span class=line><span class=cl> set local-preference 99
+</span></span><span class=line><span class=cl>route-map SET_LP permit 30
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> neighbor 200.1.48.4 route-map SET_LP in
+</span></span></code></pre></div></li><li><p>R6、R8上配置，实现AS 64100 访问 140.1.X.X/32，X为偶数，走R4和R8互联链路；X为奇数，走R3和R6互联链路</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R6
+</span></span><span class=line><span class=cl>access-list 30 permit 140.1.0.0 0.0.254.254
+</span></span><span class=line><span class=cl>access-list 40 permit 140.1.1.1 0.0.254.254
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map SET_MED permit 10
+</span></span><span class=line><span class=cl> match ip address 30
+</span></span><span class=line><span class=cl> set metric 200
+</span></span><span class=line><span class=cl>route-map SET_MED permit 20
+</span></span><span class=line><span class=cl> match ip address 40
+</span></span><span class=line><span class=cl> set metric 100
+</span></span><span class=line><span class=cl>route-map SET_MED permit 30
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> neighbor 200.1.36.3 route-map SET_MED out
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R8
+</span></span><span class=line><span class=cl>access-list 30 permit 140.1.0.0 0.0.254.254
+</span></span><span class=line><span class=cl>access-list 40 permit 140.1.1.1 0.0.254.254
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map SET_MED permit 10
+</span></span><span class=line><span class=cl> match ip address 30
+</span></span><span class=line><span class=cl> set metric 100
+</span></span><span class=line><span class=cl>route-map SET_MED permit 20
+</span></span><span class=line><span class=cl> match ip address 40
+</span></span><span class=line><span class=cl> set metric 200
+</span></span><span class=line><span class=cl>route-map SET_MED permit 30
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> neighbor 200.1.48.4 route-map SET_MED out
+</span></span></code></pre></div></li><li><p>R1上对起始于AS 64540的任意前缀，AS 64520总是通过R2转发（路由拆分的明细条目除外）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>配置 ip as-path列表，匹配AS 64540 开头的路径路由条目，route-map 设置追加AS号使路径变长
+</span></span><span class=line><span class=cl>R1
+</span></span><span class=line><span class=cl>ip as-path access-list 100 permit _64540$
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map AS_PREPEND permit 10
+</span></span><span class=line><span class=cl> match as-path 100
+</span></span><span class=line><span class=cl> set as-path prepend last-as 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64520
+</span></span><span class=line><span class=cl> neighbor 200.1.15.5 route-map AS_PREPEND in
+</span></span></code></pre></div></li></ol><h3 id=bgp路由过滤>BGP路由过滤</h3><ol><li><p>R6、R7仅通告 200.1.XY.0/24 与 100.1.1.X/32的路由到 R11、R12</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>route-map 设置匹配，向R11，R12通告路由进行过滤
+</span></span><span class=line><span class=cl>R6
+</span></span><span class=line><span class=cl>ip prefix-list ADV_TO_64540 seq 5 permit 200.1.0.0/16 le 24
+</span></span><span class=line><span class=cl>ip prefix-list ADV_TO_64540 seq 10 permit 100.1.1.0/24 le 32
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map ADV_TO_64540 permit 10
+</span></span><span class=line><span class=cl> match ip address prefix-list ADV_TO_64540
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> neighbor 200.1.116.11 route-map ADV_TO_64540 out
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R7
+</span></span><span class=line><span class=cl>ip prefix-list ADV_TO_64540 seq 5 permit 200.1.0.0/16 le 24
+</span></span><span class=line><span class=cl>ip prefix-list ADV_TO_64540 seq 10 permit 100.1.1.0/24 le 32
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map ADV_TO_64540 permit 10
+</span></span><span class=line><span class=cl> match ip address prefix-list ADV_TO_64540
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64200
+</span></span><span class=line><span class=cl> neighbor 200.1.127.12 route-map ADV_TO_64540 out
+</span></span></code></pre></div></li><li><p>R3、R10上配置ORF，使AS 64100仅通告 200.1.XY.0/24 与 100.1.1.X/32的前缀到R10</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>通过向对等体通告ORF能力可以激活这一feature。表示接受从对等体来的，前缀列表，并把这个前缀列表应用到针对对等体的出站方向。
+</span></span><span class=line><span class=cl>R10
+</span></span><span class=line><span class=cl>ip prefix-list FROM_64100 seq 5 permit 200.1.0.0/16 le 24
+</span></span><span class=line><span class=cl>ip prefix-list FROM_64100 seq 10 permit 100.1.1.0/24 le 32
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64540
+</span></span><span class=line><span class=cl> neighbor 200.1.103.3 capability orf prefix-list send
+</span></span><span class=line><span class=cl> neighbor 200.1.103.3 prefix-list FROM_64100 in
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R3
+</span></span><span class=line><span class=cl>router bgp 64100
+</span></span><span class=line><span class=cl> neighbor 200.1.103.10 capability orf prefix-list receive
+</span></span></code></pre></div></li></ol><h3 id=bgp-特性>BGP 特性</h3><ol><li><p>AS 64520 不作为传输型AS 不能使用BGP路由过滤</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>no</span><span class=o>-</span><span class=n>export团体属性</span>
+</span></span><span class=line><span class=cl><span class=n>R1</span>
+</span></span><span class=line><span class=cl><span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>SET_COMM</span> <span class=n>permit</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl> <span class=n>set</span> <span class=n>community</span> <span class=n>no</span><span class=o>-</span><span class=k>export</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>router</span> <span class=n>bgp</span> <span class=mi>64520</span>
+</span></span><span class=line><span class=cl> <span class=n>neighbor</span> <span class=mf>10.1</span><span class=o>.</span><span class=mf>2.2</span> <span class=n>send</span><span class=o>-</span><span class=n>community</span>
+</span></span><span class=line><span class=cl> <span class=n>neighbor</span> <span class=mf>10.1</span><span class=o>.</span><span class=mf>2.2</span> <span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>SET_COMM</span> <span class=n>out</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>R2</span>
+</span></span><span class=line><span class=cl><span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>SET_COMM</span> <span class=n>permit</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl> <span class=n>set</span> <span class=n>community</span> <span class=n>no</span><span class=o>-</span><span class=k>export</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>router</span> <span class=n>bgp</span> <span class=mi>64520</span>
+</span></span><span class=line><span class=cl> <span class=n>neighbor</span> <span class=mf>10.1</span><span class=o>.</span><span class=mf>1.1</span> <span class=n>send</span><span class=o>-</span><span class=n>community</span>
+</span></span><span class=line><span class=cl> <span class=n>neighbor</span> <span class=mf>10.1</span><span class=o>.</span><span class=mf>1.1</span> <span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>SET_COMM</span> <span class=n>out</span>
+</span></span></code></pre></div></li><li><p>R1与R2之间的iBGP邻居启用MD5认证，密码为cisco</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R1
+</span></span><span class=line><span class=cl>neighbor 10.1.1.1 password cisco
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R2
+</span></span><span class=line><span class=cl>neighbor 10.1.2.2 password cisco
+</span></span></code></pre></div></li><li><p>R3上配置，若100.1.1.10/32不稳定，震荡2次抑制传递，并在5min后自动恢复</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>配置BGP路由惩罚
+</span></span><span class=line><span class=cl>R3
+</span></span><span class=line><span class=cl>ip prefix-list DAMPENING seq 5 permit 100.1.1.10/32
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>route-map DAMPENING permit 10
+</span></span><span class=line><span class=cl> match ip address prefix-list DAMPENING
+</span></span><span class=line><span class=cl> set dampening 4 750 2000 16
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>router bgp 64100
+</span></span><span class=line><span class=cl> bgp dampening route-map DAMPENING
+</span></span></code></pre></div></li><li><p>R1上配置，若100.1.1.10路由条目存在，通告默认路由到R2</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>R1</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>EXIST_10</span> <span class=n>seq</span> <span class=mi>5</span> <span class=n>permit</span> <span class=mf>100.1</span><span class=o>.</span><span class=mf>1.10</span><span class=o>/</span><span class=mi>32</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>DEFAULT_CONDITION</span> <span class=n>permit</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl> <span class=n>match</span> <span class=n>ip</span> <span class=n>address</span> <span class=n>prefix</span><span class=o>-</span><span class=n>list</span> <span class=n>EXIST_10</span>
+</span></span><span class=line><span class=cl> <span class=n>set</span> <span class=n>community</span> <span class=n>no</span><span class=o>-</span><span class=k>export</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>router</span> <span class=n>bgp</span> <span class=mi>64520</span>
+</span></span><span class=line><span class=cl> <span class=n>neighbor</span> <span class=mf>10.1</span><span class=o>.</span><span class=mf>2.2</span> <span class=n>default</span><span class=o>-</span><span class=n>originate</span> <span class=n>route</span><span class=o>-</span><span class=n>map</span> <span class=n>DEFAULT_CONDITION</span>
+</span></span></code></pre></div></li></ol><h3 id=ending>Ending</h3><ul><li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li><li>配置存阿里云盘了，这是链接：[<a class=link href=https://www.aliyundrive.com/s/ekTf1JRqVFa target=_blank rel=noopener>分享的文件
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span>
+</a>]</li><li>欢迎“<del>来电</del>”来函探讨。</li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/network-emulator/>Network Emulator</a>
+<a href=/tags/pnetlab/>PNETLab</a>
+<a href=/tags/cisco/>Cisco</a>
+<a href=/tags/bgp/>BGP</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/638be305/><div class=article-details><h2 class=article-title>多子网分支的第3阶段分层DMVPN实验</h2></div></a></article><article><a href=/posts/5c8077d9/><div class=article-details><h2 class=article-title>观察OSPF虚链路和虚链路的替代办法</h2></div></a></article><article><a href=/posts/c0ba4ae2/><div class=article-details><h2 class=article-title>配置跨域的Option C MPLS VPN（Cisco）</h2></div></a></article><article><a href=/posts/2e964a67/><div class=article-details><h2 class=article-title>IPv6 各隧道Tunnel使用Lab</h2></div></a></article><article><a href=/posts/1b6d0fec/><div class=article-details><h2 class=article-title>几种重分发方式可能带来的问题和处理</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=https://space.bilibili.com/11565094 target=_blank title=Bilibili rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script></body></html>

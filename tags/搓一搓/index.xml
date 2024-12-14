@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>搓一搓 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E6%90%93%E4%B8%80%E6%90%93/</link><description>Recent content in 搓一搓 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 24 Jul 2024 16:16:07 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E6%90%93%E4%B8%80%E6%90%93/index.xml" rel="self" type="application/rss+xml"/><item><title>2022-2023华为ICT大赛（全国）实验题研究</title><link>https://weeaster.github.io/posts/8f2ea734/</link><pubDate>Wed, 24 Jul 2024 16:16:07 +0000</pubDate><guid>https://weeaster.github.io/posts/8f2ea734/</guid><description>&lt;p>上一篇文整了个大阵仗（内容太多，浏览器好像有些受不了）&lt;/p>
+&lt;p>经过在搜索引擎遨游，最终发现这些题其实在华为的ICT学院课程网站上有&lt;/p>
+&lt;p>&lt;a class="link" href="https://talent.shixizhi.huawei.com" target="_blank" rel="noopener"
+>https://talent.shixizhi.huawei.com
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> &amp;ndash;&amp;raquo; 搜索ICT &amp;ndash;&amp;raquo; 华为ICT大赛 - 网络赛道学习空间（中国区）&lt;/p>
+&lt;p>还有其他内容，有兴趣可以点击看看&lt;/p>
+&lt;p>本次研究研究，搓一搓的图如标题所示&lt;/p>
+&lt;p>文章末尾，附上ensp拓扑文件和配置导出文件&lt;/p>
+&lt;h2 id="说明">说明
+&lt;/h2>&lt;ul>
+&lt;li>ensp版本：1.3.00.100 V100R003C00SPC100&lt;/li>
+&lt;li>电脑：Win10 ltsc （CPU：不配拥有名称，RAM=16GB）&lt;/li>
+&lt;li>我电脑跑这图是真的卡&lt;/li>
+&lt;li>遇到FW启动错误代码40，建议先启动FW，再启动其他设备&lt;/li>
+&lt;li>AR路由器我整不出G0/0/3接口，使用G3/0/0代替&lt;/li>
+&lt;/ul>
+&lt;h2 id="实验拓扑">实验拓扑
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/07/24/n4ubkLNCS3E2PXa.jpg">
+&lt;img src="https://s2.loli.net/2024/07/24/n4ubkLNCS3E2PXa.jpg"
+loading="lazy"
+alt="ENSP拓扑"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="配置">配置
+&lt;/h2>&lt;h3 id="任务1vlan">任务1：VLAN
+&lt;/h3>&lt;ul>
+&lt;li>按照给出的表格数据配置对应设备的vlan、Trunk、Access&lt;/li>
+&lt;li>路由器接口注意配置子接口dot1q termination vid xx ，arp broadcast enable&lt;/li>
+&lt;li>防火墙接口注意配置 vlan-type dot1q xx&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务2ip地址">任务2：IP地址
+&lt;/h3>&lt;ul>
+&lt;li>按照给出的表格数据配置对应设备的IP地址&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务3mstp配置">任务3：MSTP配置
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>SW1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp mode mstp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp region-configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> region-name RG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 1 vlan 2 to 9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 2 vlan 10 to 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> active region-configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp edged-port enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp edged-port enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>SW2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp mode mstp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp region-configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> region-name RG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 1 vlan 2 to 9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 2 vlan 10 to 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> active region-configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp instance 1 priority 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp instance 2 priority 4096
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp root-protection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp disable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>SW3&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp mode mstp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp region-configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> region-name RG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 1 vlan 2 to 9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 2 vlan 10 to 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> active region-configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp instance 1 priority 4096
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">stp instance 2 priority 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp edged-port enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp root-protection
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> stp disable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>验证: dis stp&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务4防火墙安全域配置">任务4：防火墙安全域配置
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>FW1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone trust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/5.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone untrust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/3.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone dmz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone trust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/5.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone untrust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/3.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone dmz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW3&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone trust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone untrust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>验证：dis zone interface&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务5防火墙vrrp双机热备和安全策略配置">任务5：防火墙VRRP、双机热备和安全策略配置
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>FW1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vrrp vrid 1 virtual-ip 192.168.1.254 active
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/5.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vrrp vrid 2 virtual-ip 192.168.2.254 standby
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hrp enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hrp interface GigabitEthernet1/0/1 remote 15.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hrp mirror session enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">security-policy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule name web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source-zone trust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination-zone untrust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source-address 192.168.1.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination-address 100.1.1.1 mask 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service protocol tcp destination-port 8080
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> action permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule name Wireless
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source-zone trust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination-zone untrust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source-address 192.168.2.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> action permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vrrp vrid 1 virtual-ip 192.168.1.254 standby
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/5.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vrrp vrid 2 virtual-ip 192.168.2.254 active
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hrp enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hrp interface GigabitEthernet1/0/1 remote 15.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> hrp mirror session enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置hrp后，安全策略配置从HRP_M[FW1]同步，不能在HRP_S[FW2]配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW3&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nat server 0 protocol tcp global 100.1.1.1 8080 inside 172.16.1.1 www
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">security-policy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule name web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source-zone untrust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination-zone trust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination-address 172.16.1.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service http
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> action permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>验证&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务6公网静态路由配置">任务6：公网静态路由配置
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>FW1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ip route-static 0.0.0.0 0.0.0.0 10.2.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static 100.1.1.1 255.255.255.255 10.2.2.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ip route-static 0.0.0.0 0.0.0.0 10.3.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static 100.1.1.1 255.255.255.255 10.3.2.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW3&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ip route-static 0.0.0.0 0.0.0.0 20.1.3.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static 100.1.1.1 255.255.255.255 NULL0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>PE1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ip route-static 192.168.2.0 255.255.255.0 10.2.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static 192.168.2.0 255.255.255.0 10.3.1.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务7公网动态路由配置">任务7：公网动态路由配置
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>PE1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">isis 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> is-level level-2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network-entity 01.0000.0010.0100.1001.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-authentication-mode md5 cipher ICTEXAM
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface LoopBack0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> isis enable 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> isis enable 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 as-number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 connect-interface LoopBack0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>PE2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">isis 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> is-level level-2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network-entity 01.0000.0020.0200.2002.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-authentication-mode md5 cipher ICTEXAM
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface LoopBack0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> isis enable 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> isis enable 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 3.3.3.3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 as-number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 connect-interface LoopBack0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 20.1.4.2 as-number 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>P&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">isis 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> is-level level-2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network-entity 01.0000.0030.0300.3003.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-authentication-mode md5 cipher ICTEXAM
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface LoopBack0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 2.2.2.2 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> isis enable 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> isis enable 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> isis enable 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 2.2.2.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> group ibgpv4 internal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer ibgpv4 connect-interface LoopBack0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 1.1.1.1 as-number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 1.1.1.1 group ibgpv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 3.3.3.3 as-number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 3.3.3.3 group ibgpv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer ibgpv4 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer ibgpv4 reflect-client
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 1.1.1.1 group ibgpv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 3.3.3.3 group ibgpv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Internet&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 16.16.16.16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 20.1.4.1 as-number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 16.16.16.16 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW3&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> default-route-advertise
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> area 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 30.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ospf network-type p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>DC-GW&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ospf network-type p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 router-id 11.11.11.11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> area 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 11.11.11.11 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 30.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 30.1.2.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 30.1.3.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Leaf1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 router-id 12.12.12.12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> area 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 12.12.12.12 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 30.1.2.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 172.16.1.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Leaf2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 router-id 13.13.13.13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> area 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 13.13.13.13 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 30.1.3.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>验证&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务8mpls-vpn">任务8：MPLS VPN
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>PE1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> import-route static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls lsr-id 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls ldp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ldp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance ToDC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher 100:1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target 200:1 both
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance ToDC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.2.2.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet3/0/0.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance ToDC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.3.2.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static vpn-instance ToDC 192.168.0.0 255.255.0.0 10.2.2.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static vpn-instance ToDC 192.168.0.0 255.255.0.0 10.3.2.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family vpn-instance ToDC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> import-route static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>PE2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 next-hop-local
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls lsr-id 3.3.3.3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls ldp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ldp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip vpn-instance ToDC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher 100:1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target 200:1 both
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip binding vpn-instance ToDC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 20.1.3.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family vpn-instance ToDC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 20.1.3.2 as-number 300
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>P&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family vpnv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo policy vpn-target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer ibgpv4 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer ibgpv4 reflect-client
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 1.1.1.1 group ibgpv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 3.3.3.3 group ibgpv4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls lsr-id 2.2.2.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mpls ldp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ldp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet0/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mpls ldp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>FW3&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 300
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 20.1.3.1 as-number 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> #
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv4-family unicast
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> import-route static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>dis bgp vpnv4 all peer&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>dis mpls ldp int&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>dis mpls ldp peer&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>dis ip vpn-instance verbose&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>dis bgp vpnv4 all routing-table&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务9gre">任务9：GRE
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>Leaf1&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel0/0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 173.1.2.1 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel-protocol gre
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source 12.12.12.12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination 13.13.13.13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static 172.16.2.0 255.255.255.0 173.1.2.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Leaf2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel0/0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 173.1.2.2 255.255.255.252
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel-protocol gre
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> source 13.13.13.13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> destination 12.12.12.12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-static 172.16.3.0 255.255.255.0 173.1.2.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="任务10wlan">任务10：WLAN
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>FW1/FW2&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/5.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-manage ping permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet1/0/5.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-manage ping permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>AC&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan batch 19 to 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dhcp enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip pool For_AP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 192.168.19.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.19.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip pool STA
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway-list 192.168.2.254
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> network 192.168.2.0 mask 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> excluded-ip-address 192.168.2.1 192.168.2.3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlanif19
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.19.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dhcp select global
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlanif20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.2.1 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dhcp select global
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">capwap source interface vlanif19
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> security-profile name s1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> security wpa-wpa2 psk pass-phrase Huawei@123 aes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssid-profile name s1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssid ICT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vap-profile name p1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> forward-mode tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-vlan vlan-id 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssid-profile s1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> security-profile s1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ap-group name default
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> radio 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vap-profile p1 wlan 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ap-id 1 type-id 56 ap-mac 00e0-fcef-0250 ap-sn 2102354483100961AE61
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ap-group default
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="综合测试">综合测试
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>Web-Client访问Web-Server&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/07/24/bpNLtzCIxgWQ4S9.png">
+&lt;img src="https://s2.loli.net/2024/07/24/bpNLtzCIxgWQ4S9.png"
+loading="lazy"
+alt="image-20240724115158242"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>FW3查看会话&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;FW3&amp;gt;dis firewall session table verbose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024-07-24 03:54:01.520
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Current Total Sessions : 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> http VPN: public --&amp;gt; public ID: c487fdedb993138324f66a07acf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Zone: untrust --&amp;gt; trust TTL: 00:00:10 Left: 00:00:05
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Recv Interface: GigabitEthernet1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Interface: GigabitEthernet1/0/1 NextHop: 30.1.1.2 MAC: 00e0-fc45-0d43
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;--packets: 5 bytes: 515 --&amp;gt; packets: 6 bytes: 399
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 192.168.1.1:2050 --&amp;gt; 100.1.1.1:8080[172.16.1.1:80] PolicyName: web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TCP State: close
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bgp VPN: public --&amp;gt; public ID: c487fdedb99d128393566a074da
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Zone: untrust --&amp;gt; local TTL: 00:20:00 Left: 00:20:00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Recv Interface: GigabitEthernet1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Interface: InLoopBack0 NextHop: 127.0.0.1 MAC: 0000-0000-0000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;--packets: 64 bytes: 3,158 --&amp;gt; packets: 68 bytes: 3,404
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 20.1.3.1:49928 --&amp;gt; 20.1.3.2:179 PolicyName: ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TCP State: established
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;FW3&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>VM1和VM2互相ping测试&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/07/24/mFkQPCidowfUa4I.png">
+&lt;img src="https://s2.loli.net/2024/07/24/mFkQPCidowfUa4I.png"
+loading="lazy"
+alt="image-20240724120153111"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>无线客户端PC1 ping测试&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/07/24/H7yilKcuSU4jg69.png">
+&lt;img src="https://s2.loli.net/2024/07/24/H7yilKcuSU4jg69.png"
+loading="lazy"
+alt="image-20240724120408833"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>个人觉得整个拓扑的就必上一篇文的规模小多了，量也没那么大，技术要点也不考察那么细致&lt;/li>
+&lt;li>貌似模拟器的USG防火墙有bug，拓扑中FW3与PE2建立EBGP，FW3与DC-GW建立OSPF，均不用配置安全策略就能建立起邻居关系&lt;/li>
+&lt;li>就不过多总结了，都在敲击键盘的过程中了&lt;/li>
+&lt;li>把文中的配置复制粘贴进对应设备最终就能实现综合测试的结果&lt;/li>
+&lt;li>……&lt;/li>
+&lt;li>可能有更好的实现需求的配置答案（山外有山）&lt;/li>
+&lt;li>文件存阿里云盘了，这是链接：[&lt;a class="link" href="https://www.alipan.com/s/6HwHnenuSqn" target="_blank" rel="noopener"
+>分享的文件
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>]&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
+&lt;/ul></description></item></channel></rss>

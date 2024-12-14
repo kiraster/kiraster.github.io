@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>同时配置不同站点git on Kir's Blog</title><link>https://weeaster.github.io/tags/%E5%90%8C%E6%97%B6%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%AB%99%E7%82%B9git/</link><description>Recent content in 同时配置不同站点git on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 19 Sep 2024 14:35:00 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E5%90%8C%E6%97%B6%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%AB%99%E7%82%B9git/index.xml" rel="self" type="application/rss+xml"/><item><title>配置Gogs和Github免密git push</title><link>https://weeaster.github.io/posts/fe1c1d91/</link><pubDate>Thu, 19 Sep 2024 14:35:00 +0000</pubDate><guid>https://weeaster.github.io/posts/fe1c1d91/</guid><description>&lt;p>本文描述的是在windows系统上配置免密&lt;code>git push&lt;/code>至&lt;code>Gogs&lt;/code>仓库和&lt;code>Gthub&lt;/code>仓库&lt;/p>
+&lt;p>之前也弄过类似操作，但是由于那次重装系统给干没了&lt;/p>
+&lt;p>Gogs为本地使用，设计为不联网&lt;/p>
+&lt;p>Github为在线使用，同时使用的还有Github Pages的博客更新&lt;/p>
+&lt;h2 id="前提">前提
+&lt;/h2>&lt;ol>
+&lt;li>本机中已有Github的免密配置，也就是在Github上传了公钥，不变更这部分内容&lt;/li>
+&lt;li>Github配置的是全局用户，不变更这部分内容，新增的Gogs使用local user进行配置&lt;/li>
+&lt;li>尽量保持不改动Github部分的配置&lt;/li>
+&lt;/ol>
+&lt;h2 id="生成用于gogs的密钥对">生成用于Gogs的密钥对
+&lt;/h2>&lt;p>在任意目录下启动git bash 窗口（&lt;code>gogs@gogs.net&lt;/code>邮箱地址为Gogs上的用户邮箱，不是实际互联网上存在的）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ ssh-keygen -t ed25519 -C &amp;#34;gogs@gogs.net&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Generating public/private ed25519 key pair.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter file in which to save the key (/c/Users/xxx/.ssh/id_ed25519): gogs_id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter passphrase (empty for no passphrase):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter same passphrase again:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Your identification has been saved in gogs_id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Your public key has been saved in gogs_id_ed25519.pub
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The key fingerprint is:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="密钥对拷贝至ssh目录">密钥对拷贝至.ssh目录
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>由于在创建ssh-key时没有指定保存到.ssh目录，所以手动复制到该目录(C:\Users\xxx\ .ssh)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>也可以在稍后创建的config文件中指定密钥对的路径，但是不妥，还是放在统一的目录&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="创建config文件">创建config文件
+&lt;/h2>&lt;ul>
+&lt;li>资源管理器打开目录&lt;code>C:\Users\xxx\.ssh&lt;/code>，创建一个config文件（注意没有后缀）&lt;/li>
+&lt;li>gogs_id_ed25519为前面步骤中创建的密钥对名称&lt;/li>
+&lt;li>id_ed25519为我正在使用的github密钥对名称&lt;/li>
+&lt;/ul>
+&lt;p>注意：gogs使用的是root用户，因为当初没有创建git用户（如果你创建了git用户，则使用git）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host 172.31.100.225
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> HostName 172.31.100.225
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PreferredAuthentications publickey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IdentityFile C:/Users/xxx/.ssh/gogs_id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> User root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># github
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> HostName github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PreferredAuthentications publickey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IdentityFile C:/Users/xxx/.ssh/id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> User git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="上传ssh公钥和测试">上传ssh公钥和测试
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>登陆Gogs，头像&amp;ndash;用户设置&amp;ndash;SSH 密钥&amp;ndash;增加密钥&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>记事本打开gogs_id_ed25519.pub，复制内容粘贴至密钥内容，填写一个密钥名称，点击增加密钥&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># Gogs测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ssh -T root@172.31.100.225
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Hi there, You&amp;#39;ve successfully authenticated, but Gogs does not provide shell access.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If this is unexpected, please log in with password and setup Gogs under another user.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Github测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ssh -T git@github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Hi kiraster! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="git配置和初始化懂的跳过">git配置和初始化(懂的跳过)
+&lt;/h2>&lt;ol>
+&lt;li>为了演示操作，需要在Gogs创建一个仓库&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/19/ydGzBlLg6VIQNbR.png">
+&lt;img src="https://s2.loli.net/2024/09/19/ydGzBlLg6VIQNbR.png"
+loading="lazy"
+alt="image-5706"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="2">
+&lt;li>
+&lt;p>在本地创建一个目录test&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>打开创建的test目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>右键git bash here打开窗口，执行git初始化命令和配置local user&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用local配置用户，配置的local user仅对当前本地仓库起作用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># gogs@gogs.net邮箱地址为Gogs上的用户邮箱，不是实际互联网上存在的
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --local user.name &amp;#34;gogs&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --local user.email &amp;#34;gogs@gogs.net&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Initialized empty Git repository in D:/test/.git/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git config --local user.name &amp;#34;gogs&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git config --local user.email &amp;#34;gogs@gogs.net&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>修改remote仓库地址（由于当时省事没有修改domian）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git remote add origin root@172.31.100.225:gogs/test.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>执行剩下命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">touch README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;first commit&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin master
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ touch README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git add README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git commit -m &amp;#34;first commit&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[master (root-commit) 6b281e3] first commit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 file changed, 0 insertions(+), 0 deletions(-)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> create mode 100644 README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git push -u origin master
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enumerating objects: 3, done.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Counting objects: 100% (3/3), done.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Writing objects: 100% (3/3), 200 bytes | 200.00 KiB/s, done.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To 172.31.100.225:gogs/test.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * [new branch] master -&amp;gt; master
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Branch &amp;#39;master&amp;#39; set up to track remote branch &amp;#39;master&amp;#39; from &amp;#39;origin&amp;#39;.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Gogs上查看&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/19/JGkVoUsThd6Lx4g.png">
+&lt;img src="https://s2.loli.net/2024/09/19/JGkVoUsThd6Lx4g.png"
+loading="lazy"
+alt="image-8002"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>

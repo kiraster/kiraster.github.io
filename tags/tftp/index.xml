@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TFTP on Kir's Blog</title><link>https://weeaster.github.io/tags/tftp/</link><description>Recent content in TFTP on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 18 Mar 2023 13:18:59 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/tftp/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C自动配置(HTTP Python方式)</title><link>https://weeaster.github.io/posts/c69db7e2/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://weeaster.github.io/posts/c69db7e2/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
+&lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/YhVtMfHBAaFOSIZ.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/YhVtMfHBAaFOSIZ.jpg"
+loading="lazy"
+alt="ScreenCaputure230318161432"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>HCL v5.7.1&lt;/li>
+&lt;li>Python 3.10.10&lt;/li>
+&lt;li>Tftpd64 version 4.60&lt;/li>
+&lt;/ul>
+&lt;h2 id="步骤">步骤
+&lt;/h2>&lt;h3 id="编写python脚本">编写python脚本
+&lt;/h3>&lt;p>制作一个后缀名为&lt;code>.py&lt;/code>的脚本。主要作用是空配置交换机开机执行自动配置，下载到本地并执行文件&lt;/p>
+&lt;p>由于HCL模拟器里的交换机序列号都一样的，勉为其难改用背板MAC地址；如果是真机设备直接用序列号；脚本中预留了序列号的代码，简单修改一下便可&lt;/p>
+&lt;ul>
+&lt;li>设备 H3C S6850_1: MAC_ADDRESS:68-bf-6d-ad-01-04&lt;/li>
+&lt;li>设备 H3C S6850_2: MAC_ADDRESS:68-45-dc-f1-02-04&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#!/usr/bin/python&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#-*-coding:utf-8-*-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">import&lt;/span> &lt;span class="n">comware&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">import&lt;/span> &lt;span class="n">platformtools&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">do_reboot&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># scheduler job reboot&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">platformtools&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLI&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;system-view ;scheduler job startup_reboot ;command 1 reboot force ;quit&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># exec-delay &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">platformtools&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLI&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;system-view ;scheduler schedule do_reboot ;job startup_reboot ;time once delay 1&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">apply_sw1_config&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Specify system startup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">platformtools&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLI&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;restore startup-configuration from 172.31.100.2 sw1_config.cfg&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">do_reboot&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">apply_sw2_config&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># Specify system startup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">platformtools&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLI&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;restore startup-configuration from 172.31.100.2 sw2_config.cfg&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">do_reboot&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># more device ...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># def apply_sw3_config():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># # Specify system startup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># platformtools.CLI(&amp;#39;restore startup-configuration from 172.31.100.2 sw3_config.cfg&amp;#39;)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># do_reboot()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># find DEVICE_SERIAL_NUMBER&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">platformtools&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">CLI&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;dis dev man&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">res&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_output&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># if &amp;#39;DEVICE_SERIAL_NUMBER&amp;#39; in i:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;68-bf-6d-ad-01-04&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">apply_sw1_config&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="s1">&amp;#39;68-45-dc-f1-02-04&amp;#39;&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">apply_sw2_config&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># more device ...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># if &amp;#39;DEVICE_SERIAL_NUMBER&amp;#39; in i:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># apply_sw2_config()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># break&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="准备设备配置文件">准备设备配置文件
+&lt;/h3>&lt;ul>
+&lt;li>&lt;code>sw1_config.cfg&lt;/code>&lt;/li>
+&lt;li>&lt;code>sw2_config.cfg&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sysname sw1_s6850
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> telnet server enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ssh server enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 10 to 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int vlan 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 172.31.100.10 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 192.168.10.254 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet 1/0/23
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo shutdown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface GigabitEthernet 1/0/24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo shutdown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">local-user admin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">password simple Cisco123!@#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">authorization-attribute user-role network-admin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">authorization-attribute user-role network-operator
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">service-type ssh telnet
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">line vty 0 63
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">authentication-mode scheme
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user-role network-operator
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">return
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="启动http服务端">启动HTTP服务端
+&lt;/h3>&lt;p>搭建一个简单的http服务端（可以使用网上的各种小工具，安全性自己判断），如果有&lt;code>python&lt;/code>环境可以直接启动一个简易的http服务端，搭建完成后使用浏览器打开链接，确保&lt;code>url&lt;/code>能正确指向第一步中的python脚本文件。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">PS D:\TEMP\tftpd64.460&amp;gt; python -m http.server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Serving HTTP on :: port 8000 (http://[::]:8000/) ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>浏览器URL测试&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/Sr4PKcJ8LOkw3CR.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/Sr4PKcJ8LOkw3CR.jpg"
+loading="lazy"
+alt="ScreenCaputure230318172646"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="配置tftp服务端和dhcp服务端参数">配置TFTP服务端和DHCP服务端参数
+&lt;/h3>&lt;ul>
+&lt;li>TFTP目录选择设备配置文件的目录&lt;/li>
+&lt;li>如果电脑有多块网卡，选择绑定需要用到的网卡IP地址&lt;/li>
+&lt;li>DHCP填写的Boot File 是python脚本文件的URL&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/vnz8uXmyatZfPqi.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/vnz8uXmyatZfPqi.jpg"
+loading="lazy"
+alt="ScreenCaputure230318155000"
+>
+&lt;/a>
+&lt;/div>
+&lt;/th>
+&lt;th>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/ChqJuWxT59BOQ7z.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/ChqJuWxT59BOQ7z.jpg"
+loading="lazy"
+alt="ScreenCaputure230318155038"
+>
+&lt;/a>
+&lt;/div>
+&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>Tips：为了方便使用建议把&lt;code>device.py&lt;/code>和设备&lt;code>.cfg&lt;/code>配置文件统一放到TFTP的目录下，http服务端的启动命令也在TFTP目录下启动。&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/M6WgyK7xONael5B.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/M6WgyK7xONael5B.jpg"
+loading="lazy"
+alt="ScreenCaputure230318164825"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="启动测试">启动测试
+&lt;/h2>&lt;ol>
+&lt;li>临时关闭本机环境中的其他DHCP服务端&lt;/li>
+&lt;li>HCL模拟器里的交换机桥接到本地&lt;/li>
+&lt;li>模拟器设备开机&lt;/li>
+&lt;/ol>
+&lt;p>TFTP软件观察发现已经分配两个地址&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/W1PQbp7dITu9vnN.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/W1PQbp7dITu9vnN.jpg"
+loading="lazy"
+alt="ScreenCaputure230318161954"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>第一台S6850 启动，观察发现下载了&lt;code>device.py&lt;/code>文件，并按照&lt;code>py脚本&lt;/code>命令执行了一些配置&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/23YpwFZsAyEPavi.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/23YpwFZsAyEPavi.jpg"
+loading="lazy"
+alt="ScreenCaputure230318161917"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>第二台S6850 启动，观察发现下载了&lt;code>device.py&lt;/code>文件，并按照&lt;code>py脚本&lt;/code>命令执行了一些配置&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/7OMIJQRbpiaTnAz.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/7OMIJQRbpiaTnAz.jpg"
+loading="lazy"
+alt="ScreenCaputure230318161928"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>按照设定的1分钟后重启设备，观察到出现两次&lt;code>Press ENTER to get started.&lt;/code>表示已经重启了；设备名称也按照配置文件里的更改了&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/2j8Z71DLnxRAX9g.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/2j8Z71DLnxRAX9g.jpg"
+loading="lazy"
+alt="ScreenCaputure230318162531"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/bHQ6R9YPXlLo7vg.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/bHQ6R9YPXlLo7vg.jpg"
+loading="lazy"
+alt="ScreenCaputure230318162541"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>使用SSH登陆设备，能通过配置文件里配置的IP地址登陆设备&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/iRkwHB8UTflVjuE.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/iRkwHB8UTflVjuE.jpg"
+loading="lazy"
+alt="ScreenCaputure230318162808"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/X56uDBxOsQdhgEF.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/X56uDBxOsQdhgEF.jpg"
+loading="lazy"
+alt="ScreenCaputure230318162820"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>查看sw1的一些配置&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/03/18/izDftqmedHPpgwB.jpg">
+&lt;img src="https://s2.loli.net/2023/03/18/izDftqmedHPpgwB.jpg"
+loading="lazy"
+alt="ScreenCaputure230318163152"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="结束">结束
+&lt;/h2>&lt;ol>
+&lt;li>HCL模拟器的序列号一致不能通过序列号操作，实为憾事&lt;/li>
+&lt;li>这个方法可应用在一定规模的组网，前提条件是安装前要记录安装位置与设备序列号的对应关系&lt;/li>
+&lt;li>这个方法只能应用在完全空配置的设备，保存过配置的交换机就不能操作了&lt;/li>
+&lt;li>如果是真实设备使用，注意本机电脑的防火墙设置&lt;/li>
+&lt;li>前线安装人员要确定设备已加电和设备端口的指示灯状态&lt;/li>
+&lt;li>方法操作没有问题，但是有时候去实施，甲方看到你老是在电脑面前操作，这个体现不出工作量，需要注意，两天的活你半小时不到干完了&lt;/li>
+&lt;li>修改一下脚本，还能用在没有console线的环境下应急，同样确保设备是空配置启动&lt;/li>
+&lt;li>&lt;code>device.py&lt;/code>文件里的代码有一个重启设备的定时任务，由于是做实验我设置了1分钟后重启，如果是真实环境这个延时重启建议配置时间大一点&lt;/li>
+&lt;/ol></description></item></channel></rss>

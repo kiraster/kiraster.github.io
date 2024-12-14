@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>EVE-NG on Kir's Blog</title><link>https://weeaster.github.io/tags/eve-ng/</link><description>Recent content in EVE-NG on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 05 Nov 2021 18:43:23 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/eve-ng/index.xml" rel="self" type="application/rss+xml"/><item><title>PNETLab试用</title><link>https://weeaster.github.io/posts/13f1a9a7/</link><pubDate>Fri, 05 Nov 2021 18:43:23 +0000</pubDate><guid>https://weeaster.github.io/posts/13f1a9a7/</guid><description>&lt;p>&lt;strong>PNETLab&lt;/strong> &lt;strong>(&lt;em>Packet Network Emulator Tool Lab&lt;/em>&lt;/strong>)is a platform that allows you to download and share labs with the community. 这句话摘抄自&lt;a class="link" href="https://pnetlab.com/pages/documentation" target="_blank" rel="noopener"
+>官网
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>介绍，这是链接：&lt;a class="link" href="https://pnetlab.com/pages/documentation" target="_blank" rel="noopener"
+>What is PNETLab?
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>上网冲浪发现这个大宝贝，看完介绍心理痒痒就搞一搞，有个帖子介绍挺好，原文：&lt;a class="link" href="https://community.cisco.com/t5/%E7%BD%91%E7%BB%9C%E5%8D%9A%E5%AE%A2/%E5%8E%9F%E5%88%9B-%E8%B6%85%E7%BA%A7%E6%8E%A8%E8%8D%90-%E7%BD%91%E5%B7%A5%E5%BF%85%E5%A4%87%E6%A8%A1%E6%8B%9F%E5%99%A8pnetlab-%E9%99%84%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5-%E5%85%A8%E7%90%83%E7%AC%AC%E4%B8%80%E7%AF%87%E6%9C%80%E4%BC%98%E8%B4%A8%E7%9A%84%E5%B8%96%E5%AD%90/ba-p/4383377" target="_blank" rel="noopener"
+>【原创】超级推荐：网工必备模拟器PNETLab，附下载链接，全球第一篇最优质的帖子
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>。&lt;/p>
+&lt;h2 id="experience">Experience
+&lt;/h2>&lt;p>不能说和 EVE-NG “一模一样”，我对比过（可能是使用方法不规范，也可能是其他原因），之前用EVE-NG可以跑起整张 CCIE V5 H1 的拓扑（电脑的 CPU 和 RAM 未变动，系统换 WIN10 ，加了固态硬盘做系统盘），现在装了 PNETLab 只能跑 31台 还是 32 台设备（原谅老年人健忘）。&lt;/p>
+&lt;h3 id="hardware-requirements">Hardware requirements
+&lt;/h3>&lt;p>看了官网文档，我这古董 AMD CPU 不在硬件支持范围内（是不是这个原因跑不了那么多设备呢？），当看到这些说明的时候，我差点就把正在下载中的文件给取消了。最后安上了，我若安不好，当天便可以多睡几小时。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">PC/Laptop HW requirements
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU：Intel i5/i7 (4 Logical processors), Enabled Intel virtualization in BIOS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAM：8Gb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HDD Space：40Gb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Network：LAN/WLAN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">----------------------------------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PNETLab Virtual machine requirements
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU：4/1 (Number of processors/Number of cores per processor) Enabled Intel VT-x/EPT virtualization engine
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RAM：6Gb or more
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HDD：40Gb or more
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Network：VMware NAT or Bridged network adapter
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Unsupported hardware and systems
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The following are currently not supported:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">• AMD CPU based PC or Server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">• VirtualBox virtualization
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">• Citrix XenServer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">• Microsoft HyperV
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">• Ubuntu 17.X or 18.x as platform
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="pnetlab-supported-images">PNETLab Supported Images
+&lt;/h3>&lt;p>查看支持的镜像，还是挺多的，不知为何 H3C 不在列表里，看B站 UP 主视频把 H3C 的防火墙设备弄进去了，不过我挺少用 QEMU 的镜像（太吃内存了），Huawei/H3C 的实验还是用官方的模拟器。&lt;/p>
+&lt;p>还有个事，就是现在 &lt;a class="link" href="https://user.pnetlab.com/store/labs/view" target="_blank" rel="noopener"
+>&lt;em>PNETLab Store&lt;/em>
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> 商店下载Lab不附带一起下载镜像了，要自己找镜像上传到目录，还好可以找之前 EVE-NG 的资源上传。&lt;/p>
+&lt;h3 id="language--汉化">Language &amp;amp; 汉化
+&lt;/h3>&lt;p>看到 B 站视频有 UP 主用了汉化，我就还好，看这些英文不头疼。其实也简单，就是把里边的英文包复制一份到电脑，再打开里面的 &lt;strong>JSON 文件&lt;/strong>，里面有两列，左边属性，右边 Web 界面显示的字符，把右边填上中文保存上传到 Chinese 的文件夹，再切换一下即可。&lt;/p>
+&lt;h3 id="how-to-console-to-devices">How to console to devices
+&lt;/h3>&lt;p>有两种方式，跟 EVE-NG 不知道是哪个版本的方式一样。&lt;/p>
+&lt;ul>
+&lt;li>使用 &lt;strong>HTML Console&lt;/strong>，在拓扑界面弹出一个小窗的方式，我个人就不太喜欢这么搞，不舒畅。&lt;/li>
+&lt;li>使用 &lt;strong>Default Console&lt;/strong>，调用系统自带的默认程序打开，例如把 CRT 软件设置成系统默认，跟 EVE-NG 的 &lt;strong>EVE-NG-Win-Client-Pack&lt;/strong> 这玩意儿“一模一样”。&lt;/li>
+&lt;/ul>
+&lt;h2 id="ending">Ending
+&lt;/h2>&lt;p>欢乐的时光特别短，又到时候说88，还有很多需要探索的地方，不谈了，开饭。&lt;/p>
+&lt;p>接下来我将用 PNETLab 搞一个实验，来自大佬&lt;a class="link" href="http://blog.sina.com.cn/vinsoney" target="_blank" rel="noopener"
+>红茶三杯
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>博客的原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html" target="_blank" rel="noopener"
+>【有点儿意思系列 06】一个看起来简单的案例
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>，弄完了写一篇文 po 出来，先看图。&lt;/p>
+&lt;p>下一篇文链接： &lt;a class="link" href="https://kiraster.github.io/posts/8ac5ac4a.html" target="_blank" rel="noopener"
+>No.001 Simple Case - Kir&amp;rsquo;s Blog
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg">
+&lt;img src="https://i.loli.net/2021/11/05/aV6ElzprdKjscFt.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

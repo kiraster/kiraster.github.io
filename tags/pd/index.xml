@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PD on Kir's Blog</title><link>https://weeaster.github.io/tags/pd/</link><description>Recent content in PD on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 03 Apr 2022 07:18:36 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/pd/index.xml" rel="self" type="application/rss+xml"/><item><title>IPv6 各隧道Tunnel使用Lab</title><link>https://weeaster.github.io/posts/2e964a67/</link><pubDate>Sun, 03 Apr 2022 07:18:36 +0000</pubDate><guid>https://weeaster.github.io/posts/2e964a67/</guid><description>&lt;p>最近看了很多关于 IPv6 的内容。老早前，大概2000年前后运营商就开始研究推进发展 IPv6 网络技术了，可能是是由于某些我等不知道的原因，这个推进的进程所演化出的表象让我等普通网民没什么感觉。部分科研机构、高校、金融、IT 大厂已经在使用了，一个比较大的使用群体也就是家用部分普及的不大开（我猜的，没有依据）。&lt;/p>
+&lt;p>IPv6 相对于 IPv4 有种种的优势，我最有印象的几个是没有广播这个概念、“真 万物互联”、良好的包扩展结构，相对于 IPv4 不存在把什么什么封装进 IPv4 头部后面的字节……巴拉巴拉&lt;/p>
+&lt;p>既然是实验，先上图：&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/05/02/WqsFfpynmbOgCe1.png">
+&lt;img src="https://s2.loli.net/2022/05/02/WqsFfpynmbOgCe1.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="start">Start
+&lt;/h2>&lt;p>介绍一下这个拓扑包含的内容：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>A head&lt;/strong> 部分&lt;/p>
+&lt;ul>
+&lt;li>从运营商处申请到 240E:0:0:1500::/60 前缀，互联地址为静态 IPv6 ：240E:0:0:15::&lt;/li>
+&lt;li>PC 网关在 SW19 / SW20，配置负载分担 （HSRP）；使用 MST ；PC 地址为无状态获取，同时获取除地址外的其他 DHCP 参数&lt;/li>
+&lt;li>核心交换机与 R5 运行 OSPFv3,&lt;/li>
+&lt;li>A head 和 A branch1 / A branch2 组建基于 IPv6 的 DMVPN (mGRE)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>A branch1&lt;/strong> 部分&lt;/p>
+&lt;ul>
+&lt;li>从运营商处申请到 2409:0:0:2600::/60 前缀，互联地址为静态 IPv6 2409:0:0:26::&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>A branch2 / B head&lt;/strong> 部分&lt;/p>
+&lt;ul>
+&lt;li>使用 PPPOE 拨号接入 ISP ，WAN 动态 IPv6 地址，并且获取到 PD 用于内部网络&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>其他站点如图所示&lt;/p>
+&lt;ul>
+&lt;li>R3 为 ISP IPv4 接入路由器，连接 R3 的三个站点除配置了 Tunnel 外，还支持 NAT 访问互联网&lt;/li>
+&lt;li>为什么是就配置了这三个站点的 NAT，因为本人电脑内存不够（运行 NAT 的路由器要分配更多内存）&lt;/li>
+&lt;li>6RD 的站点内部为 IPv6 网络&lt;/li>
+&lt;li>IPv6 Over IPv4 的 站点互通配置了静态或者动态路由协议&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>为了测试，ISP 网络中均配置了环回接口的 IPv4/IPv6 地址，例如：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>R2&lt;/p>
+&lt;p>interface Loopback0
+ip address 10.2.2.2 255.255.255.255
+ipv6 address 2008::2/128&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>除 Manual 和 GRE Tunnel 外，站点所有 IPv6 地址均可互通&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="design--configuration">Design &amp;amp; Configuration
+&lt;/h2>&lt;p>&lt;strong>Note：ISP Network 内部运行 OSPF/OSPFv3，不展开说明。&lt;/strong>&lt;/p>
+&lt;h3 id="a-head-配置">&lt;strong>A head&lt;/strong> 配置
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.5.5.5 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FD00::5/128 // 惟一本地地址，不可在互联上路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 240E:0:0:15::5/64 // 与 ISP 互联地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router ospf 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 10.5.5.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> default-information originate // OSPFv3 下发默认路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route ::/0 240E:0:0:15::1 // 指向 ISP 的默认路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">! -- DMVPN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> description DMVPN_HUB
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FD00:A::1/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 eigrp 90
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp network-id 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode gre multipoint ipv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router eigrp 90 // HUB 与 SPOKE 之间运行 EIGRP,IPv6 multicast over mGRE tunnel is not supported.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor FE80::A8BB:CCFF:FE00:600 Tunnel1 // 手动指邻居
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor FE80::A8BB:CCFF:FE00:700 Tunnel1 // 手动指邻居
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> eigrp router-id 10.5.5.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> redistribute ospf 100 metric 10000 100 255 1 1500 // 重分布 OSPF 进 EIGRP 便于分支站点访问总部网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- SW19
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 dhcp pool O-POOL // DHCP 参数
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-name a.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mode mst // mst 配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mst configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> name a.com.hub
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> revision 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 10 vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 20 vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mst 10 priority 24576 // 实例 10 的主根桥
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mst 20 priority 28672 // 实例 20 的备根桥
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.19.19.19 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FD00::19/128
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Port-channel1 // SW19 SW20 之间的端口聚合
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport access vlan 519 // 与 R5 互联端口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> channel-group 1 mode active
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> channel-group 1 mode active
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby version 2 // HSRP 配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 10 ipv6 autoconfig
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 10 priority 120 // 优先级120，设置为 Active 端
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 10 preempt delay minimum 30 // 抢占延迟 30s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 240E:0:0:1501::1/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd other-config-flag // O 位
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server O-POOL // 分配给终端 DHCP 其他参数
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 20 ipv6 autoconfig
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 20 preempt delay minimum 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 240E:0:0:1502::1/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd other-config-flag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan519 // 与 R5 互联建立 OSPFV4 邻居
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router ospf 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 10.19.19.19
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- SW20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 dhcp pool O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-name a.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mode mst
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree extend system-id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mst configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> name a.com.hub
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> revision 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 10 vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 20 vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mst 10 priority 28672
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mst 20 priority 24576
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Loopback0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.20.20.20 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FD00::20/128
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Port-channel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport access vlan 520
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> channel-group 1 mode passive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> channel-group 1 mode passive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby version 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 10 ipv6 autoconfig
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 10 preempt delay minimum 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 240E:0:0:1501::2/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd other-config-flag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby version 2 // HSRP 配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 20 ipv6 autoconfig
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 20 priority 120 // 优先级120，设置为 Active 端
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> standby 20 preempt delay minimum 30 // 抢占延迟 30s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 240E:0:0:1502::2/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd other-config-flag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Vlan520
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf network point-to-point
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router ospf 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 10.20.20.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- SW21
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mode mst
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">spanning-tree mst configuration
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> name a.com.hub
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> revision 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 10 vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> instance 20 vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk allowed vlan 10,20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport trunk encapsulation dot1q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport mode trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport access vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> switchport access vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="a-branch1-配置">&lt;strong>A branch1&lt;/strong> 配置
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 dhcp pool O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-name a.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1 // DMVPN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> description DMVPN_BRANCH_1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FD00:A::2/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 eigrp 90 // EIGRP 启用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp map FD00:A::1/64 240E:0:0:15::5 // 映射 FD00:A::1 R5 的公网 IPv6 地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp map multicast 240E:0:0:15::5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp network-id 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp nhs FD00:A::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode gre multipoint ipv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2409:0:0:26::6/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address autoconfig default //生成指向 ISP 默认路由
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2409:0:0:2600::6/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd other-config-flag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 eigrp 90 // EIGRP 启用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router eigrp 90 //运行 EIGRP,IPv6 multicast over mGRE tunnel is not supported.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor FE80::A8BB:CCFF:FE00:500 Tunnel1 // 手动指邻居
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor FE80::A8BB:CCFF:FE00:700 Tunnel1 // 手动指邻居
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> eigrp router-id 10.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="a-branch2--b-head-配置">&lt;strong>A branch2 / B head&lt;/strong> 配置
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 dhcp pool O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-name a.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1 // DMVPN
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> description DMVPN_BRANCH_2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FD00:A::3/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 eigrp 90 // EIGRP 启用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp map FD00:A::1/64 240E:0:0:15::5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp map multicast 240E:0:0:15::5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp network-id 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nhrp nhs FD00:A::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Dialer1 // 出接口为 Dialer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode gre multipoint ipv6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pppoe enable group global
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pppoe-client dial-pool-number 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address INTRA_PD ::7/64 // 使用获取到的前缀配置接口IPv6地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd other-config-flag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 eigrp 90 // EIGRP 启用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server O-POOL // DHCP 参数下发
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Dialer1 // PPPOE 拨号
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mtu 1492
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encapsulation ppp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dialer pool 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dialer-group 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address autoconfig default
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 mtu 1492
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp client pd INTRA_PD //获取前缀，命名 INTRA_PD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ppp authentication pap callin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ppp pap sent-username user1 password 0 user1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router eigrp 90 // 运行 EIGRP,IPv6 multicast over mGRE tunnel is not supported.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor FE80::A8BB:CCFF:FE00:500 Tunnel1 // 手动指邻居
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> neighbor FE80::A8BB:CCFF:FE00:600 Tunnel1 // 手动指邻居
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> eigrp router-id 10.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----------------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">! -- R8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 dhcp pool O-POOL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dns-server 2008::2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> domain-name b.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pppoe enable group global
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pppoe-client dial-pool-number 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address INTRA_PD ::8/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd other-config-flag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server O-POOL // DHCP 参数下发
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Dialer1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mtu 1492
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encapsulation ppp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dialer pool 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dialer-group 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address dhcp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address autoconfig default
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 mtu 1492
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp client pd INTRA_PD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ppp authentication pap callin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ppp pap sent-username user2 password 0 user2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R2 PPPOE SERVER
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 dhcp pool DHCPV6POOL //配置 PD 池
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> prefix-delegation pool POOL-2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">username user1 password 0 user1 // 用于 PPPOE 拨号认证
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">username user2 password 0 user2 // 用于 PPPOE 拨号认证
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bba-group pppoe GROUP-1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> virtual-template 1 // 绑定模版1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Loopback11 // 这个地址用于复用，不知道Cisco为什么这般设计，直接在模版下配不就行了
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2409:0:0:2::2/60
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pppoe enable group GROUP-1 // 调用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Virtual-Template1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> description PPPOE-GROUP-1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mtu 1492
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer default ipv6 pool PPPOE-PEER-POOL // 为拨号客户端对端配置 IPv6 的地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 unnumbered Loopback11 // 复用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 mtu 1492
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 nd managed-config-flag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ipv6 nd ra suppress
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 dhcp server DHCPV6POOL // PD 下发
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ppp authentication pap
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 local pool POOL-2 2409:0:0:2780::/60 64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 local pool PPPOE-PEER-POOL 2409:0:0:2220::/60 64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="isatap-tunnel">ISATAP Tunnel
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1 // ISATAP Tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip redirects
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2409:0:0:2900::/64 eui-64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ipv6 nd ra suppress
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode ipv6ip isatap
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2409:0:0:29::9/64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.9.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route ::/0 2409:0:0:29::2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="gre-tunnel">GRE Tunnel
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R15
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1 // GRE Tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel destination 200.1.103.10 // R10 WAN 地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 200.1.154.15 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.15.254 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FD00:F::F/64 // 惟一本地地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 ospf 100 area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route 0.0.0.0 0.0.0.0 200.1.154.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router ospf 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> router-id 10.15.15.15
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span> &lt;span class="o">--&lt;/span> &lt;span class="n">R10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Tunnel1&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="n">GRE&lt;/span> &lt;span class="n">Tunnel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">no&lt;/span> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">ospf&lt;/span> &lt;span class="mi">100&lt;/span> &lt;span class="n">area&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tunnel&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tunnel&lt;/span> &lt;span class="n">destination&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">154.15&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="n">R15&lt;/span> &lt;span class="n">WAN&lt;/span> &lt;span class="err">地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">103.10&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">outside&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">virtual&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reassembly&lt;/span> &lt;span class="ow">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">duplex&lt;/span> &lt;span class="n">auto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">192.168&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">10.254&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">inside&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">virtual&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reassembly&lt;/span> &lt;span class="ow">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">duplex&lt;/span> &lt;span class="n">auto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="n">FD00&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">64&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">惟一本地&lt;/span>&lt;span class="n">IPv6地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">ospf&lt;/span> &lt;span class="mi">100&lt;/span> &lt;span class="n">area&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">inside&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="n">overload&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="n">IPv4&lt;/span> &lt;span class="n">NAT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">route&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">103.3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ipv6&lt;/span> &lt;span class="n">router&lt;/span> &lt;span class="n">ospf&lt;/span> &lt;span class="mi">100&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">router&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="mf">10.10&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">10.10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">access&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">list&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="n">permit&lt;/span> &lt;span class="mf">192.168&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">10.0&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.255&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="6to4-tunnel-and-realy">6to4 Tunnel and Realy
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1 // 6to4 Tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip redirects
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 unnumbered Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode ipv6ip 6to4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 200.1.144.14 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2408:0:0:E4::E/64 // 与 R4 互联的 IPv6 地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2002:C801:900E::E/64 // 6to4 地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route 0.0.0.0 0.0.0.0 200.1.144.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route 2002::/16 Tunnel1 // 站点互通
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route ::/0 2408:0:0:E4::4 // 访问 ISP IPv6 网络
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span> &lt;span class="o">--&lt;/span> &lt;span class="n">R11&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Tunnel1&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="n">to4&lt;/span> &lt;span class="n">Tunnel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">no&lt;/span> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">no&lt;/span> &lt;span class="n">ip&lt;/span> &lt;span class="n">redirects&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tunnel&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tunnel&lt;/span> &lt;span class="n">mode&lt;/span> &lt;span class="n">ipv6ip&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="n">to4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">113.11&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">outside&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">virtual&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reassembly&lt;/span> &lt;span class="ow">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">duplex&lt;/span> &lt;span class="n">auto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">192.168&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">11.254&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">inside&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">virtual&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reassembly&lt;/span> &lt;span class="ow">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">duplex&lt;/span> &lt;span class="n">auto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mi">2002&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">C801&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">710&lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">64&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="n">to4&lt;/span> &lt;span class="err">地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">inside&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="n">overload&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="n">IPv4&lt;/span> &lt;span class="n">NAT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">route&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">113.3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ipv6&lt;/span> &lt;span class="n">route&lt;/span> &lt;span class="mi">2002&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">16&lt;/span> &lt;span class="n">Tunnel1&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">站点互通&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ipv6&lt;/span> &lt;span class="n">route&lt;/span> &lt;span class="p">::&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="mi">2002&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">C801&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">900&lt;/span>&lt;span class="n">E&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">E&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">访问&lt;/span>&lt;span class="n">IPv6&lt;/span> &lt;span class="err">互联&lt;/span> &lt;span class="err">下一跳&lt;/span> &lt;span class="err">到&lt;/span> &lt;span class="n">R14&lt;/span> &lt;span class="err">中继&lt;/span> &lt;span class="err">转发&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">access&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">list&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="n">permit&lt;/span> &lt;span class="mf">192.168&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">11.0&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.255&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="manual-tunnel">Manual Tunnel
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1 // Manual Tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 rip RIPNG enable // 启用 RIPNG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode ipv6ip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel destination 200.1.123.12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 200.1.134.13 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address FC00:D::D/64 // 惟一本地IPv6地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 rip RIPNG enable // 启用 RIPNG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route 0.0.0.0 0.0.0.0 200.1.134.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 router rip RIPNG // 站点互通 RIPNG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span> &lt;span class="o">--&lt;/span> &lt;span class="n">R12&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Tunnel1&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="n">Manual&lt;/span> &lt;span class="n">Tunnel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">no&lt;/span> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">rip&lt;/span> &lt;span class="n">RIPNG&lt;/span> &lt;span class="n">enable&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">启用&lt;/span> &lt;span class="n">RIPNG&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tunnel&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tunnel&lt;/span> &lt;span class="n">mode&lt;/span> &lt;span class="n">ipv6ip&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">tunnel&lt;/span> &lt;span class="n">destination&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">134.13&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">123.12&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">outside&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">virtual&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reassembly&lt;/span> &lt;span class="ow">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">duplex&lt;/span> &lt;span class="n">auto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="mf">192.168&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">12.254&lt;/span> &lt;span class="mf">255.255&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">255.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">inside&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ip&lt;/span> &lt;span class="n">virtual&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reassembly&lt;/span> &lt;span class="ow">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">duplex&lt;/span> &lt;span class="n">auto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">address&lt;/span> &lt;span class="n">FC00&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">C&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">C&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">64&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">惟一本地&lt;/span>&lt;span class="n">IPv6地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ipv6&lt;/span> &lt;span class="n">rip&lt;/span> &lt;span class="n">RIPNG&lt;/span> &lt;span class="n">enable&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">nat&lt;/span> &lt;span class="n">inside&lt;/span> &lt;span class="n">source&lt;/span> &lt;span class="n">list&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="n">interface&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="n">overload&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="n">IPv4&lt;/span> &lt;span class="n">NAT&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ip&lt;/span> &lt;span class="n">route&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span> &lt;span class="mf">200.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">123.3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ipv6&lt;/span> &lt;span class="n">router&lt;/span> &lt;span class="n">rip&lt;/span> &lt;span class="n">RIPNG&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">站点互通&lt;/span> &lt;span class="n">RIPNG&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">access&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">list&lt;/span> &lt;span class="mi">10&lt;/span> &lt;span class="n">permit&lt;/span> &lt;span class="mf">192.168&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">12.0&lt;/span> &lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.255&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">!&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="6rd-tunnel">6RD Tunnel
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 general-prefix 6RD 6rd Tunnel1 // 从Tunnel 1 获取 ISP 通用前缀 命名为6RD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1 // 6RD Tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip redirects
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 6RD ::/128 // 通过命名为6RD 的通用前缀构建 IPv6 地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode ipv6ip 6rd // 模式
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd ipv4 prefix-len 16 // IPv4 通用前缀 ，不设置通用后缀
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd prefix 2408:1617::/32 //ISP 设定的 IPv6 前缀
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd br 200.1.4.4 // BR 地址，位于 ISP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 200.1.164.16 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2408:1617:A410:F::F/64 // 通过 ISP 设定的前缀 + IPv4 通用前缀构造，IPv4通用前缀占去16位，而通用后缀没有设置，所以就是164.16，转16进制
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route 0.0.0.0 0.0.0.0 200.1.164.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route 2408:1617::/32 Tunnel1 // 站点互访
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route ::/0 Tunnel1 2408:1617:404:: // 访问 IPv6 互联网
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R17
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 general-prefix 6RD 6rd Tunnel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip redirects
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 6RD ::/128
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode ipv6ip 6rd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd ipv4 prefix-len 16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd prefix 2408:1617::/32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd br 200.1.4.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 200.1.174.17 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Ethernet0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> duplex auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 2408:1617:AE11:11::11/64 // // 通过 ISP 设定的前缀 + IPv4 通用前缀构造，IPv4通用前缀占去16位，而通用后缀没有设置，所以就是174.17，转16进制
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route 0.0.0.0 0.0.0.0 200.1.174.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route 2408:1617::/32 Tunnel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route ::/0 Tunnel1 2408:1617:404::
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">! -- R4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 general-prefix 6RD 6rd Tunnel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Loopback1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 200.1.4.4 255.255.255.255
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">interface Tunnel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip address
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> no ip redirects
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 address 6RD ::/128
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ipv6 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel source Loopback1 // 指定源，6RD 网络 IPv4 可达，还有一种说法是，可以配置anycast，6RD 网络就近访问
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel mode ipv6ip 6rd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd ipv4 prefix-len 16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tunnel 6rd prefix 2408:1617::/32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ipv6 route 2408:1617::/32 Tunnel1 // 站点访问IPv6 网络 返回流量
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="test---observation">Test &amp;amp; Observation
+&lt;/h2>&lt;p>&lt;strong>PC 23&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ping PC 24&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/wdq98eSpnQIomMu.png">
+&lt;img src="https://s2.loli.net/2022/04/03/wdq98eSpnQIomMu.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping R5 Loopback0&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/pNRlmzbMueHx4ci.png">
+&lt;img src="https://s2.loli.net/2022/04/03/pNRlmzbMueHx4ci.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 ISP Network 的 R3 Loopback0&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/T6NrPOZoiJQsqcG.png">
+&lt;img src="https://s2.loli.net/2022/04/03/T6NrPOZoiJQsqcG.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 A branch1 的 PC 25&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/KZQrajkhO8iqm2R.png">
+&lt;img src="https://s2.loli.net/2022/04/03/KZQrajkhO8iqm2R.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 B head 的 PC 26&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/3FZM1b8tQGxf7js.png">
+&lt;img src="https://s2.loli.net/2022/04/03/3FZM1b8tQGxf7js.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 6to4 Tunnel site2 的 PC 28&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/zGR5jO2XhyDNk9w.png">
+&lt;img src="https://s2.loli.net/2022/04/03/zGR5jO2XhyDNk9w.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 6RD Tunnel site1 的 PC 30&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/pt6MgExKAVrh7Jc.png">
+&lt;img src="https://s2.loli.net/2022/04/03/pt6MgExKAVrh7Jc.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>PC 25&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 A head 的 PC 24&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/EiJG1AeWxF2Chwp.png">
+&lt;img src="https://s2.loli.net/2022/04/03/EiJG1AeWxF2Chwp.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 A branch2 的 E0/1 接口&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/lCnirqdHXLAPzOI.png">
+&lt;img src="https://s2.loli.net/2022/04/03/lCnirqdHXLAPzOI.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>PC 26&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 ISP Network 的 R4 Loopback0&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/CpJV95worZjDeq6.png">
+&lt;img src="https://s2.loli.net/2022/04/03/CpJV95worZjDeq6.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 A head 的 PC 24&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/Pogt8efnYlw7hVS.png">
+&lt;img src="https://s2.loli.net/2022/04/03/Pogt8efnYlw7hVS.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 6RD Tunnel site1 的 PC 30&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/OgaZPtVnw1ovWqm.png">
+&lt;img src="https://s2.loli.net/2022/04/03/OgaZPtVnw1ovWqm.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>PC 27&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ping GRE Tunnel site1 的 E0/1 接口&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/dJxVzWU75PaS4pM.png">
+&lt;img src="https://s2.loli.net/2022/04/03/dJxVzWU75PaS4pM.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 ISP Network 的 R1 Loopback0 （IPv4）&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/4kKtLZCPviFn1XE.png">
+&lt;img src="https://s2.loli.net/2022/04/03/4kKtLZCPviFn1XE.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>PC 28&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 6to4 Tunnel site1 E0/1 接口&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/UrGM7mXeSuRFJOx.png">
+&lt;img src="https://s2.loli.net/2022/04/03/UrGM7mXeSuRFJOx.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 ISP Network 的 R1 Loopback0 （IPv6）&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/LSMXYa1GTCRV85A.png">
+&lt;img src="https://s2.loli.net/2022/04/03/LSMXYa1GTCRV85A.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 ISP Network 的 R1 Loopback0 （IPv4）&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/kjEiPofQ8HVKc3t.png">
+&lt;img src="https://s2.loli.net/2022/04/03/kjEiPofQ8HVKc3t.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>PC 29&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 Manual Tunnel site1 E0/1 接口&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/kfljUI6ZwMCFcBm.png">
+&lt;img src="https://s2.loli.net/2022/04/03/kfljUI6ZwMCFcBm.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 ISP Network 的 R1 Loopback0 （IPv4）&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/MvtomBCDQfGwuZ9.png">
+&lt;img src="https://s2.loli.net/2022/04/03/MvtomBCDQfGwuZ9.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>PC 30&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 6RD Tunnel site2 E0/1 接口&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/b9VUl7PrZRnWM1K.png">
+&lt;img src="https://s2.loli.net/2022/04/03/b9VUl7PrZRnWM1K.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>ping 位于 ISP Network 的 R1 Loopback0 （IPv6）&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/04/03/x8Bg5QzJmsL6fUP.png">
+&lt;img src="https://s2.loli.net/2022/04/03/x8Bg5QzJmsL6fUP.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="ending">Ending
+&lt;/h2>&lt;ul>
+&lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
+&lt;li>配置存阿里云盘了，这是链接：[&lt;a class="link" href="https://www.aliyundrive.com/s/L2WMMmcVR1A" target="_blank" rel="noopener"
+>分享的文件
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>]&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
+&lt;/ul></description></item></channel></rss>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>微信 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E5%BE%AE%E4%BF%A1/</link><description>Recent content in 微信 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E5%BE%AE%E4%BF%A1/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://weeaster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://weeaster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
+&lt;p>实现逻辑：微信启动后将窗口置顶，模拟输入回车键&lt;/p>
+&lt;p>前提：微信自动登陆已开启，启动微信后显示&lt;code>进入微信&lt;/code>按钮&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/12/06/LjwQXnR5bPqJTov.png">
+&lt;img src="https://s2.loli.net/2024/12/06/LjwQXnR5bPqJTov.png"
+loading="lazy"
+alt="image-20241206115449070"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="操作步骤">操作步骤
+&lt;/h2>&lt;h3 id="安装pywinauto库">安装pywinauto库
+&lt;/h3>&lt;p>全局安装或虚拟环境（我使用conda虚拟环境）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">conda create -n wechatautologin python=3.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install pywinauto
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="编写三个文件和创建快捷方式">编写三个文件和创建快捷方式
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>&lt;code> wechatautologin.py&lt;/code>，python代码文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">from pywinauto.application import Application
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">from pywinauto.keyboard import send_keys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 启动应用程序
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">app = Application(&amp;#39;uia&amp;#39;).start(r&amp;#34;D:\Program Files (x86)\Tencent\WeChat\WeChat.exe&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查找微信窗口，使用正则表达式匹配标题包含“微信”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg = app.window(title_re=&amp;#34;微信&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加等待时间，确保窗口加载完成
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg.wait(&amp;#39;visible&amp;#39;, timeout=30) # 等待窗口可见，最大等待 30 秒
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将窗口置顶并获取焦点
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg.set_focus()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 模拟按下 Enter 键
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">send_keys(&amp;#34;{ENTER}&amp;#34;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.bat&lt;/code>，bat文件，用于进入虚拟环境，运行&lt;code> wechatautologin.py&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 确保脚本运行时的工作目录是批处理文件所在的目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd /d %~dp0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 激活conda虚拟环境
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">call D:\miniconda3\Scripts\activate.bat wechatautologin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 启动应用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python wechatautologin.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.vbs&lt;/code>，单独运行bat文件会显示cmd窗口，套一层vbs解决&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Set WshShell = CreateObject(&amp;#34;WScript.Shell&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WshShell.Run &amp;#34;&amp;#34;&amp;#34;F:\wechatautologin\wechatautologin.bat&amp;#34;&amp;#34;&amp;#34;, 0, False
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.lnk&lt;/code>，&lt;code>wechatautologin.vbs&lt;/code>文件的快捷方式，右键&lt;code>wechatautologin.vbs&lt;/code>在菜单中点击&lt;code>创建快捷方式&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="添加开机启动">添加开机启动
+&lt;/h3>&lt;p>将上一步骤创建的快捷方式复制或剪切到以下路径（两个位置，二选一）&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>C:\Users\xxx\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&lt;/code>&lt;/li>
+&lt;li>&lt;code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>&lt;code>Pywinauto&lt;/code>文档 &lt;a class="link" href="https://static.kancloud.cn/gnefnuy/pywinauto_doc/1193035" target="_blank" rel="noopener"
+>https://static.kancloud.cn/gnefnuy/pywinauto_doc/1193035
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;li>如果出现微信启动后没有自动点击&lt;code>进入微信&lt;/code>按钮，可添加一定时间&lt;code>time.sleep&lt;/code>等待&lt;/li>
+&lt;li>注意替换微信安装位置，我这安装在D盘&lt;/li>
+&lt;li>小玩意儿，省一个点击鼠标或敲回车的时间&lt;/li>
+&lt;/ul></description></item></channel></rss>

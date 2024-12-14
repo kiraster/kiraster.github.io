@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Front-Matter on Kir's Blog</title><link>https://weeaster.github.io/tags/front-matter/</link><description>Recent content in Front-Matter on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 11 May 2023 13:30:19 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/front-matter/index.xml" rel="self" type="application/rss+xml"/><item><title>添加hexo文章时效性提示</title><link>https://weeaster.github.io/posts/9481f4f2/</link><pubDate>Thu, 11 May 2023 13:30:19 +0000</pubDate><guid>https://weeaster.github.io/posts/9481f4f2/</guid><description>&lt;p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。&lt;/p>
+&lt;p>在这些文章页面给出提示信息，提示注意甄别。&lt;/p>
+&lt;p>&lt;strong>效果如下：&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/11/PMvTXZxS3C5tLKA.jpg">
+&lt;img src="https://s2.loli.net/2023/05/11/PMvTXZxS3C5tLKA.jpg"
+loading="lazy"
+alt="ScreenCaputure230511143012"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="操作步骤">操作步骤
+&lt;/h2>&lt;p>在主题文件夹的 layout 目录下找到文章页面的模板文件，一般为&lt;code>post.ejs&lt;/code>或者&lt;code>article.ejs&lt;/code>（这个要根据主题来确定，我使用的主题是 post.ejs 包了一层 article.ejs，所以在 article.ejs 中添加代码比较合适），在该文件中找到文章正文之上的行添加如下代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;!--&lt;/span> &lt;span class="n">add&lt;/span> &lt;span class="n">timeliness&lt;/span> &lt;span class="n">tips&lt;/span> &lt;span class="n">date&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">20230510&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;%&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">typeof&lt;/span> &lt;span class="n">post&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">notips&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s1">&amp;#39;undefined&amp;#39;&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="o">!&lt;/span>&lt;span class="n">post&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">notips&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="o">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;%&lt;/span> &lt;span class="k">var&lt;/span> &lt;span class="n">days&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">moment&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">diff&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">moment&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">post&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s1">&amp;#39;days&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="o">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;%&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">days&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">180&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="o">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">div&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="k">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;fa fa-exclamation-triangle&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">This&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">an&lt;/span> &lt;span class="n">article&lt;/span> &lt;span class="n">that&lt;/span> &lt;span class="n">was&lt;/span> &lt;span class="n">created&lt;/span> &lt;span class="o">&amp;lt;%=&lt;/span> &lt;span class="n">days&lt;/span> &lt;span class="o">%&amp;gt;&lt;/span> &lt;span class="n">days&lt;/span> &lt;span class="n">ago&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">the&lt;/span> &lt;span class="n">information&lt;/span> &lt;span class="n">may&lt;/span> &lt;span class="n">have&lt;/span> &lt;span class="n">evolved&lt;/span> &lt;span class="ow">or&lt;/span> &lt;span class="n">changed&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;/&lt;/span>&lt;span class="n">div&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">br&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;%&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;%&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="代码说明">代码说明
+&lt;/h2>&lt;p>这段 EJS 代码主要实现以下功能：&lt;/p>
+&lt;ol>
+&lt;li>判断文章是否需要显示警告信息，如果需要显示警告信息，则执行接下来的代码块；&lt;/li>
+&lt;li>计算文章发布时间与当前时间之间的天数，并判断是否超过 180 天；&lt;/li>
+&lt;li>如果超过 180 天，则显示一个带有警告图标开头的提示信息，告知读者文章内容可能已经过时或发生变化。&lt;/li>
+&lt;/ol>
+&lt;h3 id="notips字段的使用">notips字段的使用
+&lt;/h3>&lt;p>在 Hexo 的文章 Front-matter 中定义&lt;code>notips&lt;/code> 字段，因为有一些类型的文章并不需要这个提示，比如一些感想思考想法。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;% if (typeof post.notips === &amp;#39;undefined&amp;#39; || !post.notips) { %&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这一行代码首先判断 &lt;code>post.notips&lt;/code> 是否有定义。如果没有定义，即 &lt;code>typeof post.notips === 'undefined'&lt;/code> 为真，或者定义了但值为假（0、false、null、空字符串等），即 &lt;code>!post.notips&lt;/code> 为真，那么就执行接下来的代码块，否则跳过。&lt;/p>
+&lt;p>&lt;strong>如果需要在文章中显示提示信息，则留空就行，不定义&lt;code>notips&lt;/code>就行&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>如果不需要在文章中显示提示信息，则把&lt;code>post.notips&lt;/code> 的值设置为真（即非零、非空、非 false）&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>如果想要又不想要，你自己分裂去&lt;/strong>&lt;/p>
+&lt;p>以下是一个不需要在文章中显示提示信息的例子：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">title: title
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">notips: true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="其他行代码说明">其他行代码说明
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;%&lt;/span> &lt;span class="k">var&lt;/span> &lt;span class="n">days&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">moment&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">diff&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">moment&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">post&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">date&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s1">&amp;#39;days&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="o">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这一行代码使用 moment.js 库计算当前时间与文章发布时间之间的天数。具体来说&lt;code>moment().diff(moment(post.date), 'days')&lt;/code> 表示当前时间与 &lt;code>post.date&lt;/code> 这个 moment 对象之间的天数差值。将计算结果赋值给 &lt;code>days&lt;/code> 变量，以便后续使用。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;% if (days &amp;gt; 180) { %&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;div&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;i class=&amp;#34;fa fa-exclamation-triangle&amp;#34;&amp;gt;&amp;lt;/i&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> This is an article that was created &amp;lt;%= days %&amp;gt; days ago, and the information may have evolved or changed.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/div&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;br&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;% } %&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这一段代码实现了在文章过时时显示一个警告提示信息。具体来说，如果 &lt;code>days&lt;/code> 大于 180，即文章发布时间距今已经超过 180 天，则显示一个带警告图标开头的提示信息，里面包含了提示文字和当前时间与发布时间之间的天数差值。&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>以上方案部分代码内容来自GPT，但是点开参考来源是404页面，让人费解&lt;/li>
+&lt;/ul></description></item></channel></rss>

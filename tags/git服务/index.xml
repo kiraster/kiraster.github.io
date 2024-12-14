@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git服务 on Kir's Blog</title><link>https://weeaster.github.io/tags/git%E6%9C%8D%E5%8A%A1/</link><description>Recent content in Git服务 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 18 Sep 2024 11:22:42 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/git%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml"/><item><title>在Rocky Linux 8.7虚拟机安装Gogs的记录</title><link>https://weeaster.github.io/posts/5745efe9/</link><pubDate>Wed, 18 Sep 2024 11:22:42 +0000</pubDate><guid>https://weeaster.github.io/posts/5745efe9/</guid><description>&lt;p>Gogs 是一款极易搭建的自助 Git 服务。&lt;/p>
+&lt;p>Gogs官网：https://gogs.io/&lt;/p>
+&lt;p>以下内容为本次安装过程的一个记录&lt;/p>
+&lt;h2 id="准备环境">准备环境
+&lt;/h2>&lt;p>按照官方文档指示的环境要求处理， &lt;a class="link" href="https://gogs.io/docs/installation" target="_blank" rel="noopener"
+>https://gogs.io/docs/installation
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;h3 id="一台虚拟机">一台虚拟机
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>选择你熟悉和中意的linux，不必在意我以下使用的发行版（留了模板）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>此处选用&lt;code>Rocky8.7&lt;/code>是因为本机VMware里躺着一个虚拟机模版，果断完整克隆一份（省时）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>传闻消耗资源少？，就分个2核1G内存的丐版（不够再加）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置静态IP地址， 配置可连接互联网（基操）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>虚拟机硬件资源配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost /]# lscpu | grep -E &amp;#39;CPU|Core&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU op-mode(s): 32-bit, 64-bit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU(s): 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">On-line CPU(s) list: 0,1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Core(s) per socket: 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU family: 16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU MHz: 3013.536
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NUMA node0 CPU(s): 0,1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost /]# free -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> total used free shared buff/cache available
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Mem: 777Mi 284Mi 78Mi 3.0Mi 413Mi 358Mi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Swap: 2.0Gi 8.0Mi 2.0Gi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost /]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据库">数据库
+&lt;/h3>&lt;p>跳过此项，使用sqlite&lt;/p>
+&lt;h3 id="安装git">安装git
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>检查是否安装Git，如发现已安装，检查版本是否满足环境要求所需版本&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost ~]# git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-bash: git: command not found
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>安装git&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">dnf update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install git -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost ~]# git --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git version 2.43.5
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h3 id="ssh服务器">SSH服务器
+&lt;/h3>&lt;p>该版本已安装ssh服务，可远程ssh登陆（不懂是之前手动安装的还是系统自带的，不重要）&lt;/p>
+&lt;h2 id="安装必要工具和依赖">安装必要工具和依赖
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost ~]# tar --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar (GNU tar) 1.30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Copyright (C) 2017 Free Software Foundation, Inc.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">License GPLv3+: GNU GPL version 3 or later &amp;lt;https://gnu.org/licenses/gpl.html&amp;gt;.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This is free software: you are free to change and redistribute it.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">There is NO WARRANTY, to the extent permitted by law.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Written by John Gilmore and Jay Fenlason.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost ~]# wget --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GNU Wget 1.19.5 built on linux-gnu.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>经过检查，系统已安装tar和wget，如未安装，使用如下命令安装&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">dnf install wget tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>##　下载Gogs二进制源码&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;code>/opt &lt;/code>路径下创建Gogs目录，用于存放源码文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd /opt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir Gogs_0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost opt]# ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. 2 root root 6 Sep 17 05:14 Gogs_0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost opt]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>wget下载二进制源码（当前日期20240917最新github release 版本）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">wget&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">github&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">releases&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">download&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">v0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="n">_linux_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tar&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gz&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发现从github下载速度慢，从官网 https://dl.gogs.io/0.13.0/ 下载&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">wget&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">dl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gogs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">io&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">0.13&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="n">_linux_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tar&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gz&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">localhost&lt;/span> &lt;span class="n">Gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="c1"># ll&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">total&lt;/span> &lt;span class="mi">29352&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">-&lt;/span>&lt;span class="n">rw&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="o">--.&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">root&lt;/span> &lt;span class="n">root&lt;/span> &lt;span class="mi">30054955&lt;/span> &lt;span class="n">Feb&lt;/span> &lt;span class="mi">25&lt;/span> &lt;span class="mi">2023&lt;/span> &lt;span class="n">gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="n">_linux_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tar&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gz&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">localhost&lt;/span> &lt;span class="n">Gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="c1"># &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="解压下载的-tar-包">解压下载的 tar 包
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]# tar -xzf gogs_0.13.0_linux_amd64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]# ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 29352
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x. 3 1000 1000 85 Feb 25 2023 gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r--. 1 root root 30054955 Feb 25 2023 gogs_0.13.0_linux_amd64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="运行gogs">运行Gogs
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>防火墙设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 确保允许访问 Gogs 使用的端口（默认是 3000）,主要使用物理机访问使用，且我这Rocky8.7没安装图形界面，所以……&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">permanent&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">3000&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改实际使用的端口号，下一步骤中修改30000，当然使用3000也是可以的&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">permanent&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">30000&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>使用命令 &lt;code>cd&lt;/code> 进入到解压后的目录。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>执行命令 &lt;code>./gogs web&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Gogs 默认会在端口 &lt;code>3000&lt;/code> 启动 HTTP 服务，访问 &lt;code>/install&lt;/code> 以进行初始配置（例如 http://localhost:3000/install ）。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# ./gogs web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ WARN] Custom config &amp;#34;/opt/Gogs_0.13.0/gogs/custom/conf/app.ini&amp;#34; not found. Ignore this warning if you&amp;#39;re running for the first time
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Log mode: Console (Trace)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ INFO] Gogs 0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Work directory: /opt/Gogs_0.13.0/gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Custom path: /opt/Gogs_0.13.0/gogs/custom
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Custom config: /opt/Gogs_0.13.0/gogs/custom/conf/app.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Log path: /opt/Gogs_0.13.0/gogs/log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Build time: 2023-02-25 02:30:34 UTC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Build commit: 8c21874c00b6100d46b662f65baeb40647442f42
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ INFO] Run mode: Development
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ INFO] Available on http://localhost:3000/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="从外部访问虚拟机中gogs">从外部访问虚拟机中Gogs
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>访问 &lt;code>/install&lt;/code> 以进行初始配置（例如 &lt;a class="link" href="http://172.31.100.xx:3000/install" target="_blank" rel="noopener"
+>http://172.31.100.xx:3000/install
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> ）,可以自由发挥（以下是我的配置）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/13LyVlzKSFjtUbD.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/13LyVlzKSFjtUbD.jpg"
+loading="lazy"
+alt="ScreenCaputure3638"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/LU64HDirj9aOnk3.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/LU64HDirj9aOnk3.jpg"
+loading="lazy"
+alt="ScreenCaputure4848"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>上面配置中邮件服务留空了，本地没有邮件服务器，也不想联网&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>上面配置中的创建管理员用户可以不设置，第一个注册的用户自动成为管理员，我在此处截胡了&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>没有邮件服务，引起的问题：用户不能通过邮箱找回密码，需要管理员用户重置&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>重启Gogs，进行登陆&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/eSBrWzUCOPcDopT.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/eSBrWzUCOPcDopT.jpg"
+loading="lazy"
+alt="ScreenCaputure5350"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/NIqsjCHUPJogcSD.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/NIqsjCHUPJogcSD.jpg"
+loading="lazy"
+alt="ScreenCaputure5446"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>中文显示&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/sEQJU2wPd1XWI7C.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/sEQJU2wPd1XWI7C.jpg"
+loading="lazy"
+alt="ScreenCaputure5638"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/Dg6ETvwxOZFCHMt.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/Dg6ETvwxOZFCHMt.jpg"
+loading="lazy"
+alt="ScreenCaputure5824"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="设置-gogs-服务开机启动">设置 Gogs 服务开机启动
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>将&lt;code>/opt/Gogs_0.13.0/gogs/scripts/systemd&lt;/code>路径下的&lt;code>gogs.service&lt;/code>文件复制到&lt;code>/etc/systemd/system &lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost systemd]# cp gogs.service /etc/systemd/system
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>修改&lt;code>/etc/systemd/system&lt;/code>路径下的&lt;code>gogs.service&lt;/code>文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[Unit]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description=Gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">After=syslog.target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">After=network.target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># After=mariadb.service mysql.service mysqld.service postgresql.service memcached.service $
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Service]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Modify these two values and uncomment them if you have
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># repos with lots of files and get an HTTP error 500 because
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># of that
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">###
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#LimitMEMLOCK=infinity
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#LimitNOFILE=65535
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type=simple
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">User=root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Group=root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WorkingDirectory=/opt/Gogs_0.13.0/gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ExecStart=/opt/Gogs_0.13.0/gogs/gogs web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Restart=always
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Environment=USER=git HOME=/home/root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Some distributions may not support these hardening directives. If you cannot start the s$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># to an unknown option, comment out the ones not supported by your version of systemd.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ProtectSystem=full
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PrivateDevices=yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PrivateTmp=yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NoNewPrivileges=true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Install]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WantedBy=multi-user.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>重新加载 systemd 配置并启动 Gogs 服务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">systemctl&lt;/span> &lt;span class="n">daemon&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">systemctl&lt;/span> &lt;span class="n">start&lt;/span> &lt;span class="n">gogs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">systemctl&lt;/span> &lt;span class="n">enable&lt;/span> &lt;span class="n">gogs&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="外部仓库克隆测试">外部仓库克隆测试
+&lt;/h2>&lt;p>以https方式 git clone 一个仓库至本地，（github把https方式克隆仓库给ban了，现在都需要验证，去gitee克隆）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/QbcJGNxt2U7wBDA.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/QbcJGNxt2U7wBDA.jpg"
+loading="lazy"
+alt="ScreenCaputure0823"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/goN6IM5VJCRDSL1.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/goN6IM5VJCRDSL1.jpg"
+loading="lazy"
+alt="ScreenCaputure0907"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="再次进行初始化">再次进行初始化
+&lt;/h2>&lt;p>种种原因可能需要再次进行初始化（比如修改数据库，更改管理员等）&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>删除/root/gogs-repositories 目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost ~]# rm -rf gogs-repositories/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>删除/opt/Gogs_0.13.0/gogs 目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]# rm -rf gogs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>再次解压，运行Gogs&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# ./gogs web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ WARN] Custom config &amp;#34;/opt/Gogs_0.13.0/gogs/custom/conf/app.ini&amp;#34; not found. Ignore this warning if you&amp;#39;re running for the first time
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Log mode: Console (Trace)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ INFO] Gogs 0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Work directory: /opt/Gogs_0.13.0/gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Custom path: /opt/Gogs_0.13.0/gogs/custom
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Custom config: /opt/Gogs_0.13.0/gogs/custom/conf/app.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Log path: /opt/Gogs_0.13.0/gogs/log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Build time: 2023-02-25 02:30:34 UTC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Build commit: 8c21874c00b6100d46b662f65baeb40647442f42
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ INFO] Run mode: Development
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ INFO] Available on http://localhost:3000/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [FATAL] [gogs.io/gogs/internal/cmd/web.go:776 runWeb()] Failed to start server: listen tcp 0.0.0.0:3000: bind: address already in use
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>提示端口已经在使用，关闭进程或重启系统解决&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查找进程ID，终止进程
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# lsof -i :3000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gogs 1543 root 10u IPv6 29519 0t0 TCP *:hbci (LISTEN)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# kill 1543
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# lsof -i :3000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></description></item></channel></rss>

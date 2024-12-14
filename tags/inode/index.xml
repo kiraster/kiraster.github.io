@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>INode on Kir's Blog</title><link>https://weeaster.github.io/tags/inode/</link><description>Recent content in INode on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 26 Nov 2022 15:12:31 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/inode/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C 防火墙（v7）SSLVPN 实验配置</title><link>https://weeaster.github.io/posts/ed57c1e2/</link><pubDate>Sat, 26 Nov 2022 15:12:31 +0000</pubDate><guid>https://weeaster.github.io/posts/ed57c1e2/</guid><description>&lt;p>本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验&lt;/p>
+&lt;p>后一篇文章中描述 在 &lt;code>Ubuntu 22.04&lt;/code> 中安装 &lt;code>iNode&lt;/code> 客户端拨号测试&lt;/p>
+&lt;p>本来只想写 Ubuntu 安装 iNode 的，想想还是一起记录下来&lt;/p>
+&lt;p>文中的所有操作方法都可在华三官网和搜索引擎找到&lt;/p>
+&lt;h2 id="拓扑图">拓扑图
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/PgNxjMhaKEzsO2i.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/PgNxjMhaKEzsO2i.jpg"
+loading="lazy"
+alt="ScreenCaputure221126120646"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="基操">基操
+&lt;/h2>&lt;ol>
+&lt;li>配置接口 IP 地址&lt;/li>
+&lt;li>接口划入安全域（untrust，trust），新建安全域 SSLVPN&lt;/li>
+&lt;li>配置路由（FW&amp;ndash;&amp;raquo; ROUTER:172.16.1.0/24，ROUTER&amp;ndash;&amp;raquo;FW:0.0.0.0/0）&lt;/li>
+&lt;li>配置安全策略互通（any）&lt;/li>
+&lt;/ol>
+&lt;h2 id="防火墙配置-sslvpn">防火墙配置 SSLVPN
+&lt;/h2>&lt;h3 id="配置-sslvpn-网关">配置 SSLVPN 网关
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>Gateway Name: SSLVPNGW&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>IP Address: 172.31.100.234&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>port: 4443&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/2P1gsbxBkRCm3af.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/2P1gsbxBkRCm3af.jpg"
+loading="lazy"
+alt="ScreenCaputure221126121833"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="配置-ip-接入接口">配置 IP 接入接口
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>安全域： SSLVPN&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>指定IP地址：172.31.200.254/24&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>本机接收可不选&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/vHMoJfWuPDIN8mQ.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/vHMoJfWuPDIN8mQ.jpg"
+loading="lazy"
+alt="ScreenCaputure221126121924"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/D19bwngVfWil3rQ.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/D19bwngVfWil3rQ.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122310"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="创建ssl--vpn客户端地址池">创建SSL VPN客户端地址池
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>地址池名称： SSLVPNPOOL&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>172.31.200.10 - 172.31.200.100&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/9StT357Dfmk2lj8.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/9StT357Dfmk2lj8.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122347"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="配置ssl-vpn访问实例">配置SSL VPN访问实例
+&lt;/h3>&lt;ul>
+&lt;li>访问实例： KIRIP&lt;/li>
+&lt;li>关联网关：SSLVPNGW&lt;/li>
+&lt;li>url acl: None&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/CJVZL3STvasDp2G.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/CJVZL3STvasDp2G.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122432"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/e6ghlcyE2nKuYkj.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/e6ghlcyE2nKuYkj.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122521"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>IP业务：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>​ IP接入接口：SSLVPN-AC1 INTERFACE&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>​ 客户端地址池：SSLVPNPOOL&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>IP接入资源：添加要被VPN接入客户端访问的网络 : ROUTERLIST:&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>​ 172.16.1.0/24&lt;/p>
+&lt;p>​ ……&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/tpb9CPyxr3kuRsI.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/tpb9CPyxr3kuRsI.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122536"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/KhsJiqZn4afRIQ1.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/KhsJiqZn4afRIQ1.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122634"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/iynU2qlutawKPsF.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/iynU2qlutawKPsF.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122716"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/MWqR9i7eynPNrAH.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/MWqR9i7eynPNrAH.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122723"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/ukL5VOaitIjWpch.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/ukL5VOaitIjWpch.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122747"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>不配置快捷方式，next&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置资源组&lt;/p>
+&lt;ul>
+&lt;li>资源组名称：RESOURCEGROUP&lt;/li>
+&lt;li>指定路由接入VPN：子网资源&lt;/li>
+&lt;li>客户端地址池：SSLVPNPOOL&lt;/li>
+&lt;li>客户端掩码：24&lt;/li>
+&lt;li>acl：3999 (新建acl，rule permit ip)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>完成配置，使能访问实例（勾上）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/zoRQuITFqvtxka4.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/zoRQuITFqvtxka4.jpg"
+loading="lazy"
+alt="ScreenCaputure221126122917"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="创建-sslvpn-用户">创建 SSLVPN 用户
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>填写用户名&amp;ndash;&amp;raquo;勾选SSL VPN&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>授权属性： SSL VPN 策略组： resourcegroup&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/1Imh2gkDJCzUjZ5.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/1Imh2gkDJCzUjZ5.jpg"
+loading="lazy"
+alt="ScreenCaputure221126124924"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/n6vmYPWJdAyFX8D.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/n6vmYPWJdAyFX8D.jpg"
+loading="lazy"
+alt="ScreenCaputure221126124934"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="windows平台-inode-客户端测试">Windows平台 iNode 客户端测试
+&lt;/h2>&lt;ul>
+&lt;li>新建场景&amp;ndash;&amp;raquo;创建连接&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;tr>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/YIEbLd4NcaSzHFm.jpg">&lt;/td>
+&lt;td>&lt;img src="https://s2.loli.net/2022/11/26/fd7ImtU6VzkhTvg.png">&lt;/td>
+&lt;/tr>
+&lt;/table>
+&lt;ul>
+&lt;li>查看连接状态和分配到的客户端地址&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/rfRhxltUH9MN2AX.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/rfRhxltUH9MN2AX.jpg"
+loading="lazy"
+alt="ScreenCaputure221126125942"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>访问资源和跟踪路径&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/11/26/C3F8pRToXzd9yi2.jpg">
+&lt;img src="https://s2.loli.net/2022/11/26/C3F8pRToXzd9yi2.jpg"
+loading="lazy"
+alt="ScreenCaputure221126130413"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

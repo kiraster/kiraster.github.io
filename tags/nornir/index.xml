@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nornir on Kir's Blog</title><link>https://weeaster.github.io/tags/nornir/</link><description>Recent content in Nornir on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 16 Apr 2023 23:33:58 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/nornir/index.xml" rel="self" type="application/rss+xml"/><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://weeaster.github.io/posts/9571d5ee/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://weeaster.github.io/posts/9571d5ee/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
+&lt;blockquote>
+&lt;p>在32位windows系统中无法使用本脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="介绍">介绍
+&lt;/h2>&lt;ul>
+&lt;li>在nornir 3.3.0框架上进行功能编写&lt;/li>
+&lt;li>使用&lt;code>nornir&lt;/code>自带的并发机制，专注于功能的实现&lt;/li>
+&lt;li>&lt;code>nornir&lt;/code>具有与其他开源模块的联动功能，如&lt;code>netbox&lt;/code>、&lt;code>sql&lt;/code>、&lt;code>scrapli&lt;/code>、&lt;code>napalm&lt;/code>等，具有强扩展性&lt;/li>
+&lt;li>&lt;code>main&lt;/code>分支是在windows平台下运行的脚本&lt;/li>
+&lt;li>&lt;code>ubuntu-branch&lt;/code>分支是在ubuntu server下运行的脚本（其他linux发行版，应该也可以）&lt;/li>
+&lt;/ul>
+&lt;h2 id="测试环境">测试环境
+&lt;/h2>&lt;h3 id="windows">windows
+&lt;/h3>&lt;ul>
+&lt;li>Microsoft Windows 10 Pro 21H2&lt;/li>
+&lt;li>Visual studio code Update 1.77.3&lt;/li>
+&lt;li>Python 3.10.10&lt;/li>
+&lt;li>nornir==3.3.0&lt;/li>
+&lt;/ul>
+&lt;h3 id="ubuntu">Ubuntu
+&lt;/h3>&lt;ul>
+&lt;li>Ubuntu 22.04.2 LTS&lt;/li>
+&lt;li>Python 3.10.6&lt;/li>
+&lt;li>nornir==3.3.0&lt;/li>
+&lt;/ul>
+&lt;h3 id="simulation-software">Simulation Software
+&lt;/h3>&lt;ul>
+&lt;li>HCL 5.7.2&lt;/li>
+&lt;li>DeviceModel：H3C S5820V2-54QS-GE&lt;/li>
+&lt;/ul>
+&lt;h3 id="topology">Topology
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/05/L7nI9fTp3zEk6Rq.png">
+&lt;img src="https://s2.loli.net/2023/05/05/L7nI9fTp3zEk6Rq.png"
+loading="lazy"
+alt="lab_test"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="运行界面">运行界面
+&lt;/h2>&lt;h3 id="脚本启动界面">脚本启动界面
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/12/lFHy2EX741Ukucv.gif">
+&lt;img src="https://s2.loli.net/2023/05/12/lFHy2EX741Ukucv.gif"
+loading="lazy"
+alt="01-startup"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="批量备份配置">批量备份配置
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/yWnmzFcgOACQLub.gif">
+&lt;img src="https://s2.loli.net/2023/05/13/yWnmzFcgOACQLub.gif"
+loading="lazy"
+alt="02-export-conf.gif"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="批量修改配置">批量修改配置
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/12/7G4OLUnh1mPZyFt.gif">
+&lt;img src="https://s2.loli.net/2023/05/12/7G4OLUnh1mPZyFt.gif"
+loading="lazy"
+alt="03-modify-conf"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="筛选--执行">筛选&amp;ndash;&amp;gt;执行
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/2ZHrXjtWL9MP8Cy.gif">
+&lt;img src="https://s2.loli.net/2023/05/13/2ZHrXjtWL9MP8Cy.gif"
+loading="lazy"
+alt="04-filter-run"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="获取交换机-端口-mac地址-和-搜索mac地址对应设备">获取交换机 端口-MAC地址 和 搜索MAC地址对应设备
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/uS3BwMOZiPzFhnf.gif">
+&lt;img src="https://s2.loli.net/2023/05/13/uS3BwMOZiPzFhnf.gif"
+loading="lazy"
+alt="05-get-mac-search.gif"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="批量snmp轮询">批量snmp轮询
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/12/HXq4kr5RgdENSmC.gif">
+&lt;img src="https://s2.loli.net/2023/05/12/HXq4kr5RgdENSmC.gif"
+loading="lazy"
+alt="06-snmp"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="批量ssh可达性测试">批量ssh可达性测试
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/12/VujiXYQF8DBJ4lc.gif">
+&lt;img src="https://s2.loli.net/2023/05/12/VujiXYQF8DBJ4lc.gif"
+loading="lazy"
+alt="07-ssh"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="批量ping可达性测试">批量ping可达性测试
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/FdADRmT7ijzwHkE.gif">
+&lt;img src="https://s2.loli.net/2023/05/13/FdADRmT7ijzwHkE.gif"
+loading="lazy"
+alt="08-ping"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="批量保存配置">批量保存配置
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/12/aQxUnHKLV1Cdv7l.gif">
+&lt;img src="https://s2.loli.net/2023/05/12/aQxUnHKLV1Cdv7l.gif"
+loading="lazy"
+alt="09-save"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="查看设备清单">查看设备清单
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/12/SEPBO96jQLzfAru.gif">
+&lt;img src="https://s2.loli.net/2023/05/12/SEPBO96jQLzfAru.gif"
+loading="lazy"
+alt="10-all-device"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="导出诊断信息和日志tftp">导出诊断信息和日志（TFTP）
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/12/25vYimxPfXryE98.gif">
+&lt;img src="https://s2.loli.net/2023/05/12/25vYimxPfXryE98.gif"
+loading="lazy"
+alt="11-diag"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="生成的文件">生成的文件
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/YjHq6JEcClrmv4F.gif">
+&lt;img src="https://s2.loli.net/2023/05/13/YjHq6JEcClrmv4F.gif"
+loading="lazy"
+alt="12-file-saved"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="文件根目录">文件根目录
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/3fpAmPkHUjLeQhM.jpg">
+&lt;img src="https://s2.loli.net/2023/05/13/3fpAmPkHUjLeQhM.jpg"
+loading="lazy"
+alt="ScreenCaputure230512235941"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="功能说明">功能说明
+&lt;/h2>&lt;ol>
+&lt;li>批量备份配置
+&lt;ul>
+&lt;li>根据加载的设备清单，读取ssh登陆信息登陆设备，执行display列中的display命令，将回显内容写入到&lt;code>EXPORT\当天日期\export_conf&lt;/code>文件夹下，每个设备的回显内容分别记录在一个txt文件(格式：name + ip + 当前时间.txt)，运行结果记录在&lt;code>EXPORT\当天日期\result_当天日期.log&lt;/code>文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>批量修改配置
+&lt;ul>
+&lt;li>根据加载的设备清单，读取ssh登陆信息登陆设备，执行config列中的config命令，将回显内容写入到&lt;code>EXPORT\当天日期\modify_conf&lt;/code>文件夹下，每个设备的回显内容分别记录在一个txt文件(格式：name + ip + 当前时间.txt)，运行结果记录在&lt;code>EXPORT\当天日期\result_当天日期.log&lt;/code>文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>筛选&amp;ndash;&amp;gt;执行
+&lt;ul>
+&lt;li>选择该功能选项后，会在二级菜单显示主菜单中的1、2、6、7、8、9功能&lt;/li>
+&lt;li>选择对应功能后进入筛选菜单&lt;/li>
+&lt;li>筛选菜单：
+&lt;ul>
+&lt;li>IP地址-筛选&lt;/li>
+&lt;li>平台-筛选&lt;/li>
+&lt;li>设备型号-筛选&lt;/li>
+&lt;li>区域-筛选&lt;/li>
+&lt;li>组合筛选&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>获取交换机 端口-MAC地址
+&lt;ul>
+&lt;li>该功能通过获取交换机MAC地址表和trunk接口信息，求差集获取到非trunk接口的MAC地址表，表格文件存储到&lt;code>EXPORT\当天日期\generate_table&lt;/code>，格式为：&lt;code>当天日期_当前时间_MAC地址表.xlsx&lt;/code>&lt;/li>
+&lt;li>强烈建议在代码&lt;code>task.run&lt;/code>前进行filter过滤接入交换机的&lt;code>nr对象&lt;/code>&lt;/li>
+&lt;li>运行结果记录在&lt;code>EXPORT\当天日期\result_当天日期.log&lt;/code>文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>搜索MAC地址对应设备
+&lt;ul>
+&lt;li>本功能依赖功能4中生成的MAC地址表，需要使用本功能先执行功能4&lt;/li>
+&lt;li>输入的MAC地址格式任意，可以是全匹配如：4426-0f92-0d06，也可以是其中部分如：0d06 或 4426，或者任意字符（没有意义）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>批量snmp轮询
+&lt;ul>
+&lt;li>根据加载的设备清单，执行snmp_get操作，将获取到的结果写入到SNMP轮询结果表，表格文件存储到&lt;code>EXPORT\当天日期\generate_table&lt;/code>，格式为：&lt;code>当天日期_当前时间_snmp轮询结果表.xlsx&lt;/code>&lt;/li>
+&lt;li>运行结果记录在&lt;code>EXPORT\当天日期\result_当天日期.log&lt;/code>文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>批量ssh可达性测试
+&lt;ul>
+&lt;li>根据加载的设备清单，读取ssh登陆信息登陆设备，以获取到设备的&lt;code>prompt&lt;/code>作为依据判断ssh可达，运行结果记录在&lt;code>EXPORT\当天日期\result_当天日期.log&lt;/code>文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>批量ping可达性测试
+&lt;ul>
+&lt;li>根据加载的设备清单，执行ping操作，以没有异常作为依据判断ping可达，运行结果记录在&lt;code>EXPORT\当天日期\result_当天日期.log&lt;/code>文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>批量保存配置
+&lt;ul>
+&lt;li>根据加载的设备清单，执行&lt;code>netmiko_save_config&lt;/code>操作，以没有异常作为依据判断保存成功，运行结果记录在&lt;code>EXPORT\当天日期\result_当天日期.log&lt;/code>文件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>显示设备清单
+&lt;ul>
+&lt;li>根据加载的设备清单，列出[&amp;rsquo;name&amp;rsquo;, &amp;lsquo;ip&amp;rsquo;, &amp;lsquo;platform&amp;rsquo;, &amp;lsquo;model&amp;rsquo;, &amp;lsquo;device_type&amp;rsquo;, &amp;lsquo;area&amp;rsquo;, &amp;rsquo;location&amp;rsquo;, &amp;lsquo;version&amp;rsquo;, &amp;lsquo;sn&amp;rsquo;]等内容&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>导出诊断信息和日志（TFTP）
+&lt;ul>
+&lt;li>根据&lt;code>nr.filter(hostname=device_ip)&lt;/code>过滤单台设备，对设备的诊断信息文件，诊断日志文件和日志文件上传到 TFTP 服务器&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="如何使用">如何使用
+&lt;/h2>&lt;h3 id="下载">下载
+&lt;/h3>&lt;p>&lt;code>Github&lt;/code>仓库地址：https://github.com/kiraster/netops_v2.0_beta&lt;/p>
+&lt;h3 id="虚拟环境">虚拟环境
+&lt;/h3>&lt;p>由于正常运行需要安装很多第三方库，且有些库的依赖需要降级版本才能正常运行，或可能与你当前python环境会有冲突，建议在虚拟环境下运行&lt;/p>
+&lt;p>以&lt;code>vscode&lt;/code>软件举例:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>代码编辑打开目录并控制台切换到代码根目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>创建虚拟环境&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python -m venv venv
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>激活虚拟环境&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.\venv\Scripts\Activate.ps1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h3 id="安装-python-库">安装 python 库
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">pip install -r requirements.txt
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安装库的时候可能遇到&lt;code>timeout&lt;/code>提示，检查网络；如遇报错看提示去Google&lt;/p>
+&lt;h2 id="运行前说明">运行前说明
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>查看&lt;code>nornir.yaml&lt;/code>文件，发现&lt;code>plugin: ExcelInventory&lt;/code>，是因为本代码使用了&lt;a class="link" href="https://github.com/jiujing/nornir_table_inventory" target="_blank" rel="noopener"
+>【nornir_table_inventory 插件】
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>excel_file: &amp;quot;inventory/inventory_unprotected.xlsx&amp;quot;&lt;/code>，这行配置指示了需要的excel文件，注意看文件名（unprotected），这是一个不带保护密码的excel文件，具体说明见&lt;code>README&lt;/code>文件&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>inventory文件夹下还有一个&lt;code>inventory_protected.xlsx&lt;/code>文件，这是一个有保护密码的文件&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>inventory_protected.xlsx&lt;/code>文件需要自行制作并设置一个保护密码，以下是本机环境中的格式，可参照插件作者的示例增删改&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/8GgzxanbZYiEW9C.jpg">
+&lt;img src="https://s2.loli.net/2023/05/13/8GgzxanbZYiEW9C.jpg"
+loading="lazy"
+alt="ScreenCaputure230513003040"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>inventory_protected.xlsx&lt;/code>文件中&lt;code>dispaly&lt;/code>和&lt;code>config&lt;/code>列的内容是查看命令和配置命令，每个命令之间使用逗号&lt;code>,&lt;/code>分隔；如在单元格内使用手动换行(换行符&lt;code>\n&lt;/code>)需要修改代码中&lt;code>cmds = task.host.get('display').split(',')&lt;/code>和&lt;code>cmds = task.host.get('config').split(',')&lt;/code>的&lt;code>split(',')&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可以根据实际情况修改&lt;code>num_workers&lt;/code>并发进程数和日志记录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如修改inventory路径和excel文件名，自行更新代码中对应的路径变量&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="代码执行逻辑">代码执行逻辑
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/13/VXpg4r7GjTeOny8.jpg">
+&lt;img src="https://s2.loli.net/2023/05/13/VXpg4r7GjTeOny8.jpg"
+loading="lazy"
+alt="ScreenCaputure230513004510"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>总有不足之处，可以提，但不一定改&lt;/li>
+&lt;li>我总觉得使用display和show等命令去采集设备信息不是一个很妥的方式，特别是配合textfsm形成列表套字典再写入表格；且不说速度慢，每一个命令对应一个模板导致代码结构不简洁和繁多，每个厂商的命令也不尽相同，有时同厂商同命令的回显也有差异导致要修改模板；同一源IP地址过度使用ssh登陆可能会被安全设备记录异常行为，特别是设备不可达或密码错会被识别为爆破攻击。&lt;/li>
+&lt;li>采集就由专业的snmp去干就好，速度快。很多公共的OID一轮询就得出结果。实在不济可以弄得专业点写个针对厂商和型号的snmp轮询模板（我不会），再专业点可以去下载设备的MIB文件鼓捣鼓捣（你来），很多厂商的网管平台号称可以纳管友商设备靠的不就是这个&lt;/li>
+&lt;li>对于批量修改配置，我的看法是慎用，特别是涉及控制层面的配置；如果要使用尽量在风险可控的前提下使用，如改个设备名称，添加描述，设备开局的批量调试等等；如确实要跑脚本建议先验证再验证，先小范围跑一两台设备，重要设备就手敲；随时做好提桶跑路。&lt;/li>
+&lt;li>现网运行业务的时候不要乱搞，看过一个运维的采购文件，中断一次扣多少钱，多长时间内不能恢复又扣钱，看的胆战心惊的，这很大程度上让我理解了为什么一个看似不大规模的运维项目最终报价高的离谱，可能也许包含了一部分这些风险&lt;/li>
+&lt;li>欢乐的时光总是特别短，又到时候讲byebye&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;strong>20230513 更新了此文章内容&lt;/strong>&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hexo命令 on Kir's Blog</title><link>https://weeaster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/</link><description>Recent content in Hexo命令 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 07 Dec 2022 15:05:53 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/index.xml" rel="self" type="application/rss+xml"/><item><title>Hexo环境新电脑环境重构</title><link>https://weeaster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://weeaster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
+&lt;p>网上也有很多文章描述如何操作，也可以去参考，我记录我的操作过程如下&lt;/p>
+&lt;h2 id="下载安装git-和-nodejs">下载安装Git 和 node.js
+&lt;/h2>&lt;ul>
+&lt;li>去官网下载软件包&lt;a class="link" href="https://www.git-scm.com/" target="_blank" rel="noopener"
+>Git (git-scm.com)
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>，&lt;a class="link" href="https://nodejs.org/zh-cn/download/releases/" target="_blank" rel="noopener"
+>以往的版本 | Node.js (nodejs.org)
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;li>Git 版本可安装最新的或保持和原环境一致版本&lt;/li>
+&lt;li>Hexo 版本和原环境的保持一致（npm安装@指定版本号：npm install -g &lt;a class="link" href="mailto:hexo-cli@4.x.x" >hexo-cli@4.x.x
+&lt;/a>）&lt;/li>
+&lt;li>node.js 版本保持和原环境一致，因为 Hexo 版本 对 node.js 版本有要求&lt;/li>
+&lt;li>安装过程基本点“下一步”，注意环境变量的“Add to PATH”勾上&lt;/li>
+&lt;/ul>
+&lt;h2 id="克隆私有仓库至本地">克隆私有仓库至本地
+&lt;/h2>&lt;h3 id="添加本地-git-配置">添加本地 Git 配置
+&lt;/h3>&lt;p>**注意：**因为是私有仓库，克隆需要验证权限，安装完成 Git 后先配置用户、邮箱、ssh keys&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">我使用的全局配置用户，对于同时推送代码到不同网站的，请按照多用户多仓库的方法配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.name &amp;#34;xxx&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.email &amp;#34;xxx@xxx.com&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="生成公钥添加-github-ssh-keys">生成公钥，添加 Github SSH Keys
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">生成公钥
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ssh-keygen -t &amp;#34;选一个官方的算法&amp;#34; -C xxx@xxx.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">然后接下来的你应该懂了，复制公钥内容--&amp;gt;&amp;gt;粘贴到Github的 SSH Keys --&amp;gt;&amp;gt; 添加
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">测试连接
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ssh -T git@github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Hi xxxx! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">有上面的提示说明成功了
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="克隆私有仓库至本地-1">克隆私有仓库至本地
+&lt;/h3>&lt;p>git clone 命令跟一个本地路径，克隆下来的文件就在这个目录了，不加目录克隆的话克隆下来的是包含你私有仓库名称的一个文件夹&lt;/p>
+&lt;p>**注意：**命令后跟的本地路径，不要手动创建，否则会提示目录已存在，克隆失败&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git clone git@github.com:kiraster/xxxx-xx.git &amp;#34;D:\Blog&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装-hexo-和-其他npm插件">安装 Hexo 和 其他npm插件
+&lt;/h2>&lt;p>**注意：**重构 Hexo 环境只需以下的文件，但是其他文件也可以存在&lt;/p>
+&lt;p>&lt;code>package-lock.json&lt;/code>这个文件如果执行下一步提示报错就删掉，或者直接删掉&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">_config.yml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">package.json
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">scaffolds/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">source/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">themes/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="安装-hexo-和-其他插件">安装 Hexo 和 其他插件
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">安装 Hexo 保持和原电脑的版本一致
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看版本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hexo -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm install -g hexo-cli@4.x.x
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装后查看版本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hexo -v
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">安装npm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 修改npm 淘宝镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm confg set http://registry.npm.taobao.org
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看设置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm config list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装 npm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm install
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">若这一步报错ERROR Try running: &amp;#39;rm -rf node_modules &amp;amp;&amp;amp; npm install --force&amp;#39; 按照提示操作
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf node_modules &amp;amp;&amp;amp; npm install --force
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm会按照 package.json 这个文件的内容自动按照插件，你也可以记事本打开这个文件查看安装的插件
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>注意：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>一些插件提示不再更新维护支持之类的，取决于主题使用到的插件和旧版本 Hexo 使用的插件，大家自己决定&lt;/li>
+&lt;li>一些插件可能需要从 GitHub 公共仓库下载文件，保障新电脑网络环境能联网&lt;/li>
+&lt;li>我的环境就是有个文件下载不来，所以去手动下载，拷贝到对应的目录&lt;/li>
+&lt;li>大家可以看提示错误，按提示操作，查缺补漏，少的模块文件&lt;/li>
+&lt;/ol>
+&lt;h2 id="本地启动预览">本地启动预览
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>观察启动过程，是否有报错信息，按提示解决对象报错，不明的可以去搜索引擎&lt;/li>
+&lt;li>&lt;code> scripts/&lt;/code>下的脚本，如果新电脑和原电脑路径等不一致记得修改&lt;/li>
+&lt;li>完成这一步骤，基本上就大功告成了&lt;/li>
+&lt;/ol>
+&lt;h2 id="推送至-github-仓库">推送至 GitHub 仓库
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>因为这一步我的环境有 自动备份源文件到 私有仓库的脚本所以要按照上上篇文章的方式操作一轮&lt;/p>
+&lt;p>设置本地 Hexo 目录的 Git&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -M main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git@github.com:kiraster/xxxx-xx.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://weeaster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://weeaster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
+&lt;ul>
+&lt;li>bat启动 Hexo 本地服务&lt;/li>
+&lt;li>bat 推送至 Github&lt;/li>
+&lt;li>自动打开markdown编辑器&lt;/li>
+&lt;/ul>
+&lt;h2 id="bat启动-hexo-本地服务">bat启动 Hexo 本地服务
+&lt;/h2>&lt;p>前提条件：已完成博客搭建。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 切换至博客源文件目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">d:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd D:\blog5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 执行 清除缓存文件&amp;amp;&amp;amp;生成静态文件&amp;amp;&amp;amp;启用本地服务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>新建后缀为bat的脚本文件&lt;/li>
+&lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
+&lt;li>双击此脚本运行的结果相当于在你的博客路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s” 运行.&lt;!--more-->&lt;/li>
+&lt;/ol>
+&lt;h2 id="bat-推送至-github">bat 推送至 Github
+&lt;/h2>&lt;p>前提条件：已完成博客搭建和推送 Github 的设置。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 切换至博客源文件目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">d:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd D:\blog5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 执行 清除缓存文件&amp;amp;&amp;amp;生成静态文件&amp;amp;&amp;amp;部署网站
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>新建后缀为 bat 的脚本文件&lt;/li>
+&lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
+&lt;li>双击此脚本运行的结果相当于在你的博客路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;amp;&amp;amp; hexo g ” 运行，如果只执行 “hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，后边加”hexo s“启用本地服务保持窗口不关闭（由于还有自动推送博客源文件的步骤，我不加这个），运行完成后确认是否推送成功，Ctrl+C结束即可&lt;/li>
+&lt;/ol>
+&lt;h2 id="自动打开markdown编辑器">自动打开markdown编辑器
+&lt;/h2>&lt;p>在执行&lt;code>hexo n xxxx&lt;/code>后自动打开 markdown 编辑器打开 md 文件，在博客目录下的&lt;code>scripts&lt;/code>目录新建&lt;code>js&lt;/code>文件（我使用的是&lt;code>Typora&lt;/code>）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="k">var&lt;/span> &lt;span class="n">spawn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;child_process&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exec&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">hexo&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">on&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;new&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">spawn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;start &amp;#34;D:\Program Files\Typora\Typora.exe&amp;#34; &amp;#39;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>新建后缀为 js 的脚本文件&lt;/li>
+&lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
+&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://weeaster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://weeaster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
+&lt;p>还有一种方法就是把这些文件也推送到&lt;code>Github&lt;/code>仓库，网上看到有一个&lt;code>hexo-git-backup&lt;/code>可以把源码推送到仓库分支实现备份。但是我觉得这样不妥，由于部署到&lt;code>Github&lt;/code>的静态网站仓库是公开的，把源文推送这个分支，意味着所有人都可以看到源文件的配置，包括一些个人的信息，可能有网站统计，收录的&lt;code>token&lt;/code>，这样就不太好&lt;/p>
+&lt;p>看到一篇博文（https://0skyu.cn/p/a8bd.html） 就整的非常好，其中原理过程可以自行去研究&lt;/p>
+&lt;p>我参考这篇文章记录我自己的过程和操作&lt;/p>
+&lt;hr>
+&lt;h2 id="新建github私有仓库">新建Github私有仓库
+&lt;/h2>&lt;p>不用初始化创建&lt;code>README&lt;/code>文件，&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/12/05/xJtCgXsklf2FdRP.jpg">
+&lt;img src="https://s2.loli.net/2022/12/05/xJtCgXsklf2FdRP.jpg"
+loading="lazy"
+alt="ScreenCaputure221205140509"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/12/05/cma2PJ1HUtDXhr9.jpg">
+&lt;img src="https://s2.loli.net/2022/12/05/cma2PJ1HUtDXhr9.jpg"
+loading="lazy"
+alt="ScreenCaputure221205140926"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="本地hexo目录git设置">本地Hexo目录git设置
+&lt;/h2>&lt;p>…or create a new repository on the command line&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">echo &amp;#34;# hexo-source-backup&amp;#34; &amp;gt;&amp;gt; README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;first commit&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -M main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git@github.com:kiraster/hexo-source-backup.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用上面的命令进行设置，进行第一次push推送，到 Github 网页端查看是否有文件上传&lt;/p>
+&lt;p>出现 &lt;code>error: failed to push some refs to&lt;/code> 错误，使用强制命令&lt;code>git pull origin master --allow-unrelated-historie&lt;/code>，如果还有其他命令报错自行查看文档或 Google，都是简单的小问题搜索引擎第一页就有&lt;/p>
+&lt;p>网上很多文章说要修改或创建一个名称为&lt;code>.gitignore&lt;/code>的文件，其实这个在你部署静态文件到公共仓库就会有，保持默认就行&lt;/p>
+&lt;p>除此之外，有些主题在主题目录下有&lt;code>.gitignore&lt;/code>文件，一般主题作者不会把主题配置文件&lt;code>_config.yml&lt;/code>上传，这里要把这行去掉，使之上传到私有仓库&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.DS_Store
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Thumbs.db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.json
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*.log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">node_modules/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">public/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.deploy*/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">_multiconfig.yml
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装-shelljs-模块">安装 shelljs 模块
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">npm install --save shelljs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="自动备份脚本">自动备份脚本
+&lt;/h2>&lt;p>创建一个&lt;code>js&lt;/code>脚本文件，保存在博客目录下的&lt;code>scripts&lt;/code>目录，文件名称自己定&lt;/p>
+&lt;p>第 38 行 的双引号提交信息 任意修改&lt;/p>
+&lt;p>第 15 和 41 行 的分支名称注意 保持和第二步骤中的保持一致，有些用人喜欢用&lt;code>main&lt;/code>有些人喜欢用&lt;code>master&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;shelljs/global&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">logger&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;hexo-log&amp;#39;&lt;/span>&lt;span class="p">)();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">危险操作，注意查看控制台提示！！！
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">hexo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">on&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;generateBefore&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Start pulling\n==================================================&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pullToLocal&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">pullToLocal&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git stash&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">code&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;暂时存放出错，请查看提示处理&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git pull origin main&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">code&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;同步到本地出错，请检查网络连接查看提示处理&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git stash pop&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">code&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;重新应用缓存的stash出错，请查看提示处理&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">exit&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Pull done\n==================================================&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">try&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">hexo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">on&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;deployAfter&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Start pushing\n==================================================&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pushToPrivateRepo&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span> &lt;span class="k">catch&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;博客源码推送至私有仓库异常，错误提示：&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toString&lt;/span>&lt;span class="p">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">pushToPrivateRepo&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git add .&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">code&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">warn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;添加文件到暂存区出错&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git commit -m &amp;#34;Auto backup&amp;#34;&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">code&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">warn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;没有提交的新内容或提交暂存区到本地仓库错误&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git push origin main&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">code&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">warn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;推送代码至github main 主分支出错&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">logger&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Push done\n==================================================&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Ctrl + C 退出或关闭窗口退出或60秒后自动退出&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">setTimeout&lt;/span>&lt;span class="p">(()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;q&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="mi">60000&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="推送">推送
+&lt;/h2>&lt;p>执行&lt;code>hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d&lt;/code>会自动调用这个脚本&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">INFO Start pulling
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">==================================================
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Saved working directory and index state WIP on main: 4978dc8 Auto backup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">From github.com:kiraster/xxxx-xx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * branch main -&amp;gt; FETCH_HEAD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Already up to date.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">On branch main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Changes not staged for commit:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> (use &amp;#34;git add &amp;lt;file&amp;gt;...&amp;#34; to update what will be committed)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> (use &amp;#34;git restore &amp;lt;file&amp;gt;...&amp;#34; to discard changes in working directory)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> modified: source/_posts/xxxx-xx.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">no changes added to commit (use &amp;#34;git add&amp;#34; and/or &amp;#34;git commit -a&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Dropped refs/stash@{0} (ce84730faef3bc908459561ad81e352ec3daeda6)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">INFO Pull done
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">==================================================
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">INFO Deploy done: git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">INFO Start pushing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">==================================================
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[main 0f532bb] Auto backup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 file changed, 1 insertion(+), 1 deletion(-)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To github.com:kiraster/xxxx-xx.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4481470..0f532bb main -&amp;gt; main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">INFO Push done
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">==================================================
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ctrl + C 退出或关闭窗口退出或60秒后自动退出
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>注意：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>出现没有提交新内容到缓冲区，推送等错误，按提示排查错误即可&lt;/li>
+&lt;li>看到原博客出现要切换到博客目录的这一行脚本命令，我觉得在推送博客的时候你就已经切换到博客目录，去掉这一行&lt;/li>
+&lt;/ul></description></item><item><title>我的一些blog常用小操作</title><link>https://weeaster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://weeaster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
+&lt;h3 id="bat启动-hexo-本地服务">bat启动 hexo 本地服务
+&lt;/h3>&lt;p>前提条件：已完成博客搭建。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">start D:\Program&amp;#34; &amp;#34;Files\Git\git-bash.exe --cd=D:/blog/blog -c &amp;#34;hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>新建后缀为bat的脚本文件&lt;/li>
+&lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
+&lt;li>双击此脚本运行的结果相当于在你的 blog 路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo s” 运行.&lt;/li>
+&lt;/ol>
+&lt;h3 id="bat-推送至-github">bat 推送至 github
+&lt;/h3>&lt;p>前提条件：已完成博客搭建和推送github的设置。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">start D:\Program&amp;#34; &amp;#34;Files\Git\git-bash.exe --cd=D:/blog3/blog -c &amp;#34;hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d &amp;amp;&amp;amp; hexo s&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>新建后缀为bat的脚本文件&lt;/li>
+&lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
+&lt;li>双击此脚本运行的结果相当于在你的blog路径下右键 “Git Bash Here” 并输入 “hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d &amp;amp;&amp;amp; hexo s” 运行（如果只输入 “hexo clean &amp;amp;&amp;amp; hexo g &amp;amp;&amp;amp; hexo d “ ，当命令执行完后会自动关闭命令窗口，无法得知推送是否成功，所以后边加”hexo s“，运行完成后确认推送成功，Ctrl+C结束即可）&lt;/li>
+&lt;/ol>
+&lt;h3 id="文章页图片放大灯箱效果">文章页图片放大（灯箱效果）
+&lt;/h3>&lt;p>&lt;strong>相关链接&lt;/strong>：https://github.com/fancyapps/fancybox&lt;/p>
+&lt;ol>
+&lt;li>添加 js/css 到网站代码中，每个博客的存放代码的文件和位置可能不一样，有的是在 styl 文件中，有的可能在 EJS/PUG/SWIG 文件中，我使用的模版是在主题目录下的 _config.yml 文件中&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">css:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">js:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>在 .md 文件里插入图片，添加代码&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">a&lt;/span> &lt;span class="na">data-fancybox&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;gallery&amp;#34;&lt;/span> &lt;span class="na">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;big_1.jpg&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">img&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;small_1.jpg&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">a&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 其中 big_1.jpg 和 small_1.jpg 可以是一致的，可以设置 width 参数来设置网页图片显示为小图。例如:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">a&lt;/span> &lt;span class="na">data-fancybox&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;gallery&amp;#34;&lt;/span> &lt;span class="na">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://i.loli.net/xxxxx.jpg&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">img&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://i.loli.net/xxxxx.jpg&amp;#34;&lt;/span> &lt;span class="na">width&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;61.8%&amp;#34;&lt;/span> &lt;span class="p">/&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">a&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="404-页面">404 页面
+&lt;/h3>&lt;p>&lt;strong>相关链接&lt;/strong>：https://www.qq.com/404/&lt;/p>
+&lt;p>虽然 blog 网站简单，访问出现 404 页面机会极少（除非在网址栏乱输入），但是还是操作一下。&lt;/p>
+&lt;p>具体设置点上面网址。&lt;/p>
+&lt;h3 id="添加文章链接-abbrlink">添加文章链接 abbrlink
+&lt;/h3>&lt;ul>
+&lt;li>安装插件&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">npm&lt;/span> &lt;span class="nx">install&lt;/span> &lt;span class="nx">hexo&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">abbrlink&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="nx">save&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">npm&lt;/span> &lt;span class="nx">install&lt;/span> &lt;span class="nx">eslint&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="mf">4.&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="nx">babel&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">eslint&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="mi">8&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="nx">save&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">dev&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>修改&lt;strong>网站根目录&lt;/strong>配置文件 _config_yml&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">permalink&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">posts&lt;/span>&lt;span class="o">/:&lt;/span>&lt;span class="nx">abbrlink&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">html&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">abbrlink&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">alg&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">crc32&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">rep&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">hex&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>alg 和 rep 不同组合生成的链接&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">crc16&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="nx">hex&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="c1">//xx.github.io/posts/1234.html
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">crc16&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="nx">dec&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="c1">//xx.github.io/posts/12345.html
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">crc32&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="nx">hex&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="c1">//xx.github.io/posts/12345678.html
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">crc32&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="nx">dec&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="c1">//xx.github.io/posts/123456789a.html
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item></channel></rss>

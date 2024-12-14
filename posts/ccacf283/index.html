@@ -1,0 +1,236 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作\n以前做测试就点点点没觉得是什么问题，但是设备数量多的大型拓扑，那是一个超长等待时间\n"><title>使用Selenium打开PNETLab拓扑并开启所有节点</title>
+<link rel=canonical href=https://weeaster.github.io/posts/ccacf283/><link rel=stylesheet href=/scss/style.min.0cdcc3547834ff1ba7cd29db268c8b5ddb18dc682ab7cab64f22b4f0d42b3827.css><meta property='og:title' content="使用Selenium打开PNETLab拓扑并开启所有节点"><meta property='og:description' content="在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作\n以前做测试就点点点没觉得是什么问题，但是设备数量多的大型拓扑，那是一个超长等待时间\n"><meta property='og:url' content='https://weeaster.github.io/posts/ccacf283/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Selenium'><meta property='article:tag' content='PNETLab'><meta property='article:tag' content='Python'><meta property='article:tag' content='web自动化'><meta property='article:tag' content='元素定位'><meta property='article:tag' content='开启节点'><meta property='article:published_time' content='2024-07-05T12:37:38+00:00'><meta property='article:modified_time' content='2024-07-05T12:37:38+00:00'><meta name=twitter:title content="使用Selenium打开PNETLab拓扑并开启所有节点"><meta name=twitter:description content="在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作\n以前做测试就点点点没觉得是什么问题，但是设备数量多的大型拓扑，那是一个超长等待时间\n"><link rel="shortcut icon" href=/favicon.ico><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#环境说明>环境说明</a></li><li><a href=#效果展示>效果展示</a></li><li><a href=#脚本代码>脚本代码</a></li><li><a href=#最后>最后</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/python/ style=background-color:#eedd82;color:#fff>Python</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/ccacf283/>使用Selenium打开PNETLab拓扑并开启所有节点</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jul 05, 2024</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>3 minute read</time></div></footer></div></header><section class=article-content><p>在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作</p><p>以前做测试就点点点没觉得是什么问题，但是设备数量多的大型拓扑，那是一个超长等待时间</p><p>想过的方法是查查API，无功而返，而且也不熟</p><p>最后使用Selenium实现功能</p><h2 id=环境说明>环境说明</h2><ul><li>Selenium==4.22.0</li><li>Python==Python 3.10.13</li><li>PNETLab== 5.3.13</li><li>ChromeDriver==126.0.6478.126</li><li>PNETLab关闭验证码验证</li></ul><h2 id=效果展示>效果展示</h2><p>显示窗口执行（控制台同时输出）</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/07/05/mL9CGZEpQP34tKz.gif><img src=https://s2.loli.net/2024/07/05/mL9CGZEpQP34tKz.gif loading=lazy alt=pnetlabstartall-2></a></div></p><p>无显示窗口执行（控制台输出）</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/07/05/SVGsxuDU84K97lw.gif><img src=https://s2.loli.net/2024/07/05/SVGsxuDU84K97lw.gif loading=lazy alt=pnetlabstartall-4></a></div></p><h2 id=脚本代码>脚本代码</h2><p>就不过多文字描述了，代码里的注释有说明</p><p><strong>Note1：PNETLab的打开速度和拓扑文件的载入速度有很多影响因素（电脑硬件，拓扑文件大小，镜像等）</strong></p><p><strong>Note2：如果你在本地运行代码后提示错误，大概率可以通过调整显式等待时间和隐式等待时间解决（PNETLab的版本也要考虑，有可能定位元素有变动）</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium</span> <span class=kn>import</span> <span class=n>webdriver</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.common.by</span> <span class=kn>import</span> <span class=n>By</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.chrome.options</span> <span class=kn>import</span> <span class=n>Options</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.chrome.service</span> <span class=kn>import</span> <span class=n>Service</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.support.ui</span> <span class=kn>import</span> <span class=n>WebDriverWait</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.support</span> <span class=kn>import</span> <span class=n>expected_conditions</span> <span class=k>as</span> <span class=n>EC</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>selenium.webdriver.common.action_chains</span> <span class=kn>import</span> <span class=n>ActionChains</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>random</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建 ChromeOptions 对象</span>
+</span></span><span class=line><span class=cl><span class=n>options</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>ChromeOptions</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=c1># 添加参数headless后不显示窗口</span>
+</span></span><span class=line><span class=cl><span class=n>options</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--headless&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># 控制台不显示INFO:CONSOLE，默认0，显示与服务端的的交互内容</span>
+</span></span><span class=line><span class=cl><span class=n>options</span><span class=o>.</span><span class=n>add_argument</span><span class=p>(</span><span class=s1>&#39;--log-level=3&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4.6版本前需要指定路径，使用本地驱动</span>
+</span></span><span class=line><span class=cl><span class=c1># 其实前后版本都可以使用本地驱动（本地好使，加载快，无须联网下载ChromeDriver）</span>
+</span></span><span class=line><span class=cl><span class=c1># 指定浏览器驱动路径，以Chrome为例（与电脑安装的谷歌浏览器版本大版本号一致即可或添加参数忽略（自己查））</span>
+</span></span><span class=line><span class=cl><span class=c1># 当前日期（20240704）使用最新版本selenium==4.22.0</span>
+</span></span><span class=line><span class=cl><span class=c1># chromedriver_bin = &#39;D:/Plugs/ChromeDriver/126.0.6478.126/chrome-win64/chromedriver.exe&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>chromedriver_bin</span> <span class=o>=</span> <span class=sa>r</span><span class=s1>&#39;D:\Plugs\ChromeDriver\126.0.6478.126\chrome-win64\chromedriver.exe&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>service</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>ChromeService</span><span class=p>(</span><span class=n>executable_path</span><span class=o>=</span><span class=n>chromedriver_bin</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>driver</span> <span class=o>=</span> <span class=n>webdriver</span><span class=o>.</span><span class=n>Chrome</span><span class=p>(</span><span class=n>service</span><span class=o>=</span><span class=n>service</span><span class=p>,</span> <span class=n>options</span><span class=o>=</span><span class=n>options</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4.6版本之后使用默认的实例，使用如下代码（自动联网下载ChromeDriver）</span>
+</span></span><span class=line><span class=cl><span class=c1># 当前日期（20240704）使用最新版本selenium==4.22.0</span>
+</span></span><span class=line><span class=cl><span class=c1># service = Service()</span>
+</span></span><span class=line><span class=cl><span class=c1># driver = webdriver.Chrome(options=options, service=service)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># selenium参数定义</span>
+</span></span><span class=line><span class=cl><span class=c1># 显式等待设置，等待最多10秒钟，每0.5秒检查一次条件是否满足</span>
+</span></span><span class=line><span class=cl><span class=c1># 该参数对需要控制的元素定位起作用</span>
+</span></span><span class=line><span class=cl><span class=n>wait</span> <span class=o>=</span> <span class=n>WebDriverWait</span><span class=p>(</span><span class=n>driver</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置一个隐式等待时间，因为点击open后的loading时间不可预计</span>
+</span></span><span class=line><span class=cl><span class=c1># 可能的因素有拓扑unl文件大小，电脑硬件配置</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置隐式等待时间为6秒，该参数全局作用，按需调整数值</span>
+</span></span><span class=line><span class=cl><span class=n>driver</span><span class=o>.</span><span class=n>implicitly_wait</span><span class=p>(</span><span class=mi>6</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 本地PNETLab登陆参数定义</span>
+</span></span><span class=line><span class=cl><span class=n>login_url</span> <span class=o>=</span> <span class=s1>&#39;http://x.x.x.x/&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>username</span> <span class=o>=</span> <span class=s1>&#39;admin&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>password</span> <span class=o>=</span> <span class=s1>&#39;pnet&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 自动登陆操作</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>pnetlab_login</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 打开PNETLab登陆页面登陆</span>
+</span></span><span class=line><span class=cl>    <span class=n>driver</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>login_url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 定位用户名输入框并输入用户名</span>
+</span></span><span class=line><span class=cl>    <span class=n>username_input</span> <span class=o>=</span> <span class=n>wait</span><span class=o>.</span><span class=n>until</span><span class=p>(</span><span class=n>EC</span><span class=o>.</span><span class=n>visibility_of_element_located</span><span class=p>((</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=s1>&#39;//input[@placeholder=&#34;Username&#34;]&#39;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>    <span class=n>username_input</span><span class=o>.</span><span class=n>clear</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>username_input</span><span class=o>.</span><span class=n>send_keys</span><span class=p>(</span><span class=n>username</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 定位密码输入框并输入密码</span>
+</span></span><span class=line><span class=cl>    <span class=n>password_input</span> <span class=o>=</span> <span class=n>wait</span><span class=o>.</span><span class=n>until</span><span class=p>(</span><span class=n>EC</span><span class=o>.</span><span class=n>visibility_of_element_located</span><span class=p>((</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=s1>&#39;//input[@placeholder=&#34;Password&#34;]&#39;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>    <span class=n>password_input</span><span class=o>.</span><span class=n>clear</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>password_input</span><span class=o>.</span><span class=n>send_keys</span><span class=p>(</span><span class=n>password</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1># 定位登录按钮并点击</span>
+</span></span><span class=line><span class=cl>    <span class=n>login_button</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=s1>&#39;//div[@class=&#34;button btn btn-info&#34; and text()=&#34;Login&#34;]&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>login_button</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 使用显式等待来等待搜索框元素出现</span>
+</span></span><span class=line><span class=cl>        <span class=n>search_element</span> <span class=o>=</span> <span class=n>wait</span><span class=o>.</span><span class=n>until</span><span class=p>(</span><span class=n>EC</span><span class=o>.</span><span class=n>visibility_of_element_located</span><span class=p>((</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span>  <span class=s1>&#39;//input[@placeholder=&#34;Search Labs&#34;]&#39;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;登录成功!&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;登录失败或者无法找到搜索框元素.</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 随机抽一个lab文件</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>random_lab</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>lab_names</span> <span class=o>=</span> <span class=p>(</span><span class=s1>&#39;H1 CFG SPOTO Ver_1.unl&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                 <span class=s1>&#39;H1 Plus CFG SPOTO Ver_1.unl&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                 <span class=s1>&#39;H2 CFG SPOTO CCIE RS Ver_1.unl&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                 <span class=s1>&#39;H2 Plus CFG SPOTO Ver_1.unl&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                 <span class=s2>&#34;H3 SPOTO CCIE RS Ver_1.unl&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>chosen_lab</span> <span class=o>=</span> <span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>(</span><span class=n>lab_names</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>chosen_lab</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 登陆</span>
+</span></span><span class=line><span class=cl>        <span class=n>sign_in</span> <span class=o>=</span> <span class=n>pnetlab_login</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=n>sign_in</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;&gt;&gt;&gt;登陆有问题&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 随机抽</span>
+</span></span><span class=line><span class=cl>        <span class=n>chosen_lab</span> <span class=o>=</span> <span class=n>random_lab</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;-&#39;</span> <span class=o>*</span> <span class=mi>50</span> <span class=o>+</span> <span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>本次抽中的lab是:</span><span class=si>{</span><span class=n>chosen_lab</span><span class=p>[:</span><span class=o>-</span><span class=mi>4</span><span class=p>]</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 搜索框输入lab文件名</span>
+</span></span><span class=line><span class=cl>        <span class=n>search_element</span> <span class=o>=</span> <span class=n>wait</span><span class=o>.</span><span class=n>until</span><span class=p>(</span><span class=n>EC</span><span class=o>.</span><span class=n>visibility_of_element_located</span><span class=p>((</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span>  <span class=s1>&#39;//input[@placeholder=&#34;Search Labs&#34;]&#39;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>        <span class=n>search_element</span><span class=o>.</span><span class=n>clear</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>search_element</span><span class=o>.</span><span class=n>send_keys</span><span class=p>(</span><span class=n>chosen_lab</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 等待第一个搜索结果可见并点击</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>first_button</span> <span class=o>=</span> <span class=n>wait</span><span class=o>.</span><span class=n>until</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>EC</span><span class=o>.</span><span class=n>visibility_of_element_located</span><span class=p>((</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=s2>&#34;//div[@id=&#39;search_lab_suggest&#39;]/div[@class=&#39;button&#39;][1]&#34;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>        <span class=n>first_button</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 等待第二个搜索结果可见并点击</span>
+</span></span><span class=line><span class=cl>        <span class=c1># second_button = wait.until(</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     EC.visibility_of_element_located((By.XPATH, &#34;//div[@id=&#39;search_lab_suggest&#39;]/div[@class=&#39;button&#39;][2]&#34;)))</span>
+</span></span><span class=line><span class=cl>        <span class=c1># second_button.click()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 点击open按钮</span>
+</span></span><span class=line><span class=cl>        <span class=n>open_button</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>By</span><span class=o>.</span><span class=n>CSS_SELECTOR</span><span class=p>,</span> <span class=s2>&#34;div.box_flex &gt; div.btn-info:nth-child(1)&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>open_button</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 等不到加载完成页面报错，调大隐式等待时间</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 触发左侧菜单的元素，左下角log图片class类</span>
+</span></span><span class=line><span class=cl>        <span class=n>leftmenu_trigger</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>By</span><span class=o>.</span><span class=n>CLASS_NAME</span><span class=p>,</span> <span class=s2>&#34;logo_img&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 创建 ActionChains 对象</span>
+</span></span><span class=line><span class=cl>        <span class=n>actions</span> <span class=o>=</span> <span class=n>ActionChains</span><span class=p>(</span><span class=n>driver</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 移动鼠标到左侧菜单触发元素上，触发菜单显示</span>
+</span></span><span class=line><span class=cl>        <span class=n>actions</span><span class=o>.</span><span class=n>move_to_element</span><span class=p>(</span><span class=n>leftmenu_trigger</span><span class=p>)</span><span class=o>.</span><span class=n>perform</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 点击Setup Nodes</span>
+</span></span><span class=line><span class=cl>        <span class=n>setup_nodes</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=s1>&#39;//span[text()=&#34;Setup Nodes&#34;]&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>setup_nodes</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># Start All Nodes</span>
+</span></span><span class=line><span class=cl>        <span class=n>start_all</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>By</span><span class=o>.</span><span class=n>CLASS_NAME</span><span class=p>,</span><span class=s2>&#34;action-nodesstart&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>start_all</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 查看已启动的IOL Nodes 的数值</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 移动鼠标到左侧菜单触发元素上，触发菜单显示</span>
+</span></span><span class=line><span class=cl>        <span class=n>actions</span><span class=o>.</span><span class=n>move_to_element</span><span class=p>(</span><span class=n>leftmenu_trigger</span><span class=p>)</span><span class=o>.</span><span class=n>perform</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 点击System status</span>
+</span></span><span class=line><span class=cl>        <span class=n>system_status</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=n>find_element</span><span class=p>(</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=s1>&#39;//span[text()=&#34;System Status&#34;]&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>system_status</span><span class=o>.</span><span class=n>click</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;-&#39;</span> <span class=o>*</span> <span class=mi>50</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>正在启动设备</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 30秒后获取已启动设备数值</span>
+</span></span><span class=line><span class=cl>        <span class=c1># time.sleep(30)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 循环获取启动的设备数值，间隔10秒获取一次，共5分钟</span>
+</span></span><span class=line><span class=cl>        <span class=n>x</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=k>while</span> <span class=n>x</span> <span class=o>&lt;</span> <span class=mi>30</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>started</span> <span class=o>=</span> <span class=n>wait</span><span class=o>.</span><span class=n>until</span><span class=p>(</span><span class=n>EC</span><span class=o>.</span><span class=n>presence_of_element_located</span><span class=p>((</span><span class=n>By</span><span class=o>.</span><span class=n>XPATH</span><span class=p>,</span> <span class=s2>&#34;//td/strong[@style=&#39;color: red;&#39;]&#34;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># 打印已启动设备数值</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;已启动设备数:&#34;</span><span class=p>,</span> <span class=n>started</span><span class=o>.</span><span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=nb>int</span><span class=p>(</span><span class=n>started</span><span class=o>.</span><span class=n>text</span><span class=p>)</span> <span class=o>&gt;=</span> <span class=mi>40</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>            <span class=n>x</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;设备启动完成，打开链接</span><span class=si>{</span><span class=n>login_url</span><span class=si>}</span><span class=s1>,开始实验</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>*</span> <span class=mi>3</span> <span class=o>+</span> <span class=s1>&#39;-&#39;</span> <span class=o>*</span> <span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>         <span class=c1># //////////////////////////////////////////////////////////////////////////////////</span>
+</span></span><span class=line><span class=cl>        <span class=c1># # destroy lab 退出</span>
+</span></span><span class=line><span class=cl>        <span class=c1># # 测试用，随后可能用不到</span>
+</span></span><span class=line><span class=cl>        <span class=c1># # time.sleep(10)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(&#39;正在关闭设备\n&#39;)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># # 移动鼠标到左侧菜单触发元素上，触发菜单显示</span>
+</span></span><span class=line><span class=cl>        <span class=c1># actions.move_to_element(leftmenu_trigger).perform()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># # 点击Destroy Lab</span>
+</span></span><span class=line><span class=cl>        <span class=c1># destroy_lab = driver.find_element(By.XPATH, &#39;//span[text()=&#34;Destroy Lab&#34;]&#39;)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># destroy_lab.click()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># </span>
+</span></span><span class=line><span class=cl>        <span class=c1># # 定位弹窗的 Destroy 按钮</span>
+</span></span><span class=line><span class=cl>        <span class=c1># destroy_button = driver.find_element(By.CLASS_NAME, &#34;swal2-confirm&#34;)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># </span>
+</span></span><span class=line><span class=cl>        <span class=c1># # 定位弹窗的 Cancel 按钮</span>
+</span></span><span class=line><span class=cl>        <span class=c1># # cancel_button = driver.find_element(By.CLASS_NAME, &#34;swal2-cancel&#34;)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># </span>
+</span></span><span class=line><span class=cl>        <span class=c1># # 二次确认点击</span>
+</span></span><span class=line><span class=cl>        <span class=c1># destroy_button.click()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># </span>
+</span></span><span class=line><span class=cl>        <span class=c1># # 循环获取启用的设备数值，间隔10秒获取一次，共5分钟</span>
+</span></span><span class=line><span class=cl>        <span class=c1># x = 600</span>
+</span></span><span class=line><span class=cl>        <span class=c1># while x &gt; 0:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     time.sleep(10)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     started = WebDriverWait(driver, 10).until(</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#         EC.presence_of_element_located((By.XPATH, &#34;//td/strong[@style=&#39;color: red;&#39;]&#34;))</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     )</span>
+</span></span><span class=line><span class=cl>        <span class=c1># </span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     # 打印剩余启动设备数值</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     print(&#34;剩余启动设备数:&#34;, started.text)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     if int(started.text) &lt; 10:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#         break</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     x -= 1</span>
+</span></span><span class=line><span class=cl>        <span class=c1># </span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(&#39;设备已关闭\n&#39; * 3 + &#39;-&#39; * 50)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># time.sleep(10)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># //////////////////////////////////////////////////////////////////////////////////</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>e</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;&gt;&gt;&gt;OPS,FUCKED UP&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>finally</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 关闭浏览器驱动</span>
+</span></span><span class=line><span class=cl>        <span class=n>driver</span><span class=o>.</span><span class=n>quit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></div><h2 id=最后>最后</h2><ul><li>忽略代码中变量名的命名拼写错误，词汇量紧张</li><li>部分代码来自GPT，官网示例（注意看版本对应的示例）</li><li>大部分时间都耗在定位元素了，pnet为了玩花样或是抄来不想改这html前端也是无限套壳</li><li>有些是前端渲染代码是通过java函数生成的，这就有点不好玩了</li><li>欢迎“<del>来电</del>”来函探讨。</li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/selenium/>Selenium</a>
+<a href=/tags/pnetlab/>PNETLab</a>
+<a href=/tags/python/>Python</a>
+<a href=/tags/web%E8%87%AA%E5%8A%A8%E5%8C%96/>Web自动化</a>
+<a href=/tags/%E5%85%83%E7%B4%A0%E5%AE%9A%E4%BD%8D/>元素定位</a>
+<a href=/tags/%E5%BC%80%E5%90%AF%E8%8A%82%E7%82%B9/>开启节点</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/14423df7/><div class=article-details><h2 class=article-title>使用Selenium实现登陆网站并签到</h2></div></a></article><article><a href=/posts/f2cfb11/><div class=article-details><h2 class=article-title>Miniconda安装使用（简单版）</h2></div></a></article><article><a href=/posts/99580674/><div class=article-details><h2 class=article-title>对网络设备进行批量操作的几个脚本</h2></div></a></article><article><a href=/posts/9a95f1cd/><div class=article-details><h2 class=article-title>Github之pull requests提交分支</h2></div></a></article><article><a href=/posts/837aa3ce/><div class=article-details><h2 class=article-title>Ubuntu publickey方式SSH连接与vscode远程调试</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=https://space.bilibili.com/11565094 target=_blank title=Bilibili rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script></body></html>

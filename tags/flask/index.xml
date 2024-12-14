@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Flask on Kir's Blog</title><link>https://weeaster.github.io/tags/flask/</link><description>Recent content in Flask on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 10 Oct 2024 22:47:44 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/flask/index.xml" rel="self" type="application/rss+xml"/><item><title>Rocky Linux 8.7 Flask应用docker容器化</title><link>https://weeaster.github.io/posts/297bc3bd/</link><pubDate>Thu, 10 Oct 2024 22:47:44 +0000</pubDate><guid>https://weeaster.github.io/posts/297bc3bd/</guid><description>&lt;p>本文为Flask应用进行容器化的笔记&lt;/p>
+&lt;h2 id="上传代码至rockylinux">上传代码至RockyLinux
+&lt;/h2>&lt;p>将代码文件&lt;code>IPA_VIEW_v0.2.zip&lt;/code>上传至&lt;code>/opt&lt;/code>路径下（可选择其他路径）&lt;/p>
+&lt;p>解压在当前目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">unzip IPA_VIEW_v0.2.zip
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或解压到指定目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">unzip IPA_VIEW_v0.2.zip -d /IPA_VIEW
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="在项目根目录下创建dockerfile文件">在项目根目录下创建Dockerfile文件
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 使用官方的 Python 镜像作为基础镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM python:3.10-slim
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 设置工作目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WORKDIR /app
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将当前目录的内容复制到容器的工作目录中
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY . .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 设置时区为 Asia/Shanghai
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN echo &amp;#34;Asia/Shanghai&amp;#34; &amp;gt; /etc/timezone
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装所需的依赖
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 有时上面这个清华源不好使，可替换阿里云，网络畅通可以直接连接官方源
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ -r requirements.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 运行数据库初始化脚本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN flask init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 运行generate_secret_key.py随机生成32 字节的 SECRET_KEY，然后自动写入configs.py文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN python generate_secret_key.py
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 暴露应用使用的端口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 只是一个标记指示，实际操作中使用其他端口并不影响
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 规范使用的话与实际使用的端口一致
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EXPOSE 8080
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 运行 Flask 应用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CMD [&amp;#34;waitress-serve&amp;#34;, &amp;#34;--call&amp;#34;, &amp;#34;pear_admin:create_app&amp;#34;]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="构建镜像">构建镜像
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker build -t ipa-view:v0.2 .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>说明：ipa-view:v0.2 ，{镜像名称}:{TAG}&lt;/strong>&lt;/p>
+&lt;h2 id="创建并运行-docker-容器">创建并运行 Docker 容器
+&lt;/h2>&lt;p>&lt;strong>以下创建容器的方式，根据需要选择其中之一即可&lt;/strong>&lt;/p>
+&lt;h3 id="方式一简易启动">方式一：简易启动
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --restart always -p 5666:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="方式二指定name和network">方式二：指定name和network
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 创建network，用于隔离，属于不同network的容器之间互相隔离不能互访
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker network create ipa-view-net
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --name ipa-view-container --network ipa-view-net --restart always -p 5666:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>参数说明：&lt;/p>
+&lt;ul>
+&lt;li>-d，后台运行&lt;/li>
+&lt;li>&amp;ndash;name ipa-view-container， 设置容器名称，不设置会随机生成&lt;/li>
+&lt;li>&amp;ndash;network ipa-view-net， 设置network，使用该参数前需要手动创建ipa-view-net，否则提示错误&lt;code>docker: Error response from daemon: network ipa-view-net not found.&lt;/code>&lt;/li>
+&lt;li>&amp;ndash;restart always ，无论何种原因导致容器退出，都重启容器&lt;/li>
+&lt;li>-p 5666:8080，宿主机端口:容器内flask应用端口&lt;/li>
+&lt;li>ipa-view:v0.2，上一步构建的镜像&lt;/li>
+&lt;/ul>
+&lt;h3 id="方式三docker-volumes持久化">方式三：Docker Volumes（持久化）
+&lt;/h3>&lt;p>在默认情况下，Docker Volumes 会被创建在 &lt;code>/var/lib/docker/volumes&lt;/code> 目录下&lt;/p>
+&lt;p>将容器内日志目录和数据库目录保存至宿主机，便于数据库备份和查看日志&lt;/p>
+&lt;p>1、创建目录：在宿主机上，建一个目录作为Volumes的保存位置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mkdir -p /opt/ipa_view_data/sqlite_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /opt/ipa_view_data/log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>2、创建 Docker Volumes：使用 &lt;code>docker volume create&lt;/code> 命令创建 Docker Volumes，并指定自定义的位置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker volume create --driver local --opt o=bind --opt type=none --opt device=/opt/ipa_view_data/sqlite_db sqlite_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker volume create --driver local --opt o=bind --opt type=none --opt device=/opt/ipa_view_data/log log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>3、创建容器&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d -v sqlite_db:/app/instance -v log:/app/log --name ipa-view-container --network ipa-view-net --restart always -p 5666:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看容器">查看容器
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost IPA_VIEW_v0.2]# docker ps
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">a72fd1a21a30 ipa-view:v0.2 &amp;#34;waitress-serve --ca…&amp;#34; 21 seconds ago Up 19 seconds 0.0.0.0:5666-&amp;gt;8080/tcp, :::5666-&amp;gt;8080/tcp ipa-view-container
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="进入容器">进入容器
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker exec -it a72fd1a21a30 /bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">or
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker exec -it ipa-view-container /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="访问应用">访问应用
+&lt;/h2>&lt;p>浏览器输入http://your_ip_address:5666&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/10/10/GRcvhDBldKo1api.png">
+&lt;img src="https://s2.loli.net/2024/10/10/GRcvhDBldKo1api.png"
+loading="lazy"
+alt="image-20241010225328437"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="常见问题记录">常见问题记录
+&lt;/h2>&lt;h3 id="容器内flask应用访问网络">容器内flask应用访问网络
+&lt;/h3>&lt;p>最简单的方法是直接使用宿主机的 IP 地址来访问宿主机所在的网络中的其他主机&lt;/p>
+&lt;p>通常情况下，容器可以通过宿主机的 IP 地址来访问外部网络&lt;/p>
+&lt;p>容器内IP地址访问外部设备会经过宿主机的NAT转发出去&lt;/p>
+&lt;h3 id="外部网络访问flask应用">外部网络访问flask应用
+&lt;/h3>&lt;p>防火墙放行端口&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">permanent&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5666&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="日志查看">日志查看
+&lt;/h3>&lt;p>直接docker命令查看&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">localhost&lt;/span> &lt;span class="n">IPA_VIEW_v0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="c1"># docker logs ipa-view-container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">049&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">181&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Scheduler&lt;/span> &lt;span class="n">started&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">DEBUG&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">051&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">954&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Looking&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">jobs&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">run&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">DEBUG&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">095&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">1030&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">No&lt;/span> &lt;span class="n">jobs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">waiting&lt;/span> &lt;span class="n">until&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">job&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">added&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">169&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">wasyncore&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">485&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Serving&lt;/span> &lt;span class="n">on&lt;/span> &lt;span class="n">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">489&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET / HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">588&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/component/pear/css/pear.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">592&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/admin.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">596&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/admin.dark.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">603&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/variables.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">WARNING&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">608&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">task&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">114&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Task&lt;/span> &lt;span class="n">queue&lt;/span> &lt;span class="n">depth&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">WARNING&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">613&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">task&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">114&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Task&lt;/span> &lt;span class="n">queue&lt;/span> &lt;span class="n">depth&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">634&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/reset.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">WARNING&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">637&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">task&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">114&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Task&lt;/span> &lt;span class="n">queue&lt;/span> &lt;span class="n">depth&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>进入Docker Volumes（持久化）的目录查看&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> cd /opt/ipa_view_data/log/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost log]# pwd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/opt/ipa_view_data/log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost log]# cat log.log | more
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,150][MainThread:140080137403264][task_id:apscheduler.scheduler][base.py:181][INFO][Scheduler started]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,152][APScheduler:140080083592896][task_id:apscheduler.scheduler][base.py:954][DEBUG][Looking for jobs to run]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,193][APScheduler:140080083592896][task_id:apscheduler.scheduler][base.py:1030][DEBUG][No jobs; waiting until a job is added]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,286][MainThread:140080137403264][task_id:waitress][wasyncore.py:485][INFO][Serving on http://0.0.0.0:8080]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,292][waitress-0:140080074151616][task_id:access_log][__init__.py:76][INFO][172.31.100.2 - - [09/Oct/2024 15:43:55] &amp;#34;GET /api/v1/scheduler/jobs HTTP/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.1&amp;#34; 200 -]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="设置容器自动重启">设置容器自动重启
+&lt;/h3>&lt;p>&lt;strong>前面docker run命令已设置，跳过&lt;/strong>&lt;/p>
+&lt;p>Docker 容器的重启策略如下：
+&amp;ndash;restart具体参数值详细信息：
+no　　　　　　　 // 默认策略,容器退出时不重启容器；
+on-failure　　 // 在容器非正常退出时（退出状态非0）才重新启动容器；
+on-failure:3 // 在容器非正常退出时重启容器，最多重启3次；
+always　　　　 // 无论退出状态是如何，都重启容器；&lt;/p>
+&lt;p>修改已有容器restart参数&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker update --restart=always a72fd1a21a30
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="容器时间与宿主机时间问题">容器时间与宿主机时间问题
+&lt;/h3>&lt;p>&lt;strong>前面dockerfile已设置，跳过&lt;/strong>&lt;/p>
+&lt;p>经过测试，容器内的时间能与宿主机同步，但是时区不能&lt;/p>
+&lt;p>解决方式一：&lt;/p>
+&lt;p>在 Dockerfile 中设置时区。确保在容器构建阶段就设置好时区
+在Dockerfile文件内添加如下代码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 设置时区为 Asia/Shanghai
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN echo &amp;#34;Asia/Shanghai&amp;#34; &amp;gt; /etc/timezone
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决方式二：&lt;/p>
+&lt;p>通过环境变量设置时区，在启动容器时设置环境变量&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -e TZ=Asia/Shanghai -d --name ipa-view-container-v2.2 --network ipa-view-net --restart always -p 5667:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>巡检脚本 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E5%B7%A1%E6%A3%80%E8%84%9A%E6%9C%AC/</link><description>Recent content in 巡检脚本 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 18 Apr 2021 06:58:53 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E5%B7%A1%E6%A3%80%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C_SecureCRT巡检脚本</title><link>https://weeaster.github.io/posts/21b002a6/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://weeaster.github.io/posts/21b002a6/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
+&lt;/h4>&lt;ul>
+&lt;li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击 “Script” &amp;ndash;&amp;gt; &amp;ldquo;Run&amp;rdquo; 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）&lt;/li>
+&lt;li>可以根据你的实际需要修改 “Send” 后面的内容&lt;/li>
+&lt;li>好久不更博客了，最近干了一些小项目，能写的我尽量写写……&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#$language = &amp;#34;VBScript&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#$interface = &amp;#34;1.0&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">crt.Screen.Synchronous = True
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;#39; This automatically generated script may need to be
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;#39; edited in order to work correctly.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Sub Main
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;#start right now&amp;#34;&amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.WaitForString &amp;#34;&amp;gt;&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;screen-length disable&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display cur &amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display ip interface brief&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display interface brief des&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display vlan&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display vlan brief&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display ip routing-table&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display version&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display cpu-usage&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display memory&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;display device manuinfo&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;save force&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;save force&amp;#34; &amp;amp; chr(13)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">End Sub
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

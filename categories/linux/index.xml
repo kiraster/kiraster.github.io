@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Kir's Blog</title><link>https://weeaster.github.io/categories/linux/</link><description>Recent content in Linux on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 10 Oct 2024 22:47:44 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Rocky Linux 8.7 Flask应用docker容器化</title><link>https://weeaster.github.io/posts/297bc3bd/</link><pubDate>Thu, 10 Oct 2024 22:47:44 +0000</pubDate><guid>https://weeaster.github.io/posts/297bc3bd/</guid><description>&lt;p>本文为Flask应用进行容器化的笔记&lt;/p>
+&lt;h2 id="上传代码至rockylinux">上传代码至RockyLinux
+&lt;/h2>&lt;p>将代码文件&lt;code>IPA_VIEW_v0.2.zip&lt;/code>上传至&lt;code>/opt&lt;/code>路径下（可选择其他路径）&lt;/p>
+&lt;p>解压在当前目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">unzip IPA_VIEW_v0.2.zip
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或解压到指定目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">unzip IPA_VIEW_v0.2.zip -d /IPA_VIEW
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="在项目根目录下创建dockerfile文件">在项目根目录下创建Dockerfile文件
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 使用官方的 Python 镜像作为基础镜像
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM python:3.10-slim
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 设置工作目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WORKDIR /app
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将当前目录的内容复制到容器的工作目录中
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY . .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 设置时区为 Asia/Shanghai
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN echo &amp;#34;Asia/Shanghai&amp;#34; &amp;gt; /etc/timezone
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 安装所需的依赖
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 有时上面这个清华源不好使，可替换阿里云，网络畅通可以直接连接官方源
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN pip install --no-cache-dir -i https://mirrors.aliyun.com/pypi/simple/ -r requirements.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 运行数据库初始化脚本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN flask init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 运行generate_secret_key.py随机生成32 字节的 SECRET_KEY，然后自动写入configs.py文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN python generate_secret_key.py
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 暴露应用使用的端口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 只是一个标记指示，实际操作中使用其他端口并不影响
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 规范使用的话与实际使用的端口一致
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">EXPOSE 8080
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 运行 Flask 应用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CMD [&amp;#34;waitress-serve&amp;#34;, &amp;#34;--call&amp;#34;, &amp;#34;pear_admin:create_app&amp;#34;]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="构建镜像">构建镜像
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker build -t ipa-view:v0.2 .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>说明：ipa-view:v0.2 ，{镜像名称}:{TAG}&lt;/strong>&lt;/p>
+&lt;h2 id="创建并运行-docker-容器">创建并运行 Docker 容器
+&lt;/h2>&lt;p>&lt;strong>以下创建容器的方式，根据需要选择其中之一即可&lt;/strong>&lt;/p>
+&lt;h3 id="方式一简易启动">方式一：简易启动
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --restart always -p 5666:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="方式二指定name和network">方式二：指定name和network
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 创建network，用于隔离，属于不同network的容器之间互相隔离不能互访
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker network create ipa-view-net
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --name ipa-view-container --network ipa-view-net --restart always -p 5666:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>参数说明：&lt;/p>
+&lt;ul>
+&lt;li>-d，后台运行&lt;/li>
+&lt;li>&amp;ndash;name ipa-view-container， 设置容器名称，不设置会随机生成&lt;/li>
+&lt;li>&amp;ndash;network ipa-view-net， 设置network，使用该参数前需要手动创建ipa-view-net，否则提示错误&lt;code>docker: Error response from daemon: network ipa-view-net not found.&lt;/code>&lt;/li>
+&lt;li>&amp;ndash;restart always ，无论何种原因导致容器退出，都重启容器&lt;/li>
+&lt;li>-p 5666:8080，宿主机端口:容器内flask应用端口&lt;/li>
+&lt;li>ipa-view:v0.2，上一步构建的镜像&lt;/li>
+&lt;/ul>
+&lt;h3 id="方式三docker-volumes持久化">方式三：Docker Volumes（持久化）
+&lt;/h3>&lt;p>在默认情况下，Docker Volumes 会被创建在 &lt;code>/var/lib/docker/volumes&lt;/code> 目录下&lt;/p>
+&lt;p>将容器内日志目录和数据库目录保存至宿主机，便于数据库备份和查看日志&lt;/p>
+&lt;p>1、创建目录：在宿主机上，建一个目录作为Volumes的保存位置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mkdir -p /opt/ipa_view_data/sqlite_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /opt/ipa_view_data/log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>2、创建 Docker Volumes：使用 &lt;code>docker volume create&lt;/code> 命令创建 Docker Volumes，并指定自定义的位置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker volume create --driver local --opt o=bind --opt type=none --opt device=/opt/ipa_view_data/sqlite_db sqlite_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker volume create --driver local --opt o=bind --opt type=none --opt device=/opt/ipa_view_data/log log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>3、创建容器&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d -v sqlite_db:/app/instance -v log:/app/log --name ipa-view-container --network ipa-view-net --restart always -p 5666:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="查看容器">查看容器
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost IPA_VIEW_v0.2]# docker ps
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">a72fd1a21a30 ipa-view:v0.2 &amp;#34;waitress-serve --ca…&amp;#34; 21 seconds ago Up 19 seconds 0.0.0.0:5666-&amp;gt;8080/tcp, :::5666-&amp;gt;8080/tcp ipa-view-container
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="进入容器">进入容器
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker exec -it a72fd1a21a30 /bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">or
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker exec -it ipa-view-container /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="访问应用">访问应用
+&lt;/h2>&lt;p>浏览器输入http://your_ip_address:5666&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/10/10/GRcvhDBldKo1api.png">
+&lt;img src="https://s2.loli.net/2024/10/10/GRcvhDBldKo1api.png"
+loading="lazy"
+alt="image-20241010225328437"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="常见问题记录">常见问题记录
+&lt;/h2>&lt;h3 id="容器内flask应用访问网络">容器内flask应用访问网络
+&lt;/h3>&lt;p>最简单的方法是直接使用宿主机的 IP 地址来访问宿主机所在的网络中的其他主机&lt;/p>
+&lt;p>通常情况下，容器可以通过宿主机的 IP 地址来访问外部网络&lt;/p>
+&lt;p>容器内IP地址访问外部设备会经过宿主机的NAT转发出去&lt;/p>
+&lt;h3 id="外部网络访问flask应用">外部网络访问flask应用
+&lt;/h3>&lt;p>防火墙放行端口&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">permanent&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">5666&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="日志查看">日志查看
+&lt;/h3>&lt;p>直接docker命令查看&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">localhost&lt;/span> &lt;span class="n">IPA_VIEW_v0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="c1"># docker logs ipa-view-container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">049&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">181&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Scheduler&lt;/span> &lt;span class="n">started&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">DEBUG&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">051&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">954&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Looking&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">jobs&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">run&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">DEBUG&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">095&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">1030&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">No&lt;/span> &lt;span class="n">jobs&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">waiting&lt;/span> &lt;span class="n">until&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="n">job&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="n">added&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">39&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">08&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">169&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">wasyncore&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">485&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Serving&lt;/span> &lt;span class="n">on&lt;/span> &lt;span class="n">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">0.0&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">8080&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">489&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET / HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">588&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/component/pear/css/pear.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">592&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/admin.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">596&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/admin.dark.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">603&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/variables.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">WARNING&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">608&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">task&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">114&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Task&lt;/span> &lt;span class="n">queue&lt;/span> &lt;span class="n">depth&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">WARNING&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">613&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">task&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">114&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Task&lt;/span> &lt;span class="n">queue&lt;/span> &lt;span class="n">depth&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">INFO&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">634&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">__init__&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">76&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">100.2&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">30&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">Sep&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2024&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="s2">&amp;#34;GET /static/admin/css/reset.css HTTP/1.1&amp;#34;&lt;/span> &lt;span class="mi">200&lt;/span> &lt;span class="o">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">WARNING&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="mi">2024&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">09&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">30&lt;/span> &lt;span class="mi">06&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">41&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">14&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">637&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">task&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">py&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">114&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="n">Task&lt;/span> &lt;span class="n">queue&lt;/span> &lt;span class="n">depth&lt;/span> &lt;span class="n">is&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>进入Docker Volumes（持久化）的目录查看&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> cd /opt/ipa_view_data/log/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost log]# pwd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/opt/ipa_view_data/log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost log]# cat log.log | more
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,150][MainThread:140080137403264][task_id:apscheduler.scheduler][base.py:181][INFO][Scheduler started]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,152][APScheduler:140080083592896][task_id:apscheduler.scheduler][base.py:954][DEBUG][Looking for jobs to run]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,193][APScheduler:140080083592896][task_id:apscheduler.scheduler][base.py:1030][DEBUG][No jobs; waiting until a job is added]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,286][MainThread:140080137403264][task_id:waitress][wasyncore.py:485][INFO][Serving on http://0.0.0.0:8080]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2024-10-09 15:43:55,292][waitress-0:140080074151616][task_id:access_log][__init__.py:76][INFO][172.31.100.2 - - [09/Oct/2024 15:43:55] &amp;#34;GET /api/v1/scheduler/jobs HTTP/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.1&amp;#34; 200 -]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="设置容器自动重启">设置容器自动重启
+&lt;/h3>&lt;p>&lt;strong>前面docker run命令已设置，跳过&lt;/strong>&lt;/p>
+&lt;p>Docker 容器的重启策略如下：
+&amp;ndash;restart具体参数值详细信息：
+no　　　　　　　 // 默认策略,容器退出时不重启容器；
+on-failure　　 // 在容器非正常退出时（退出状态非0）才重新启动容器；
+on-failure:3 // 在容器非正常退出时重启容器，最多重启3次；
+always　　　　 // 无论退出状态是如何，都重启容器；&lt;/p>
+&lt;p>修改已有容器restart参数&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker update --restart=always a72fd1a21a30
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="容器时间与宿主机时间问题">容器时间与宿主机时间问题
+&lt;/h3>&lt;p>&lt;strong>前面dockerfile已设置，跳过&lt;/strong>&lt;/p>
+&lt;p>经过测试，容器内的时间能与宿主机同步，但是时区不能&lt;/p>
+&lt;p>解决方式一：&lt;/p>
+&lt;p>在 Dockerfile 中设置时区。确保在容器构建阶段就设置好时区
+在Dockerfile文件内添加如下代码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 设置时区为 Asia/Shanghai
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN echo &amp;#34;Asia/Shanghai&amp;#34; &amp;gt; /etc/timezone
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决方式二：&lt;/p>
+&lt;p>通过环境变量设置时区，在启动容器时设置环境变量&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -e TZ=Asia/Shanghai -d --name ipa-view-container-v2.2 --network ipa-view-net --restart always -p 5667:8080 ipa-view:v0.2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>在Rocky Linux 8.7虚拟机安装Gogs的记录</title><link>https://weeaster.github.io/posts/5745efe9/</link><pubDate>Wed, 18 Sep 2024 11:22:42 +0000</pubDate><guid>https://weeaster.github.io/posts/5745efe9/</guid><description>&lt;p>Gogs 是一款极易搭建的自助 Git 服务。&lt;/p>
+&lt;p>Gogs官网：https://gogs.io/&lt;/p>
+&lt;p>以下内容为本次安装过程的一个记录&lt;/p>
+&lt;h2 id="准备环境">准备环境
+&lt;/h2>&lt;p>按照官方文档指示的环境要求处理， &lt;a class="link" href="https://gogs.io/docs/installation" target="_blank" rel="noopener"
+>https://gogs.io/docs/installation
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;h3 id="一台虚拟机">一台虚拟机
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>选择你熟悉和中意的linux，不必在意我以下使用的发行版（留了模板）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>此处选用&lt;code>Rocky8.7&lt;/code>是因为本机VMware里躺着一个虚拟机模版，果断完整克隆一份（省时）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>传闻消耗资源少？，就分个2核1G内存的丐版（不够再加）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置静态IP地址， 配置可连接互联网（基操）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>虚拟机硬件资源配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost /]# lscpu | grep -E &amp;#39;CPU|Core&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU op-mode(s): 32-bit, 64-bit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU(s): 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">On-line CPU(s) list: 0,1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Core(s) per socket: 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU family: 16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CPU MHz: 3013.536
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NUMA node0 CPU(s): 0,1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost /]# free -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> total used free shared buff/cache available
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Mem: 777Mi 284Mi 78Mi 3.0Mi 413Mi 358Mi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Swap: 2.0Gi 8.0Mi 2.0Gi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost /]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据库">数据库
+&lt;/h3>&lt;p>跳过此项，使用sqlite&lt;/p>
+&lt;h3 id="安装git">安装git
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>检查是否安装Git，如发现已安装，检查版本是否满足环境要求所需版本&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost ~]# git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-bash: git: command not found
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>安装git&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">dnf update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install git -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost ~]# git --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git version 2.43.5
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h3 id="ssh服务器">SSH服务器
+&lt;/h3>&lt;p>该版本已安装ssh服务，可远程ssh登陆（不懂是之前手动安装的还是系统自带的，不重要）&lt;/p>
+&lt;h2 id="安装必要工具和依赖">安装必要工具和依赖
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost ~]# tar --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar (GNU tar) 1.30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Copyright (C) 2017 Free Software Foundation, Inc.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">License GPLv3+: GNU GPL version 3 or later &amp;lt;https://gnu.org/licenses/gpl.html&amp;gt;.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This is free software: you are free to change and redistribute it.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">There is NO WARRANTY, to the extent permitted by law.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Written by John Gilmore and Jay Fenlason.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost ~]# wget --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GNU Wget 1.19.5 built on linux-gnu.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>经过检查，系统已安装tar和wget，如未安装，使用如下命令安装&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">dnf install wget tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>##　下载Gogs二进制源码&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;code>/opt &lt;/code>路径下创建Gogs目录，用于存放源码文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd /opt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir Gogs_0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost opt]# ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. 2 root root 6 Sep 17 05:14 Gogs_0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost opt]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>wget下载二进制源码（当前日期20240917最新github release 版本）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">wget&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">github&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">releases&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">download&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">v0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="n">_linux_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tar&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gz&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发现从github下载速度慢，从官网 https://dl.gogs.io/0.13.0/ 下载&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">wget&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">dl&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gogs&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">io&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">0.13&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="n">_linux_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tar&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gz&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">localhost&lt;/span> &lt;span class="n">Gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="c1"># ll&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">total&lt;/span> &lt;span class="mi">29352&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">-&lt;/span>&lt;span class="n">rw&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="n">r&lt;/span>&lt;span class="o">--.&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">root&lt;/span> &lt;span class="n">root&lt;/span> &lt;span class="mi">30054955&lt;/span> &lt;span class="n">Feb&lt;/span> &lt;span class="mi">25&lt;/span> &lt;span class="mi">2023&lt;/span> &lt;span class="n">gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="n">_linux_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tar&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">gz&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">localhost&lt;/span> &lt;span class="n">Gogs_0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">13.0&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="c1"># &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="解压下载的-tar-包">解压下载的 tar 包
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]# tar -xzf gogs_0.13.0_linux_amd64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]# ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 29352
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxrwxr-x. 3 1000 1000 85 Feb 25 2023 gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r--. 1 root root 30054955 Feb 25 2023 gogs_0.13.0_linux_amd64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="运行gogs">运行Gogs
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>防火墙设置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 确保允许访问 Gogs 使用的端口（默认是 3000）,主要使用物理机访问使用，且我这Rocky8.7没安装图形界面，所以……&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">permanent&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">3000&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改实际使用的端口号，下一步骤中修改30000，当然使用3000也是可以的&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">permanent&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">add&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">30000&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">firewall&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cmd&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>使用命令 &lt;code>cd&lt;/code> 进入到解压后的目录。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>执行命令 &lt;code>./gogs web&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Gogs 默认会在端口 &lt;code>3000&lt;/code> 启动 HTTP 服务，访问 &lt;code>/install&lt;/code> 以进行初始配置（例如 http://localhost:3000/install ）。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# ./gogs web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ WARN] Custom config &amp;#34;/opt/Gogs_0.13.0/gogs/custom/conf/app.ini&amp;#34; not found. Ignore this warning if you&amp;#39;re running for the first time
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Log mode: Console (Trace)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ INFO] Gogs 0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Work directory: /opt/Gogs_0.13.0/gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Custom path: /opt/Gogs_0.13.0/gogs/custom
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Custom config: /opt/Gogs_0.13.0/gogs/custom/conf/app.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Log path: /opt/Gogs_0.13.0/gogs/log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Build time: 2023-02-25 02:30:34 UTC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [TRACE] Build commit: 8c21874c00b6100d46b662f65baeb40647442f42
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ INFO] Run mode: Development
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 05:44:24 [ INFO] Available on http://localhost:3000/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="从外部访问虚拟机中gogs">从外部访问虚拟机中Gogs
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>访问 &lt;code>/install&lt;/code> 以进行初始配置（例如 &lt;a class="link" href="http://172.31.100.xx:3000/install" target="_blank" rel="noopener"
+>http://172.31.100.xx:3000/install
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> ）,可以自由发挥（以下是我的配置）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/13LyVlzKSFjtUbD.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/13LyVlzKSFjtUbD.jpg"
+loading="lazy"
+alt="ScreenCaputure3638"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/LU64HDirj9aOnk3.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/LU64HDirj9aOnk3.jpg"
+loading="lazy"
+alt="ScreenCaputure4848"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>上面配置中邮件服务留空了，本地没有邮件服务器，也不想联网&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>上面配置中的创建管理员用户可以不设置，第一个注册的用户自动成为管理员，我在此处截胡了&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>没有邮件服务，引起的问题：用户不能通过邮箱找回密码，需要管理员用户重置&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>重启Gogs，进行登陆&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/eSBrWzUCOPcDopT.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/eSBrWzUCOPcDopT.jpg"
+loading="lazy"
+alt="ScreenCaputure5350"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/NIqsjCHUPJogcSD.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/NIqsjCHUPJogcSD.jpg"
+loading="lazy"
+alt="ScreenCaputure5446"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>中文显示&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/sEQJU2wPd1XWI7C.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/sEQJU2wPd1XWI7C.jpg"
+loading="lazy"
+alt="ScreenCaputure5638"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/Dg6ETvwxOZFCHMt.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/Dg6ETvwxOZFCHMt.jpg"
+loading="lazy"
+alt="ScreenCaputure5824"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="设置-gogs-服务开机启动">设置 Gogs 服务开机启动
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>将&lt;code>/opt/Gogs_0.13.0/gogs/scripts/systemd&lt;/code>路径下的&lt;code>gogs.service&lt;/code>文件复制到&lt;code>/etc/systemd/system &lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost systemd]# cp gogs.service /etc/systemd/system
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>修改&lt;code>/etc/systemd/system&lt;/code>路径下的&lt;code>gogs.service&lt;/code>文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[Unit]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description=Gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">After=syslog.target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">After=network.target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># After=mariadb.service mysql.service mysqld.service postgresql.service memcached.service $
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Service]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Modify these two values and uncomment them if you have
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># repos with lots of files and get an HTTP error 500 because
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># of that
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">###
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#LimitMEMLOCK=infinity
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#LimitNOFILE=65535
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type=simple
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">User=root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Group=root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WorkingDirectory=/opt/Gogs_0.13.0/gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ExecStart=/opt/Gogs_0.13.0/gogs/gogs web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Restart=always
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Environment=USER=git HOME=/home/root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Some distributions may not support these hardening directives. If you cannot start the s$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># to an unknown option, comment out the ones not supported by your version of systemd.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ProtectSystem=full
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PrivateDevices=yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">PrivateTmp=yes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NoNewPrivileges=true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Install]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WantedBy=multi-user.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>重新加载 systemd 配置并启动 Gogs 服务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">systemctl&lt;/span> &lt;span class="n">daemon&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">systemctl&lt;/span> &lt;span class="n">start&lt;/span> &lt;span class="n">gogs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">systemctl&lt;/span> &lt;span class="n">enable&lt;/span> &lt;span class="n">gogs&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="外部仓库克隆测试">外部仓库克隆测试
+&lt;/h2>&lt;p>以https方式 git clone 一个仓库至本地，（github把https方式克隆仓库给ban了，现在都需要验证，去gitee克隆）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/QbcJGNxt2U7wBDA.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/QbcJGNxt2U7wBDA.jpg"
+loading="lazy"
+alt="ScreenCaputure0823"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/18/goN6IM5VJCRDSL1.jpg">
+&lt;img src="https://s2.loli.net/2024/09/18/goN6IM5VJCRDSL1.jpg"
+loading="lazy"
+alt="ScreenCaputure0907"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="再次进行初始化">再次进行初始化
+&lt;/h2>&lt;p>种种原因可能需要再次进行初始化（比如修改数据库，更改管理员等）&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>删除/root/gogs-repositories 目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost ~]# rm -rf gogs-repositories/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>删除/opt/Gogs_0.13.0/gogs 目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost Gogs_0.13.0]# rm -rf gogs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>再次解压，运行Gogs&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# ./gogs web
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ WARN] Custom config &amp;#34;/opt/Gogs_0.13.0/gogs/custom/conf/app.ini&amp;#34; not found. Ignore this warning if you&amp;#39;re running for the first time
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Log mode: Console (Trace)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ INFO] Gogs 0.13.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Work directory: /opt/Gogs_0.13.0/gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Custom path: /opt/Gogs_0.13.0/gogs/custom
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Custom config: /opt/Gogs_0.13.0/gogs/custom/conf/app.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Log path: /opt/Gogs_0.13.0/gogs/log
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Build time: 2023-02-25 02:30:34 UTC
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [TRACE] Build commit: 8c21874c00b6100d46b662f65baeb40647442f42
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ INFO] Run mode: Development
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [ INFO] Available on http://localhost:3000/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2024/09/17 12:12:01 [FATAL] [gogs.io/gogs/internal/cmd/web.go:776 runWeb()] Failed to start server: listen tcp 0.0.0.0:3000: bind: address already in use
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>提示端口已经在使用，关闭进程或重启系统解决&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查找进程ID，终止进程
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# lsof -i :3000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gogs 1543 root 10u IPv6 29519 0t0 TCP *:hbci (LISTEN)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# kill 1543
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# lsof -i :3000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol></description></item><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(离线安装)</title><link>https://weeaster.github.io/posts/f652ccc4/</link><pubDate>Sat, 20 May 2023 18:18:21 +0000</pubDate><guid>https://weeaster.github.io/posts/f652ccc4/</guid><description>&lt;p>上一篇文描述的是在线安装，这篇文挑战一下离线安装，下载 &lt;code>Server with GUI&lt;/code>组件及其依赖项和&lt;code>TigerVNC&lt;/code>后上传服务器进行安装&lt;/p>
+&lt;p>&lt;strong>操作流程：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>先给虚拟机创建一个快照&lt;/li>
+&lt;li>使用虚拟机下载安装软件包然后打包导出到本地&lt;/li>
+&lt;li>还原快照&lt;/li>
+&lt;li>上传软件包到虚拟机&lt;/li>
+&lt;li>安装软件&lt;/li>
+&lt;li>测试&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>环境说明&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Microsoft Windows 10 Pro 21H2&lt;/li>
+&lt;li>VMware® Workstation 15.0.0&lt;/li>
+&lt;li>OS: CentOS Linux 8&lt;/li>
+&lt;li>IMG: CentOS-8-x86_64-1905-dvd1.iso&lt;/li>
+&lt;li>Xvnc TigerVNC 1.11.0 - built Jul 21 2021 11:25:16&lt;/li>
+&lt;/ul>
+&lt;h2 id="配置华为云centos-vault-yum源">配置华为云CentOS-Vault yum源
+&lt;/h2>&lt;p>使用华为云CentOS-Vault&lt;/p>
+&lt;p>官网链接： &lt;a class="link" href="https://mirrors.huaweicloud.com/home" target="_blank" rel="noopener"
+>https://mirrors.huaweicloud.com/home
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg"
+loading="lazy"
+alt="ScreenCaputure230518002717"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="备份etcyumreposd-目录下的文件">备份/etc/yum.repos.d 目录下的文件
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> cp -a /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> mkdir /etc/yum.repos.d/backup_repo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup_repo/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置华为云centos-vault-yum源-1">配置华为云CentOS-Vault yum源
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> wget -O /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>执行&lt;strong>yum clean all&lt;/strong>清除原有yum缓存。&lt;/p>
+&lt;p>执行&lt;strong>yum makecache&lt;/strong>（刷新缓存）或者&lt;strong>yum repolist all&lt;/strong>（查看所有配置可以使用的文件，会自动刷新缓存）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> yum clean all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> yum makecache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="下载软件包和导出软件包到本地">下载软件包和导出软件包到本地
+&lt;/h2>&lt;h3 id="创建一个目录来保存软件包创建-rootpackages-目录">创建一个目录来保存软件包。创建 &lt;code>/root/packages&lt;/code> 目录
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> mkdir /root/packages
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>运行以下命令以下载 &amp;ldquo;Server with GUI&amp;rdquo; 组件及其所有依赖项和TigerVNC 组件及其依赖项&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> dnf -y group install &lt;span class="s2">&amp;#34;Server with GUI&amp;#34;&lt;/span> --downloadonly --downloaddir&lt;span class="o">=&lt;/span>/root/packages
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dnf -y install tigervnc-server --downloadonly --downloaddir&lt;span class="o">=&lt;/span>/root/packages
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="打包tar导出软件包到本地">打包tar，导出软件包到本地
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> tar -cvf packages.tar /root/packages/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用工具将&lt;code>packages.tar&lt;/code>导出到本地存储上&lt;/p>
+&lt;h3 id="还原快照和上传软件包">还原快照和上传软件包
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/LUjqTFuv4bJtXg9.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/LUjqTFuv4bJtXg9.jpg"
+loading="lazy"
+alt="ScreenCaputure230521051856"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/lmgV6IwjMNSenJz.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/lmgV6IwjMNSenJz.jpg"
+loading="lazy"
+alt="ScreenCaputure230521051752"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="安装软件包和配置服务">安装软件包和配置服务
+&lt;/h2>&lt;h3 id="关闭selinux后面配置完成再启用">关闭SELINUX，后面配置完成再启用
+&lt;/h3>&lt;p>使用命令&lt;code> nano /etc/selinux/config&lt;/code>编辑该文件，将&lt;strong>SELINUX&lt;/strong>设置为&lt;strong>disabled&lt;/strong>，然后 &lt;strong>reboot&lt;/strong> 重启&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">SELINUX&lt;/span>&lt;span class="o">=&lt;/span>disabled
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用命令&lt;code> sestatus&lt;/code>查看防火墙状态，输出结果如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">SELinux status: disabled
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="将上传的packagestar解压">将上传的&lt;code>packages.tar&lt;/code>解压
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> tar -xvf /root/packages.tar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="在rootpackages-目录下创建-localrepo-文件">在/root/packages 目录下创建 local.repo 文件
+&lt;/h3>&lt;p>使用命令&lt;code> nano /root/packages/local.repo&lt;/code>创建文件，添加以下内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[packages]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=Local Repository
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=file:///root/packages
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="运行以下命令以安装组件及其依赖项">运行以下命令以安装组件及其依赖项
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> dnf -c /root/packages/local.repo install /root/packages/*.rpm -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在安装完以上软件包后，我的虚拟机貌似出问题了，执行之后步骤提示权限不足，明明是root用户下的操作，&lt;strong>强制重启&lt;/strong>虚拟机后再进行以下步骤&lt;/p>
+&lt;h3 id="设置图形界面为默认运行级别">设置图形界面为默认运行级别
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl set-default graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="启动图形界面">启动图形界面
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl start graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="查看看服务状态">查看看服务状态
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> systemctl status graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="重启">重启
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="重启后进入图形化桌面">重启后进入图形化桌面
+&lt;/h2>&lt;h3 id="检查graphicaltarget服务">检查graphical.target服务
+&lt;/h3>&lt;p>重启后发现没能自动进入图形化桌面，检查&lt;code>systemctl status graphical.target&lt;/code>输出结果是&lt;code>Active&lt;/code>&lt;/p>
+&lt;h3 id="检查gdm-服务设置">检查GDM 服务设置
+&lt;/h3>&lt;p>检查 GDM 服务的设置。使用以下命令检查 GDM 服务是否已启用：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl is-enabled gdm.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果输出结果为 &lt;code>disabled&lt;/code>，请使用以下命令启用 GDM 服务：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl &lt;span class="nb">enable&lt;/span> gdm.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我的环境操作下启用GDM服务后reboot重启，可以进入图形化桌面&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/qtECgPLpSUzH139.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/qtECgPLpSUzH139.jpg"
+loading="lazy"
+alt="ScreenCaputure230521035750"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>接下来的步骤与上一篇文的步骤一致，不多耗费篇幅&lt;/p>
+&lt;h2 id="截图">截图
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/Is4ejZHX8Woihbu.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/Is4ejZHX8Woihbu.jpg"
+loading="lazy"
+alt="ScreenCaputure230521042304"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/pnHIKCo9XtAkdDc.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/pnHIKCo9XtAkdDc.jpg"
+loading="lazy"
+alt="ScreenCaputure230521042318"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/Txmqoa9A34tjNkg.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/Txmqoa9A34tjNkg.jpg"
+loading="lazy"
+alt="ScreenCaputure230521042357"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>发现即使指定要求只下载&lt;code>Server with GUI&lt;/code>，但安装时查看到软件包列表还是发现很多包一并安装了，这可能会对已有运行服务产生影响，慎重使用，起码懂得回退的操作&lt;/li>
+&lt;li>现在服务器操作系统一般都上虚拟化了，操作这些安装升级的时候要记得做个快照，备份之类的&lt;/li>
+&lt;li>配置完成后别忘了开防火墙策略SELINUX=enforcing，重开SELINUX真耗时间&lt;/li>
+&lt;li>业余选手，勿喷&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
+&lt;/ul></description></item><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(在线安装)</title><link>https://weeaster.github.io/posts/a451a5f2/</link><pubDate>Sat, 20 May 2023 00:55:54 +0000</pubDate><guid>https://weeaster.github.io/posts/a451a5f2/</guid><description>&lt;p>&lt;code>CentOS 8.0.1905&lt;/code> 服务器上初始安装没有安装图形化桌面环境，现在需要对该服务器安装图形桌面化环境和安装&lt;code>TigerVNC&lt;/code>，并在本地（windows平台）使用&lt;code>VNC&lt;/code>客户端进行远程桌面连接&lt;/p>
+&lt;p>&lt;strong>环境说明&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Microsoft Windows 10 Pro 21H2&lt;/li>
+&lt;li>VMware® Workstation 15.0.0&lt;/li>
+&lt;li>OS: CentOS Linux 8&lt;/li>
+&lt;li>IMG: CentOS-8-x86_64-1905-dvd1.iso&lt;/li>
+&lt;li>Xvnc TigerVNC 1.11.0 - built Jul 21 2021 11:25:16&lt;/li>
+&lt;/ul>
+&lt;h2 id="使用华为云centos-vault">使用华为云CentOS-Vault
+&lt;/h2>&lt;p>&lt;strong>现在 CentOS 8（非 Stream 版本）已被官方移除出该仓库。需要使用&lt;code>centos-vault&lt;/code>镜像&lt;/strong>&lt;/p>
+&lt;p>先浏览官网链接，查看使用说明&lt;/p>
+&lt;p>官网链接： &lt;a class="link" href="https://mirrors.huaweicloud.com/home" target="_blank" rel="noopener"
+>https://mirrors.huaweicloud.com/home
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg"
+loading="lazy"
+alt="ScreenCaputure230518002717"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="备份etcyumreposd-目录下的文件">备份/etc/yum.repos.d 目录下的文件
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># cp -a /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建备份目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># mkdir repo_back&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 移动 *.repo 到 back_repo 目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># mv *.repo back_repo/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置华为云centos-vault-yum源">配置华为云CentOS-Vault yum源
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># wget -O /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--2023-05-17 12:12:00-- https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Resolving repo.huaweicloud.com &lt;span class="o">(&lt;/span>repo.huaweicloud.com&lt;span class="o">)&lt;/span>... 58.59.128.100, 58.59.128.102, 58.59.128.99
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connecting to repo.huaweicloud.com &lt;span class="o">(&lt;/span>repo.huaweicloud.com&lt;span class="o">)&lt;/span>&lt;span class="p">|&lt;/span>58.59.128.100&lt;span class="p">|&lt;/span>:443... connected.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HTTP request sent, awaiting response... &lt;span class="m">200&lt;/span> OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Length: &lt;span class="m">2218&lt;/span> &lt;span class="o">(&lt;/span>2.2K&lt;span class="o">)&lt;/span> &lt;span class="o">[&lt;/span>application/octet-stream&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Saving to: ‘/etc/yum.repos.d/CentOS-Base.repo’
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/yum.repos.d/CentOS-Base.repo 100%&lt;span class="o">[================================================================&lt;/span>&amp;gt;&lt;span class="o">]&lt;/span> 2.17K --.-KB/s in 0s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2023-05-17 12:12:01 &lt;span class="o">(&lt;/span>33.0 MB/s&lt;span class="o">)&lt;/span> - ‘/etc/yum.repos.d/CentOS-Base.repo’ saved &lt;span class="o">[&lt;/span>2218/2218&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>执行&lt;strong>yum clean all&lt;/strong>清除原有yum缓存。&lt;/p>
+&lt;p>执行&lt;strong>yum makecache&lt;/strong>（刷新缓存）或者&lt;strong>yum repolist all&lt;/strong>（查看所有配置可以使用的文件，会自动刷新缓存）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># yum clean all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">7&lt;/span> files removed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># yum makecache&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - AppStream - repo.huaweicloud.com 3.9 MB/s &lt;span class="p">|&lt;/span> 8.4 MB 00:02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - Base - repo.huaweicloud.com 2.7 MB/s &lt;span class="p">|&lt;/span> 4.6 MB 00:01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - PowerTools - repo.huaweicloud.com 1.6 MB/s &lt;span class="p">|&lt;/span> 2.3 MB 00:01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - Extras - repo.huaweicloud.com 4.9 kB/s &lt;span class="p">|&lt;/span> &lt;span class="m">10&lt;/span> kB 00:02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Metadata cache created.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装配置图形桌面环境">安装配置图形桌面环境
+&lt;/h2>&lt;h3 id="关闭selinux后面配置完成再启用">关闭SELINUX，后面配置完成再启用
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 selinux&lt;span class="o">]&lt;/span>&lt;span class="c1"># nano /etc/selinux/config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">将SELINUX设置为disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">SELINUX&lt;/span>&lt;span class="o">=&lt;/span>disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reboot重启
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看防火墙状态&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># sestatus&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELinux status: disabled
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="安装图形化桌面环境">安装图形化桌面环境
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># dnf groupinstall &amp;#34;Server with GUI&amp;#34; -y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Complete!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="设置图形界面为默认运行级别">设置图形界面为默认运行级别
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">systemctl set-default graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="启动图形界面">启动图形界面
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">systemctl start graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="重启">重启
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="向导设置">向导设置
+&lt;/h3>&lt;p>重启后会看到图形化界面的一个向导，前面的基本点&lt;code>next&lt;/code>(定位服务可关)，最后几步有个新建用户的步骤，建立一个用户给下一步骤中的 VNC Server服务 使用（不一定非使用vncuser这个名称）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/JobT3SVD6OiMhkK.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/JobT3SVD6OiMhkK.jpg"
+loading="lazy"
+alt="ScreenCaputure230519172613"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/pHfTQuhFBtClPvz.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/pHfTQuhFBtClPvz.jpg"
+loading="lazy"
+alt="ScreenCaputure230519172631"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/UlDIh8WmETvdA2V.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/UlDIh8WmETvdA2V.jpg"
+loading="lazy"
+alt="ScreenCaputure230519172807"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="安装-vnc-server-服务">&lt;strong>安装 VNC Server 服务&lt;/strong>
+&lt;/h2>&lt;h3 id="安装-tigervnc">安装 &lt;strong>TigerVNC&lt;/strong>
+&lt;/h3>&lt;p>以 &lt;code>root&lt;/code> 用户身份运行以下命令，基本都使用&lt;code>root&lt;/code>用户权限操作（提示权限不足要在命令前加 sudo 很烦），需要切换&lt;code>vncuser&lt;/code>用户会说明&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># dnf install tigervnc-server -y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Installed:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tigervnc-selinux-1.11.0-9.el8.noarch tigervnc-server-1.11.0-9.el8.x86_64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Complete!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="创建-vnc-用户并设置密码前面已创建可跳过">创建 vnc 用户并设置密码（前面已创建可跳过）
+&lt;/h3>&lt;p>如不想使用在上一步骤建立的用户，可在这一步骤中新建用户&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># useradd vnc_user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># passwd vnc_user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Changing password &lt;span class="k">for&lt;/span> user uservnc.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">New password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Retype new password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd: all authentication tokens updated successfully.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="拷贝-vncserverservice-文件">拷贝 vncserver@.service 文件
+&lt;/h3>&lt;p>创建&lt;code>/etc/systemd/system/vncserver@.service&lt;/code> 配置文件。要创建这个文件，从&lt;code>/usr/lib/systemd/system/vncserver@.service&lt;/code> 复制&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># ~]# cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>不需要在文件名中包含显示号，因为 &lt;code>systemd 会自动根据需要&lt;/code> 在内存中创建适当的命名实例，将服务文件中的 &lt;code>'%i'&lt;/code> 替换为显示号。对于单个用户，无需重命名该文件。&lt;/p>
+&lt;blockquote>
+&lt;p>VNC 桌面的默认大小为 1024x768。&lt;/p>
+&lt;p>可以使用 &lt;code>~/.vnc/config&lt;/code> 文件进一步配置用户的 VNC 会话。&lt;/p>
+&lt;p>例如，要更改 VNC 窗口大小，请添加以下行：&lt;/p>
+&lt;p>geometry= &lt;WIDTH> x &lt;HEIGHT>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="在-etctigervncvncserverusers-中为端口1配置用户-vncuser即1vncuser">在 /etc/tigervnc/vncserver.users 中为端口1配置用户 vncuser（即：1=vncuser）
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 system&lt;span class="o">]&lt;/span>&lt;span class="c1"># nano /etc/tigervnc/vncserver.users &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:1&lt;span class="o">=&lt;/span>vncuser
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="从-root-切换到-vncuser配置文件中定义的用户的连接密码">从 root 切换到 vncuser，配置文件中定义的用户的连接密码
+&lt;/h3>&lt;p>这一步骤中需要设置一个连接密码(最长八个字符，多出的字符会被切掉）；在&lt;code>view-only password (y/n)? &lt;/code> 选 &lt;code>n&lt;/code>；选&lt;code>y&lt;/code>只能查看不能输入&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># su - vncuser &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ vncpasswd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Verify:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Would you like to enter a view-only password &lt;span class="o">(&lt;/span>y/n&lt;span class="o">)&lt;/span>? n
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">A view-only password is not used
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ &lt;span class="nb">exit&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="查看-5901-端口-vnc-server-的监听状态">查看 5901 端口 VNC server 的监听状态
+&lt;/h3>&lt;p>&lt;strong>lsof -i :5901&lt;/strong> 或 &lt;strong>netstat -tulpn | grep 5901&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ lsof -i :5901
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Xvnc &lt;span class="m">2385&lt;/span> vncuser 6u IPv4 &lt;span class="m">46911&lt;/span> 0t0 TCP *:5901 &lt;span class="o">(&lt;/span>LISTEN&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Xvnc &lt;span class="m">2385&lt;/span> vncuser 7u IPv6 &lt;span class="m">46912&lt;/span> 0t0 TCP *:5901 &lt;span class="o">(&lt;/span>LISTEN&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ netstat -tulpn &lt;span class="p">|&lt;/span> grep &lt;span class="m">5901&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Not all processes could be identified, non-owned process info
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> will not be shown, you would have to be root to see it all.&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span> 0.0.0.0:5901 0.0.0.0:* LISTEN 2385/Xvnc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp6 &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span> :::5901 :::* LISTEN 2385/Xvnc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置防火墙开放-5901-端口">配置防火墙，开放 5901 端口：
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># firewall-cmd --permanent --zone=public --add-port=5901/tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">success
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># firewall-cmd --reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">success
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="启动服务">启动服务
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重新加载systemd守护程序配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl daemon-reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 将VNC服务器服务vncserver@:1.service设置为开机自启动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> vncserver@:1.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 将VNC服务器服务vncserver@:1.service启动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start vncserver@:1.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在终端上输出有关VNC服务器服务vncserver@:1.service的当前状态信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl status vncserver@:1.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="本地使用-vnc-客户端进行远程桌面连接">本地使用 VNC 客户端进行远程桌面连接
+&lt;/h2>&lt;p>&lt;code>VNC&lt;/code>客户端的选择有很多，例如以下用到的&lt;code>UltraVNC Viewer&lt;/code>；还有&lt;code>VNC Viewer&lt;/code>、&lt;code>MobaXterm&lt;/code>，任君选择&lt;/p>
+&lt;h3 id="打开软件输入-服务器地址端口号-点击-connect">打开软件，输入 服务器地址:端口号 ，点击 Connect
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/eokPTcQ9DN1mqfx.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/eokPTcQ9DN1mqfx.jpg"
+loading="lazy"
+alt="ScreenCaputure230519175406"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="输入连接密码点击-log-on">输入连接密码，点击 Log On
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/7ki35TpPR9ursC1.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/7ki35TpPR9ursC1.jpg"
+loading="lazy"
+alt="ScreenCaputure230519174918"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="登陆界面">登陆界面
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg"
+loading="lazy"
+alt="ScreenCaputure230520005726"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/6MGFkfhVWr2AKgR.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/6MGFkfhVWr2AKgR.jpg"
+loading="lazy"
+alt="ScreenCaputure230520005831"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;h3 id="运行-yum-update-之后repo-文件的变化">运行 yum update 之后，repo 文件的变化
+&lt;/h3>&lt;p>在配置华为云CentOS-Vault yum源之后，运行&lt;code>yum update&lt;/code>，好家伙把&lt;code>/etc/yum.repos.d/&lt;/code>目录下&lt;code>*.repo&lt;/code>文件给干掉了，又得重复一次&lt;code>配置华为云CentOS-Vault yum源&lt;/code>的步骤&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># ll&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">12&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r--. &lt;span class="m">1&lt;/span> root root &lt;span class="m">2218&lt;/span> May &lt;span class="m">18&lt;/span> 13:03 CentOS-Base.repo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. &lt;span class="m">2&lt;/span> root root &lt;span class="m">4096&lt;/span> May &lt;span class="m">18&lt;/span> 12:41 repo_back
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. &lt;span class="m">2&lt;/span> root root &lt;span class="m">4096&lt;/span> May &lt;span class="m">18&lt;/span> 13:03 repo_back2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="运行-vncserver-等旧格式命令的提示">运行 vncserver 等旧格式命令的提示
+&lt;/h3>&lt;p>在运行&lt;code>vncserver&lt;/code>开头的命令后，会有一行提示如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">WARNING: vncserver has been replaced by a systemd unit and is about to be removed in future releases.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Please &lt;span class="nb">read&lt;/span> /usr/share/doc/tigervnc/HOWTO.md &lt;span class="k">for&lt;/span> more information.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在处理这个步骤耗费了本人非常多的时间，例如启动报错，启动不报错能连接但是黑屏各种问题。最后在CentOS论坛看到一篇帖子，看到提示去找 Red Hat 官网手册才处理好这个问题；顺便说一句搜索引擎各种关于安装VNC Server 的中文资料没一个能用（没标明环境和版本，索骥失败），最终还是去看官网手册；看来少吃别人嚼过的东西&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>参考资料:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- vncserver failed by ShinShin on 2020/11/17 :
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://forums.centos.org/viewtopic.php?f=54&amp;amp;t=76387
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Red Hat Enterprise Linux 7 Deployment, configuration, and administration of RHEL 7 Chapter 13. TigerVNC:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-tigervnc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>发现即使指定要求只下载&lt;code>Server with GUI&lt;/code>，但安装时查看到软件包列表还是发现很多包一并安装了，这可能对已有运行服务产生影响，慎重使用，起码懂得回退的操作&lt;/li>
+&lt;li>现在服务器操作系统一般都上虚拟化了，操作这些安装升级的时候要记得做个快照，备份之类的&lt;/li>
+&lt;li>如有需要玩这个的话，强烈建议先在虚拟机多轮测试再去实际操作，多建立快照&lt;/li>
+&lt;li>配置完成后别忘了开防火墙策略SELINUX=enforcing，重开SELINUX真耗时间&lt;/li>
+&lt;li>业余选手，勿喷&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
+&lt;/ul></description></item></channel></rss>

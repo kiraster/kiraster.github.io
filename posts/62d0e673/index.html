@@ -1,0 +1,384 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="红茶三杯的原文 ：【有点儿意思系列 04】哎哟喂停不下来了 ，根据问题延续中的表述， 实验拓扑增加了两台出口路由器，两台防火墙，一台服务器。本次拓扑实验依托上一个拓扑演变而来，大部分基础配置与上一个相同，如果您是初次看到本文，请参阅上文 【No.002 Simple Case 】，本文不在赘述。\n可能你看到拓扑中防火墙名称就懵了，我解释一下，由于我这是台古董级 AMD CPU 的电脑，跑不起 Cisco ASAv 的镜像（报错：Unsupport CPU type，无限重启），再加上内存有限，就不折腾了，考虑到文中只提到 NAT 的需求，我就用两台路由器换个图标和名称代替了。最终实现了原文中源地址转换及静态映射的需求，虽然牺牲了安全策略配置和 HA 配置。\n"><title>No.003 Simple Case</title>
+<link rel=canonical href=https://weeaster.github.io/posts/62d0e673/><link rel=stylesheet href=/scss/style.min.0cdcc3547834ff1ba7cd29db268c8b5ddb18dc682ab7cab64f22b4f0d42b3827.css><meta property='og:title' content="No.003 Simple Case"><meta property='og:description' content="红茶三杯的原文 ：【有点儿意思系列 04】哎哟喂停不下来了 ，根据问题延续中的表述， 实验拓扑增加了两台出口路由器，两台防火墙，一台服务器。本次拓扑实验依托上一个拓扑演变而来，大部分基础配置与上一个相同，如果您是初次看到本文，请参阅上文 【No.002 Simple Case 】，本文不在赘述。\n可能你看到拓扑中防火墙名称就懵了，我解释一下，由于我这是台古董级 AMD CPU 的电脑，跑不起 Cisco ASAv 的镜像（报错：Unsupport CPU type，无限重启），再加上内存有限，就不折腾了，考虑到文中只提到 NAT 的需求，我就用两台路由器换个图标和名称代替了。最终实现了原文中源地址转换及静态映射的需求，虽然牺牲了安全策略配置和 HA 配置。\n"><meta property='og:url' content='https://weeaster.github.io/posts/62d0e673/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Network Emulator'><meta property='article:tag' content='PNETLab'><meta property='article:tag' content='Cisco'><meta property='article:published_time' content='2021-11-11T13:44:43+00:00'><meta property='article:modified_time' content='2021-11-11T13:44:43+00:00'><meta name=twitter:title content="No.003 Simple Case"><meta name=twitter:description content="红茶三杯的原文 ：【有点儿意思系列 04】哎哟喂停不下来了 ，根据问题延续中的表述， 实验拓扑增加了两台出口路由器，两台防火墙，一台服务器。本次拓扑实验依托上一个拓扑演变而来，大部分基础配置与上一个相同，如果您是初次看到本文，请参阅上文 【No.002 Simple Case 】，本文不在赘述。\n可能你看到拓扑中防火墙名称就懵了，我解释一下，由于我这是台古董级 AMD CPU 的电脑，跑不起 Cisco ASAv 的镜像（报错：Unsupport CPU type，无限重启），再加上内存有限，就不折腾了，考虑到文中只提到 NAT 的需求，我就用两台路由器换个图标和名称代替了。最终实现了原文中源地址转换及静态映射的需求，虽然牺牲了安全策略配置和 HA 配置。\n"><link rel="shortcut icon" href=/favicon.ico><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#part-1>Part 1</a><ol><li><a href=#step-1修改-core-sw1-和-core-sw2-配置>Step 1：修改 Core-SW1 和 Core-SW2 配置</a></li><li><a href=#step-2修改-obr-sw1-和-obr-sw2-配置>Step 2：修改 OBR-SW1 和 OBR-SW2 配置</a></li><li><a href=#step-3配置-r1-和-r2>Step 3：配置 R1 和 R2</a></li><li><a href=#step-4internet-配置faker_fw1faker_fw2-基础配置>Step 4：Internet 配置，Faker_FW1、Faker_FW2 基础配置</a></li></ol></li><li><a href=#part-2>Part 2</a><ol><li><a href=#step-1配置-faker_fw-与出口路由器建立-gre-隧道>Step 1：配置 Faker_FW 与出口路由器建立 GRE 隧道</a></li><li><a href=#step-2配置-core-sw-静态路由使上网流量下一跳设备为防火墙>Step 2：配置 Core-SW 静态路由使上网流量下一跳设备为防火墙</a></li></ol></li><li><a href=#part-3>Part 3</a></li><li><a href=#ending>Ending</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/pnetlab/ style=background-color:#cae1ff;color:#fff>PNETLab</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/62d0e673/>No.003 Simple Case</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Nov 11, 2021</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>8 minute read</time></div></footer></div></header><section class=article-content><p>红茶三杯的原文 ：<a class=link href=http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html target=_blank rel=noopener>【有点儿意思系列 04】哎哟喂停不下来了
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span>
+</a>，根据问题延续中的表述， 实验拓扑增加了两台出口路由器，两台防火墙，一台服务器。本次拓扑实验依托上一个拓扑演变而来，大部分基础配置与上一个相同，如果您是初次看到本文，请参阅上文 <strong>【<a class=link href=https://kiraster.github.io/posts/2da7a7a9.html target=_blank rel=noopener>No.002 Simple Case
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span>
+</a>】</strong>，本文不在赘述。</p><p>可能你看到拓扑中防火墙名称就懵了，我解释一下，由于我这是台古董级 AMD CPU 的电脑，跑不起 Cisco ASAv 的镜像（报错：Unsupport CPU type，无限重启），再加上内存有限，就不折腾了，考虑到文中只提到 NAT 的需求，我就用两台路由器换个图标和名称代替了。最终实现了原文中源地址转换及静态映射的需求，虽然牺牲了安全策略配置和 HA 配置。</p><p>极致极简，拓扑中的 Open_Server 同样是用路由器模拟的，实验中将实现 Open_Server 的 SSH 服务映射到公网地址提供访问。</p><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/11/11/VWlKy1fZaJ2eBEM.jpg><img src=https://i.loli.net/2021/11/11/VWlKy1fZaJ2eBEM.jpg loading=lazy></a></div></p><h2 id=part-1>Part 1</h2><h3 id=step-1修改-core-sw1-和-core-sw2-配置>Step 1：修改 Core-SW1 和 Core-SW2 配置</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Core-SW1 配置，增加与 Faker_FW1 互联地址，OSPF 宣告互联地址
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/3
+</span></span><span class=line><span class=cl> no switchport
+</span></span><span class=line><span class=cl> ip vrf forwarding vpn_internet
+</span></span><span class=line><span class=cl> ip address 192.168.100.5 255.255.255.252
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>router ospf 200 vrf vpn_internet
+</span></span><span class=line><span class=cl> network 192.168.100.5 0.0.0.0 area 0
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Core-SW2 配置，增加与 Faker_FW2 互联地址，OSPF 宣告互联地址
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/3
+</span></span><span class=line><span class=cl> no switchport
+</span></span><span class=line><span class=cl> ip vrf forwarding vpn_internet
+</span></span><span class=line><span class=cl> ip address 192.168.100.1 255.255.255.252
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>router ospf 200 vrf vpn_internet
+</span></span><span class=line><span class=cl> network 192.168.100.1 0.0.0.0 area 0
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><h3 id=step-2修改-obr-sw1-和-obr-sw2-配置>Step 2：修改 OBR-SW1 和 OBR-SW2 配置</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- OBR-SW1 配置，配置与 R1 互联地址，OSPF 宣告互联地址,去除原先的 NAT 相关配置和去除 OSPF 注入默认路由
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/1
+</span></span><span class=line><span class=cl> no switchport
+</span></span><span class=line><span class=cl> ip vrf forwarding vpn_internet
+</span></span><span class=line><span class=cl> ip address 20.20.20.1 255.255.255.252
+</span></span><span class=line><span class=cl> ip ospf network point-to-point
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>router ospf 200 vrf vpn_internet
+</span></span><span class=line><span class=cl> network 20.20.20.1 0.0.0.0 area 0
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- OBR-SW2 配置，配置与 R2 互联地址，OSPF 宣告互联地址,去除原先的 NAT 相关配置和去除 OSPF 注入默认路由
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/0
+</span></span><span class=line><span class=cl> no switchport
+</span></span><span class=line><span class=cl> ip vrf forwarding vpn_internet
+</span></span><span class=line><span class=cl> ip address 20.20.20.10 255.255.255.252
+</span></span><span class=line><span class=cl> ip ospf network point-to-point
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>router ospf 200 vrf vpn_internet
+</span></span><span class=line><span class=cl> network 20.20.20.10 0.0.0.0 area 0
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><h3 id=step-3配置-r1-和-r2>Step 3：配置 R1 和 R2</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=n>R1</span> <span class=err>配置，配置互联地址，</span><span class=n>OSPF</span> <span class=err>宣告互联地址</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置中包含了</span> <span class=n>NAT</span> <span class=err>配置，当两台防火墙宕机后仍可保持内网与互联网通信</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>vrf</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>rd</span> <span class=mi>20</span><span class=p>:</span><span class=mi>20</span>
+</span></span><span class=line><span class=cl> <span class=n>route</span><span class=o>-</span><span class=n>target</span> <span class=k>export</span> <span class=mi>200</span><span class=p>:</span><span class=mi>200</span>
+</span></span><span class=line><span class=cl> <span class=n>route</span><span class=o>-</span><span class=n>target</span> <span class=n>import</span> <span class=mi>200</span><span class=p>:</span><span class=mi>200</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>vrf</span> <span class=n>forwarding</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.1</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.248</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>outside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>duplex</span> <span class=n>auto</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>vrf</span> <span class=n>forwarding</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.2</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>ospf</span> <span class=n>network</span> <span class=n>point</span><span class=o>-</span><span class=n>to</span><span class=o>-</span><span class=n>point</span>
+</span></span><span class=line><span class=cl> <span class=n>duplex</span> <span class=n>auto</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>2</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>vrf</span> <span class=n>forwarding</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.5</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>ospf</span> <span class=n>network</span> <span class=n>point</span><span class=o>-</span><span class=n>to</span><span class=o>-</span><span class=n>point</span>
+</span></span><span class=line><span class=cl> <span class=n>duplex</span> <span class=n>auto</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>router</span> <span class=n>ospf</span> <span class=mi>200</span> <span class=n>vrf</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>router</span><span class=o>-</span><span class=n>id</span> <span class=mf>111.111</span><span class=o>.</span><span class=mf>111.111</span>
+</span></span><span class=line><span class=cl> <span class=n>network</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.2</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>area</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>network</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.5</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>area</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>network</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.1</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>area</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>default</span><span class=o>-</span><span class=n>information</span> <span class=n>originate</span> <span class=n>metric</span> <span class=mi>11</span> <span class=n>metric</span><span class=o>-</span><span class=n>type</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span> <span class=n>source</span> <span class=n>list</span> <span class=mi>10</span> <span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>0</span> <span class=n>vrf</span> <span class=n>vpn_internet</span> <span class=n>overload</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=n>vrf</span> <span class=n>vpn_internet</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.6</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>access</span><span class=o>-</span><span class=n>list</span> <span class=mi>10</span> <span class=n>permit</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.255</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=n>R2</span> <span class=err>配置，配置互联地址，</span><span class=n>OSPF</span> <span class=err>宣告互联地址</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置中包含了</span> <span class=n>NAT</span> <span class=err>配置，当两台防火墙宕机后仍可保持内网与互联网通信</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>vrf</span> <span class=n>forwarding</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.9</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>ospf</span> <span class=n>network</span> <span class=n>point</span><span class=o>-</span><span class=n>to</span><span class=o>-</span><span class=n>point</span>
+</span></span><span class=line><span class=cl> <span class=n>duplex</span> <span class=n>auto</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>vrf</span> <span class=n>forwarding</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.2</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.248</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>outside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>duplex</span> <span class=n>auto</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>2</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>vrf</span> <span class=n>forwarding</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.6</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>ospf</span> <span class=n>network</span> <span class=n>point</span><span class=o>-</span><span class=n>to</span><span class=o>-</span><span class=n>point</span>
+</span></span><span class=line><span class=cl> <span class=n>duplex</span> <span class=n>auto</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>router</span> <span class=n>ospf</span> <span class=mi>200</span> <span class=n>vrf</span> <span class=n>vpn_internet</span>
+</span></span><span class=line><span class=cl> <span class=n>router</span><span class=o>-</span><span class=n>id</span> <span class=mf>222.222</span><span class=o>.</span><span class=mf>222.222</span>
+</span></span><span class=line><span class=cl> <span class=n>network</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.6</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>area</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>network</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.9</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>area</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>network</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.2</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>area</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>default</span><span class=o>-</span><span class=n>information</span> <span class=n>originate</span> <span class=n>metric</span> <span class=mi>10</span> <span class=n>metric</span><span class=o>-</span><span class=n>type</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span> <span class=n>source</span> <span class=n>list</span> <span class=mi>10</span> <span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>1</span> <span class=n>vrf</span> <span class=n>vpn_internet</span> <span class=n>overload</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=n>vrf</span> <span class=n>vpn_internet</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.6</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=n>access</span><span class=o>-</span><span class=n>list</span> <span class=mi>10</span> <span class=n>permit</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.255</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span></code></pre></div><h3 id=step-4internet-配置faker_fw1faker_fw2-基础配置>Step 4：Internet 配置，Faker_FW1、Faker_FW2 基础配置</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Internet 配置
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Loopback0
+</span></span><span class=line><span class=cl> ip address 1.2.3.4 255.255.255.255
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/0
+</span></span><span class=line><span class=cl> switchport access vlan 123
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Vlan123
+</span></span><span class=line><span class=cl> ip address 200.1.1.6 255.255.255.248
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Faker_FW1 配置
+</span></span><span class=line><span class=cl>! --- 200.1.1.3 是 NAT 和 映射使用的公网地址
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Loopback0
+</span></span><span class=line><span class=cl> ip address 200.1.1.3 255.255.255.255
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/0
+</span></span><span class=line><span class=cl> ip address 192.168.100.6 255.255.255.252
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Faker_FW2 配置
+</span></span><span class=line><span class=cl>! --- 200.1.1.4 是 NAT 和 映射使用的公网地址
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Loopback0
+</span></span><span class=line><span class=cl> ip address 200.1.1.4 255.255.255.255
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/0
+</span></span><span class=line><span class=cl> ip address 192.168.100.2 255.255.255.252
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><h2 id=part-2>Part 2</h2><ol><li>配置完第一部分， Biz_B_PC 可以 ping 通 Internet 的 1.2.3.4，路径是： <strong>Core-SW2 -> OBR-SW2 -> R2</strong>，而从 Internet 开启 debug ip icmp 观察到：Internet 返回 reply 报文远端地址是 R2 的外网接口 IP 地址（200.1.1.2）。</li></ol><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/11/11/j46XPe2TpvLVhNk.gif><img src=https://i.loli.net/2021/11/11/j46XPe2TpvLVhNk.gif loading=lazy></a></div></p><ol start=2><li><p>根据原文中的描述，“ <em>防火墙与核心交换机为仅有一条物理线路。另外，由于增加了防火墙，因此将原先部署在出口路由器（拓扑中没有画出来）上的NAT下沉到防火墙上，由防火墙来部署源地址转换及静态映射。防火墙出公网的下一跳是OBR-SW交换机，两者使用私有IP地址三层对接。</em>”</p><p>也就是 NAT 和映射的功能交给了防火墙设备，然后防火墙出公网的下一跳是出口设备，联想到防火墙与出口路由器之间创建一条隧道，内网去往公网的 inside source IP 地址在防火墙上进行 NAT 后直接走隧道至出口路由器，再路由出去。我在两台防火墙上配置的环回接口地址就是转换用的。</p></li></ol><h3 id=step-1配置-faker_fw-与出口路由器建立-gre-隧道>Step 1：配置 Faker_FW 与出口路由器建立 GRE 隧道</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=n>Faker_FW2</span> <span class=err>配置</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=n>NAT</span> <span class=err>和</span> <span class=err>映射使用的公网地址</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Loopback0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.4</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.255</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>使用</span> <span class=n>e0</span><span class=o>/</span><span class=mi>0</span> <span class=err>接口地址与</span> <span class=n>R2</span> <span class=err>的</span> <span class=n>e0</span><span class=o>/</span><span class=mi>0</span> <span class=err>接口地址建立隧道，并配置</span> <span class=n>nat</span> <span class=n>outside</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Tunnel0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>1.1</span><span class=o>.</span><span class=mf>1.2</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>outside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>tunnel</span> <span class=n>source</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>100.2</span>
+</span></span><span class=line><span class=cl> <span class=n>tunnel</span> <span class=n>destination</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.9</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置</span> <span class=n>NAT</span> <span class=n>overload</span> <span class=err>和</span> <span class=err>静态映射（将内网</span> <span class=n>Open_Server</span> <span class=err>的</span> <span class=n>SSH</span> <span class=err>端口映射到公网的</span> <span class=mi>2222</span> <span class=err>端口）</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>pool</span> <span class=n>nat</span><span class=o>-</span><span class=n>pat</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.4</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.4</span> <span class=n>prefix</span><span class=o>-</span><span class=n>length</span> <span class=mi>29</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span> <span class=n>source</span> <span class=n>list</span> <span class=mi>10</span> <span class=n>pool</span> <span class=n>nat</span><span class=o>-</span><span class=n>pat</span> <span class=n>overload</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span> <span class=n>source</span> <span class=k>static</span> <span class=n>tcp</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.200</span> <span class=mi>22</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.4</span> <span class=mi>2222</span> <span class=n>extendable</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置默认路由和必要的静态路由</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>Tunnel0</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.8</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>100.1</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.0</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.0</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>100.1</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置</span> <span class=n>inside</span> <span class=n>source</span> <span class=n>list</span>
+</span></span><span class=line><span class=cl><span class=n>access</span><span class=o>-</span><span class=n>list</span> <span class=mi>10</span> <span class=n>permit</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.255</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- R2 配置
+</span></span><span class=line><span class=cl>! --- 使用 e0/0 接口地址与 Faker_FW2 的 e0/0 接口地址建立隧道
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip vrf forwarding vpn_internet
+</span></span><span class=line><span class=cl> ip address 1.1.1.1 255.255.255.252
+</span></span><span class=line><span class=cl> tunnel source 20.20.20.9
+</span></span><span class=line><span class=cl> tunnel destination 192.168.100.2
+</span></span><span class=line><span class=cl> tunnel vrf vpn_internet
+</span></span><span class=line><span class=cl>! --- 配置需要走隧道的 VRF 静态路由，内网地址回程路由 track 跟踪
+</span></span><span class=line><span class=cl>ip route vrf vpn_internet 192.168.50.0 255.255.255.0 Tunnel0 track 1
+</span></span><span class=line><span class=cl>ip route vrf vpn_internet 200.1.1.4 255.255.255.255 Tunnel0
+</span></span><span class=line><span class=cl>! --- 配置 SLA 监测隧道对端的连通性
+</span></span><span class=line><span class=cl>ip sla 1
+</span></span><span class=line><span class=cl> icmp-echo 192.168.100.2 source-interface Ethernet0/0
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl>ip sla schedule 1 life forever start-time now
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 1 ip sla 1 reachability
+</span></span><span class=line><span class=cl>!         
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=n>Faker_FW1</span> <span class=err>配置</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=n>NAT</span> <span class=err>和</span> <span class=err>映射使用的公网地址</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Loopback0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.3</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.255</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>使用</span> <span class=n>e0</span><span class=o>/</span><span class=mi>0</span> <span class=err>接口地址与</span> <span class=n>R1</span> <span class=err>的</span> <span class=n>e0</span><span class=o>/</span><span class=mi>1</span> <span class=err>接口地址建立隧道，并配置</span> <span class=n>nat</span> <span class=n>outside</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Tunnel0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>address</span> <span class=mf>2.2</span><span class=o>.</span><span class=mf>2.1</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>outside</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>virtual</span><span class=o>-</span><span class=n>reassembly</span> <span class=ow>in</span>
+</span></span><span class=line><span class=cl> <span class=n>tunnel</span> <span class=n>source</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>100.6</span>
+</span></span><span class=line><span class=cl> <span class=n>tunnel</span> <span class=n>destination</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.2</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span> <span class=n>Ethernet0</span><span class=o>/</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl> <span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置</span> <span class=n>NAT</span> <span class=n>overload</span> <span class=err>和</span> <span class=err>静态映射</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>pool</span> <span class=n>nat</span><span class=o>-</span><span class=n>pat</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.3</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.3</span> <span class=n>prefix</span><span class=o>-</span><span class=n>length</span> <span class=mi>29</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span> <span class=n>source</span> <span class=n>list</span> <span class=mi>10</span> <span class=n>pool</span> <span class=n>nat</span><span class=o>-</span><span class=n>pat</span> <span class=n>overload</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>nat</span> <span class=n>inside</span> <span class=n>source</span> <span class=k>static</span> <span class=n>tcp</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.200</span> <span class=mi>22</span> <span class=mf>200.1</span><span class=o>.</span><span class=mf>1.3</span> <span class=mi>2222</span> <span class=n>extendable</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置默认路由和必要的静态路由</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.0</span> <span class=n>Tunnel0</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=mf>20.20</span><span class=o>.</span><span class=mf>20.0</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.252</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>100.5</span>
+</span></span><span class=line><span class=cl><span class=n>ip</span> <span class=n>route</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.0</span> <span class=mf>255.255</span><span class=o>.</span><span class=mf>255.0</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>100.5</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=o>!</span> <span class=o>---</span> <span class=err>配置</span> <span class=n>inside</span> <span class=n>source</span> <span class=n>list</span>
+</span></span><span class=line><span class=cl><span class=n>access</span><span class=o>-</span><span class=n>list</span> <span class=mi>10</span> <span class=n>permit</span> <span class=mf>192.168</span><span class=o>.</span><span class=mf>50.0</span> <span class=mf>0.0</span><span class=o>.</span><span class=mf>0.255</span>
+</span></span><span class=line><span class=cl><span class=o>!</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- R1 配置
+</span></span><span class=line><span class=cl>! --- 使用 e0/1 接口地址与 Faker_FW2 的 e0/0 接口地址建立隧道
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip vrf forwarding vpn_internet
+</span></span><span class=line><span class=cl> ip address 2.2.2.2 255.255.255.252
+</span></span><span class=line><span class=cl> tunnel source 20.20.20.2
+</span></span><span class=line><span class=cl> tunnel destination 192.168.100.6
+</span></span><span class=line><span class=cl> tunnel vrf vpn_internet
+</span></span><span class=line><span class=cl>! --- 配置需要走隧道的 VRF 静态路由，内网地址回程路由 track 跟踪
+</span></span><span class=line><span class=cl>ip route vrf vpn_internet 192.168.50.0 255.255.255.0 Tunnel0 track 1
+</span></span><span class=line><span class=cl>ip route vrf vpn_internet 200.1.1.3 255.255.255.255 Tunnel0
+</span></span><span class=line><span class=cl>! --- 配置 SLA 监测隧道对端的连通性
+</span></span><span class=line><span class=cl>ip sla 1
+</span></span><span class=line><span class=cl> icmp-echo 192.168.100.6 source-interface Ethernet0/1
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl>ip sla schedule 1 life forever start-time now
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 1 ip sla 1 reachability
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><h3 id=step-2配置-core-sw-静态路由使上网流量下一跳设备为防火墙>Step 2：配置 Core-SW 静态路由使上网流量下一跳设备为防火墙</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Core-SW1 配置
+</span></span><span class=line><span class=cl>!         
+</span></span><span class=line><span class=cl>ip route vrf vpn_internet 0.0.0.0 0.0.0.0 192.168.100.6 track 1
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip sla 1
+</span></span><span class=line><span class=cl> icmp-echo 192.168.100.6 source-interface Ethernet0/3
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>!         
+</span></span><span class=line><span class=cl>track 1 ip sla 1 reachability
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Core-SW2 配置
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip route vrf vpn_internet 0.0.0.0 0.0.0.0 192.168.100.2 track 1
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip sla 1
+</span></span><span class=line><span class=cl> icmp-echo 192.168.100.2 source-interface Ethernet0/3
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>!         
+</span></span><span class=line><span class=cl>track 1 ip sla 1 reachability
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><p>完成配置到这个步骤，再观察内网到 Internet 的流量路径,： <strong>Core-SW2 -> Faker_FW2 -> R2</strong>，而从 Internet 开启 debug ip icmp 观察到：Internet 返回的 reply 报文远端地址是 <strong>Faker_FW2</strong> 配置的 NAT 转换地址（200.1.1.4）。</p><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/11/11/TktXihfwbMCjx9d.gif><img src=https://i.loli.net/2021/11/11/TktXihfwbMCjx9d.gif loading=lazy></a></div></p><p>配置 Open_Server 和测试公网 SSH 访问</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Open_Server 配置
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Ethernet0/0
+</span></span><span class=line><span class=cl> ip address 192.168.50.200 255.255.255.0
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip route 0.0.0.0 0.0.0.0 192.168.50.254
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>! --- 配置 SSH SERVICES
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip domain name test.com
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>crypto key generate rsa 
+</span></span><span class=line><span class=cl>1024
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip ssh version 2
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>line vty 0 4
+</span></span><span class=line><span class=cl> login local
+</span></span><span class=line><span class=cl> transport input ssh
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>username cisco password 0 cisco
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>enable password cisco
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><p>NAT 静态映射已在 【<em><strong>Part 2 &ndash; Step 1</strong></em>】 中配置，将 Open_Server 的 22 端口映射到被访问公网 IP 地址的 2222 端口。测试结果如图：</p><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/11/11/ciU36EwAlCWsIzG.gif><img src=https://i.loli.net/2021/11/11/ciU36EwAlCWsIzG.gif loading=lazy></a></div></p><h2 id=part-3>Part 3</h2><p><strong>网络冗余的设计</strong></p><p>本实验中探讨的是在网络中某段线路通断的情况下 Biz_B_PC 访问 Internet 环回接口地址 1.2.3.4 的路径切换。网络正常情况下，访问路径如下图：</p><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/11/11/FR9PMsbqgIQNjzV.jpg><img src=https://i.loli.net/2021/11/11/FR9PMsbqgIQNjzV.jpg loading=lazy></a></div></p><ul><li><p><strong>情况 1：</strong>（假设 Faker_FW1、Core-SW1、OBR-SW1、R1 设备都正常，线路也正常 ）</p><p>当 Core-SW2 的 e0/3 状态为 DOWN；</p><p>当 Core-SW2 的 e0/0 状态为 DOWN；</p><p>当 OBR-SW2 的 e0/0 状态为 DOWN；</p><p>当 Core-SW2 的 e1/3 链路协议 DOWN；</p><p>以上四个条件有一个为真，即其中出现一个接口为 DOWN 状态， Core-SW2 降低 内网 VRRP 组的优先级， 同时将内网 VRRP 组切换至 Backup 状态，内网上网流量路径切换至 Core-SW1 进行转发。</p></li><li><p><strong>情况 2：</strong>（假设 Faker_FW2、 Core-SW2、OBR-SW2、R2 设备都正常，线路也正常 ）</p><p>当 Core-SW1 的 e0/3 状态为 DOWN；</p><p>当 Core-SW1 的 e0/0 状态为 DOWN；</p><p>当 OBR-SW1 的 e0/1 状态为 DOWN；</p><p>当 Core-SW1 的 e1/3 链路协议 DOWN；</p><p>以上四个条件有一个为真，即其中出现一个接口为 DOWN 状态， Core-SW1 降低 内网 VRRP 组的优先级，不进行 VRRP 状态切换。</p></li><li><p><strong>情况 3：</strong></p></li></ul><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/11/11/SidCgVkOe76LKAo.jpg><img src=https://i.loli.net/2021/11/11/SidCgVkOe76LKAo.jpg loading=lazy></a></div></p><p>当 A 组条件任一条件为真和 B 组任一条件为真时，此时 Core-SW1 和 Core-SW2 都降低 VRRP 组优先级，由于设置了 Core-SW2 的 VRRP 优先级为 120 （ Core-SW1 默认优先级 100），两台设备同时降低相同的优先级 21 。此时的 VRRP Master 设备是 Core-SW2 ，上网流量路径：<strong>Core-SW2</strong> -> <strong>OBR-SW2</strong> -> <strong>R2</strong> ，在 <strong>R2</strong> 上进行 <strong>NAT</strong> 最终出公网；当 B 组中的条件是：<strong>OBR-SW2 的 e0/0 状态为 DOWN</strong>，上网流量路径：<strong>Core-SW2</strong> -> <strong>OBR-SW2</strong> -> <strong>OBR-SW1</strong>-> <strong>R1</strong>，在 <strong>R1</strong> 上进行 <strong>NAT</strong> 最终出公网。</p><p>分别手动 <strong>shutdown</strong> 以上任一条件中的接口（以 Core-SW2 的 e0/3 和 e1/3 为例），观察 Track 和 VRRP 状态的变化如下图：</p><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/11/11/tjePOHGadCIg1mN.jpg><img src=https://i.loli.net/2021/11/11/tjePOHGadCIg1mN.jpg loading=lazy></a></div></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Core-SW2 配置
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip sla 1
+</span></span><span class=line><span class=cl> icmp-echo 192.168.100.2 source-interface Ethernet0/3
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>ip sla 2
+</span></span><span class=line><span class=cl> icmp-echo 10.10.10.9 source-interface Ethernet0/0.200
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>ip sla 3
+</span></span><span class=line><span class=cl> icmp-echo 20.20.20.10 source-interface Ethernet0/0.200
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>ip sla group schedule 11 1-3 schedule-together start-time now life forever
+</span></span><span class=line><span class=cl>!         
+</span></span><span class=line><span class=cl>track 1 ip sla 1
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 2 ip sla 2
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 3 ip sla 3
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 4 interface Ethernet1/3 line-protocol
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 11 list boolean and
+</span></span><span class=line><span class=cl> object 1
+</span></span><span class=line><span class=cl> object 2
+</span></span><span class=line><span class=cl> object 3
+</span></span><span class=line><span class=cl> object 4
+</span></span><span class=line><span class=cl>!         
+</span></span><span class=line><span class=cl>interface Vlan50
+</span></span><span class=line><span class=cl> vrrp 50 priority 120
+</span></span><span class=line><span class=cl> vrrp 50 track 11 decrement 21
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>! --- Core-SW1 配置
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>ip sla 1
+</span></span><span class=line><span class=cl> icmp-echo 192.168.100.6 source-interface Ethernet0/3
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>ip sla 2
+</span></span><span class=line><span class=cl> icmp-echo 10.10.10.1 source-interface Ethernet0/0.200
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>ip sla 3
+</span></span><span class=line><span class=cl> icmp-echo 20.20.20.1 source-interface Ethernet0/0.200
+</span></span><span class=line><span class=cl> vrf vpn_internet
+</span></span><span class=line><span class=cl> frequency 5
+</span></span><span class=line><span class=cl>ip sla group schedule 11 1-3 schedule-together start-time now life forever
+</span></span><span class=line><span class=cl>!         
+</span></span><span class=line><span class=cl>track 1 ip sla 1 reachability
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 2 ip sla 2 reachability
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 3 ip sla 3 reachability
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 4 interface Ethernet1/3 line-protocol
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>track 11 list boolean and
+</span></span><span class=line><span class=cl> object 1
+</span></span><span class=line><span class=cl> object 2
+</span></span><span class=line><span class=cl> object 3
+</span></span><span class=line><span class=cl> object 4
+</span></span><span class=line><span class=cl>!
+</span></span><span class=line><span class=cl>interface Vlan50
+</span></span><span class=line><span class=cl> vrrp 50 ip 192.168.50.254
+</span></span><span class=line><span class=cl> vrrp 50 track 11 decrement 21
+</span></span><span class=line><span class=cl>!
+</span></span></code></pre></div><h2 id=ending>Ending</h2><ul><li>码完字了，还是那句话（挺耗时间的）。尽管还有不满意的地方，比如还可以再完善配置，添加更多的配置参数，考虑更多扩展需求想解决思路，但是这是个“无底洞”。</li><li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。</li><li>配置存阿里云盘了，这是链接：[<a class=link href=https://www.aliyundrive.com/s/HaEJNPJZEjq target=_blank rel=noopener>分享的文件
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span>
+</a>]</li><li>欢迎“<del>来电</del>”来函探讨。</li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/network-emulator/>Network Emulator</a>
+<a href=/tags/pnetlab/>PNETLab</a>
+<a href=/tags/cisco/>Cisco</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/638be305/><div class=article-details><h2 class=article-title>多子网分支的第3阶段分层DMVPN实验</h2></div></a></article><article><a href=/posts/5c8077d9/><div class=article-details><h2 class=article-title>观察OSPF虚链路和虚链路的替代办法</h2></div></a></article><article><a href=/posts/c0ba4ae2/><div class=article-details><h2 class=article-title>配置跨域的Option C MPLS VPN（Cisco）</h2></div></a></article><article><a href=/posts/2e964a67/><div class=article-details><h2 class=article-title>IPv6 各隧道Tunnel使用Lab</h2></div></a></article><article><a href=/posts/48f55792/><div class=article-details><h2 class=article-title>BGP综合实验拓扑</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=https://space.bilibili.com/11565094 target=_blank title=Bilibili rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script></body></html>

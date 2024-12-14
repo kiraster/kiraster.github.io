@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Branch on Kir's Blog</title><link>https://weeaster.github.io/tags/branch/</link><description>Recent content in Branch on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 29 Apr 2023 00:11:07 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/branch/index.xml" rel="self" type="application/rss+xml"/><item><title>Github之pull requests提交分支</title><link>https://weeaster.github.io/posts/9a95f1cd/</link><pubDate>Sat, 29 Apr 2023 00:11:07 +0000</pubDate><guid>https://weeaster.github.io/posts/9a95f1cd/</guid><description>&lt;p>这篇文描述的是使用我注册的第二个Github账号对&lt;code>netops_v2.0_beta&lt;/code>仓库进行一次&lt;code>pull requests&lt;/code>&lt;/p>
+&lt;p>计划是修改代码使其在Ubuntu环境也能正常运行，然后推送分支进行pull requests&lt;/p>
+&lt;h2 id="登陆github">登陆Github
+&lt;/h2>&lt;p>先fork原仓库至第二个账号（过程略），获取 Clone 链接 &lt;a class="link" href="https://github.com/weeaster/netops_v2.0_beta.git" target="_blank" rel="noopener"
+>https://github.com/weeaster/netops_v2.0_beta.git
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>，克隆至本地&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/netops_v2.0_branch$ git clone https://github.com/weeaster/netops_v2.0_beta.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cloning into &lt;span class="s1">&amp;#39;netops_v2.0_beta&amp;#39;&lt;/span>...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: Enumerating objects: 67, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: Counting objects: 100% &lt;span class="o">(&lt;/span>67/67&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: Compressing objects: 100% &lt;span class="o">(&lt;/span>49/49&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: Total &lt;span class="m">67&lt;/span> &lt;span class="o">(&lt;/span>delta 32&lt;span class="o">)&lt;/span>, reused &lt;span class="m">51&lt;/span> &lt;span class="o">(&lt;/span>delta 18&lt;span class="o">)&lt;/span>, pack-reused &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Receiving objects: 100% &lt;span class="o">(&lt;/span>67/67&lt;span class="o">)&lt;/span>, 42.97 KiB &lt;span class="p">|&lt;/span> 31.00 KiB/s, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Resolving deltas: 100% &lt;span class="o">(&lt;/span>32/32&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/netops_v2.0_branch$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="修改代码">修改代码
+&lt;/h2>&lt;ul>
+&lt;li>不是重点&lt;/li>
+&lt;li>主要内容是修改 msoffcrypto 替换 pywin32 库（原仓库已修改），修改系统的路径（左右斜杠符号）&lt;/li>
+&lt;/ul>
+&lt;h2 id="ubuntu本地git">Ubuntu本地Git
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>本地&lt;code>git config&lt;/code>配置（免密操作git push）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ git config --global user.name yourusername
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git config --global user.email yourmail@nb.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git config --list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user.name&lt;span class="o">=&lt;/span>username
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user.email&lt;span class="o">=&lt;/span>yourmail@nb.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">core.repositoryformatversion&lt;span class="o">=&lt;/span>&lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">core.filemode&lt;span class="o">=&lt;/span>&lt;span class="nb">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">core.bare&lt;span class="o">=&lt;/span>&lt;span class="nb">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">core.logallrefupdates&lt;span class="o">=&lt;/span>&lt;span class="nb">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote.origin.url&lt;span class="o">=&lt;/span>https://github.com/weeaster/netops_v2.0_beta.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote.origin.fetch&lt;span class="o">=&lt;/span>+refs/heads/*:refs/remotes/origin/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">branch.main.remote&lt;span class="o">=&lt;/span>origin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">branch.main.merge&lt;span class="o">=&lt;/span>refs/heads/main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>cd命令进入本地代码目录，执行&lt;code>git init&lt;/code>，提示重新初始化现有Git存储库（那么智能）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Reinitialized existing Git repository in /home/kir/my_repo/netops_v2.0_branch/netops_v2.0_beta/.git/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>本地创建ssh-key（生成公钥和私钥）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">kir@kir:~/$ ssh-keygen -t ed25519 -C &lt;span class="s2">&amp;#34;yourmail@nb.com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Generating public/private ed25519 key pair.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter file in which to save the key &lt;span class="o">(&lt;/span>/home/kir/.ssh/id_ed25519&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter passphrase &lt;span class="o">(&lt;/span>empty &lt;span class="k">for&lt;/span> no passphrase&lt;span class="o">)&lt;/span>:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter same passphrase again:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Your identification has been saved in /home/kir/.ssh/id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Your public key has been saved in /home/kir/.ssh/id_ed25519.pub
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The key fingerprint is:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SHA256:xxxxxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The key&lt;span class="err">&amp;#39;&lt;/span>s randomart image is:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+--&lt;span class="o">[&lt;/span>ED25519 256&lt;span class="o">]&lt;/span>--+
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">+----&lt;span class="o">[&lt;/span>SHA256&lt;span class="o">]&lt;/span>-----+
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Github网站添加SSH keys（基操）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/mI3gRykYl9XWvZK.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/mI3gRykYl9XWvZK.jpg"
+loading="lazy"
+alt="ScreenCaputure230429024711"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/netops_v2.0_branch/netops_v2.0_beta$ ssh -T git@github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The authenticity of host &lt;span class="s1">&amp;#39;github.com (20.205.243.166)&amp;#39;&lt;/span> can&lt;span class="s1">&amp;#39;t be established.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">ED25519 key fingerprint is SHA256:xxxxxx
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">This key is not known by any other names
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Warning: Permanently added &amp;#39;&lt;/span>github.com&lt;span class="s1">&amp;#39; (ED25519) to the list of known hosts.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Hi weeaster! You&amp;#39;&lt;/span>ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>设置远程仓库地址（https//xxxx不好使，换成git@xxxx）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ git remote rm origin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git remote add origin git@github.com:weeaster/netops_v2.0_beta.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git remote -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">origin git@github.com:weeaster/netops_v2.0_beta.git &lt;span class="o">(&lt;/span>fetch&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">origin git@github.com:weeaster/netops_v2.0_beta.git &lt;span class="o">(&lt;/span>push&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>三板斧&lt;code>git add&lt;/code>,&lt;code>git commit&lt;/code>,&lt;code>git push&lt;/code>，推送到ubuntu-branch分支&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ git checkout -b ubuntu-branch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git commit -m &lt;span class="s2">&amp;#34;ubuntu-branch push&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git push origin ubuntu-branch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>第7步中可能出现的插曲，原因是在github设置了&lt;code>Keep my email addresses private&lt;/code>，处理步骤如下&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>回显错误提示&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ git push origin ubuntu-branch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enumerating objects: 25, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Counting objects: 100% &lt;span class="o">(&lt;/span>25/25&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Delta compression using up to &lt;span class="m">4&lt;/span> threads
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Compressing objects: 100% &lt;span class="o">(&lt;/span>13/13&lt;span class="o">)&lt;/span>, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Writing objects: 100% &lt;span class="o">(&lt;/span>13/13&lt;span class="o">)&lt;/span>, 1.60 KiB &lt;span class="p">|&lt;/span> 327.00 KiB/s, &lt;span class="k">done&lt;/span>.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Total &lt;span class="m">13&lt;/span> &lt;span class="o">(&lt;/span>delta 8&lt;span class="o">)&lt;/span>, reused &lt;span class="m">0&lt;/span> &lt;span class="o">(&lt;/span>delta 0&lt;span class="o">)&lt;/span>, pack-reused &lt;span class="m">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: Resolving deltas: 100% &lt;span class="o">(&lt;/span>8/8&lt;span class="o">)&lt;/span>, completed with &lt;span class="m">8&lt;/span> &lt;span class="nb">local&lt;/span> objects.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: error: GH007: Your push would publish a private email address.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: You can make your email public or disable this protection by visiting:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">remote: http://github.com/settings/emails
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To github.com:weeaster/netops_v2.0_beta.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ! &lt;span class="o">[&lt;/span>remote rejected&lt;span class="o">]&lt;/span> ubuntu-branch -&amp;gt; ubuntu-branch &lt;span class="o">(&lt;/span>push declined due to email privacy restrictions&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">error: failed to push some refs to &lt;span class="s1">&amp;#39;github.com:weeaster/netops_v2.0_beta.git&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>在github网站：http://github.com/settings/emails 的&lt;code>keep my Email private&lt;/code> 选项下的找到匿名 Email； 格式是：id+username@users.noreply.github.com&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>重新设置git用户&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$git&lt;/span> config --global user.email &lt;span class="s2">&amp;#34;id+username@users.noreply.github.com&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>重置上次commit提交的作者信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ git commit --amend --reset-author
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>再次push&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">$ git push origin ubuntu-branch
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="comparepull-request">Compare&amp;amp;pull request
+&lt;/h2>&lt;h3 id="切换到-ubuntu-branch-分支点击-compare--pull-request-按钮">切换到 ubuntu-branch 分支，点击 &lt;code>Compare &amp;amp; pull request&lt;/code> 按钮
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/7oHqder2x5ID9WF.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/7oHqder2x5ID9WF.jpg"
+loading="lazy"
+alt="ScreenCaputure230429033544"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="填写信息">填写信息
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/jIKMVYg3yeRHzSo.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/jIKMVYg3yeRHzSo.jpg"
+loading="lazy"
+alt="ScreenCaputure230429034912"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="原仓库账号处理pull-requests">原仓库账号处理pull requests
+&lt;/h2>&lt;h3 id="查看pull-requests">查看pull requests
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/ns8Ma1GLtWJu52B.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/ns8Ma1GLtWJu52B.jpg"
+loading="lazy"
+alt="ScreenCaputure230429040401"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="拒绝该次pull-requests">拒绝该次pull requests
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/g8ZMQuYT7xKHjDr.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/g8ZMQuYT7xKHjDr.jpg"
+loading="lazy"
+alt="ScreenCaputure230429041738"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="原仓库账号创建分支">原仓库账号创建分支
+&lt;/h3>&lt;p>提交pull request 的账号重新本地push到一个新分支；重复Compare&amp;amp;pull request步骤，提交pull request时注意选择原仓库创建的分支&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/BlHfkvEYKJRFnpj.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/BlHfkvEYKJRFnpj.jpg"
+loading="lazy"
+alt="ScreenCaputure230429044039"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="同意合并">同意合并
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/VSzw8lbihor1UHn.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/VSzw8lbihor1UHn.jpg"
+loading="lazy"
+alt="ScreenCaputure230429045452"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/V4oOeJREAZnhgyN.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/V4oOeJREAZnhgyN.jpg"
+loading="lazy"
+alt="ScreenCaputure230429045738"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="检查">检查
+&lt;/h2>&lt;p>打开&lt;code>Comparing&lt;/code>查看&lt;code>lib/comm.py&lt;/code>部分代码，可以看到路径的斜杠符号是左斜杠&lt;code>/&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/ke9thlyvnjLNmPF.jpg">
+&lt;img src="https://s2.loli.net/2023/04/29/ke9thlyvnjLNmPF.jpg"
+loading="lazy"
+alt="ScreenCaputure230429050806"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/29/1TEwZhltcpQ3ieD.png">
+&lt;img src="https://s2.loli.net/2023/04/29/1TEwZhltcpQ3ieD.png"
+loading="lazy"
+alt="pull request 1"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>知乎有个图画挺好，我画一下&lt;/li>
+&lt;li>总体来说还行&lt;/li>
+&lt;li>我不是搞软件的，这么一搞也就图一乐&lt;/li>
+&lt;li>拜了个拜&lt;/li>
+&lt;li>这篇文，不那么欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
+&lt;/ul></description></item></channel></rss>

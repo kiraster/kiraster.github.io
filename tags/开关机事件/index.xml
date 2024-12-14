@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>开关机事件 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E5%BC%80%E5%85%B3%E6%9C%BA%E4%BA%8B%E4%BB%B6/</link><description>Recent content in 开关机事件 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 22 Apr 2023 16:20:52 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E5%BC%80%E5%85%B3%E6%9C%BA%E4%BA%8B%E4%BB%B6/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑开关机邮件提醒</title><link>https://weeaster.github.io/posts/1e32fc6d/</link><pubDate>Sat, 22 Apr 2023 16:20:52 +0000</pubDate><guid>https://weeaster.github.io/posts/1e32fc6d/</guid><description>&lt;p>最近测试了&lt;code>python&lt;/code>脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。&lt;/p>
+&lt;p>突然想到自己的台式电脑是来电自动开机的设置，略有所思后想到把开关机事件自动发送邮件。&lt;/p>
+&lt;p>本人平生不知道注册多少个邮箱，想到163邮箱用的很少，所有就用它。登陆后发现里头有很多未读邮件，有安全提示和各种广告，都是几年前的了，估计是邮箱被盗用，全球各地的IP地址登陆和某位苹果玩家拿我邮箱修改了Apple ID……&lt;/p>
+&lt;p>一顿操作后把授权码弄出来了（1毛短信费），这个钉钉机器人就不记录操作步骤了，搜索引擎遍地都是，下面记录电脑开关机事件自动发送邮件过程。&lt;/p>
+&lt;h2 id="获取邮箱授权码">获取邮箱授权码
+&lt;/h2>&lt;p>这个步骤各大在线邮箱都差不多，基本都能在设置中找到&lt;/p>
+&lt;h2 id="安装yagmail库">安装yagmail库
+&lt;/h2>&lt;p>这是个第三方库，看到搜索引擎上满满的手写一大段代码填写邮件参数，这玩意儿还能这么不智能，不就是跟foxmail客户端一样填那几样参数么，所以使用yagmail，简单&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">yagmail&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="代码">代码
+&lt;/h2>&lt;p>由于是两个不同的事件邮件，我分两个python脚本&lt;/p>
+&lt;p>&lt;code>auto_email_strtup.py&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">yagmail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">datetime&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 连接服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">yagmail&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SMTP&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;一三九啤酒白酒葡萄酒@163.com&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">password&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;此处填写授权码&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;smtp.163.com&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 编辑邮件内容&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">time_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2"> %H:%M:%S&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">content&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;时间：&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time_str&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;事件：台式电脑开机&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送邮件，to = 收件人邮箱 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">to&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;一三八吃吧吃吧吃吧吃吧@139.com&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">subject&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;电脑开关机事件&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">contents&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">content&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>auto_email_shutdown.py&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">yagmail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">datetime&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 连接服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">yagmail&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SMTP&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;一三九啤酒白酒葡萄酒@163.com&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">password&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;此处填写授权码&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;smtp.163.com&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 编辑邮件内容&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">time_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2"> %H:%M:%S&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">content&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;时间：&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time_str&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;事件：台式电脑关机&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送邮件，to = 收件人邮箱 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">to&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;一三八吃吧吃吧吃吧吃吧@139.com&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">subject&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;电脑开关机事件&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">contents&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">content&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于是windows电脑，还需要编写两个bat脚本中转运行以上代码&lt;/p>
+&lt;p>&lt;code>auto_email_strtup.bat&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python F:\xxxx\auto_email_startup.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>auto_email_shutdown.bat&lt;/code> (需手动指定python解释器路径)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">C:\Python3.x.x\python.exe F:\xxxx\auto_email_shutdown.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="window设置计划任务和组策略">window设置计划任务和组策略
+&lt;/h2>&lt;h3 id="开机自动邮件的设置">开机自动邮件的设置
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/cKrUfsE3tnFHlX6.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/cKrUfsE3tnFHlX6.jpg"
+loading="lazy"
+alt="ScreenCaputure230422165806"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/QL1UZdf35OVlnau.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/QL1UZdf35OVlnau.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170340"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/QA6RHzGLOIkWhN2.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/QA6RHzGLOIkWhN2.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170354"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/fvrBQaOCYd4gyts.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/fvrBQaOCYd4gyts.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170403"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/ItfYEZo8DCFV24s.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/ItfYEZo8DCFV24s.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170421"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/2Nngy97KV5tZAUC.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/2Nngy97KV5tZAUC.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170440"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/Mi3YkeW7zJrOpT5.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/Mi3YkeW7zJrOpT5.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170550"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="关机自动邮件的设置">关机自动邮件的设置
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/jinzWR1w4v9YmO2.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/jinzWR1w4v9YmO2.jpg"
+loading="lazy"
+alt="ScreenCaputure230422213012"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/RTsoFMV8bYGHtwj.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/RTsoFMV8bYGHtwj.jpg"
+loading="lazy"
+alt="ScreenCaputure230422213535"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/e8iNBJhZLoO9rxT.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/e8iNBJhZLoO9rxT.jpg"
+loading="lazy"
+alt="ScreenCaputure230422213610"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="dingtalkchatbot插件">dingtalkchatbot插件
+&lt;/h2>&lt;p>夹带钉钉机器人发消息的代码，使用到以上这个库，具体见&lt;a class="link" href="https://github.com/zhuifengshen/DingtalkChatbot" target="_blank" rel="noopener"
+>dingtalkchatbot插件
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>首先登陆钉钉，创建一个群，添加机器人，记录生成的webhook等参数&lt;/p>
+&lt;p>可以把以下代码组装成一个可传参的函数，调用的时候传递参数msg&lt;/p>
+&lt;p>可以设置各种条件发送不同的msg&lt;/p>
+&lt;p>电脑和手机已卸载钉钉，就没截图了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">dingtalkchatbot.chatbot&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">DingtalkChatbot&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ActionCard&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">CardItem&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># WebHook地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">webhook&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;WebHook地址&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">secret&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;secret&amp;#39;&lt;/span> &lt;span class="c1"># 可选：创建机器人勾选“加签”选项时使用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 初始化机器人小丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># xiaoding = DingtalkChatbot(webhook) # 方式一：通常初始化方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">xiaoding&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">DingtalkChatbot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">webhook&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">secret&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 方式二：勾选“加签”选项时使用（v1.5以上新功能）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># xiaoding = DingtalkChatbot(webhook, pc_slide=True) # 方式三：设置消息链接在PC端侧边栏打开（v1.5以上新功能）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Text消息是否@所有人&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">xiaoding&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">msg&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;DSB,我就是小丁，小丁就是我！&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">is_at_all&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 返回结果显示&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="最后">最后
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/3SOAGXLNpdzVnBj.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/3SOAGXLNpdzVnBj.jpg"
+loading="lazy"
+alt="20230422173407"
+>
+&lt;/a>
+&lt;/div>
+&lt;/th>
+&lt;th>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/7JpBndN5HbhMcSs.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/7JpBndN5HbhMcSs.jpg"
+loading="lazy"
+alt="20230422173130"
+>
+&lt;/a>
+&lt;/div>
+&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>
+&lt;p>如果网络环境允许的话，可以编写python脚本探测设备的可达性、根据设备的告警阀值触发邮件发送和机器人信息发送，或其他条件触发&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

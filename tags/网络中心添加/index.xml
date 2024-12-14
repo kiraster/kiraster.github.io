@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>网络中心添加 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%BF%83%E6%B7%BB%E5%8A%A0/</link><description>Recent content in 网络中心添加 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 16 Oct 2021 11:49:23 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%BF%83%E6%B7%BB%E5%8A%A0/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://weeaster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://weeaster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/Dfh7wak1BMEGAzF.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/xeio4aJEXTwj32c.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/Nr5fvnBb1iMymWX.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/u9LWMGB8kblwQNc.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/uqZ67QnwrOc3Pb9.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/2udqBsEzFVnJWpw.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/MtpabHJN3GWx6sQ.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/ahRQEToFxqCgjYw.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="windows-端配置网络中心添加">windows 端配置—网络中心添加
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/sc7ZTg9qI4z6QGC.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/qnu39EMLNT5YWsH.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/9VFMLRE4DkuCKTe.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/MTipvRdDfh5ztJS.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/7KN6uextv8WQyLO.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/KceAM7gHX6IESUR.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/6VDYJ5jbspS9wiu.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/pa1LGCK3qebd4fy.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/dG2CNP1lnI94AxH.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg">
+&lt;img src="https://i.loli.net/2021/10/16/iLPUBrnG8hyaNvV.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

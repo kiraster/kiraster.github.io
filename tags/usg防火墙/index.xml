@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>USG防火墙 on Kir's Blog</title><link>https://weeaster.github.io/tags/usg%E9%98%B2%E7%81%AB%E5%A2%99/</link><description>Recent content in USG防火墙 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 08 Jan 2021 01:08:52 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/usg%E9%98%B2%E7%81%AB%E5%A2%99/index.xml" rel="self" type="application/rss+xml"/><item><title>ENSP_防火墙初始密码问题</title><link>https://weeaster.github.io/posts/ab67d7a4/</link><pubDate>Fri, 08 Jan 2021 01:08:52 +0000</pubDate><guid>https://weeaster.github.io/posts/ab67d7a4/</guid><description>&lt;p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="思路和实验">&lt;strong>思路和实验&lt;/strong>
+&lt;/h2>&lt;ul>
+&lt;li>通过设备加载初始配置跳过设备首次登陆需要更改密码&lt;/li>
+&lt;li>通过修改 admin 的密码，修改 vty 配置，修改管理接口配置测试验证导入配置的实用性&lt;/li>
+&lt;/ul>
+&lt;h2 id="操作方法">&lt;strong>操作方法&lt;/strong>
+&lt;/h2>&lt;p>&lt;strong>假设你已经会配置Cloud，并且连接好设备&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/Q5lfRmg6vSAWiwZ.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>在电脑本地新建 xxx.cfg (后缀名为 .cfg )文件，文件内容如下&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">aaa
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> manager-user admin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> password cipher Cisco@123
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-type web terminal ssh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> level 15
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> web-manager enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> web-manager security enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ssh user admin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ssh user admin authentication-type password
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ssh user admin service-type stelnet
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">firewall zone trust
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> add interface GigabitEthernet0/0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> interface GigabitEthernet0/0/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 192.168.10.2 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-manage http permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-manage https permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-manage ping permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-manage ssh permit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user-interface con 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> authentication-mode aaa
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">user-interface vty 0 4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> authentication-mode aaa
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;strong>导入上面新建的初始配置文件，启动设备&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/dubaolKyRrAPx8w.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>命令行登陆，提示输入用户密码，输入初始配置文件配置的密码后，可直接登陆设备&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/glNq2L9H1OCAKJr.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>在浏览器输入 192.168.10.2:8443 ，可跳转到防火墙登陆界面&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/dQVIhbEJsw2kqKP.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/HclTh1y8AJGOfWe.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>使用 SecureCRT 软件，可登陆到防火墙设备&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/zmrHt9JsUPMQBDw.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg">
+&lt;img src="https://i.loli.net/2021/01/08/PY2NvbWklcwgaKf.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>​&lt;/p></description></item></channel></rss>

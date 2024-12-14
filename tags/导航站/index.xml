@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>导航站 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E5%AF%BC%E8%88%AA%E7%AB%99/</link><description>Recent content in 导航站 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 21 Nov 2024 17:36:11 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E5%AF%BC%E8%88%AA%E7%AB%99/index.xml" rel="self" type="application/rss+xml"/><item><title>修改Van Nav搜索结果不显示百度谷歌必应搜索</title><link>https://weeaster.github.io/posts/ae17cb36/</link><pubDate>Thu, 21 Nov 2024 17:36:11 +0000</pubDate><guid>https://weeaster.github.io/posts/ae17cb36/</guid><description>&lt;p>Van Nav是一个轻量的导航站&lt;/p>
+&lt;p>Github开源仓库：https://github.com/Mereithhh/van-nav&lt;/p>
+&lt;p>现在的浏览器地址栏都集成了搜索功能，用不上导航站里的在线搜索，以下列出去除该功能的操作步骤&lt;/p>
+&lt;p>我将其定位为半内网使用的一个导航站&lt;/p>
+&lt;h2 id="下载源码">下载源码
+&lt;/h2>&lt;p>git clone 或 Download ZIP&lt;/p>
+&lt;h2 id="修改npm为阿里云镜像">修改npm为阿里云镜像
+&lt;/h2>&lt;p>国内连接官方的npm时常抽风，替换yarn.lock 里面的resolved为registry.npmmirror.com，从阿里云镜像源下载依赖.&lt;/p>
+&lt;p>两个文件的路径为：&lt;/p>
+&lt;ul>
+&lt;li>ui/admin/yarn.lock&lt;/li>
+&lt;li>ui/website/yarn.lock&lt;/li>
+&lt;/ul>
+&lt;h2 id="修改相应代码">修改相应代码
+&lt;/h2>&lt;p>修改代码&lt;code>ui\website\src\components\Content\index.tsx&lt;/code>文件&lt;/p>
+&lt;p>Line：13 （删除此行import）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">import { generateSearchEngineCard } from &amp;#34;../../utils/serachEngine&amp;#34;;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Line：87-116 （替换内容）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="k">const&lt;/span> &lt;span class="n">filteredData&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">useMemo&lt;/span>&lt;span class="p">(()&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tools&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">null&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果没有&lt;/span> &lt;span class="n">tools&lt;/span> &lt;span class="err">属性，直接返回&lt;/span> &lt;span class="n">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">const&lt;/span> &lt;span class="n">localResult&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tools&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">.&lt;/span>&lt;span class="n">filter&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">const&lt;/span> &lt;span class="n">hide&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">hide&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">hide&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="bp">true&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="err">没有&lt;/span> &lt;span class="n">hide&lt;/span> &lt;span class="err">属性，保留该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">hide&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">isLogin&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="bp">false&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="err">隐藏且用户已登录，丢弃该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="bp">false&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">默认丢弃该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">.&lt;/span>&lt;span class="n">filter&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">currTag&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">&amp;#34;全部工具&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="bp">true&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果当前标签是“全部工具”，保留该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">catelog&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="n">currTag&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">只保留与当前标签匹配的项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">.&lt;/span>&lt;span class="n">filter&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">searchString&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="bp">true&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果搜索字符串为空，保留该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">//&lt;/span> &lt;span class="err">保留与搜索字符串匹配的项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mutiSearch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">||&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mutiSearch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">desc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">||&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mutiSearch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">localResult&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">返回过滤后的结果&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">},&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">currTag&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="构建镜像">构建镜像
+&lt;/h2>&lt;p>将代码文件夹上传至linux，需提前安装号docker（网络上教程多如牛毛，一搜便知）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker build -t my-nav:v0.1 .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/bcrsQkaBHpdASVX.png">
+&lt;img src="https://s2.loli.net/2024/11/21/bcrsQkaBHpdASVX.png"
+loading="lazy"
+alt="image-20241121175134975"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="创建容器">创建容器
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --name my-van-nav --restart always -p 6412:6412 -v /opt/superE/van-nav-data:/app/data my-nav:v0.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="访问van-nav">访问Van Nav
+&lt;/h2>&lt;p>地址栏输入访问服务器的IP+端口号（我本地自建了dns+nginx，所以显示如下）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/wblkB3sXCEJice7.png">
+&lt;img src="https://s2.loli.net/2024/11/21/wblkB3sXCEJice7.png"
+loading="lazy"
+alt="image-20241121175623917"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/jPsG4d69EC2gWnz.png">
+&lt;img src="https://s2.loli.net/2024/11/21/jPsG4d69EC2gWnz.png"
+loading="lazy"
+alt="image-20241121175700154"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/KT6WhIYeuVC1UNR.png">
+&lt;img src="https://s2.loli.net/2024/11/21/KT6WhIYeuVC1UNR.png"
+loading="lazy"
+alt="image-20241121175740609"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/cWSvxRq36Dut4LC.png">
+&lt;img src="https://s2.loli.net/2024/11/21/cWSvxRq36Dut4LC.png"
+loading="lazy"
+alt="image-20241121175812069"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>通过观察发现，输入关键字后，结果中并没有必应谷歌百度的选项列出，效果达成&lt;/p>
+&lt;hr>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>自动获取网站logo图标不好使，可F12查看&amp;ndash;网络&amp;ndash;image，将图标的URL地址手动添加&lt;/li>
+&lt;li>图标会储存到数据库，我也不知道怎么实现的，设置完成后即使网络断开或对应的服务网站没开启导航站也能加载图标&lt;/li>
+&lt;li>如果将导航站部署在服务器，所有人打开的页面都是一致的，不能做到每个人都自定义其访问链接（适合定位为统一入口）&lt;/li>
+&lt;li>如果个人使用部署可以下载对应的安装包（各种跨平台的都有），需要设置开机自启，访问地址为：http://localhost:6412&lt;/li>
+&lt;li>惊叹到Go语言编写的程序占用空间如此之小&lt;/li>
+&lt;/ul></description></item></channel></rss>

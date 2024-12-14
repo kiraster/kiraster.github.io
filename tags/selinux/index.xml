@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SELinux on Kir's Blog</title><link>https://weeaster.github.io/tags/selinux/</link><description>Recent content in SELinux on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 20 May 2023 18:18:21 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/selinux/index.xml" rel="self" type="application/rss+xml"/><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(离线安装)</title><link>https://weeaster.github.io/posts/f652ccc4/</link><pubDate>Sat, 20 May 2023 18:18:21 +0000</pubDate><guid>https://weeaster.github.io/posts/f652ccc4/</guid><description>&lt;p>上一篇文描述的是在线安装，这篇文挑战一下离线安装，下载 &lt;code>Server with GUI&lt;/code>组件及其依赖项和&lt;code>TigerVNC&lt;/code>后上传服务器进行安装&lt;/p>
+&lt;p>&lt;strong>操作流程：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>先给虚拟机创建一个快照&lt;/li>
+&lt;li>使用虚拟机下载安装软件包然后打包导出到本地&lt;/li>
+&lt;li>还原快照&lt;/li>
+&lt;li>上传软件包到虚拟机&lt;/li>
+&lt;li>安装软件&lt;/li>
+&lt;li>测试&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>环境说明&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Microsoft Windows 10 Pro 21H2&lt;/li>
+&lt;li>VMware® Workstation 15.0.0&lt;/li>
+&lt;li>OS: CentOS Linux 8&lt;/li>
+&lt;li>IMG: CentOS-8-x86_64-1905-dvd1.iso&lt;/li>
+&lt;li>Xvnc TigerVNC 1.11.0 - built Jul 21 2021 11:25:16&lt;/li>
+&lt;/ul>
+&lt;h2 id="配置华为云centos-vault-yum源">配置华为云CentOS-Vault yum源
+&lt;/h2>&lt;p>使用华为云CentOS-Vault&lt;/p>
+&lt;p>官网链接： &lt;a class="link" href="https://mirrors.huaweicloud.com/home" target="_blank" rel="noopener"
+>https://mirrors.huaweicloud.com/home
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg"
+loading="lazy"
+alt="ScreenCaputure230518002717"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="备份etcyumreposd-目录下的文件">备份/etc/yum.repos.d 目录下的文件
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> cp -a /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> mkdir /etc/yum.repos.d/backup_repo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup_repo/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置华为云centos-vault-yum源-1">配置华为云CentOS-Vault yum源
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> wget -O /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>执行&lt;strong>yum clean all&lt;/strong>清除原有yum缓存。&lt;/p>
+&lt;p>执行&lt;strong>yum makecache&lt;/strong>（刷新缓存）或者&lt;strong>yum repolist all&lt;/strong>（查看所有配置可以使用的文件，会自动刷新缓存）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> yum clean all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> yum makecache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="下载软件包和导出软件包到本地">下载软件包和导出软件包到本地
+&lt;/h2>&lt;h3 id="创建一个目录来保存软件包创建-rootpackages-目录">创建一个目录来保存软件包。创建 &lt;code>/root/packages&lt;/code> 目录
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> mkdir /root/packages
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>运行以下命令以下载 &amp;ldquo;Server with GUI&amp;rdquo; 组件及其所有依赖项和TigerVNC 组件及其依赖项&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> dnf -y group install &lt;span class="s2">&amp;#34;Server with GUI&amp;#34;&lt;/span> --downloadonly --downloaddir&lt;span class="o">=&lt;/span>/root/packages
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> dnf -y install tigervnc-server --downloadonly --downloaddir&lt;span class="o">=&lt;/span>/root/packages
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="打包tar导出软件包到本地">打包tar，导出软件包到本地
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> tar -cvf packages.tar /root/packages/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用工具将&lt;code>packages.tar&lt;/code>导出到本地存储上&lt;/p>
+&lt;h3 id="还原快照和上传软件包">还原快照和上传软件包
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/LUjqTFuv4bJtXg9.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/LUjqTFuv4bJtXg9.jpg"
+loading="lazy"
+alt="ScreenCaputure230521051856"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/lmgV6IwjMNSenJz.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/lmgV6IwjMNSenJz.jpg"
+loading="lazy"
+alt="ScreenCaputure230521051752"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="安装软件包和配置服务">安装软件包和配置服务
+&lt;/h2>&lt;h3 id="关闭selinux后面配置完成再启用">关闭SELINUX，后面配置完成再启用
+&lt;/h3>&lt;p>使用命令&lt;code> nano /etc/selinux/config&lt;/code>编辑该文件，将&lt;strong>SELINUX&lt;/strong>设置为&lt;strong>disabled&lt;/strong>，然后 &lt;strong>reboot&lt;/strong> 重启&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">SELINUX&lt;/span>&lt;span class="o">=&lt;/span>disabled
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用命令&lt;code> sestatus&lt;/code>查看防火墙状态，输出结果如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">SELinux status: disabled
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="将上传的packagestar解压">将上传的&lt;code>packages.tar&lt;/code>解压
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> tar -xvf /root/packages.tar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="在rootpackages-目录下创建-localrepo-文件">在/root/packages 目录下创建 local.repo 文件
+&lt;/h3>&lt;p>使用命令&lt;code> nano /root/packages/local.repo&lt;/code>创建文件，添加以下内容&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[packages]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name=Local Repository
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">baseurl=file:///root/packages
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">enabled=1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gpgcheck=0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="运行以下命令以安装组件及其依赖项">运行以下命令以安装组件及其依赖项
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> dnf -c /root/packages/local.repo install /root/packages/*.rpm -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在安装完以上软件包后，我的虚拟机貌似出问题了，执行之后步骤提示权限不足，明明是root用户下的操作，&lt;strong>强制重启&lt;/strong>虚拟机后再进行以下步骤&lt;/p>
+&lt;h3 id="设置图形界面为默认运行级别">设置图形界面为默认运行级别
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl set-default graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="启动图形界面">启动图形界面
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl start graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="查看看服务状态">查看看服务状态
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> systemctl status graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="重启">重启
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="重启后进入图形化桌面">重启后进入图形化桌面
+&lt;/h2>&lt;h3 id="检查graphicaltarget服务">检查graphical.target服务
+&lt;/h3>&lt;p>重启后发现没能自动进入图形化桌面，检查&lt;code>systemctl status graphical.target&lt;/code>输出结果是&lt;code>Active&lt;/code>&lt;/p>
+&lt;h3 id="检查gdm-服务设置">检查GDM 服务设置
+&lt;/h3>&lt;p>检查 GDM 服务的设置。使用以下命令检查 GDM 服务是否已启用：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl is-enabled gdm.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果输出结果为 &lt;code>disabled&lt;/code>，请使用以下命令启用 GDM 服务：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> systemctl &lt;span class="nb">enable&lt;/span> gdm.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我的环境操作下启用GDM服务后reboot重启，可以进入图形化桌面&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/qtECgPLpSUzH139.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/qtECgPLpSUzH139.jpg"
+loading="lazy"
+alt="ScreenCaputure230521035750"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>接下来的步骤与上一篇文的步骤一致，不多耗费篇幅&lt;/p>
+&lt;h2 id="截图">截图
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/Is4ejZHX8Woihbu.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/Is4ejZHX8Woihbu.jpg"
+loading="lazy"
+alt="ScreenCaputure230521042304"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/pnHIKCo9XtAkdDc.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/pnHIKCo9XtAkdDc.jpg"
+loading="lazy"
+alt="ScreenCaputure230521042318"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/21/Txmqoa9A34tjNkg.jpg">
+&lt;img src="https://s2.loli.net/2023/05/21/Txmqoa9A34tjNkg.jpg"
+loading="lazy"
+alt="ScreenCaputure230521042357"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>发现即使指定要求只下载&lt;code>Server with GUI&lt;/code>，但安装时查看到软件包列表还是发现很多包一并安装了，这可能会对已有运行服务产生影响，慎重使用，起码懂得回退的操作&lt;/li>
+&lt;li>现在服务器操作系统一般都上虚拟化了，操作这些安装升级的时候要记得做个快照，备份之类的&lt;/li>
+&lt;li>配置完成后别忘了开防火墙策略SELINUX=enforcing，重开SELINUX真耗时间&lt;/li>
+&lt;li>业余选手，勿喷&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
+&lt;/ul></description></item><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(在线安装)</title><link>https://weeaster.github.io/posts/a451a5f2/</link><pubDate>Sat, 20 May 2023 00:55:54 +0000</pubDate><guid>https://weeaster.github.io/posts/a451a5f2/</guid><description>&lt;p>&lt;code>CentOS 8.0.1905&lt;/code> 服务器上初始安装没有安装图形化桌面环境，现在需要对该服务器安装图形桌面化环境和安装&lt;code>TigerVNC&lt;/code>，并在本地（windows平台）使用&lt;code>VNC&lt;/code>客户端进行远程桌面连接&lt;/p>
+&lt;p>&lt;strong>环境说明&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Microsoft Windows 10 Pro 21H2&lt;/li>
+&lt;li>VMware® Workstation 15.0.0&lt;/li>
+&lt;li>OS: CentOS Linux 8&lt;/li>
+&lt;li>IMG: CentOS-8-x86_64-1905-dvd1.iso&lt;/li>
+&lt;li>Xvnc TigerVNC 1.11.0 - built Jul 21 2021 11:25:16&lt;/li>
+&lt;/ul>
+&lt;h2 id="使用华为云centos-vault">使用华为云CentOS-Vault
+&lt;/h2>&lt;p>&lt;strong>现在 CentOS 8（非 Stream 版本）已被官方移除出该仓库。需要使用&lt;code>centos-vault&lt;/code>镜像&lt;/strong>&lt;/p>
+&lt;p>先浏览官网链接，查看使用说明&lt;/p>
+&lt;p>官网链接： &lt;a class="link" href="https://mirrors.huaweicloud.com/home" target="_blank" rel="noopener"
+>https://mirrors.huaweicloud.com/home
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/TmgzICPbDUkwQMF.jpg"
+loading="lazy"
+alt="ScreenCaputure230518002717"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="备份etcyumreposd-目录下的文件">备份/etc/yum.repos.d 目录下的文件
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># cp -a /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>或&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建备份目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># mkdir repo_back&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 移动 *.repo 到 back_repo 目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># mv *.repo back_repo/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置华为云centos-vault-yum源">配置华为云CentOS-Vault yum源
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># wget -O /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--2023-05-17 12:12:00-- https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Resolving repo.huaweicloud.com &lt;span class="o">(&lt;/span>repo.huaweicloud.com&lt;span class="o">)&lt;/span>... 58.59.128.100, 58.59.128.102, 58.59.128.99
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connecting to repo.huaweicloud.com &lt;span class="o">(&lt;/span>repo.huaweicloud.com&lt;span class="o">)&lt;/span>&lt;span class="p">|&lt;/span>58.59.128.100&lt;span class="p">|&lt;/span>:443... connected.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HTTP request sent, awaiting response... &lt;span class="m">200&lt;/span> OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Length: &lt;span class="m">2218&lt;/span> &lt;span class="o">(&lt;/span>2.2K&lt;span class="o">)&lt;/span> &lt;span class="o">[&lt;/span>application/octet-stream&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Saving to: ‘/etc/yum.repos.d/CentOS-Base.repo’
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/etc/yum.repos.d/CentOS-Base.repo 100%&lt;span class="o">[================================================================&lt;/span>&amp;gt;&lt;span class="o">]&lt;/span> 2.17K --.-KB/s in 0s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2023-05-17 12:12:01 &lt;span class="o">(&lt;/span>33.0 MB/s&lt;span class="o">)&lt;/span> - ‘/etc/yum.repos.d/CentOS-Base.repo’ saved &lt;span class="o">[&lt;/span>2218/2218&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>执行&lt;strong>yum clean all&lt;/strong>清除原有yum缓存。&lt;/p>
+&lt;p>执行&lt;strong>yum makecache&lt;/strong>（刷新缓存）或者&lt;strong>yum repolist all&lt;/strong>（查看所有配置可以使用的文件，会自动刷新缓存）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># yum clean all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="m">7&lt;/span> files removed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># yum makecache&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - AppStream - repo.huaweicloud.com 3.9 MB/s &lt;span class="p">|&lt;/span> 8.4 MB 00:02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - Base - repo.huaweicloud.com 2.7 MB/s &lt;span class="p">|&lt;/span> 4.6 MB 00:01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - PowerTools - repo.huaweicloud.com 1.6 MB/s &lt;span class="p">|&lt;/span> 2.3 MB 00:01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CentOS-8 - Extras - repo.huaweicloud.com 4.9 kB/s &lt;span class="p">|&lt;/span> &lt;span class="m">10&lt;/span> kB 00:02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Metadata cache created.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="安装配置图形桌面环境">安装配置图形桌面环境
+&lt;/h2>&lt;h3 id="关闭selinux后面配置完成再启用">关闭SELINUX，后面配置完成再启用
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 selinux&lt;span class="o">]&lt;/span>&lt;span class="c1"># nano /etc/selinux/config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">将SELINUX设置为disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">SELINUX&lt;/span>&lt;span class="o">=&lt;/span>disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reboot重启
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>查看防火墙状态&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># sestatus&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELinux status: disabled
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="安装图形化桌面环境">安装图形化桌面环境
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># dnf groupinstall &amp;#34;Server with GUI&amp;#34; -y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Complete!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="设置图形界面为默认运行级别">设置图形界面为默认运行级别
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">systemctl set-default graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="启动图形界面">启动图形界面
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">systemctl start graphical.target
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="重启">重启
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="向导设置">向导设置
+&lt;/h3>&lt;p>重启后会看到图形化界面的一个向导，前面的基本点&lt;code>next&lt;/code>(定位服务可关)，最后几步有个新建用户的步骤，建立一个用户给下一步骤中的 VNC Server服务 使用（不一定非使用vncuser这个名称）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/JobT3SVD6OiMhkK.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/JobT3SVD6OiMhkK.jpg"
+loading="lazy"
+alt="ScreenCaputure230519172613"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/pHfTQuhFBtClPvz.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/pHfTQuhFBtClPvz.jpg"
+loading="lazy"
+alt="ScreenCaputure230519172631"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/UlDIh8WmETvdA2V.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/UlDIh8WmETvdA2V.jpg"
+loading="lazy"
+alt="ScreenCaputure230519172807"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="安装-vnc-server-服务">&lt;strong>安装 VNC Server 服务&lt;/strong>
+&lt;/h2>&lt;h3 id="安装-tigervnc">安装 &lt;strong>TigerVNC&lt;/strong>
+&lt;/h3>&lt;p>以 &lt;code>root&lt;/code> 用户身份运行以下命令，基本都使用&lt;code>root&lt;/code>用户权限操作（提示权限不足要在命令前加 sudo 很烦），需要切换&lt;code>vncuser&lt;/code>用户会说明&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># dnf install tigervnc-server -y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Installed:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> tigervnc-selinux-1.11.0-9.el8.noarch tigervnc-server-1.11.0-9.el8.x86_64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Complete!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="创建-vnc-用户并设置密码前面已创建可跳过">创建 vnc 用户并设置密码（前面已创建可跳过）
+&lt;/h3>&lt;p>如不想使用在上一步骤建立的用户，可在这一步骤中新建用户&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># useradd vnc_user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># passwd vnc_user&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Changing password &lt;span class="k">for&lt;/span> user uservnc.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">New password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Retype new password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd: all authentication tokens updated successfully.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="拷贝-vncserverservice-文件">拷贝 vncserver@.service 文件
+&lt;/h3>&lt;p>创建&lt;code>/etc/systemd/system/vncserver@.service&lt;/code> 配置文件。要创建这个文件，从&lt;code>/usr/lib/systemd/system/vncserver@.service&lt;/code> 复制&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># ~]# cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>不需要在文件名中包含显示号，因为 &lt;code>systemd 会自动根据需要&lt;/code> 在内存中创建适当的命名实例，将服务文件中的 &lt;code>'%i'&lt;/code> 替换为显示号。对于单个用户，无需重命名该文件。&lt;/p>
+&lt;blockquote>
+&lt;p>VNC 桌面的默认大小为 1024x768。&lt;/p>
+&lt;p>可以使用 &lt;code>~/.vnc/config&lt;/code> 文件进一步配置用户的 VNC 会话。&lt;/p>
+&lt;p>例如，要更改 VNC 窗口大小，请添加以下行：&lt;/p>
+&lt;p>geometry= &lt;WIDTH> x &lt;HEIGHT>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="在-etctigervncvncserverusers-中为端口1配置用户-vncuser即1vncuser">在 /etc/tigervnc/vncserver.users 中为端口1配置用户 vncuser（即：1=vncuser）
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 system&lt;span class="o">]&lt;/span>&lt;span class="c1"># nano /etc/tigervnc/vncserver.users &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">添加：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:1&lt;span class="o">=&lt;/span>vncuser
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="从-root-切换到-vncuser配置文件中定义的用户的连接密码">从 root 切换到 vncuser，配置文件中定义的用户的连接密码
+&lt;/h3>&lt;p>这一步骤中需要设置一个连接密码(最长八个字符，多出的字符会被切掉）；在&lt;code>view-only password (y/n)? &lt;/code> 选 &lt;code>n&lt;/code>；选&lt;code>y&lt;/code>只能查看不能输入&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># su - vncuser &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ vncpasswd
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Verify:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Would you like to enter a view-only password &lt;span class="o">(&lt;/span>y/n&lt;span class="o">)&lt;/span>? n
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">A view-only password is not used
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ &lt;span class="nb">exit&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="查看-5901-端口-vnc-server-的监听状态">查看 5901 端口 VNC server 的监听状态
+&lt;/h3>&lt;p>&lt;strong>lsof -i :5901&lt;/strong> 或 &lt;strong>netstat -tulpn | grep 5901&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ lsof -i :5901
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Xvnc &lt;span class="m">2385&lt;/span> vncuser 6u IPv4 &lt;span class="m">46911&lt;/span> 0t0 TCP *:5901 &lt;span class="o">(&lt;/span>LISTEN&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Xvnc &lt;span class="m">2385&lt;/span> vncuser 7u IPv6 &lt;span class="m">46912&lt;/span> 0t0 TCP *:5901 &lt;span class="o">(&lt;/span>LISTEN&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>vncuser@centos-106 ~&lt;span class="o">]&lt;/span>$ netstat -tulpn &lt;span class="p">|&lt;/span> grep &lt;span class="m">5901&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">(&lt;/span>Not all processes could be identified, non-owned process info
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> will not be shown, you would have to be root to see it all.&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span> 0.0.0.0:5901 0.0.0.0:* LISTEN 2385/Xvnc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp6 &lt;span class="m">0&lt;/span> &lt;span class="m">0&lt;/span> :::5901 :::* LISTEN 2385/Xvnc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置防火墙开放-5901-端口">配置防火墙，开放 5901 端口：
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># firewall-cmd --permanent --zone=public --add-port=5901/tcp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">success
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># firewall-cmd --reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">success
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># &lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="启动服务">启动服务
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重新加载systemd守护程序配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl daemon-reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 将VNC服务器服务vncserver@:1.service设置为开机自启动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl &lt;span class="nb">enable&lt;/span> vncserver@:1.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 将VNC服务器服务vncserver@:1.service启动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start vncserver@:1.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在终端上输出有关VNC服务器服务vncserver@:1.service的当前状态信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl status vncserver@:1.service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="本地使用-vnc-客户端进行远程桌面连接">本地使用 VNC 客户端进行远程桌面连接
+&lt;/h2>&lt;p>&lt;code>VNC&lt;/code>客户端的选择有很多，例如以下用到的&lt;code>UltraVNC Viewer&lt;/code>；还有&lt;code>VNC Viewer&lt;/code>、&lt;code>MobaXterm&lt;/code>，任君选择&lt;/p>
+&lt;h3 id="打开软件输入-服务器地址端口号-点击-connect">打开软件，输入 服务器地址:端口号 ，点击 Connect
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/eokPTcQ9DN1mqfx.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/eokPTcQ9DN1mqfx.jpg"
+loading="lazy"
+alt="ScreenCaputure230519175406"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="输入连接密码点击-log-on">输入连接密码，点击 Log On
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/7ki35TpPR9ursC1.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/7ki35TpPR9ursC1.jpg"
+loading="lazy"
+alt="ScreenCaputure230519174918"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="登陆界面">登陆界面
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/mldZUyFNcri17YG.jpg"
+loading="lazy"
+alt="ScreenCaputure230520005726"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/05/20/6MGFkfhVWr2AKgR.jpg">
+&lt;img src="https://s2.loli.net/2023/05/20/6MGFkfhVWr2AKgR.jpg"
+loading="lazy"
+alt="ScreenCaputure230520005831"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;h3 id="运行-yum-update-之后repo-文件的变化">运行 yum update 之后，repo 文件的变化
+&lt;/h3>&lt;p>在配置华为云CentOS-Vault yum源之后，运行&lt;code>yum update&lt;/code>，好家伙把&lt;code>/etc/yum.repos.d/&lt;/code>目录下&lt;code>*.repo&lt;/code>文件给干掉了，又得重复一次&lt;code>配置华为云CentOS-Vault yum源&lt;/code>的步骤&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@centos-106 yum.repos.d&lt;span class="o">]&lt;/span>&lt;span class="c1"># ll&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total &lt;span class="m">12&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r--. &lt;span class="m">1&lt;/span> root root &lt;span class="m">2218&lt;/span> May &lt;span class="m">18&lt;/span> 13:03 CentOS-Base.repo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. &lt;span class="m">2&lt;/span> root root &lt;span class="m">4096&lt;/span> May &lt;span class="m">18&lt;/span> 12:41 repo_back
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x. &lt;span class="m">2&lt;/span> root root &lt;span class="m">4096&lt;/span> May &lt;span class="m">18&lt;/span> 13:03 repo_back2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="运行-vncserver-等旧格式命令的提示">运行 vncserver 等旧格式命令的提示
+&lt;/h3>&lt;p>在运行&lt;code>vncserver&lt;/code>开头的命令后，会有一行提示如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">WARNING: vncserver has been replaced by a systemd unit and is about to be removed in future releases.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Please &lt;span class="nb">read&lt;/span> /usr/share/doc/tigervnc/HOWTO.md &lt;span class="k">for&lt;/span> more information.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在处理这个步骤耗费了本人非常多的时间，例如启动报错，启动不报错能连接但是黑屏各种问题。最后在CentOS论坛看到一篇帖子，看到提示去找 Red Hat 官网手册才处理好这个问题；顺便说一句搜索引擎各种关于安装VNC Server 的中文资料没一个能用（没标明环境和版本，索骥失败），最终还是去看官网手册；看来少吃别人嚼过的东西&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>参考资料:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- vncserver failed by ShinShin on 2020/11/17 :
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://forums.centos.org/viewtopic.php?f=54&amp;amp;t=76387
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Red Hat Enterprise Linux 7 Deployment, configuration, and administration of RHEL 7 Chapter 13. TigerVNC:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-tigervnc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>发现即使指定要求只下载&lt;code>Server with GUI&lt;/code>，但安装时查看到软件包列表还是发现很多包一并安装了，这可能对已有运行服务产生影响，慎重使用，起码懂得回退的操作&lt;/li>
+&lt;li>现在服务器操作系统一般都上虚拟化了，操作这些安装升级的时候要记得做个快照，备份之类的&lt;/li>
+&lt;li>如有需要玩这个的话，强烈建议先在虚拟机多轮测试再去实际操作，多建立快照&lt;/li>
+&lt;li>配置完成后别忘了开防火墙策略SELINUX=enforcing，重开SELINUX真耗时间&lt;/li>
+&lt;li>业余选手，勿喷&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
+&lt;/ul></description></item></channel></rss>

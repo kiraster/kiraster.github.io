@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Remote - SSH 插件 on Kir's Blog</title><link>https://weeaster.github.io/tags/remote---ssh-%E6%8F%92%E4%BB%B6/</link><description>Recent content in Remote - SSH 插件 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 27 Apr 2023 14:52:12 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/remote---ssh-%E6%8F%92%E4%BB%B6/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu publickey方式SSH连接与vscode远程调试</title><link>https://weeaster.github.io/posts/837aa3ce/</link><pubDate>Thu, 27 Apr 2023 14:52:12 +0000</pubDate><guid>https://weeaster.github.io/posts/837aa3ce/</guid><description>&lt;p>Ubuntu服务端采用publickey方式验证客户端身份，客户端本地vscode连接至Ubuntu服务端进行python远程调试&lt;/p>
+&lt;p>&lt;strong>环境描述：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>vscode 1.77.3&lt;/li>
+&lt;li>VMware Station 15.0&lt;/li>
+&lt;li>Ubuntu 22.04.1&lt;/li>
+&lt;li>Python 3.10.6&lt;/li>
+&lt;/ul>
+&lt;h2 id="本地用户密钥生成">本地用户密钥生成
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>生成安全的密钥&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">C:\Users\xxx&amp;gt; ssh-keygen -t ed25519
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>根据需要是否修改保存的路径和文件名（可能会与之前生成的密钥同名）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>根据需要是否设置passphrase口令（如设置每次验证需要输入该密码）&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="上传pub文件至服务端">上传pub文件至服务端
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>将&lt;code>.pub&lt;/code>公钥文件上传至ubuntu 22.04 &lt;code>~/.ssh&lt;/code>(&lt;code>/home/kir/.ssh&lt;/code>)目录下&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>追加&lt;code>.pub&lt;/code>公钥文件至authorized_keys&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo cat id_ed25519.pub &amp;gt;&amp;gt; authorized_keys
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>重启ssh服务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">systemctl restart sshd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>本地连接测试&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">ssh kir@172.31.100.213
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The authenticity of host &lt;span class="s1">&amp;#39;172.31.100.213 (172.31.100.213)&amp;#39;&lt;/span> can&lt;span class="s1">&amp;#39;t be established.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">ECDSA key fingerprint is SHA256:xxxxxxx
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">Warning: Permanently added &amp;#39;&lt;/span>172.31.100.213&lt;span class="err">&amp;#39;&lt;/span> &lt;span class="o">(&lt;/span>ECDSA&lt;span class="o">)&lt;/span> to the list of known hosts.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Welcome to Ubuntu 22.04.2 LTS &lt;span class="o">(&lt;/span>GNU/Linux 5.15.0-71-generic x86_64&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last login: Thu Apr &lt;span class="m">27&lt;/span> 14:09:13 &lt;span class="m">2023&lt;/span> from 172.31.100.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="vscode设置">vscode设置
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>插件——搜索——安装 &lt;code>Remote - SSH 插件&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>点击左侧图标，点击REMOTE&amp;ndash;设置，弹出的菜单中选择电脑的config文件路径&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/27/N17QU5OaGHg9Pf2.jpg">
+&lt;img src="https://s2.loli.net/2023/04/27/N17QU5OaGHg9Pf2.jpg"
+loading="lazy"
+alt="ScreenCaputure230427155731"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>由于我本机还设置了github和gitlab的公钥，只需在&lt;code>config&lt;/code>文件增加对应配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># GitLab Account
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Hostname xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PreferredAuthentications publickey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IdentityFile C:\Users\xxx\.ssh\id_xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># GitHub Account
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Hostname github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PreferredAuthentications publickey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IdentityFile C:\Users\xxx\.ssh\id_xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># python_ubuntu_server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host 172.31.100.213
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Hostname 172.31.100.213
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PreferredAuthentications publickey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IdentityFile C:\Users\xxx\.ssh\id_ubuntu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>选择ubuntu服务器连接（连接前保存工作区或选择在新窗口打开）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/27/93S1pcPJb2lrYqm.jpg">
+&lt;img src="https://s2.loli.net/2023/04/27/93S1pcPJb2lrYqm.jpg"
+loading="lazy"
+alt="ScreenCaputure230427160840"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>登陆后，在控制台手动创建目录，再左侧添加目录&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>创建目录&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@kir:~$ sudo mkdir -p ~/my_repo/test_dir
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>设置权限（为了方便，就设777）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@kir:~$ sudo chmod 777 ~/my_repo/test_dir
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/27/CzfNSJBLAeU7c5w.jpg">
+&lt;img src="https://s2.loli.net/2023/04/27/CzfNSJBLAeU7c5w.jpg"
+loading="lazy"
+alt="ScreenCaputure230427162332"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Python插件安装&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/27/JE7AGLq82rXwNyu.jpg">
+&lt;img src="https://s2.loli.net/2023/04/27/JE7AGLq82rXwNyu.jpg"
+loading="lazy"
+alt="ScreenCaputure230427163329"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="服务端设置">服务端设置
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>安装pip&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt install python3-pip
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>安装第三方库&amp;ndash;测试&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/test_dir$ sudo pip install ping3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Collecting ping3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Downloading ping3-4.0.4-py3-none-any.whl &lt;span class="o">(&lt;/span>&lt;span class="m">13&lt;/span> kB&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Installing collected packages: ping3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Successfully installed ping3-4.0.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WARNING: Running pip as the &lt;span class="s1">&amp;#39;root&amp;#39;&lt;/span> user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/test_dir$ pip show ping3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Name: ping3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Version: 4.0.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Summary: A pure python3 version of ICMP ping implementation using raw socket.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Home-page:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Author:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Author-email: Kyan &amp;lt;kai@kyan001.com&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">License: The MIT License &lt;span class="o">(&lt;/span>MIT&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>虚拟环境&amp;ndash;测试&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 安装python3.10-venv
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/test_dir$ sudo apt install python3.10-venv
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建虚拟环境
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/test_dir$ source venv/bin/activate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 退出虚拟环境
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(venv) kir@kir:~/my_repo/test_dir$ deactivate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@kir:~/my_repo/test_dir$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>总体来说能用，就是非root用户跑python有可能会遇到权限问题（可能需要sudo）&lt;/li>
+&lt;li>为什么要搞远程python，因为发现在windows平台跑python时不时会遇到一些第三方库安装运行时出的一些不知道时什么不知道的问题&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
+&lt;/ul></description></item></channel></rss>

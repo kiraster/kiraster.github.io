@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>NSG 3600 on Kir's Blog</title><link>https://weeaster.github.io/tags/nsg-3600/</link><description>Recent content in NSG 3600 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 01 Dec 2023 09:46:59 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/nsg-3600/index.xml" rel="self" type="application/rss+xml"/><item><title>网神 NSG 3600 和网神 SecSSL 3600 重置密码</title><link>https://weeaster.github.io/posts/f36f6dd3/</link><pubDate>Fri, 01 Dec 2023 09:46:59 +0000</pubDate><guid>https://weeaster.github.io/posts/f36f6dd3/</guid><description>&lt;p>记录网神设备重置密码。&lt;/p>
+&lt;h2 id="网神-nsg-3600-防火墙重置密码">网神 NSG 3600 防火墙重置密码
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>运行SecureCRT软件，新建连接。协议选择Serial，端口选择COM口。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png">
+&lt;img src="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png"
+loading="lazy"
+alt="image-20231201095640020"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>连接设备后，使用用户名：ngfw9753124680qwer 密码：ngfw9753124680qwer 登陆设备，出现 “Admin password has been reset successful, Please use admin login again !” 表明已重置默认密码为 !1fw@2soc#3vpn&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Username:ngfw9753124680qwer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Admin password has been reset successful,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Please use admin login again !
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">% Login invalid.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Username:admin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>网页端登陆网神 NSG 3600 防火墙管理界面，https://x.x.x.x （端口号如已修改注意替换），使用默认密码登陆会提示修改密码。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="网神-secssl-3600-安全接入网关系统-v50-重置密码">网神 SecSSL 3600 安全接入网关系统 V5.0 重置密码
+&lt;/h2>&lt;p>该设备背部标签表示为：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">产品名称：网神SecSSL 3600安全接入网关系统 V5.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">产品型号：X1500-TY12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">商品编码：X1500-TY12P-HW
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">S/N:XXXXX
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">网神XXXXX公司
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>
+&lt;p>运行SecureCRT软件，新建连接。协议选择Serial，端口选择COM口。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png">
+&lt;img src="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png"
+loading="lazy"
+alt="image-20231201095640020"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>连接设备后，重启设备，在开机阶段按 &lt;code>Crtl&lt;/code>+&lt;code>c&lt;/code> 进入&lt;code>Monitor&lt;/code>模式&lt;/p>
+&lt;p>restore admin 恢复admin管理员的密码，恢复后默认密码是 !1fw@2soc#3vpn&lt;/p>
+&lt;p>点击Y 确认&lt;/p>
+&lt;p>reload 重启设备&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">Welcome&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">SecSSL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Entering&lt;/span> &lt;span class="n">Monitor&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">**********************************************&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&lt;/span> &lt;span class="n">Welcome&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">Monitor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">v3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">03&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">**********************************************&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">resto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">restore&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">admin&lt;/span> &lt;span class="n">default&lt;/span> &lt;span class="n">admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">setting&lt;/span> &lt;span class="n">factory&lt;/span> &lt;span class="n">setting&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">restore&lt;/span> &lt;span class="n">admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">restore&lt;/span> &lt;span class="n">admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Restore&lt;/span> &lt;span class="n">default&lt;/span> &lt;span class="n">admin&lt;/span>&lt;span class="err">?&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>&lt;span class="n">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">rel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Reload&lt;/span>&lt;span class="o">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Restarting&lt;/span> &lt;span class="n">system&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>网页端登陆网神 SecSSL 3600 管理界面，https://x.x.x.x/admin 或 &lt;a class="link" href="https://x.x.x.x" target="_blank" rel="noopener"
+>https://x.x.x.x
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>::4430/admin （端口号如已修改注意替换），使用默认密码登陆会提示修改密码。&lt;/p>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Miniconda on Kir's Blog</title><link>https://weeaster.github.io/tags/miniconda/</link><description>Recent content in Miniconda on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 08 Mar 2024 21:43:10 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/miniconda/index.xml" rel="self" type="application/rss+xml"/><item><title>Miniconda安装使用（简单版）</title><link>https://weeaster.github.io/posts/f2cfb11/</link><pubDate>Fri, 08 Mar 2024 21:43:10 +0000</pubDate><guid>https://weeaster.github.io/posts/f2cfb11/</guid><description>&lt;p>因为之前重装了系统，很多软件设置需要恢复，特别是&lt;code>Python环境&lt;/code>。最近小玩了一下&lt;code>Pyqt&lt;/code>，接触到了&lt;code>Anaconda&lt;/code>这个巨无霸软件&lt;/p>
+&lt;p>看了官网介绍它的用途，觉得完全用不到这么多功能，安装&lt;code>Anaconda&lt;/code>后文件已经到达10G&lt;/p>
+&lt;p>再翻了翻发现还有个类似精简版的&lt;code>Miniconda&lt;/code>，觉得可以用来管理虚拟环境&lt;/p>
+&lt;p>这篇文记录安装和使用过程&lt;/p>
+&lt;hr>
+&lt;h2 id="下载miniconda">下载Miniconda
+&lt;/h2>&lt;p>官网下载链接：https://docs.anaconda.com/free/miniconda/miniconda-other-installer-links/&lt;/p>
+&lt;p>本着稳定能用的优先原则，并考虑到之前编写的代码一直使用Python3.10版本，我选择这个版本&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/03/08/twhCPopiSqu5KUH.jpg">
+&lt;img src="https://s2.loli.net/2024/03/08/twhCPopiSqu5KUH.jpg"
+loading="lazy"
+alt="ScreenCaputure240308220008"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>&lt;strong>注意&lt;/strong>：使用这个版本只是为了全局使用Python3.10，仍然可以通过指定高版本的Python创建虚拟环境，安装完成后可以通过命令&lt;code>conda search python&lt;/code> 查看虚拟环境支持的版本&lt;/p>
+&lt;hr>
+&lt;h2 id="安装miniconda">安装Miniconda
+&lt;/h2>&lt;p>基本一路Next按钮，以下几个步骤需注意&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>安装类型，由于我的电脑叫PC，我选Just Me&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/03/08/JWKzRZk4si1qrGE.jpg">
+&lt;img src="https://s2.loli.net/2024/03/08/JWKzRZk4si1qrGE.jpg"
+loading="lazy"
+alt="ScreenCaputure240308220726"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>虽然是Mini版本，但是安装完成后占用的磁盘空间还是挺大，选其他盘&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/03/08/Su2Q7pyb5xcLElq.jpg">
+&lt;img src="https://s2.loli.net/2024/03/08/Su2Q7pyb5xcLElq.jpg"
+loading="lazy"
+alt="ScreenCaputure240308221015"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>高级选项&lt;/p>
+&lt;ol>
+&lt;li>第一个复选框是创建开始菜单（觉得用处不大，保持默认）&lt;/li>
+&lt;li>第二个复选框是添加软件的环境变量，红字已经提示不推荐并列明了原因，也可以不勾后面自己手动去添加环境变量&lt;/li>
+&lt;li>第三个复选框是指定Python3.10为默认版本，相当于给电脑安装Python，所以如果在安装Miniconda前安装了Python，原先安装的就用不到了，可删；安装完成后Python的路径在minicoda3路径下；如果你不是这重装系统的情况，建议先把原来使用的全局环境或虚拟环境导出requirements.txt（pip freeze &amp;gt; requirements.txt），以便于恢复全局环境或虚拟环境&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/03/08/RikcgzMxaNrQTtU.jpg">
+&lt;img src="https://s2.loli.net/2024/03/08/RikcgzMxaNrQTtU.jpg"
+loading="lazy"
+alt="ScreenCaputure240308221251"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="设置miniconda">设置Miniconda
+&lt;/h2>&lt;p>这是清华开源软件镜像站的一个网页，Anaconda 镜像使用帮助https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/&lt;/p>
+&lt;p>我看了一下目前用不到这些内容，conda软件自带包管理（它本身就是管理），例如&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> 安装包：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> conda install package_name 安装满足依赖关系的最新版本的包
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> conda install package_name=x.x 安装指定版本的包
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pip install netmiko==3.4.0 安装指定版本的包
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pip install netmiko&amp;gt;=3.4.0 安装指定版本及以上的包
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 卸载包：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> conda uninstall xxx，conda remove xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> pip uninstall SomePackage
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我还是习惯用pip命令，但是还是照着网页的说明操作了，也不知道为什么&lt;/p>
+&lt;hr>
+&lt;h2 id="基本使用">基本使用
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>查看全局的Python版本和Python路径&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">D:\&amp;gt;python -V
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Python 3.10.13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">D:\&amp;gt;where python
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">D:\miniconda3\python.exe
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>结果显示当前的Python版本是3.10.13，安装路径是D:\miniconda3\python.exe，以上输出表明安装完成&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>查看conda信息，命令：&lt;code>conda info&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/03/08/YMqWuQy5tIwA8No.jpg">
+&lt;img src="https://s2.loli.net/2024/03/08/YMqWuQy5tIwA8No.jpg"
+loading="lazy"
+alt="ScreenCaputure240308225050"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>结果显示 &lt;code>package cache&lt;/code>和 &lt;code>envs directories&lt;/code>的路径在 &lt;code>D:\miniconda3\&lt;/code>， package cache是缓存已下载的包文件，envs directories是存放虚拟环境文件&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>创建一个名称为&lt;code>pyqt-base&lt;/code>的虚拟环境（指定Python版本3.8，默认安装3.8的最高版本，也可以指定具体的版本如python=3.8.8）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">conda&lt;/span> &lt;span class="n">create&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">n&lt;/span> &lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span> &lt;span class="n">python&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mf">3.8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Channels&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Platform&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Collecting&lt;/span> &lt;span class="n">package&lt;/span> &lt;span class="n">metadata&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">repodata&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">json&lt;/span>&lt;span class="p">):&lt;/span> &lt;span class="n">done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Solving&lt;/span> &lt;span class="n">environment&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## Package Plan ##&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">environment&lt;/span> &lt;span class="n">location&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="n">miniconda3&lt;/span>\&lt;span class="n">envs&lt;/span>\&lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">added&lt;/span> &lt;span class="o">/&lt;/span> &lt;span class="n">updated&lt;/span> &lt;span class="n">specs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">python&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mf">3.8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">The&lt;/span> &lt;span class="n">following&lt;/span> &lt;span class="n">packages&lt;/span> &lt;span class="n">will&lt;/span> &lt;span class="n">be&lt;/span> &lt;span class="n">downloaded&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">package&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">build&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">---------------------------|-----------------&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">certificates&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">2023.12&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">12&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">haa95532_0&lt;/span> &lt;span class="mi">127&lt;/span> &lt;span class="n">KB&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pip&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">23.3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">py38haa95532_0&lt;/span> &lt;span class="mf">2.8&lt;/span> &lt;span class="n">MB&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">python&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.8&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">18&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">h1aa4202_0&lt;/span> &lt;span class="mf">20.5&lt;/span> &lt;span class="n">MB&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">setuptools&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">68.2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">py38haa95532_0&lt;/span> &lt;span class="mi">933&lt;/span> &lt;span class="n">KB&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sqlite&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.41&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">h2bbff1b_0&lt;/span> &lt;span class="mi">894&lt;/span> &lt;span class="n">KB&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vc&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">14.2&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">h21ff451_1&lt;/span> &lt;span class="mi">8&lt;/span> &lt;span class="n">KB&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">wheel&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">0.41&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="o">|&lt;/span> &lt;span class="n">py38haa95532_0&lt;/span> &lt;span class="mi">126&lt;/span> &lt;span class="n">KB&lt;/span> &lt;span class="n">defaults&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">------------------------------------------------------------&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Total&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mf">25.3&lt;/span> &lt;span class="n">MB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">The&lt;/span> &lt;span class="n">following&lt;/span> &lt;span class="n">NEW&lt;/span> &lt;span class="n">packages&lt;/span> &lt;span class="n">will&lt;/span> &lt;span class="n">be&lt;/span> &lt;span class="n">INSTALLED&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">certificates&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">certificates&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">2023.12&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">12&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">haa95532_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">libffi&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">libffi&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.4&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">hd77b12b_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">openssl&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">openssl&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">h2bbff1b_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pip&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">pip&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">23.3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">py38haa95532_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">python&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">python&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.8&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">18&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">h1aa4202_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">setuptools&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">setuptools&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">68.2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">py38haa95532_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sqlite&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">sqlite&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">3.41&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">h2bbff1b_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vc&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">vc&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">14.2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">h21ff451_1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vs2015_runtime&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">vs2015_runtime&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">14.27&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">29016&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">h5e58377_2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">wheel&lt;/span> &lt;span class="n">anaconda&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">pkgs&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">main&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">win&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">64&lt;/span>&lt;span class="p">::&lt;/span>&lt;span class="n">wheel&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">0.41&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">py38haa95532_0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Proceed&lt;/span> &lt;span class="p">([&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="err">?&lt;/span> &lt;span class="n">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Downloading&lt;/span> &lt;span class="ow">and&lt;/span> &lt;span class="n">Extracting&lt;/span> &lt;span class="n">Packages&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Preparing&lt;/span> &lt;span class="n">transaction&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Verifying&lt;/span> &lt;span class="n">transaction&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Executing&lt;/span> &lt;span class="n">transaction&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># To activate this environment, use&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># $ conda activate pyqt-base&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># To deactivate an active environment, use&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># $ conda deactivate&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>命令：conda create -n pyqt-base python=3.8&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>虚拟环境查看&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">conda&lt;/span> &lt;span class="n">activate&lt;/span> &lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">python&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">V&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Python&lt;/span> &lt;span class="mf">3.8&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">18&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">pip&lt;/span> &lt;span class="n">list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Package&lt;/span> &lt;span class="n">Version&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">----------&lt;/span> &lt;span class="o">-------&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="mf">23.3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">setuptools&lt;/span> &lt;span class="mf">68.2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">wheel&lt;/span> &lt;span class="mf">0.41&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>结果显示Python版本为Python 3.8.18，已安装的包有三个，窗口的提示符行前面多了虚拟环境的名称。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>conda设置全局pip国内源&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">(pyqt-base) D:\&amp;gt;pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Writing to C:\Users\xxx\AppData\Roaming\pip\pip.ini
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(pyqt-base) D:\&amp;gt;pip config list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">global.index-url=&amp;#39;https://pypi.tuna.tsinghua.edu.cn/simple&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">(pyqt-base) D:\&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>结果显示，在C盘的C:\Users\xxx\AppData\Roaming\pip\创建了一个pip.ini文件，查看配置可以看到对应配置&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在虚拟环境下安装pyqt5&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">pyqt5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Looking&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">indexes&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">pypi&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tuna&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tsinghua&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">edu&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cn&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">simple&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Collecting&lt;/span> &lt;span class="n">pyqt5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Downloading&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">pypi&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tuna&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tsinghua&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">edu&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cn&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">packages&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">ca&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">ac&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">596e8&lt;/span>&lt;span class="n">ca16fd0634542d874c0d79219fc527ea7de73a5000092f60ecbf6e9&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">5.15&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cp37&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">abi3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">win_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">whl&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mf">6.8&lt;/span> &lt;span class="n">MB&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">----------------------------------------&lt;/span> &lt;span class="mf">6.8&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">6.8&lt;/span> &lt;span class="n">MB&lt;/span> &lt;span class="mf">3.3&lt;/span> &lt;span class="n">MB&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="n">eta&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">00&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Collecting&lt;/span> &lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">sip&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mf">12.13&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">from&lt;/span> &lt;span class="n">pyqt5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Downloading&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">pypi&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tuna&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tsinghua&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">edu&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cn&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">packages&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">88&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">cd&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">dd21cdb92d053ca71c02c75ab7bd32874b82b33bef61d6d70b5d898e684b&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">PyQt5_sip&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">12.13&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cp38&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">cp38&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">win_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">whl&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mi">78&lt;/span> &lt;span class="n">kB&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">----------------------------------------&lt;/span> &lt;span class="mf">78.3&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">78.3&lt;/span> &lt;span class="n">kB&lt;/span> &lt;span class="mf">189.0&lt;/span> &lt;span class="n">kB&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="n">eta&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">00&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Collecting&lt;/span> &lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">Qt5&lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mf">5.15&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">from&lt;/span> &lt;span class="n">pyqt5&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Downloading&lt;/span> &lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">pypi&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tuna&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tsinghua&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">edu&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cn&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">packages&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">37&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">97&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="n">d3b222b924fa2ed4c2488925155cd0b03fd5d09ee1cfcf7c553c11c9f66&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">PyQt5_Qt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">5.15&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">py3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">none&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">win_amd64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">whl&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mf">50.1&lt;/span> &lt;span class="n">MB&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">----------------------------------------&lt;/span> &lt;span class="mf">50.1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">50.1&lt;/span> &lt;span class="n">MB&lt;/span> &lt;span class="mf">7.8&lt;/span> &lt;span class="n">MB&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">s&lt;/span> &lt;span class="n">eta&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">00&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">00&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Installing&lt;/span> &lt;span class="n">collected&lt;/span> &lt;span class="n">packages&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">Qt5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">sip&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">pyqt5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Successfully&lt;/span> &lt;span class="n">installed&lt;/span> &lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">Qt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">5.15&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">sip&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">12.13&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="n">pyqt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">5.15&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">pip&lt;/span> &lt;span class="n">list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Package&lt;/span> &lt;span class="n">Version&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">----------&lt;/span> &lt;span class="o">-------&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="mf">23.3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">PyQt5&lt;/span> &lt;span class="mf">5.15&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">Qt5&lt;/span> &lt;span class="mf">5.15&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">PyQt5&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">sip&lt;/span> &lt;span class="mf">12.13&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">setuptools&lt;/span> &lt;span class="mf">68.2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">wheel&lt;/span> &lt;span class="mf">0.41&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="n">pyqt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">base&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">D&lt;/span>&lt;span class="p">:&lt;/span>\&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="一些conda命令">一些conda命令
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Command&lt;/th>
+&lt;th>Useage&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>conda create -n myenv sqlite | python=x.x&lt;/td>
+&lt;td>Create an environment containing the package sqlite or python&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda remove -n myenv &amp;ndash;all&lt;/td>
+&lt;td>Remove all packages from environment &lt;code>myenv&lt;/code> and the environment itself&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda env list&lt;/td>
+&lt;td>List the Conda environments&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda clean &amp;ndash;all&lt;/td>
+&lt;td>Remove index cache, lock files, unused cache packages, tarballs, and logfiles&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda clean &amp;ndash;i&lt;/td>
+&lt;td>Remove index cache&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda clean &amp;ndash;p&lt;/td>
+&lt;td>Remove unused packages from writable package caches. WARNING: This does not check for packages installed using symlinks back to the package cache.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda search xxx&lt;/td>
+&lt;td>Search for packages and display&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda activate myenv&lt;/td>
+&lt;td>To activate this environment&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda deactivate&lt;/td>
+&lt;td>To deactivate an active environment&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>conda create -n env2 &amp;ndash;clone path/to/file/env1&lt;/td>
+&lt;td>Create an environment (env2) as a clone of an existing environment (env1)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item></channel></rss>

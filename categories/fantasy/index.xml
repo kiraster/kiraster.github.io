@@ -1,0 +1,1586 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fantasy on Kir's Blog</title><link>https://weeaster.github.io/categories/fantasy/</link><description>Recent content in Fantasy on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/categories/fantasy/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://weeaster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://weeaster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
+&lt;p>实现逻辑：微信启动后将窗口置顶，模拟输入回车键&lt;/p>
+&lt;p>前提：微信自动登陆已开启，启动微信后显示&lt;code>进入微信&lt;/code>按钮&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/12/06/LjwQXnR5bPqJTov.png">
+&lt;img src="https://s2.loli.net/2024/12/06/LjwQXnR5bPqJTov.png"
+loading="lazy"
+alt="image-20241206115449070"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="操作步骤">操作步骤
+&lt;/h2>&lt;h3 id="安装pywinauto库">安装pywinauto库
+&lt;/h3>&lt;p>全局安装或虚拟环境（我使用conda虚拟环境）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">conda create -n wechatautologin python=3.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install pywinauto
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="编写三个文件和创建快捷方式">编写三个文件和创建快捷方式
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>&lt;code> wechatautologin.py&lt;/code>，python代码文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">from pywinauto.application import Application
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">from pywinauto.keyboard import send_keys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 启动应用程序
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">app = Application(&amp;#39;uia&amp;#39;).start(r&amp;#34;D:\Program Files (x86)\Tencent\WeChat\WeChat.exe&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查找微信窗口，使用正则表达式匹配标题包含“微信”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg = app.window(title_re=&amp;#34;微信&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 增加等待时间，确保窗口加载完成
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg.wait(&amp;#39;visible&amp;#39;, timeout=30) # 等待窗口可见，最大等待 30 秒
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将窗口置顶并获取焦点
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dlg.set_focus()
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 模拟按下 Enter 键
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">send_keys(&amp;#34;{ENTER}&amp;#34;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.bat&lt;/code>，bat文件，用于进入虚拟环境，运行&lt;code> wechatautologin.py&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 确保脚本运行时的工作目录是批处理文件所在的目录
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd /d %~dp0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 激活conda虚拟环境
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">call D:\miniconda3\Scripts\activate.bat wechatautologin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">REM 启动应用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">python wechatautologin.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.vbs&lt;/code>，单独运行bat文件会显示cmd窗口，套一层vbs解决&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Set WshShell = CreateObject(&amp;#34;WScript.Shell&amp;#34;)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WshShell.Run &amp;#34;&amp;#34;&amp;#34;F:\wechatautologin\wechatautologin.bat&amp;#34;&amp;#34;&amp;#34;, 0, False
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>wechatautologin.lnk&lt;/code>，&lt;code>wechatautologin.vbs&lt;/code>文件的快捷方式，右键&lt;code>wechatautologin.vbs&lt;/code>在菜单中点击&lt;code>创建快捷方式&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="添加开机启动">添加开机启动
+&lt;/h3>&lt;p>将上一步骤创建的快捷方式复制或剪切到以下路径（两个位置，二选一）&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>C:\Users\xxx\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&lt;/code>&lt;/li>
+&lt;li>&lt;code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>&lt;code>Pywinauto&lt;/code>文档 &lt;a class="link" href="https://static.kancloud.cn/gnefnuy/pywinauto_doc/1193035" target="_blank" rel="noopener"
+>https://static.kancloud.cn/gnefnuy/pywinauto_doc/1193035
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;li>如果出现微信启动后没有自动点击&lt;code>进入微信&lt;/code>按钮，可添加一定时间&lt;code>time.sleep&lt;/code>等待&lt;/li>
+&lt;li>注意替换微信安装位置，我这安装在D盘&lt;/li>
+&lt;li>小玩意儿，省一个点击鼠标或敲回车的时间&lt;/li>
+&lt;/ul></description></item><item><title>HP440笔记本有线无线自动切换问题</title><link>https://weeaster.github.io/posts/85530671/</link><pubDate>Fri, 22 Nov 2024 15:17:57 +0000</pubDate><guid>https://weeaster.github.io/posts/85530671/</guid><description>&lt;p>惠普440笔记本安装win10后，有线无线自动切换，只能二选一问题&lt;/p>
+&lt;p>拔插网线显示如下：&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/PnNvRUVaA9fWpGw.gif">
+&lt;img src="https://s2.loli.net/2024/11/22/PnNvRUVaA9fWpGw.gif"
+loading="lazy"
+alt="问题复现"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>查看官网社区帖子，提示关闭BIOS的自动切换功能，无效&lt;/p>
+&lt;p>需要关闭两个服务才可&lt;/p>
+&lt;h2 id="解决方法">解决方法
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>去掉BIOS设置里的LAN/WLAN Switch选项&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Ctrl+R，输入&lt;code>services.msc&lt;/code>找到如下两个服务关闭&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/h46zfntoGZHIQSC.png">
+&lt;img src="https://s2.loli.net/2024/11/22/h46zfntoGZHIQSC.png"
+loading="lazy"
+alt="ScreenCaputure241122153441"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/UobM9dNWjnCDeX3.png">
+&lt;img src="https://s2.loli.net/2024/11/22/UobM9dNWjnCDeX3.png"
+loading="lazy"
+alt="ScreenCaputure241122151135"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="效果">效果
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/hY5LJ3seWEIRqzk.gif">
+&lt;img src="https://s2.loli.net/2024/11/22/hY5LJ3seWEIRqzk.gif"
+loading="lazy"
+alt="问题解决"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>非旺玖原装的pl2303请联系供应商-驱动替换</title><link>https://weeaster.github.io/posts/a0365ff4/</link><pubDate>Fri, 22 Nov 2024 14:19:42 +0000</pubDate><guid>https://weeaster.github.io/posts/a0365ff4/</guid><description>&lt;p>USB转串口转接线显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>问题&lt;/p>
+&lt;p>之前也出现过这个问题，解决方法是重装驱动，但是windows自动更新又把驱动升级了，又出现这个问题&lt;/p>
+&lt;p>网上的解释是驱动问题，确实也是&lt;/p>
+&lt;p>看到一篇文章说驱动文件替换可解决此问题，记录一下&lt;/p>
+&lt;h2 id="陪伴多年的好伙伴">陪伴多年的&amp;quot;好伙伴&amp;quot;
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/94DritJUwkGKblY.jpg">
+&lt;img src="https://s2.loli.net/2024/11/22/94DritJUwkGKblY.jpg"
+loading="lazy"
+alt="20241122142856"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>淘宝买的，刚去查了一下，这么多年了居然还是当时的价格（真保值）&lt;/li>
+&lt;li>这是转接线，转接线RJ45接口&amp;ndash;&amp;gt;568B标准网线&amp;ndash;&amp;gt;设备console接口（看介绍支持20米连接，我最长也就连接15米左右，正常使用）&lt;/li>
+&lt;li>远离机柜噪音，远离空调冻西瓜，舒适蹲角落配置设备，无需DB9线&lt;/li>
+&lt;/ul>
+&lt;h2 id="驱动替换">驱动替换
+&lt;/h2>&lt;ol>
+&lt;li>查看显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/yZvFVoqmRGSQipN.png">
+&lt;img src="https://s2.loli.net/2024/11/22/yZvFVoqmRGSQipN.png"
+loading="lazy"
+alt="ScreenCaputure241122140020"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="2">
+&lt;li>查看驱动版本，显示2024/5/29，3.8.43.0，就是这个windows自动更新导致的问题，下一步替换图右侧显示的第一个文件&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/xsUrH1CageLz7XB.png">
+&lt;img src="https://s2.loli.net/2024/11/22/xsUrH1CageLz7XB.png"
+loading="lazy"
+alt="ScreenCaputure241122140346"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="3">
+&lt;li>下载&lt;code>ser2pl64.zip&lt;/code>，解压后复制文件粘贴到&lt;code>C:\Windows\System32\drivers&lt;/code>，提示替换文件&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/ry7vRLImqHbEN8B.png">
+&lt;img src="https://s2.loli.net/2024/11/22/ry7vRLImqHbEN8B.png"
+loading="lazy"
+alt="ScreenCaputure241122140508"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="4">
+&lt;li>点击替换会提示文件正在使用，此时拔掉USB转串口转接线，点击重试可替换成功&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/q2vrwVm6ol8FEfc.png">
+&lt;img src="https://s2.loli.net/2024/11/22/q2vrwVm6ol8FEfc.png"
+loading="lazy"
+alt="ScreenCaputure241122140527"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="5">
+&lt;li>最后在设备管理器查看，已正常显示com接口&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/22/oe2zERhHjxtQF7w.png">
+&lt;img src="https://s2.loli.net/2024/11/22/oe2zERhHjxtQF7w.png"
+loading="lazy"
+alt="ScreenCaputure241122142232"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="驱动文件">驱动文件
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://aoian.lanzoue.com/b00r6oisj" target="_blank" rel="noopener"
+>https://aoian.lanzoue.com/b00r6oisj
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> ，（5678）&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.alipan.com/s/EhKkRT3VcKr" target="_blank" rel="noopener"
+>https://www.alipan.com/s/EhKkRT3VcKr
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>修改Van Nav搜索结果不显示百度谷歌必应搜索</title><link>https://weeaster.github.io/posts/ae17cb36/</link><pubDate>Thu, 21 Nov 2024 17:36:11 +0000</pubDate><guid>https://weeaster.github.io/posts/ae17cb36/</guid><description>&lt;p>Van Nav是一个轻量的导航站&lt;/p>
+&lt;p>Github开源仓库：https://github.com/Mereithhh/van-nav&lt;/p>
+&lt;p>现在的浏览器地址栏都集成了搜索功能，用不上导航站里的在线搜索，以下列出去除该功能的操作步骤&lt;/p>
+&lt;p>我将其定位为半内网使用的一个导航站&lt;/p>
+&lt;h2 id="下载源码">下载源码
+&lt;/h2>&lt;p>git clone 或 Download ZIP&lt;/p>
+&lt;h2 id="修改npm为阿里云镜像">修改npm为阿里云镜像
+&lt;/h2>&lt;p>国内连接官方的npm时常抽风，替换yarn.lock 里面的resolved为registry.npmmirror.com，从阿里云镜像源下载依赖.&lt;/p>
+&lt;p>两个文件的路径为：&lt;/p>
+&lt;ul>
+&lt;li>ui/admin/yarn.lock&lt;/li>
+&lt;li>ui/website/yarn.lock&lt;/li>
+&lt;/ul>
+&lt;h2 id="修改相应代码">修改相应代码
+&lt;/h2>&lt;p>修改代码&lt;code>ui\website\src\components\Content\index.tsx&lt;/code>文件&lt;/p>
+&lt;p>Line：13 （删除此行import）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">import { generateSearchEngineCard } from &amp;#34;../../utils/serachEngine&amp;#34;;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Line：87-116 （替换内容）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="k">const&lt;/span> &lt;span class="n">filteredData&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">useMemo&lt;/span>&lt;span class="p">(()&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tools&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">null&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果没有&lt;/span> &lt;span class="n">tools&lt;/span> &lt;span class="err">属性，直接返回&lt;/span> &lt;span class="n">null&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">const&lt;/span> &lt;span class="n">localResult&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">tools&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">.&lt;/span>&lt;span class="n">filter&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">const&lt;/span> &lt;span class="n">hide&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">hide&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">hide&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="bp">true&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="err">没有&lt;/span> &lt;span class="n">hide&lt;/span> &lt;span class="err">属性，保留该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">hide&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">isLogin&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="bp">false&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果&lt;/span> &lt;span class="n">item&lt;/span> &lt;span class="err">隐藏且用户已登录，丢弃该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="bp">false&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">默认丢弃该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">.&lt;/span>&lt;span class="n">filter&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">currTag&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">&amp;#34;全部工具&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="bp">true&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果当前标签是“全部工具”，保留该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">catelog&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="n">currTag&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">只保留与当前标签匹配的项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">.&lt;/span>&lt;span class="n">filter&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">any&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">searchString&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="bp">true&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">如果搜索字符串为空，保留该项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">//&lt;/span> &lt;span class="err">保留与搜索字符串匹配的项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mutiSearch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">||&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mutiSearch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">desc&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">||&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mutiSearch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">item&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">url&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">localResult&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="o">//&lt;/span> &lt;span class="err">返回过滤后的结果&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">},&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">currTag&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">searchString&lt;/span>&lt;span class="p">]);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="构建镜像">构建镜像
+&lt;/h2>&lt;p>将代码文件夹上传至linux，需提前安装号docker（网络上教程多如牛毛，一搜便知）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker build -t my-nav:v0.1 .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/bcrsQkaBHpdASVX.png">
+&lt;img src="https://s2.loli.net/2024/11/21/bcrsQkaBHpdASVX.png"
+loading="lazy"
+alt="image-20241121175134975"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="创建容器">创建容器
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -d --name my-van-nav --restart always -p 6412:6412 -v /opt/superE/van-nav-data:/app/data my-nav:v0.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="访问van-nav">访问Van Nav
+&lt;/h2>&lt;p>地址栏输入访问服务器的IP+端口号（我本地自建了dns+nginx，所以显示如下）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/wblkB3sXCEJice7.png">
+&lt;img src="https://s2.loli.net/2024/11/21/wblkB3sXCEJice7.png"
+loading="lazy"
+alt="image-20241121175623917"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/jPsG4d69EC2gWnz.png">
+&lt;img src="https://s2.loli.net/2024/11/21/jPsG4d69EC2gWnz.png"
+loading="lazy"
+alt="image-20241121175700154"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/KT6WhIYeuVC1UNR.png">
+&lt;img src="https://s2.loli.net/2024/11/21/KT6WhIYeuVC1UNR.png"
+loading="lazy"
+alt="image-20241121175740609"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/11/21/cWSvxRq36Dut4LC.png">
+&lt;img src="https://s2.loli.net/2024/11/21/cWSvxRq36Dut4LC.png"
+loading="lazy"
+alt="image-20241121175812069"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>通过观察发现，输入关键字后，结果中并没有必应谷歌百度的选项列出，效果达成&lt;/p>
+&lt;hr>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>自动获取网站logo图标不好使，可F12查看&amp;ndash;网络&amp;ndash;image，将图标的URL地址手动添加&lt;/li>
+&lt;li>图标会储存到数据库，我也不知道怎么实现的，设置完成后即使网络断开或对应的服务网站没开启导航站也能加载图标&lt;/li>
+&lt;li>如果将导航站部署在服务器，所有人打开的页面都是一致的，不能做到每个人都自定义其访问链接（适合定位为统一入口）&lt;/li>
+&lt;li>如果个人使用部署可以下载对应的安装包（各种跨平台的都有），需要设置开机自启，访问地址为：http://localhost:6412&lt;/li>
+&lt;li>惊叹到Go语言编写的程序占用空间如此之小&lt;/li>
+&lt;/ul></description></item><item><title>配置Gogs和Github免密git push</title><link>https://weeaster.github.io/posts/fe1c1d91/</link><pubDate>Thu, 19 Sep 2024 14:35:00 +0000</pubDate><guid>https://weeaster.github.io/posts/fe1c1d91/</guid><description>&lt;p>本文描述的是在windows系统上配置免密&lt;code>git push&lt;/code>至&lt;code>Gogs&lt;/code>仓库和&lt;code>Gthub&lt;/code>仓库&lt;/p>
+&lt;p>之前也弄过类似操作，但是由于那次重装系统给干没了&lt;/p>
+&lt;p>Gogs为本地使用，设计为不联网&lt;/p>
+&lt;p>Github为在线使用，同时使用的还有Github Pages的博客更新&lt;/p>
+&lt;h2 id="前提">前提
+&lt;/h2>&lt;ol>
+&lt;li>本机中已有Github的免密配置，也就是在Github上传了公钥，不变更这部分内容&lt;/li>
+&lt;li>Github配置的是全局用户，不变更这部分内容，新增的Gogs使用local user进行配置&lt;/li>
+&lt;li>尽量保持不改动Github部分的配置&lt;/li>
+&lt;/ol>
+&lt;h2 id="生成用于gogs的密钥对">生成用于Gogs的密钥对
+&lt;/h2>&lt;p>在任意目录下启动git bash 窗口（&lt;code>gogs@gogs.net&lt;/code>邮箱地址为Gogs上的用户邮箱，不是实际互联网上存在的）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ ssh-keygen -t ed25519 -C &amp;#34;gogs@gogs.net&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Generating public/private ed25519 key pair.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter file in which to save the key (/c/Users/xxx/.ssh/id_ed25519): gogs_id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter passphrase (empty for no passphrase):
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter same passphrase again:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Your identification has been saved in gogs_id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Your public key has been saved in gogs_id_ed25519.pub
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The key fingerprint is:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="密钥对拷贝至ssh目录">密钥对拷贝至.ssh目录
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>由于在创建ssh-key时没有指定保存到.ssh目录，所以手动复制到该目录(C:\Users\xxx\ .ssh)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>也可以在稍后创建的config文件中指定密钥对的路径，但是不妥，还是放在统一的目录&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="创建config文件">创建config文件
+&lt;/h2>&lt;ul>
+&lt;li>资源管理器打开目录&lt;code>C:\Users\xxx\.ssh&lt;/code>，创建一个config文件（注意没有后缀）&lt;/li>
+&lt;li>gogs_id_ed25519为前面步骤中创建的密钥对名称&lt;/li>
+&lt;li>id_ed25519为我正在使用的github密钥对名称&lt;/li>
+&lt;/ul>
+&lt;p>注意：gogs使用的是root用户，因为当初没有创建git用户（如果你创建了git用户，则使用git）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># gogs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host 172.31.100.225
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> HostName 172.31.100.225
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PreferredAuthentications publickey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IdentityFile C:/Users/xxx/.ssh/gogs_id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> User root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># github
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> HostName github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PreferredAuthentications publickey
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> IdentityFile C:/Users/xxx/.ssh/id_ed25519
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> User git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="上传ssh公钥和测试">上传ssh公钥和测试
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>登陆Gogs，头像&amp;ndash;用户设置&amp;ndash;SSH 密钥&amp;ndash;增加密钥&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>记事本打开gogs_id_ed25519.pub，复制内容粘贴至密钥内容，填写一个密钥名称，点击增加密钥&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># Gogs测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ssh -T root@172.31.100.225
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Hi there, You&amp;#39;ve successfully authenticated, but Gogs does not provide shell access.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If this is unexpected, please log in with password and setup Gogs under another user.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># Github测试
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ ssh -T git@github.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Hi kiraster! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ol>
+&lt;h2 id="git配置和初始化懂的跳过">git配置和初始化(懂的跳过)
+&lt;/h2>&lt;ol>
+&lt;li>为了演示操作，需要在Gogs创建一个仓库&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/19/ydGzBlLg6VIQNbR.png">
+&lt;img src="https://s2.loli.net/2024/09/19/ydGzBlLg6VIQNbR.png"
+loading="lazy"
+alt="image-5706"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="2">
+&lt;li>
+&lt;p>在本地创建一个目录test&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>打开创建的test目录&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>右键git bash here打开窗口，执行git初始化命令和配置local user&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用local配置用户，配置的local user仅对当前本地仓库起作用
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># gogs@gogs.net邮箱地址为Gogs上的用户邮箱，不是实际互联网上存在的
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --local user.name &amp;#34;gogs&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --local user.email &amp;#34;gogs@gogs.net&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">$ git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Initialized empty Git repository in D:/test/.git/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git config --local user.name &amp;#34;gogs&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git config --local user.email &amp;#34;gogs@gogs.net&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>修改remote仓库地址（由于当时省事没有修改domian）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git remote add origin root@172.31.100.225:gogs/test.git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>执行剩下命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">touch README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;first commit&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin master
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ touch README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git add README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git commit -m &amp;#34;first commit&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[master (root-commit) 6b281e3] first commit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 file changed, 0 insertions(+), 0 deletions(-)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> create mode 100644 README.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ git push -u origin master
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enumerating objects: 3, done.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Counting objects: 100% (3/3), done.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Writing objects: 100% (3/3), 200 bytes | 200.00 KiB/s, done.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">To 172.31.100.225:gogs/test.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> * [new branch] master -&amp;gt; master
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Branch &amp;#39;master&amp;#39; set up to track remote branch &amp;#39;master&amp;#39; from &amp;#39;origin&amp;#39;.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Gogs上查看&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/09/19/JGkVoUsThd6Lx4g.png">
+&lt;img src="https://s2.loli.net/2024/09/19/JGkVoUsThd6Lx4g.png"
+loading="lazy"
+alt="image-8002"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>使用floccus插件同步谷歌浏览器书签</title><link>https://weeaster.github.io/posts/1e210a39/</link><pubDate>Tue, 27 Feb 2024 15:18:08 +0000</pubDate><guid>https://weeaster.github.io/posts/1e210a39/</guid><description>&lt;p>谷歌浏览器由于特殊地区原因无法使用原生同步功能，之前也一直使用这个插件实现书签同步，本来用着也就没什么事&lt;/p>
+&lt;p>重装系统后想着能从云端把书签恢复回来，奈何忘记备份&lt;code>floccus插件&lt;/code>里面的加密密码了，而且是两台电脑都重装了，至此原先的书签彻底沦陷无法恢复，wc&lt;/p>
+&lt;p>错误造成的后果已经无法挽回&lt;/p>
+&lt;p>就写篇文记录一下floccus插件的安装使用过程&lt;/p>
+&lt;hr>
+&lt;h2 id="下载安装插件">下载安装插件
+&lt;/h2>&lt;p>网址：https://floccus.org/download/&lt;/p>
+&lt;p>github：https://github.com/floccusaddon/floccus/releases&lt;/p>
+&lt;p>从网站中可以看到支持三大浏览器，我只用到谷歌的，其他两浏览器使用自带的同步功能&lt;/p>
+&lt;p>如果不能从页面跳转后下载，自行&lt;code>想想办法&lt;/code>（比如github,gitee）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/yswfGhoZ5crUBtd.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/yswfGhoZ5crUBtd.jpg"
+loading="lazy"
+alt="ScreenCaputure240227153113"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="设置webdav">设置WebDAV
+&lt;/h2>&lt;p>从你使用的各种网盘中找一个支持&lt;code>WebDAV协议&lt;/code>的，我使用坚果云&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>登陆坚果云网页版，导航栏右侧点击&lt;code>用户名称&lt;/code>，点击&lt;code>账户信息&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/cDUu9P6vMNXylhs.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/cDUu9P6vMNXylhs.jpg"
+loading="lazy"
+alt="ScreenCaputure240227154328"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>选择&lt;code>安全选项&lt;/code>，点击&lt;code>添加应用&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/vZfNqecAWmCMsKD.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/vZfNqecAWmCMsKD.jpg"
+loading="lazy"
+alt="ScreenCaputure240227154829"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>输入&lt;code>应用名称&lt;/code>，&lt;code>生产密码&lt;/code>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/cwrz4h1WPjKlOpt.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/cwrz4h1WPjKlOpt.jpg"
+loading="lazy"
+alt="ScreenCaputure240227154911"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="创建xbel文件上传坚果云">创建.xbel文件上传坚果云
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>电脑本地创建一个&lt;code>.xbel&lt;/code>后缀的文件，文件命名没硬性要求，建议使用英文且标明文件用途的文件名，我使用&lt;code>bookmarks.xbel&lt;/code>。打开方式选记事本，输入以下内容后保存文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;!DOCTYPE xbel PUBLIC &amp;#34;+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML&amp;#34; &amp;#34;http://pyxml.sourceforge.net/topics/dtds/xbel.dtd&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;xbel version=&amp;#34;1.0&amp;#34;&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;/xbel&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>坚果云网页版新建一个文件夹&lt;code>Floccus_2024&lt;/code>，把&lt;code>bookmarks.xbel&lt;/code>文件上传至该文件夹&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/SwAcinUoqPMsalO.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/SwAcinUoqPMsalO.jpg"
+loading="lazy"
+alt="ScreenCaputure240227155749"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="设置floccus参数">设置floccus参数
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>谷歌浏览器找到已经安装好的floccus插件，点击图标，点击新建账户&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/HB5knszTgYxFGRC.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/HB5knszTgYxFGRC.jpg"
+loading="lazy"
+alt="ScreenCaputure240227160106"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在要如何同步中选择WebDAV分享&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/IaoDeQSsv9w27Og.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/IaoDeQSsv9w27Og.jpg"
+loading="lazy"
+alt="ScreenCaputure240227160305"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在要同步到哪个服务器中填写参数，参数在坚果云网页版-安全选项，两个密码，第一个是坚果云的应用密码，第二个加密密码，我搞忘记的就第二个&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/WiYjGQHweL4vquZ.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/WiYjGQHweL4vquZ.jpg"
+loading="lazy"
+alt="ScreenCaputure240227160858"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>填写书签路径，坚果云网页版中上传的.xbel文件路径，本地文件夹选书签栏&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/o8Vr9bPAFR4HTNK.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/o8Vr9bPAFR4HTNK.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161215"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>设置同步间隔，同步策略，没特殊喜好保持默认即可&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/IQdHX4DKVwA7fzs.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/IQdHX4DKVwA7fzs.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161355"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>创建完成&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/ISL6sqTYh8OilK3.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/ISL6sqTYh8OilK3.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161520"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>点击floccus插件图标，查看有无报错信息，至此已完成所有设置&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/O6sqTI3vbzMKg8u.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/O6sqTI3vbzMKg8u.jpg"
+loading="lazy"
+alt="ScreenCaputure240227161639"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="测试同步功能">测试同步功能
+&lt;/h2>&lt;p>在谷歌浏览器手动添加书签，然后点击floccus的同步按钮&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/HmdPSloOLKTurUs.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/HmdPSloOLKTurUs.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162047"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>再到坚果云网页版查看文件变化，从结果看已经添加了一个文件版本，由于使用了加密，将文件下载回本地打开查看会发现是类似乱码文件&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/3ebqxPsKUHNk9Zd.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/3ebqxPsKUHNk9Zd.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162226"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="其它电脑同步">其它电脑同步
+&lt;/h2>&lt;p>由于我还有另外的设备也使用谷歌浏览器，需要一并操作，可以手动操作重复上一步骤&lt;/p>
+&lt;p>机智如我使用导入/导出 账户功能，在另外一台电脑的操作就不演示了，过程：安装插件&amp;ndash;导入&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/hTXBgpMoEkSWHD5.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/hTXBgpMoEkSWHD5.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162705"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2024/02/27/2REQ7CewWJvo5rd.jpg">
+&lt;img src="https://s2.loli.net/2024/02/27/2REQ7CewWJvo5rd.jpg"
+loading="lazy"
+alt="ScreenCaputure240227162830"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item><item><title>网神 NSG 3600 和网神 SecSSL 3600 重置密码</title><link>https://weeaster.github.io/posts/f36f6dd3/</link><pubDate>Fri, 01 Dec 2023 09:46:59 +0000</pubDate><guid>https://weeaster.github.io/posts/f36f6dd3/</guid><description>&lt;p>记录网神设备重置密码。&lt;/p>
+&lt;h2 id="网神-nsg-3600-防火墙重置密码">网神 NSG 3600 防火墙重置密码
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>运行SecureCRT软件，新建连接。协议选择Serial，端口选择COM口。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png">
+&lt;img src="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png"
+loading="lazy"
+alt="image-20231201095640020"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>连接设备后，使用用户名：ngfw9753124680qwer 密码：ngfw9753124680qwer 登陆设备，出现 “Admin password has been reset successful, Please use admin login again !” 表明已重置默认密码为 !1fw@2soc#3vpn&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Username:ngfw9753124680qwer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Admin password has been reset successful,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Please use admin login again !
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">% Login invalid.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Username:admin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password:
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>网页端登陆网神 NSG 3600 防火墙管理界面，https://x.x.x.x （端口号如已修改注意替换），使用默认密码登陆会提示修改密码。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="网神-secssl-3600-安全接入网关系统-v50-重置密码">网神 SecSSL 3600 安全接入网关系统 V5.0 重置密码
+&lt;/h2>&lt;p>该设备背部标签表示为：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">产品名称：网神SecSSL 3600安全接入网关系统 V5.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">产品型号：X1500-TY12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">商品编码：X1500-TY12P-HW
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">S/N:XXXXX
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">网神XXXXX公司
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>
+&lt;p>运行SecureCRT软件，新建连接。协议选择Serial，端口选择COM口。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png">
+&lt;img src="https://s2.loli.net/2023/12/01/4UhvQGkCNuwIL9r.png"
+loading="lazy"
+alt="image-20231201095640020"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>连接设备后，重启设备，在开机阶段按 &lt;code>Crtl&lt;/code>+&lt;code>c&lt;/code> 进入&lt;code>Monitor&lt;/code>模式&lt;/p>
+&lt;p>restore admin 恢复admin管理员的密码，恢复后默认密码是 !1fw@2soc#3vpn&lt;/p>
+&lt;p>点击Y 确认&lt;/p>
+&lt;p>reload 重启设备&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">Welcome&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">SecSSL&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Entering&lt;/span> &lt;span class="n">Monitor&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">**********************************************&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&lt;/span> &lt;span class="n">Welcome&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">Monitor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">v3&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mi">03&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">*&lt;/span> &lt;span class="o">*&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">**********************************************&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">resto&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">restore&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">admin&lt;/span> &lt;span class="n">default&lt;/span> &lt;span class="n">admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">setting&lt;/span> &lt;span class="n">factory&lt;/span> &lt;span class="n">setting&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">restore&lt;/span> &lt;span class="n">admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">restore&lt;/span> &lt;span class="n">admin&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Restore&lt;/span> &lt;span class="n">default&lt;/span> &lt;span class="n">admin&lt;/span>&lt;span class="err">?&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">):&lt;/span>&lt;span class="n">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">rel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Monitor&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">reload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Reload&lt;/span>&lt;span class="o">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Restarting&lt;/span> &lt;span class="n">system&lt;/span>&lt;span class="o">.&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>网页端登陆网神 SecSSL 3600 管理界面，https://x.x.x.x/admin 或 &lt;a class="link" href="https://x.x.x.x" target="_blank" rel="noopener"
+>https://x.x.x.x
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>::4430/admin （端口号如已修改注意替换），使用默认密码登陆会提示修改密码。&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>电脑开关机邮件提醒</title><link>https://weeaster.github.io/posts/1e32fc6d/</link><pubDate>Sat, 22 Apr 2023 16:20:52 +0000</pubDate><guid>https://weeaster.github.io/posts/1e32fc6d/</guid><description>&lt;p>最近测试了&lt;code>python&lt;/code>脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。&lt;/p>
+&lt;p>突然想到自己的台式电脑是来电自动开机的设置，略有所思后想到把开关机事件自动发送邮件。&lt;/p>
+&lt;p>本人平生不知道注册多少个邮箱，想到163邮箱用的很少，所有就用它。登陆后发现里头有很多未读邮件，有安全提示和各种广告，都是几年前的了，估计是邮箱被盗用，全球各地的IP地址登陆和某位苹果玩家拿我邮箱修改了Apple ID……&lt;/p>
+&lt;p>一顿操作后把授权码弄出来了（1毛短信费），这个钉钉机器人就不记录操作步骤了，搜索引擎遍地都是，下面记录电脑开关机事件自动发送邮件过程。&lt;/p>
+&lt;h2 id="获取邮箱授权码">获取邮箱授权码
+&lt;/h2>&lt;p>这个步骤各大在线邮箱都差不多，基本都能在设置中找到&lt;/p>
+&lt;h2 id="安装yagmail库">安装yagmail库
+&lt;/h2>&lt;p>这是个第三方库，看到搜索引擎上满满的手写一大段代码填写邮件参数，这玩意儿还能这么不智能，不就是跟foxmail客户端一样填那几样参数么，所以使用yagmail，简单&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">pip&lt;/span> &lt;span class="n">install&lt;/span> &lt;span class="n">yagmail&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="代码">代码
+&lt;/h2>&lt;p>由于是两个不同的事件邮件，我分两个python脚本&lt;/p>
+&lt;p>&lt;code>auto_email_strtup.py&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">yagmail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">datetime&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 连接服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">yagmail&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SMTP&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;一三九啤酒白酒葡萄酒@163.com&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">password&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;此处填写授权码&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;smtp.163.com&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 编辑邮件内容&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">time_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2"> %H:%M:%S&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">content&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;时间：&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time_str&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;事件：台式电脑开机&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送邮件，to = 收件人邮箱 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">to&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;一三八吃吧吃吧吃吧吃吧@139.com&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">subject&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;电脑开关机事件&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">contents&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">content&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>auto_email_shutdown.py&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">yagmail&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">datetime&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">datetime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 连接服务器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">yagmail&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">SMTP&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;一三九啤酒白酒葡萄酒@163.com&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">password&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;此处填写授权码&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">host&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;smtp.163.com&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 编辑邮件内容&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">time_str&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">datetime&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">strftime&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;%Y-%m-&lt;/span>&lt;span class="si">%d&lt;/span>&lt;span class="s2"> %H:%M:%S&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">content&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s1">&amp;#39;时间：&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">time_str&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s1">&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;事件：台式电脑关机&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 发送邮件，to = 收件人邮箱 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">yag&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">to&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;一三八吃吧吃吧吃吧吃吧@139.com&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">subject&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;电脑开关机事件&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">contents&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">content&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>由于是windows电脑，还需要编写两个bat脚本中转运行以上代码&lt;/p>
+&lt;p>&lt;code>auto_email_strtup.bat&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">python F:\xxxx\auto_email_startup.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>auto_email_shutdown.bat&lt;/code> (需手动指定python解释器路径)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">C:\Python3.x.x\python.exe F:\xxxx\auto_email_shutdown.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="window设置计划任务和组策略">window设置计划任务和组策略
+&lt;/h2>&lt;h3 id="开机自动邮件的设置">开机自动邮件的设置
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/cKrUfsE3tnFHlX6.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/cKrUfsE3tnFHlX6.jpg"
+loading="lazy"
+alt="ScreenCaputure230422165806"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/QL1UZdf35OVlnau.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/QL1UZdf35OVlnau.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170340"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/QA6RHzGLOIkWhN2.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/QA6RHzGLOIkWhN2.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170354"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/fvrBQaOCYd4gyts.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/fvrBQaOCYd4gyts.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170403"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/ItfYEZo8DCFV24s.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/ItfYEZo8DCFV24s.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170421"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/2Nngy97KV5tZAUC.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/2Nngy97KV5tZAUC.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170440"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/Mi3YkeW7zJrOpT5.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/Mi3YkeW7zJrOpT5.jpg"
+loading="lazy"
+alt="ScreenCaputure230422170550"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="关机自动邮件的设置">关机自动邮件的设置
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/jinzWR1w4v9YmO2.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/jinzWR1w4v9YmO2.jpg"
+loading="lazy"
+alt="ScreenCaputure230422213012"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/RTsoFMV8bYGHtwj.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/RTsoFMV8bYGHtwj.jpg"
+loading="lazy"
+alt="ScreenCaputure230422213535"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/e8iNBJhZLoO9rxT.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/e8iNBJhZLoO9rxT.jpg"
+loading="lazy"
+alt="ScreenCaputure230422213610"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="dingtalkchatbot插件">dingtalkchatbot插件
+&lt;/h2>&lt;p>夹带钉钉机器人发消息的代码，使用到以上这个库，具体见&lt;a class="link" href="https://github.com/zhuifengshen/DingtalkChatbot" target="_blank" rel="noopener"
+>dingtalkchatbot插件
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>首先登陆钉钉，创建一个群，添加机器人，记录生成的webhook等参数&lt;/p>
+&lt;p>可以把以下代码组装成一个可传参的函数，调用的时候传递参数msg&lt;/p>
+&lt;p>可以设置各种条件发送不同的msg&lt;/p>
+&lt;p>电脑和手机已卸载钉钉，就没截图了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">dingtalkchatbot.chatbot&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">DingtalkChatbot&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ActionCard&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">CardItem&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># WebHook地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">webhook&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;WebHook地址&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">secret&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;secret&amp;#39;&lt;/span> &lt;span class="c1"># 可选：创建机器人勾选“加签”选项时使用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 初始化机器人小丁&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># xiaoding = DingtalkChatbot(webhook) # 方式一：通常初始化方式&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">xiaoding&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">DingtalkChatbot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">webhook&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">secret&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">secret&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1"># 方式二：勾选“加签”选项时使用（v1.5以上新功能）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># xiaoding = DingtalkChatbot(webhook, pc_slide=True) # 方式三：设置消息链接在PC端侧边栏打开（v1.5以上新功能）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Text消息是否@所有人&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">xiaoding&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">send_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">msg&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;DSB,我就是小丁，小丁就是我！&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">is_at_all&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 返回结果显示&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="最后">最后
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: center">
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/3SOAGXLNpdzVnBj.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/3SOAGXLNpdzVnBj.jpg"
+loading="lazy"
+alt="20230422173407"
+>
+&lt;/a>
+&lt;/div>
+&lt;/th>
+&lt;th>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/04/22/7JpBndN5HbhMcSs.jpg">
+&lt;img src="https://s2.loli.net/2023/04/22/7JpBndN5HbhMcSs.jpg"
+loading="lazy"
+alt="20230422173130"
+>
+&lt;/a>
+&lt;/div>
+&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>
+&lt;p>如果网络环境允许的话，可以编写python脚本探测设备的可达性、根据设备的告警阀值触发邮件发送和机器人信息发送，或其他条件触发&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Ubuntu Server 22.04 安装 Gitlab-ce</title><link>https://weeaster.github.io/posts/ed7bc2e7/</link><pubDate>Thu, 23 Feb 2023 12:11:20 +0000</pubDate><guid>https://weeaster.github.io/posts/ed7bc2e7/</guid><description>&lt;p>本文记录&lt;code>VMware Workstation&lt;/code> 环境下&lt;code>Ubuntu server 22.04&lt;/code>系统安装&lt;code>gitlab-ce_15.8.3&lt;/code>的过程。&lt;/p>
+&lt;h2 id="准备环境">准备环境
+&lt;/h2>&lt;ul>
+&lt;li>一台安装好 &lt;code>ubuntu server&lt;/code>的虚拟机&lt;/li>
+&lt;li>ubuntu可联网&lt;/li>
+&lt;li>SecureCRT软件（或其它带SSH登陆功能的工具）&lt;/li>
+&lt;/ul>
+&lt;h2 id="更新软件包信息和安装软件">更新软件包信息和安装软件
+&lt;/h2>&lt;p>首先设置好国内更新源，在安装&lt;code>Ubuntu&lt;/code>的时候我已经填写了阿里云的站点（mirrors.aliyun.com/ubuntu），如果你没有修改这一项，登陆服务器后修改 &lt;code>/etc/apt/sources.list&lt;/code>即可&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt-get update
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>安装或更新以下软件&lt;/strong>（虽然安装&lt;code>Ubuntu&lt;/code>的时候勾选了&lt;code>Openssh&lt;/code>但是不是最新版本，提示升级）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> sudo apt-get install curl openssh-server ca-certificates postfix
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>命令回显&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-go" data-lang="go">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">kir&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="nx">gitlabserver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">etc&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">apt&lt;/span>&lt;span class="err">$&lt;/span> &lt;span class="nx">sudo&lt;/span> &lt;span class="nx">apt&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">get&lt;/span> &lt;span class="nx">install&lt;/span> &lt;span class="nx">curl&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span> &lt;span class="nx">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">certificates&lt;/span> &lt;span class="nx">postfix&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Reading&lt;/span> &lt;span class="kn">package&lt;/span> &lt;span class="nx">lists&lt;/span>&lt;span class="o">...&lt;/span> &lt;span class="nx">Done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Building&lt;/span> &lt;span class="nx">dependency&lt;/span> &lt;span class="nx">tree&lt;/span>&lt;span class="o">...&lt;/span> &lt;span class="nx">Done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Reading&lt;/span> &lt;span class="nx">state&lt;/span> &lt;span class="nx">information&lt;/span>&lt;span class="o">...&lt;/span> &lt;span class="nx">Done&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">The&lt;/span> &lt;span class="nx">following&lt;/span> &lt;span class="nx">additional&lt;/span> &lt;span class="nx">packages&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">installed&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">libcurl4&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">client&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sftp&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span> &lt;span class="nx">ssl&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">cert&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Suggested&lt;/span> &lt;span class="nx">packages&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">keychain&lt;/span> &lt;span class="nx">libpam&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">ssh&lt;/span> &lt;span class="nx">monkeysphere&lt;/span> &lt;span class="nx">ssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">askpass&lt;/span> &lt;span class="nx">molly&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">guard&lt;/span> &lt;span class="nx">procmail&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">mysql&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">pgsql&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">ldap&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">pcre&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">lmdb&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sqlite&lt;/span> &lt;span class="nx">sasl2&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">bin&lt;/span> &lt;span class="p">|&lt;/span> &lt;span class="nx">dovecot&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">common&lt;/span> &lt;span class="nx">resolvconf&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">cdb&lt;/span> &lt;span class="nx">mail&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">reader&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">mta&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sts&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">resolver&lt;/span> &lt;span class="nx">postfix&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">doc&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">The&lt;/span> &lt;span class="nx">following&lt;/span> &lt;span class="nx">NEW&lt;/span> &lt;span class="nx">packages&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">installed&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">postfix&lt;/span> &lt;span class="nx">ssl&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">cert&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">The&lt;/span> &lt;span class="nx">following&lt;/span> &lt;span class="nx">packages&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">upgraded&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">ca&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">certificates&lt;/span> &lt;span class="nx">curl&lt;/span> &lt;span class="nx">libcurl4&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">client&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span> &lt;span class="nx">openssh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">sftp&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nx">server&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="mi">6&lt;/span> &lt;span class="nx">upgraded&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="nx">newly&lt;/span> &lt;span class="nx">installed&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="nx">remove&lt;/span> &lt;span class="nx">and&lt;/span> &lt;span class="mi">181&lt;/span> &lt;span class="nx">not&lt;/span> &lt;span class="nx">upgraded&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Need&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="nx">get&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">271&lt;/span> &lt;span class="nx">kB&lt;/span> &lt;span class="nx">of&lt;/span> &lt;span class="nx">archives&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">After&lt;/span> &lt;span class="nx">this&lt;/span> &lt;span class="nx">operation&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">243&lt;/span> &lt;span class="nx">kB&lt;/span> &lt;span class="nx">of&lt;/span> &lt;span class="nx">additional&lt;/span> &lt;span class="nx">disk&lt;/span> &lt;span class="nx">space&lt;/span> &lt;span class="nx">will&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">used&lt;/span>&lt;span class="p">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Do&lt;/span> &lt;span class="nx">you&lt;/span> &lt;span class="nx">want&lt;/span> &lt;span class="nx">to&lt;/span> &lt;span class="k">continue&lt;/span>&lt;span class="err">?&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">Y&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="nx">n&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nx">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Get&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="nx">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//mirrors.aliyun.com/ubuntu jammy-updates/main amd64 openssh-sftp-server amd64 1:8.9p1-3ubuntu0.1 [38.7 kB]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Get&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">2&lt;/span> &lt;span class="nx">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//mirrors.aliyun.com/ubuntu jammy-updates/main amd64 openssh-server amd64 1:8.9p1-3ubuntu0.1 [434 kB]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="nx">Get&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">3&lt;/span> &lt;span class="nx">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="c1">//mirrors.aliyun.com/ubuntu jammy-updates/main amd64 openssh-client amd64 1:8.9p1-3ubuntu0.1 [908 kB]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="err">……&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">……&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">……&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>postfix 软件安装后会弹出一个&amp;quot;Postfix Configuration&amp;quot;向导，直接选&lt;code>No configuration&lt;/code>不进行配置（本地环境不实用）&lt;/p>
+&lt;h2 id="下载和安装gitlab-ce_1583">下载和安装gitlab-ce_15.8.3
+&lt;/h2>&lt;p>这个看各自网络的网速，官网下载（&lt;a class="link" href="https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/jammy/gitlab-ce_15.8.3-ce.0_amd64.deb" target="_blank" rel="noopener"
+>ubuntu/jammy/gitlab-ce_15.8.3-ce.0_amd64.deb - gitlab/gitlab-ce · packages.gitlab.com
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/tThZFerj2pGD1i5.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/tThZFerj2pGD1i5.jpg"
+loading="lazy"
+alt="ScreenCaputure230223130323"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>清华镜像站下载（&lt;a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu/pool/jammy/main/g/gitlab-ce/" target="_blank" rel="noopener"
+>Index of /gitlab-ce/ubuntu/pool/jammy/main/g/gitlab-ce/ | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/LpATQmUwvO89XCF.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/LpATQmUwvO89XCF.jpg"
+loading="lazy"
+alt="ScreenCaputure230223130553"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>下载完成后，校验一下MD5值，对比官网提供的校验信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:~$ sudo md5sum gitlab-ce_15.8.3-ce.0_amd64.deb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">feaecd81f1b2a39600114c873b1b9085 gitlab-ce_15.8.3-ce.0_amd64.deb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>命令回显&lt;/strong>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-mysql" data-lang="mysql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">kir&lt;/span>&lt;span class="o">@&lt;/span>&lt;span class="n">gitlabserver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">~&lt;/span>&lt;span class="err">$&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sudo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">dpkg&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce_15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="n">_amd64&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">deb&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Selecting&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">previously&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unselected&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">package&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Reading&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">database&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">73398&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">files&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">directories&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">currently&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">installed&lt;/span>&lt;span class="p">.)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Preparing&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">to&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unpack&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce_15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="n">_amd64&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">deb&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Unpacking&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nf">ce&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Setting&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">up&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nf">ce&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ce&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">It&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">looks&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">like&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">has&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">not&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">been&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">configured&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">yet&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">skipping&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">upgrade&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">script&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">***&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">***&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">*****&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*****&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="o">******&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*******&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">********&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">********&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,,,&lt;/span>&lt;span class="o">***********&lt;/span>&lt;span class="p">,,,,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,,,,,&lt;/span>&lt;span class="o">*********&lt;/span>&lt;span class="p">,,,,,,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.,,,,,,,,,,,&lt;/span>&lt;span class="o">*******&lt;/span>&lt;span class="p">,,,,,,,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,,,&lt;/span>&lt;span class="o">*****&lt;/span>&lt;span class="p">,,,,,,,,,.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,,,,,,,&lt;/span>&lt;span class="o">****&lt;/span>&lt;span class="p">,,,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.,,,&lt;/span>&lt;span class="o">***&lt;/span>&lt;span class="p">,,,,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">,.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">_______&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">____&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">____&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">___&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="n">____&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_____&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="err">\&lt;/span>&lt;span class="n">__&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">___&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Thank&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">you&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">installing&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">was&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">unable&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">to&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">detect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">valid&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">hostname&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Please&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">configure&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">URL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">setting&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">external_url&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">configuration&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">etc&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">rb&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">file&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">Then&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">you&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">can&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">your&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">running&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">following&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">command&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">sudo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ctl&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">reconfigure&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">For&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">comprehensive&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">of&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">configuration&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">options&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">please&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">see&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Omnibus&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GitLab&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">readme&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">org&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">omnibus&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="kt">blob&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">master&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">README&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">md&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Help&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">us&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">improve&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">the&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">installation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">experience&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">us&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">know&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">how&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">we&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">did&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">with&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">minute&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">survey&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">https&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fra1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">qualtrics&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">com&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">jfe&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">form&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">SV_6kVqZANThUQ1bZb&lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="n">installation&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">omnibus&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="k">release&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">15&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">8&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="修改外部url和reconfigure">修改外部url和reconfigure
+&lt;/h2>&lt;ol>
+&lt;li>修改&lt;code>/etc/gitlab/&lt;/code>下的&lt;code>gitlab.rb&lt;/code>文件，external_url直接修改为&lt;code>ubuntu系统&lt;/code>的的&lt;code>IP&lt;/code>地址，如果 80 端口有冲突可在后边加上端口号&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">external_url &amp;#39;http://192.168.x.x&amp;#39;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:~$ cd /etc/gitlab
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 148
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 2 root root 4096 Feb 23 03:49 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 102 root root 4096 Feb 23 03:49 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw------- 1 root root 140235 Feb 23 03:49 gitlab.rb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ sudo cp gitlab.rb gitlab.rb_bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 288
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 2 root root 4096 Feb 23 03:50 ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-xr-x 102 root root 4096 Feb 23 03:49 ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw------- 1 root root 140235 Feb 23 03:49 gitlab.rb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw------- 1 root root 140235 Feb 23 03:50 gitlab.rb_bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ sudo nano gitlab.rb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>&lt;strong>重配置&lt;/strong>（这一步骤耗时较长）&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/opt/gitlab/bin$ sudo gitlab-ctl reconfigure
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:56+00:00] INFO: Started Cinc Zero at chefzero://localhost:1 with repository at /opt/gitlab/embedded (One version per cookbook)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cinc Client, version 17.10.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Patents: https://www.chef.io/patents
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Infra Phase starting
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:57+00:00] INFO: *** Cinc Client 17.10.0 ***
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:57+00:00] INFO: Platform: x86_64-linux
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:57+00:00] INFO: Cinc-client pid: 18551
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Setting the run_list to [&amp;#34;recipe[gitlab]&amp;#34;] from CLI options
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Run List is [recipe[gitlab]]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Run List expands to [gitlab]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Starting Cinc Client Run for gitlabserver
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Running start handlers
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[2023-02-23T03:52:58+00:00] INFO: Start handlers complete.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Resolving cookbooks for run list: [&amp;#34;gitlab&amp;#34;]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Notes:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Default admin account has been configured with following details:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Username: root
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password: You didn&amp;#39;t opt-in to print initial root password to STDOUT.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">NOTE: Because these credentials might be present in your log files in plain text, it is highly recommended to reset the password following https://docs.gitlab.com/ee/security/reset_user_password.html#reset-your-root-password.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gitlab Reconfigured!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>&lt;strong>重启gitlab&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">kir&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">gitlabserver&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">opt&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">gitlab&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">bin&lt;/span>&lt;span class="o">$&lt;/span> &lt;span class="n">sudo&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">ctl&lt;/span> &lt;span class="n">restart&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">alertmanager&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21046&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitaly&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21058&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21077&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">kas&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21085&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">gitlab&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">workhorse&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21095&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">logrotate&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21107&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">nginx&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21115&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">node&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21123&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">postgres&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21129&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">postgresql&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21144&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">prometheus&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21153&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">puma&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21166&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">redis&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21171&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">redis&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">exporter&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21177&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">ok&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">sidekiq&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">pid&lt;/span> &lt;span class="mi">21260&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="n">s&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="修改-root-密码">&lt;strong>修改 root 密码&lt;/strong>
+&lt;/h2>&lt;p>根据&lt;code>重配置&lt;/code>步骤后的提示&lt;code>Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.&lt;/code>，root的初始密码储存在&lt;code>initial_root_password&lt;/code>，文件在第一次reconfigure 24小时后清除。&lt;/p>
+&lt;ol>
+&lt;li>使用&lt;code>initial_root_password&lt;/code>文件里的密码 web登陆，&amp;ldquo;Edit profile&amp;rdquo;&amp;ndash;&amp;ldquo;Panssword&amp;quot;修改&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/ucU9k3tOLToKnsi.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/ucU9k3tOLToKnsi.jpg"
+loading="lazy"
+alt="ScreenCaputure230223133138"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="2">
+&lt;li>使用命令修改&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$ sudo gitlab-rake &amp;#34;gitlab:password:reset[root]&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enter password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Confirm password:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password successfully updated for user with username root.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/etc/gitlab$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>控制台修改&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">切换路径
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cd /opt/gitlab/bin/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kir@gitlabserver:/opt/gitlab/bin$ sudo gitlab-rails console -e production
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--------------------------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Ruby: ruby 2.7.7p221 (2022-11-24 revision 168ec2b1e5) [x86_64-linux]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitLab: 15.8.3 (22f43167474) FOSS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> GitLab Shell: 14.15.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PostgreSQL: 13.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------------------------------[ booted in 90.93s ]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Loading production environment (Rails 6.1.6.1)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):001:0&amp;gt; u=User.where(id:1).first
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):001:0&amp;gt; u=User.where(id:1).first
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; #&amp;lt;User id:1 @root&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):002:0&amp;gt; u.password=12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; 12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):003:0&amp;gt; u.password_confirmation=12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; 12345678
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):004:0&amp;gt; u.save!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">=&amp;gt; true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irb(main):005:0&amp;gt; quit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="注册和登陆gitlab">注册和登陆Gitlab
+&lt;/h2>&lt;p>在启动gitlab后，直接用浏览器登陆可能出现下图所示502错误，等一会儿再打开就ok了，猜测是服务没有完全运行起来，也有可能是我物理机配置差劲。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/XNk16rxecUfpKEG.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/XNk16rxecUfpKEG.jpg"
+loading="lazy"
+alt="ScreenCaputure230223121024"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol>
+&lt;li>注册，由于是本地使用，之前也没配置邮件Postfix，填上舒服的信息即可&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/6VkKojL49PCDX2z.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/6VkKojL49PCDX2z.jpg"
+loading="lazy"
+alt="ScreenCaputure230223121304"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="2">
+&lt;li>注册完后登陆出错，看提示是账号被挂起，使用root管理员账户登陆进行审批通过即可&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/ealpAjghxZ2d3w4.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/ealpAjghxZ2d3w4.jpg"
+loading="lazy"
+alt="ScreenCaputure230223122038"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="3">
+&lt;li>登陆管理员账户进行审批通过&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/eKQHUtWXu8CjYwz.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/eKQHUtWXu8CjYwz.jpg"
+loading="lazy"
+alt="ScreenCaputure230223123908"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/Xm7auVMRgS6Exvj.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/Xm7auVMRgS6Exvj.jpg"
+loading="lazy"
+alt="ScreenCaputure230223123923"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/C5UvfrQnHxSL9Yw.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/C5UvfrQnHxSL9Yw.jpg"
+loading="lazy"
+alt="ScreenCaputure230223123957"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/Drnp8B4sWuemOfo.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/Drnp8B4sWuemOfo.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124009"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/K1C9nwf5TdPARBi.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/K1C9nwf5TdPARBi.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124018"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ol start="4">
+&lt;li>退出管理员登陆，使用刚才注册的账号登陆，确认后，选择一个角色&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/jqkSmRvPwy7BQlh.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/jqkSmRvPwy7BQlh.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124141"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2023/02/23/6S8RON2sDP147fn.jpg">
+&lt;img src="https://s2.loli.net/2023/02/23/6S8RON2sDP147fn.jpg"
+loading="lazy"
+alt="ScreenCaputure230223124150"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>为什么写这篇文，因为我的一块硬盘报废了，整块硬盘直接奔溃，各种尝试后放弃了，因为这块500G的硬盘是大学时候台式电脑的，间接原因是使用时间和寿命，直接原因是电脑死机强制关机。&lt;/li>
+&lt;li>然后京东购了一块固态盘，一看价格现在同容量的固态硬盘比机械硬盘还便宜了。都说固态硬盘一坏文件全扑街，机械硬盘还有抢救的机会，这个只能靠自己掌控了，临近使用寿命或电脑出现异常就要考虑换硬盘了，最好的方法是做备份。&lt;/li>
+&lt;li>虽然这块盘报废了，也丢失了一些文件，但是由于我把重要的文件都做有备份，但是像这种虚拟机的环境一般都不留备份（文件太大太多）。&lt;/li>
+&lt;li>得益于硬盘报废，实操了一把前面文章写的&lt;a class="link" href="https://kiraster.github.io/posts/310ece77.html" target="_blank" rel="noopener"
+>自动备份Hexo源文件到私有仓库
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>和&lt;a class="link" href="https://kiraster.github.io/posts/567e6fc3.html" target="_blank" rel="noopener"
+>Hexo环境新电脑环境重构
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>，博客源文件回来了。&lt;/li>
+&lt;li>&lt;strong>备份很重要-备份很重要-备份很重要&lt;/strong>&lt;/li>
+&lt;/ul></description></item><item><title>来自非网管交换机的教训</title><link>https://weeaster.github.io/posts/e906be86/</link><pubDate>Mon, 27 Dec 2021 16:33:28 +0000</pubDate><guid>https://weeaster.github.io/posts/e906be86/</guid><description>&lt;p>来自 &lt;a class="link" href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener"
+>以太网帧格式
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;blockquote>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg">
+&lt;img src="https://s2.loli.net/2021/12/27/GwcA6SRtdFZoB7C.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/blockquote>
+&lt;p>{% blockquote %}&lt;/p>
+&lt;blockquote>
+&lt;p>以太帧类型&lt;/p>
+&lt;p>以太帧有很多种类型。不同类型的帧具有不同的格式和MTU值。但在同种物理媒体上都可同时存在。&lt;/p>
+&lt;p>以太网第二版[note 3] 或者称之为Ethernet II 帧，DIX帧，是最常见的帧类型。并通常直接被IP协议使用。&lt;/p>
+&lt;p>Novell的非标准IEEE 802.3帧变种。&lt;/p>
+&lt;p>IEEE 802.2 逻辑链路控制 (LLC) 帧&lt;/p>
+&lt;p>子网接入协议(SNAP)帧&lt;/p>
+&lt;p>所有四种以太帧类型都可包含一个IEEE 802.1Q选项来确定它属于哪个 VLAN 以及他的IEEE 802.1p优先级(QoS)。这个封装由IEEE 802.3ac定义并将帧大小从64字节扩充到1522字节(注：不包含7个前导字节和1个字节的帧开始符以及12个帧间距字节)。&lt;/p>
+&lt;p>IEEE 802.1Q标签，如果出现，需要放在源地址字段和以太类型或长度字段的中间。这个标签的前两个字节是标签协议标识符(TPID)值0x8100。这与没有标签帧的以太类型/长度字段的位置相同，所以以太类型0x8100就表示包含标签的帧，而实际的以太类型/长度字段则放在Q-标签的后面。TPID后面是两个字节的标签控制信息(TCI)。(IEEE 802.1p 优先级(QoS)和 VLAN ID)。Q标签后面就是通常的帧内容。&lt;/p>
+&lt;p>Ethernet II&lt;/p>
+&lt;p>以太 II 帧 (也称作DIX以太网，是以这个设计的主要成员，DEC,Intel和Xerox的名字命名的。[1]),把紧接在目标和源MAC地址后面的这个两字节定义为以太网帧数据类型字段。&lt;/p>
+&lt;p>例如，一个0x0800的以太类型说明这个帧包含的是IPv4数据报。同样的，一个0x0806的以太类型说明这个帧是一个ARP帧，0x8100说明这是一个IEEE 802.1Q帧，而0x86DD说明这是一个IPv6帧。&lt;/p>
+&lt;p>当这个工业界的标准通过正式的IEEE标准化过程后，在802.3标准中以太类型字段变成了一个(数据)长度字段。(最初的以太包通过包括他们的帧来确定它们的长度，而不是以一个明确的数值。)但是包的接收层仍需知道如何解析包，因此标准要求将IEEE802.2头跟在长度字段后面，定义包的类型。多年之后，802.3x-1997标准，一个802.3标准的后继版本，正式允许两种类型的数据包同时存在。实际上，两种数据包都被广泛使用，而最初的以太数据包在以太局域网中被广泛应用，因为他的简便和低开销。&lt;/p>
+&lt;p>为了允许一些使用以太II版本的数据报和一些使用802.3封装的最初版本的数据包能够在同一个以太网段使用，以太类型值必须大于等于1536(0x0600)。这个值比802.3数据包的最大长度1500byte (0x05DC)要更大。因此如果这个字段的值大于等于1536，则这个帧是以太II帧，而那个字段是类型字段。否则(小于1500而大于46字节)，他是一个IEEE 802.3帧，而那个字段是长度字段。1500～1536(不包含)的数值未定义。[2]
+{% endblockquote %}&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="part-2">Part 2
+&lt;/h2>&lt;p>前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg">
+&lt;img src="https://s2.loli.net/2021/12/27/Cp6J9cWRTvOSXkh.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+组网结构如上图，AP地址段 VLAN 和 STA 地址段 VLAN 不同，AP 的 STA 的 DHCP server 在汇聚交换机上（DHCP 的网关均设置在汇聚交换机上？），汇聚连接各楼层的非网管 PoE 交换机，查看了汇聚交换机配置，虽说是隧道转发，但连接楼层交换机的接口全放行了业务 STA 的 VLAN（我觉得这是个错误配置），&lt;/p>
+&lt;p>决定改直接转发，扩大 STA 地址池范围，修改租期为更短时间，手动调优一次（该单位因装修调整过线路和AP，再加上AP布放相当不合理（壁挂安装，楼层里 AP 相隔两三米斜对角线安装））&lt;/p>
+&lt;p>修改完配置后，问题更大了，仅有少数无线终端能获取IP正常接入，绝大多无线终端无法接入无线网络，长时间处在获取 IP 地址，然而修改成隧道转发后，可正常接入。最终排查出最大的可能性是这非网管交换机的问题，无法转发透传包含两个及以上的 802.1Q 的数据帧到汇聚交换机，这就触及本人知识盲区了，折腾了许久。&lt;/p>
+&lt;p>接下来有两种方案，一是修改 AP 和 STA 的地址网段和 VLAN 为同一个，二是还是使用隧道转发，第一个方案改动太大了，最终使用第二方案。&lt;/p>
+&lt;p>回来后一顿搜索非网管交换机的工作原理，有说非网管交换机所有口都是属于 VLAN 1 的说法，这简直是胡说八道的。有说能否转发带 VLAN tag 数据和该交换机支持转发的最大传输单元（MTU）有关系，我查了各大非网管交换机的特性参数，均没有提及这一个参数。理论上这个参数确实会影响转发，就是说非网管交换机设定了一个转发的最大帧长度，当交换机接收到大于这个设定的帧长度就丢弃不转发，毕竟支持更大帧转发意味着消耗更多的硬件资源，基于成本控制我是可以理解硬件厂商这么做的原因。而且像 Jambo frame 这种格式在我接触到的项目中毕竟小众，使用场景比标准的802.3要少的多。&lt;/p>
+&lt;p>也翻看了一些做了测试的网站文章，也没有一个定论说肯定支持转发或不支持转发802.1q的数据帧，看多了都使我抑郁了，更多的是论坛下的一些讨论。&lt;/p>
+&lt;p>长教训了，这哪怕换成工作在物理层的 HUB 都能正常工作，反而……，看来将来再遇到这种非网管PoE交换机接入的情况要相当注意了，别再踩坑了。&lt;/p>
+&lt;p>还有个别 AP 未上线问题，查看原因 &lt;strong>Negotiation CAPWAP tunnel failed&lt;/strong> ，就去检查物理线路吧，特别是使用光收发这种设备的，【能不能通，能通有丢包，AP就是不上线】&lt;/p>
+&lt;h2 id="ending">Ending
+&lt;/h2>&lt;ul>
+&lt;li>文中可能有些内容术语表述的不规范，请见谅。&lt;/li>
+&lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
+&lt;/ul></description></item><item><title>把组装机主板塞到品牌机机箱</title><link>https://weeaster.github.io/posts/1f544ac3/</link><pubDate>Tue, 23 Nov 2021 18:35:54 +0000</pubDate><guid>https://weeaster.github.io/posts/1f544ac3/</guid><description>&lt;p>前段时间我的台式机电源嗝屁了，不得不掏出吃灰近四年的旧电源来顶一顶，祸不单行，这旧电源也出毛病，目测是供电不足，挂载了三块硬盘，开个 VMware 虚拟机做实验，老是自动频繁的弹出一块机械硬盘，望了望旁边还有一个联想品牌机的机箱（带电源，最大功率只有 280W ），想想要不给它个机会，抱着试一试的想法拆下来插上电，居然能带的动（其实我查过整机功率了，是带的动，显卡用亮机卡了不解释），所以进行了一场“岁土转生”。&lt;/p>
+&lt;p>首先感谢的是，品牌机没有对电源插口做特殊化，主板和 CPU 供电接口通用，看了看电源标签上的参数也通用。唯一的问题是主板连接前面板跳线的插口，联想搞了自己个标准。&lt;/p>
+&lt;p>图：电源、重启、指示灯跳线的插头&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/FN9oPIm31AzbpCs.jpg">
+&lt;img src="https://i.loli.net/2021/11/24/FN9oPIm31AzbpCs.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>图：前面板音频插头&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/fMduPomV7CaFKnh.jpg">
+&lt;img src="https://i.loli.net/2021/11/24/fMduPomV7CaFKnh.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>图：前面板 USB 插头&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/cKdQjDqmSaHu8Cg.jpg">
+&lt;img src="https://i.loli.net/2021/11/24/cKdQjDqmSaHu8Cg.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>这……完全不对劲啊，首先针座和针头就对不上。这时候就要动脑和搜索引擎里遨游了。首先查找到联想机箱原主板的针脚，看下图，列出了各针脚的说明。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/23/SUgCk5O7sDQR1Bn.jpg">
+&lt;img src="https://i.loli.net/2021/11/23/SUgCk5O7sDQR1Bn.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>用根牙签把联想机箱跳线插座上的线头挑出来，然后对应组装机主板的说明进行排列组合使之在组装机主板能使用（见下图），第一次我把电源指示灯正负接反了（这也不能怪我，联想的板子上没标正负），调换过后就正常了。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/23/tMQljEr87xvXBWL.jpg">
+&lt;img src="https://i.loli.net/2021/11/23/tMQljEr87xvXBWL.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>其实在这个正负问题上我还折腾了好一会儿，一开始以为都是按左边针脚是正，右边针脚是负来对应的，打开机箱头部查看电路板发现指示灯也没有正负标识，查了 LED 哪个针脚是正负，查到了，LED 灯珠里小的那一边是正（涨知识了）&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/7tWBpuMq8ejbiYA.jpg">
+&lt;img src="https://i.loli.net/2021/11/24/7tWBpuMq8ejbiYA.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/t9voikRXlgIFuJY.jpg">
+&lt;img src="https://i.loli.net/2021/11/24/t9voikRXlgIFuJY.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>接下来处理前面板的音频插口跳线，查看网上的介绍说明（搜索引擎搜：&lt;strong>联想前置音频13针转9针&lt;/strong>），满满的都是复制粘贴的内容，我就不贴出来了，一番操作后得到如下图样式插头。总是有妖，明明照着教程撸的，测试的时候左右声道反了，又返工对换一对线。^*^&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/sgljUt1wFPiNSym.jpg">
+&lt;img src="https://i.loli.net/2021/11/24/sgljUt1wFPiNSym.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>接下来处理前置 USB 线，查看网上的介绍说明（&lt;a class="link" href="https://zhidao.baidu.com/question/244344946.html" target="_blank" rel="noopener"
+>联想USB接口11针的怎么接主板9针接口？
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">联想前置USB接口接法：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">市面上普通主板九针接法
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VCC，DATA-，DATA+，GND 空
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VCC，DATA-，DATA+，GND
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">线的颜色是:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">红 白 绿 黑
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">红 白 绿 黑
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">联想主板上的F-usb 11针前置接法又不同了, 经常会遇到联想机箱+组装主板 ，一不小心，将前置线接上组装主板上,结果烧坏了前置usb控制板.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1 2 9 10 都是黑线，3 5 7依次是红白绿，4 6 8依次是棕蓝黄,11是空着的.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">顺次是这个的
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1 3 5 7 9 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2 4 6 8 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">⑴⑵⑼⑽是地线，⑶⑷是VCC，也就是电源正极，⑸⑹是DATA－，⑺⑻是DATA+，⑾是空针
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>按照这个说明，只需把插头的 3-5-7-8 这四列对应接到主板针脚上即可，不需要改插座头。为了安全起见，我还是掏出了万用表测量了一下自己的组装机主板是否对应这个正负输出（接错线的话确实有点小危险，5 V 直接短路可是要冒烟的）。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://i.loli.net/2021/11/24/FNMyc5LTBAY3a9i.jpg">
+&lt;img src="https://i.loli.net/2021/11/24/FNMyc5LTBAY3a9i.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>终于折腾完了，把组装机的主板塞进了品牌机的机箱，目前前面板各项功能正常。由于使用了这个 280 W 的电源，这就彻底使我和大型网游“绝缘”了，不过也有好些年不抡游戏了。值得说一句，联想10年前的机箱用料十足，机箱的设计也挺好，给个好评她。这么一折腾才发现处处是学问，不能轻视电脑组装拧螺丝。&lt;/p></description></item></channel></rss>
