@@ -1,4 +1,181 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Kir's Blog</title><link>https://weeaster.github.io/post/</link><description>Recent content in Posts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://weeaster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://weeaster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Kir's Blog</title><link>https://weeaster.github.io/post/</link><description>Recent content in Posts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 14 Dec 2024 00:02:00 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>BLOG CHANGELOG</title><link>https://weeaster.github.io/posts/e2a2e564/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://weeaster.github.io/posts/e2a2e564/</guid><description>&lt;h3 id="2024-12-14">2024-12-14
+&lt;/h3>&lt;ul>
+&lt;li>更换博客静态网站生成器，主题为**&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+>hugo-theme-stack
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>**&lt;/li>
+&lt;li>原因时之前的hexo主题，很多包提示过时（重装操作麻烦）&lt;/li>
+&lt;li>且主题仓库自2022年已是公开只读&lt;/li>
+&lt;li>主题设置抄了网上很多代码，已经尽量不花里胡哨了&lt;/li>
+&lt;li>不一一致谢了，也不知道是谁魔改了谁的&lt;/li>
+&lt;li>将就着用&lt;/li>
+&lt;/ul>
+&lt;h3 id="2023-05-10">2023-05-10
+&lt;/h3>&lt;ul>
+&lt;li>添加发布时间久远文章的提示&lt;/li>
+&lt;li>添加插件 &lt;a class="link" href="https://github.com/u2sb/hexo-tag-mmedia" target="_blank" rel="noopener"
+>hexo-tag-mmedia
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;li>修改已插入的 bilibili 视频&lt;/li>
+&lt;/ul>
+&lt;h3 id="2023-04-16">2023-04-16
+&lt;/h3>&lt;ul>
+&lt;li>更换行内代码字体颜色为 #000(黑色)&lt;/li>
+&lt;li>&lt;del>禁用代码块行号显示&lt;/del>&lt;/li>
+&lt;li>禁用代码块复制功能&lt;/li>
+&lt;li>更换部分文章图片尺寸&lt;/li>
+&lt;li>文章页是有目录的，鼠标向上滚动&amp;ndash;&amp;gt;导航栏最右侧的图标&lt;/li>
+&lt;/ul>
+&lt;h3 id="2022-11-07">2022-11-07
+&lt;/h3>&lt;ul>
+&lt;li>更换博客主题为 :&lt;a class="link" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener"
+>Minos
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;li>移除 Minos 主题中分享和评论组件&lt;/li>
+&lt;li>移除 About 页面 发布日期/阅读时间 元素&lt;/li>
+&lt;li>修改网站字体为 思源黑体&lt;/li>
+&lt;li>修改归档页和标签页 不分页&lt;/li>
+&lt;li>添加相册页面（有点简陋）&lt;/li>
+&lt;li>其它边边角角修改&lt;/li>
+&lt;li>谢原作者https://github.com/ppoffice/&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-11-20">2021-11-20
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>首页导航栏不显示 Category 页面入口链接&lt;/del>&lt;/li>
+&lt;li>&lt;del>分类页 Category 内容侧边栏显示&lt;/del>&lt;/li>
+&lt;li>&lt;del>清除 Jade 无用代码&lt;/del>&lt;/li>
+&lt;li>&lt;del>修正 Jade 部分代码&lt;/del>&lt;/li>
+&lt;li>&lt;del>修正 CSS 样式文件&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-11-15">2021-11-15
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改首页内容展示方式&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改 pagination 样式&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-11-07">2021-11-07
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改网站字体为思源黑体&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-30">2021-10-30
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改 Archive 页样式&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改链接样式&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-30-1">2021-10-30
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>添加本地搜索&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-29">2021-10-29
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改 post 文章页和其他页面的 date_format 参数&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-26">2021-10-26
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改 archive 页面条目显示数量&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加文章页底部 Published、Tags&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-24">2021-10-24
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改样式中的 &lt;strong>media query&lt;/strong> 参数&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-22">2021-10-22
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改文章页，移除左侧 sidebar，page_main 添加边框样式&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改 about 页面底部 contact 信息&lt;/del>&lt;/li>
+&lt;li>&lt;del>移除 article-toc 文章目录&lt;/del>&lt;/li>
+&lt;li>&lt;del>移除 sidebar CV 信息标签&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-16">2021-10-16
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>添加文章页版权信息&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改 md 文件信息&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-10-12">2021-10-12
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>使用 &lt;a class="link" href="https://github.com/PhosphorW/hexo-theme-academia" target="_blank" rel="noopener"
+>Academic
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> 主题，感谢作者 &lt;a class="link" href="https://phower.me/" target="_blank" rel="noopener"
+>Le Phower&amp;rsquo;s
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/del>&lt;/li>
+&lt;li>&lt;del>博客从 Gitee 迁移到 GitHub&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改主题配置文件&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改 sidebar 的 social 内容&lt;/del>&lt;/li>
+&lt;li>&lt;del>主页 content 修改为显示最近十篇文章&lt;/del>&lt;/li>
+&lt;li>&lt;del>主页 content 添加置顶文章&lt;/del>&lt;/li>
+&lt;li>&lt;del>除 category 页和 about 页外添加 pagination&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加 category 页，添加 tag-cloud&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加 archive 页&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加 about 页&lt;/del>&lt;/li>
+&lt;li>&lt;del>post 页面侧边栏添加 article-toc 文章目录&lt;/del>&lt;/li>
+&lt;li>添加百度统计，谷歌统计，谷歌收录，bing 收录&lt;/li>
+&lt;li>&lt;del>侧边栏添加 aplayer 播放器，显示效果不美观，已注释代码&lt;/del>&lt;/li>
+&lt;li>&lt;del>page_main 的 div CSS 浮动问题未解决&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-01-23">2021-01-23
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>添加文章页评论邮件提醒功能&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-01-14">2021-01-14
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修改博客网站访问地址不带二级目录&lt;/del>&lt;/li>
+&lt;li>&lt;del>修正修改访问地址后文章阅读次数显示为 0 问题&lt;/del>&lt;/li>
+&lt;li>&lt;del>修正 whoami 页面显示双 footer 栏问题&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-01-08">2021-01-08
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>修正文章阅读次数显示为 0 问题&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加文章模板 updated 参数&lt;/del>&lt;/li>
+&lt;li>&lt;del>对网站添加百度统计&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;h3 id="2021-01-06">2021-01-06
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>制作修改博客 Logo，更改 cover 图片&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改导航栏标签为中文&lt;/del>&lt;/li>
+&lt;li>&lt;del>启用 valine 评论代码&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加文章页 END 结束分割线&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加文章页上一篇下一篇链接&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加 post 文章模板，添加 categories,series,cover,tags 参数&lt;/del>&lt;/li>
+&lt;li>&lt;del>修改网页底部 footer，添加网站运行时间记录&lt;/del>&lt;/li>
+&lt;li>&lt;del>更换图标库链接&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加网站图床&lt;/del>&lt;/li>
+&lt;li>&lt;del>更换文章页播放音乐&lt;/del>&lt;/li>
+&lt;li>&lt;del>更换网站首页 Website slogans 动态文字&lt;/del>&lt;/li>
+&lt;li>&lt;del>文章页和 about 页添加网易云音乐&lt;/del>&lt;/li>
+&lt;li>&lt;del>文章页添加“友情链接”&lt;/del>&lt;/li>
+&lt;li>&lt;del>更换部分页面左上角图标返回链接&lt;/del>&lt;/li>
+&lt;li>&lt;del>添加 abbrlink 插件，修改文章页 url 链接&lt;/del>&lt;/li>
+&lt;li>&lt;del>博客网站本地初始调试工作完成，推送至 Gitee&lt;/del>&lt;/li>
+&lt;/ul>
+&lt;hr></description></item><item><title>电脑微信自动登陆进入主窗口</title><link>https://weeaster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://weeaster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
 &lt;p>实现逻辑：微信启动后将窗口置顶，模拟输入回车键&lt;/p>
 &lt;p>前提：微信自动登陆已开启，启动微信后显示&lt;code>进入微信&lt;/code>按钮&lt;/p>
 &lt;p>
@@ -9487,167 +9664,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>BLOG CHANGELOG</title><link>https://weeaster.github.io/posts/e2a2e564/</link><pubDate>Wed, 10 May 2023 00:02:00 +0000</pubDate><guid>https://weeaster.github.io/posts/e2a2e564/</guid><description>&lt;h3 id="2023-05-10">2023-05-10
-&lt;/h3>&lt;ul>
-&lt;li>添加发布时间久远文章的提示&lt;/li>
-&lt;li>添加插件 &lt;a class="link" href="https://github.com/u2sb/hexo-tag-mmedia" target="_blank" rel="noopener"
->hexo-tag-mmedia
-&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
-height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-fill="currentColor">
-&lt;/svg>&lt;/span>
-&lt;/a>&lt;/li>
-&lt;li>修改已插入的 bilibili 视频&lt;/li>
-&lt;/ul>
-&lt;h3 id="2023-04-16">2023-04-16
-&lt;/h3>&lt;ul>
-&lt;li>更换行内代码字体颜色为 #000(黑色)&lt;/li>
-&lt;li>&lt;del>禁用代码块行号显示&lt;/del>&lt;/li>
-&lt;li>禁用代码块复制功能&lt;/li>
-&lt;li>更换部分文章图片尺寸&lt;/li>
-&lt;li>文章页是有目录的，鼠标向上滚动&amp;ndash;&amp;gt;导航栏最右侧的图标&lt;/li>
-&lt;/ul>
-&lt;h3 id="2022-11-07">2022-11-07
-&lt;/h3>&lt;ul>
-&lt;li>更换博客主题为 :&lt;a class="link" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener"
->Minos
-&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
-height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-fill="currentColor">
-&lt;/svg>&lt;/span>
-&lt;/a>&lt;/li>
-&lt;li>移除 Minos 主题中分享和评论组件&lt;/li>
-&lt;li>移除 About 页面 发布日期/阅读时间 元素&lt;/li>
-&lt;li>修改网站字体为 思源黑体&lt;/li>
-&lt;li>修改归档页和标签页 不分页&lt;/li>
-&lt;li>添加相册页面（有点简陋）&lt;/li>
-&lt;li>其它边边角角修改&lt;/li>
-&lt;li>谢原作者https://github.com/ppoffice/&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-11-20">2021-11-20
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>首页导航栏不显示 Category 页面入口链接&lt;/del>&lt;/li>
-&lt;li>&lt;del>分类页 Category 内容侧边栏显示&lt;/del>&lt;/li>
-&lt;li>&lt;del>清除 Jade 无用代码&lt;/del>&lt;/li>
-&lt;li>&lt;del>修正 Jade 部分代码&lt;/del>&lt;/li>
-&lt;li>&lt;del>修正 CSS 样式文件&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-11-15">2021-11-15
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改首页内容展示方式&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改 pagination 样式&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-11-07">2021-11-07
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改网站字体为思源黑体&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-30">2021-10-30
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改 Archive 页样式&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改链接样式&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-30-1">2021-10-30
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>添加本地搜索&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-29">2021-10-29
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改 post 文章页和其他页面的 date_format 参数&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-26">2021-10-26
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改 archive 页面条目显示数量&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加文章页底部 Published、Tags&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-24">2021-10-24
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改样式中的 &lt;strong>media query&lt;/strong> 参数&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-22">2021-10-22
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改文章页，移除左侧 sidebar，page_main 添加边框样式&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改 about 页面底部 contact 信息&lt;/del>&lt;/li>
-&lt;li>&lt;del>移除 article-toc 文章目录&lt;/del>&lt;/li>
-&lt;li>&lt;del>移除 sidebar CV 信息标签&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-16">2021-10-16
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>添加文章页版权信息&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改 md 文件信息&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-10-12">2021-10-12
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>使用 &lt;a class="link" href="https://github.com/PhosphorW/hexo-theme-academia" target="_blank" rel="noopener"
->Academic
-&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
-height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-fill="currentColor">
-&lt;/svg>&lt;/span>
-&lt;/a> 主题，感谢作者 &lt;a class="link" href="https://phower.me/" target="_blank" rel="noopener"
->Le Phower&amp;rsquo;s
-&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
-height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
-&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
-fill="currentColor">
-&lt;/svg>&lt;/span>
-&lt;/a>&lt;/del>&lt;/li>
-&lt;li>&lt;del>博客从 Gitee 迁移到 GitHub&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改主题配置文件&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改 sidebar 的 social 内容&lt;/del>&lt;/li>
-&lt;li>&lt;del>主页 content 修改为显示最近十篇文章&lt;/del>&lt;/li>
-&lt;li>&lt;del>主页 content 添加置顶文章&lt;/del>&lt;/li>
-&lt;li>&lt;del>除 category 页和 about 页外添加 pagination&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加 category 页，添加 tag-cloud&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加 archive 页&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加 about 页&lt;/del>&lt;/li>
-&lt;li>&lt;del>post 页面侧边栏添加 article-toc 文章目录&lt;/del>&lt;/li>
-&lt;li>添加百度统计，谷歌统计，谷歌收录，bing 收录&lt;/li>
-&lt;li>&lt;del>侧边栏添加 aplayer 播放器，显示效果不美观，已注释代码&lt;/del>&lt;/li>
-&lt;li>&lt;del>page_main 的 div CSS 浮动问题未解决&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-01-23">2021-01-23
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>添加文章页评论邮件提醒功能&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-01-14">2021-01-14
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修改博客网站访问地址不带二级目录&lt;/del>&lt;/li>
-&lt;li>&lt;del>修正修改访问地址后文章阅读次数显示为 0 问题&lt;/del>&lt;/li>
-&lt;li>&lt;del>修正 whoami 页面显示双 footer 栏问题&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-01-08">2021-01-08
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>修正文章阅读次数显示为 0 问题&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加文章模板 updated 参数&lt;/del>&lt;/li>
-&lt;li>&lt;del>对网站添加百度统计&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;h3 id="2021-01-06">2021-01-06
-&lt;/h3>&lt;ul>
-&lt;li>&lt;del>制作修改博客 Logo，更改 cover 图片&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改导航栏标签为中文&lt;/del>&lt;/li>
-&lt;li>&lt;del>启用 valine 评论代码&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加文章页 END 结束分割线&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加文章页上一篇下一篇链接&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加 post 文章模板，添加 categories,series,cover,tags 参数&lt;/del>&lt;/li>
-&lt;li>&lt;del>修改网页底部 footer，添加网站运行时间记录&lt;/del>&lt;/li>
-&lt;li>&lt;del>更换图标库链接&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加网站图床&lt;/del>&lt;/li>
-&lt;li>&lt;del>更换文章页播放音乐&lt;/del>&lt;/li>
-&lt;li>&lt;del>更换网站首页 Website slogans 动态文字&lt;/del>&lt;/li>
-&lt;li>&lt;del>文章页和 about 页添加网易云音乐&lt;/del>&lt;/li>
-&lt;li>&lt;del>文章页添加“友情链接”&lt;/del>&lt;/li>
-&lt;li>&lt;del>更换部分页面左上角图标返回链接&lt;/del>&lt;/li>
-&lt;li>&lt;del>添加 abbrlink 插件，修改文章页 url 链接&lt;/del>&lt;/li>
-&lt;li>&lt;del>博客网站本地初始调试工作完成，推送至 Gitee&lt;/del>&lt;/li>
-&lt;/ul>
-&lt;hr></description></item><item><title>GPT问答230429</title><link>https://weeaster.github.io/posts/61f9c8a2/</link><pubDate>Sat, 29 Apr 2023 15:43:06 +0000</pubDate><guid>https://weeaster.github.io/posts/61f9c8a2/</guid><description>&lt;p>&lt;strong>如何理解对事物存在敬畏之心？&lt;/strong>&lt;/p>
+&lt;/ul></description></item><item><title>GPT问答230429</title><link>https://weeaster.github.io/posts/61f9c8a2/</link><pubDate>Sat, 29 Apr 2023 15:43:06 +0000</pubDate><guid>https://weeaster.github.io/posts/61f9c8a2/</guid><description>&lt;p>&lt;strong>如何理解对事物存在敬畏之心？&lt;/strong>&lt;/p>
 &lt;p>对事物存在敬畏之心通常是指一种对某些事物的高度敬重和敬仰，这种敬畏并不是害怕或畏惧，而是建立在了个人对该事物所具有的价值、力量或影响力上的认知之上。这种敬畏可以体现在对自然现象、伟大人物、传统文化或道德信仰等方面，也可以表现为对于神秘力量或未知领域的虔诚崇拜。&lt;/p>
 &lt;p>具有敬畏之心的人会从内心深处感受到对某些事物或价值观的肃穆和庄重，并将其视为自己生命中至关重要的东西，而不是简单地被其外表所吸引或追求其表面的好处。这种态度可以使人更加谦虚、勤奋、坚定和不屈不挠，更加容易遵循自己的信念和原则，并且能在困难时坚持下去。&lt;/p>
 &lt;p>&lt;strong>如何理解事物的相对性？&lt;/strong>&lt;/p>
