@@ -105,7 +105,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo Git push completed with commit message: &amp;#34;Commit on %commit_message%&amp;#34;
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo ---------- OK ----------
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo 60 秒后自动关闭命令行窗口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo Automatically close the command prompt window after 60 seconds.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 等待 60 秒后自动关闭命令行窗口
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">timeout /t 60 /nobreak &amp;gt;nul
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">exit
