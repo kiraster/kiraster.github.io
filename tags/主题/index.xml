@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>主题 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E4%B8%BB%E9%A2%98/</link><description>Recent content in 主题 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 15 Dec 2024 14:14:51 +0800</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E4%B8%BB%E9%A2%98/index.xml" rel="self" type="application/rss+xml"/><item><title>当前主题与原版Stack主题不同的地方</title><link>https://weeaster.github.io/posts/3d1b11f0/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://weeaster.github.io/posts/3d1b11f0/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
+&lt;p>网上的教程很多，搜索引擎遨游一下便有修改方法，以下只列出修改的结果&lt;/p>
+&lt;hr>
+&lt;h2 id="首页">首页
+&lt;/h2>&lt;h3 id="左侧-sidebar">左侧 sidebar
+&lt;/h3>&lt;ul>
+&lt;li>设置鼠标移动至头像进行旋转&lt;/li>
+&lt;li>不显示社交媒体图标&lt;/li>
+&lt;li>菜单栏图标与文字修改间隔（&amp;ndash;menu-icon-separation: 15px;）&lt;/li>
+&lt;li>菜单项排序（调整weight值）&lt;/li>
+&lt;/ul>
+&lt;h3 id="中间内容">中间内容
+&lt;/h3>&lt;ul>
+&lt;li>添加卡片中显示文章&lt;code>&amp;lt;!--more--&amp;gt;&lt;/code>摘要&lt;/li>
+&lt;li>文章正文行距设置（margin-top: 10px;， margin-bottom: 10px;）&lt;/li>
+&lt;li>首页显示10片文章&lt;/li>
+&lt;/ul>
+&lt;h3 id="右侧-sidebar">右侧 sidebar
+&lt;/h3>&lt;ul>
+&lt;li>添加鼠标移动至元素上放大效果&lt;/li>
+&lt;li>移除文字说明和修改分类图标&lt;/li>
+&lt;li>分类和标签右侧显示计数&lt;/li>
+&lt;li>分类和标签显示数量为10&lt;/li>
+&lt;/ul>
+&lt;h3 id="底部">底部
+&lt;/h3>&lt;ul>
+&lt;li>添加和设置 github，bilibili，mail图标和跳转&lt;/li>
+&lt;/ul>
+&lt;h2 id="归档页">归档页
+&lt;/h2>&lt;ul>
+&lt;li>修改分类矩形框大小&lt;/li>
+&lt;li>显示双栏&lt;/li>
+&lt;li>添加tags显示&lt;/li>
+&lt;/ul>
+&lt;h2 id="相册">相册
+&lt;/h2>&lt;ul>
+&lt;li>修改Links页面为Gallery&lt;/li>
+&lt;li>相册使用&lt;code>fliphtml5&lt;/code>外部链接展示&lt;/li>
+&lt;/ul>
+&lt;h2 id="文章页">文章页
+&lt;/h2>&lt;ul>
+&lt;li>文章正文行距设置（margin-top: 10px;， margin-bottom: 10px;）&lt;/li>
+&lt;li>添加Fancybox灯箱&lt;/li>
+&lt;li>右侧目录修改了间距&lt;/li>
+&lt;li>修改了代码块样式&lt;/li>
+&lt;li>增加notice短代码&lt;/li>
+&lt;li>设置选中内容背景色&lt;/li>
+&lt;/ul>
+&lt;h2 id="写作和推送脚本">写作和推送脚本
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>创建md并用typora打开&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 项目目录下hugo.yaml文件最后添加
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">security:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> exec:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> allow:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;^(dart-)?sass(-embedded)?$&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;^go$&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;^git$&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;^npx$&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;^postcss$&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;^tailwindcss$&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;^typora$&amp;#39; # 添加 typora 到允许的执行列表
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> osEnv:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> - &amp;#39;(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|(XDG_CONFIG_)?HOME|USERPROFILE|SSH_AUTH_SOCK|DISPLAY|LANG|SYSTEMDRIVE)$&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 添加typora环境变量
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">系统--高级系统设置--环境变量--选中Path--编辑--新建--添加typora所在路径
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">typora测试：新开一个cmd窗口，输入typora--回车，能打开typora软件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建md并用typora打开
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo new --editor typora post/xxx.md
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>git push bat脚本，双击运行自动执行git相关命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 设置当前日期和时间格式
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">for /f &amp;#34;tokens=2 delims==&amp;#34; %%I in (&amp;#39;&amp;#34;wmic os get localdatetime /value&amp;#34;&amp;#39;) do set datetime=%%I
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set year=%datetime:~0,4%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set month=%datetime:~4,2%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set day=%datetime:~6,2%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set hour=%datetime:~8,2%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set minute=%datetime:~10,2%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set second=%datetime:~12,2%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 创建 commit 消息：格式为 &amp;#34;YYYY-MM-DD HH:MM:SS&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set commit_message=%year%-%month%-%day% %hour%:%minute%:%second%
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 显示正在执行的命令
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo Executing git add ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 执行 git add . 命令
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 显示正在执行的命令
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo Executing git commit with message: &amp;#34;Commit on %commit_message%&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 执行 git commit 命令，使用动态生成的 commit 消息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#34;Commit on %commit_message%&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 显示正在执行的命令
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo Executing git push ...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 执行 git push 命令
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 提示完成
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo Git push completed with commit message: &amp;#34;Commit on %commit_message%&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo ---------- OK ----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo 60 秒后自动关闭命令行窗口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 等待 60 秒后自动关闭命令行窗口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">timeout /t 60 /nobreak &amp;gt;nul
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">exit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Github Action 自动部署自行搜索了，不是很复杂的东西&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="说明">说明
+&lt;/h2>&lt;ul>
+&lt;li>本人不是搞软件的，纯属瞎鼓捣&lt;/li>
+&lt;li>修改的使用的方法多来自网络和gpt对话&lt;/li>
+&lt;li>有些地方改的不如意，将就着用（弄不出来）&lt;/li>
+&lt;li>古德拜&lt;/li>
+&lt;/ul></description></item></channel></rss>
