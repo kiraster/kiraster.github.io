@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Log on Kir's Blog</title><link>https://weeaster.github.io/tags/log/</link><description>Recent content in Log on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 13 May 2022 13:59:08 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/log/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://weeaster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://weeaster.github.io/posts/2699eb47/</guid><description>&lt;ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Log on Kir's Blog</title><link>https://kiraster.github.io/tags/log/</link><description>Recent content in Log on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 13 May 2022 13:59:08 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/log/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://kiraster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://kiraster.github.io/posts/2699eb47/</guid><description>&lt;ul>
 &lt;li>针对上一版的脚本进行改进&lt;/li>
 &lt;li>增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出”&lt;/li>
 &lt;li>修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入&lt;/li>
@@ -247,7 +247,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python实现“按任意键返回”和无回显输入 by dongfuguo on 2020-03-25 : https://blog.csdn.net/dongfuguo/article/details/105103446
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python3文件路径/目录获取教程 by 诸子流 on 2020-07-09 : `https://www.cnblogs.com/lsdb/p/13265688.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- 如何让python不打印转义字符串？by 流芳 on 2020-07-07 : https://www.py.cn/jishu/jichu/19480.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://weeaster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://weeaster.github.io/posts/54cb8229/</guid><description>&lt;ul>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://kiraster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://kiraster.github.io/posts/54cb8229/</guid><description>&lt;ul>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的 display 脚本批量导出配置和一些设备状态&lt;/li>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的配置命令批量增加配置&lt;/li>
 &lt;li>主要使用的是 netmiko 这个模块里的 ConnectHandler 命令&lt;/li>

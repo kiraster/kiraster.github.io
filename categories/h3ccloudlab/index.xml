@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3CCloudLab on Kir's Blog</title><link>https://weeaster.github.io/categories/h3ccloudlab/</link><description>Recent content in H3CCloudLab on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 10 May 2023 17:24:57 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/categories/h3ccloudlab/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://weeaster.github.io/posts/cce1f96e/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://weeaster.github.io/posts/cce1f96e/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3CCloudLab on Kir's Blog</title><link>https://kiraster.github.io/categories/h3ccloudlab/</link><description>Recent content in H3CCloudLab on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 10 May 2023 17:24:57 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/h3ccloudlab/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://kiraster.github.io/posts/cce1f96e/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://kiraster.github.io/posts/cce1f96e/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
 &lt;p>&lt;a class="link" href="https://kiraster.github.io/posts/f285fb93.html" target="_blank" rel="noopener"
 >H3C 防火墙（v7）提取导出安全策略至表格
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -390,7 +390,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://weeaster.github.io/posts/f285fb93/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://weeaster.github.io/posts/f285fb93/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
+&lt;/ul></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
 &lt;p>本文介绍使用&lt;code>python&lt;/code>脚本语言编写一个根据&lt;code>display&lt;/code>回显内容提取安全策略和对象组到表格的方法&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>{% blockquote %}&lt;/p>
@@ -894,7 +894,7 @@ alt="20221201220702"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://weeaster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://weeaster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
+&lt;/p></description></item><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://kiraster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://kiraster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
 &lt;h2 id="官网下载安装文件">官网下载安装文件
 &lt;/h2>&lt;ul>
 &lt;li>
@@ -1259,7 +1259,7 @@ alt="ScreenCaputure221126142906"
 &lt;li>Generate lightweight client upgrade package(用于放在服务端，在防火墙的&lt;code>SSL VPN&lt;/code>&amp;ndash;&amp;raquo;&lt;code>全局配置&lt;/code>&amp;ndash;&amp;raquo;&lt;code>上传客户端文件&lt;/code>位置，在浏览器输入&lt;code>SSLVPNGW:4443&lt;/code>可已打开页面，底下一行有下载的链接，就是下载这个文件)&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title>H3C 防火墙（v7）SSLVPN 实验配置</title><link>https://weeaster.github.io/posts/ed57c1e2/</link><pubDate>Sat, 26 Nov 2022 15:12:31 +0000</pubDate><guid>https://weeaster.github.io/posts/ed57c1e2/</guid><description>&lt;p>本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验&lt;/p>
+&lt;/ul></description></item><item><title>H3C 防火墙（v7）SSLVPN 实验配置</title><link>https://kiraster.github.io/posts/ed57c1e2/</link><pubDate>Sat, 26 Nov 2022 15:12:31 +0000</pubDate><guid>https://kiraster.github.io/posts/ed57c1e2/</guid><description>&lt;p>本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验&lt;/p>
 &lt;p>后一篇文章中描述 在 &lt;code>Ubuntu 22.04&lt;/code> 中安装 &lt;code>iNode&lt;/code> 客户端拨号测试&lt;/p>
 &lt;p>本来只想写 Ubuntu 安装 iNode 的，想想还是一起记录下来&lt;/p>
 &lt;p>文中的所有操作方法都可在华三官网和搜索引擎找到&lt;/p>
@@ -1541,7 +1541,7 @@ alt="ScreenCaputure221126130413"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>HCL_FW_IRF_LAB</title><link>https://weeaster.github.io/posts/a89a05d3/</link><pubDate>Tue, 03 May 2022 01:09:15 +0000</pubDate><guid>https://weeaster.github.io/posts/a89a05d3/</guid><description>&lt;p>
+&lt;/p></description></item><item><title>HCL_FW_IRF_LAB</title><link>https://kiraster.github.io/posts/a89a05d3/</link><pubDate>Tue, 03 May 2022 01:09:15 +0000</pubDate><guid>https://kiraster.github.io/posts/a89a05d3/</guid><description>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png">
 &lt;img src="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png"
@@ -1721,7 +1721,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>HCL_VPN不同实例互通实验</title><link>https://weeaster.github.io/posts/eb7e5d69/</link><pubDate>Tue, 27 Apr 2021 11:35:32 +0000</pubDate><guid>https://weeaster.github.io/posts/eb7e5d69/</guid><description>&lt;p>&lt;strong>实验拓扑和需求&lt;/strong>&lt;/p>
+&lt;/ul></description></item><item><title>HCL_VPN不同实例互通实验</title><link>https://kiraster.github.io/posts/eb7e5d69/</link><pubDate>Tue, 27 Apr 2021 11:35:32 +0000</pubDate><guid>https://kiraster.github.io/posts/eb7e5d69/</guid><description>&lt;p>&lt;strong>实验拓扑和需求&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg">
@@ -1953,7 +1953,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 5 deny ip source 192.168.40.0 0.0.0.255 destination 172.16.10.0 0.0.0.255
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 10 permit ip
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>HCL_路由器双出口策略配置实验</title><link>https://weeaster.github.io/posts/4e82271c/</link><pubDate>Mon, 01 Feb 2021 14:22:41 +0000</pubDate><guid>https://weeaster.github.io/posts/4e82271c/</guid><description>&lt;p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>HCL_路由器双出口策略配置实验</title><link>https://kiraster.github.io/posts/4e82271c/</link><pubDate>Mon, 01 Feb 2021 14:22:41 +0000</pubDate><guid>https://kiraster.github.io/posts/4e82271c/</guid><description>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png">
 &lt;img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"
@@ -2303,7 +2303,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">return&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Router&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>HCL_一个小实验的思路</title><link>https://weeaster.github.io/posts/c7ac5477/</link><pubDate>Thu, 21 Jan 2021 08:31:24 +0000</pubDate><guid>https://weeaster.github.io/posts/c7ac5477/</guid><description>&lt;p>&lt;strong>实验说明：&lt;/strong>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>HCL_一个小实验的思路</title><link>https://kiraster.github.io/posts/c7ac5477/</link><pubDate>Thu, 21 Jan 2021 08:31:24 +0000</pubDate><guid>https://kiraster.github.io/posts/c7ac5477/</guid><description>&lt;p>&lt;strong>实验说明：&lt;/strong>&lt;/p>
 &lt;p>&lt;strong>设备互联线路，IP 地址、路由协议、可靠性等配置自定义&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">

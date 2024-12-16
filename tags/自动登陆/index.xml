@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>自动登陆 on Kir's Blog</title><link>https://weeaster.github.io/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E9%99%86/</link><description>Recent content in 自动登陆 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E9%99%86/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://weeaster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://weeaster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>自动登陆 on Kir's Blog</title><link>https://kiraster.github.io/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E9%99%86/</link><description>Recent content in 自动登陆 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/%E8%87%AA%E5%8A%A8%E7%99%BB%E9%99%86/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://kiraster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://kiraster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
 &lt;p>实现逻辑：微信启动后将窗口置顶，模拟输入回车键&lt;/p>
 &lt;p>前提：微信自动登陆已开启，启动微信后显示&lt;code>进入微信&lt;/code>按钮&lt;/p>
 &lt;p>
@@ -80,7 +80,7 @@ fill="currentColor">
 &lt;li>如果出现微信启动后没有自动点击&lt;code>进入微信&lt;/code>按钮，可添加一定时间&lt;code>time.sleep&lt;/code>等待&lt;/li>
 &lt;li>注意替换微信安装位置，我这安装在D盘&lt;/li>
 &lt;li>小玩意儿，省一个点击鼠标或敲回车的时间&lt;/li>
-&lt;/ul></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://weeaster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://weeaster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
+&lt;/ul></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://kiraster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://kiraster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
 &lt;p>Selenium官网链接： &lt;a class="link" href="https://www.selenium.dev/" target="_blank" rel="noopener"
 >https://www.selenium.dev/
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"

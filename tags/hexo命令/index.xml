@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hexo命令 on Kir's Blog</title><link>https://weeaster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/</link><description>Recent content in Hexo命令 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 07 Dec 2022 15:05:53 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/index.xml" rel="self" type="application/rss+xml"/><item><title>Hexo环境新电脑环境重构</title><link>https://weeaster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://weeaster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hexo命令 on Kir's Blog</title><link>https://kiraster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/</link><description>Recent content in Hexo命令 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 07 Dec 2022 15:05:53 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/hexo%E5%91%BD%E4%BB%A4/index.xml" rel="self" type="application/rss+xml"/><item><title>Hexo环境新电脑环境重构</title><link>https://kiraster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://kiraster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
 &lt;p>网上也有很多文章描述如何操作，也可以去参考，我记录我的操作过程如下&lt;/p>
 &lt;h2 id="下载安装git-和-nodejs">下载安装Git 和 node.js
 &lt;/h2>&lt;ul>
@@ -92,7 +92,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -M main
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git@github.com:kiraster/xxxx-xx.git
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://weeaster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://weeaster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://kiraster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://kiraster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
 &lt;ul>
 &lt;li>bat启动 Hexo 本地服务&lt;/li>
 &lt;li>bat 推送至 Github&lt;/li>
@@ -133,7 +133,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
 &lt;li>新建后缀为 js 的脚本文件&lt;/li>
 &lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
-&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://weeaster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://weeaster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
+&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://kiraster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://kiraster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
 &lt;p>还有一种方法就是把这些文件也推送到&lt;code>Github&lt;/code>仓库，网上看到有一个&lt;code>hexo-git-backup&lt;/code>可以把源码推送到仓库分支实现备份。但是我觉得这样不妥，由于部署到&lt;code>Github&lt;/code>的静态网站仓库是公开的，把源文推送这个分支，意味着所有人都可以看到源文件的配置，包括一些个人的信息，可能有网站统计，收录的&lt;code>token&lt;/code>，这样就不太好&lt;/p>
 &lt;p>看到一篇博文（https://0skyu.cn/p/a8bd.html） 就整的非常好，其中原理过程可以自行去研究&lt;/p>
 &lt;p>我参考这篇文章记录我自己的过程和操作&lt;/p>
@@ -270,7 +270,7 @@ alt="ScreenCaputure221205140926"
 &lt;ul>
 &lt;li>出现没有提交新内容到缓冲区，推送等错误，按提示排查错误即可&lt;/li>
 &lt;li>看到原博客出现要切换到博客目录的这一行脚本命令，我觉得在推送博客的时候你就已经切换到博客目录，去掉这一行&lt;/li>
-&lt;/ul></description></item><item><title>我的一些blog常用小操作</title><link>https://weeaster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://weeaster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
+&lt;/ul></description></item><item><title>我的一些blog常用小操作</title><link>https://kiraster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://kiraster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
 &lt;h3 id="bat启动-hexo-本地服务">bat启动 hexo 本地服务
 &lt;/h3>&lt;p>前提条件：已完成博客搭建。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>INode客户端 on Kir's Blog</title><link>https://weeaster.github.io/tags/inode%E5%AE%A2%E6%88%B7%E7%AB%AF/</link><description>Recent content in INode客户端 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 26 Nov 2022 16:34:36 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/inode%E5%AE%A2%E6%88%B7%E7%AB%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://weeaster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://weeaster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>INode客户端 on Kir's Blog</title><link>https://kiraster.github.io/tags/inode%E5%AE%A2%E6%88%B7%E7%AB%AF/</link><description>Recent content in INode客户端 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 26 Nov 2022 16:34:36 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/inode%E5%AE%A2%E6%88%B7%E7%AB%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://kiraster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://kiraster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
 &lt;h2 id="官网下载安装文件">官网下载安装文件
 &lt;/h2>&lt;ul>
 &lt;li>
@@ -363,7 +363,7 @@ alt="ScreenCaputure221126142906"
 &lt;li>Generate lightweight client upgrade package(用于放在服务端，在防火墙的&lt;code>SSL VPN&lt;/code>&amp;ndash;&amp;raquo;&lt;code>全局配置&lt;/code>&amp;ndash;&amp;raquo;&lt;code>上传客户端文件&lt;/code>位置，在浏览器输入&lt;code>SSLVPNGW:4443&lt;/code>可已打开页面，底下一行有下载的链接，就是下载这个文件)&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://weeaster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://weeaster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
+&lt;/ul></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://kiraster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://kiraster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
 &lt;/h2>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg">

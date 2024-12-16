@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Selenium on Kir's Blog</title><link>https://weeaster.github.io/tags/selenium/</link><description>Recent content in Selenium on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 05 Jul 2024 12:37:38 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/selenium/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Selenium打开PNETLab拓扑并开启所有节点</title><link>https://weeaster.github.io/posts/ccacf283/</link><pubDate>Fri, 05 Jul 2024 12:37:38 +0000</pubDate><guid>https://weeaster.github.io/posts/ccacf283/</guid><description>&lt;p>在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Selenium on Kir's Blog</title><link>https://kiraster.github.io/tags/selenium/</link><description>Recent content in Selenium on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 05 Jul 2024 12:37:38 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/selenium/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Selenium打开PNETLab拓扑并开启所有节点</title><link>https://kiraster.github.io/posts/ccacf283/</link><pubDate>Fri, 05 Jul 2024 12:37:38 +0000</pubDate><guid>https://kiraster.github.io/posts/ccacf283/</guid><description>&lt;p>在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作&lt;/p>
 &lt;p>以前做测试就点点点没觉得是什么问题，但是设备数量多的大型拓扑，那是一个超长等待时间&lt;/p>
 &lt;p>想过的方法是查查API，无功而返，而且也不熟&lt;/p>
 &lt;p>最后使用Selenium实现功能&lt;/p>
@@ -256,7 +256,7 @@ alt="pnetlabstartall-4"
 &lt;li>大部分时间都耗在定位元素了，pnet为了玩花样或是抄来不想改这html前端也是无限套壳&lt;/li>
 &lt;li>有些是前端渲染代码是通过java函数生成的，这就有点不好玩了&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://weeaster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://weeaster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
+&lt;/ul></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://kiraster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://kiraster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
 &lt;p>Selenium官网链接： &lt;a class="link" href="https://www.selenium.dev/" target="_blank" rel="noopener"
 >https://www.selenium.dev/
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"

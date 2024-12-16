@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kir's Blog</title><link>https://weeaster.github.io/</link><description>Recent content on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 15 Dec 2024 14:14:51 +0800</lastBuildDate><atom:link href="https://weeaster.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>当前主题与原版Stack主题不同的地方</title><link>https://weeaster.github.io/posts/3d1b11f0/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://weeaster.github.io/posts/3d1b11f0/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kir's Blog</title><link>https://kiraster.github.io/</link><description>Recent content on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 15 Dec 2024 14:14:51 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>当前主题与原版Stack主题不同的地方</title><link>https://kiraster.github.io/posts/3d1b11f0/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://kiraster.github.io/posts/3d1b11f0/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
 &lt;p>网上的教程很多，搜索引擎遨游一下便有修改方法，以下只列出修改的结果&lt;/p>
 &lt;hr>
 &lt;h2 id="首页">首页
@@ -118,7 +118,7 @@
 &lt;li>修改的使用的方法多来自网络和gpt对话&lt;/li>
 &lt;li>有些地方改的不如意，将就着用（弄不出来）&lt;/li>
 &lt;li>古德拜&lt;/li>
-&lt;/ul></description></item><item><title>BLOG CHANGELOG</title><link>https://weeaster.github.io/posts/e2a2e564/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://weeaster.github.io/posts/e2a2e564/</guid><description>&lt;h3 id="2024-12-14">2024-12-14
+&lt;/ul></description></item><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564/</guid><description>&lt;h3 id="2024-12-14">2024-12-14
 &lt;/h3>&lt;ul>
 &lt;li>更换博客静态网站生成器，主题为&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >hugo-theme-stack
@@ -295,7 +295,7 @@ fill="currentColor">
 &lt;li>&lt;del>添加 abbrlink 插件，修改文章页 url 链接&lt;/del>&lt;/li>
 &lt;li>&lt;del>博客网站本地初始调试工作完成，推送至 Gitee&lt;/del>&lt;/li>
 &lt;/ul>
-&lt;hr></description></item><item><title>电脑微信自动登陆进入主窗口</title><link>https://weeaster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://weeaster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
+&lt;hr></description></item><item><title>电脑微信自动登陆进入主窗口</title><link>https://kiraster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://kiraster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
 &lt;p>实现逻辑：微信启动后将窗口置顶，模拟输入回车键&lt;/p>
 &lt;p>前提：微信自动登陆已开启，启动微信后显示&lt;code>进入微信&lt;/code>按钮&lt;/p>
 &lt;p>
@@ -377,7 +377,7 @@ fill="currentColor">
 &lt;li>如果出现微信启动后没有自动点击&lt;code>进入微信&lt;/code>按钮，可添加一定时间&lt;code>time.sleep&lt;/code>等待&lt;/li>
 &lt;li>注意替换微信安装位置，我这安装在D盘&lt;/li>
 &lt;li>小玩意儿，省一个点击鼠标或敲回车的时间&lt;/li>
-&lt;/ul></description></item><item><title>HP440笔记本有线无线自动切换问题</title><link>https://weeaster.github.io/posts/85530671/</link><pubDate>Fri, 22 Nov 2024 15:17:57 +0000</pubDate><guid>https://weeaster.github.io/posts/85530671/</guid><description>&lt;p>惠普440笔记本安装win10后，有线无线自动切换，只能二选一问题&lt;/p>
+&lt;/ul></description></item><item><title>HP440笔记本有线无线自动切换问题</title><link>https://kiraster.github.io/posts/85530671/</link><pubDate>Fri, 22 Nov 2024 15:17:57 +0000</pubDate><guid>https://kiraster.github.io/posts/85530671/</guid><description>&lt;p>惠普440笔记本安装win10后，有线无线自动切换，只能二选一问题&lt;/p>
 &lt;p>拔插网线显示如下：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -430,7 +430,7 @@ alt="问题解决"
 &lt;/div>
 &lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>非旺玖原装的pl2303请联系供应商-驱动替换</title><link>https://weeaster.github.io/posts/a0365ff4/</link><pubDate>Fri, 22 Nov 2024 14:19:42 +0000</pubDate><guid>https://weeaster.github.io/posts/a0365ff4/</guid><description>&lt;p>USB转串口转接线显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>问题&lt;/p>
+&lt;/ol></description></item><item><title>非旺玖原装的pl2303请联系供应商-驱动替换</title><link>https://kiraster.github.io/posts/a0365ff4/</link><pubDate>Fri, 22 Nov 2024 14:19:42 +0000</pubDate><guid>https://kiraster.github.io/posts/a0365ff4/</guid><description>&lt;p>USB转串口转接线显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>问题&lt;/p>
 &lt;p>之前也出现过这个问题，解决方法是重装驱动，但是windows自动更新又把驱动升级了，又出现这个问题&lt;/p>
 &lt;p>网上的解释是驱动问题，确实也是&lt;/p>
 &lt;p>看到一篇文章说驱动文件替换可解决此问题，记录一下&lt;/p>
@@ -536,7 +536,7 @@ height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>修改Van Nav搜索结果不显示百度谷歌必应搜索</title><link>https://weeaster.github.io/posts/ae17cb36/</link><pubDate>Thu, 21 Nov 2024 17:36:11 +0000</pubDate><guid>https://weeaster.github.io/posts/ae17cb36/</guid><description>&lt;p>Van Nav是一个轻量的导航站&lt;/p>
+&lt;/ul></description></item><item><title>修改Van Nav搜索结果不显示百度谷歌必应搜索</title><link>https://kiraster.github.io/posts/ae17cb36/</link><pubDate>Thu, 21 Nov 2024 17:36:11 +0000</pubDate><guid>https://kiraster.github.io/posts/ae17cb36/</guid><description>&lt;p>Van Nav是一个轻量的导航站&lt;/p>
 &lt;p>Github开源仓库：https://github.com/Mereithhh/van-nav&lt;/p>
 &lt;p>现在的浏览器地址栏都集成了搜索功能，用不上导航站里的在线搜索，以下列出去除该功能的操作步骤&lt;/p>
 &lt;p>我将其定位为半内网使用的一个导航站&lt;/p>
@@ -652,7 +652,7 @@ alt="image-20241121175812069"
 &lt;li>如果将导航站部署在服务器，所有人打开的页面都是一致的，不能做到每个人都自定义其访问链接（适合定位为统一入口）&lt;/li>
 &lt;li>如果个人使用部署可以下载对应的安装包（各种跨平台的都有），需要设置开机自启，访问地址为：http://localhost:6412&lt;/li>
 &lt;li>惊叹到Go语言编写的程序占用空间如此之小&lt;/li>
-&lt;/ul></description></item><item><title>Rocky Linux 8.7 Flask应用docker容器化</title><link>https://weeaster.github.io/posts/297bc3bd/</link><pubDate>Thu, 10 Oct 2024 22:47:44 +0000</pubDate><guid>https://weeaster.github.io/posts/297bc3bd/</guid><description>&lt;p>本文为Flask应用进行容器化的笔记&lt;/p>
+&lt;/ul></description></item><item><title>Rocky Linux 8.7 Flask应用docker容器化</title><link>https://kiraster.github.io/posts/297bc3bd/</link><pubDate>Thu, 10 Oct 2024 22:47:44 +0000</pubDate><guid>https://kiraster.github.io/posts/297bc3bd/</guid><description>&lt;p>本文为Flask应用进行容器化的笔记&lt;/p>
 &lt;h2 id="上传代码至rockylinux">上传代码至RockyLinux
 &lt;/h2>&lt;p>将代码文件&lt;code>IPA_VIEW_v0.2.zip&lt;/code>上传至&lt;code>/opt&lt;/code>路径下（可选择其他路径）&lt;/p>
 &lt;p>解压在当前目录&lt;/p>
@@ -807,7 +807,7 @@ always　　　　 // 无论退出状态是如何，都重启容器；&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决方式二：&lt;/p>
 &lt;p>通过环境变量设置时区，在启动容器时设置环境变量&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">docker run -e TZ=Asia/Shanghai -d --name ipa-view-container-v2.2 --network ipa-view-net --restart always -p 5667:8080 ipa-view:v0.2
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>配置Gogs和Github免密git push</title><link>https://weeaster.github.io/posts/fe1c1d91/</link><pubDate>Thu, 19 Sep 2024 14:35:00 +0000</pubDate><guid>https://weeaster.github.io/posts/fe1c1d91/</guid><description>&lt;p>本文描述的是在windows系统上配置免密&lt;code>git push&lt;/code>至&lt;code>Gogs&lt;/code>仓库和&lt;code>Gthub&lt;/code>仓库&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>配置Gogs和Github免密git push</title><link>https://kiraster.github.io/posts/fe1c1d91/</link><pubDate>Thu, 19 Sep 2024 14:35:00 +0000</pubDate><guid>https://kiraster.github.io/posts/fe1c1d91/</guid><description>&lt;p>本文描述的是在windows系统上配置免密&lt;code>git push&lt;/code>至&lt;code>Gogs&lt;/code>仓库和&lt;code>Gthub&lt;/code>仓库&lt;/p>
 &lt;p>之前也弄过类似操作，但是由于那次重装系统给干没了&lt;/p>
 &lt;p>Gogs为本地使用，设计为不联网&lt;/p>
 &lt;p>Github为在线使用，同时使用的还有Github Pages的博客更新&lt;/p>
@@ -956,7 +956,7 @@ alt="image-8002"
 &lt;/div>
 &lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>在Rocky Linux 8.7虚拟机安装Gogs的记录</title><link>https://weeaster.github.io/posts/5745efe9/</link><pubDate>Wed, 18 Sep 2024 11:22:42 +0000</pubDate><guid>https://weeaster.github.io/posts/5745efe9/</guid><description>&lt;p>Gogs 是一款极易搭建的自助 Git 服务。&lt;/p>
+&lt;/ol></description></item><item><title>在Rocky Linux 8.7虚拟机安装Gogs的记录</title><link>https://kiraster.github.io/posts/5745efe9/</link><pubDate>Wed, 18 Sep 2024 11:22:42 +0000</pubDate><guid>https://kiraster.github.io/posts/5745efe9/</guid><description>&lt;p>Gogs 是一款极易搭建的自助 Git 服务。&lt;/p>
 &lt;p>Gogs官网：https://gogs.io/&lt;/p>
 &lt;p>以下内容为本次安装过程的一个记录&lt;/p>
 &lt;h2 id="准备环境">准备环境
@@ -1292,7 +1292,7 @@ alt="ScreenCaputure0907"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]# lsof -i :3000
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[root@localhost gogs]#
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ol></description></item><item><title>2022-2023华为ICT大赛（全国）实验题研究</title><link>https://weeaster.github.io/posts/8f2ea734/</link><pubDate>Wed, 24 Jul 2024 16:16:07 +0000</pubDate><guid>https://weeaster.github.io/posts/8f2ea734/</guid><description>&lt;p>上一篇文整了个大阵仗（内容太多，浏览器好像有些受不了）&lt;/p>
+&lt;/ol></description></item><item><title>2022-2023华为ICT大赛（全国）实验题研究</title><link>https://kiraster.github.io/posts/8f2ea734/</link><pubDate>Wed, 24 Jul 2024 16:16:07 +0000</pubDate><guid>https://kiraster.github.io/posts/8f2ea734/</guid><description>&lt;p>上一篇文整了个大阵仗（内容太多，浏览器好像有些受不了）&lt;/p>
 &lt;p>经过在搜索引擎遨游，最终发现这些题其实在华为的ICT学院课程网站上有&lt;/p>
 &lt;p>&lt;a class="link" href="https://talent.shixizhi.huawei.com" target="_blank" rel="noopener"
 >https://talent.shixizhi.huawei.com
@@ -1972,7 +1972,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>2021-2022华为ICT大赛（全球）实验题研究</title><link>https://weeaster.github.io/posts/e6429fe7/</link><pubDate>Fri, 19 Jul 2024 15:54:31 +0000</pubDate><guid>https://weeaster.github.io/posts/e6429fe7/</guid><description>&lt;p>在公众号【易联无界】看到文章 [&lt;a class="link" href="https://mp.weixin.qq.com/s/uMLXHcPn-ke4HpI7IddU-g" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>2021-2022华为ICT大赛（全球）实验题研究</title><link>https://kiraster.github.io/posts/e6429fe7/</link><pubDate>Fri, 19 Jul 2024 15:54:31 +0000</pubDate><guid>https://kiraster.github.io/posts/e6429fe7/</guid><description>&lt;p>在公众号【易联无界】看到文章 [&lt;a class="link" href="https://mp.weixin.qq.com/s/uMLXHcPn-ke4HpI7IddU-g" target="_blank" rel="noopener"
 >华为2021-2022全球总决赛实验题
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -5011,7 +5011,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>使用Selenium打开PNETLab拓扑并开启所有节点</title><link>https://weeaster.github.io/posts/ccacf283/</link><pubDate>Fri, 05 Jul 2024 12:37:38 +0000</pubDate><guid>https://weeaster.github.io/posts/ccacf283/</guid><description>&lt;p>在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作&lt;/p>
+&lt;/ul></description></item><item><title>使用Selenium打开PNETLab拓扑并开启所有节点</title><link>https://kiraster.github.io/posts/ccacf283/</link><pubDate>Fri, 05 Jul 2024 12:37:38 +0000</pubDate><guid>https://kiraster.github.io/posts/ccacf283/</guid><description>&lt;p>在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作&lt;/p>
 &lt;p>以前做测试就点点点没觉得是什么问题，但是设备数量多的大型拓扑，那是一个超长等待时间&lt;/p>
 &lt;p>想过的方法是查查API，无功而返，而且也不熟&lt;/p>
 &lt;p>最后使用Selenium实现功能&lt;/p>
@@ -5269,7 +5269,7 @@ alt="pnetlabstartall-4"
 &lt;li>大部分时间都耗在定位元素了，pnet为了玩花样或是抄来不想改这html前端也是无限套壳&lt;/li>
 &lt;li>有些是前端渲染代码是通过java函数生成的，这就有点不好玩了&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>多子网分支的第3阶段分层DMVPN实验</title><link>https://weeaster.github.io/posts/638be305/</link><pubDate>Fri, 17 May 2024 16:13:59 +0000</pubDate><guid>https://weeaster.github.io/posts/638be305/</guid><description>&lt;p>以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录&lt;/p>
+&lt;/ul></description></item><item><title>多子网分支的第3阶段分层DMVPN实验</title><link>https://kiraster.github.io/posts/638be305/</link><pubDate>Fri, 17 May 2024 16:13:59 +0000</pubDate><guid>https://kiraster.github.io/posts/638be305/</guid><description>&lt;p>以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录&lt;/p>
 &lt;p>Cisco网站文档链接： &lt;a class="link" href="https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html" target="_blank" rel="noopener"
 >https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -5750,7 +5750,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>Miniconda安装使用（简单版）</title><link>https://weeaster.github.io/posts/f2cfb11/</link><pubDate>Fri, 08 Mar 2024 21:43:10 +0000</pubDate><guid>https://weeaster.github.io/posts/f2cfb11/</guid><description>&lt;p>因为之前重装了系统，很多软件设置需要恢复，特别是&lt;code>Python环境&lt;/code>。最近小玩了一下&lt;code>Pyqt&lt;/code>，接触到了&lt;code>Anaconda&lt;/code>这个巨无霸软件&lt;/p>
+&lt;/ul></description></item><item><title>Miniconda安装使用（简单版）</title><link>https://kiraster.github.io/posts/f2cfb11/</link><pubDate>Fri, 08 Mar 2024 21:43:10 +0000</pubDate><guid>https://kiraster.github.io/posts/f2cfb11/</guid><description>&lt;p>因为之前重装了系统，很多软件设置需要恢复，特别是&lt;code>Python环境&lt;/code>。最近小玩了一下&lt;code>Pyqt&lt;/code>，接触到了&lt;code>Anaconda&lt;/code>这个巨无霸软件&lt;/p>
 &lt;p>看了官网介绍它的用途，觉得完全用不到这么多功能，安装&lt;code>Anaconda&lt;/code>后文件已经到达10G&lt;/p>
 &lt;p>再翻了翻发现还有个类似精简版的&lt;code>Miniconda&lt;/code>，觉得可以用来管理虚拟环境&lt;/p>
 &lt;p>这篇文记录安装和使用过程&lt;/p>
@@ -6036,7 +6036,7 @@ alt="ScreenCaputure240308225050"
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>使用floccus插件同步谷歌浏览器书签</title><link>https://weeaster.github.io/posts/1e210a39/</link><pubDate>Tue, 27 Feb 2024 15:18:08 +0000</pubDate><guid>https://weeaster.github.io/posts/1e210a39/</guid><description>&lt;p>谷歌浏览器由于特殊地区原因无法使用原生同步功能，之前也一直使用这个插件实现书签同步，本来用着也就没什么事&lt;/p>
+&lt;/table></description></item><item><title>使用floccus插件同步谷歌浏览器书签</title><link>https://kiraster.github.io/posts/1e210a39/</link><pubDate>Tue, 27 Feb 2024 15:18:08 +0000</pubDate><guid>https://kiraster.github.io/posts/1e210a39/</guid><description>&lt;p>谷歌浏览器由于特殊地区原因无法使用原生同步功能，之前也一直使用这个插件实现书签同步，本来用着也就没什么事&lt;/p>
 &lt;p>重装系统后想着能从云端把书签恢复回来，奈何忘记备份&lt;code>floccus插件&lt;/code>里面的加密密码了，而且是两台电脑都重装了，至此原先的书签彻底沦陷无法恢复，wc&lt;/p>
 &lt;p>错误造成的后果已经无法挽回&lt;/p>
 &lt;p>就写篇文记录一下floccus插件的安装使用过程&lt;/p>
@@ -6265,7 +6265,7 @@ alt="ScreenCaputure240227162830"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>MPLS排错练习题-故障排除</title><link>https://weeaster.github.io/posts/464b24f1/</link><pubDate>Thu, 01 Feb 2024 16:57:52 +0000</pubDate><guid>https://weeaster.github.io/posts/464b24f1/</guid><description>&lt;p>在51cto博客https://blog.51cto.com/dashu666/2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩&lt;/p>
+&lt;/p></description></item><item><title>MPLS排错练习题-故障排除</title><link>https://kiraster.github.io/posts/464b24f1/</link><pubDate>Thu, 01 Feb 2024 16:57:52 +0000</pubDate><guid>https://kiraster.github.io/posts/464b24f1/</guid><description>&lt;p>在51cto博客https://blog.51cto.com/dashu666/2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩&lt;/p>
 &lt;p>MPLS 环境如下图，现由于前面负责实施的工程师离职，留下烂尾工程，请按下面截图找出目前配置存在的错误并修复，要求项目部署完毕之后所有检查命令输出要和下面截图一致。
 要求R7 和R8两个站点通信必须经过R6的全局处理、要求R6 的 vrfA 和 R7、R8能够直接通信&lt;/p>
 &lt;p>同时要求交一份排除故障的文档。
@@ -7775,7 +7775,7 @@ alt="ScreenCaputure240201002259"
 &lt;li>其实早几年我是玩过这个排错拓扑的，奈何脑子不够用学过等于又还回去了&lt;/li>
 &lt;li>不知道大家对这种学习过的技术，而工作中又接触不到这些项目，技术的知识点淡忘如何看待&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>网神 NSG 3600 和网神 SecSSL 3600 重置密码</title><link>https://weeaster.github.io/posts/f36f6dd3/</link><pubDate>Fri, 01 Dec 2023 09:46:59 +0000</pubDate><guid>https://weeaster.github.io/posts/f36f6dd3/</guid><description>&lt;p>记录网神设备重置密码。&lt;/p>
+&lt;/ul></description></item><item><title>网神 NSG 3600 和网神 SecSSL 3600 重置密码</title><link>https://kiraster.github.io/posts/f36f6dd3/</link><pubDate>Fri, 01 Dec 2023 09:46:59 +0000</pubDate><guid>https://kiraster.github.io/posts/f36f6dd3/</guid><description>&lt;p>记录网神设备重置密码。&lt;/p>
 &lt;h2 id="网神-nsg-3600-防火墙重置密码">网神 NSG 3600 防火墙重置密码
 &lt;/h2>&lt;ol>
 &lt;li>
@@ -7871,7 +7871,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>::4430/admin （端口号如已修改注意替换），使用默认密码登陆会提示修改密码。&lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://weeaster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://weeaster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
+&lt;/ol></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://kiraster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://kiraster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
 &lt;p>Selenium官网链接： &lt;a class="link" href="https://www.selenium.dev/" target="_blank" rel="noopener"
 >https://www.selenium.dev/
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -7979,7 +7979,7 @@ fill="currentColor">
 &lt;p>如本地内部使用，还是去下载对应版本的 ChromeDriver&lt;/p>
 &lt;blockquote>
 &lt;p>&lt;strong>20230922 补充&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>信锐NMC对接华为AC实现授权ACL下发</title><link>https://weeaster.github.io/posts/c09d2b9c/</link><pubDate>Mon, 24 Jul 2023 20:42:28 +0000</pubDate><guid>https://weeaster.github.io/posts/c09d2b9c/</guid><description>&lt;p>一个单位的无线网络要求内部员工和访客使用无线网络前进行认证&lt;/p>
+&lt;/blockquote></description></item><item><title>信锐NMC对接华为AC实现授权ACL下发</title><link>https://kiraster.github.io/posts/c09d2b9c/</link><pubDate>Mon, 24 Jul 2023 20:42:28 +0000</pubDate><guid>https://kiraster.github.io/posts/c09d2b9c/</guid><description>&lt;p>一个单位的无线网络要求内部员工和访客使用无线网络前进行认证&lt;/p>
 &lt;p>内部员工账号认证通过后能同时访问内外网资源，访客账号认证通过后仅允许访问外网资源&lt;/p>
 &lt;p>由于华为无线控制器内置portal认证的糟糕使用体验（无法实现MAC优先的portal认证），拟增加外置portal服务器&lt;/p>
 &lt;p>华为和华三的软件方案报价令人xxx，一个字“贵”&lt;/p>
@@ -8142,7 +8142,7 @@ alt="ScreenCaputure230726103600"
 &lt;li>这个方法也是摸索出来，查阅了华为和信锐的手册，并在vmware虚拟机安装各种radius软件进行抓包检验&lt;/li>
 &lt;li>再吐槽一句，华为的NCE代理商开的价真尼玛高，仅安装NCE软件这一项服务就好几十个K&lt;/li>
 &lt;li>经此一役，可能要改写信锐对接手册中这一句话了（注：portal 服务器中的权限设定无法对无线用户生效，但对接 Aruba 时该角色名与 aruba设备上的认证后角色名必须保持一致才能认证通过）&lt;/li>
-&lt;/ul></description></item><item><title>对网络设备进行批量操作的几个脚本</title><link>https://weeaster.github.io/posts/99580674/</link><pubDate>Sun, 09 Jul 2023 13:39:07 +0000</pubDate><guid>https://weeaster.github.io/posts/99580674/</guid><description>&lt;p>对网络设备进行批量操作的几个脚本&lt;/p>
+&lt;/ul></description></item><item><title>对网络设备进行批量操作的几个脚本</title><link>https://kiraster.github.io/posts/99580674/</link><pubDate>Sun, 09 Jul 2023 13:39:07 +0000</pubDate><guid>https://kiraster.github.io/posts/99580674/</guid><description>&lt;p>对网络设备进行批量操作的几个脚本&lt;/p>
 &lt;p>netmiko基操&lt;/p>
 &lt;p>32位windows下偷个懒使用&lt;/p>
 &lt;p>在32位windows系统中无法使用之前编写的nornir脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
@@ -8894,7 +8894,7 @@ alt="ScreenCaputure230709135002"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tomli==2.0.1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yapf==0.40.1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zipp==3.15.0
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>GPT问答230615</title><link>https://weeaster.github.io/posts/61188c84/</link><pubDate>Thu, 15 Jun 2023 22:27:11 +0000</pubDate><guid>https://weeaster.github.io/posts/61188c84/</guid><description>&lt;p>&lt;strong>什么是第一性原理&lt;/strong>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>GPT问答230615</title><link>https://kiraster.github.io/posts/61188c84/</link><pubDate>Thu, 15 Jun 2023 22:27:11 +0000</pubDate><guid>https://kiraster.github.io/posts/61188c84/</guid><description>&lt;p>&lt;strong>什么是第一性原理&lt;/strong>&lt;/p>
 &lt;p>“第一性原理”是科学研究中的一个基本概念，指的是从基本的真实、可验证的事实出发，通过逻辑推导和数学计算等方式来推导出更复杂的现象和规律的方法。&lt;/p>
 &lt;p>在理论物理学、化学、材料科学等领域中，第一性原理被广泛运用于对各种材料的物性和化学性质进行理论计算和分析。&lt;/p>
 &lt;p>第一性原理的核心思想是通过对物质的基本组成和相互作用进行深入剖析，从而建立关于物质性质的准确数学模型。这些模型可以被用于预测和解释各种物质行为和性质，例如晶体结构、热力学性质、光学特性、电学特性、磁学特性等等。通俗地说，第一性原理就是“从零开始，自己推导”。&lt;/p>
@@ -8907,7 +8907,7 @@ alt="ScreenCaputure230709135002"
 &lt;p>“入门”是指初学者刚开始接触某一领域或技能时需要掌握的基础知识和基本技能。在学术、职业、爱好等各种不同的领域中，都有其相应的入门要求和内容。&lt;/p>
 &lt;p>通常情况下，入门的学习过程包括了基础理论知识的介绍和学习，相关技能和技术的掌握以及实践练习等环节。入门阶段的学习目标是掌握该领域或技能的基础知识，了解其基本概念和基本原理，并能够较为熟练地运用所学知识进行简单的实践操作。&lt;/p>
 &lt;p>作为任何一个领域的起点，入门阶段的学习非常重要，因为这关系到后续深入学习的有效性和效果。只有掌握了基础知识和技能，才能够在后面的学习中更加轻松和自信地应对并取得更高的学习成果。&lt;/p>
-&lt;p>同时，入门阶段的学习也需要持之以恒的坚持和不断的自我反思和修正。只有通过不断的学习和实践，才能够成为在该领域里的专家或者达到自己所期望的水平。&lt;/p></description></item><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(离线安装)</title><link>https://weeaster.github.io/posts/f652ccc4/</link><pubDate>Sat, 20 May 2023 18:18:21 +0000</pubDate><guid>https://weeaster.github.io/posts/f652ccc4/</guid><description>&lt;p>上一篇文描述的是在线安装，这篇文挑战一下离线安装，下载 &lt;code>Server with GUI&lt;/code>组件及其依赖项和&lt;code>TigerVNC&lt;/code>后上传服务器进行安装&lt;/p>
+&lt;p>同时，入门阶段的学习也需要持之以恒的坚持和不断的自我反思和修正。只有通过不断的学习和实践，才能够成为在该领域里的专家或者达到自己所期望的水平。&lt;/p></description></item><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(离线安装)</title><link>https://kiraster.github.io/posts/f652ccc4/</link><pubDate>Sat, 20 May 2023 18:18:21 +0000</pubDate><guid>https://kiraster.github.io/posts/f652ccc4/</guid><description>&lt;p>上一篇文描述的是在线安装，这篇文挑战一下离线安装，下载 &lt;code>Server with GUI&lt;/code>组件及其依赖项和&lt;code>TigerVNC&lt;/code>后上传服务器进行安装&lt;/p>
 &lt;p>&lt;strong>操作流程：&lt;/strong>&lt;/p>
 &lt;ol>
 &lt;li>先给虚拟机创建一个快照&lt;/li>
@@ -9072,7 +9072,7 @@ alt="ScreenCaputure230521042357"
 &lt;li>配置完成后别忘了开防火墙策略SELINUX=enforcing，重开SELINUX真耗时间&lt;/li>
 &lt;li>业余选手，勿喷&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(在线安装)</title><link>https://weeaster.github.io/posts/a451a5f2/</link><pubDate>Sat, 20 May 2023 00:55:54 +0000</pubDate><guid>https://weeaster.github.io/posts/a451a5f2/</guid><description>&lt;p>&lt;code>CentOS 8.0.1905&lt;/code> 服务器上初始安装没有安装图形化桌面环境，现在需要对该服务器安装图形桌面化环境和安装&lt;code>TigerVNC&lt;/code>，并在本地（windows平台）使用&lt;code>VNC&lt;/code>客户端进行远程桌面连接&lt;/p>
+&lt;/ul></description></item><item><title>CentOS-8.0.1905 安装配置图形化桌面环境和TigerVNC(在线安装)</title><link>https://kiraster.github.io/posts/a451a5f2/</link><pubDate>Sat, 20 May 2023 00:55:54 +0000</pubDate><guid>https://kiraster.github.io/posts/a451a5f2/</guid><description>&lt;p>&lt;code>CentOS 8.0.1905&lt;/code> 服务器上初始安装没有安装图形化桌面环境，现在需要对该服务器安装图形桌面化环境和安装&lt;code>TigerVNC&lt;/code>，并在本地（windows平台）使用&lt;code>VNC&lt;/code>客户端进行远程桌面连接&lt;/p>
 &lt;p>&lt;strong>环境说明&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>Microsoft Windows 10 Pro 21H2&lt;/li>
@@ -9333,7 +9333,7 @@ alt="ScreenCaputure230520005831"
 &lt;li>配置完成后别忘了开防火墙策略SELINUX=enforcing，重开SELINUX真耗时间&lt;/li>
 &lt;li>业余选手，勿喷&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>添加hexo文章时效性提示</title><link>https://weeaster.github.io/posts/9481f4f2/</link><pubDate>Thu, 11 May 2023 13:30:19 +0000</pubDate><guid>https://weeaster.github.io/posts/9481f4f2/</guid><description>&lt;p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。&lt;/p>
+&lt;/ul></description></item><item><title>添加hexo文章时效性提示</title><link>https://kiraster.github.io/posts/9481f4f2/</link><pubDate>Thu, 11 May 2023 13:30:19 +0000</pubDate><guid>https://kiraster.github.io/posts/9481f4f2/</guid><description>&lt;p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。&lt;/p>
 &lt;p>在这些文章页面给出提示信息，提示注意甄别。&lt;/p>
 &lt;p>&lt;strong>效果如下：&lt;/strong>&lt;/p>
 &lt;p>
@@ -9392,7 +9392,7 @@ alt="ScreenCaputure230511143012"
 &lt;h2 id="最后">最后
 &lt;/h2>&lt;ul>
 &lt;li>以上方案部分代码内容来自GPT，但是点开参考来源是404页面，让人费解&lt;/li>
-&lt;/ul></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://weeaster.github.io/posts/cce1f96e/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://weeaster.github.io/posts/cce1f96e/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
+&lt;/ul></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://kiraster.github.io/posts/cce1f96e/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://kiraster.github.io/posts/cce1f96e/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
 &lt;p>&lt;a class="link" href="https://kiraster.github.io/posts/f285fb93.html" target="_blank" rel="noopener"
 >H3C 防火墙（v7）提取导出安全策略至表格
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -9784,7 +9784,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>GPT问答230429</title><link>https://weeaster.github.io/posts/61f9c8a2/</link><pubDate>Sat, 29 Apr 2023 15:43:06 +0000</pubDate><guid>https://weeaster.github.io/posts/61f9c8a2/</guid><description>&lt;p>&lt;strong>如何理解对事物存在敬畏之心？&lt;/strong>&lt;/p>
+&lt;/ul></description></item><item><title>GPT问答230429</title><link>https://kiraster.github.io/posts/61f9c8a2/</link><pubDate>Sat, 29 Apr 2023 15:43:06 +0000</pubDate><guid>https://kiraster.github.io/posts/61f9c8a2/</guid><description>&lt;p>&lt;strong>如何理解对事物存在敬畏之心？&lt;/strong>&lt;/p>
 &lt;p>对事物存在敬畏之心通常是指一种对某些事物的高度敬重和敬仰，这种敬畏并不是害怕或畏惧，而是建立在了个人对该事物所具有的价值、力量或影响力上的认知之上。这种敬畏可以体现在对自然现象、伟大人物、传统文化或道德信仰等方面，也可以表现为对于神秘力量或未知领域的虔诚崇拜。&lt;/p>
 &lt;p>具有敬畏之心的人会从内心深处感受到对某些事物或价值观的肃穆和庄重，并将其视为自己生命中至关重要的东西，而不是简单地被其外表所吸引或追求其表面的好处。这种态度可以使人更加谦虚、勤奋、坚定和不屈不挠，更加容易遵循自己的信念和原则，并且能在困难时坚持下去。&lt;/p>
 &lt;p>&lt;strong>如何理解事物的相对性？&lt;/strong>&lt;/p>
@@ -9795,7 +9795,7 @@ fill="currentColor">
 &lt;p>这个问题有不同的回答，具体取决于你如何定义“鸡”和“蛋”。如果我们按照生物学的角度来看待这个问题，那么答案应该是先有蛋，而不是先有鸡。&lt;/p>
 &lt;p>第一只属于“鸡”的鸟应该是由于演化过程中出现了基因突变，使其与其亲代有所不同。这种变异产生了特定的DNA序列，让这只鸟成为了一个独立的物种——就是我们今天所称呼的“鸡”。&lt;/p>
 &lt;p>然而，这只“鸡”的DNA序列必须来自于两只亲代鸟，它们很可能并不是“鸡”，而是某种早期的禽鸟。在这种情况下，第一只“鸡”的想法最初是由一对“非鸡”亲代鸟产生的，并且它孵化于一个“非鸡”蛋里。由此可知，在这个意义上，“蛋”比“鸡”更早存在。&lt;/p>
-&lt;p>因此，从生物学角度而言，先有蛋，后有鸡。&lt;/p></description></item><item><title>Github之pull requests提交分支</title><link>https://weeaster.github.io/posts/9a95f1cd/</link><pubDate>Sat, 29 Apr 2023 00:11:07 +0000</pubDate><guid>https://weeaster.github.io/posts/9a95f1cd/</guid><description>&lt;p>这篇文描述的是使用我注册的第二个Github账号对&lt;code>netops_v2.0_beta&lt;/code>仓库进行一次&lt;code>pull requests&lt;/code>&lt;/p>
+&lt;p>因此，从生物学角度而言，先有蛋，后有鸡。&lt;/p></description></item><item><title>Github之pull requests提交分支</title><link>https://kiraster.github.io/posts/9a95f1cd/</link><pubDate>Sat, 29 Apr 2023 00:11:07 +0000</pubDate><guid>https://kiraster.github.io/posts/9a95f1cd/</guid><description>&lt;p>这篇文描述的是使用我注册的第二个Github账号对&lt;code>netops_v2.0_beta&lt;/code>仓库进行一次&lt;code>pull requests&lt;/code>&lt;/p>
 &lt;p>计划是修改代码使其在Ubuntu环境也能正常运行，然后推送分支进行pull requests&lt;/p>
 &lt;h2 id="登陆github">登陆Github
 &lt;/h2>&lt;p>先fork原仓库至第二个账号（过程略），获取 Clone 链接 &lt;a class="link" href="https://github.com/weeaster/netops_v2.0_beta.git" target="_blank" rel="noopener"
@@ -10045,7 +10045,7 @@ alt="pull request 1"
 &lt;li>我不是搞软件的，这么一搞也就图一乐&lt;/li>
 &lt;li>拜了个拜&lt;/li>
 &lt;li>这篇文，不那么欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>Ubuntu publickey方式SSH连接与vscode远程调试</title><link>https://weeaster.github.io/posts/837aa3ce/</link><pubDate>Thu, 27 Apr 2023 14:52:12 +0000</pubDate><guid>https://weeaster.github.io/posts/837aa3ce/</guid><description>&lt;p>Ubuntu服务端采用publickey方式验证客户端身份，客户端本地vscode连接至Ubuntu服务端进行python远程调试&lt;/p>
+&lt;/ul></description></item><item><title>Ubuntu publickey方式SSH连接与vscode远程调试</title><link>https://kiraster.github.io/posts/837aa3ce/</link><pubDate>Thu, 27 Apr 2023 14:52:12 +0000</pubDate><guid>https://kiraster.github.io/posts/837aa3ce/</guid><description>&lt;p>Ubuntu服务端采用publickey方式验证客户端身份，客户端本地vscode连接至Ubuntu服务端进行python远程调试&lt;/p>
 &lt;p>&lt;strong>环境描述：&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>vscode 1.77.3&lt;/li>
@@ -10222,7 +10222,7 @@ alt="ScreenCaputure230427163329"
 &lt;li>总体来说能用，就是非root用户跑python有可能会遇到权限问题（可能需要sudo）&lt;/li>
 &lt;li>为什么要搞远程python，因为发现在windows平台跑python时不时会遇到一些第三方库安装运行时出的一些不知道时什么不知道的问题&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>电脑开关机邮件提醒</title><link>https://weeaster.github.io/posts/1e32fc6d/</link><pubDate>Sat, 22 Apr 2023 16:20:52 +0000</pubDate><guid>https://weeaster.github.io/posts/1e32fc6d/</guid><description>&lt;p>最近测试了&lt;code>python&lt;/code>脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。&lt;/p>
+&lt;/ul></description></item><item><title>电脑开关机邮件提醒</title><link>https://kiraster.github.io/posts/1e32fc6d/</link><pubDate>Sat, 22 Apr 2023 16:20:52 +0000</pubDate><guid>https://kiraster.github.io/posts/1e32fc6d/</guid><description>&lt;p>最近测试了&lt;code>python&lt;/code>脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。&lt;/p>
 &lt;p>突然想到自己的台式电脑是来电自动开机的设置，略有所思后想到把开关机事件自动发送邮件。&lt;/p>
 &lt;p>本人平生不知道注册多少个邮箱，想到163邮箱用的很少，所有就用它。登陆后发现里头有很多未读邮件，有安全提示和各种广告，都是几年前的了，估计是邮箱被盗用，全球各地的IP地址登陆和某位苹果玩家拿我邮箱修改了Apple ID……&lt;/p>
 &lt;p>一顿操作后把授权码弄出来了（1毛短信费），这个钉钉机器人就不记录操作步骤了，搜索引擎遍地都是，下面记录电脑开关机事件自动发送邮件过程。&lt;/p>
@@ -10429,7 +10429,7 @@ alt="20230422173130"
 &lt;li>
 &lt;p>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/p>
 &lt;/li>
-&lt;/ul></description></item><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://weeaster.github.io/posts/9571d5ee/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://weeaster.github.io/posts/9571d5ee/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
+&lt;/ul></description></item><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
 &lt;blockquote>
 &lt;p>在32位windows系统中无法使用本脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
 &lt;/blockquote>
@@ -10774,7 +10774,7 @@ alt="ScreenCaputure230513004510"
 &lt;/ul>
 &lt;blockquote>
 &lt;p>&lt;strong>20230513 更新了此文章内容&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>H3C自动配置(HTTP Python方式)</title><link>https://weeaster.github.io/posts/c69db7e2/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://weeaster.github.io/posts/c69db7e2/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
+&lt;/blockquote></description></item><item><title>H3C自动配置(HTTP Python方式)</title><link>https://kiraster.github.io/posts/c69db7e2/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://kiraster.github.io/posts/c69db7e2/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -11067,7 +11067,7 @@ alt="ScreenCaputure230318163152"
 &lt;li>方法操作没有问题，但是有时候去实施，甲方看到你老是在电脑面前操作，这个体现不出工作量，需要注意，两天的活你半小时不到干完了&lt;/li>
 &lt;li>修改一下脚本，还能用在没有console线的环境下应急，同样确保设备是空配置启动&lt;/li>
 &lt;li>&lt;code>device.py&lt;/code>文件里的代码有一个重启设备的定时任务，由于是做实验我设置了1分钟后重启，如果是真实环境这个延时重启建议配置时间大一点&lt;/li>
-&lt;/ol></description></item><item><title>观察OSPF虚链路和虚链路的替代办法</title><link>https://weeaster.github.io/posts/5c8077d9/</link><pubDate>Thu, 16 Mar 2023 22:45:33 +0000</pubDate><guid>https://weeaster.github.io/posts/5c8077d9/</guid><description>&lt;p>一个小实验，观察&lt;code>OSPF&lt;/code>虚链路、虚链路的替代办法。&lt;/p>
+&lt;/ol></description></item><item><title>观察OSPF虚链路和虚链路的替代办法</title><link>https://kiraster.github.io/posts/5c8077d9/</link><pubDate>Thu, 16 Mar 2023 22:45:33 +0000</pubDate><guid>https://kiraster.github.io/posts/5c8077d9/</guid><description>&lt;p>一个小实验，观察&lt;code>OSPF&lt;/code>虚链路、虚链路的替代办法。&lt;/p>
 &lt;p>&lt;strong>拓扑图：&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -11246,7 +11246,7 @@ alt="ScreenCaputure230316225301"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">i&lt;/span> &lt;span class="mf">55.55&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">55.55&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">via&lt;/span> &lt;span class="mf">58.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ASBR&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ne">Area&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">SPF&lt;/span> &lt;span class="mi">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R8&lt;/span>&lt;span class="c1">#&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://weeaster.github.io/posts/d70f2b4c/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://weeaster.github.io/posts/d70f2b4c/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
 &lt;h2 id="一个视频">一个视频
 &lt;/h2>&lt;p>&lt;strong>无解说无字幕，嫌BGM太吵可静音&lt;/strong>&lt;/p>
 &lt;div class="video-wrapper">
@@ -11456,7 +11456,7 @@ fill="currentColor">
 &lt;li>没有对其他分辨率屏幕做调整&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></description></item><item><title>配置跨域的Option C MPLS VPN（Cisco）</title><link>https://weeaster.github.io/posts/c0ba4ae2/</link><pubDate>Sat, 04 Mar 2023 01:05:34 +0000</pubDate><guid>https://weeaster.github.io/posts/c0ba4ae2/</guid><description>&lt;p>&lt;strong>Introduction&lt;/strong>&lt;/p>
+&lt;/ol></description></item><item><title>配置跨域的Option C MPLS VPN（Cisco）</title><link>https://kiraster.github.io/posts/c0ba4ae2/</link><pubDate>Sat, 04 Mar 2023 01:05:34 +0000</pubDate><guid>https://kiraster.github.io/posts/c0ba4ae2/</guid><description>&lt;p>&lt;strong>Introduction&lt;/strong>&lt;/p>
 &lt;p>This document describes how to configure and verify the Inter-AS Layer 3 Multiprotocol Label Switching (MPLS) VPN, option C feature. A sample network scenario and its configuration and outputs are shown for a better understanding.&lt;/p>
 &lt;p>本文描述的是根据思科网站一篇配置文档（https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/200523-Configuration-and-Verification-of-Layer.html#）修改搭建的一个实验。&lt;/p>
 &lt;hr>
@@ -12133,7 +12133,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>Ubuntu Server 22.04 安装 Gitlab-ce</title><link>https://weeaster.github.io/posts/ed7bc2e7/</link><pubDate>Thu, 23 Feb 2023 12:11:20 +0000</pubDate><guid>https://weeaster.github.io/posts/ed7bc2e7/</guid><description>&lt;p>本文记录&lt;code>VMware Workstation&lt;/code> 环境下&lt;code>Ubuntu server 22.04&lt;/code>系统安装&lt;code>gitlab-ce_15.8.3&lt;/code>的过程。&lt;/p>
+&lt;/ul></description></item><item><title>Ubuntu Server 22.04 安装 Gitlab-ce</title><link>https://kiraster.github.io/posts/ed7bc2e7/</link><pubDate>Thu, 23 Feb 2023 12:11:20 +0000</pubDate><guid>https://kiraster.github.io/posts/ed7bc2e7/</guid><description>&lt;p>本文记录&lt;code>VMware Workstation&lt;/code> 环境下&lt;code>Ubuntu server 22.04&lt;/code>系统安装&lt;code>gitlab-ce_15.8.3&lt;/code>的过程。&lt;/p>
 &lt;h2 id="准备环境">准备环境
 &lt;/h2>&lt;ul>
 &lt;li>一台安装好 &lt;code>ubuntu server&lt;/code>的虚拟机&lt;/li>
@@ -12509,7 +12509,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>，博客源文件回来了。&lt;/li>
 &lt;li>&lt;strong>备份很重要-备份很重要-备份很重要&lt;/strong>&lt;/li>
-&lt;/ul></description></item><item><title>Hexo环境新电脑环境重构</title><link>https://weeaster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://weeaster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
+&lt;/ul></description></item><item><title>Hexo环境新电脑环境重构</title><link>https://kiraster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://kiraster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
 &lt;p>网上也有很多文章描述如何操作，也可以去参考，我记录我的操作过程如下&lt;/p>
 &lt;h2 id="下载安装git-和-nodejs">下载安装Git 和 node.js
 &lt;/h2>&lt;ul>
@@ -12603,7 +12603,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -M main
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git@github.com:kiraster/xxxx-xx.git
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://weeaster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://weeaster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://kiraster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://kiraster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
 &lt;ul>
 &lt;li>bat启动 Hexo 本地服务&lt;/li>
 &lt;li>bat 推送至 Github&lt;/li>
@@ -12644,7 +12644,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
 &lt;li>新建后缀为 js 的脚本文件&lt;/li>
 &lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
-&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://weeaster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://weeaster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
+&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://kiraster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://kiraster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
 &lt;p>还有一种方法就是把这些文件也推送到&lt;code>Github&lt;/code>仓库，网上看到有一个&lt;code>hexo-git-backup&lt;/code>可以把源码推送到仓库分支实现备份。但是我觉得这样不妥，由于部署到&lt;code>Github&lt;/code>的静态网站仓库是公开的，把源文推送这个分支，意味着所有人都可以看到源文件的配置，包括一些个人的信息，可能有网站统计，收录的&lt;code>token&lt;/code>，这样就不太好&lt;/p>
 &lt;p>看到一篇博文（https://0skyu.cn/p/a8bd.html） 就整的非常好，其中原理过程可以自行去研究&lt;/p>
 &lt;p>我参考这篇文章记录我自己的过程和操作&lt;/p>
@@ -12781,7 +12781,7 @@ alt="ScreenCaputure221205140926"
 &lt;ul>
 &lt;li>出现没有提交新内容到缓冲区，推送等错误，按提示排查错误即可&lt;/li>
 &lt;li>看到原博客出现要切换到博客目录的这一行脚本命令，我觉得在推送博客的时候你就已经切换到博客目录，去掉这一行&lt;/li>
-&lt;/ul></description></item><item><title>Hexo推送提示输入账号密码问题</title><link>https://weeaster.github.io/posts/5826b49/</link><pubDate>Thu, 01 Dec 2022 23:57:08 +0000</pubDate><guid>https://weeaster.github.io/posts/5826b49/</guid><description>&lt;p>今天推送 &lt;code>Github Pages&lt;/code> 博客发现需要输入账号密码，网页端检查&lt;code>SSH Keys &lt;/code>和本地检查&lt;code>公钥pub&lt;/code>都没问题&lt;/p>
+&lt;/ul></description></item><item><title>Hexo推送提示输入账号密码问题</title><link>https://kiraster.github.io/posts/5826b49/</link><pubDate>Thu, 01 Dec 2022 23:57:08 +0000</pubDate><guid>https://kiraster.github.io/posts/5826b49/</guid><description>&lt;p>今天推送 &lt;code>Github Pages&lt;/code> 博客发现需要输入账号密码，网页端检查&lt;code>SSH Keys &lt;/code>和本地检查&lt;code>公钥pub&lt;/code>都没问题&lt;/p>
 &lt;p>最后通过搜索引擎助力，修改 https 方式为 git 方式，成功推送&lt;/p>
 &lt;p>&lt;strong>方法&lt;/strong>：修改博客目录下的&lt;code>_config.yml&lt;/code>文件配置（不是主题目录下的配置文件）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># Deployment
@@ -12792,7 +12792,7 @@ alt="ScreenCaputure221205140926"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 20221201发现使用https方式需要输入验证账号密码，修改为git方式后正常推送
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> repo: git@github.com:kiraster/kiraster.github.io.git
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> branch: master
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://weeaster.github.io/posts/f285fb93/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://weeaster.github.io/posts/f285fb93/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
 &lt;p>本文介绍使用&lt;code>python&lt;/code>脚本语言编写一个根据&lt;code>display&lt;/code>回显内容提取安全策略和对象组到表格的方法&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>{% blockquote %}&lt;/p>
@@ -13296,7 +13296,7 @@ alt="20221201220702"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://weeaster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://weeaster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
+&lt;/p></description></item><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://kiraster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://kiraster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
 &lt;h2 id="官网下载安装文件">官网下载安装文件
 &lt;/h2>&lt;ul>
 &lt;li>
@@ -13661,7 +13661,7 @@ alt="ScreenCaputure221126142906"
 &lt;li>Generate lightweight client upgrade package(用于放在服务端，在防火墙的&lt;code>SSL VPN&lt;/code>&amp;ndash;&amp;raquo;&lt;code>全局配置&lt;/code>&amp;ndash;&amp;raquo;&lt;code>上传客户端文件&lt;/code>位置，在浏览器输入&lt;code>SSLVPNGW:4443&lt;/code>可已打开页面，底下一行有下载的链接，就是下载这个文件)&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title>H3C 防火墙（v7）SSLVPN 实验配置</title><link>https://weeaster.github.io/posts/ed57c1e2/</link><pubDate>Sat, 26 Nov 2022 15:12:31 +0000</pubDate><guid>https://weeaster.github.io/posts/ed57c1e2/</guid><description>&lt;p>本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验&lt;/p>
+&lt;/ul></description></item><item><title>H3C 防火墙（v7）SSLVPN 实验配置</title><link>https://kiraster.github.io/posts/ed57c1e2/</link><pubDate>Sat, 26 Nov 2022 15:12:31 +0000</pubDate><guid>https://kiraster.github.io/posts/ed57c1e2/</guid><description>&lt;p>本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验&lt;/p>
 &lt;p>后一篇文章中描述 在 &lt;code>Ubuntu 22.04&lt;/code> 中安装 &lt;code>iNode&lt;/code> 客户端拨号测试&lt;/p>
 &lt;p>本来只想写 Ubuntu 安装 iNode 的，想想还是一起记录下来&lt;/p>
 &lt;p>文中的所有操作方法都可在华三官网和搜索引擎找到&lt;/p>
@@ -13943,7 +13943,7 @@ alt="ScreenCaputure221126130413"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://weeaster.github.io/posts/6d4cdc14/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://weeaster.github.io/posts/6d4cdc14/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
+&lt;/p></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://kiraster.github.io/posts/6d4cdc14/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://kiraster.github.io/posts/6d4cdc14/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
 &lt;h2 id="ssltls已弃用的tlsv10和tlsv11协议检测cve-2015-0204">SSL/TLS:已弃用的TLSv1.0和TLSv1.1协议检测(CVE-2015-0204)
 &lt;/h2>&lt;p>{% blockquote %}&lt;/p>
 &lt;p>漏洞描述：&lt;/p>
@@ -13999,7 +13999,7 @@ alt="ScreenCaputure221126130413"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> packet-filter 3456 inbound hardware-count
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul></description></item><item><title>关于组网中使用默认MSTP的问题</title><link>https://weeaster.github.io/posts/8eea84ef/</link><pubDate>Fri, 04 Nov 2022 13:28:31 +0000</pubDate><guid>https://weeaster.github.io/posts/8eea84ef/</guid><description>&lt;p>在一个项目中，或者说在一个不使用 VRRP 组网并且没有进行负载分担的核心网络中，项目初始时并没有刻意的去规划 生成树 这个协议。以华三设备为例，交换机默认开启了 MSTP 协议，所以在建设时有意或者无意的导致交换机的环路并不会使整个网络因此瘫痪.&lt;/p>
+&lt;/ul></description></item><item><title>关于组网中使用默认MSTP的问题</title><link>https://kiraster.github.io/posts/8eea84ef/</link><pubDate>Fri, 04 Nov 2022 13:28:31 +0000</pubDate><guid>https://kiraster.github.io/posts/8eea84ef/</guid><description>&lt;p>在一个项目中，或者说在一个不使用 VRRP 组网并且没有进行负载分担的核心网络中，项目初始时并没有刻意的去规划 生成树 这个协议。以华三设备为例，交换机默认开启了 MSTP 协议，所以在建设时有意或者无意的导致交换机的环路并不会使整个网络因此瘫痪.&lt;/p>
 &lt;p>关于生成树协议的工作原理，不在本文的要说明的范围内，可以自行Google或到各厂商官网查询，本文中用到的术语以华三厂商为例，可能与其他厂商叫法不一样，但是我想看这篇文的观众都知道，生成树协议不是私有协议（MSTP由IEEE制定的802.1s标准定义）。&lt;/p>
 &lt;p>写这篇文是想探讨一下一个网络中使用默认的 MSTP 可能导致的一些问题和关于生成树的调整&lt;/p>
 &lt;p>下面使用 HCL 搭建了一个经典的 核心/汇聚/接入 的三层网络，刻意构造的一个环路。&lt;/p>
@@ -14081,7 +14081,7 @@ CIST（Common and Internal Spanning Tree，公共和内部生成树）是一棵�
 &lt;/h2>&lt;ul>
 &lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>工业交换机电源线缆选择</title><link>https://weeaster.github.io/posts/cadda170/</link><pubDate>Sat, 30 Jul 2022 22:53:41 +0000</pubDate><guid>https://weeaster.github.io/posts/cadda170/</guid><description>&lt;h3 id="交流供电端至独立电源交流电源线">交流供电端至独立电源（交流电源线）
+&lt;/ul></description></item><item><title>工业交换机电源线缆选择</title><link>https://kiraster.github.io/posts/cadda170/</link><pubDate>Sat, 30 Jul 2022 22:53:41 +0000</pubDate><guid>https://kiraster.github.io/posts/cadda170/</guid><description>&lt;h3 id="交流供电端至独立电源交流电源线">交流供电端至独立电源（交流电源线）
 &lt;/h3>&lt;h4 id="标准">标准
 &lt;/h4>&lt;p>&lt;strong>通信机房用阻燃软结构电缆，标识（RVVZ（ZRVVR))&lt;/strong>&lt;/p>
 &lt;p>RVVZ电缆是采用细丝合股多层复绞形式，具有良好的柔软性，弯曲性能高，同时具有高阻燃性能。
@@ -14134,7 +14134,7 @@ $$&lt;hr>
 &lt;h4 id="线缆标识-1">线缆标识
 &lt;/h4>$$
 RVV - 2* 1.0 m{m}^2
-$$</description></item><item><title>CDN_error</title><link>https://weeaster.github.io/posts/ded21811/</link><pubDate>Wed, 08 Jun 2022 15:07:03 +0000</pubDate><guid>https://weeaster.github.io/posts/ded21811/</guid><description>&lt;p>最近发现我这个小破博客网站访问贼慢 ，FancyBox下的图片打开不是显示相册的模式而是跳转到图床网站显示，起初以为是网络不稳定，平时也不怎么关注，今天才注意到是cdn资源访问异常。&lt;/p>
+$$</description></item><item><title>CDN_error</title><link>https://kiraster.github.io/posts/ded21811/</link><pubDate>Wed, 08 Jun 2022 15:07:03 +0000</pubDate><guid>https://kiraster.github.io/posts/ded21811/</guid><description>&lt;p>最近发现我这个小破博客网站访问贼慢 ，FancyBox下的图片打开不是显示相册的模式而是跳转到图床网站显示，起初以为是网络不稳定，平时也不怎么关注，今天才注意到是cdn资源访问异常。&lt;/p>
 &lt;p>{% colorquote info %}
 Thank you all for your tests, feedback and support. I am personally sorry for the issues we had today.&lt;/p>
 &lt;p>We can consider the issue as resolved, now its a question of DNS propagation getting to everyone.&lt;/p>
@@ -14150,7 +14150,7 @@ Thank you all for your tests, feedback and support. I am personally sorry for th
 &lt;p>再看看github上的说法，GFW 巴拉巴拉……&lt;/p>
 &lt;p>通过搜索引擎发现，当然还是有解决方法能处理这种情况。&lt;/p>
 &lt;p>心情好了再弄吧，心累。&lt;/p>
-&lt;p>……&lt;/p></description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://weeaster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://weeaster.github.io/posts/2699eb47/</guid><description>&lt;ul>
+&lt;p>……&lt;/p></description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://kiraster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://kiraster.github.io/posts/2699eb47/</guid><description>&lt;ul>
 &lt;li>针对上一版的脚本进行改进&lt;/li>
 &lt;li>增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出”&lt;/li>
 &lt;li>修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入&lt;/li>
@@ -14399,7 +14399,7 @@ Thank you all for your tests, feedback and support. I am personally sorry for th
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python实现“按任意键返回”和无回显输入 by dongfuguo on 2020-03-25 : https://blog.csdn.net/dongfuguo/article/details/105103446
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python3文件路径/目录获取教程 by 诸子流 on 2020-07-09 : `https://www.cnblogs.com/lsdb/p/13265688.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- 如何让python不打印转义字符串？by 流芳 on 2020-07-07 : https://www.py.cn/jishu/jichu/19480.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://weeaster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://weeaster.github.io/posts/54cb8229/</guid><description>&lt;ul>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://kiraster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://kiraster.github.io/posts/54cb8229/</guid><description>&lt;ul>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的 display 脚本批量导出配置和一些设备状态&lt;/li>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的配置命令批量增加配置&lt;/li>
 &lt;li>主要使用的是 netmiko 这个模块里的 ConnectHandler 命令&lt;/li>
@@ -14693,7 +14693,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03 : https://555.xdai.vip/posts/26e9de3c.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>HCL_FW_IRF_LAB</title><link>https://weeaster.github.io/posts/a89a05d3/</link><pubDate>Tue, 03 May 2022 01:09:15 +0000</pubDate><guid>https://weeaster.github.io/posts/a89a05d3/</guid><description>&lt;p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>HCL_FW_IRF_LAB</title><link>https://kiraster.github.io/posts/a89a05d3/</link><pubDate>Tue, 03 May 2022 01:09:15 +0000</pubDate><guid>https://kiraster.github.io/posts/a89a05d3/</guid><description>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png">
 &lt;img src="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png"
@@ -14873,7 +14873,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>IPv6 各隧道Tunnel使用Lab</title><link>https://weeaster.github.io/posts/2e964a67/</link><pubDate>Sun, 03 Apr 2022 07:18:36 +0000</pubDate><guid>https://weeaster.github.io/posts/2e964a67/</guid><description>&lt;p>最近看了很多关于 IPv6 的内容。老早前，大概2000年前后运营商就开始研究推进发展 IPv6 网络技术了，可能是是由于某些我等不知道的原因，这个推进的进程所演化出的表象让我等普通网民没什么感觉。部分科研机构、高校、金融、IT 大厂已经在使用了，一个比较大的使用群体也就是家用部分普及的不大开（我猜的，没有依据）。&lt;/p>
+&lt;/ul></description></item><item><title>IPv6 各隧道Tunnel使用Lab</title><link>https://kiraster.github.io/posts/2e964a67/</link><pubDate>Sun, 03 Apr 2022 07:18:36 +0000</pubDate><guid>https://kiraster.github.io/posts/2e964a67/</guid><description>&lt;p>最近看了很多关于 IPv6 的内容。老早前，大概2000年前后运营商就开始研究推进发展 IPv6 网络技术了，可能是是由于某些我等不知道的原因，这个推进的进程所演化出的表象让我等普通网民没什么感觉。部分科研机构、高校、金融、IT 大厂已经在使用了，一个比较大的使用群体也就是家用部分普及的不大开（我猜的，没有依据）。&lt;/p>
 &lt;p>IPv6 相对于 IPv4 有种种的优势，我最有印象的几个是没有广播这个概念、“真 万物互联”、良好的包扩展结构，相对于 IPv4 不存在把什么什么封装进 IPv4 头部后面的字节……巴拉巴拉&lt;/p>
 &lt;p>既然是实验，先上图：&lt;/p>
 &lt;p>
@@ -15886,7 +15886,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>BGP综合实验拓扑</title><link>https://weeaster.github.io/posts/48f55792/</link><pubDate>Fri, 25 Feb 2022 01:32:49 +0000</pubDate><guid>https://weeaster.github.io/posts/48f55792/</guid><description>&lt;p>在B站看了一个UP主（&lt;a class="link" href="https://space.bilibili.com/455975406" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>BGP综合实验拓扑</title><link>https://kiraster.github.io/posts/48f55792/</link><pubDate>Fri, 25 Feb 2022 01:32:49 +0000</pubDate><guid>https://kiraster.github.io/posts/48f55792/</guid><description>&lt;p>在B站看了一个UP主（&lt;a class="link" href="https://space.bilibili.com/455975406" target="_blank" rel="noopener"
 >155和150
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -16244,7 +16244,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>来自非网管交换机的教训</title><link>https://weeaster.github.io/posts/e906be86/</link><pubDate>Mon, 27 Dec 2021 16:33:28 +0000</pubDate><guid>https://weeaster.github.io/posts/e906be86/</guid><description>&lt;p>来自 &lt;a class="link" href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>来自非网管交换机的教训</title><link>https://kiraster.github.io/posts/e906be86/</link><pubDate>Mon, 27 Dec 2021 16:33:28 +0000</pubDate><guid>https://kiraster.github.io/posts/e906be86/</guid><description>&lt;p>来自 &lt;a class="link" href="https://zh.wikipedia.org/wiki/%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener"
 >以太网帧格式
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -16302,7 +16302,7 @@ loading="lazy"
 &lt;/h2>&lt;ul>
 &lt;li>文中可能有些内容术语表述的不规范，请见谅。&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>几种重分发方式可能带来的问题和处理</title><link>https://weeaster.github.io/posts/1b6d0fec/</link><pubDate>Sun, 28 Nov 2021 15:10:27 +0000</pubDate><guid>https://weeaster.github.io/posts/1b6d0fec/</guid><description>&lt;p>最近翻看 《CCNP ROUTE(642-902)学习指南 》，没错就是 2015 年之前 CCNP 改版前的那本，现在最新的认证考试已不是这个编号和课程了。诶，不聊这些，这不重要。&lt;/p>
+&lt;/ul></description></item><item><title>几种重分发方式可能带来的问题和处理</title><link>https://kiraster.github.io/posts/1b6d0fec/</link><pubDate>Sun, 28 Nov 2021 15:10:27 +0000</pubDate><guid>https://kiraster.github.io/posts/1b6d0fec/</guid><description>&lt;p>最近翻看 《CCNP ROUTE(642-902)学习指南 》，没错就是 2015 年之前 CCNP 改版前的那本，现在最新的认证考试已不是这个编号和课程了。诶，不聊这些，这不重要。&lt;/p>
 &lt;p>现在把时间线拉回当年那个技术发展的时候，你要是说技术过时了，不好意思今年我还在某现网中看到设备运行 RIPv2 和 OSPF 两种协议的重分发。这也不重要。&lt;/p>
 &lt;p>本文权当自己学习和回忆。&lt;/p>
 &lt;h2 id="part-1">Part 1
@@ -16532,7 +16532,7 @@ loading="lazy"
 &lt;li>当然合理的规划网络也很重要。必要的进行路由汇总，设置 passive-interface ……，使设备路由表尽可能的精简而又能高效的完成转发工作，这是很好的思路。&lt;/li>
 &lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>把组装机主板塞到品牌机机箱</title><link>https://weeaster.github.io/posts/1f544ac3/</link><pubDate>Tue, 23 Nov 2021 18:35:54 +0000</pubDate><guid>https://weeaster.github.io/posts/1f544ac3/</guid><description>&lt;p>前段时间我的台式机电源嗝屁了，不得不掏出吃灰近四年的旧电源来顶一顶，祸不单行，这旧电源也出毛病，目测是供电不足，挂载了三块硬盘，开个 VMware 虚拟机做实验，老是自动频繁的弹出一块机械硬盘，望了望旁边还有一个联想品牌机的机箱（带电源，最大功率只有 280W ），想想要不给它个机会，抱着试一试的想法拆下来插上电，居然能带的动（其实我查过整机功率了，是带的动，显卡用亮机卡了不解释），所以进行了一场“岁土转生”。&lt;/p>
+&lt;/ul></description></item><item><title>把组装机主板塞到品牌机机箱</title><link>https://kiraster.github.io/posts/1f544ac3/</link><pubDate>Tue, 23 Nov 2021 18:35:54 +0000</pubDate><guid>https://kiraster.github.io/posts/1f544ac3/</guid><description>&lt;p>前段时间我的台式机电源嗝屁了，不得不掏出吃灰近四年的旧电源来顶一顶，祸不单行，这旧电源也出毛病，目测是供电不足，挂载了三块硬盘，开个 VMware 虚拟机做实验，老是自动频繁的弹出一块机械硬盘，望了望旁边还有一个联想品牌机的机箱（带电源，最大功率只有 280W ），想想要不给它个机会，抱着试一试的想法拆下来插上电，居然能带的动（其实我查过整机功率了，是带的动，显卡用亮机卡了不解释），所以进行了一场“岁土转生”。&lt;/p>
 &lt;p>首先感谢的是，品牌机没有对电源插口做特殊化，主板和 CPU 供电接口通用，看了看电源标签上的参数也通用。唯一的问题是主板连接前面板跳线的插口，联想搞了自己个标准。&lt;/p>
 &lt;p>图：电源、重启、指示灯跳线的插头&lt;/p>
 &lt;p>
@@ -16645,7 +16645,7 @@ loading="lazy"
 &lt;/a>
 &lt;/div>
 &lt;/p>
-&lt;p>终于折腾完了，把组装机的主板塞进了品牌机的机箱，目前前面板各项功能正常。由于使用了这个 280 W 的电源，这就彻底使我和大型网游“绝缘”了，不过也有好些年不抡游戏了。值得说一句，联想10年前的机箱用料十足，机箱的设计也挺好，给个好评她。这么一折腾才发现处处是学问，不能轻视电脑组装拧螺丝。&lt;/p></description></item><item><title>No.004 Simple Case</title><link>https://weeaster.github.io/posts/1fa3e02b/</link><pubDate>Thu, 18 Nov 2021 13:10:41 +0000</pubDate><guid>https://weeaster.github.io/posts/1fa3e02b/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmgc.html" target="_blank" rel="noopener"
+&lt;p>终于折腾完了，把组装机的主板塞进了品牌机的机箱，目前前面板各项功能正常。由于使用了这个 280 W 的电源，这就彻底使我和大型网游“绝缘”了，不过也有好些年不抡游戏了。值得说一句，联想10年前的机箱用料十足，机箱的设计也挺好，给个好评她。这么一折腾才发现处处是学问，不能轻视电脑组装拧螺丝。&lt;/p></description></item><item><title>No.004 Simple Case</title><link>https://kiraster.github.io/posts/1fa3e02b/</link><pubDate>Thu, 18 Nov 2021 13:10:41 +0000</pubDate><guid>https://kiraster.github.io/posts/1fa3e02b/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmgc.html" target="_blank" rel="noopener"
 >【有点儿意思系列 02】哎哟喂停不下来了
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -16808,7 +16808,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>No.003 Simple Case</title><link>https://weeaster.github.io/posts/62d0e673/</link><pubDate>Thu, 11 Nov 2021 13:44:43 +0000</pubDate><guid>https://weeaster.github.io/posts/62d0e673/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>No.003 Simple Case</title><link>https://kiraster.github.io/posts/62d0e673/</link><pubDate>Thu, 11 Nov 2021 13:44:43 +0000</pubDate><guid>https://kiraster.github.io/posts/62d0e673/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
 >【有点儿意思系列 04】哎哟喂停不下来了
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -17307,7 +17307,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>No.002 Simple Case</title><link>https://weeaster.github.io/posts/2da7a7a9/</link><pubDate>Wed, 10 Nov 2021 11:37:50 +0000</pubDate><guid>https://weeaster.github.io/posts/2da7a7a9/</guid><description>&lt;p>来自红茶三杯的原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>No.002 Simple Case</title><link>https://kiraster.github.io/posts/2da7a7a9/</link><pubDate>Wed, 10 Nov 2021 11:37:50 +0000</pubDate><guid>https://kiraster.github.io/posts/2da7a7a9/</guid><description>&lt;p>来自红茶三杯的原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
 >【有点儿意思系列 04】哎哟喂停不下来了
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -17849,7 +17849,7 @@ fill="currentColor">
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
 &lt;li>下一篇文更有意思^_^，To be continued.&lt;/li>
-&lt;/ul></description></item><item><title>No.001 Simple Case</title><link>https://weeaster.github.io/posts/8ac5ac4a/</link><pubDate>Sun, 07 Nov 2021 00:31:11 +0000</pubDate><guid>https://weeaster.github.io/posts/8ac5ac4a/</guid><description>&lt;p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>No.001 Simple Case</title><link>https://kiraster.github.io/posts/8ac5ac4a/</link><pubDate>Sun, 07 Nov 2021 00:31:11 +0000</pubDate><guid>https://kiraster.github.io/posts/8ac5ac4a/</guid><description>&lt;p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html" target="_blank" rel="noopener"
 >【有点儿意思系列 06】一个看起来简单的案例
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -18098,7 +18098,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>PNETLab试用</title><link>https://weeaster.github.io/posts/13f1a9a7/</link><pubDate>Fri, 05 Nov 2021 18:43:23 +0000</pubDate><guid>https://weeaster.github.io/posts/13f1a9a7/</guid><description>&lt;p>&lt;strong>PNETLab&lt;/strong> &lt;strong>(&lt;em>Packet Network Emulator Tool Lab&lt;/em>&lt;/strong>)is a platform that allows you to download and share labs with the community. 这句话摘抄自&lt;a class="link" href="https://pnetlab.com/pages/documentation" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>PNETLab试用</title><link>https://kiraster.github.io/posts/13f1a9a7/</link><pubDate>Fri, 05 Nov 2021 18:43:23 +0000</pubDate><guid>https://kiraster.github.io/posts/13f1a9a7/</guid><description>&lt;p>&lt;strong>PNETLab&lt;/strong> &lt;strong>(&lt;em>Packet Network Emulator Tool Lab&lt;/em>&lt;/strong>)is a platform that allows you to download and share labs with the community. 这句话摘抄自&lt;a class="link" href="https://pnetlab.com/pages/documentation" target="_blank" rel="noopener"
 >官网
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -18201,7 +18201,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>TI10</title><link>https://weeaster.github.io/posts/fae4c6b8/</link><pubDate>Mon, 18 Oct 2021 15:44:23 +0000</pubDate><guid>https://weeaster.github.io/posts/fae4c6b8/</guid><description>&lt;p>Ti10 结束了，LGD 再次倒在了总决赛&lt;/p>
+&lt;/p></description></item><item><title>TI10</title><link>https://kiraster.github.io/posts/fae4c6b8/</link><pubDate>Mon, 18 Oct 2021 15:44:23 +0000</pubDate><guid>https://kiraster.github.io/posts/fae4c6b8/</guid><description>&lt;p>Ti10 结束了，LGD 再次倒在了总决赛&lt;/p>
 &lt;p>相信包括我在内的许多人都坚信今年的总冠军是 LGD，但是……&lt;/p>
 &lt;p>回忆起之前，一到周末约上两条友肝这游戏到天亮的时光，就很快乐&lt;/p>
 &lt;p>我已经基本不玩这游戏，因为这游戏太耗费时间了，成了云玩家&lt;/p>
@@ -18211,7 +18211,7 @@ loading="lazy"
 &lt;p>巧了，独联体区的玩家也是这么这么认为的&lt;/p>
 &lt;p>最终该区的战队在第一次夺冠后隔了十年才再次夺冠&lt;/p>
 &lt;p>……&lt;/p>
-&lt;p>只希望有勇敢的追梦人继续追逐他们的梦想&lt;/p></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://weeaster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://weeaster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
+&lt;p>只希望有勇敢的追梦人继续追逐他们的梦想&lt;/p></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://kiraster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://kiraster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
 &lt;/h2>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg">
@@ -18383,7 +18383,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>H3C_线路测试脚本</title><link>https://weeaster.github.io/posts/60e83b3d/</link><pubDate>Sat, 16 Oct 2021 01:17:37 +0000</pubDate><guid>https://weeaster.github.io/posts/60e83b3d/</guid><description>&lt;p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。&lt;/p>
+&lt;/p></description></item><item><title>H3C_线路测试脚本</title><link>https://kiraster.github.io/posts/60e83b3d/</link><pubDate>Sat, 16 Oct 2021 01:17:37 +0000</pubDate><guid>https://kiraster.github.io/posts/60e83b3d/</guid><description>&lt;p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。&lt;/p>
 &lt;h2 id="操作">操作
 &lt;/h2>&lt;h3 id="记录会话日志log-session">记录会话日志（log session）
 &lt;/h3>&lt;ul>
@@ -18589,7 +18589,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>我的一些blog常用小操作</title><link>https://weeaster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://weeaster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
+&lt;/p></description></item><item><title>我的一些blog常用小操作</title><link>https://kiraster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://kiraster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
 &lt;h3 id="bat启动-hexo-本地服务">bat启动 hexo 本地服务
 &lt;/h3>&lt;p>前提条件：已完成博客搭建。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
@@ -18659,7 +18659,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">crc32&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="nx">dec&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="c1">//xx.github.io/posts/123456789a.html
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item><item><title>关于新主题博客</title><link>https://weeaster.github.io/posts/f2af2fdc/</link><pubDate>Tue, 12 Oct 2021 01:39:36 +0000</pubDate><guid>https://weeaster.github.io/posts/f2af2fdc/</guid><description>&lt;p>我为什么要启用一个新 hexo 主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到 GitHub 呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的 To-Do List，我真是自己玩自己。&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item><item><title>关于新主题博客</title><link>https://kiraster.github.io/posts/f2af2fdc/</link><pubDate>Tue, 12 Oct 2021 01:39:36 +0000</pubDate><guid>https://kiraster.github.io/posts/f2af2fdc/</guid><description>&lt;p>我为什么要启用一个新 hexo 主题呢，没有什么特别的原因，单纯的想玩玩。而为什么要迁移到 GitHub 呢，这就故事很多了，下文详说。换主题换站点搞了好几天，对于不是专业搞代码的我确实折腾，不过乐在其中。看着浏览器历史里拉不到底的搜索记录和自己提的 To-Do List，我真是自己玩自己。&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/12/wAtgkVYCODvu387.jpg">
@@ -18734,7 +18734,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>大梦初醒 荒唐了一生</title><link>https://weeaster.github.io/posts/2703fb4a/</link><pubDate>Fri, 08 Oct 2021 00:24:02 +0000</pubDate><guid>https://weeaster.github.io/posts/2703fb4a/</guid><description>&lt;p>&lt;em>&lt;strong>“大梦初醒 荒唐了一生” &amp;ndash;马頔&lt;/strong>&lt;/em>&lt;/p>
+&lt;/p></description></item><item><title>大梦初醒 荒唐了一生</title><link>https://kiraster.github.io/posts/2703fb4a/</link><pubDate>Fri, 08 Oct 2021 00:24:02 +0000</pubDate><guid>https://kiraster.github.io/posts/2703fb4a/</guid><description>&lt;p>&lt;em>&lt;strong>“大梦初醒 荒唐了一生” &amp;ndash;马頔&lt;/strong>&lt;/em>&lt;/p>
 &lt;p>刚开始听到这首歌是一个混实习的关系户女孩，QQ 资料界面一直挂着这首歌&lt;/p>
 &lt;p>当时只是觉得很平的一首歌，跟《董小姐》《成都》一个路数&lt;/p>
 &lt;p>现在再听和看视频里原唱在舞台上一人一吉他的表演，才发现我自己大意了&lt;/p>
@@ -18748,7 +18748,7 @@ loading="lazy"
 &lt;p>你要问我什么原因，同上&lt;/p>
 &lt;p>不解释，我自己心里有一些抽象的名词&lt;/p>
 &lt;p>原则、底线、信仰、情感……&lt;/p>
-&lt;p>……&lt;/p></description></item><item><title>H3C_S5500-52C-EI升级步骤</title><link>https://weeaster.github.io/posts/e765d177/</link><pubDate>Tue, 14 Sep 2021 11:03:03 +0000</pubDate><guid>https://weeaster.github.io/posts/e765d177/</guid><description>&lt;p>&lt;strong>准备工作&lt;/strong>&lt;/p>
+&lt;p>……&lt;/p></description></item><item><title>H3C_S5500-52C-EI升级步骤</title><link>https://kiraster.github.io/posts/e765d177/</link><pubDate>Tue, 14 Sep 2021 11:03:03 +0000</pubDate><guid>https://kiraster.github.io/posts/e765d177/</guid><description>&lt;p>&lt;strong>准备工作&lt;/strong>&lt;/p>
 &lt;p>下载升级所需要的两个文件：&lt;/p>
 &lt;p>&lt;strong>S5500EI-BTM-721.btm&lt;/strong>（新版本 Bootrom 程序）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">名称: S5500EI-BTM-721.btm
@@ -18945,7 +18945,7 @@ loading="lazy"
 &lt;li>加载主机软件必须通过 reboot 命令重起交换机后才能使加载成功。&lt;/li>
 &lt;li>如果 Flash 空间不够，可以先删除 Flash 中的无用文件，再进行软件的下载。&lt;/li>
 &lt;li>在加载过程中不可断电。&lt;/li>
-&lt;/ul></description></item><item><title>HCL_VPN不同实例互通实验</title><link>https://weeaster.github.io/posts/eb7e5d69/</link><pubDate>Tue, 27 Apr 2021 11:35:32 +0000</pubDate><guid>https://weeaster.github.io/posts/eb7e5d69/</guid><description>&lt;p>&lt;strong>实验拓扑和需求&lt;/strong>&lt;/p>
+&lt;/ul></description></item><item><title>HCL_VPN不同实例互通实验</title><link>https://kiraster.github.io/posts/eb7e5d69/</link><pubDate>Tue, 27 Apr 2021 11:35:32 +0000</pubDate><guid>https://kiraster.github.io/posts/eb7e5d69/</guid><description>&lt;p>&lt;strong>实验拓扑和需求&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/04/27/Zf26CX97SRQzrvu.jpg">
@@ -19177,7 +19177,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 5 deny ip source 192.168.40.0 0.0.0.255 destination 172.16.10.0 0.0.0.255
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> rule 10 permit ip
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://weeaster.github.io/posts/80e04e00/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://weeaster.github.io/posts/80e04e00/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://kiraster.github.io/posts/80e04e00/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://kiraster.github.io/posts/80e04e00/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
 &lt;h2 id="如何操作">&lt;strong>如何操作&lt;/strong>
 &lt;/h2>&lt;ul>
 &lt;li>&lt;strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）&lt;/strong>&lt;/li>
@@ -19288,7 +19288,7 @@ loading="lazy"
 &lt;li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等&lt;/li>
 &lt;li>根据实际需要可以修改脚本中的内容提取更多信息&lt;/li>
 &lt;li>生成的文件为 word 或 excel 等都是可以实现的&lt;/li>
-&lt;/ul></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://weeaster.github.io/posts/21b002a6/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://weeaster.github.io/posts/21b002a6/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
+&lt;/ul></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://kiraster.github.io/posts/21b002a6/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://kiraster.github.io/posts/21b002a6/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
 &lt;/h4>&lt;ul>
 &lt;li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击 “Script” &amp;ndash;&amp;gt; &amp;ldquo;Run&amp;rdquo; 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）&lt;/li>
 &lt;li>可以根据你的实际需要修改 “Send” 后面的内容&lt;/li>
@@ -19319,7 +19319,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;save force&amp;#34; &amp;amp; chr(13)
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crt.Screen.Send &amp;#34;save force&amp;#34; &amp;amp; chr(13)
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">End Sub
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>我的母亲</title><link>https://weeaster.github.io/posts/221a99d/</link><pubDate>Fri, 12 Feb 2021 09:19:43 +0000</pubDate><guid>https://weeaster.github.io/posts/221a99d/</guid><description>&lt;p>我的母亲，一个普通的平凡的中年妇女&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>我的母亲</title><link>https://kiraster.github.io/posts/221a99d/</link><pubDate>Fri, 12 Feb 2021 09:19:43 +0000</pubDate><guid>https://kiraster.github.io/posts/221a99d/</guid><description>&lt;p>我的母亲，一个普通的平凡的中年妇女&lt;/p>
 &lt;p>可能是由于家庭环境的缘故使得她文化水平不高&lt;/p>
 &lt;p>她很唠叨，做事没什么主见，总是把自己弄的很忙的样子，总喜欢这扫扫那洗洗&lt;/p>
 &lt;p>跟我说话总是用疑问句的方式，整个家庭存在这种现象，我除外&lt;/p>
@@ -19327,7 +19327,7 @@ loading="lazy"
 &lt;p>闲暇之余在家总是喜欢拿着手机看电视剧，说到手机，教她用智能手机对我来说简直是世纪难题，至今她能会那么一点使用的功能是电话、万能钥匙连wifi、视频软件看剧和手机充电，除此之外我已经放弃了，她也放弃了&lt;/p>
 &lt;p>一天，她对我说烟头烟灰要丢烟灰缸不要直接丢镂空不套塑料袋的垃圾筐，转身就把桌上烟灰缸往垃圾筐一倒，垃圾筐没套塑料袋&lt;/p>
 &lt;p>她还喜欢“狡辩”，这是针对我爸的&lt;/p>
-&lt;p>……&lt;/p></description></item><item><title>HCL_路由器双出口策略配置实验</title><link>https://weeaster.github.io/posts/4e82271c/</link><pubDate>Mon, 01 Feb 2021 14:22:41 +0000</pubDate><guid>https://weeaster.github.io/posts/4e82271c/</guid><description>&lt;p>
+&lt;p>……&lt;/p></description></item><item><title>HCL_路由器双出口策略配置实验</title><link>https://kiraster.github.io/posts/4e82271c/</link><pubDate>Mon, 01 Feb 2021 14:22:41 +0000</pubDate><guid>https://kiraster.github.io/posts/4e82271c/</guid><description>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png">
 &lt;img src="https://i.loli.net/2021/02/01/YN6r5C1xyvfmETd.png"
@@ -19677,7 +19677,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">return&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Router&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>简明现代汉语语法_学习</title><link>https://weeaster.github.io/posts/51f223b9/</link><pubDate>Fri, 22 Jan 2021 17:26:57 +0000</pubDate><guid>https://weeaster.github.io/posts/51f223b9/</guid><description>&lt;p>&lt;strong>作者：重庆市江津中学校 王征老师&lt;/strong>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>简明现代汉语语法_学习</title><link>https://kiraster.github.io/posts/51f223b9/</link><pubDate>Fri, 22 Jan 2021 17:26:57 +0000</pubDate><guid>https://kiraster.github.io/posts/51f223b9/</guid><description>&lt;p>&lt;strong>作者：重庆市江津中学校 王征老师&lt;/strong>&lt;/p>
 &lt;h2 id="字词词性成分之间的关系">字词、词性、成分之间的关系
 &lt;/h2>&lt;p>一般规律：&lt;/p>
 &lt;ul>
@@ -19763,7 +19763,7 @@ loading="lazy"
 代替人或事物：你、你们、我、我们、他、它、她、咱们、自己
 具有指示作用：那、这、这里、那里、这里、这样、那么、每、各
 表示疑问：哪里、什么、谁、怎样、怎么样、哪、哪呢&lt;/p>
-&lt;/blockquote></description></item><item><title>HCL_一个小实验的思路</title><link>https://weeaster.github.io/posts/c7ac5477/</link><pubDate>Thu, 21 Jan 2021 08:31:24 +0000</pubDate><guid>https://weeaster.github.io/posts/c7ac5477/</guid><description>&lt;p>&lt;strong>实验说明：&lt;/strong>&lt;/p>
+&lt;/blockquote></description></item><item><title>HCL_一个小实验的思路</title><link>https://kiraster.github.io/posts/c7ac5477/</link><pubDate>Thu, 21 Jan 2021 08:31:24 +0000</pubDate><guid>https://kiraster.github.io/posts/c7ac5477/</guid><description>&lt;p>&lt;strong>实验说明：&lt;/strong>&lt;/p>
 &lt;p>&lt;strong>设备互联线路，IP 地址、路由协议、可靠性等配置自定义&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -20025,7 +20025,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1.2.3.4/32 O_INTRA 10 0 0.0.0.0 Loop0
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">101.1.1.4/30 O_INTRA 10 1 0.0.0.0 GE0/1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">201.1.1.4/30 O_INTRA 10 1 0.0.0.0 GE0/2
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>九十年代</title><link>https://weeaster.github.io/posts/8847b633/</link><pubDate>Tue, 12 Jan 2021 23:02:08 +0000</pubDate><guid>https://weeaster.github.io/posts/8847b633/</guid><description>&lt;p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>九十年代</title><link>https://kiraster.github.io/posts/8847b633/</link><pubDate>Tue, 12 Jan 2021 23:02:08 +0000</pubDate><guid>https://kiraster.github.io/posts/8847b633/</guid><description>&lt;p>在我的印象中，上个世纪九十年代对我来说是一个特别的年代，也包括我的出世&lt;/p>
 &lt;p>那时候人事物，我稍微回忆一下&lt;/p>
 &lt;p>老爸买的黑白电视机，带有车牌号的自行车……&lt;/p>
 &lt;p>第一次骑自行车，下车的场景是等速度降到几乎为零，自行车向右方倒，岔开右腿撑着&lt;/p>
@@ -20040,7 +20040,7 @@ loading="lazy"
 &lt;p>那时候班主任有一次中午去我家家访吃了个闭门羹，这是她的说法，我不记得了&lt;/p>
 &lt;p>小学那时候，校园里有一个篮球场，两张乒乓球台，还有一个爬竿的地方，就这么多。小学一到三年级的教室是几间大瓦房，四到六年级是那栋走廊外面用红色油漆写着令人分裂的“团结、紧张、严肃、活泼”大字的楼，至少我后面是这么认为的，这几个词连在一起念简直了&lt;/p>
 &lt;p>现在回想起来，老感觉有些记忆丢失了，可能是那时候脑子不记事，但是奇怪的是，那时候去走亲戚或者走去哪里的路走过一次，下次就记得怎么去怎么回&lt;/p>
-&lt;p>……&lt;/p></description></item><item><title>我理解的费曼学习方法</title><link>https://weeaster.github.io/posts/237b6272/</link><pubDate>Sat, 09 Jan 2021 17:23:13 +0000</pubDate><guid>https://weeaster.github.io/posts/237b6272/</guid><description>&lt;p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 &lt;a class="link" href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95" target="_blank" rel="noopener"
+&lt;p>……&lt;/p></description></item><item><title>我理解的费曼学习方法</title><link>https://kiraster.github.io/posts/237b6272/</link><pubDate>Sat, 09 Jan 2021 17:23:13 +0000</pubDate><guid>https://kiraster.github.io/posts/237b6272/</guid><description>&lt;p>费曼学习法是美籍犹太人 Richard Feynman 提出的一种学习知识的方法，具体介绍可以访问 &lt;a class="link" href="https://wiki.mbalib.com/wiki/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95" target="_blank" rel="noopener"
 >Wiki费曼学习法
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -20073,7 +20073,7 @@ fill="currentColor">
 &lt;/h2>&lt;ul>
 &lt;li>对于费曼学习法，是不是都适用各种学习场景呢，我觉得不是，对于有一个量化标准的为前提的检验，比如说背诵，默写……&lt;/li>
 &lt;li>我觉得此法，需要花费比授课学习更多的时间，因为你不知道你要学习的这个知识点或概念的知识深度、宽度、边界，不知道理解到什么程度就可以终结&lt;/li>
-&lt;/ul></description></item><item><title>ENSP_防火墙初始密码问题</title><link>https://weeaster.github.io/posts/ab67d7a4/</link><pubDate>Fri, 08 Jan 2021 01:08:52 +0000</pubDate><guid>https://weeaster.github.io/posts/ab67d7a4/</guid><description>&lt;p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。&lt;/p>
+&lt;/ul></description></item><item><title>ENSP_防火墙初始密码问题</title><link>https://kiraster.github.io/posts/ab67d7a4/</link><pubDate>Fri, 08 Jan 2021 01:08:52 +0000</pubDate><guid>https://kiraster.github.io/posts/ab67d7a4/</guid><description>&lt;p>在进行 ENSP 模拟器防火墙实验的发现，首次启动防火墙设备后都需要更改初始密码才能进入设备配置，着实操蛋。后面想了个办法，在启动设备前导入配置文件，设备启动后就可以使用导入配置中配置的密码进行登陆，当然还可以配置其他你想加的配置，实现与你要桥接的网卡互通。&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/01/08/bqrt8MkndcBgSuV.jpg">
@@ -20195,7 +20195,7 @@ loading="lazy"
 &lt;/a>
 &lt;/div>
 &lt;/p>
-&lt;p>​&lt;/p></description></item><item><title>关于开始扯谈</title><link>https://weeaster.github.io/posts/49183d2a/</link><pubDate>Wed, 06 Jan 2021 05:31:59 +0000</pubDate><guid>https://weeaster.github.io/posts/49183d2a/</guid><description>&lt;p>字面意思&lt;/p>
+&lt;p>​&lt;/p></description></item><item><title>关于开始扯谈</title><link>https://kiraster.github.io/posts/49183d2a/</link><pubDate>Wed, 06 Jan 2021 05:31:59 +0000</pubDate><guid>https://kiraster.github.io/posts/49183d2a/</guid><description>&lt;p>字面意思&lt;/p>
 &lt;p>肚里墨水浅，蹦不出几个字&lt;/p>
 &lt;p>晚上躺床，可能由于早已被破坏了的生物钟的影响&lt;/p>
 &lt;p>时常辗转反侧，脑里思绪万千&lt;/p>
@@ -20208,10 +20208,10 @@ loading="lazy"
 &lt;p>强行把自己深夜的思绪带入场景中&lt;/p>
 &lt;p>也会听那个男人的语录，轻微的嘴角上扬和感悟中入睡&lt;/p>
 &lt;p>眼睛一睁已是第二天的差不多日上三竿的时间&lt;/p>
-&lt;p>洗洗醒醒坐坐，一天开始了&lt;/p></description></item><item><title>archive_test</title><link>https://weeaster.github.io/posts/515317e3/</link><pubDate>Mon, 26 Oct 2020 12:45:43 +0000</pubDate><guid>https://weeaster.github.io/posts/515317e3/</guid><description>&lt;p>Test Page&lt;/p>
+&lt;p>洗洗醒醒坐坐，一天开始了&lt;/p></description></item><item><title>archive_test</title><link>https://kiraster.github.io/posts/515317e3/</link><pubDate>Mon, 26 Oct 2020 12:45:43 +0000</pubDate><guid>https://kiraster.github.io/posts/515317e3/</guid><description>&lt;p>Test Page&lt;/p>
 &lt;ul>
 &lt;li>This is a test page .&lt;/li>
-&lt;/ul></description></item><item><title>Archives</title><link>https://weeaster.github.io/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://weeaster.github.io/archives/</guid><description/></item><item><title>About</title><link>https://weeaster.github.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://weeaster.github.io/about/</guid><description>&lt;style>
+&lt;/ul></description></item><item><title>Archives</title><link>https://kiraster.github.io/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/archives/</guid><description/></item><item><title>About</title><link>https://kiraster.github.io/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/about/</guid><description>&lt;style>
 .image-container {
 text-align: center; /* 可选：居中对齐图片 */
 }
@@ -20252,7 +20252,7 @@ Dr.Strange：Study and practice, years of it.
 &lt;/svg>
 kir_aster@foxmail.com
 &lt;/a>
-&lt;/li></description></item><item><title>Gallery</title><link>https://weeaster.github.io/gallery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://weeaster.github.io/gallery/</guid><description>
+&lt;/li></description></item><item><title>Gallery</title><link>https://kiraster.github.io/gallery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/gallery/</guid><description>
 &lt;div class="notice notice-note" >
 &lt;div class="notice-title">&lt;svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512" fill="hsl(200, 65%, 65%)">&lt;path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zm-248 50a46 46 0 100 92 46 46 0 000-92zm-44-165l8 136c0 6 5 11 12 11h48c7 0 12-5 12-11l8-136c0-7-5-13-12-13h-64c-7 0-12 6-12 13z"/>&lt;/svg>&lt;/div>&lt;p>相册内容以外部链接方式打开&lt;/p>&lt;/div>
-&lt;hr></description></item><item><title>Search</title><link>https://weeaster.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://weeaster.github.io/search/</guid><description/></item></channel></rss>
+&lt;hr></description></item><item><title>Search</title><link>https://kiraster.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/search/</guid><description/></item></channel></rss>

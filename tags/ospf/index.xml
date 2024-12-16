@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OSPF on Kir's Blog</title><link>https://weeaster.github.io/tags/ospf/</link><description>Recent content in OSPF on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 01 Feb 2024 16:57:52 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/ospf/index.xml" rel="self" type="application/rss+xml"/><item><title>MPLS排错练习题-故障排除</title><link>https://weeaster.github.io/posts/464b24f1/</link><pubDate>Thu, 01 Feb 2024 16:57:52 +0000</pubDate><guid>https://weeaster.github.io/posts/464b24f1/</guid><description>&lt;p>在51cto博客https://blog.51cto.com/dashu666/2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OSPF on Kir's Blog</title><link>https://kiraster.github.io/tags/ospf/</link><description>Recent content in OSPF on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 01 Feb 2024 16:57:52 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/ospf/index.xml" rel="self" type="application/rss+xml"/><item><title>MPLS排错练习题-故障排除</title><link>https://kiraster.github.io/posts/464b24f1/</link><pubDate>Thu, 01 Feb 2024 16:57:52 +0000</pubDate><guid>https://kiraster.github.io/posts/464b24f1/</guid><description>&lt;p>在51cto博客https://blog.51cto.com/dashu666/2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩&lt;/p>
 &lt;p>MPLS 环境如下图，现由于前面负责实施的工程师离职，留下烂尾工程，请按下面截图找出目前配置存在的错误并修复，要求项目部署完毕之后所有检查命令输出要和下面截图一致。
 要求R7 和R8两个站点通信必须经过R6的全局处理、要求R6 的 vrfA 和 R7、R8能够直接通信&lt;/p>
 &lt;p>同时要求交一份排除故障的文档。
@@ -1508,7 +1508,7 @@ alt="ScreenCaputure240201002259"
 &lt;li>其实早几年我是玩过这个排错拓扑的，奈何脑子不够用学过等于又还回去了&lt;/li>
 &lt;li>不知道大家对这种学习过的技术，而工作中又接触不到这些项目，技术的知识点淡忘如何看待&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>观察OSPF虚链路和虚链路的替代办法</title><link>https://weeaster.github.io/posts/5c8077d9/</link><pubDate>Thu, 16 Mar 2023 22:45:33 +0000</pubDate><guid>https://weeaster.github.io/posts/5c8077d9/</guid><description>&lt;p>一个小实验，观察&lt;code>OSPF&lt;/code>虚链路、虚链路的替代办法。&lt;/p>
+&lt;/ul></description></item><item><title>观察OSPF虚链路和虚链路的替代办法</title><link>https://kiraster.github.io/posts/5c8077d9/</link><pubDate>Thu, 16 Mar 2023 22:45:33 +0000</pubDate><guid>https://kiraster.github.io/posts/5c8077d9/</guid><description>&lt;p>一个小实验，观察&lt;code>OSPF&lt;/code>虚链路、虚链路的替代办法。&lt;/p>
 &lt;p>&lt;strong>拓扑图：&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">

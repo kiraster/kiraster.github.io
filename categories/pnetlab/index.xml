@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PNETLab on Kir's Blog</title><link>https://weeaster.github.io/categories/pnetlab/</link><description>Recent content in PNETLab on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 17 May 2024 16:13:59 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/categories/pnetlab/index.xml" rel="self" type="application/rss+xml"/><item><title>多子网分支的第3阶段分层DMVPN实验</title><link>https://weeaster.github.io/posts/638be305/</link><pubDate>Fri, 17 May 2024 16:13:59 +0000</pubDate><guid>https://weeaster.github.io/posts/638be305/</guid><description>&lt;p>以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PNETLab on Kir's Blog</title><link>https://kiraster.github.io/categories/pnetlab/</link><description>Recent content in PNETLab on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 17 May 2024 16:13:59 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/pnetlab/index.xml" rel="self" type="application/rss+xml"/><item><title>多子网分支的第3阶段分层DMVPN实验</title><link>https://kiraster.github.io/posts/638be305/</link><pubDate>Fri, 17 May 2024 16:13:59 +0000</pubDate><guid>https://kiraster.github.io/posts/638be305/</guid><description>&lt;p>以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录&lt;/p>
 &lt;p>Cisco网站文档链接： &lt;a class="link" href="https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html" target="_blank" rel="noopener"
 >https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -479,7 +479,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>MPLS排错练习题-故障排除</title><link>https://weeaster.github.io/posts/464b24f1/</link><pubDate>Thu, 01 Feb 2024 16:57:52 +0000</pubDate><guid>https://weeaster.github.io/posts/464b24f1/</guid><description>&lt;p>在51cto博客https://blog.51cto.com/dashu666/2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩&lt;/p>
+&lt;/ul></description></item><item><title>MPLS排错练习题-故障排除</title><link>https://kiraster.github.io/posts/464b24f1/</link><pubDate>Thu, 01 Feb 2024 16:57:52 +0000</pubDate><guid>https://kiraster.github.io/posts/464b24f1/</guid><description>&lt;p>在51cto博客https://blog.51cto.com/dashu666/2163481 看到达叔的这份MPLS排错练习题分享文章，心痒痒决定手搓玩一玩&lt;/p>
 &lt;p>MPLS 环境如下图，现由于前面负责实施的工程师离职，留下烂尾工程，请按下面截图找出目前配置存在的错误并修复，要求项目部署完毕之后所有检查命令输出要和下面截图一致。
 要求R7 和R8两个站点通信必须经过R6的全局处理、要求R6 的 vrfA 和 R7、R8能够直接通信&lt;/p>
 &lt;p>同时要求交一份排除故障的文档。
@@ -1989,7 +1989,7 @@ alt="ScreenCaputure240201002259"
 &lt;li>其实早几年我是玩过这个排错拓扑的，奈何脑子不够用学过等于又还回去了&lt;/li>
 &lt;li>不知道大家对这种学习过的技术，而工作中又接触不到这些项目，技术的知识点淡忘如何看待&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>观察OSPF虚链路和虚链路的替代办法</title><link>https://weeaster.github.io/posts/5c8077d9/</link><pubDate>Thu, 16 Mar 2023 22:45:33 +0000</pubDate><guid>https://weeaster.github.io/posts/5c8077d9/</guid><description>&lt;p>一个小实验，观察&lt;code>OSPF&lt;/code>虚链路、虚链路的替代办法。&lt;/p>
+&lt;/ul></description></item><item><title>观察OSPF虚链路和虚链路的替代办法</title><link>https://kiraster.github.io/posts/5c8077d9/</link><pubDate>Thu, 16 Mar 2023 22:45:33 +0000</pubDate><guid>https://kiraster.github.io/posts/5c8077d9/</guid><description>&lt;p>一个小实验，观察&lt;code>OSPF&lt;/code>虚链路、虚链路的替代办法。&lt;/p>
 &lt;p>&lt;strong>拓扑图：&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -2168,7 +2168,7 @@ alt="ScreenCaputure230316225301"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">i&lt;/span> &lt;span class="mf">55.55&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">55.55&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="n">via&lt;/span> &lt;span class="mf">58.1&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">1.5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Ethernet0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">ASBR&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="ne">Area&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">SPF&lt;/span> &lt;span class="mi">2&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">R8&lt;/span>&lt;span class="c1">#&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>配置跨域的Option C MPLS VPN（Cisco）</title><link>https://weeaster.github.io/posts/c0ba4ae2/</link><pubDate>Sat, 04 Mar 2023 01:05:34 +0000</pubDate><guid>https://weeaster.github.io/posts/c0ba4ae2/</guid><description>&lt;p>&lt;strong>Introduction&lt;/strong>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>配置跨域的Option C MPLS VPN（Cisco）</title><link>https://kiraster.github.io/posts/c0ba4ae2/</link><pubDate>Sat, 04 Mar 2023 01:05:34 +0000</pubDate><guid>https://kiraster.github.io/posts/c0ba4ae2/</guid><description>&lt;p>&lt;strong>Introduction&lt;/strong>&lt;/p>
 &lt;p>This document describes how to configure and verify the Inter-AS Layer 3 Multiprotocol Label Switching (MPLS) VPN, option C feature. A sample network scenario and its configuration and outputs are shown for a better understanding.&lt;/p>
 &lt;p>本文描述的是根据思科网站一篇配置文档（https://www.cisco.com/c/en/us/support/docs/multiprotocol-label-switching-mpls/mpls/200523-Configuration-and-Verification-of-Layer.html#）修改搭建的一个实验。&lt;/p>
 &lt;hr>
@@ -2845,7 +2845,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>IPv6 各隧道Tunnel使用Lab</title><link>https://weeaster.github.io/posts/2e964a67/</link><pubDate>Sun, 03 Apr 2022 07:18:36 +0000</pubDate><guid>https://weeaster.github.io/posts/2e964a67/</guid><description>&lt;p>最近看了很多关于 IPv6 的内容。老早前，大概2000年前后运营商就开始研究推进发展 IPv6 网络技术了，可能是是由于某些我等不知道的原因，这个推进的进程所演化出的表象让我等普通网民没什么感觉。部分科研机构、高校、金融、IT 大厂已经在使用了，一个比较大的使用群体也就是家用部分普及的不大开（我猜的，没有依据）。&lt;/p>
+&lt;/ul></description></item><item><title>IPv6 各隧道Tunnel使用Lab</title><link>https://kiraster.github.io/posts/2e964a67/</link><pubDate>Sun, 03 Apr 2022 07:18:36 +0000</pubDate><guid>https://kiraster.github.io/posts/2e964a67/</guid><description>&lt;p>最近看了很多关于 IPv6 的内容。老早前，大概2000年前后运营商就开始研究推进发展 IPv6 网络技术了，可能是是由于某些我等不知道的原因，这个推进的进程所演化出的表象让我等普通网民没什么感觉。部分科研机构、高校、金融、IT 大厂已经在使用了，一个比较大的使用群体也就是家用部分普及的不大开（我猜的，没有依据）。&lt;/p>
 &lt;p>IPv6 相对于 IPv4 有种种的优势，我最有印象的几个是没有广播这个概念、“真 万物互联”、良好的包扩展结构，相对于 IPv4 不存在把什么什么封装进 IPv4 头部后面的字节……巴拉巴拉&lt;/p>
 &lt;p>既然是实验，先上图：&lt;/p>
 &lt;p>
@@ -3858,7 +3858,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>BGP综合实验拓扑</title><link>https://weeaster.github.io/posts/48f55792/</link><pubDate>Fri, 25 Feb 2022 01:32:49 +0000</pubDate><guid>https://weeaster.github.io/posts/48f55792/</guid><description>&lt;p>在B站看了一个UP主（&lt;a class="link" href="https://space.bilibili.com/455975406" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>BGP综合实验拓扑</title><link>https://kiraster.github.io/posts/48f55792/</link><pubDate>Fri, 25 Feb 2022 01:32:49 +0000</pubDate><guid>https://kiraster.github.io/posts/48f55792/</guid><description>&lt;p>在B站看了一个UP主（&lt;a class="link" href="https://space.bilibili.com/455975406" target="_blank" rel="noopener"
 >155和150
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -4216,7 +4216,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>几种重分发方式可能带来的问题和处理</title><link>https://weeaster.github.io/posts/1b6d0fec/</link><pubDate>Sun, 28 Nov 2021 15:10:27 +0000</pubDate><guid>https://weeaster.github.io/posts/1b6d0fec/</guid><description>&lt;p>最近翻看 《CCNP ROUTE(642-902)学习指南 》，没错就是 2015 年之前 CCNP 改版前的那本，现在最新的认证考试已不是这个编号和课程了。诶，不聊这些，这不重要。&lt;/p>
+&lt;/ul></description></item><item><title>几种重分发方式可能带来的问题和处理</title><link>https://kiraster.github.io/posts/1b6d0fec/</link><pubDate>Sun, 28 Nov 2021 15:10:27 +0000</pubDate><guid>https://kiraster.github.io/posts/1b6d0fec/</guid><description>&lt;p>最近翻看 《CCNP ROUTE(642-902)学习指南 》，没错就是 2015 年之前 CCNP 改版前的那本，现在最新的认证考试已不是这个编号和课程了。诶，不聊这些，这不重要。&lt;/p>
 &lt;p>现在把时间线拉回当年那个技术发展的时候，你要是说技术过时了，不好意思今年我还在某现网中看到设备运行 RIPv2 和 OSPF 两种协议的重分发。这也不重要。&lt;/p>
 &lt;p>本文权当自己学习和回忆。&lt;/p>
 &lt;h2 id="part-1">Part 1
@@ -4446,7 +4446,7 @@ loading="lazy"
 &lt;li>当然合理的规划网络也很重要。必要的进行路由汇总，设置 passive-interface ……，使设备路由表尽可能的精简而又能高效的完成转发工作，这是很好的思路。&lt;/li>
 &lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>No.004 Simple Case</title><link>https://weeaster.github.io/posts/1fa3e02b/</link><pubDate>Thu, 18 Nov 2021 13:10:41 +0000</pubDate><guid>https://weeaster.github.io/posts/1fa3e02b/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmgc.html" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>No.004 Simple Case</title><link>https://kiraster.github.io/posts/1fa3e02b/</link><pubDate>Thu, 18 Nov 2021 13:10:41 +0000</pubDate><guid>https://kiraster.github.io/posts/1fa3e02b/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmgc.html" target="_blank" rel="noopener"
 >【有点儿意思系列 02】哎哟喂停不下来了
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -4609,7 +4609,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>No.003 Simple Case</title><link>https://weeaster.github.io/posts/62d0e673/</link><pubDate>Thu, 11 Nov 2021 13:44:43 +0000</pubDate><guid>https://weeaster.github.io/posts/62d0e673/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>No.003 Simple Case</title><link>https://kiraster.github.io/posts/62d0e673/</link><pubDate>Thu, 11 Nov 2021 13:44:43 +0000</pubDate><guid>https://kiraster.github.io/posts/62d0e673/</guid><description>&lt;p>红茶三杯的原文 ：&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
 >【有点儿意思系列 04】哎哟喂停不下来了
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -5108,7 +5108,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>No.002 Simple Case</title><link>https://weeaster.github.io/posts/2da7a7a9/</link><pubDate>Wed, 10 Nov 2021 11:37:50 +0000</pubDate><guid>https://weeaster.github.io/posts/2da7a7a9/</guid><description>&lt;p>来自红茶三杯的原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>No.002 Simple Case</title><link>https://kiraster.github.io/posts/2da7a7a9/</link><pubDate>Wed, 10 Nov 2021 11:37:50 +0000</pubDate><guid>https://kiraster.github.io/posts/2da7a7a9/</guid><description>&lt;p>来自红茶三杯的原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102vmkk.html" target="_blank" rel="noopener"
 >【有点儿意思系列 04】哎哟喂停不下来了
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -5650,7 +5650,7 @@ fill="currentColor">
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
 &lt;li>下一篇文更有意思^_^，To be continued.&lt;/li>
-&lt;/ul></description></item><item><title>No.001 Simple Case</title><link>https://weeaster.github.io/posts/8ac5ac4a/</link><pubDate>Sun, 07 Nov 2021 00:31:11 +0000</pubDate><guid>https://weeaster.github.io/posts/8ac5ac4a/</guid><description>&lt;p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>No.001 Simple Case</title><link>https://kiraster.github.io/posts/8ac5ac4a/</link><pubDate>Sun, 07 Nov 2021 00:31:11 +0000</pubDate><guid>https://kiraster.github.io/posts/8ac5ac4a/</guid><description>&lt;p>上文提到要 po 一篇文，现在发表一下自己的思路和配置。原文:&lt;a class="link" href="http://blog.sina.com.cn/s/blog_5ec353710102w64i.html" target="_blank" rel="noopener"
 >【有点儿意思系列 06】一个看起来简单的案例
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -5899,7 +5899,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>]&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>PNETLab试用</title><link>https://weeaster.github.io/posts/13f1a9a7/</link><pubDate>Fri, 05 Nov 2021 18:43:23 +0000</pubDate><guid>https://weeaster.github.io/posts/13f1a9a7/</guid><description>&lt;p>&lt;strong>PNETLab&lt;/strong> &lt;strong>(&lt;em>Packet Network Emulator Tool Lab&lt;/em>&lt;/strong>)is a platform that allows you to download and share labs with the community. 这句话摘抄自&lt;a class="link" href="https://pnetlab.com/pages/documentation" target="_blank" rel="noopener"
+&lt;/ul></description></item><item><title>PNETLab试用</title><link>https://kiraster.github.io/posts/13f1a9a7/</link><pubDate>Fri, 05 Nov 2021 18:43:23 +0000</pubDate><guid>https://kiraster.github.io/posts/13f1a9a7/</guid><description>&lt;p>&lt;strong>PNETLab&lt;/strong> &lt;strong>(&lt;em>Packet Network Emulator Tool Lab&lt;/em>&lt;/strong>)is a platform that allows you to download and share labs with the community. 这句话摘抄自&lt;a class="link" href="https://pnetlab.com/pages/documentation" target="_blank" rel="noopener"
 >官网
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">

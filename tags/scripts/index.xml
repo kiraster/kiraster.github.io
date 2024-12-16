@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scripts on Kir's Blog</title><link>https://weeaster.github.io/tags/scripts/</link><description>Recent content in Scripts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 07 Dec 2022 15:05:53 +0000</lastBuildDate><atom:link href="https://weeaster.github.io/tags/scripts/index.xml" rel="self" type="application/rss+xml"/><item><title>Hexo环境新电脑环境重构</title><link>https://weeaster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://weeaster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scripts on Kir's Blog</title><link>https://kiraster.github.io/tags/scripts/</link><description>Recent content in Scripts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 07 Dec 2022 15:05:53 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/scripts/index.xml" rel="self" type="application/rss+xml"/><item><title>Hexo环境新电脑环境重构</title><link>https://kiraster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://kiraster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
 &lt;p>网上也有很多文章描述如何操作，也可以去参考，我记录我的操作过程如下&lt;/p>
 &lt;h2 id="下载安装git-和-nodejs">下载安装Git 和 node.js
 &lt;/h2>&lt;ul>
@@ -92,7 +92,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -M main
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git@github.com:kiraster/xxxx-xx.git
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://weeaster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://weeaster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://kiraster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://kiraster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
 &lt;ul>
 &lt;li>bat启动 Hexo 本地服务&lt;/li>
 &lt;li>bat 推送至 Github&lt;/li>
@@ -133,7 +133,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
 &lt;li>新建后缀为 js 的脚本文件&lt;/li>
 &lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
-&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://weeaster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://weeaster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
+&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://kiraster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://kiraster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
 &lt;p>还有一种方法就是把这些文件也推送到&lt;code>Github&lt;/code>仓库，网上看到有一个&lt;code>hexo-git-backup&lt;/code>可以把源码推送到仓库分支实现备份。但是我觉得这样不妥，由于部署到&lt;code>Github&lt;/code>的静态网站仓库是公开的，把源文推送这个分支，意味着所有人都可以看到源文件的配置，包括一些个人的信息，可能有网站统计，收录的&lt;code>token&lt;/code>，这样就不太好&lt;/p>
 &lt;p>看到一篇博文（https://0skyu.cn/p/a8bd.html） 就整的非常好，其中原理过程可以自行去研究&lt;/p>
 &lt;p>我参考这篇文章记录我自己的过程和操作&lt;/p>
@@ -270,7 +270,7 @@ alt="ScreenCaputure221205140926"
 &lt;ul>
 &lt;li>出现没有提交新内容到缓冲区，推送等错误，按提示排查错误即可&lt;/li>
 &lt;li>看到原博客出现要切换到博客目录的这一行脚本命令，我觉得在推送博客的时候你就已经切换到博客目录，去掉这一行&lt;/li>
-&lt;/ul></description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://weeaster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://weeaster.github.io/posts/2699eb47/</guid><description>&lt;ul>
+&lt;/ul></description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://kiraster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://kiraster.github.io/posts/2699eb47/</guid><description>&lt;ul>
 &lt;li>针对上一版的脚本进行改进&lt;/li>
 &lt;li>增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出”&lt;/li>
 &lt;li>修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入&lt;/li>
@@ -519,7 +519,7 @@ alt="ScreenCaputure221205140926"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python实现“按任意键返回”和无回显输入 by dongfuguo on 2020-03-25 : https://blog.csdn.net/dongfuguo/article/details/105103446
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python3文件路径/目录获取教程 by 诸子流 on 2020-07-09 : `https://www.cnblogs.com/lsdb/p/13265688.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- 如何让python不打印转义字符串？by 流芳 on 2020-07-07 : https://www.py.cn/jishu/jichu/19480.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://weeaster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://weeaster.github.io/posts/54cb8229/</guid><description>&lt;ul>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://kiraster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://kiraster.github.io/posts/54cb8229/</guid><description>&lt;ul>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的 display 脚本批量导出配置和一些设备状态&lt;/li>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的配置命令批量增加配置&lt;/li>
 &lt;li>主要使用的是 netmiko 这个模块里的 ConnectHandler 命令&lt;/li>
@@ -813,7 +813,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03 : https://555.xdai.vip/posts/26e9de3c.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_线路测试脚本</title><link>https://weeaster.github.io/posts/60e83b3d/</link><pubDate>Sat, 16 Oct 2021 01:17:37 +0000</pubDate><guid>https://weeaster.github.io/posts/60e83b3d/</guid><description>&lt;p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_线路测试脚本</title><link>https://kiraster.github.io/posts/60e83b3d/</link><pubDate>Sat, 16 Oct 2021 01:17:37 +0000</pubDate><guid>https://kiraster.github.io/posts/60e83b3d/</guid><description>&lt;p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。&lt;/p>
 &lt;h2 id="操作">操作
 &lt;/h2>&lt;h3 id="记录会话日志log-session">记录会话日志（log session）
 &lt;/h3>&lt;ul>
@@ -1019,7 +1019,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>我的一些blog常用小操作</title><link>https://weeaster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://weeaster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
+&lt;/p></description></item><item><title>我的一些blog常用小操作</title><link>https://kiraster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://kiraster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
 &lt;h3 id="bat启动-hexo-本地服务">bat启动 hexo 本地服务
 &lt;/h3>&lt;p>前提条件：已完成博客搭建。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
@@ -1089,7 +1089,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">crc32&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="nx">dec&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="c1">//xx.github.io/posts/123456789a.html
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://weeaster.github.io/posts/80e04e00/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://weeaster.github.io/posts/80e04e00/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://kiraster.github.io/posts/80e04e00/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://kiraster.github.io/posts/80e04e00/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
 &lt;h2 id="如何操作">&lt;strong>如何操作&lt;/strong>
 &lt;/h2>&lt;ul>
 &lt;li>&lt;strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）&lt;/strong>&lt;/li>
@@ -1200,7 +1200,7 @@ loading="lazy"
 &lt;li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等&lt;/li>
 &lt;li>根据实际需要可以修改脚本中的内容提取更多信息&lt;/li>
 &lt;li>生成的文件为 word 或 excel 等都是可以实现的&lt;/li>
-&lt;/ul></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://weeaster.github.io/posts/21b002a6/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://weeaster.github.io/posts/21b002a6/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
+&lt;/ul></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://kiraster.github.io/posts/21b002a6/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://kiraster.github.io/posts/21b002a6/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
 &lt;/h4>&lt;ul>
 &lt;li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击 “Script” &amp;ndash;&amp;gt; &amp;ldquo;Run&amp;rdquo; 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）&lt;/li>
 &lt;li>可以根据你的实际需要修改 “Send” 后面的内容&lt;/li>
