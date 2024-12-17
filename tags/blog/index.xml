@@ -544,5 +544,4 @@ alt="ScreenCaputure221205140926"
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item><item><title>archive_test</title><link>https://kiraster.github.io/posts/515317e3/</link><pubDate>Mon, 26 Oct 2020 12:45:43 +0000</pubDate><guid>https://kiraster.github.io/posts/515317e3/</guid><description>&lt;p>Test Page&lt;/p>
 &lt;ul>
 &lt;li>This is a test page .&lt;/li>
-&lt;li>RSS RECIVE TEST.&lt;/li>
 &lt;/ul></description></item></channel></rss>
