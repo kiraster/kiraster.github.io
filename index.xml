@@ -72,7 +72,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo new --editor typora post/xxx.md
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>
-&lt;p>create_post.bat 脚本，双击运行提示输入md文件名并用typora软件打开该md文件&lt;/p>
+&lt;p>&lt;code>create_article.bat&lt;/code> 脚本，双击运行提示输入md文件名并用typora软件打开该md文件&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">echo 【Create an article, enter the md file name, and the final format will be: YYYYMMDD_mdFileName.md】
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">set /p input= [mdFileName]:
@@ -83,7 +83,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>该脚本同样需要上一步骤中的添加yaml内容和添加环境变量操作&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>push_to_github.bat脚本，双击运行自动执行git相关命令&lt;/p>
+&lt;p>&lt;code>git_push_github.bat&lt;/code>脚本，双击运行自动执行git相关命令&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">:: 设置当前日期和时间格式
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">for /f &amp;#34;tokens=2 delims==&amp;#34; %%I in (&amp;#39;&amp;#34;wmic os get localdatetime /value&amp;#34;&amp;#39;) do set datetime=%%I
