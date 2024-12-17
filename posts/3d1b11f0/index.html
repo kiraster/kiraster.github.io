@@ -27,9 +27,16 @@
 </span></span><span class=line><span class=cl>系统--高级系统设置--环境变量--选中Path--编辑--新建--添加typora所在路径
 </span></span><span class=line><span class=cl>typora测试：新开一个cmd窗口，输入typora--回车，能打开typora软件
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl># 创建md并用typora打开
+</span></span><span class=line><span class=cl># 直接用命令创建md并用typora打开
 </span></span><span class=line><span class=cl>hugo new --editor typora post/xxx.md
-</span></span></code></pre></div></li><li><p>git push bat脚本，双击运行自动执行git相关命令</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>@echo off
+</span></span></code></pre></div></li><li><p>create_post.bat 脚本，双击运行提示输入md文件名并用typora软件打开该md文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>@echo off
+</span></span><span class=line><span class=cl>echo 【Create an article, enter the md file name, and the final format will be: YYYYMMDD_mdFileName.md】
+</span></span><span class=line><span class=cl>set /p input= [mdFileName]: 
+</span></span><span class=line><span class=cl>set date=%Date:~0,4%%Date:~5,2%%Date:~8,2%
+</span></span><span class=line><span class=cl>hugo new post/%date%_%input%.md
+</span></span><span class=line><span class=cl>start typora content\post\%date%_%input%.md&#34;
+</span></span><span class=line><span class=cl>exit
+</span></span></code></pre></div><p>该脚本同样需要上一步骤中的添加yaml内容和添加环境变量操作</p></li><li><p>push_to_github.bat脚本，双击运行自动执行git相关命令</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>@echo off
 </span></span><span class=line><span class=cl>:: 设置当前日期和时间格式
 </span></span><span class=line><span class=cl>for /f &#34;tokens=2 delims==&#34; %%I in (&#39;&#34;wmic os get localdatetime /value&#34;&#39;) do set datetime=%%I
 </span></span><span class=line><span class=cl>set year=%datetime:~0,4%

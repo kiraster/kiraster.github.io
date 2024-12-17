@@ -9,7 +9,7 @@ height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>&lt;/li>
-&lt;li>原因时之前的hexo主题，很多包提示过时（重装操作麻烦）&lt;/li>
+&lt;li>原因是之前的hexo主题，很多包提示过时（重装操作麻烦）&lt;/li>
 &lt;li>且主题仓库自2022年已是公开只读&lt;/li>
 &lt;li>主题设置抄了网上很多代码，不一一致谢了&lt;/li>
 &lt;li>已经尽量不花里胡哨了&lt;/li>
