@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Kir's Blog</title><link>https://kiraster.github.io/tags/python/</link><description>Recent content in Python on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://kiraster.github.io/posts/fdccc10e/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://kiraster.github.io/posts/fdccc10e/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Kir's Blog</title><link>https://kiraster.github.io/tags/python/</link><description>Recent content in Python on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 06 Dec 2024 10:57:11 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>电脑微信自动登陆进入主窗口</title><link>https://kiraster.github.io/posts/fdccc10e.html/</link><pubDate>Fri, 06 Dec 2024 10:57:11 +0000</pubDate><guid>https://kiraster.github.io/posts/fdccc10e.html/</guid><description>&lt;p>实现功能：电脑开机启动微信自动登陆进入主窗口&lt;/p>
 &lt;p>实现逻辑：微信启动后将窗口置顶，模拟输入回车键&lt;/p>
 &lt;p>前提：微信自动登陆已开启，启动微信后显示&lt;code>进入微信&lt;/code>按钮&lt;/p>
 &lt;p>
@@ -80,7 +80,7 @@ fill="currentColor">
 &lt;li>如果出现微信启动后没有自动点击&lt;code>进入微信&lt;/code>按钮，可添加一定时间&lt;code>time.sleep&lt;/code>等待&lt;/li>
 &lt;li>注意替换微信安装位置，我这安装在D盘&lt;/li>
 &lt;li>小玩意儿，省一个点击鼠标或敲回车的时间&lt;/li>
-&lt;/ul></description></item><item><title>使用Selenium打开PNETLab拓扑并开启所有节点</title><link>https://kiraster.github.io/posts/ccacf283/</link><pubDate>Fri, 05 Jul 2024 12:37:38 +0000</pubDate><guid>https://kiraster.github.io/posts/ccacf283/</guid><description>&lt;p>在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作&lt;/p>
+&lt;/ul></description></item><item><title>使用Selenium打开PNETLab拓扑并开启所有节点</title><link>https://kiraster.github.io/posts/ccacf283.html/</link><pubDate>Fri, 05 Jul 2024 12:37:38 +0000</pubDate><guid>https://kiraster.github.io/posts/ccacf283.html/</guid><description>&lt;p>在玩PNETLab模拟器实验遇到的小问题，从登陆PNETLab到能登陆拓扑里的设备这一段时间是很无聊且每次都是重复动作&lt;/p>
 &lt;p>以前做测试就点点点没觉得是什么问题，但是设备数量多的大型拓扑，那是一个超长等待时间&lt;/p>
 &lt;p>想过的方法是查查API，无功而返，而且也不熟&lt;/p>
 &lt;p>最后使用Selenium实现功能&lt;/p>
@@ -338,7 +338,7 @@ alt="pnetlabstartall-4"
 &lt;li>大部分时间都耗在定位元素了，pnet为了玩花样或是抄来不想改这html前端也是无限套壳&lt;/li>
 &lt;li>有些是前端渲染代码是通过java函数生成的，这就有点不好玩了&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://kiraster.github.io/posts/14423df7/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://kiraster.github.io/posts/14423df7/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
+&lt;/ul></description></item><item><title>使用Selenium实现登陆网站并签到</title><link>https://kiraster.github.io/posts/14423df7.html/</link><pubDate>Mon, 28 Aug 2023 01:15:53 +0000</pubDate><guid>https://kiraster.github.io/posts/14423df7.html/</guid><description>&lt;p>由于不想亲自动手打开某网站登陆然后签到，所以制作一个python脚本实现自动操作。&lt;/p>
 &lt;p>Selenium官网链接： &lt;a class="link" href="https://www.selenium.dev/" target="_blank" rel="noopener"
 >https://www.selenium.dev/
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -446,7 +446,7 @@ fill="currentColor">
 &lt;p>如本地内部使用，还是去下载对应版本的 ChromeDriver&lt;/p>
 &lt;blockquote>
 &lt;p>&lt;strong>20230922 补充&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>对网络设备进行批量操作的几个脚本</title><link>https://kiraster.github.io/posts/99580674/</link><pubDate>Sun, 09 Jul 2023 13:39:07 +0000</pubDate><guid>https://kiraster.github.io/posts/99580674/</guid><description>&lt;p>对网络设备进行批量操作的几个脚本&lt;/p>
+&lt;/blockquote></description></item><item><title>对网络设备进行批量操作的几个脚本</title><link>https://kiraster.github.io/posts/99580674.html/</link><pubDate>Sun, 09 Jul 2023 13:39:07 +0000</pubDate><guid>https://kiraster.github.io/posts/99580674.html/</guid><description>&lt;p>对网络设备进行批量操作的几个脚本&lt;/p>
 &lt;p>netmiko基操&lt;/p>
 &lt;p>32位windows下偷个懒使用&lt;/p>
 &lt;p>在32位windows系统中无法使用之前编写的nornir脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
@@ -1198,7 +1198,7 @@ alt="ScreenCaputure230709135002"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tomli==2.0.1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yapf==0.40.1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zipp==3.15.0
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://kiraster.github.io/posts/cce1f96e/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://kiraster.github.io/posts/cce1f96e/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://kiraster.github.io/posts/cce1f96e.html/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://kiraster.github.io/posts/cce1f96e.html/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
 &lt;p>&lt;a class="link" href="https://kiraster.github.io/posts/f285fb93.html" target="_blank" rel="noopener"
 >H3C 防火墙（v7）提取导出安全策略至表格
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -1590,7 +1590,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>Github之pull requests提交分支</title><link>https://kiraster.github.io/posts/9a95f1cd/</link><pubDate>Sat, 29 Apr 2023 00:11:07 +0000</pubDate><guid>https://kiraster.github.io/posts/9a95f1cd/</guid><description>&lt;p>这篇文描述的是使用我注册的第二个Github账号对&lt;code>netops_v2.0_beta&lt;/code>仓库进行一次&lt;code>pull requests&lt;/code>&lt;/p>
+&lt;/ul></description></item><item><title>Github之pull requests提交分支</title><link>https://kiraster.github.io/posts/9a95f1cd.html/</link><pubDate>Sat, 29 Apr 2023 00:11:07 +0000</pubDate><guid>https://kiraster.github.io/posts/9a95f1cd.html/</guid><description>&lt;p>这篇文描述的是使用我注册的第二个Github账号对&lt;code>netops_v2.0_beta&lt;/code>仓库进行一次&lt;code>pull requests&lt;/code>&lt;/p>
 &lt;p>计划是修改代码使其在Ubuntu环境也能正常运行，然后推送分支进行pull requests&lt;/p>
 &lt;h2 id="登陆github">登陆Github
 &lt;/h2>&lt;p>先fork原仓库至第二个账号（过程略），获取 Clone 链接 &lt;a class="link" href="https://github.com/weeaster/netops_v2.0_beta.git" target="_blank" rel="noopener"
@@ -1840,7 +1840,7 @@ alt="pull request 1"
 &lt;li>我不是搞软件的，这么一搞也就图一乐&lt;/li>
 &lt;li>拜了个拜&lt;/li>
 &lt;li>这篇文，不那么欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>Ubuntu publickey方式SSH连接与vscode远程调试</title><link>https://kiraster.github.io/posts/837aa3ce/</link><pubDate>Thu, 27 Apr 2023 14:52:12 +0000</pubDate><guid>https://kiraster.github.io/posts/837aa3ce/</guid><description>&lt;p>Ubuntu服务端采用publickey方式验证客户端身份，客户端本地vscode连接至Ubuntu服务端进行python远程调试&lt;/p>
+&lt;/ul></description></item><item><title>Ubuntu publickey方式SSH连接与vscode远程调试</title><link>https://kiraster.github.io/posts/837aa3ce.html/</link><pubDate>Thu, 27 Apr 2023 14:52:12 +0000</pubDate><guid>https://kiraster.github.io/posts/837aa3ce.html/</guid><description>&lt;p>Ubuntu服务端采用publickey方式验证客户端身份，客户端本地vscode连接至Ubuntu服务端进行python远程调试&lt;/p>
 &lt;p>&lt;strong>环境描述：&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>vscode 1.77.3&lt;/li>
@@ -2017,7 +2017,7 @@ alt="ScreenCaputure230427163329"
 &lt;li>总体来说能用，就是非root用户跑python有可能会遇到权限问题（可能需要sudo）&lt;/li>
 &lt;li>为什么要搞远程python，因为发现在windows平台跑python时不时会遇到一些第三方库安装运行时出的一些不知道时什么不知道的问题&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>电脑开关机邮件提醒</title><link>https://kiraster.github.io/posts/1e32fc6d/</link><pubDate>Sat, 22 Apr 2023 16:20:52 +0000</pubDate><guid>https://kiraster.github.io/posts/1e32fc6d/</guid><description>&lt;p>最近测试了&lt;code>python&lt;/code>脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。&lt;/p>
+&lt;/ul></description></item><item><title>电脑开关机邮件提醒</title><link>https://kiraster.github.io/posts/1e32fc6d.html/</link><pubDate>Sat, 22 Apr 2023 16:20:52 +0000</pubDate><guid>https://kiraster.github.io/posts/1e32fc6d.html/</guid><description>&lt;p>最近测试了&lt;code>python&lt;/code>脚本执行钉钉机器人发消息和邮件发送，本想集成到上一篇文章中的脚本里，奈何想不到比较实用的场景。&lt;/p>
 &lt;p>突然想到自己的台式电脑是来电自动开机的设置，略有所思后想到把开关机事件自动发送邮件。&lt;/p>
 &lt;p>本人平生不知道注册多少个邮箱，想到163邮箱用的很少，所有就用它。登陆后发现里头有很多未读邮件，有安全提示和各种广告，都是几年前的了，估计是邮箱被盗用，全球各地的IP地址登陆和某位苹果玩家拿我邮箱修改了Apple ID……&lt;/p>
 &lt;p>一顿操作后把授权码弄出来了（1毛短信费），这个钉钉机器人就不记录操作步骤了，搜索引擎遍地都是，下面记录电脑开关机事件自动发送邮件过程。&lt;/p>
@@ -2224,7 +2224,7 @@ alt="20230422173130"
 &lt;li>
 &lt;p>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/p>
 &lt;/li>
-&lt;/ul></description></item><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
+&lt;/ul></description></item><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee.html/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee.html/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
 &lt;blockquote>
 &lt;p>在32位windows系统中无法使用本脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
 &lt;/blockquote>
@@ -2569,7 +2569,7 @@ alt="ScreenCaputure230513004510"
 &lt;/ul>
 &lt;blockquote>
 &lt;p>&lt;strong>20230513 更新了此文章内容&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>H3C自动配置(HTTP Python方式)</title><link>https://kiraster.github.io/posts/c69db7e2/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://kiraster.github.io/posts/c69db7e2/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
+&lt;/blockquote></description></item><item><title>H3C自动配置(HTTP Python方式)</title><link>https://kiraster.github.io/posts/c69db7e2.html/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://kiraster.github.io/posts/c69db7e2.html/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -2862,7 +2862,7 @@ alt="ScreenCaputure230318163152"
 &lt;li>方法操作没有问题，但是有时候去实施，甲方看到你老是在电脑面前操作，这个体现不出工作量，需要注意，两天的活你半小时不到干完了&lt;/li>
 &lt;li>修改一下脚本，还能用在没有console线的环境下应急，同样确保设备是空配置启动&lt;/li>
 &lt;li>&lt;code>device.py&lt;/code>文件里的代码有一个重启设备的定时任务，由于是做实验我设置了1分钟后重启，如果是真实环境这个延时重启建议配置时间大一点&lt;/li>
-&lt;/ol></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
+&lt;/ol></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c.html/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c.html/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
 &lt;h2 id="一个视频">一个视频
 &lt;/h2>&lt;p>&lt;strong>无解说无字幕，嫌BGM太吵可静音&lt;/strong>&lt;/p>
 &lt;div class="video-wrapper">
@@ -3072,7 +3072,7 @@ fill="currentColor">
 &lt;li>没有对其他分辨率屏幕做调整&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
+&lt;/ol></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93.html/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93.html/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
 &lt;p>本文介绍使用&lt;code>python&lt;/code>脚本语言编写一个根据&lt;code>display&lt;/code>回显内容提取安全策略和对象组到表格的方法&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>{% blockquote %}&lt;/p>

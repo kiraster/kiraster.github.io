@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C防火墙 on Kir's Blog</title><link>https://kiraster.github.io/tags/h3c%E9%98%B2%E7%81%AB%E5%A2%99/</link><description>Recent content in H3C防火墙 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 10 May 2023 17:24:57 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/h3c%E9%98%B2%E7%81%AB%E5%A2%99/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://kiraster.github.io/posts/cce1f96e/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://kiraster.github.io/posts/cce1f96e/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C防火墙 on Kir's Blog</title><link>https://kiraster.github.io/tags/h3c%E9%98%B2%E7%81%AB%E5%A2%99/</link><description>Recent content in H3C防火墙 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 10 May 2023 17:24:57 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/h3c%E9%98%B2%E7%81%AB%E5%A2%99/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</title><link>https://kiraster.github.io/posts/cce1f96e.html/</link><pubDate>Wed, 10 May 2023 17:24:57 +0000</pubDate><guid>https://kiraster.github.io/posts/cce1f96e.html/</guid><description>&lt;p>去年写过一版这个需求的python代码，使用的是&lt;code>if&lt;/code>判断语句进行匹配获取内容然后写入表格&lt;/p>
 &lt;p>&lt;a class="link" href="https://kiraster.github.io/posts/f285fb93.html" target="_blank" rel="noopener"
 >H3C 防火墙（v7）提取导出安全策略至表格
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
@@ -390,7 +390,7 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
+&lt;/ul></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93.html/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93.html/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
 &lt;p>本文介绍使用&lt;code>python&lt;/code>脚本语言编写一个根据&lt;code>display&lt;/code>回显内容提取安全策略和对象组到表格的方法&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>{% blockquote %}&lt;/p>
@@ -894,7 +894,7 @@ alt="20221201220702"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://kiraster.github.io/posts/4eda38e9/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://kiraster.github.io/posts/4eda38e9/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
+&lt;/p></description></item><item><title>Ubuntu 22.04 安装iNode管理中心和定制客户端</title><link>https://kiraster.github.io/posts/4eda38e9.html/</link><pubDate>Sat, 26 Nov 2022 16:34:36 +0000</pubDate><guid>https://kiraster.github.io/posts/4eda38e9.html/</guid><description>&lt;p>&lt;code>Ubuntu 22.04&lt;/code>安装&lt;code>iNode&lt;/code>管理中心和定制客户端，如题&lt;/p>
 &lt;h2 id="官网下载安装文件">官网下载安装文件
 &lt;/h2>&lt;ul>
 &lt;li>
@@ -1259,7 +1259,7 @@ alt="ScreenCaputure221126142906"
 &lt;li>Generate lightweight client upgrade package(用于放在服务端，在防火墙的&lt;code>SSL VPN&lt;/code>&amp;ndash;&amp;raquo;&lt;code>全局配置&lt;/code>&amp;ndash;&amp;raquo;&lt;code>上传客户端文件&lt;/code>位置，在浏览器输入&lt;code>SSLVPNGW:4443&lt;/code>可已打开页面，底下一行有下载的链接，就是下载这个文件)&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title>H3C 防火墙（v7）SSLVPN 实验配置</title><link>https://kiraster.github.io/posts/ed57c1e2/</link><pubDate>Sat, 26 Nov 2022 15:12:31 +0000</pubDate><guid>https://kiraster.github.io/posts/ed57c1e2/</guid><description>&lt;p>本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验&lt;/p>
+&lt;/ul></description></item><item><title>H3C 防火墙（v7）SSLVPN 实验配置</title><link>https://kiraster.github.io/posts/ed57c1e2.html/</link><pubDate>Sat, 26 Nov 2022 15:12:31 +0000</pubDate><guid>https://kiraster.github.io/posts/ed57c1e2.html/</guid><description>&lt;p>本文使用华三 HCL 模拟器搭建拓扑，实现 H3C 防火墙（v7）SSLVPN 实验&lt;/p>
 &lt;p>后一篇文章中描述 在 &lt;code>Ubuntu 22.04&lt;/code> 中安装 &lt;code>iNode&lt;/code> 客户端拨号测试&lt;/p>
 &lt;p>本来只想写 Ubuntu 安装 iNode 的，想想还是一起记录下来&lt;/p>
 &lt;p>文中的所有操作方法都可在华三官网和搜索引擎找到&lt;/p>
@@ -1541,7 +1541,7 @@ alt="ScreenCaputure221126130413"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://kiraster.github.io/posts/6d4cdc14/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://kiraster.github.io/posts/6d4cdc14/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
+&lt;/p></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://kiraster.github.io/posts/6d4cdc14.html/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://kiraster.github.io/posts/6d4cdc14.html/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
 &lt;h2 id="ssltls已弃用的tlsv10和tlsv11协议检测cve-2015-0204">SSL/TLS:已弃用的TLSv1.0和TLSv1.1协议检测(CVE-2015-0204)
 &lt;/h2>&lt;p>{% blockquote %}&lt;/p>
 &lt;p>漏洞描述：&lt;/p>
@@ -1597,7 +1597,7 @@ alt="ScreenCaputure221126130413"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> packet-filter 3456 inbound hardware-count
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul></description></item><item><title>HCL_FW_IRF_LAB</title><link>https://kiraster.github.io/posts/a89a05d3/</link><pubDate>Tue, 03 May 2022 01:09:15 +0000</pubDate><guid>https://kiraster.github.io/posts/a89a05d3/</guid><description>&lt;p>
+&lt;/ul></description></item><item><title>HCL_FW_IRF_LAB</title><link>https://kiraster.github.io/posts/a89a05d3.html/</link><pubDate>Tue, 03 May 2022 01:09:15 +0000</pubDate><guid>https://kiraster.github.io/posts/a89a05d3.html/</guid><description>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png">
 &lt;img src="https://s2.loli.net/2022/05/03/5tMa692q4rmN1Yu.png"

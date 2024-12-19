@@ -1,0 +1,315 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录\nCisco网站文档链接： https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html 华为的说法是Hub级联网络部署DSVPN\n"><meta name=msvalidate.01 content="B0C0B3C5A32207C648603D179C10C991"><title>多子网分支的第3阶段分层DMVPN实验</title>
+<link rel=canonical href=https://kiraster.github.io/posts/638be305.html/><link rel=stylesheet href=/scss/style.min.2fbaf37cb3e4bffea1a9ed32194ab6487d5a9a16f738a62ea4d92daed847b7f8.css><meta property='og:title' content="多子网分支的第3阶段分层DMVPN实验"><meta property='og:description' content="以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录\nCisco网站文档链接： https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html 华为的说法是Hub级联网络部署DSVPN\n"><meta property='og:url' content='https://kiraster.github.io/posts/638be305.html/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Network Emulator'><meta property='article:tag' content='PNETLab'><meta property='article:tag' content='Cisco'><meta property='article:tag' content='DMVPN'><meta property='article:tag' content='NHRP'><meta property='article:tag' content='NHRP redirec'><meta property='article:tag' content='tunnel'><meta property='article:tag' content='多层不同子网'><meta property='article:published_time' content='2024-05-17T16:13:59+00:00'><meta property='article:modified_time' content='2024-05-17T16:13:59+00:00'><meta name=twitter:title content="多子网分支的第3阶段分层DMVPN实验"><meta name=twitter:description content="以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录\nCisco网站文档链接： https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html 华为的说法是Hub级联网络部署DSVPN\n"><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ2XLP4292"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ZZ2XLP4292")}</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","heff72hdac")</script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#dmvpn的组成>DMVPN的组成</a></li><li><a href=#实验逻辑拓扑>实验逻辑拓扑</a></li><li><a href=#实验物理拓扑>实验物理拓扑</a></li><li><a href=#配置过程>配置过程</a><ol><li><a href=#基础配置>基础配置</a></li><li><a href=#多gre隧道>多GRE隧道</a></li><li><a href=#nhrp>NHRP</a></li><li><a href=#动态路由协议>动态路由协议</a></li><li><a href=#ipsec加密>IPSec加密</a></li></ol></li><li><a href=#nhrp工作流程>NHRP工作流程</a></li><li><a href=#spoke站点外网地址>Spoke站点外网地址</a></li><li><a href=#经典结尾扯蛋>经典结尾扯蛋</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/pnetlab/ style=background-color:#cae1ff;color:#fff>PNETLab</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/638be305.html/>多子网分支的第3阶段分层DMVPN实验</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>May 17, 2024</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>7 minute read</time></div></footer></div></header><section class=article-content><p>以前了解过DMVPN组网，没发现还有这么个分层组网的模型，于是玩一玩做个记录</p><p>Cisco网站文档链接： <a class=link href=https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html target=_blank rel=noopener>https://www.cisco.com/c/zh_cn/support/docs/security/dynamic-multipoint-vpn-dmvpn/211292-Configure-Phase-3-Hierarchical-DMVPN-wit.html
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span></a></p><p>华为的说法是Hub级联网络部署DSVPN</p><p>华为网站文档链接： <a class=link href=https://support.huawei.com/enterprise/zh/doc/EDOC1100271739/baf3c434 target=_blank rel=noopener>https://support.huawei.com/enterprise/zh/doc/EDOC1100271739/baf3c434
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span></a></p><p><strong>一段蹩脚的Cisco网站机器翻译原文</strong></p><p>分层设置（大于一级）允许更复杂的基于树的DMVPN网络拓扑。基于树的拓扑允许使用区域集线器构建DMVPN网络，区域集线器是中心集线器的分支。此体系结构允许区域中心处理其区域分支的数据和下一跳解析协议(NHRP)控制流量。但是，它仍允许在DMVPN网络内的任何分支之间构建分支到分支隧道，无论它们是否位于同一区域。此架构还允许DMVPN网络布局更紧密地匹配区域或分层数据流模式。</p><h2 id=dmvpn的组成>DMVPN的组成</h2><ol><li>多GRE隧道</li><li>NHRP</li><li>动态路由协议</li><li>IPSec加密</li></ol><p>配置思路也是分这四个步骤，本人觉得DMVPN的精髓在于NHRP协议，这个协议可以使Spoke站点之间动态建立隧道，新增Spoke站点无须改动Hub端配置，看上去很智能哦</p><h2 id=实验逻辑拓扑>实验逻辑拓扑</h2><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/R8tbOLimrvfyBKJ.png><img src=https://s2.loli.net/2024/05/17/R8tbOLimrvfyBKJ.png loading=lazy alt=image-20240516152212789></a></div></p><h2 id=实验物理拓扑>实验物理拓扑</h2><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/J4mckBb8fnpIDFe.png><img src=https://s2.loli.net/2024/05/17/J4mckBb8fnpIDFe.png loading=lazy alt=image-20240516025005087></a></div></p><p><strong>最终的效果</strong>（例如：R4的192.168.4.0/24网段去往R6的192.168.6.0/24网段一跳可达）</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/ZE1AL9r4OXimSuh.png><img src=https://s2.loli.net/2024/05/17/ZE1AL9r4OXimSuh.png loading=lazy alt=image-20240516233604433></a></div></p><h2 id=配置过程>配置过程</h2><h3 id=基础配置>基础配置</h3><p>包括IP地址，去往ISP的默认路由等</p><p>基础配置完成后各Hub路由器和Spoke路由器可以ping通各个公网IP地址</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R1#ping 100.28.28.2
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 100.28.28.2, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>..!!!
+</span></span><span class=line><span class=cl>Success rate is 60 percent (3/5), round-trip min/avg/max = 4/5/7 ms
+</span></span><span class=line><span class=cl>R1#ping 200.28.28.2
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 200.28.28.2, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/3 ms
+</span></span><span class=line><span class=cl>R1#ping 100.38.38.3
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 100.38.38.3, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/4 ms
+</span></span><span class=line><span class=cl>R1#ping 200.38.38.3
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 200.38.38.3, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/4 ms
+</span></span><span class=line><span class=cl>R1#ping 100.48.48.4
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 100.48.48.4, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 2/3/5 ms
+</span></span><span class=line><span class=cl>R1#ping 100.58.58.5
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 100.58.58.5, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 2/3/4 ms
+</span></span><span class=line><span class=cl>R1#ping 100.68.68.6
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 100.68.68.6, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 2/2/4 ms
+</span></span><span class=line><span class=cl>R1#ping 100.78.78.7
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 100.78.78.7, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 2/3/4 ms
+</span></span><span class=line><span class=cl>R1#ping 8.8.8.8
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+</span></span><span class=line><span class=cl>R1#
+</span></span></code></pre></div><h3 id=多gre隧道>多GRE隧道</h3><p>Central Hub 与 Hub1，Hub2 配置tunnel</p><p>mGRE与单GRE的配置区别在于隧道模式 multipoint 和填写远端destination地址</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>！配置R1,R2,R3的tunnel，注意修改tunnel的IP地址，R2，R3 如法炮制
+</span></span><span class=line><span class=cl>！R1 Tunnel0 （R1)
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip address 10.0.0.1 255.255.255.0
+</span></span><span class=line><span class=cl> tunnel source Ethernet0/0
+</span></span><span class=line><span class=cl> tunnel mode gre multipoint
+</span></span><span class=line><span class=cl> tunnel key 12345
+</span></span></code></pre></div><p>Hub1，Hub2 ，Spoke配置tunnel</p><p>在Hub1，Hub2上配置tunnel 1（与Spoke建立隧道使用）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>！ Hub1 Tunnel1 （R2)
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip address 10.0.1.2 255.255.255.0
+</span></span><span class=line><span class=cl> no ip redirects
+</span></span><span class=line><span class=cl> tunnel source Ethernet0/1
+</span></span><span class=line><span class=cl> tunnel mode gre multipoint
+</span></span><span class=line><span class=cl> tunnel key 12345
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>！ Hub2 Tunnel1 （R3)
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip address 10.0.2.3 255.255.255.0
+</span></span><span class=line><span class=cl> no ip redirects
+</span></span><span class=line><span class=cl> tunnel source Ethernet0/1
+</span></span><span class=line><span class=cl> tunnel mode gre multipoint
+</span></span><span class=line><span class=cl> tunnel key 12345
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>！ Spoke1 （R4)
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip address 10.0.1.4 255.255.255.0
+</span></span><span class=line><span class=cl> no ip redirects
+</span></span><span class=line><span class=cl> tunnel source Ethernet0/0
+</span></span><span class=line><span class=cl> tunnel mode gre multipoint
+</span></span><span class=line><span class=cl> tunnel key 12345
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl> ！ 其他Spoke站点如法炮制
+</span></span></code></pre></div><h3 id=nhrp>NHRP</h3><p>Central Hub的配置（R1)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>！Central Hub （R1)
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip nhrp authentication cisco # 配置nhrp认证(可选)
+</span></span><span class=line><span class=cl> ip nhrp map multicast dynamic # 动态接受组播映射，(Version 15.7(3)M2 版本默认开启)
+</span></span><span class=line><span class=cl> ip nhrp network-id 123 # network-id，很重要，当前这个拓扑需要同一配置，原因是影响nhrp解析请求的发送
+</span></span><span class=line><span class=cl> ip nhrp redirect # nhrp的重定向，Hub向spoke发送重定向消息
+</span></span></code></pre></div><p>Hub1和Hub2的配置（以Hub1为例（R2)）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>！ Hub 1 （R2)
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip nhrp authentication cisco
+</span></span><span class=line><span class=cl> ip nhrp map 10.0.0.1 100.18.18.1 # 隧道地址对应的公网地址映射
+</span></span><span class=line><span class=cl> ip nhrp map multicast 100.18.18.1 # 组播对应的公网地址映射
+</span></span><span class=line><span class=cl> ip nhrp network-id 123 # network-id，很重要，当前这个拓扑需要同一配置，原因是影响nhrp解析请求的发送
+</span></span><span class=line><span class=cl> ip nhrp nhs 10.0.0.1 # 配置nhs，spoke向nhs注册
+</span></span><span class=line><span class=cl> ip nhrp shorcut # Hub1和Hub2是Central Hub的Spoke (Version 15.7(3)M2 版本默认开启)
+</span></span><span class=line><span class=cl> ip nhrp redirect # 当前这个拓扑，需要配置这一项，因为在配置动态路由协议后，R3去往R4和R5业务网段的下一跳是R2
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip nhrp authentication cisco
+</span></span><span class=line><span class=cl> ip nhrp network-id 123
+</span></span><span class=line><span class=cl> ip nhrp redirect
+</span></span><span class=line><span class=cl> 
+</span></span></code></pre></div><p>Spoke1,2,3,4的配置（以Spoke1和Spoke3为例）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>！Spoke 1 （R4)
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip nhrp authentication cisco
+</span></span><span class=line><span class=cl> ip nhrp map 10.0.1.2 200.28.28.2
+</span></span><span class=line><span class=cl> ip nhrp map multicast 200.28.28.2
+</span></span><span class=line><span class=cl> ip nhrp network-id 123
+</span></span><span class=line><span class=cl> ip nhrp nhs 10.0.1.2
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>！Spoke 3 （R6)
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip nhrp authentication cisco
+</span></span><span class=line><span class=cl> ip nhrp network-id 123
+</span></span><span class=line><span class=cl> ip nhrp nhs 10.0.2.3 nbma 200.38.38.3 multicast # 一次性配置nhs,映射地址
+</span></span></code></pre></div><p>在配置完成mGRE和NHRP之后，产生流量之后（ping测试）应该可以观察到以下现象</p><ol><li><p>Hub1(R2)到Hub2(R3)的tunnel地址形成动态映射和动态隧道，跟踪路径查看到一跳可达</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/fvQMnquVr98ytge.png><img src=https://s2.loli.net/2024/05/17/fvQMnquVr98ytge.png loading=lazy alt=image-20240516170204803></a></div></p></li><li><p>Spoke1(R4)到Spoke2(R5)的tunnel地址形成动态映射和动态隧道，跟踪路径查看到一跳可达</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/OEwfcxm1dbiLQrn.png><img src=https://s2.loli.net/2024/05/17/OEwfcxm1dbiLQrn.png loading=lazy alt=image-20240516170409590></a></div></p></li><li><p>Spoke3(R6)到Spoke4(R7)的tunnel地址形成动态映射和动态隧道，跟踪路径查看到一跳可达</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/2fE4NeGJSnqyHul.png><img src=https://s2.loli.net/2024/05/17/2fE4NeGJSnqyHul.png loading=lazy alt=image-20240516170521889></a></div></p></li></ol><h3 id=动态路由协议>动态路由协议</h3><p>可选的协议RIP、EIGRP、OSPF、BGP、ODR</p><p>本实验业务网络选用OSPF，Central Hub，Hub1和Hub2设计在Area0；Hub1和Spoke1，Spoke2设计在Area1；Hub2和Spoke3，Spoke4设计在Area2；</p><p>根据组网情况分析，OSPF的网络类型可选的有广播、点到多点；</p><p>本实验选用广播，因为在配置tunnel 的ospf网络类型为广播后，同一个hub下的spoke站点能学习到优化下一跳后的路由，注意修改Spoke的ospf优先级为0不参与DR选举；</p><p>（配置tunnel 的ospf网络类型为点到多点后，spoke站点在产生分支站点流量后会对路由进行override， % - next hop override ，O之后有%符号）</p><p>Central Hub，Hub1和Hub2的OSPF配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>！Central Hub （R1)
+</span></span><span class=line><span class=cl>router ospf 110
+</span></span><span class=line><span class=cl> router-id 1.1.1.1
+</span></span><span class=line><span class=cl> network 10.0.0.1 0.0.0.0 area 0
+</span></span><span class=line><span class=cl> network 172.16.1.1 0.0.0.0 area 0
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip ospf network broadcast # 修改tunnel0接口ospf网络类型为广播
+</span></span><span class=line><span class=cl>interface Loopback1
+</span></span><span class=line><span class=cl> ip ospf network point-to-point # 修改环回接口网络类型为点到点
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>！ Hub 1 （R2)
+</span></span><span class=line><span class=cl>router ospf 110
+</span></span><span class=line><span class=cl> router-id 2.2.2.2
+</span></span><span class=line><span class=cl> network 10.0.0.2 0.0.0.0 area 0
+</span></span><span class=line><span class=cl> network 172.16.2.1 0.0.0.0 area 0
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip ospf network broadcast # 修改tunnel0接口ospf网络类型为广播
+</span></span><span class=line><span class=cl> ip ospf priority 0 # 修改ospf 优先级为0
+</span></span><span class=line><span class=cl>interface Loopback1
+</span></span><span class=line><span class=cl> ip ospf network point-to-point # 修改环回接口网络类型为点到点
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>！Hub 2 （R3)
+</span></span><span class=line><span class=cl>router ospf 110
+</span></span><span class=line><span class=cl> router-id 3.3.3.3
+</span></span><span class=line><span class=cl> network 10.0.0.3 0.0.0.0 area 0
+</span></span><span class=line><span class=cl> network 172.16.3.1 0.0.0.0 area 0
+</span></span><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> ip ospf network broadcast
+</span></span><span class=line><span class=cl> ip ospf priority 0
+</span></span><span class=line><span class=cl>interface Loopback1
+</span></span><span class=line><span class=cl> ip ospf network point-to-point
+</span></span></code></pre></div><p>Hub1和Spoke1，Spoke2的配置；Hub2和Spoke3，Spoke4的配置如法炮制即可</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>！ Hub 1 （R2)
+</span></span><span class=line><span class=cl>router ospf 110
+</span></span><span class=line><span class=cl> network 10.0.1.2 0.0.0.0 area 1
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip ospf network broadcast
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>！Spoke 1 （R4)
+</span></span><span class=line><span class=cl> router-id 4.4.4.4
+</span></span><span class=line><span class=cl> network 10.0.1.4 0.0.0.0 area 1
+</span></span><span class=line><span class=cl> network 192.168.4.1 0.0.0.0 area 1
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip ospf network broadcast
+</span></span><span class=line><span class=cl> ip ospf priority 0
+</span></span><span class=line><span class=cl>interface Loopback1
+</span></span><span class=line><span class=cl> ip ospf network point-to-point
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>！Spoke 2 （R5)
+</span></span><span class=line><span class=cl>router ospf 110
+</span></span><span class=line><span class=cl> router-id 5.5.5.5
+</span></span><span class=line><span class=cl> network 10.0.1.5 0.0.0.0 area 1
+</span></span><span class=line><span class=cl> network 192.168.5.1 0.0.0.0 area 1
+</span></span><span class=line><span class=cl>interface Tunnel1
+</span></span><span class=line><span class=cl> ip ospf network broadcast
+</span></span><span class=line><span class=cl> ip ospf priority 0
+</span></span><span class=line><span class=cl>interface Loopback1
+</span></span><span class=line><span class=cl> ip ospf network point-to-point
+</span></span></code></pre></div><p>配置完成以上内容后，可以观察到的现象（例如：R5的192.168.5.0/24网段去往R7的192.168.7.0/24网段一跳可达）</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/v28wm1Rp6qoQSzj.png><img src=https://s2.loli.net/2024/05/17/v28wm1Rp6qoQSzj.png loading=lazy alt=image-20240516233848193></a></div></p><h3 id=ipsec加密>IPSec加密</h3><p>配置ISAKMP第一阶段策略</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>crypto isakmp policy 10
+</span></span><span class=line><span class=cl> encr 3des
+</span></span><span class=line><span class=cl> hash md5
+</span></span><span class=line><span class=cl> authentication pre-share
+</span></span><span class=line><span class=cl> group 2
+</span></span></code></pre></div><p>配置ISAKMP预共享密码</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>crypto isakmp key Cisco@123 address 0.0.0.0        
+</span></span></code></pre></div><p>配置IPSec策略（转换集）</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>crypto ipsec transform-set DMVPN esp-3des esp-md5-hmac 
+</span></span><span class=line><span class=cl> mode transport
+</span></span></code></pre></div><p>配置IPSec profile</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>crypto ipsec profile DMVPN
+</span></span><span class=line><span class=cl> set transform-set DMVPN
+</span></span></code></pre></div><p>调用IPSec profile</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>interface Tunnel0
+</span></span><span class=line><span class=cl> tunnel protection ipsec profile DMVPN
+</span></span></code></pre></div><p>以上命令配置完成后，使用命令sh run | s crypto 查看配置，复制粘贴到其他设备上，然后在在tunnel接口调用</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R1#sh run | s crypto 
+</span></span><span class=line><span class=cl>crypto isakmp policy 10
+</span></span><span class=line><span class=cl> encr 3des
+</span></span><span class=line><span class=cl> hash md5
+</span></span><span class=line><span class=cl> authentication pre-share
+</span></span><span class=line><span class=cl> group 2
+</span></span><span class=line><span class=cl>crypto isakmp key Cisco@123 address 0.0.0.0        
+</span></span><span class=line><span class=cl>crypto ipsec transform-set DMVPN esp-3des esp-md5-hmac 
+</span></span><span class=line><span class=cl> mode transport
+</span></span><span class=line><span class=cl>crypto ipsec profile DMVPN
+</span></span><span class=line><span class=cl> set transform-set DMVPN 
+</span></span><span class=line><span class=cl>R1#
+</span></span></code></pre></div><p>Hub1和Hub2接口调用时后边添加share可能遇到只有一个隧道起来的情况（不懂是模拟器bug还是怎么滴），按照思科官网配置两个不同名称的ipsec profile再次进行调用，可以解决</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R2#sh run | s crypto
+</span></span><span class=line><span class=cl>crypto isakmp policy 10
+</span></span><span class=line><span class=cl> encr 3des
+</span></span><span class=line><span class=cl> hash md5
+</span></span><span class=line><span class=cl> authentication pre-share
+</span></span><span class=line><span class=cl> group 2
+</span></span><span class=line><span class=cl>crypto isakmp key Cisco@123 address 0.0.0.0        
+</span></span><span class=line><span class=cl>crypto ipsec transform-set DMVPN esp-3des esp-md5-hmac 
+</span></span><span class=line><span class=cl> mode transport
+</span></span><span class=line><span class=cl>crypto ipsec profile DMVPN-0
+</span></span><span class=line><span class=cl> set transform-set DMVPN 
+</span></span><span class=line><span class=cl>crypto ipsec profile DMVPN-1
+</span></span><span class=line><span class=cl> set transform-set DMVPN 
+</span></span><span class=line><span class=cl>R2#
+</span></span></code></pre></div><p><strong>验证加密</strong></p><p>在R4上清空会话</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R4#clea crypto session                           
+</span></span><span class=line><span class=cl>R4#sh crypto engine connections active           
+</span></span><span class=line><span class=cl>Crypto Engine Connections
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   ID  Type    Algorithm           Encrypt  Decrypt LastSeqN IP-Address
+</span></span><span class=line><span class=cl>   45  IPsec   3DES+MD5                  0        2        2 100.48.48.4
+</span></span><span class=line><span class=cl>   46  IPsec   3DES+MD5                  2        0        0 100.48.48.4
+</span></span><span class=line><span class=cl> 1016  IKE     MD5+3DES                  0        0        0 100.48.48.4
+</span></span></code></pre></div><p>使用ping命令产生数据</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R4#ping 192.168.7.1 source 192.168.4.1 repeat 100
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Sending 100, 100-byte ICMP Echos to 192.168.7.1, timeout is 2 seconds:
+</span></span><span class=line><span class=cl>Packet sent with a source address of 192.168.4.1 
+</span></span><span class=line><span class=cl>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+</span></span><span class=line><span class=cl>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+</span></span><span class=line><span class=cl>Success rate is 100 percent (100/100), round-trip min/avg/max = 4/10/27 ms
+</span></span></code></pre></div><p>查看加解密数据包计数</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R4#sh crypto engine connections active           
+</span></span><span class=line><span class=cl>Crypto Engine Connections
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   ID  Type    Algorithm           Encrypt  Decrypt LastSeqN IP-Address
+</span></span><span class=line><span class=cl>   45  IPsec   3DES+MD5                  0       13       13 100.48.48.4
+</span></span><span class=line><span class=cl>   46  IPsec   3DES+MD5                 13        0        0 100.48.48.4
+</span></span><span class=line><span class=cl>   47  IPsec   3DES+MD5                  0        0        0 100.48.48.4
+</span></span><span class=line><span class=cl>   48  IPsec   3DES+MD5                 92        0        0 100.48.48.4
+</span></span><span class=line><span class=cl>   49  IPsec   3DES+MD5                  0       93       93 100.48.48.4
+</span></span><span class=line><span class=cl>   50  IPsec   3DES+MD5                  0        0        0 100.48.48.4
+</span></span><span class=line><span class=cl> 1016  IKE     MD5+3DES                  0        0        0 100.48.48.4
+</span></span><span class=line><span class=cl> 1017  IKE     MD5+3DES                  0        0        0 100.48.48.4
+</span></span><span class=line><span class=cl> 1018  IKE     MD5+3DES                  0        0        0 100.48.48.4
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R4#
+</span></span></code></pre></div><p>结果显示，加密或解密的数量分别超过100</p><h2 id=nhrp工作流程>NHRP工作流程</h2><p>详细的可以去思科网站看看，这里贴个图</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2024/05/17/QJ2OBd39G4HR6cL.gif><img src=https://s2.loli.net/2024/05/17/QJ2OBd39G4HR6cL.gif loading=lazy alt=img></a></div></p><p>大致单向流程（以Spoke1（192.168.4.1）到Spoke4（192.168.7.1）为例）：</p><ol><li>当Spoke1首次与Spoke4进行通信（第一个数据包流，比如ping）或动态隧道已过期，icmp request 到达Hub1，查询nhrp缓存，发现没有192.168.7.1的缓存记录，icmp request 根据路由表和nhrp迭代转发到Hub1</li><li>Hub1收到icmp request ，由于Hub1不是192.168.7.1的终点，于是向Spoke1发送nhrp 重定向（指示Spoke1发nhrp request），同时icmp request 根据路由表和nhrp迭代转发到Central Hub</li><li>Central Hub收到icmp request，由于Central Hub不是192.168.7.1的终点，于是向Spoke1发送nhrp 重定向（往tunnel0发送，Hub1收到后再转发到tunnel1上，指示Spoke1发nhrp request，），同时icmp request 根据路由表和nhrp迭代转发到Hub2</li><li>Hub2收到icmp request，由于Hub2不是192.168.7.1的终点，于是向Spoke1发送nhrp 重定向（往tunnel0发送，再转发到tunnel1，指示Spoke1发nhrp request），同时icmp request 根据路由表和nhrp迭代转发到Spoke4</li><li>Spoke4收到icmp request，由于Spoke4是192.168.7.1的终点，在收到Spoke1的nhrp request于是向Spoke1发送Resolution Reply（沿着来的的路径逐条转发回去） ，icmp request 到达目的地</li></ol><p>返回流程也是经过一轮重定向的操作，因为当icmp request 到达目的地后，Spoke4的nhrp缓存也没有192.168.4.1的条目或者说没有形成动态的tunnel</p><p>通过debug nhrp packet观察，nhrp的重定向、 request 消息在几十毫秒内全部完成</p><p>R2和R3之间也会发送重定向和request，因为运行了ospf协议，R2和R3之间有Spoke的路由（例如R2去往R6，R7的下一跳是R3的tunnel接口地址）</p><p>假设R2和R3直接已经形成动态隧道（R2ping通R3的tunnel0接口）那么Spoke1（192.168.4.1）到Spoke4（192.168.7.1）的首次通信跟踪路径如下</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R4#tra 192.168.6.1 sou 192.168.4.1
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Tracing the route to 192.168.6.1
+</span></span><span class=line><span class=cl>VRF info: (vrf in name/id, vrf out name/id)
+</span></span><span class=line><span class=cl>  1 10.0.1.2 9 msec 8 msec 8 msec
+</span></span><span class=line><span class=cl>  2 10.0.0.3 11 msec 11 msec 15 msec
+</span></span><span class=line><span class=cl>  3 10.0.2.6 19 msec *  14 msec
+</span></span><span class=line><span class=cl>R4#
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>在路由器上使用命令清空nhrp缓存，再次使用trace可以看到数据包经过了R1
+</span></span><span class=line><span class=cl>R1#clea ip nhrp 
+</span></span><span class=line><span class=cl>R2#clea ip nhrp 
+</span></span><span class=line><span class=cl>R3#clea ip nhrp 
+</span></span><span class=line><span class=cl>R4#clea ip nhrp 
+</span></span><span class=line><span class=cl>R6#clea ip nhrp 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>R4#tra 192.168.6.1 sou 192.168.4.1
+</span></span><span class=line><span class=cl>Type escape sequence to abort.
+</span></span><span class=line><span class=cl>Tracing the route to 192.168.6.1
+</span></span><span class=line><span class=cl>VRF info: (vrf in name/id, vrf out name/id)
+</span></span><span class=line><span class=cl>  1 10.0.1.2 11 msec 11 msec 9 msec
+</span></span><span class=line><span class=cl>  2 10.0.0.1 11 msec 11 msec 17 msec
+</span></span><span class=line><span class=cl>  3 10.0.0.3 19 msec 13 msec 12 msec
+</span></span><span class=line><span class=cl>  4 10.0.2.6 18 msec *  14 msec
+</span></span><span class=line><span class=cl>R4#
+</span></span></code></pre></div><h2 id=spoke站点外网地址>Spoke站点外网地址</h2><p>Spoke站点是静态或动态的公网IP不影响</p><p>但是如果Spoke站点的出口地址是私网地址呢？不要惊奇，十几年前就发现有这种现象了，或者说Spoke站点上一级有NAT设备，这种情况下DMVPN仍然可用（前提是运营商没把UDP500给干掉）</p><p>在上面的拓扑R7和R8之间添加R9，配置NAT，R7和R9之间配置10.79.79.0网段，完成配置后发现R7学习路由和连通性测试没有问题，R3上观察nhrp缓存如下：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R3#sh ip nhrp 
+</span></span><span class=line><span class=cl>10.0.0.1/32 via 10.0.0.1
+</span></span><span class=line><span class=cl>   Tunnel0 created 00:12:47, never expire 
+</span></span><span class=line><span class=cl>   Type: static, Flags: used 
+</span></span><span class=line><span class=cl>   NBMA address: 100.18.18.1 
+</span></span><span class=line><span class=cl>10.0.2.6/32 via 10.0.2.6
+</span></span><span class=line><span class=cl>   Tunnel1 created 00:12:35, expire 00:09:08
+</span></span><span class=line><span class=cl>   Type: dynamic, Flags: registered used nhop 
+</span></span><span class=line><span class=cl>   NBMA address: 100.68.68.6 
+</span></span><span class=line><span class=cl>10.0.2.7/32 via 10.0.2.7
+</span></span><span class=line><span class=cl>   Tunnel1 created 00:00:25, expire 00:09:35
+</span></span><span class=line><span class=cl>   Type: dynamic, Flags: registered used nhop 
+</span></span><span class=line><span class=cl>   NBMA address: 100.89.89.9 
+</span></span><span class=line><span class=cl>    (Claimed NBMA address: 10.79.79.7) 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>比正常的显示多了一行  (Claimed NBMA address: 10.79.79.7) 
+</span></span></code></pre></div><p>R9上查看NAT转换，是不是很熟悉哈，在IPSec VPN穿越NAT的时候也出现过这种情况，所以我想说DMVPN是IPSec VPN 的PLUS+PRO+MAX升级版</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R9#sh ip nat translations 
+</span></span><span class=line><span class=cl>Pro Inside global      Inside local       Outside local      Outside global
+</span></span><span class=line><span class=cl>udp 100.89.89.9:500    10.79.79.7:500     100.58.58.5:500    100.58.58.5:500
+</span></span><span class=line><span class=cl>udp 100.89.89.9:500    10.79.79.7:500     200.38.38.3:500    200.38.38.3:500
+</span></span><span class=line><span class=cl>udp 100.89.89.9:4500   10.79.79.7:4500    100.58.58.5:4500   100.58.58.5:4500
+</span></span><span class=line><span class=cl>udp 100.89.89.9:4500   10.79.79.7:4500    200.38.38.3:4500   200.38.38.3:4500
+</span></span><span class=line><span class=cl>R9#
+</span></span></code></pre></div><h2 id=经典结尾扯蛋>经典结尾扯蛋</h2><ul><li>整了这么个实验，精华部分也就是nhrp的重定向和Spoke站点之间的动态隧道</li><li>在本人接触过的Hub和Spoke组网的项目中，也就接触过IPSec VPN，分支站点向中心传数据的情况，至于站点和站点互通的少见</li><li>其实使用DMVPN组网也能完成分支站点仅向中心传数据；在实际的项目中怀疑是参杂了一些利益因素导致这种组网少见，可能是我见识短浅；因为这种技术也不会向友商设备提供对接，跟你对接了我岂不是少赚钱了</li><li>而IPSec VPN则不同，它是一个安全框架，遵守框架开发理论上都能对接，本人提到的第二点的项目中对接的设备有深信服，华三，华为，迈普，绿盟，都组网正常运行了</li><li>做完这个实验去瞄了一眼华为的DSVPN，配置项差不多，命令表现形式不一样</li><li>配置存阿里云盘了，这是链接：[<a class=link href=https://www.alipan.com/s/Bpdw7YeYPZt target=_blank rel=noopener>分享的文件
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span>
+</a>]</li><li>欢迎“<del>来电</del>”来函探讨。</li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/network-emulator/>Network Emulator</a>
+<a href=/tags/pnetlab/>PNETLab</a>
+<a href=/tags/cisco/>Cisco</a>
+<a href=/tags/dmvpn/>DMVPN</a>
+<a href=/tags/nhrp/>NHRP</a>
+<a href=/tags/nhrp-redirec/>NHRP Redirec</a>
+<a href=/tags/tunnel/>Tunnel</a>
+<a href=/tags/%E5%A4%9A%E5%B1%82%E4%B8%8D%E5%90%8C%E5%AD%90%E7%BD%91/>多层不同子网</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/5c8077d9.html/><div class=article-details><h2 class=article-title>观察OSPF虚链路和虚链路的替代办法</h2></div></a></article><article><a href=/posts/c0ba4ae2.html/><div class=article-details><h2 class=article-title>配置跨域的Option C MPLS VPN（Cisco）</h2></div></a></article><article><a href=/posts/2e964a67.html/><div class=article-details><h2 class=article-title>IPv6 各隧道Tunnel使用Lab</h2></div></a></article><article><a href=/posts/48f55792.html/><div class=article-details><h2 class=article-title>BGP综合实验拓扑</h2></div></a></article><article><a href=/posts/1b6d0fec.html/><div class=article-details><h2 class=article-title>几种重分发方式可能带来的问题和处理</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=https://space.bilibili.com/11565094 target=_blank title=Bilibili rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a> <a href=https://kiraster.github.io/index.xml target=_blank title=RSS rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M5 19m-1 0a1 1 0 102 0 1 1 0 10-2 0"/><path d="M4 4a16 16 0 0116 16"/><path d="M4 11a9 9 0 019 9"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){var t,e=window;if(e.ChannelIO)return e.console.error("ChannelIO script included twice.");t=function(){t.c(arguments)},t.q=[],t.c=function(e){t.q.push(e)},e.ChannelIO=t;function n(){if(e.ChannelIOInitialized)return;e.ChannelIOInitialized=!0;var n,t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://cdn.channel.io/plugin/ch-plugin-web.js",n=document.getElementsByTagName("script")[0],n.parentNode&&n.parentNode.insertBefore(t,n)}document.readyState==="complete"?n():(e.addEventListener("DOMContentLoaded",n),e.addEventListener("load",n))})(),ChannelIO("boot",{pluginKey:"c7466ff8-ad03-4587-a1c8-13aeaf17e007"})</script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script></body></html>

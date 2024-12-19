@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Venv on Kir's Blog</title><link>https://kiraster.github.io/tags/venv/</link><description>Recent content in Venv on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 09 Jul 2023 13:39:07 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/venv/index.xml" rel="self" type="application/rss+xml"/><item><title>对网络设备进行批量操作的几个脚本</title><link>https://kiraster.github.io/posts/99580674/</link><pubDate>Sun, 09 Jul 2023 13:39:07 +0000</pubDate><guid>https://kiraster.github.io/posts/99580674/</guid><description>&lt;p>对网络设备进行批量操作的几个脚本&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Venv on Kir's Blog</title><link>https://kiraster.github.io/tags/venv/</link><description>Recent content in Venv on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 09 Jul 2023 13:39:07 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/venv/index.xml" rel="self" type="application/rss+xml"/><item><title>对网络设备进行批量操作的几个脚本</title><link>https://kiraster.github.io/posts/99580674.html/</link><pubDate>Sun, 09 Jul 2023 13:39:07 +0000</pubDate><guid>https://kiraster.github.io/posts/99580674.html/</guid><description>&lt;p>对网络设备进行批量操作的几个脚本&lt;/p>
 &lt;p>netmiko基操&lt;/p>
 &lt;p>32位windows下偷个懒使用&lt;/p>
 &lt;p>在32位windows系统中无法使用之前编写的nornir脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
@@ -750,7 +750,7 @@ alt="ScreenCaputure230709135002"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tomli==2.0.1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yapf==0.40.1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zipp==3.15.0
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Ubuntu publickey方式SSH连接与vscode远程调试</title><link>https://kiraster.github.io/posts/837aa3ce/</link><pubDate>Thu, 27 Apr 2023 14:52:12 +0000</pubDate><guid>https://kiraster.github.io/posts/837aa3ce/</guid><description>&lt;p>Ubuntu服务端采用publickey方式验证客户端身份，客户端本地vscode连接至Ubuntu服务端进行python远程调试&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Ubuntu publickey方式SSH连接与vscode远程调试</title><link>https://kiraster.github.io/posts/837aa3ce.html/</link><pubDate>Thu, 27 Apr 2023 14:52:12 +0000</pubDate><guid>https://kiraster.github.io/posts/837aa3ce.html/</guid><description>&lt;p>Ubuntu服务端采用publickey方式验证客户端身份，客户端本地vscode连接至Ubuntu服务端进行python远程调试&lt;/p>
 &lt;p>&lt;strong>环境描述：&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>vscode 1.77.3&lt;/li>
@@ -927,7 +927,7 @@ alt="ScreenCaputure230427163329"
 &lt;li>总体来说能用，就是非root用户跑python有可能会遇到权限问题（可能需要sudo）&lt;/li>
 &lt;li>为什么要搞远程python，因为发现在windows平台跑python时不时会遇到一些第三方库安装运行时出的一些不知道时什么不知道的问题&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨&lt;/li>
-&lt;/ul></description></item><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
+&lt;/ul></description></item><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee.html/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee.html/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
 &lt;blockquote>
 &lt;p>在32位windows系统中无法使用本脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
 &lt;/blockquote>
@@ -1272,7 +1272,7 @@ alt="ScreenCaputure230513004510"
 &lt;/ul>
 &lt;blockquote>
 &lt;p>&lt;strong>20230513 更新了此文章内容&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
+&lt;/blockquote></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c.html/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c.html/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
 &lt;h2 id="一个视频">一个视频
 &lt;/h2>&lt;p>&lt;strong>无解说无字幕，嫌BGM太吵可静音&lt;/strong>&lt;/p>
 &lt;div class="video-wrapper">

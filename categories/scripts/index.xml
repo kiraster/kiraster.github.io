@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scripts on Kir's Blog</title><link>https://kiraster.github.io/categories/scripts/</link><description>Recent content in Scripts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 16 Oct 2021 01:17:37 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/scripts/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C_线路测试脚本</title><link>https://kiraster.github.io/posts/60e83b3d/</link><pubDate>Sat, 16 Oct 2021 01:17:37 +0000</pubDate><guid>https://kiraster.github.io/posts/60e83b3d/</guid><description>&lt;p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scripts on Kir's Blog</title><link>https://kiraster.github.io/categories/scripts/</link><description>Recent content in Scripts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 16 Oct 2021 01:17:37 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/scripts/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C_线路测试脚本</title><link>https://kiraster.github.io/posts/60e83b3d.html/</link><pubDate>Sat, 16 Oct 2021 01:17:37 +0000</pubDate><guid>https://kiraster.github.io/posts/60e83b3d.html/</guid><description>&lt;p>之前做了一个割接网络的项目，在过程中要测试网点和中心的几百条专线线路，心想要逐个 ping 测试个对端IP地址，在时间上，操作上根本不可行，整个割接时间有限定，又是在凌晨时间……限制比较多，刚好那段时间在玩 Python，就想着能不能做个脚本自己跑，最后实现了，而且生成 Excel 表格统计测试成功和测试失败的信息。&lt;/p>
 &lt;h2 id="操作">操作
 &lt;/h2>&lt;h3 id="记录会话日志log-session">记录会话日志（log session）
 &lt;/h3>&lt;ul>
@@ -204,7 +204,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://kiraster.github.io/posts/80e04e00/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://kiraster.github.io/posts/80e04e00/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
+&lt;/p></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://kiraster.github.io/posts/80e04e00.html/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://kiraster.github.io/posts/80e04e00.html/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
 &lt;h2 id="如何操作">&lt;strong>如何操作&lt;/strong>
 &lt;/h2>&lt;ul>
 &lt;li>&lt;strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）&lt;/strong>&lt;/li>
@@ -315,7 +315,7 @@ loading="lazy"
 &lt;li>本文中的脚本在实际工作中使用过，设备包含华三 V5 和 V7 版本的交换机、防火墙和无线控制器等&lt;/li>
 &lt;li>根据实际需要可以修改脚本中的内容提取更多信息&lt;/li>
 &lt;li>生成的文件为 word 或 excel 等都是可以实现的&lt;/li>
-&lt;/ul></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://kiraster.github.io/posts/21b002a6/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://kiraster.github.io/posts/21b002a6/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
+&lt;/ul></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://kiraster.github.io/posts/21b002a6.html/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://kiraster.github.io/posts/21b002a6.html/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
 &lt;/h4>&lt;ul>
 &lt;li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击 “Script” &amp;ndash;&amp;gt; &amp;ldquo;Run&amp;rdquo; 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）&lt;/li>
 &lt;li>可以根据你的实际需要修改 “Send” 后面的内容&lt;/li>

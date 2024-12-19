@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C设备 on Kir's Blog</title><link>https://kiraster.github.io/tags/h3c%E8%AE%BE%E5%A4%87/</link><description>Recent content in H3C设备 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 18 Mar 2023 13:18:59 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/h3c%E8%AE%BE%E5%A4%87/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C自动配置(HTTP Python方式)</title><link>https://kiraster.github.io/posts/c69db7e2/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://kiraster.github.io/posts/c69db7e2/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C设备 on Kir's Blog</title><link>https://kiraster.github.io/tags/h3c%E8%AE%BE%E5%A4%87/</link><description>Recent content in H3C设备 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 18 Mar 2023 13:18:59 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/h3c%E8%AE%BE%E5%A4%87/index.xml" rel="self" type="application/rss+xml"/><item><title>H3C自动配置(HTTP Python方式)</title><link>https://kiraster.github.io/posts/c69db7e2.html/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://kiraster.github.io/posts/c69db7e2.html/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -291,7 +291,7 @@ alt="ScreenCaputure230318163152"
 &lt;li>方法操作没有问题，但是有时候去实施，甲方看到你老是在电脑面前操作，这个体现不出工作量，需要注意，两天的活你半小时不到干完了&lt;/li>
 &lt;li>修改一下脚本，还能用在没有console线的环境下应急，同样确保设备是空配置启动&lt;/li>
 &lt;li>&lt;code>device.py&lt;/code>文件里的代码有一个重启设备的定时任务，由于是做实验我设置了1分钟后重启，如果是真实环境这个延时重启建议配置时间大一点&lt;/li>
-&lt;/ol></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://kiraster.github.io/posts/6d4cdc14/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://kiraster.github.io/posts/6d4cdc14/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
+&lt;/ol></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://kiraster.github.io/posts/6d4cdc14.html/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://kiraster.github.io/posts/6d4cdc14.html/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
 &lt;h2 id="ssltls已弃用的tlsv10和tlsv11协议检测cve-2015-0204">SSL/TLS:已弃用的TLSv1.0和TLSv1.1协议检测(CVE-2015-0204)
 &lt;/h2>&lt;p>{% blockquote %}&lt;/p>
 &lt;p>漏洞描述：&lt;/p>
@@ -347,7 +347,7 @@ alt="ScreenCaputure230318163152"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> packet-filter 3456 inbound hardware-count
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul></description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://kiraster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://kiraster.github.io/posts/2699eb47/</guid><description>&lt;ul>
+&lt;/ul></description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://kiraster.github.io/posts/2699eb47.html/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://kiraster.github.io/posts/2699eb47.html/</guid><description>&lt;ul>
 &lt;li>针对上一版的脚本进行改进&lt;/li>
 &lt;li>增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出”&lt;/li>
 &lt;li>修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入&lt;/li>
@@ -596,7 +596,7 @@ alt="ScreenCaputure230318163152"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python实现“按任意键返回”和无回显输入 by dongfuguo on 2020-03-25 : https://blog.csdn.net/dongfuguo/article/details/105103446
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python3文件路径/目录获取教程 by 诸子流 on 2020-07-09 : `https://www.cnblogs.com/lsdb/p/13265688.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- 如何让python不打印转义字符串？by 流芳 on 2020-07-07 : https://www.py.cn/jishu/jichu/19480.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://kiraster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://kiraster.github.io/posts/54cb8229/</guid><description>&lt;ul>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://kiraster.github.io/posts/54cb8229.html/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://kiraster.github.io/posts/54cb8229.html/</guid><description>&lt;ul>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的 display 脚本批量导出配置和一些设备状态&lt;/li>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的配置命令批量增加配置&lt;/li>
 &lt;li>主要使用的是 netmiko 这个模块里的 ConnectHandler 命令&lt;/li>
@@ -890,7 +890,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03 : https://555.xdai.vip/posts/26e9de3c.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_S5500-52C-EI升级步骤</title><link>https://kiraster.github.io/posts/e765d177/</link><pubDate>Tue, 14 Sep 2021 11:03:03 +0000</pubDate><guid>https://kiraster.github.io/posts/e765d177/</guid><description>&lt;p>&lt;strong>准备工作&lt;/strong>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_S5500-52C-EI升级步骤</title><link>https://kiraster.github.io/posts/e765d177.html/</link><pubDate>Tue, 14 Sep 2021 11:03:03 +0000</pubDate><guid>https://kiraster.github.io/posts/e765d177.html/</guid><description>&lt;p>&lt;strong>准备工作&lt;/strong>&lt;/p>
 &lt;p>下载升级所需要的两个文件：&lt;/p>
 &lt;p>&lt;strong>S5500EI-BTM-721.btm&lt;/strong>（新版本 Bootrom 程序）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">名称: S5500EI-BTM-721.btm
@@ -1087,7 +1087,7 @@ loading="lazy"
 &lt;li>加载主机软件必须通过 reboot 命令重起交换机后才能使加载成功。&lt;/li>
 &lt;li>如果 Flash 空间不够，可以先删除 Flash 中的无用文件，再进行软件的下载。&lt;/li>
 &lt;li>在加载过程中不可断电。&lt;/li>
-&lt;/ul></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://kiraster.github.io/posts/80e04e00/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://kiraster.github.io/posts/80e04e00/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
+&lt;/ul></description></item><item><title>H3C_V5_V7设备巡检信息提取</title><link>https://kiraster.github.io/posts/80e04e00.html/</link><pubDate>Thu, 22 Apr 2021 16:33:36 +0000</pubDate><guid>https://kiraster.github.io/posts/80e04e00.html/</guid><description>&lt;p>上一篇博客写到如何运行脚本导出设备信息，这一篇介绍一下怎样在海量的设备信息中提取指定信息，本文中假设要提取的信息有&lt;strong>设备名称&lt;/strong>、&lt;strong>当前软件版本&lt;/strong>、&lt;strong>设备运行时间&lt;/strong>、&lt;strong>设备 CPU 使用率&lt;/strong>、&lt;strong>设备内存使用率&lt;/strong>、&lt;strong>设备序列号&lt;/strong>。后续可以根据这些信息使用 Python 脚本写入到巡检报告或者表格中。&lt;/p>
 &lt;h2 id="如何操作">&lt;strong>如何操作&lt;/strong>
 &lt;/h2>&lt;ul>
 &lt;li>&lt;strong>没有提取前已导出的设备信息（保护隐私，使用 HCL 模拟器产生的设备信息）&lt;/strong>&lt;/li>

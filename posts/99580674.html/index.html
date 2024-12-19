@@ -1,0 +1,737 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="对网络设备进行批量操作的几个脚本\nnetmiko基操\n"><meta name=msvalidate.01 content="B0C0B3C5A32207C648603D179C10C991"><title>对网络设备进行批量操作的几个脚本</title>
+<link rel=canonical href=https://kiraster.github.io/posts/99580674.html/><link rel=stylesheet href=/scss/style.min.2fbaf37cb3e4bffea1a9ed32194ab6487d5a9a16f738a62ea4d92daed847b7f8.css><meta property='og:title' content="对网络设备进行批量操作的几个脚本"><meta property='og:description' content="对网络设备进行批量操作的几个脚本\nnetmiko基操\n"><meta property='og:url' content='https://kiraster.github.io/posts/99580674.html/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='python'><meta property='article:tag' content='异步并发'><meta property='article:tag' content='脚本'><meta property='article:tag' content='批量导出'><meta property='article:tag' content='Github'><meta property='article:tag' content='venv'><meta property='article:tag' content='批量配置'><meta property='article:tag' content='netmiko'><meta property='article:published_time' content='2023-07-09T13:39:07+00:00'><meta property='article:modified_time' content='2023-07-09T13:39:07+00:00'><meta name=twitter:title content="对网络设备进行批量操作的几个脚本"><meta name=twitter:description content="对网络设备进行批量操作的几个脚本\nnetmiko基操\n"><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ2XLP4292"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ZZ2XLP4292")}</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","heff72hdac")</script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#add_configpy>add_config.py</a></li><li><a href=#backup_configpy>backup_config.py</a></li><li><a href=#pingpy>ping.py</a></li><li><a href=#ssh_connect_testpy>ssh_connect_test.py</a></li><li><a href=#undifinedpy>undifined.py</a></li><li><a href=#settingspy>settings.py</a></li><li><a href=#dev_dataxlsx>dev_data.xlsx</a></li><li><a href=#requirementstxt>requirements.txt</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/python/ style=background-color:#eedd82;color:#fff>Python</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/99580674.html/>对网络设备进行批量操作的几个脚本</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jul 09, 2023</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>8 minute read</time></div></footer></div></header><section class=article-content><p>对网络设备进行批量操作的几个脚本</p><p>netmiko基操</p><p>32位windows下偷个懒使用</p><p>在32位windows系统中无法使用之前编写的nornir脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……</p><p>github仓库地址：https://github.com/kiraster/netops_alpha_v1.1</p><p>部分代码源码来自这位大佬：<a class=link href=https://space.bilibili.com/423820673 target=_blank rel=noopener>点滴技术的个人空间_哔哩哔哩_bilibili
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span></a></p><p>有需要的自行研究哈，有建设性的好玩的想法的，欢迎来函探讨</p><p><strong>如要使用试用把玩，建议虚拟环境下运行</strong></p><h2 id=add_configpy>add_config.py</h2><p>批量对设备添加相同配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>settings</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 执行配置命令</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>run_cmd</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>host</span><span class=p>,</span> <span class=n>cmds</span><span class=p>,</span> <span class=n>enable</span><span class=o>=</span><span class=kc>False</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>enable</span> <span class=o>=</span> <span class=kc>True</span> <span class=k>if</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;secret&#39;</span><span class=p>]</span> <span class=k>else</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag</span><span class=p>,</span> <span class=n>conn</span> <span class=o>=</span> <span class=n>connect_handler</span><span class=p>(</span><span class=n>host</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>flag</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 从返回提示符获取设备名称</span>
+</span></span><span class=line><span class=cl>            <span class=n>hostname</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>find_prompt</span><span class=p>()</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;&lt;&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;&gt;&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;#&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;正在为设备[</span><span class=si>{}</span><span class=s1>]添加配置……&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>hostname</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 文件保存路径和文件名 &#39;当前目录\\EXPORT\\当天日期\\config_add\\hostname+ip+当前时间.txt&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=n>logtime</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s2>&#34;%H%M%S&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>output_filename</span> <span class=o>=</span> <span class=n>hostname</span> <span class=o>+</span> <span class=s1>&#39;_&#39;</span> <span class=o>+</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;_&#39;</span> <span class=o>+</span> <span class=n>logtime</span> <span class=o>+</span> <span class=s1>&#39;.txt&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>cmds</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 判断单元表里命令是否为空值</span>
+</span></span><span class=line><span class=cl>                <span class=n>output</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>enable</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 判断是否需要进入enable特权模式</span>
+</span></span><span class=line><span class=cl>                    <span class=n>conn</span><span class=o>.</span><span class=n>enable</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                    <span class=n>output</span> <span class=o>+=</span> <span class=n>conn</span><span class=o>.</span><span class=n>send_config_set</span><span class=p>(</span><span class=n>config_commands</span><span class=o>=</span><span class=n>cmds</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>output</span> <span class=o>+=</span> <span class=n>conn</span><span class=o>.</span><span class=n>send_config_set</span><span class=p>(</span><span class=n>config_commands</span><span class=o>=</span><span class=n>cmds</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 使用ftp/tftp/sftp/scp</span>
+</span></span><span class=line><span class=cl>                <span class=k>pass</span>
+</span></span><span class=line><span class=cl>            <span class=n>conn</span><span class=o>.</span><span class=n>disconnect</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>            <span class=c1># write_data</span>
+</span></span><span class=line><span class=cl>            <span class=n>write_to_file</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>output_filename</span><span class=p>,</span> <span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>sucessful_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39; &#39;</span> <span class=o>+</span> <span class=n>hostname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;run_cmd Failed: </span><span class=si>{</span><span class=n>e</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nd>@timer</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_write</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_count</span>
+</span></span><span class=line><span class=cl><span class=c1># 代码运行主体框架设计</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 获取当前运行的Python文件的路径</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_file_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>abspath</span><span class=p>(</span><span class=vm>__file__</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 提取文件名</span>
+</span></span><span class=line><span class=cl>        <span class=n>task_name</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>current_file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>当前执行的脚本是[</span><span class=si>{</span><span class=n>task_name</span><span class=si>}</span><span class=s1>]，程序正在执行中&gt;&gt;&gt;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>hosts</span> <span class=o>=</span> <span class=n>get_device_info</span><span class=p>(</span><span class=n>task_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span> <span class=o>=</span> <span class=n>t_pool</span>
+</span></span><span class=line><span class=cl>        <span class=c1># hosts是一个返回的生成器，需要进行循环遍历</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>host</span> <span class=ow>in</span> <span class=n>hosts</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 单线程同步输出方式执行</span>
+</span></span><span class=line><span class=cl>            <span class=c1># run_cmd(host, host[&#39;cmd_list&#39;])</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 多线程异步处理</span>
+</span></span><span class=line><span class=cl>            <span class=n>pool</span><span class=o>.</span><span class=n>apply_async</span><span class=p>(</span><span class=n>run_cmd</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>host</span><span class=p>,</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;cmd_list&#39;</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Something Wrong!&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></div><h2 id=backup_configpy>backup_config.py</h2><p>批量导出设备配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>settings</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 执行display/show命令</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>run_cmd</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>host</span><span class=p>,</span> <span class=n>cmds</span><span class=p>,</span> <span class=n>enable</span><span class=o>=</span><span class=kc>False</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>enable</span> <span class=o>=</span> <span class=kc>True</span> <span class=k>if</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;secret&#39;</span><span class=p>]</span> <span class=k>else</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag</span><span class=p>,</span> <span class=n>conn</span> <span class=o>=</span> <span class=n>connect_handler</span><span class=p>(</span><span class=n>host</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>flag</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 从返回提示符获取设备名称</span>
+</span></span><span class=line><span class=cl>            <span class=n>hostname</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>find_prompt</span><span class=p>()</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;&lt;&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;&gt;&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;#&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;正在获取设备[</span><span class=si>{}</span><span class=s2>]的配置……&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>hostname</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 文件保存路径和文件名 &#39;当前目录\\EXPORT\\当天日期\\config_backup\\hostname+ip+当前时间.txt&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=n>logtime</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s2>&#34;%H%M%S&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>output_filename</span> <span class=o>=</span> <span class=n>hostname</span> <span class=o>+</span> <span class=s1>&#39;_&#39;</span> <span class=o>+</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;_&#39;</span> <span class=o>+</span> <span class=n>logtime</span> <span class=o>+</span> <span class=s1>&#39;.txt&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>cmds</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 判断单元表里命令是否为空值</span>
+</span></span><span class=line><span class=cl>                <span class=n>output</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>                <span class=k>for</span> <span class=n>cmd</span> <span class=ow>in</span> <span class=n>cmds</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>enable</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=c1># 判断是否需要进入enable特权模式</span>
+</span></span><span class=line><span class=cl>                        <span class=n>conn</span><span class=o>.</span><span class=n>enable</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                        <span class=n>output</span> <span class=o>+=</span>  <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=s1>&#39;=&#39;</span> <span class=o>*</span> <span class=mi>100</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=n>cmd</span><span class=o>.</span><span class=n>center</span><span class=p>(</span><span class=mi>100</span><span class=p>,</span> <span class=s1>&#39;=&#39;</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                        <span class=n>output</span> <span class=o>+=</span> <span class=n>conn</span><span class=o>.</span><span class=n>send_command</span><span class=p>(</span><span class=n>command_string</span><span class=o>=</span><span class=n>cmd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=n>output</span> <span class=o>+=</span>  <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=s1>&#39;=&#39;</span> <span class=o>*</span> <span class=mi>100</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=n>cmd</span><span class=o>.</span><span class=n>center</span><span class=p>(</span><span class=mi>100</span><span class=p>,</span> <span class=s1>&#39;=&#39;</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>                        <span class=n>output</span> <span class=o>+=</span> <span class=n>conn</span><span class=o>.</span><span class=n>send_command</span><span class=p>(</span><span class=n>command_string</span><span class=o>=</span><span class=n>cmd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 使用ftp/tftp/sftp/scp</span>
+</span></span><span class=line><span class=cl>                <span class=k>pass</span>
+</span></span><span class=line><span class=cl>            <span class=n>conn</span><span class=o>.</span><span class=n>disconnect</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>            <span class=c1># write_data</span>
+</span></span><span class=line><span class=cl>            <span class=n>write_to_file</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>output_filename</span><span class=p>,</span> <span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>sucessful_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39; &#39;</span> <span class=o>+</span> <span class=n>hostname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;run_cmd Failed: </span><span class=si>{</span><span class=n>e</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nd>@timer</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_write</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_count</span>
+</span></span><span class=line><span class=cl><span class=c1># 代码运行主体框架设计</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 获取当前运行的Python文件的路径</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_file_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>abspath</span><span class=p>(</span><span class=vm>__file__</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 提取文件名</span>
+</span></span><span class=line><span class=cl>        <span class=n>task_name</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>current_file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>当前执行的脚本是[</span><span class=si>{</span><span class=n>task_name</span><span class=si>}</span><span class=s1>]，程序正在执行中&gt;&gt;&gt;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>hosts</span> <span class=o>=</span> <span class=n>get_device_info</span><span class=p>(</span><span class=n>task_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span> <span class=o>=</span> <span class=n>t_pool</span>
+</span></span><span class=line><span class=cl>        <span class=c1># hosts是一个返回的生成器，需要进行循环遍历</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>host</span> <span class=ow>in</span> <span class=n>hosts</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 单线程同步输出方式执行</span>
+</span></span><span class=line><span class=cl>            <span class=c1># run_cmd(host, host[&#39;cmd_list&#39;])</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 多线程异步处理</span>
+</span></span><span class=line><span class=cl>            <span class=n>pool</span><span class=o>.</span><span class=n>apply_async</span><span class=p>(</span><span class=n>run_cmd</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>host</span><span class=p>,</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;cmd_list&#39;</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Something Wrong!&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></div><h2 id=pingpy>ping.py</h2><p>批量对设备进行ping测试</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>ping3</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>settings</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 批量ping测试</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>ping_test</span><span class=p>(</span><span class=n>host</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=n>ping3</span><span class=o>.</span><span class=n>EXCEPTIONS</span> <span class=o>=</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>    <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>ping3</span><span class=o>.</span><span class=n>ping</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{:&lt;18}</span><span class=s2>ping测试成功.&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>sucessful_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>ping3</span><span class=o>.</span><span class=n>errors</span><span class=o>.</span><span class=n>HostUnknown</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{:&lt;18}</span><span class=s2>ping测试失败. Host unknown error raised.&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>failed_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>ping3</span><span class=o>.</span><span class=n>errors</span><span class=o>.</span><span class=n>PingError</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{:&lt;18}</span><span class=s2>ping测试失败. A ping error raised.&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>failed_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nd>@timer</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_write</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_count</span>
+</span></span><span class=line><span class=cl><span class=c1># 代码运行主体框架设计</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 获取当前运行的Python文件的路径</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_file_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>abspath</span><span class=p>(</span><span class=vm>__file__</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 提取文件名</span>
+</span></span><span class=line><span class=cl>        <span class=n>task_name</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>current_file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>当前执行的脚本是[</span><span class=si>{</span><span class=n>task_name</span><span class=si>}</span><span class=s1>]，程序正在执行中&gt;&gt;&gt;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>hosts</span> <span class=o>=</span> <span class=n>get_device_info</span><span class=p>(</span><span class=n>task_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span> <span class=o>=</span> <span class=n>t_pool</span>
+</span></span><span class=line><span class=cl>        <span class=c1># hosts是一个返回的生成器，需要进行循环遍历</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>host</span> <span class=ow>in</span> <span class=n>hosts</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 单线程同步输出方式执行</span>
+</span></span><span class=line><span class=cl>            <span class=c1># run_cmd(host, host[&#39;cmd_list&#39;])</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 多线程异步处理</span>
+</span></span><span class=line><span class=cl>            <span class=n>pool</span><span class=o>.</span><span class=n>apply_async</span><span class=p>(</span><span class=n>ping_test</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=n>host</span><span class=p>,))</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Something Wrong!&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></div><h2 id=ssh_connect_testpy>ssh_connect_test.py</h2><p>批量对设备进行ssh连接测试</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>settings</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># SSH测试连接设备</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>connect_test</span><span class=p>(</span><span class=n>host</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>flag</span><span class=p>,</span> <span class=n>conn</span> <span class=o>=</span> <span class=n>connect_handler</span><span class=p>(</span><span class=n>host</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>flag</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 获取到设备名称则表示ssh连接测试成功</span>
+</span></span><span class=line><span class=cl>            <span class=n>hostname</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>find_prompt</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=n>result</span> <span class=o>=</span> <span class=s1>&#39;</span><span class=si>{}</span><span class=s1> SSH测试连接成功,获取到设备提示符： </span><span class=si>{}</span><span class=s1>&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>],</span> <span class=n>hostname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>conn</span><span class=o>.</span><span class=n>disconnect</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=n>sucessful_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># SSH连接测试失败，同记录</span>
+</span></span><span class=line><span class=cl>            <span class=n>result</span> <span class=o>=</span> <span class=s1>&#39;</span><span class=si>{}</span><span class=s1> SSH测试连接失败,未获取到设备提示符&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;connect_test Failed: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>e</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=n>failed_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nd>@timer</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_write</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_count</span>
+</span></span><span class=line><span class=cl><span class=c1># 代码运行主体框架设计</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 获取当前运行的Python文件的路径</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_file_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>abspath</span><span class=p>(</span><span class=vm>__file__</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 提取文件名</span>
+</span></span><span class=line><span class=cl>        <span class=n>task_name</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>current_file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>当前执行的脚本是[</span><span class=si>{</span><span class=n>task_name</span><span class=si>}</span><span class=s1>]，程序正在执行中&gt;&gt;&gt;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>hosts</span> <span class=o>=</span> <span class=n>get_device_info</span><span class=p>(</span><span class=n>task_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span> <span class=o>=</span> <span class=n>t_pool</span>
+</span></span><span class=line><span class=cl>        <span class=c1># hosts是一个返回的生成器，需要进行循环遍历</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>host</span> <span class=ow>in</span> <span class=n>hosts</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 单线程同步输出方式执行</span>
+</span></span><span class=line><span class=cl>            <span class=c1># run_cmd(host, host[&#39;cmd_list&#39;])</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 多线程异步处理</span>
+</span></span><span class=line><span class=cl>            <span class=n>pool</span><span class=o>.</span><span class=n>apply_async</span><span class=p>(</span><span class=n>connect_test</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=n>host</span><span class=p>,))</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Something Wrong!&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></div><h2 id=undifinedpy>undifined.py</h2><p>批量对设备添加不同配置</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>settings</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 执行配置命令</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>run_cmd</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>host</span><span class=p>,</span> <span class=n>cmds</span><span class=p>,</span> <span class=n>enable</span><span class=o>=</span><span class=kc>False</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>enable</span> <span class=o>=</span> <span class=kc>True</span> <span class=k>if</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;secret&#39;</span><span class=p>]</span> <span class=k>else</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>    <span class=n>flag</span><span class=p>,</span> <span class=n>conn</span> <span class=o>=</span> <span class=n>connect_handler</span><span class=p>(</span><span class=n>host</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>flag</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 从返回提示符获取设备名称</span>
+</span></span><span class=line><span class=cl>            <span class=n>hostname</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>find_prompt</span><span class=p>()</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;&lt;&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;&gt;&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>replace</span><span class=p>(</span><span class=s1>&#39;#&#39;</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;正在为设备[</span><span class=si>{}</span><span class=s1>]添加配置……&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>hostname</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 文件保存路径和文件名 &#39;当前目录\\EXPORT\\当天日期\\config_add\\hostname+ip+当前时间.txt&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=n>logtime</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s2>&#34;%H%M%S&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>output_filename</span> <span class=o>=</span> <span class=n>hostname</span> <span class=o>+</span> <span class=s1>&#39;_&#39;</span> <span class=o>+</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;_&#39;</span> <span class=o>+</span> <span class=n>logtime</span> <span class=o>+</span> <span class=s1>&#39;.txt&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>cmds</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 判断单元表里命令是否为空值</span>
+</span></span><span class=line><span class=cl>                <span class=n>output</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>enable</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 判断是否需要进入enable特权模式</span>
+</span></span><span class=line><span class=cl>                    <span class=n>conn</span><span class=o>.</span><span class=n>enable</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                    <span class=n>output</span> <span class=o>+=</span> <span class=n>conn</span><span class=o>.</span><span class=n>send_config_set</span><span class=p>(</span><span class=n>config_commands</span><span class=o>=</span><span class=n>cmds</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>output</span> <span class=o>+=</span> <span class=n>conn</span><span class=o>.</span><span class=n>send_config_set</span><span class=p>(</span><span class=n>config_commands</span><span class=o>=</span><span class=n>cmds</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>pass</span>
+</span></span><span class=line><span class=cl>            <span class=n>conn</span><span class=o>.</span><span class=n>disconnect</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>            <span class=c1># write_data</span>
+</span></span><span class=line><span class=cl>            <span class=n>write_to_file</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>output_filename</span><span class=p>,</span> <span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>sucessful_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39; &#39;</span> <span class=o>+</span> <span class=n>hostname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>failed_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>conn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;run_cmd Failed: </span><span class=si>{</span><span class=n>e</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nd>@timer</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_write</span>
+</span></span><span class=line><span class=cl><span class=nd>@result_count</span>
+</span></span><span class=line><span class=cl><span class=c1># 代码运行主体框架设计</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 获取当前运行的Python文件的路径</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_file_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>abspath</span><span class=p>(</span><span class=vm>__file__</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 提取文件名</span>
+</span></span><span class=line><span class=cl>        <span class=n>task_name</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>basename</span><span class=p>(</span><span class=n>current_file_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>当前执行的脚本是[</span><span class=si>{</span><span class=n>task_name</span><span class=si>}</span><span class=s1>]，程序正在执行中&gt;&gt;&gt;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>hosts</span> <span class=o>=</span> <span class=n>get_undifined_device_info</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span> <span class=o>=</span> <span class=n>t_pool</span>
+</span></span><span class=line><span class=cl>        <span class=c1># hosts是一个返回的生成器，需要进行循环遍历</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>host</span> <span class=ow>in</span> <span class=n>hosts</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 单线程同步输出方式执行</span>
+</span></span><span class=line><span class=cl>            <span class=c1># run_cmd(host, host[&#39;cmd_list&#39;])</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 多线程异步处理</span>
+</span></span><span class=line><span class=cl>            <span class=n>pool</span><span class=o>.</span><span class=n>apply_async</span><span class=p>(</span><span class=n>run_cmd</span><span class=p>,</span> <span class=n>args</span><span class=o>=</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>host</span><span class=p>,</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;cmd_list&#39;</span><span class=p>]))</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>pool</span><span class=o>.</span><span class=n>join</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Something Wrong!&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>main</span><span class=p>()</span>
+</span></span></code></pre></div><h2 id=settingspy>settings.py</h2><p>定义一些参数、装饰器、共用函数</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=s1>&#39;&#39;&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>全局设置和共用函数
+</span></span></span><span class=line><span class=cl><span class=s1>&#39;&#39;&#39;</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>datetime</span> <span class=kn>import</span> <span class=n>datetime</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>functools</span> <span class=kn>import</span> <span class=n>wraps</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>ipaddress</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>openpyxl</span> <span class=kn>import</span> <span class=n>load_workbook</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>multiprocessing.pool</span> <span class=kn>import</span> <span class=n>ThreadPool</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>netmiko</span> <span class=kn>import</span> <span class=n>ConnectHandler</span><span class=p>,</span> <span class=n>NetMikoAuthenticationException</span><span class=p>,</span> <span class=n>NetMikoTimeoutException</span><span class=p>,</span> <span class=n>ssh_exception</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 项目根目录</span>
+</span></span><span class=line><span class=cl><span class=n>BASE_PATH</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>((</span><span class=vm>__file__</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 文件输出目录</span>
+</span></span><span class=line><span class=cl><span class=n>EXPORT_PATH</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>BASE_PATH</span><span class=p>,</span> <span class=s1>&#39;EXPORT&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 定义目录名称为当天日期（格式：20220609）</span>
+</span></span><span class=line><span class=cl><span class=n>dir_name</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s2>&#34;%Y%m</span><span class=si>%d</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 目录创建</span>
+</span></span><span class=line><span class=cl><span class=n>new_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>EXPORT_PATH</span><span class=p>,</span> <span class=n>dir_name</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isdir</span><span class=p>(</span><span class=n>new_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>new_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>backup_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>normpath</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>EXPORT_PATH</span><span class=p>,</span> <span class=n>dir_name</span><span class=p>,</span> <span class=s1>&#39;config_backup&#39;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>config_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>normpath</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>EXPORT_PATH</span><span class=p>,</span> <span class=n>dir_name</span><span class=p>,</span> <span class=s1>&#39;config_add&#39;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=c1># generate_table = os.path.normpath(</span>
+</span></span><span class=line><span class=cl><span class=c1>#     os.path.join(EXPORT_PATH, dir_name, &#39;generate_table&#39;))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isdir</span><span class=p>(</span><span class=n>backup_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>backup_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=ow>not</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>isdir</span><span class=p>(</span><span class=n>config_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>makedirs</span><span class=p>(</span><span class=n>config_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=c1># if not os.path.isdir(generate_table):</span>
+</span></span><span class=line><span class=cl><span class=c1>#     os.makedirs(generate_table)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 表格数据文件路径</span>
+</span></span><span class=line><span class=cl><span class=n>device_file</span> <span class=o>=</span> <span class=s2>&#34;dev_data.xlsx&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># ThreadPool 设定异步进程数为66</span>
+</span></span><span class=line><span class=cl><span class=n>t_pool</span> <span class=o>=</span> <span class=n>ThreadPool</span><span class=p>(</span><span class=mi>66</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 定义列表保存执行成功和失败的主机IP</span>
+</span></span><span class=line><span class=cl><span class=n>sucessful_list</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl><span class=n>failed_list</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 手动输入登陆信息</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>login_start</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=c1># login module，校验由netmiko完成</span>
+</span></span><span class=line><span class=cl>    <span class=c1># login_user = input(&#39;Login:&#39;)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># login_pwd = getpass.getpass(&#39;Passwd:&#39;)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># # 明文写死在代码，不安全的方式</span>
+</span></span><span class=line><span class=cl>    <span class=c1># login_user = &#39;admin&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># login_pwd = &#39;xxx&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># return login_user, login_pwd</span>
+</span></span><span class=line><span class=cl>    <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 加载excel文件</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>load_excel</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>wb</span> <span class=o>=</span> <span class=n>load_workbook</span><span class=p>(</span><span class=n>device_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>wb</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>FileNotFoundError</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>{}</span><span class=s2> excel文件不存在&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>device_file</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;载入读取</span><span class=si>{}</span><span class=s2> excel文件失败&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>device_file</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 获取设备数据信息</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_device_info</span><span class=p>(</span><span class=n>task_name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># by openpyxl</span>
+</span></span><span class=line><span class=cl>        <span class=c1># user, pwd = login_start()</span>
+</span></span><span class=line><span class=cl>        <span class=n>wb</span> <span class=o>=</span> <span class=n>load_excel</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>ws1</span> <span class=o>=</span> <span class=n>wb</span><span class=p>[</span><span class=n>wb</span><span class=o>.</span><span class=n>sheetnames</span><span class=p>[</span><span class=mi>0</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 选定单元格数据区域</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>ws1</span><span class=o>.</span><span class=n>iter_rows</span><span class=p>(</span><span class=n>min_row</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>max_col</span><span class=o>=</span><span class=mi>9</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 判断IP所在的列不为空值，则进行如下代码</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>row</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=nb>str</span><span class=p>(</span><span class=n>row</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>==</span> <span class=s1>&#39;#&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>continue</span>
+</span></span><span class=line><span class=cl>                <span class=n>info_dict</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;ip&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;username&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>5</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;password&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>6</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;protocol&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;port&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;secret&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>7</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;device_type&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>8</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;cmd_list&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>get_cmd_info</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>wb</span><span class=p>[</span><span class=n>row</span><span class=p>[</span><span class=mi>8</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span><span class=o>.</span><span class=n>lower</span><span class=p>()]),</span>
+</span></span><span class=line><span class=cl>                <span class=p>}</span>
+</span></span><span class=line><span class=cl>                <span class=k>yield</span> <span class=n>info_dict</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;get_device_info failed: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>e</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=k>finally</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>wb</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 获取命令信息</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_cmd_info</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>sheet_name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>cmd_list</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># by openpyxl</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>sheet_name</span><span class=o>.</span><span class=n>iter_rows</span><span class=p>(</span><span class=n>min_row</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>max_col</span><span class=o>=</span><span class=mi>3</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 若单元格使用“＃”进行注释或命令为空值，则跳过该行</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=nb>str</span><span class=p>(</span><span class=n>row</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>!=</span> <span class=s1>&#39;#&#39;</span> <span class=ow>and</span> <span class=n>row</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>value</span> <span class=ow>and</span> <span class=n>task_name</span> <span class=o>==</span> <span class=s1>&#39;backup_config.py&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>cmd_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>row</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=o>.</span><span class=n>strip</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>            <span class=k>elif</span> <span class=nb>str</span><span class=p>(</span><span class=n>row</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>!=</span> <span class=s1>&#39;#&#39;</span> <span class=ow>and</span> <span class=n>row</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>.</span><span class=n>value</span> <span class=ow>and</span> <span class=n>task_name</span> <span class=o>==</span> <span class=s1>&#39;add_config.py&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>cmd_list</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>row</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=o>.</span><span class=n>strip</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>cmd_list</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;get_cmd_info Error: &#34;</span><span class=p>,</span> <span class=n>e</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 获取自定义设备数据信息</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_undifined_device_info</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># by openpyxl</span>
+</span></span><span class=line><span class=cl>        <span class=n>wb</span> <span class=o>=</span> <span class=n>load_excel</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>ws1</span> <span class=o>=</span> <span class=n>wb</span><span class=p>[</span><span class=n>wb</span><span class=o>.</span><span class=n>sheetnames</span><span class=p>[</span><span class=mi>5</span><span class=p>]]</span>
+</span></span><span class=line><span class=cl>        <span class=n>row_number</span> <span class=o>=</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 选定单元格数据区域</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>row</span> <span class=ow>in</span> <span class=n>ws1</span><span class=o>.</span><span class=n>iter_rows</span><span class=p>(</span><span class=n>min_row</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>max_col</span><span class=o>=</span><span class=mi>9</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 获取执行命令</span>
+</span></span><span class=line><span class=cl>            <span class=n>undifined_cmd_info</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>cols</span> <span class=ow>in</span> <span class=n>ws1</span><span class=o>.</span><span class=n>iter_cols</span><span class=p>(</span><span class=n>min_col</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                                        <span class=n>min_row</span><span class=o>=</span><span class=n>row_number</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                                        <span class=n>max_row</span><span class=o>=</span><span class=n>row_number</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                                        <span class=n>values_only</span><span class=o>=</span><span class=kc>True</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>for</span> <span class=n>col</span> <span class=ow>in</span> <span class=n>cols</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>if</span> <span class=n>col</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                        <span class=k>continue</span>
+</span></span><span class=line><span class=cl>                    <span class=n>undifined_cmd_info</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>col</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>row_number</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># 判断IP所在的列不为空值，执行如下代码</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>row</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=nb>str</span><span class=p>(</span><span class=n>row</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>)</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>==</span> <span class=s1>&#39;#&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=k>continue</span>
+</span></span><span class=line><span class=cl>                <span class=n>info_dict</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;ip&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;username&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>5</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;password&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>6</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;protocol&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;port&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;secret&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>7</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;device_type&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>row</span><span class=p>[</span><span class=mi>8</span><span class=p>]</span><span class=o>.</span><span class=n>value</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                    <span class=s1>&#39;cmd_list&#39;</span><span class=p>:</span> <span class=n>undifined_cmd_info</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=p>}</span>
+</span></span><span class=line><span class=cl>                <span class=k>yield</span> <span class=n>info_dict</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>break</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;get_device_info failed: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>e</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=k>finally</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>wb</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># netmiko 连接处理</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>connect_handler</span><span class=p>(</span><span class=n>host</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>connect</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 判断使用SSH协议</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 将“protocol”列单元格的内容大写转小写，去除前后空格对比是否为 ssh</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;protocol&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>lower</span><span class=p>()</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>==</span> <span class=s1>&#39;ssh&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1>#  判断“port”列单元格，若单元格填写的内容不是22或空，则定义为22</span>
+</span></span><span class=line><span class=cl>            <span class=n>host</span><span class=p>[</span><span class=s1>&#39;port&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;port&#39;</span><span class=p>]</span> <span class=k>if</span> <span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;port&#39;</span><span class=p>]</span> <span class=ow>not</span> <span class=ow>in</span> <span class=p>[</span><span class=mi>22</span><span class=p>,</span> <span class=kc>None</span><span class=p>])</span> <span class=k>else</span> <span class=mi>22</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 剔除多余connectHandler 不需要的参数，protocol、secret、cmd_list，华为华为设备无特权密码</span>
+</span></span><span class=line><span class=cl>            <span class=n>host</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;protocol&#39;</span><span class=p>),</span> <span class=n>host</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;cmd_list&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=s1>&#39;huawei&#39;</span> <span class=ow>in</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;device_type&#39;</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>                <span class=n>host</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;secret&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>connect</span> <span class=o>=</span> <span class=n>ConnectHandler</span><span class=p>(</span><span class=o>**</span><span class=n>host</span><span class=p>,</span> <span class=n>conn_timeout</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>elif</span> <span class=s1>&#39;hp_comware&#39;</span> <span class=ow>in</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;device_type&#39;</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>                <span class=n>host</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;secret&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>connect</span> <span class=o>=</span> <span class=n>ConnectHandler</span><span class=p>(</span><span class=o>**</span><span class=n>host</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>connect</span> <span class=o>=</span> <span class=n>ConnectHandler</span><span class=p>(</span><span class=o>**</span><span class=n>host</span><span class=p>,</span> <span class=n>conn_timeout</span><span class=o>=</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 判断使用Telnet协议</span>
+</span></span><span class=line><span class=cl>        <span class=k>elif</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;protocol&#39;</span><span class=p>]</span><span class=o>.</span><span class=n>lower</span><span class=p>()</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=o>==</span> <span class=s1>&#39;telnet&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 判断“port”列单元格，若单元格填写的内容不是23或空，则定义为23</span>
+</span></span><span class=line><span class=cl>            <span class=n>host</span><span class=p>[</span><span class=s1>&#39;port&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;port&#39;</span><span class=p>]</span> <span class=k>if</span> <span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;port&#39;</span><span class=p>]</span> <span class=ow>not</span> <span class=ow>in</span> <span class=p>[</span><span class=mi>23</span><span class=p>,</span> <span class=kc>None</span><span class=p>])</span> <span class=k>else</span> <span class=mi>23</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 剔除多余connectHandler 不需要的参数，protocol、secret、cmd_list，华三华为设备无特权密码</span>
+</span></span><span class=line><span class=cl>            <span class=n>host</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;protocol&#39;</span><span class=p>),</span> <span class=n>host</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;secret&#39;</span><span class=p>),</span> <span class=n>host</span><span class=o>.</span><span class=n>pop</span><span class=p>(</span><span class=s1>&#39;cmd_list&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=c1># netmiko 支持telnet协议，设备类型格式为：hp_comware_telnet</span>
+</span></span><span class=line><span class=cl>            <span class=n>host</span><span class=p>[</span><span class=s1>&#39;device_type&#39;</span><span class=p>]</span> <span class=o>=</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;device_type&#39;</span><span class=p>]</span> <span class=o>+</span> <span class=s1>&#39;_telnet&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=c1># fast_cli=false,待测试参数</span>
+</span></span><span class=line><span class=cl>            <span class=n>connect</span> <span class=o>=</span> <span class=n>ConnectHandler</span><span class=p>(</span><span class=o>**</span><span class=n>host</span><span class=p>,</span> <span class=n>fast_cli</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 不在以上两种协议内的连接</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;暂不支持IP地址为</span><span class=si>{}</span><span class=s2>_的设备使用</span><span class=si>{}</span><span class=s2>协议登陆&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>],</span> <span class=n>host</span><span class=p>[</span><span class=s1>&#39;protocol&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>            <span class=k>raise</span> <span class=ne>ValueError</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>True</span><span class=p>,</span> <span class=n>connect</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>NetMikoTimeoutException</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{}</span><span class=s2> Can not connect to Device!&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>False</span><span class=p>,</span> <span class=n>res</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>NetMikoAuthenticationException</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{}</span><span class=s2> username/password wrong!&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>False</span><span class=p>,</span> <span class=n>res</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=n>ssh_exception</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=s2>&#34;</span><span class=si>{}</span><span class=s2> SSH parameter problem!&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>False</span><span class=p>,</span> <span class=n>res</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>Exception</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;</span><span class=si>{}</span><span class=s2> Failed: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>host</span><span class=p>[</span><span class=s1>&#39;ip&#39;</span><span class=p>],</span> <span class=n>e</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>False</span><span class=p>,</span> <span class=n>res</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 记录程序执行时间装饰器</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>timer</span><span class=p>(</span><span class=n>func</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nd>@wraps</span><span class=p>(</span><span class=n>func</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>wrapper</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>start_time</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>func</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>end_time</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(&#39;\n&#39; + &#39;-&#39; * 42)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;执行完毕，共耗时 </span><span class=si>{:0.2f}</span><span class=s1> 秒.&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>((</span><span class=n>end_time</span> <span class=o>-</span> <span class=n>start_time</span><span class=p>)</span><span class=o>.</span><span class=n>total_seconds</span><span class=p>()))</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;-&#39;</span> <span class=o>*</span> <span class=mi>42</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># return res</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>wrapper</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 记录运行结果的装饰器</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>result_count</span><span class=p>(</span><span class=n>func</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nd>@wraps</span><span class=p>(</span><span class=n>func</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>wrapper</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>       
+</span></span><span class=line><span class=cl>        <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span> <span class=o>=</span> <span class=n>func</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>result_count</span> <span class=o>=</span> <span class=p>(</span><span class=s1>&#39;设备总数 </span><span class=si>{}</span><span class=s1> 台，成功 </span><span class=si>{}</span><span class=s1> 台，失败 </span><span class=si>{}</span><span class=s1> 台.&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=nb>len</span><span class=p>(</span><span class=n>sucessful_list</span><span class=p>)</span> <span class=o>+</span> <span class=nb>len</span><span class=p>(</span><span class=n>failed_list</span><span class=p>),</span> <span class=nb>len</span><span class=p>(</span><span class=n>sucessful_list</span><span class=p>),</span> <span class=nb>len</span><span class=p>(</span><span class=n>failed_list</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=s1>&#39;-&#39;</span> <span class=o>*</span> <span class=mi>42</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=n>result_count</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>result_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>normpath</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>EXPORT_PATH</span><span class=p>,</span> <span class=n>dir_name</span><span class=p>,</span> <span class=sa>f</span><span class=s1>&#39;result_</span><span class=si>{</span><span class=n>dir_name</span><span class=si>}</span><span class=s1>.log&#39;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>运行结果保存路径: </span><span class=se>\&#34;</span><span class=si>{</span><span class=n>result_path</span><span class=si>}</span><span class=se>\&#34;\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>wrapper</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 写入文件</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>write_to_file</span><span class=p>(</span><span class=n>task_name</span><span class=p>,</span> <span class=n>output_filename</span><span class=p>,</span> <span class=n>output</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 写入结果到文件</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>task_name</span> <span class=o>==</span> <span class=s1>&#39;backup_config.py&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>backup_path</span><span class=p>,</span> <span class=n>output_filename</span><span class=p>),</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>task_name</span> <span class=o>==</span> <span class=s1>&#39;add_config.py&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>config_path</span><span class=p>,</span> <span class=n>output_filename</span><span class=p>),</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>elif</span> <span class=n>task_name</span> <span class=o>==</span> <span class=s1>&#39;undifined.py&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>config_path</span><span class=p>,</span> <span class=n>output_filename</span><span class=p>),</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>output</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 保存运行结果记录的装饰器</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>result_write</span><span class=p>(</span><span class=n>func</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nd>@wraps</span><span class=p>(</span><span class=n>func</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>wrapper</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span> <span class=o>=</span> <span class=n>func</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>result_count</span> <span class=o>=</span> <span class=p>(</span><span class=s1>&#39;设备总数 </span><span class=si>{}</span><span class=s1> 台，成功 </span><span class=si>{}</span><span class=s1> 台，失败 </span><span class=si>{}</span><span class=s1> 台.&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=nb>len</span><span class=p>(</span><span class=n>sucessful_list</span><span class=p>)</span> <span class=o>+</span> <span class=nb>len</span><span class=p>(</span><span class=n>failed_list</span><span class=p>),</span> <span class=nb>len</span><span class=p>(</span><span class=n>sucessful_list</span><span class=p>),</span> <span class=nb>len</span><span class=p>(</span><span class=n>failed_list</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># time_str = datetime.now()</span>
+</span></span><span class=line><span class=cl>        <span class=n>time_str</span> <span class=o>=</span> <span class=n>datetime</span><span class=o>.</span><span class=n>now</span><span class=p>()</span><span class=o>.</span><span class=n>strftime</span><span class=p>(</span><span class=s1>&#39;%Y-%m-</span><span class=si>%d</span><span class=s1> %H:%M:%S.</span><span class=si>%f</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>result_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>normpath</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>EXPORT_PATH</span><span class=p>,</span> <span class=n>dir_name</span><span class=p>,</span> <span class=sa>f</span><span class=s1>&#39;result_</span><span class=si>{</span><span class=n>dir_name</span><span class=si>}</span><span class=s1>.log&#39;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=n>result_path</span><span class=p>,</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=n>encoding</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>log_title</span> <span class=o>=</span> <span class=n>task_name</span><span class=o>.</span><span class=n>center</span><span class=p>(</span><span class=mi>100</span><span class=p>,</span> <span class=s1>&#39;=&#39;</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span> <span class=o>+</span> <span class=n>time_str</span><span class=o>.</span><span class=n>center</span><span class=p>(</span><span class=mi>100</span><span class=p>,</span> <span class=s1>&#39;=&#39;</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>log_title</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>result_count</span> <span class=o>+</span> <span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>执行成功设备列表：</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>sucessful_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>NG设备列表：</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>failed_list</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>i</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>f</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=s1>&#39;</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>task_name</span><span class=p>,</span> <span class=n>sucessful_list</span><span class=p>,</span> <span class=n>failed_list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>wrapper</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 判断是否是正确格式的IP地址，IP地址网络，IP地址范围</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>is_valid_ipv4_input</span><span class=p>(</span><span class=n>ipv4_str</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=c1># 尝试将输入解析为 IPv4Address</span>
+</span></span><span class=line><span class=cl>        <span class=n>ipaddress</span><span class=o>.</span><span class=n>IPv4Address</span><span class=p>(</span><span class=n>ipv4_str</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span> <span class=ne>ValueError</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>        <span class=c1># try:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     # 将输入拆分为两个 IP 地址</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     start, end = ipv4_str.split(&#39;-&#39;)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     # 尝试将输入解析为 IPv4Address</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     ipaddress.IPv4Address(start.strip())</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     ipaddress.IPv4Address(end.strip())</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     return True</span>
+</span></span><span class=line><span class=cl>        <span class=c1># except ValueError as e:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     # 尝试将输入解析为 IPv4Network</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     try:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#         network = ipaddress.IPv4Network(ipv4_str)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#         if network.hostmask != &#39;0.0.0.0&#39;:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#             return True</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#         else:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#             return False</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#     except ValueError as e:</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#         # print(e)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>#         return False</span>
+</span></span></code></pre></div><h2 id=dev_dataxlsx>dev_data.xlsx</h2><p>定义设备登陆参数和命令</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2023/07/09/HQZDLa1dUeKV3F9.jpg><img src=https://s2.loli.net/2023/07/09/HQZDLa1dUeKV3F9.jpg loading=lazy alt=ScreenCaputure230709135002></a></div></p><h2 id=requirementstxt>requirements.txt</h2><p>使用到的第三方库</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>bcrypt==4.0.1
+</span></span><span class=line><span class=cl>cffi==1.15.1
+</span></span><span class=line><span class=cl>cryptography==41.0.1
+</span></span><span class=line><span class=cl>et-xmlfile==1.1.0
+</span></span><span class=line><span class=cl>future==0.18.3
+</span></span><span class=line><span class=cl>importlib-metadata==6.8.0
+</span></span><span class=line><span class=cl>netmiko==3.4.0
+</span></span><span class=line><span class=cl>ntc-templates==3.4.0
+</span></span><span class=line><span class=cl>openpyxl==3.1.2
+</span></span><span class=line><span class=cl>paramiko==3.2.0
+</span></span><span class=line><span class=cl>ping3==4.0.4
+</span></span><span class=line><span class=cl>platformdirs==3.8.1
+</span></span><span class=line><span class=cl>pycparser==2.21
+</span></span><span class=line><span class=cl>PyNaCl==1.5.0
+</span></span><span class=line><span class=cl>pyserial==3.5
+</span></span><span class=line><span class=cl>PyYAML==6.0
+</span></span><span class=line><span class=cl>scp==0.14.5
+</span></span><span class=line><span class=cl>six==1.16.0
+</span></span><span class=line><span class=cl>tenacity==8.2.2
+</span></span><span class=line><span class=cl>textfsm==1.1.3
+</span></span><span class=line><span class=cl>tomli==2.0.1
+</span></span><span class=line><span class=cl>yapf==0.40.1
+</span></span><span class=line><span class=cl>zipp==3.15.0
+</span></span></code></pre></div></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>Python</a>
+<a href=/tags/%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91/>异步并发</a>
+<a href=/tags/%E8%84%9A%E6%9C%AC/>脚本</a>
+<a href=/tags/%E6%89%B9%E9%87%8F%E5%AF%BC%E5%87%BA/>批量导出</a>
+<a href=/tags/github/>Github</a>
+<a href=/tags/venv/>Venv</a>
+<a href=/tags/%E6%89%B9%E9%87%8F%E9%85%8D%E7%BD%AE/>批量配置</a>
+<a href=/tags/netmiko/>Netmiko</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/9571d5ee.html/><div class=article-details><h2 class=article-title>一个使用nornir框架编写的跑脚本工具</h2></div></a></article><article><a href=/posts/837aa3ce.html/><div class=article-details><h2 class=article-title>Ubuntu publickey方式SSH连接与vscode远程调试</h2></div></a></article><article><a href=/posts/14423df7.html/><div class=article-details><h2 class=article-title>使用Selenium实现登陆网站并签到</h2></div></a></article><article><a href=/posts/9a95f1cd.html/><div class=article-details><h2 class=article-title>Github之pull requests提交分支</h2></div></a></article><article><a href=/posts/d70f2b4c.html/><div class=article-details><h2 class=article-title>基于Django编写的SNMP轮询Demo</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=https://space.bilibili.com/11565094 target=_blank title=Bilibili rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a> <a href=https://kiraster.github.io/index.xml target=_blank title=RSS rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M5 19m-1 0a1 1 0 102 0 1 1 0 10-2 0"/><path d="M4 4a16 16 0 0116 16"/><path d="M4 11a9 9 0 019 9"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){var t,e=window;if(e.ChannelIO)return e.console.error("ChannelIO script included twice.");t=function(){t.c(arguments)},t.q=[],t.c=function(e){t.q.push(e)},e.ChannelIO=t;function n(){if(e.ChannelIOInitialized)return;e.ChannelIOInitialized=!0;var n,t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://cdn.channel.io/plugin/ch-plugin-web.js",n=document.getElementsByTagName("script")[0],n.parentNode&&n.parentNode.insertBefore(t,n)}document.readyState==="complete"?n():(e.addEventListener("DOMContentLoaded",n),e.addEventListener("load",n))})(),ChannelIO("boot",{pluginKey:"c7466ff8-ad03-4587-a1c8-13aeaf17e007"})</script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script></body></html>

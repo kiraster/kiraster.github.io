@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C on Kir's Blog</title><link>https://kiraster.github.io/tags/h3c/</link><description>Recent content in H3C on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 16 Apr 2023 23:33:58 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/h3c/index.xml" rel="self" type="application/rss+xml"/><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C on Kir's Blog</title><link>https://kiraster.github.io/tags/h3c/</link><description>Recent content in H3C on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 16 Apr 2023 23:33:58 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/h3c/index.xml" rel="self" type="application/rss+xml"/><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee.html/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee.html/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
 &lt;blockquote>
 &lt;p>在32位windows系统中无法使用本脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
 &lt;/blockquote>
@@ -343,7 +343,7 @@ alt="ScreenCaputure230513004510"
 &lt;/ul>
 &lt;blockquote>
 &lt;p>&lt;strong>20230513 更新了此文章内容&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
+&lt;/blockquote></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c.html/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c.html/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
 &lt;h2 id="一个视频">一个视频
 &lt;/h2>&lt;p>&lt;strong>无解说无字幕，嫌BGM太吵可静音&lt;/strong>&lt;/p>
 &lt;div class="video-wrapper">
@@ -553,7 +553,7 @@ fill="currentColor">
 &lt;li>没有对其他分辨率屏幕做调整&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://kiraster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://kiraster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
+&lt;/ol></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://kiraster.github.io/posts/ab889e59.html/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://kiraster.github.io/posts/ab889e59.html/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
 &lt;/h2>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg">
@@ -725,7 +725,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://kiraster.github.io/posts/21b002a6/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://kiraster.github.io/posts/21b002a6/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
+&lt;/p></description></item><item><title>H3C_SecureCRT巡检脚本</title><link>https://kiraster.github.io/posts/21b002a6.html/</link><pubDate>Sun, 18 Apr 2021 06:58:53 +0000</pubDate><guid>https://kiraster.github.io/posts/21b002a6.html/</guid><description>&lt;h4 id="脚本介绍和使用">&lt;strong>脚本介绍和使用&lt;/strong>
 &lt;/h4>&lt;ul>
 &lt;li>这是一个巡检脚本，使用 CRT 软件登陆H3C设备，点击 “Script” &amp;ndash;&amp;gt; &amp;ldquo;Run&amp;rdquo; 选择脚本，运行脚本可得到需要收集的信息（当然你要打开 log 记录日志，相信你懂）&lt;/li>
 &lt;li>可以根据你的实际需要修改 “Send” 后面的内容&lt;/li>

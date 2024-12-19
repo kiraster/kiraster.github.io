@@ -1,0 +1,235 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="实验说明：\n设备互联线路，IP 地址、路由协议、可靠性等配置自定义\n"><meta name=msvalidate.01 content="B0C0B3C5A32207C648603D179C10C991"><title>HCL_一个小实验的思路</title>
+<link rel=canonical href=https://kiraster.github.io/posts/c7ac5477.html/><link rel=stylesheet href=/scss/style.min.2fbaf37cb3e4bffea1a9ed32194ab6487d5a9a16f738a62ea4d92daed847b7f8.css><meta property='og:title' content="HCL_一个小实验的思路"><meta property='og:description' content="实验说明：\n设备互联线路，IP 地址、路由协议、可靠性等配置自定义\n"><meta property='og:url' content='https://kiraster.github.io/posts/c7ac5477.html/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='H3CCloudLab'><meta property='article:published_time' content='2021-01-21T08:31:24+00:00'><meta property='article:modified_time' content='2021-01-21T08:31:24+00:00'><meta name=twitter:title content="HCL_一个小实验的思路"><meta name=twitter:description content="实验说明：\n设备互联线路，IP 地址、路由协议、可靠性等配置自定义\n"><link rel="shortcut icon" href=/favicon.ico><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ2XLP4292"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ZZ2XLP4292")}</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","heff72hdac")</script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#实验效果>实验效果：</a></li><li><a href=#解决思路>解决思路：</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/h3ccloudlab/ style=background-color:#b0c4de;color:#fff>H3CCloudLab</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/c7ac5477.html/>HCL_一个小实验的思路</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 21, 2021</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>5 minute read</time></div></footer></div></header><section class=article-content><p><strong>实验说明：</strong></p><p><strong>设备互联线路，IP 地址、路由协议、可靠性等配置自定义</strong></p><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg><img src=https://i.loli.net/2021/01/21/1x5uRqEXDlGcigv.jpg loading=lazy></a></div></p><h2 id=实验效果>实验效果：</h2><ul><li>PC_1 网段流量经R1出互联网</li><li>PC_2 网段流量经R2出互联网</li><li>当任意互联网线路故障后，全部流量走另一线路出互联网</li></ul><h2 id=解决思路>解决思路：</h2><ul><li><strong>设备互联，IP地址规划如图</strong></li></ul><p><div class=post-img-view><a data-fancybox=gallery href=https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png><img src=https://i.loli.net/2021/01/21/mHXfo1pLUrneKgs.png loading=lazy></a></div></p><ul><li><strong>Core_SW1、Core_SW2 做堆叠，F1/0/53 to F1/0/54堆叠口，Ten 1/0/50为 BFD 检测线</strong></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;Core_SW1&gt;dis irf
+</span></span><span class=line><span class=cl>MemberID    Role    Priority  CPU-Mac         Description
+</span></span><span class=line><span class=cl> *+1        Master  15        72f0-e201-0504  ---
+</span></span><span class=line><span class=cl>   2        Standby 10        72f0-e6bc-0604  ---
+</span></span><span class=line><span class=cl>--------------------------------------------------
+</span></span><span class=line><span class=cl> * indicates the device is the master.
+</span></span><span class=line><span class=cl> + indicates the device through which the user logs in.
+</span></span><span class=line><span class=cl> &lt;Core_SW1&gt;dis irf topology 
+</span></span><span class=line><span class=cl>                              Topology Info
+</span></span><span class=line><span class=cl> -------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>               IRF-Port1                IRF-Port2          
+</span></span><span class=line><span class=cl> MemberID    Link       neighbor      Link       neighbor    Belong To
+</span></span><span class=line><span class=cl> 1           DIS        ---           UP         2           72f0-e201-0504
+</span></span><span class=line><span class=cl> 2           UP         1             DIS        ---         72f0-e201-0504
+</span></span></code></pre></div><p><strong>核心交换机 Core_SW 与 R1, R2 之间启用三层聚合链路</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;Core_SW1&gt;dis link-aggregation summary 
+</span></span><span class=line><span class=cl>Aggregation Interface Type: 
+</span></span><span class=line><span class=cl>BAGG -- Bridge-Aggregation, BLAGG -- Blade-Aggregation, RAGG -- Route-Aggregation, SCH-B -- Schannel-Bundle 
+</span></span><span class=line><span class=cl>Aggregation Mode: S -- Static, D -- Dynamic 
+</span></span><span class=line><span class=cl>Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing
+</span></span><span class=line><span class=cl>Actor System ID: 0x8000, 72f0-e201-0500
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>AGG        AGG   Partner ID              Selected  Unselected  Individual  Share
+</span></span><span class=line><span class=cl>Interface  Mode                          Ports     Ports       Ports       Type 
+</span></span><span class=line><span class=cl>--------------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>BAGG3      S     None                    2         0           0           Shar 
+</span></span><span class=line><span class=cl>RAGG1      S     None                    2         0           0           Shar 
+</span></span><span class=line><span class=cl>RAGG2      S     None                    2         0           0           Shar 
+</span></span><span class=line><span class=cl>&lt;Core_SW1&gt;dis ip int b
+</span></span><span class=line><span class=cl>*down: administratively down
+</span></span><span class=line><span class=cl>(s): spoofing  (l): loopback
+</span></span><span class=line><span class=cl>Interface                Physical Protocol IP Address      Description 
+</span></span><span class=line><span class=cl>GE1/0/1                  up       up       --              --
+</span></span><span class=line><span class=cl>GE1/0/2                  up       up       --              --
+</span></span><span class=line><span class=cl>GE2/0/1                  up       up       --              --
+</span></span><span class=line><span class=cl>GE2/0/2                  up       up       --              --
+</span></span><span class=line><span class=cl>MGE0/0/0                 down     down     --              --
+</span></span><span class=line><span class=cl>RAGG1                    up       up       10.1.1.1        --
+</span></span><span class=line><span class=cl>RAGG2                    up       up       10.1.1.5        --
+</span></span><span class=line><span class=cl>Vlan10                   up       up       192.168.10.254  --
+</span></span><span class=line><span class=cl>Vlan20                   up       up       192.168.20.254  --
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;R1&gt;dis link-aggregation verbose 
+</span></span><span class=line><span class=cl>Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing 
+</span></span><span class=line><span class=cl>Port: A -- Auto
+</span></span><span class=line><span class=cl>Port Status: S -- Selected, U -- Unselected, I -- Individual 
+</span></span><span class=line><span class=cl>Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, 
+</span></span><span class=line><span class=cl>        D -- Synchronization, E -- Collecting, F -- Distributing,  
+</span></span><span class=line><span class=cl>        G -- Defaulted, H -- Expired
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Aggregate Interface: Route-Aggregation1
+</span></span><span class=line><span class=cl>Aggregation Mode: Static
+</span></span><span class=line><span class=cl>Loadsharing Type: Shar
+</span></span><span class=line><span class=cl>  Port             Status  Priority Oper-Key
+</span></span><span class=line><span class=cl>--------------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>  GE0/1            S       32768    1         
+</span></span><span class=line><span class=cl>  GE0/2            S       32768    1         
+</span></span><span class=line><span class=cl>&lt;R1&gt;dis ip int b
+</span></span><span class=line><span class=cl>*down: administratively down
+</span></span><span class=line><span class=cl>(s): spoofing  (l): loopback
+</span></span><span class=line><span class=cl>Interface                Physical Protocol IP Address      Description 
+</span></span><span class=line><span class=cl>GE0/0                    up       up       101.1.1.1       --
+</span></span><span class=line><span class=cl>GE0/1                    up       up       --              --
+</span></span><span class=line><span class=cl>GE0/2                    up       up       --              --
+</span></span><span class=line><span class=cl>GE5/0                    down     down     --              --
+</span></span><span class=line><span class=cl>GE5/1                    down     down     --              --
+</span></span><span class=line><span class=cl>GE6/0                    down     down     --              --
+</span></span><span class=line><span class=cl>GE6/1                    down     down     --              --
+</span></span><span class=line><span class=cl>RAGG1                    up       up       10.1.1.2        --
+</span></span><span class=line><span class=cl>Ser1/0                   down     down     --              --
+</span></span><span class=line><span class=cl>Ser2/0                   down     down     --              --
+</span></span><span class=line><span class=cl>Ser3/0                   down     down     --              --
+</span></span><span class=line><span class=cl>Ser4/0                   down     down     --              --
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;R2&gt;dis link-aggregation verbose 
+</span></span><span class=line><span class=cl>Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing 
+</span></span><span class=line><span class=cl>Port: A -- Auto
+</span></span><span class=line><span class=cl>Port Status: S -- Selected, U -- Unselected, I -- Individual 
+</span></span><span class=line><span class=cl>Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, 
+</span></span><span class=line><span class=cl>        D -- Synchronization, E -- Collecting, F -- Distributing,  
+</span></span><span class=line><span class=cl>        G -- Defaulted, H -- Expired
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Aggregate Interface: Route-Aggregation1
+</span></span><span class=line><span class=cl>Aggregation Mode: Static
+</span></span><span class=line><span class=cl>Loadsharing Type: Shar
+</span></span><span class=line><span class=cl>  Port             Status  Priority Oper-Key
+</span></span><span class=line><span class=cl>--------------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>  GE0/1            S       32768    1         
+</span></span><span class=line><span class=cl>  GE0/2            S       32768    1         
+</span></span><span class=line><span class=cl>&lt;R2&gt;dis ip int b
+</span></span><span class=line><span class=cl>*down: administratively down
+</span></span><span class=line><span class=cl>(s): spoofing  (l): loopback
+</span></span><span class=line><span class=cl>Interface                Physical Protocol IP Address      Description 
+</span></span><span class=line><span class=cl>GE0/0                    up       up       201.1.1.1       --
+</span></span><span class=line><span class=cl>GE0/1                    up       up       --              --
+</span></span><span class=line><span class=cl>GE0/2                    up       up       --              --
+</span></span><span class=line><span class=cl>GE5/0                    down     down     --              --
+</span></span><span class=line><span class=cl>GE5/1                    down     down     --              --
+</span></span><span class=line><span class=cl>GE6/0                    down     down     --              --
+</span></span><span class=line><span class=cl>GE6/1                    down     down     --              --
+</span></span><span class=line><span class=cl>RAGG1                    up       up       10.1.1.6        --
+</span></span><span class=line><span class=cl>Ser1/0                   down     down     --              --
+</span></span><span class=line><span class=cl>Ser2/0                   down     down     --              --
+</span></span><span class=line><span class=cl>Ser3/0                   down     down     --              --
+</span></span><span class=line><span class=cl>Ser4/0                   down     down     --              --
+</span></span></code></pre></div><ul><li><strong>核心交换机 Core_SW 与 SW3 之间启用二层聚合链路</strong></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;SW3&gt;dis link-aggregation verbose 
+</span></span><span class=line><span class=cl>Loadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing 
+</span></span><span class=line><span class=cl>Port: A -- Auto
+</span></span><span class=line><span class=cl>Port Status: S -- Selected, U -- Unselected, I -- Individual 
+</span></span><span class=line><span class=cl>Flags:  A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation, 
+</span></span><span class=line><span class=cl>        D -- Synchronization, E -- Collecting, F -- Distributing,  
+</span></span><span class=line><span class=cl>        G -- Defaulted, H -- Expired
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Aggregate Interface: Bridge-Aggregation1
+</span></span><span class=line><span class=cl>Aggregation Mode: Static
+</span></span><span class=line><span class=cl>Loadsharing Type: Shar
+</span></span><span class=line><span class=cl>  Port             Status  Priority Oper-Key
+</span></span><span class=line><span class=cl>--------------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>  GE1/0/1          S       32768    1         
+</span></span><span class=line><span class=cl>  GE1/0/2          S       32768    1         
+</span></span></code></pre></div><ul><li><strong>核心交换机 Core_SW 配置静态路由；R1、R2 配置默认路由下一跳指向 ISP 设备地址、配置回程静态路由指向 Core_SW 三层聚合接口地址</strong></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;Core_SW1&gt;dis cur | inc route
+</span></span><span class=line><span class=cl>policy-based-route vlan20nexthop permit node 1
+</span></span><span class=line><span class=cl> ip policy-based-route vlan20nexthop
+</span></span><span class=line><span class=cl> port link-mode route
+</span></span><span class=line><span class=cl> port link-mode route
+</span></span><span class=line><span class=cl> port link-mode route
+</span></span><span class=line><span class=cl> port link-mode route
+</span></span><span class=line><span class=cl> ip route-static 0.0.0.0 0 10.1.1.2 track 2
+</span></span><span class=line><span class=cl> ip route-static 0.0.0.0 0 10.1.1.6 preference 80
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;R1&gt;dis ip routing-table pro static 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Summary count : 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Static Routing table status : &lt;Active&gt;
+</span></span><span class=line><span class=cl>Summary count : 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Destination/Mask   Proto   Pre Cost        NextHop         Interface
+</span></span><span class=line><span class=cl>0.0.0.0/0          Static  60  0           101.1.1.2       GE0/0
+</span></span><span class=line><span class=cl>192.168.10.0/24    Static  60  0           10.1.1.1        RAGG1
+</span></span><span class=line><span class=cl>192.168.20.0/24    Static  60  0           10.1.1.1        RAGG1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Static Routing table status : &lt;Inactive&gt;
+</span></span><span class=line><span class=cl>Summary count : 0
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;R2&gt;dis ip routing-table pro static 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Summary count : 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Static Routing table status : &lt;Active&gt;
+</span></span><span class=line><span class=cl>Summary count : 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Destination/Mask   Proto   Pre Cost        NextHop         Interface
+</span></span><span class=line><span class=cl>0.0.0.0/0          Static  60  0           201.1.1.2       GE0/0
+</span></span><span class=line><span class=cl>192.168.10.0/24    Static  60  0           10.1.1.5        RAGG1
+</span></span><span class=line><span class=cl>192.168.20.0/24    Static  60  0           10.1.1.5        RAGG1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Static Routing table status : &lt;Inactive&gt;
+</span></span><span class=line><span class=cl>Summary count : 0
+</span></span></code></pre></div><ul><li><strong>核心交换机 Core_SW 配置 NQA，检测 ISP_1, ISP_2 可达性，关联 Track 与静态路由、策略路由联动</strong></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>nqa entry admin isp_1_test
+</span></span><span class=line><span class=cl> type icmp-echo
+</span></span><span class=line><span class=cl>  destination ip 101.1.1.2
+</span></span><span class=line><span class=cl>  frequency 2000
+</span></span><span class=line><span class=cl>  history-record enable
+</span></span><span class=line><span class=cl>  history-record number 5
+</span></span><span class=line><span class=cl>  next-hop ip 10.1.1.2
+</span></span><span class=line><span class=cl>  probe count 5
+</span></span><span class=line><span class=cl>  probe timeout 1000
+</span></span><span class=line><span class=cl>  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only
+</span></span><span class=line><span class=cl>  source ip 10.1.1.1
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>nqa entry admin isp_2_test
+</span></span><span class=line><span class=cl> type icmp-echo
+</span></span><span class=line><span class=cl>  destination ip 201.1.1.2
+</span></span><span class=line><span class=cl>  frequency 2000
+</span></span><span class=line><span class=cl>  history-record enable
+</span></span><span class=line><span class=cl>  history-record number 5
+</span></span><span class=line><span class=cl>  next-hop ip 10.1.1.6
+</span></span><span class=line><span class=cl>  probe count 5
+</span></span><span class=line><span class=cl>  probe timeout 1000
+</span></span><span class=line><span class=cl>  reaction 1 checked-element probe-fail threshold-type consecutive 3 action-type trigger-only
+</span></span><span class=line><span class=cl>  source ip 10.1.1.5
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl> nqa schedule admin isp_1_test start-time now lifetime forever
+</span></span><span class=line><span class=cl> nqa schedule admin isp_2_test start-time now lifetime forever
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>track 1 nqa entry admin isp_2_test reaction 1
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>track 2 nqa entry admin isp_1_test reaction 1
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl> ip route-static 0.0.0.0 0 10.1.1.2 track 2
+</span></span><span class=line><span class=cl> ip route-static 0.0.0.0 0 10.1.1.6 preference 80
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>policy-based-route vlan20nexthop permit node 1
+</span></span><span class=line><span class=cl> if-match acl 3001
+</span></span><span class=line><span class=cl> apply next-hop 10.1.1.6 track 1
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>acl advanced 3001
+</span></span><span class=line><span class=cl> rule 5 deny ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255
+</span></span><span class=line><span class=cl> rule 10 permit ip source 192.168.20.0 0.0.0.255
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><ul><li><strong>ISP 网络设备配置 OSPF</strong></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;ISP_NETWORK&gt;dis ip routing-table  protocol ospf
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Summary count : 5
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>OSPF Routing table status : &lt;Active&gt;
+</span></span><span class=line><span class=cl>Summary count : 2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Destination/Mask   Proto   Pre Cost        NextHop         Interface
+</span></span><span class=line><span class=cl>101.1.1.0/30       O_INTRA 10  2           101.1.1.5       GE0/1
+</span></span><span class=line><span class=cl>201.1.1.0/30       O_INTRA 10  2           201.1.1.5       GE0/2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>OSPF Routing table status : &lt;Inactive&gt;
+</span></span><span class=line><span class=cl>Summary count : 3
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Destination/Mask   Proto   Pre Cost        NextHop         Interface
+</span></span><span class=line><span class=cl>1.2.3.4/32         O_INTRA 10  0           0.0.0.0         Loop0
+</span></span><span class=line><span class=cl>101.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/1
+</span></span><span class=line><span class=cl>201.1.1.4/30       O_INTRA 10  1           0.0.0.0         GE0/2
+</span></span></code></pre></div></section><footer class=article-footer><section class=article-tags><a href=/tags/h3ccloudlab/>H3CCloudLab</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/eb7e5d69.html/><div class=article-details><h2 class=article-title>HCL_VPN不同实例互通实验</h2></div></a></article><article><a href=/posts/cce1f96e.html/><div class=article-details><h2 class=article-title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</h2></div></a></article><article><a href=/posts/f285fb93.html/><div class=article-details><h2 class=article-title>H3C 防火墙（v7）提取导出安全策略至表格</h2></div></a></article><article><a href=/posts/4eda38e9.html/><div class=article-details><h2 class=article-title>Ubuntu 22.04 安装iNode管理中心和定制客户端</h2></div></a></article><article><a href=/posts/ed57c1e2.html/><div class=article-details><h2 class=article-title>H3C 防火墙（v7）SSLVPN 实验配置</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2024 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=https://space.bilibili.com/11565094 target=_blank title=Bilibili rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a> <a href=https://kiraster.github.io/index.xml target=_blank title=RSS rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M5 19m-1 0a1 1 0 102 0 1 1 0 10-2 0"/><path d="M4 4a16 16 0 0116 16"/><path d="M4 11a9 9 0 019 9"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){var t,e=window;if(e.ChannelIO)return e.console.error("ChannelIO script included twice.");t=function(){t.c(arguments)},t.q=[],t.c=function(e){t.q.push(e)},e.ChannelIO=t;function n(){if(e.ChannelIOInitialized)return;e.ChannelIOInitialized=!0;var n,t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://cdn.channel.io/plugin/ch-plugin-web.js",n=document.getElementsByTagName("script")[0],n.parentNode&&n.parentNode.insertBefore(t,n)}document.readyState==="complete"?n():(e.addEventListener("DOMContentLoaded",n),e.addEventListener("load",n))})(),ChannelIO("boot",{pluginKey:"c7466ff8-ad03-4587-a1c8-13aeaf17e007"})</script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script></body></html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Kir's Blog</title><link>https://kiraster.github.io/tags/blog/</link><description>Recent content in Blog on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 15 Dec 2024 14:14:51 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>当前主题与原版Stack主题不同的地方</title><link>https://kiraster.github.io/posts/3d1b11f0/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://kiraster.github.io/posts/3d1b11f0/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Kir's Blog</title><link>https://kiraster.github.io/tags/blog/</link><description>Recent content in Blog on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 15 Dec 2024 14:14:51 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>当前主题与原版Stack主题不同的地方</title><link>https://kiraster.github.io/posts/3d1b11f0.html/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://kiraster.github.io/posts/3d1b11f0.html/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
 &lt;p>网上的教程很多，搜索引擎遨游一下便有修改方法，以下只列出修改的结果&lt;/p>
 &lt;hr>
 &lt;h2 id="首页">首页
@@ -129,7 +129,7 @@
 &lt;li>修改的使用的方法多来自网络和gpt对话&lt;/li>
 &lt;li>有些地方改的不如意，将就着用（弄不出来）&lt;/li>
 &lt;li>古德拜&lt;/li>
-&lt;/ul></description></item><item><title>添加hexo文章时效性提示</title><link>https://kiraster.github.io/posts/9481f4f2/</link><pubDate>Thu, 11 May 2023 13:30:19 +0000</pubDate><guid>https://kiraster.github.io/posts/9481f4f2/</guid><description>&lt;p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。&lt;/p>
+&lt;/ul></description></item><item><title>添加hexo文章时效性提示</title><link>https://kiraster.github.io/posts/9481f4f2.html/</link><pubDate>Thu, 11 May 2023 13:30:19 +0000</pubDate><guid>https://kiraster.github.io/posts/9481f4f2.html/</guid><description>&lt;p>之前的一些文章由于当时的软硬件版本或特性存在一定的时效性，比如一些解决方案，但随着时间推移可能已经推出新版本或新特性或变更不再适用当前。&lt;/p>
 &lt;p>在这些文章页面给出提示信息，提示注意甄别。&lt;/p>
 &lt;p>&lt;strong>效果如下：&lt;/strong>&lt;/p>
 &lt;p>
@@ -188,7 +188,7 @@ alt="ScreenCaputure230511143012"
 &lt;h2 id="最后">最后
 &lt;/h2>&lt;ul>
 &lt;li>以上方案部分代码内容来自GPT，但是点开参考来源是404页面，让人费解&lt;/li>
-&lt;/ul></description></item><item><title>Hexo环境新电脑环境重构</title><link>https://kiraster.github.io/posts/567e6fc3/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://kiraster.github.io/posts/567e6fc3/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
+&lt;/ul></description></item><item><title>Hexo环境新电脑环境重构</title><link>https://kiraster.github.io/posts/567e6fc3.html/</link><pubDate>Wed, 07 Dec 2022 15:05:53 +0000</pubDate><guid>https://kiraster.github.io/posts/567e6fc3.html/</guid><description>&lt;p>在上上篇博文中描述了如何将博客源文件推送到&lt;code>GitHub&lt;/code>私有仓库备份，这篇文将讲述如何从&lt;code>GitHub&lt;/code>私有仓库clone至本地重构 Hexo 环境来写博客&lt;/p>
 &lt;p>网上也有很多文章描述如何操作，也可以去参考，我记录我的操作过程如下&lt;/p>
 &lt;h2 id="下载安装git-和-nodejs">下载安装Git 和 node.js
 &lt;/h2>&lt;ul>
@@ -282,7 +282,7 @@ fill="currentColor">
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -M main
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git@github.com:kiraster/xxxx-xx.git
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://kiraster.github.io/posts/e1203792/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://kiraster.github.io/posts/e1203792/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完结。&lt;/p></description></item><item><title>Hexo 几个bat脚本</title><link>https://kiraster.github.io/posts/e1203792.html/</link><pubDate>Mon, 05 Dec 2022 14:53:35 +0000</pubDate><guid>https://kiraster.github.io/posts/e1203792.html/</guid><description>&lt;p>自己日常操作的几个脚本&lt;/p>
 &lt;ul>
 &lt;li>bat启动 Hexo 本地服务&lt;/li>
 &lt;li>bat 推送至 Github&lt;/li>
@@ -323,7 +323,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
 &lt;li>新建后缀为 js 的脚本文件&lt;/li>
 &lt;li>复制以上命令粘贴（注意修改路径 ），保存&lt;/li>
-&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://kiraster.github.io/posts/310ece77/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://kiraster.github.io/posts/310ece77/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
+&lt;/ol></description></item><item><title>自动备份Hexo源文件到私有仓库</title><link>https://kiraster.github.io/posts/310ece77.html/</link><pubDate>Mon, 05 Dec 2022 12:55:52 +0000</pubDate><guid>https://kiraster.github.io/posts/310ece77.html/</guid><description>&lt;p>Hexo 部署到&lt;code>Github&lt;/code>的文件不包含主题文件，md文件，模版，配置文件等，在新电脑要重新部署相同环境写博客就要拷贝这些文件过去，可以通过文件共享，U盘拷贝，云盘等手段&lt;/p>
 &lt;p>还有一种方法就是把这些文件也推送到&lt;code>Github&lt;/code>仓库，网上看到有一个&lt;code>hexo-git-backup&lt;/code>可以把源码推送到仓库分支实现备份。但是我觉得这样不妥，由于部署到&lt;code>Github&lt;/code>的静态网站仓库是公开的，把源文推送这个分支，意味着所有人都可以看到源文件的配置，包括一些个人的信息，可能有网站统计，收录的&lt;code>token&lt;/code>，这样就不太好&lt;/p>
 &lt;p>看到一篇博文（https://0skyu.cn/p/a8bd.html） 就整的非常好，其中原理过程可以自行去研究&lt;/p>
 &lt;p>我参考这篇文章记录我自己的过程和操作&lt;/p>
@@ -460,7 +460,7 @@ alt="ScreenCaputure221205140926"
 &lt;ul>
 &lt;li>出现没有提交新内容到缓冲区，推送等错误，按提示排查错误即可&lt;/li>
 &lt;li>看到原博客出现要切换到博客目录的这一行脚本命令，我觉得在推送博客的时候你就已经切换到博客目录，去掉这一行&lt;/li>
-&lt;/ul></description></item><item><title>Hexo推送提示输入账号密码问题</title><link>https://kiraster.github.io/posts/5826b49/</link><pubDate>Thu, 01 Dec 2022 23:57:08 +0000</pubDate><guid>https://kiraster.github.io/posts/5826b49/</guid><description>&lt;p>今天推送 &lt;code>Github Pages&lt;/code> 博客发现需要输入账号密码，网页端检查&lt;code>SSH Keys &lt;/code>和本地检查&lt;code>公钥pub&lt;/code>都没问题&lt;/p>
+&lt;/ul></description></item><item><title>Hexo推送提示输入账号密码问题</title><link>https://kiraster.github.io/posts/5826b49.html/</link><pubDate>Thu, 01 Dec 2022 23:57:08 +0000</pubDate><guid>https://kiraster.github.io/posts/5826b49.html/</guid><description>&lt;p>今天推送 &lt;code>Github Pages&lt;/code> 博客发现需要输入账号密码，网页端检查&lt;code>SSH Keys &lt;/code>和本地检查&lt;code>公钥pub&lt;/code>都没问题&lt;/p>
 &lt;p>最后通过搜索引擎助力，修改 https 方式为 git 方式，成功推送&lt;/p>
 &lt;p>&lt;strong>方法&lt;/strong>：修改博客目录下的&lt;code>_config.yml&lt;/code>文件配置（不是主题目录下的配置文件）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># Deployment
@@ -471,7 +471,7 @@ alt="ScreenCaputure221205140926"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 20221201发现使用https方式需要输入验证账号密码，修改为git方式后正常推送
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> repo: git@github.com:kiraster/kiraster.github.io.git
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> branch: master
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>我的一些blog常用小操作</title><link>https://kiraster.github.io/posts/c1906682/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://kiraster.github.io/posts/c1906682/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>我的一些blog常用小操作</title><link>https://kiraster.github.io/posts/c1906682.html/</link><pubDate>Thu, 14 Oct 2021 23:03:52 +0000</pubDate><guid>https://kiraster.github.io/posts/c1906682.html/</guid><description>&lt;p>自己日常操作的一些小命令和插件。&lt;/p>
 &lt;h3 id="bat启动-hexo-本地服务">bat启动 hexo 本地服务
 &lt;/h3>&lt;p>前提条件：已完成博客搭建。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@echo off
@@ -541,7 +541,7 @@ alt="ScreenCaputure221205140926"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">crc32&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="nx">dec&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">https&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="c1">//xx.github.io/posts/123456789a.html
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item><item><title>archive_test</title><link>https://kiraster.github.io/posts/515317e3/</link><pubDate>Mon, 26 Oct 2020 12:45:43 +0000</pubDate><guid>https://kiraster.github.io/posts/515317e3/</guid><description>&lt;p>Test Page&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>hexo g 生成后，md 文件的 Front-matter 增加 abbrlink 属性，值为生成的 ID 链接，发布文章后文章链接不随改变文章内容而改变。&lt;/p></description></item><item><title>archive_test</title><link>https://kiraster.github.io/posts/515317e3.html/</link><pubDate>Mon, 26 Oct 2020 12:45:43 +0000</pubDate><guid>https://kiraster.github.io/posts/515317e3.html/</guid><description>&lt;p>Test Page&lt;/p>
 &lt;ul>
 &lt;li>This is a test page .&lt;/li>
 &lt;/ul></description></item></channel></rss>

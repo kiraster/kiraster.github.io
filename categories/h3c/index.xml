@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C on Kir's Blog</title><link>https://kiraster.github.io/categories/h3c/</link><description>Recent content in H3C on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 16 Apr 2023 23:33:58 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/h3c/index.xml" rel="self" type="application/rss+xml"/><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>H3C on Kir's Blog</title><link>https://kiraster.github.io/categories/h3c/</link><description>Recent content in H3C on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 16 Apr 2023 23:33:58 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/h3c/index.xml" rel="self" type="application/rss+xml"/><item><title>一个使用nornir框架编写的跑脚本工具</title><link>https://kiraster.github.io/posts/9571d5ee.html/</link><pubDate>Sun, 16 Apr 2023 23:33:58 +0000</pubDate><guid>https://kiraster.github.io/posts/9571d5ee.html/</guid><description>&lt;p>一个使用&lt;code>nornir&lt;/code>框架编写的跑脚本工具。之前写过一版这个菜单式跑python脚本的工具，简直臃肿的不堪入目，后面发现需要添加改进功能真让我头大。了解&lt;code>nornir&lt;/code>后，一直就想把功能移植过来，现在搞的差不多了，分享一下&lt;/p>
 &lt;blockquote>
 &lt;p>在32位windows系统中无法使用本脚本，原因是有几个第三方库从某个版本开始不再开发和维护32位系统的代码，而库的依赖最低版本大于最后发布的32位版本，或者装不上，亦或装上了无法用。So……&lt;/p>
 &lt;/blockquote>
@@ -343,7 +343,7 @@ alt="ScreenCaputure230513004510"
 &lt;/ul>
 &lt;blockquote>
 &lt;p>&lt;strong>20230513 更新了此文章内容&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>H3C自动配置(HTTP Python方式)</title><link>https://kiraster.github.io/posts/c69db7e2/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://kiraster.github.io/posts/c69db7e2/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
+&lt;/blockquote></description></item><item><title>H3C自动配置(HTTP Python方式)</title><link>https://kiraster.github.io/posts/c69db7e2.html/</link><pubDate>Sat, 18 Mar 2023 13:18:59 +0000</pubDate><guid>https://kiraster.github.io/posts/c69db7e2.html/</guid><description>&lt;p>一个小测试，实现&lt;code>HCL&lt;/code>模拟器下利用&lt;code>python&lt;/code>脚本根据交换机的背板MAC地址（真机环境可以换成序列号）自动加载配置。&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
@@ -636,7 +636,7 @@ alt="ScreenCaputure230318163152"
 &lt;li>方法操作没有问题，但是有时候去实施，甲方看到你老是在电脑面前操作，这个体现不出工作量，需要注意，两天的活你半小时不到干完了&lt;/li>
 &lt;li>修改一下脚本，还能用在没有console线的环境下应急，同样确保设备是空配置启动&lt;/li>
 &lt;li>&lt;code>device.py&lt;/code>文件里的代码有一个重启设备的定时任务，由于是做实验我设置了1分钟后重启，如果是真实环境这个延时重启建议配置时间大一点&lt;/li>
-&lt;/ol></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
+&lt;/ol></description></item><item><title>基于Django编写的SNMP轮询Demo</title><link>https://kiraster.github.io/posts/d70f2b4c.html/</link><pubDate>Mon, 13 Mar 2023 14:12:11 +0000</pubDate><guid>https://kiraster.github.io/posts/d70f2b4c.html/</guid><description>&lt;p>一个基于&lt;code>Django&lt;/code>编写的&lt;code>SNMP&lt;/code>轮询Demo，可以对设备（代码内置了H3C OID部分规则）进行&lt;code>SNMP&lt;/code>轮询，&lt;code>icmp&lt;/code>连通性检测，并将结果写入数据库，前端页面读取数据库数据进行直观的展示。效果图可点击本页面导航栏的&lt;code>Gallery&lt;/code>相册查看。&lt;/p>
 &lt;h2 id="一个视频">一个视频
 &lt;/h2>&lt;p>&lt;strong>无解说无字幕，嫌BGM太吵可静音&lt;/strong>&lt;/p>
 &lt;div class="video-wrapper">
@@ -846,7 +846,7 @@ fill="currentColor">
 &lt;li>没有对其他分辨率屏幕做调整&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://kiraster.github.io/posts/6d4cdc14/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://kiraster.github.io/posts/6d4cdc14/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
+&lt;/ol></description></item><item><title>H3C防火墙（v7）CVE2015-0204/CVE1999-0524</title><link>https://kiraster.github.io/posts/6d4cdc14.html/</link><pubDate>Sun, 13 Nov 2022 16:27:57 +0000</pubDate><guid>https://kiraster.github.io/posts/6d4cdc14.html/</guid><description>&lt;p>深信服漏洞扫描系统（基线核查）执行漏扫任务，检测出华三 F5060 防火墙存在&lt;code>CVE 2015-0204&lt;/code>,&lt;code>CVE 1999-0524&lt;/code>漏洞，处理过程记录。&lt;/p>
 &lt;h2 id="ssltls已弃用的tlsv10和tlsv11协议检测cve-2015-0204">SSL/TLS:已弃用的TLSv1.0和TLSv1.1协议检测(CVE-2015-0204)
 &lt;/h2>&lt;p>{% blockquote %}&lt;/p>
 &lt;p>漏洞描述：&lt;/p>
@@ -902,7 +902,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> packet-filter 3456 inbound hardware-count
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;/ul></description></item><item><title>关于组网中使用默认MSTP的问题</title><link>https://kiraster.github.io/posts/8eea84ef/</link><pubDate>Fri, 04 Nov 2022 13:28:31 +0000</pubDate><guid>https://kiraster.github.io/posts/8eea84ef/</guid><description>&lt;p>在一个项目中，或者说在一个不使用 VRRP 组网并且没有进行负载分担的核心网络中，项目初始时并没有刻意的去规划 生成树 这个协议。以华三设备为例，交换机默认开启了 MSTP 协议，所以在建设时有意或者无意的导致交换机的环路并不会使整个网络因此瘫痪.&lt;/p>
+&lt;/ul></description></item><item><title>关于组网中使用默认MSTP的问题</title><link>https://kiraster.github.io/posts/8eea84ef.html/</link><pubDate>Fri, 04 Nov 2022 13:28:31 +0000</pubDate><guid>https://kiraster.github.io/posts/8eea84ef.html/</guid><description>&lt;p>在一个项目中，或者说在一个不使用 VRRP 组网并且没有进行负载分担的核心网络中，项目初始时并没有刻意的去规划 生成树 这个协议。以华三设备为例，交换机默认开启了 MSTP 协议，所以在建设时有意或者无意的导致交换机的环路并不会使整个网络因此瘫痪.&lt;/p>
 &lt;p>关于生成树协议的工作原理，不在本文的要说明的范围内，可以自行Google或到各厂商官网查询，本文中用到的术语以华三厂商为例，可能与其他厂商叫法不一样，但是我想看这篇文的观众都知道，生成树协议不是私有协议（MSTP由IEEE制定的802.1s标准定义）。&lt;/p>
 &lt;p>写这篇文是想探讨一下一个网络中使用默认的 MSTP 可能导致的一些问题和关于生成树的调整&lt;/p>
 &lt;p>下面使用 HCL 搭建了一个经典的 核心/汇聚/接入 的三层网络，刻意构造的一个环路。&lt;/p>
@@ -984,7 +984,7 @@ CIST（Common and Internal Spanning Tree，公共和内部生成树）是一棵�
 &lt;/h2>&lt;ul>
 &lt;li>文中可能有些配置未提及或内容术语表述的不规范，请见谅。&lt;/li>
 &lt;li>欢迎“&lt;del>来电&lt;/del>”来函探讨。&lt;/li>
-&lt;/ul></description></item><item><title>工业交换机电源线缆选择</title><link>https://kiraster.github.io/posts/cadda170/</link><pubDate>Sat, 30 Jul 2022 22:53:41 +0000</pubDate><guid>https://kiraster.github.io/posts/cadda170/</guid><description>&lt;h3 id="交流供电端至独立电源交流电源线">交流供电端至独立电源（交流电源线）
+&lt;/ul></description></item><item><title>工业交换机电源线缆选择</title><link>https://kiraster.github.io/posts/cadda170.html/</link><pubDate>Sat, 30 Jul 2022 22:53:41 +0000</pubDate><guid>https://kiraster.github.io/posts/cadda170.html/</guid><description>&lt;h3 id="交流供电端至独立电源交流电源线">交流供电端至独立电源（交流电源线）
 &lt;/h3>&lt;h4 id="标准">标准
 &lt;/h4>&lt;p>&lt;strong>通信机房用阻燃软结构电缆，标识（RVVZ（ZRVVR))&lt;/strong>&lt;/p>
 &lt;p>RVVZ电缆是采用细丝合股多层复绞形式，具有良好的柔软性，弯曲性能高，同时具有高阻燃性能。
@@ -1037,7 +1037,7 @@ $$&lt;hr>
 &lt;h4 id="线缆标识-1">线缆标识
 &lt;/h4>$$
 RVV - 2* 1.0 m{m}^2
-$$</description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://kiraster.github.io/posts/2699eb47/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://kiraster.github.io/posts/2699eb47/</guid><description>&lt;ul>
+$$</description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>https://kiraster.github.io/posts/2699eb47.html/</link><pubDate>Fri, 13 May 2022 13:59:08 +0000</pubDate><guid>https://kiraster.github.io/posts/2699eb47.html/</guid><description>&lt;ul>
 &lt;li>针对上一版的脚本进行改进&lt;/li>
 &lt;li>增加嵌套一层 ‘ Try……finally: ’ ，代码执行末尾提示 “按任意键退出”&lt;/li>
 &lt;li>修改代码中预定义的登陆账号密码为 input 和 getpass 手动输入&lt;/li>
@@ -1286,7 +1286,7 @@ $$</description></item><item><title>H3C_Python_SSH_Config_Auto_2</title><link>ht
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python实现“按任意键返回”和无回显输入 by dongfuguo on 2020-03-25 : https://blog.csdn.net/dongfuguo/article/details/105103446
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python3文件路径/目录获取教程 by 诸子流 on 2020-07-09 : `https://www.cnblogs.com/lsdb/p/13265688.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- 如何让python不打印转义字符串？by 流芳 on 2020-07-07 : https://www.py.cn/jishu/jichu/19480.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://kiraster.github.io/posts/54cb8229/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://kiraster.github.io/posts/54cb8229/</guid><description>&lt;ul>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_Python_SSH_Config_Auto</title><link>https://kiraster.github.io/posts/54cb8229.html/</link><pubDate>Wed, 11 May 2022 17:50:10 +0000</pubDate><guid>https://kiraster.github.io/posts/54cb8229.html/</guid><description>&lt;ul>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的 display 脚本批量导出配置和一些设备状态&lt;/li>
 &lt;li>Python 脚本 SSH 登陆华三设备，使用定义好的配置命令批量增加配置&lt;/li>
 &lt;li>主要使用的是 netmiko 这个模块里的 ConnectHandler 命令&lt;/li>
@@ -1580,7 +1580,7 @@ loading="lazy"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 逐行读取txt 文件并生成列表 by 诺亚方包 on 2020-05-19 : https://blog.csdn.net/weixin_40973138/article/details/106209020
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- Python 使用 Netmiko 连接 H3C 网络设备 by 某呆 on 2021-02-03 : https://555.xdai.vip/posts/26e9de3c.html
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- H3C交换机python命令下发脚本 by xuwenfang1989 on 2018-08-27 : https://blog.51cto.com/u_1339643/2164819
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://kiraster.github.io/posts/ab889e59/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://kiraster.github.io/posts/ab889e59/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C_连接L2TP的客户端设置(图片)</title><link>https://kiraster.github.io/posts/ab889e59.html/</link><pubDate>Sat, 16 Oct 2021 11:49:23 +0000</pubDate><guid>https://kiraster.github.io/posts/ab889e59.html/</guid><description>&lt;h2 id="inode-客户端设置">iNode 客户端设置
 &lt;/h2>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://i.loli.net/2021/10/16/6tObaIvM4sT8LQH.jpg">
@@ -1752,7 +1752,7 @@ loading="lazy"
 >
 &lt;/a>
 &lt;/div>
-&lt;/p></description></item><item><title>H3C_S5500-52C-EI升级步骤</title><link>https://kiraster.github.io/posts/e765d177/</link><pubDate>Tue, 14 Sep 2021 11:03:03 +0000</pubDate><guid>https://kiraster.github.io/posts/e765d177/</guid><description>&lt;p>&lt;strong>准备工作&lt;/strong>&lt;/p>
+&lt;/p></description></item><item><title>H3C_S5500-52C-EI升级步骤</title><link>https://kiraster.github.io/posts/e765d177.html/</link><pubDate>Tue, 14 Sep 2021 11:03:03 +0000</pubDate><guid>https://kiraster.github.io/posts/e765d177.html/</guid><description>&lt;p>&lt;strong>准备工作&lt;/strong>&lt;/p>
 &lt;p>下载升级所需要的两个文件：&lt;/p>
 &lt;p>&lt;strong>S5500EI-BTM-721.btm&lt;/strong>（新版本 Bootrom 程序）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">名称: S5500EI-BTM-721.btm
