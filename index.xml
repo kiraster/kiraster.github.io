@@ -1,11 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kir's Blog</title><link>https://kiraster.github.io/</link><description>Recent content on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 31 Dec 2024 15:53:27 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>WebFeed插件测试</title><link>https://kiraster.github.io/posts/c90d916a.html/</link><pubDate>Tue, 31 Dec 2024 15:53:27 +0800</pubDate><guid>https://kiraster.github.io/posts/c90d916a.html/</guid><description>&lt;p>WebFeed插件测试&lt;/p>
-&lt;ul>
-&lt;li>WebFeed订阅此站点&lt;/li>
-&lt;li>编写文章推送至github，使用其他浏览器检查是否文章更新&lt;/li>
-&lt;li>设置WebFeed提取间隔为10分钟&lt;/li>
-&lt;li>等待10分钟后查看浏览器工具栏图标是否显示未读数字&lt;/li>
-&lt;li>确认结果，删除此文章__&lt;/li>
-&lt;/ul></description></item><item><title>当前主题与原版Stack主题不同的地方</title><link>https://kiraster.github.io/posts/3d1b11f0.html/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://kiraster.github.io/posts/3d1b11f0.html/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kir's Blog</title><link>https://kiraster.github.io/</link><description>Recent content on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 15 Dec 2024 14:14:51 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>当前主题与原版Stack主题不同的地方</title><link>https://kiraster.github.io/posts/3d1b11f0.html/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://kiraster.github.io/posts/3d1b11f0.html/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
 &lt;p>网上的教程很多，搜索引擎遨游一下便有修改方法，以下只列出修改的结果&lt;/p>
 &lt;hr>
 &lt;h2 id="首页">首页
