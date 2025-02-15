@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Windows系统 on Kir's Blog</title><link>https://kiraster.github.io/tags/windows%E7%B3%BB%E7%BB%9F/</link><description>Recent content in Windows系统 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 15 Feb 2025 11:40:39 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/windows%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml"/><item><title>WDS部署服务测试记录</title><link>https://kiraster.github.io/posts/a57b794c.html/</link><pubDate>Sat, 15 Feb 2025 11:40:39 +0800</pubDate><guid>https://kiraster.github.io/posts/a57b794c.html/</guid><description>&lt;p>玩一玩 Windows 部署服务 (WDS)&lt;/p>
+&lt;p>总体的设想是通过网卡PXE安装windows系统或启动PE&lt;/p>
+&lt;p>虽然还可以通过搭配其他windows工具组合成一整套部署服务，但是越复杂越容易导致错误和时间成本增加&lt;/p>
+&lt;p>像驱动和补丁等，可以在系统封装时候做好，或部署完成后通过脚本处理&lt;/p>
+&lt;p>网上的教程已经多的是，需要具体到每一步操作的自行搜索跳转哦&lt;/p>
+&lt;p>以下内容仅为记录&lt;/p>
+&lt;hr>
+&lt;h2 id="总体流程">总体流程
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/a47tqRhoyrkCTLA.png">
+&lt;img src="https://s2.loli.net/2025/02/15/a47tqRhoyrkCTLA.png"
+loading="lazy"
+alt="image-20250215120034333"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="测试截图">测试截图
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/hGZgnjPA2DJtfs4.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/hGZgnjPA2DJtfs4.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112114"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/qXuAKbCEVyW4zLB.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/qXuAKbCEVyW4zLB.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112143"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/DEno4cNjXtpHKYR.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/DEno4cNjXtpHKYR.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112221"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/tp4dThoOM1lYb3P.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/tp4dThoOM1lYb3P.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112241"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/XKNglB1Pu4WsTMd.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/XKNglB1Pu4WsTMd.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112303"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/BQWUAgwYJlyI74L.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/BQWUAgwYJlyI74L.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112413"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/ihMHwd2JOXnQLx5.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/ihMHwd2JOXnQLx5.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112547"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/vdrP6D4MKIhpmt3.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/vdrP6D4MKIhpmt3.jpg"
+loading="lazy"
+alt="ScreenCaputure250215112830"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/NtluP1FQI3bGXEa.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/NtluP1FQI3bGXEa.jpg"
+loading="lazy"
+alt="ScreenCaputure250215113221"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/JT1YhZeMB8szmVQ.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/JT1YhZeMB8szmVQ.jpg"
+loading="lazy"
+alt="ScreenCaputure250215113443"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/mv4ZVGKoBFDOwaT.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/mv4ZVGKoBFDOwaT.jpg"
+loading="lazy"
+alt="ScreenCaputure250215113513"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/otNZl4EDfwF6CkT.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/otNZl4EDfwF6CkT.jpg"
+loading="lazy"
+alt="ScreenCaputure250215113536"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/g3aqLcYmy6eHj7T.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/g3aqLcYmy6eHj7T.jpg"
+loading="lazy"
+alt="ScreenCaputure250215113620"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/FQWXaAopDYJvqTI.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/FQWXaAopDYJvqTI.jpg"
+loading="lazy"
+alt="ScreenCaputure250215113644"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/JyIdaKHUOsex6DG.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/JyIdaKHUOsex6DG.jpg"
+loading="lazy"
+alt="ScreenCaputure250215115409"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/02/15/dGc3fseR6KMbEau.jpg">
+&lt;img src="https://s2.loli.net/2025/02/15/dGc3fseR6KMbEau.jpg"
+loading="lazy"
+alt="ScreenCaputure250215115642"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>
