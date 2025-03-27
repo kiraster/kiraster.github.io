@@ -23872,9 +23872,7 @@ width: 350px;
 height: auto;
 }
 &lt;/style>
-&lt;div class="image-container">
-&lt;a href="#" target="_blank">
-&lt;img src="https://s2.loli.net/2024/12/14/xkrnoWtAXH6pdFV.png" alt="hcpk">
+&lt;div class="image-container">&lt;img src="https://s2.loli.net/2024/12/14/xkrnoWtAXH6pdFV.png" alt="hcpk">
 &lt;/a>
 &lt;/div>
 &lt;h2 id="我">我
@@ -23931,4 +23929,18 @@ stroke-linecap="round" stroke-linejoin="round" width="32" height="32" stroke-wid
 &lt;/li>
 &lt;/ol></description></item><item><title>Gallery</title><link>https://kiraster.github.io/gallery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/gallery/</guid><description>
 &lt;div class="notice notice-note" >
-&lt;div class="notice-title">&lt;svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512" fill="hsl(200, 65%, 65%)">&lt;path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zm-248 50a46 46 0 100 92 46 46 0 000-92zm-44-165l8 136c0 6 5 11 12 11h48c7 0 12-5 12-11l8-136c0-7-5-13-12-13h-64c-7 0-12 6-12 13z"/>&lt;/svg>&lt;/div>&lt;p>相册内容以外部链接方式打开&lt;/p>&lt;/div></description></item><item><title>Search</title><link>https://kiraster.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/search/</guid><description/></item></channel></rss>
+&lt;div class="notice-title">&lt;svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512" fill="hsl(200, 65%, 65%)">&lt;path d="M504 256a248 248 0 11-496 0 248 248 0 01496 0zm-248 50a46 46 0 100 92 46 46 0 000-92zm-44-165l8 136c0 6 5 11 12 11h48c7 0 12-5 12-11l8-136c0-7-5-13-12-13h-64c-7 0-12 6-12 13z"/>&lt;/svg>&lt;/div>&lt;p>相册以外部&lt;a class="link" href="https://fliphtml5.com/" target="_blank" rel="noopener"
+>fliphtml5
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>链接方式打开&lt;/p>
+&lt;table style="border: none; border-collapse: collapse;">
+&lt;tr>
+&lt;td style="border: none;">&lt;img src="https://s2.loli.net/2025/03/27/DUXh7AnmeFOl61Y.png" alt="image-20250327.png">&lt;/a>&lt;/td>
+&lt;td style="border: none;">&lt;img src="https://s2.loli.net/2025/03/27/BIU3RKqhJdp7CZs.png" alt="image-20250327.png">&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;/table>&lt;/div></description></item><item><title>Search</title><link>https://kiraster.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/search/</guid><description/></item></channel></rss>
