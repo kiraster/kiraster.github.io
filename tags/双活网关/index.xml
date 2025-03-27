@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>双活网关 on Kir's Blog</title><link>https://kiraster.github.io/tags/%E5%8F%8C%E6%B4%BB%E7%BD%91%E5%85%B3/</link><description>Recent content in 双活网关 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 27 Mar 2025 02:07:11 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/%E5%8F%8C%E6%B4%BB%E7%BD%91%E5%85%B3/index.xml" rel="self" type="application/rss+xml"/><item><title>HCL_M-LAG 组网 IPv4 双活网关配置</title><link>https://kiraster.github.io/posts/96ed6e58.html/</link><pubDate>Thu, 27 Mar 2025 02:07:11 +0800</pubDate><guid>https://kiraster.github.io/posts/96ed6e58.html/</guid><description>&lt;h2 id="工程名称">工程名称
+&lt;/h2>&lt;p>配置和验证华三设备上的M-LAG 组网 IPv4 双活网关&lt;/p>
+&lt;h2 id="需求">需求：
+&lt;/h2>&lt;p>SW1和SW2组成M-LAG系统；R7和R8是外联出口设备；SW4和SW5组成堆叠&lt;/p>
+&lt;p>VLAN10、VLAN20、VLAN30的SVI接口均在M-LAG系统；M-LAG系统与外联出口设备运行ospf协议；M-LAG系统与下联设备配置链路聚合，最终实现PC和Server的上行访问流量负载均衡。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/27/FvLRtlWeCqjwamK.png">
+&lt;img src="https://s2.loli.net/2025/03/27/FvLRtlWeCqjwamK.png"
+loading="lazy"
+alt="image-20250327"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="配置思路">配置思路
+&lt;/h2>&lt;ol>
+&lt;li>SW1和SW2配置VLAN接口10，20，30作为IPv4双活网关&lt;/li>
+&lt;li>SW1和SW2在VLAN接口10，20，30配置相同的IPv4地址和MAC地址，以便用户均可通过该网关访问外部网络。&lt;/li>
+&lt;li>配置SW1和SW2通过VLAN接口101实现三层互通。如果SW1或SW2与上行设备的链路故障，报文可以通过路由绕行到对端M-LAG设备处理&lt;/li>
+&lt;li>同级M-LAG设备的m-lag system-mac应配置为相同&lt;/li>
+&lt;/ol>
+&lt;h2 id="实验步骤">实验步骤：
+&lt;/h2>&lt;h3 id="配置接口互联地址">配置接口互联地址
+&lt;/h3>&lt;ol>
+&lt;li>互联IP地址配置格式(R7&amp;ndash;R8, 78.1.1.7/24 &amp;ndash; 78.1.1.8/24)&lt;/li>
+&lt;li>M-LAG 设备和上行设备配置loopback 0 环回接口地址，格式（1.1.1.1/32）&lt;/li>
+&lt;li>M-LAG的keepalive接口地址使用三层聚合（g 1/0/47和g1/0/48）&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># sw1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysn SW1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 1.1.1.1 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/21
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 17.1.1.1 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/22
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 18.1.1.1 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># sw2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysn SW2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 2.2.2.2 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/21
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 28.1.1.2 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/22
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 27.1.1.2 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># R7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysn R7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 7.7.7.7 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 17.1.1.7 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 5/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 27.1.1.7 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 78.1.1.7 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># R8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sysn R8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 8.8.8.8 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 78.1.1.8 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 5/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 18.1.1.8 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 28.1.1.8 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置sw1和sw2的m-lag参数在拓扑图中">配置SW1和SW2的M-LAG（参数在拓扑图中）
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置M-LAG系统MAC地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> m-lag system-mac 1-1-1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> m-lag system-number 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> m-lag system-priority 12345
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 开启M-LAG设备独立工作模式
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag standalone enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置Keepalive报文的目的IPv4地址和源IPv4地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag keepalive ip destination 12.1.1.2 source 12.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置Keepalive报文的源IPv4地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int route 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 12.1.1.1 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将keepalive物理接口接口划入三层聚合口1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/47 g 1/0/48
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg group 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置keepalive所在三层聚合接口为保留接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag mad exclude interface Route-Aggregation 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置聚合口用作peer-link接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-a mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将peer-link物理接口接口划入二层聚合口1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran ten 1/0/51 ten 1/0/52
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg group 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置聚合口1为peer-link接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port m-lag peer-link 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置M-LAG延迟恢复时间，以便提供充足的时间进行表项同步
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag restore-delay 300
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 关闭M-LAG配置一致性检查。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag consistency-check disable
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> m-lag system-mac 0001-0001-0001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> m-lag system-number 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> m-lag system-priority 12345
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag standalone enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置Keepalive报文的目的IPv4地址和源IPv4地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag keepalive ip destination 12.1.1.1 source 12.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置keepalive IP地址
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int route 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 12.1.1.2 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/47 g 1/0/48
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg group 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag mad exclude interface Route-Aggregation 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置聚合口用作peer-link接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-a mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran ten 1/0/51 ten 1/0/52
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg group 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port m-lag peer-link 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag restore-delay 300
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag consistency-check disable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>配置完成以上步骤后，使用命令查看m-lag状态，显示如下内容标识m-lag正常。可使用命令dis &lt;code>m-lag system&lt;/code>和&lt;code>dis m-lag verbose&lt;/code> 查看更详细信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[SW1]dis m-lag summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flags: A -- Aggregate interface down, B -- No peer M-LAG interface configured
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> C -- Configuration consistency check failed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer-link interface: BAGG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer-link interface state (cause): UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive link state (cause): UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置m-lag-设备与下行设备之间链路聚合">配置M-LAG 设备与下行设备之间链路聚合
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建vlan10,20,30,101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 10 20 30 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建二层聚合口11（与SW3互联），lacp动态聚合模式
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-agg mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建二层聚合口12（与SW4，SW5互联），lacp动态聚合模式
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-agg mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将物理接口划入聚合口11（与SW3互联）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg grou 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将物理接口划入聚合口12（与SW4，SW5互联）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/1 g 1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg grou 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置聚合口11 Trunk模式，放行vlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 10 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置LACP优先级，使得peer-link链路和Keepalive链路都故障时M-LAG系统只选中高优先级成员口转发报文
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port lacp system-priority 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p m-lag group 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置聚合口12 Trunk模式，放行vlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置LACP优先级，使得peer-link链路和Keepalive链路都故障时M-LAG系统只选中高优先级成员口转发报文
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port lacp system-priority 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p m-lag group 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置聚合口1（peerlink） Trunk模式，放行vlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 10 20 30 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-agg mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-agg mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg grou 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/1 g 1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg grou 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 10 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port lacp system-priority 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p m-lag group 11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port lacp system-priority 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p m-lag group 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># SW2上的单挂设备
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/31
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p acc vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置vlanif网关地址m-lag-互联地址">配置VLANIF网关地址、M-LAG 互联地址
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW1 SW2 配置一致部分
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置vlan10,20,30 SVI接口地址，mac-add
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 192.168.10.254 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mac-add 1-1-10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 192.168.20.254 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mac-add 1-1-20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 192.168.30.254 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mac-add 1-1-30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># SW1 M-LAG设备之间三层互通
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int vlan 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 192.168.101.1 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># SW2 M-LAG设备之间三层互通
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int vlan 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 192.168.101.2 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># SW1 SW2 配置vlanif接口为保留接口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag mad exclude interface Vlan-interface 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag mad exclude interface Vlan-interface 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag mad exclude interface Vlan-interface 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">m-lag mad exclude interface Vlan-interface 101
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置下行设备的堆叠vlan链路聚合">配置下行设备的堆叠，VLAN，链路聚合
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 10 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-agg mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/1 g 1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg group 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 10 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 10 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># SW6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 10 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p acc vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p acc vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 1、配置成员编号，默认设备都是1，不用改
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># irf member 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 2、设置优先级，优先级大的选举为Master角色
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irf member 1 priority 16
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 3、shutdown IRF物理端口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int FortyGigE 1/0/54
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> shutdown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 4、创建IRF接口并与IRF物理接口绑定，[IRF编号 / 端口编号第一位]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irf-port 1/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port group interface FortyGigE 1/0/54
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 5、 undo shutdown IRF物理端口
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int FortyGigE 1/0/54
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo shutdown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 6、保存当前配置。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">save force
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 7、激活IRF端口下的配置，激活IRF端口会引起IRF合并，被选为从设备的成员设备重启。（模拟器从设备不会重启，需要再验证！！！）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 这一步骤，待从设备配置完成后再执行
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">irf-port-configuration active
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">reboot
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># SW5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 1、配置成员编号，默认设备都是1，从设备改成2或3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">irf&lt;/span> &lt;span class="n">member&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">renumber&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2、设置优先级，优先级大的选举为Master角色，从设备改小&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">irf&lt;/span> &lt;span class="n">member&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="n">priority&lt;/span> &lt;span class="mi">8&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 3、shutdown IRF物理端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="ne">int&lt;/span> &lt;span class="n">FortyGigE&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">54&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">shutdown&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 4、创建IRF接口并与IRF物理接口绑定，[IRF编号 / 端口编号第一位]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">irf&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">port&lt;/span> &lt;span class="n">group&lt;/span> &lt;span class="n">interface&lt;/span> &lt;span class="n">FortyGigE&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">54&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 5、 undo shutdown IRF物理端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="ne">int&lt;/span> &lt;span class="n">FortyGigE&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mi">54&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">undo&lt;/span> &lt;span class="n">shutdown&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 6、保存当前配置。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">save&lt;/span> &lt;span class="n">force&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 7、激活IRF端口下的配置，激活IRF端口会引起IRF合并，被选为从设备的成员设备重启。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 先返回主设备执行命令&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">irf&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">port&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">configuration&lt;/span> &lt;span class="n">active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">reboot&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># IRF-BFD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 使用三层聚合接口进行BFD MAD检测配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int Route-Aggregation 1024
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/48 g 2/0/48
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-mode route
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-aggregation group 1024
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int Route-Aggregation 1024
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> description IRF-BFD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mad bfd enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mad ip add 1.1.1.1 30 member 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> mad ip add 1.1.1.2 30 member 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置vlan，聚合链路
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-agg mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/1 g 1/0/2 g 2/0/1 g 2/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg grou 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">link-agg mode dy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/11 g 2/0/11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port link-agg grou 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int bri 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p acc vlan 30
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置-m-lag-设备与上行设备之间的ospf协议">配置 M-LAG 设备与上行设备之间的OSPF协议
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 router 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">silen vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">silen vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">silen vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 1.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 17.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 18.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.10.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.20.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.30.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.101.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/21 g 1/0/22 vlan 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 router 2.2.2.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">silen vlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">silen vlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">silen vlan 30
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 2.2.2.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 27.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 28.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.10.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.20.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.30.254 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 192.168.101.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 1/0/21 g 1/0/22 vlan 101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># R7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 router 7.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 7.7.7.7 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 17.1.1.7 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 27.1.1.7 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 78.1.1.7 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 0/1 g 0/2 g 5/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># R8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 router 8.8.8.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 8.8.8.8 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 18.1.1.8 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 28.1.1.8 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 78.1.1.8 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int ran g 0/1 g 0/2 g 5/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="测试结果">测试结果：
+&lt;/h2>&lt;h3 id="m-lag系统状态正常">M-LAG系统状态正常
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 显示M-LAG系统的接口摘要信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]dis m-lag summary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flags: A -- Aggregate interface down, B -- No peer M-LAG interface configured
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> C -- Configuration consistency check failed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer-link interface: BAGG1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer-link interface state (cause): UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive link state (cause): UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> M-LAG interface information
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">M-LAG IF M-LAG group Local state (cause) Peer state Remaining down time(s)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BAGG11 11 UP UP -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">BAGG12 12 UP UP -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 显示M-LAG系统Keepalive报文的信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]dis m-lag keepalive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Neighbor keepalive link status (cause): Up
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Neighbor is alive for: 674 s 800 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive packet transmission status:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Sent: Successful
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Received: Successful
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last received keepalive packet information:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Source IP address: 12.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Time: 2025/03/20 23:35:33
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Action: Accept
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">M-LAG keepalive parameters:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Destination IP address: 12.1.1.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Source IP address: 12.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive UDP port : 6400
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive VPN name : N/A
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive interval : 1000 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive timeout : 5 sec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keepalive hold time: 3 sec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 显示M-LAG系统信息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]dis m-lag system
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> System information
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local system number: 1 Peer system number: 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local system MAC: 0001-0001-0001 Peer system MAC: 0001-0001-0001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local system priority: 12345 Peer system priority: 12345
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local bridge MAC: 6e32-12f2-0300 Peer bridge MAC: 6e32-1893-0400
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local effective role: Primary Peer effective role: Secondary
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Health level: 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Standalone mode on split: Enabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">In standalone mode: No
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> System timer information
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Timer State Value (s) Remaining time (s)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Auto recovery Disabled - -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Restore delay Disabled 300 -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Consistency-check delay Disabled 150 -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Standalone delay Disabled 0 -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Role to None delay Disabled 60 -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 显示M-LAG系统的接口详细信息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]dis m-lag verbose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flags: A -- Home_Gateway, B -- Neighbor_Gateway, C -- Other_Gateway,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> D -- PeerLink_Activity, E -- DRCP_Timeout, F -- Gateway_Sync,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> G -- Port_Sync, H -- Expired
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer-link interface/Peer-link interface ID: BAGG1/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">State: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cause: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local DRCP flags/Peer DRCP flags: ABDFG/ABDFG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local Selected ports (index): XGE1/0/51 (52), XGE1/0/52 (53)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer Selected ports indexes: 52, 53
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Reserved VLANs: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">M-LAG interface/M-LAG group ID: BAGG11/11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer M-LAG interface state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">M-LAG group state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface down cause: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Remaining M-LAG DOWN time: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface LACP MAC: Config=N/A, Effective=0001-0001-0001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer M-LAG interface LACP MAC: Config=N/A, Effective=0001-0001-0001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface LACP priority: Config=32768, Effective=12345
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer M-LAG interface LACP priority: Config=32768, Effective=12345
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local DRCP flags/Peer DRCP flags: ABDFG/ABDFG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local Selected ports (index): GE1/0/11 (12)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer Selected ports indexes: 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">M-LAG interface/M-LAG group ID: BAGG12/12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer M-LAG interface state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">M-LAG group state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface down cause: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Remaining M-LAG DOWN time: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface LACP MAC: Config=N/A, Effective=0001-0001-0001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer M-LAG interface LACP MAC: Config=N/A, Effective=0001-0001-0001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local M-LAG interface LACP priority: Config=32768, Effective=12345
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer M-LAG interface LACP priority: Config=32768, Effective=12345
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local DRCP flags/Peer DRCP flags: ABDFG/ABDFG
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Local Selected ports (index): GE1/0/1 (2), GE1/0/2 (3)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Peer Selected ports indexes: 2, 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="路由协议正常">路由协议正常
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看SW1上OSPF邻居信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]dis ospf peer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> OSPF Process 100 with Router ID 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Neighbor Brief Information
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Area: 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Router ID Address Pri Dead-Time State Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7.7.7.7 17.1.1.7 1 33 Full/ - GE1/0/21
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8.8.8.8 18.1.1.8 1 38 Full/ - GE1/0/22
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2.2.2.2 192.168.101.2 1 35 Full/ - Vlan101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看SW2上OSPF邻居信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW2]dis ospf peer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> OSPF Process 100 with Router ID 2.2.2.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Neighbor Brief Information
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Area: 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Router ID Address Pri Dead-Time State Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8.8.8.8 28.1.1.8 1 39 Full/ - GE1/0/21
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7.7.7.7 27.1.1.7 1 33 Full/ - GE1/0/22
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1.1.1.1 192.168.101.1 1 37 Full/ - Vlan101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW2]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看R7上OSPF邻居信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[R7]dis ospf peer
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> OSPF Process 100 with Router ID 7.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Neighbor Brief Information
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Area: 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Router ID Address Pri Dead-Time State Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1.1.1.1 17.1.1.1 1 37 Full/ - GE0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8.8.8.8 78.1.1.8 1 32 Full/ - GE0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2.2.2.2 27.1.1.2 1 35 Full/ - GE5/0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[R7]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="pc_1-连通性测试">PC_1 连通性测试
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping -c 2 192.168.20.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 192.168.20.1 (192.168.20.1): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 192.168.20.1: icmp_seq=0 ttl=254 time=8.381 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 192.168.20.1: icmp_seq=1 ttl=254 time=8.440 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 192.168.20.1 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 8.381/8.411/8.440/0.029 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;%Mar 20 23:40:36:632 2025 H3C PING/6/PING_STATISTICS: Ping statistics for 192.168.20.1: 2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss, round-trip min/avg/max/std-dev = 8.381/8.411/8.440/0.029 ms.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ping -c 2 192.168.30.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 192.168.30.2 (192.168.30.2): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 192.168.30.2: icmp_seq=0 ttl=254 time=7.895 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 192.168.30.2: icmp_seq=1 ttl=254 time=6.496 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 192.168.30.2 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 6.496/7.196/7.895/0.699 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;%Mar 20 23:41:20:108 2025 H3C PING/6/PING_STATISTICS: Ping statistics for 192.168.30.2: 2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss, round-trip min/avg/max/std-dev = 6.496/7.196/7.895/0.699 ms.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ping -c 2 7.7.7.7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 7.7.7.7 (7.7.7.7): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 7.7.7.7: icmp_seq=0 ttl=254 time=6.826 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 7.7.7.7: icmp_seq=1 ttl=254 time=5.240 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 7.7.7.7 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 5.240/6.033/6.826/0.793 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;%Mar 20 23:41:26:639 2025 H3C PING/6/PING_STATISTICS: Ping statistics for 7.7.7.7: 2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss, round-trip min/avg/max/std-dev = 5.240/6.033/6.826/0.793 ms.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ping -c 2 8.8.8.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 8.8.8.8 (8.8.8.8): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 8.8.8.8: icmp_seq=0 ttl=254 time=18.216 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 8.8.8.8: icmp_seq=1 ttl=254 time=7.013 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 8.8.8.8 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 7.013/12.615/18.216/5.601 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;%Mar 20 23:41:31:509 2025 H3C PING/6/PING_STATISTICS: Ping statistics for 8.8.8.8: 2 packet(s) transmitted, 2 packet(s) received, 0.0% packet loss, round-trip min/avg/max/std-dev = 7.013/12.615/18.216/5.601 ms.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sw1或sw2的上行接口故障时pc仍然可以与r7通信">SW1或SW2的上行接口故障时，PC仍然可以与R7通信
+&lt;/h3>&lt;ul>
+&lt;li>PC_1 ping 7.7.7.7 ，手动shutdownSW1的上联接口，观察现象&lt;/li>
+&lt;li>PC_2 ping 7.7.7.7 ，手动shutdownSW1的上联接口，观察现象&lt;/li>
+&lt;/ul>
+&lt;p>PC_1和PC_2执行：ping -r -c 10000 7.7.7.7&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[SW1]int ran g 1/0/21 g 1/0/22
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1-if-range]shut
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>观察发现PC_2 出现一个icmp request 超时，而PC_1正常不出现超时现象（一开始负载均衡走的SW2）&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;h3 id="sw1和sw2的peerlink链路故障时pc仍然可以与r8通信">SW1和SW2的peerlink链路故障时，PC仍然可以与R8通信
+&lt;/h3>&lt;p>手动关闭peerlink物理接口，观察PC_1和PC_2访问网络&lt;/p>
+&lt;p>PC_1和PC_2执行：ping -r -c 10000 8.8.8.8&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[SW1]int ran ten 1/0/51 ten 1/0/52
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW1-if-range]shut
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/27/koB64iVfqzGROeh.png">
+&lt;img src="https://s2.loli.net/2025/03/27/koB64iVfqzGROeh.png"
+loading="lazy"
+alt="image-20250327"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;hr>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/27/U4OdqByAmTJnWQ1.png">
+&lt;img src="https://s2.loli.net/2025/03/27/U4OdqByAmTJnWQ1.png"
+loading="lazy"
+alt="image-20250327"
+>
+&lt;/a>
+&lt;/div>
+&lt;strong>观察发现PC1和PC2 瞬间切换SW1&lt;/strong>&lt;/p>
+&lt;h2 id="说明">说明：
+&lt;/h2>&lt;ol>
+&lt;li>M-LAG设备与下行设备之间建动态路由协议的问题：仅设备/服务器和M-LAG设备存在建立路由邻居的需求时需要配置（官方废话）&lt;/li>
+&lt;li>port m-lag virtual-ip，配置接口的M-LAG虚拟IPv4地址；作用OSPF使用接口的从IP地址建立邻居关系&lt;/li>
+&lt;li>m-lag consistency-check disable ，理论上要开这个，但是不知是否是HCL模拟器的原因，开启后M-LAG有问题&lt;/li>
+&lt;li>一致性检查功能的关闭的使用场景：当M-LAG系统中两台设备因为版本升级等原因，导致设备配置不一致。此时，为了避免因配置一致性检查而关闭M-LAG组接口，可以通过 disable命令关闭分布式聚合配置一致性检查，保证M-LAG组接口正常工作&lt;/li>
+&lt;li>M-LAG保留接口：peerlink链路故障但是keepalive链路正常，从设备上除保留接口外其他接口处于MAD DWON状态；主设备上的m-lag组接口为up，从设备上的m-lag组接口处于down，保证所有流量经过主设备转发；一旦peerlink链路恢复，延迟默认30秒后自动恢复&lt;/li>
+&lt;li>主设备故障，从设备升级为主设备；主设备再次恢复，变为从设备，不会自动进行 倒换。&lt;/li>
+&lt;li>m-lag standalone enable ，M-LAG系统分裂后设备独立工作功能开启，配合lacp优先级，保障设备上的单挂设备通信&lt;/li>
+&lt;li>Server_2的openwrt安装bond软件包出错，无法配置网卡bond&lt;/li>
+&lt;/ol>
+&lt;h2 id="拓扑文件">拓扑文件：
+&lt;/h2>&lt;p>&lt;a class="link" href="https://hclhub.h3c.com/project/20294" target="_blank" rel="noopener"
+>https://hclhub.h3c.com/project/20294
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p></description></item></channel></rss>

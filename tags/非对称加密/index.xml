@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>非对称加密 on Kir's Blog</title><link>https://kiraster.github.io/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</link><description>Recent content in 非对称加密 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 27 Mar 2025 04:20:46 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/index.xml" rel="self" type="application/rss+xml"/><item><title>HMAC|对称加密与非对称加密组合工作流程图</title><link>https://kiraster.github.io/posts/485f474b.html/</link><pubDate>Thu, 27 Mar 2025 04:20:46 +0800</pubDate><guid>https://kiraster.github.io/posts/485f474b.html/</guid><description>&lt;h2 id="hmac密钥化散列信息认证码">&lt;strong>HMAC(密钥化散列信息认证码)&lt;/strong>
+&lt;/h2>&lt;p>作用：HMAC实现了对数据完整性校验和源认证&lt;/p>
+&lt;p>工作流程：&lt;/p>
+&lt;ol>
+&lt;li>发送方和接收方定义一个预共享密钥&lt;/li>
+&lt;li>发送方将（“数据” + 发送方预共享密钥）进行散列计算出一个散列值1&lt;/li>
+&lt;li>接收方将（“数据” + 接收方预共享密钥） 进行散列计算出一个散列值2&lt;/li>
+&lt;li>接收方对比两个散列值，若相同则确定数据完整性和源认证&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/27/PdmyJve7VKhUw1E.png">
+&lt;img src="https://s2.loli.net/2025/03/27/PdmyJve7VKhUw1E.png"
+loading="lazy"
+alt="image-20250327"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="对称加密和非对称加密的组合使用">对称加密和非对称加密的组合使用
+&lt;/h2>&lt;p>作用：强强联合，扬长避短&lt;/p>
+&lt;p>工作流程：&lt;/p>
+&lt;ol>
+&lt;li>看图&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/27/lvJFy4xw8QH6XLo.png">
+&lt;img src="https://s2.loli.net/2025/03/27/lvJFy4xw8QH6XLo.png"
+loading="lazy"
+alt="image-20250327"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>

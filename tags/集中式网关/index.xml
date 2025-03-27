@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>集中式网关 on Kir's Blog</title><link>https://kiraster.github.io/tags/%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%BD%91%E5%85%B3/</link><description>Recent content in 集中式网关 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 27 Mar 2025 01:06:38 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%BD%91%E5%85%B3/index.xml" rel="self" type="application/rss+xml"/><item><title>HCL_集中式IPv4 EVPN网关VxLAN配置</title><link>https://kiraster.github.io/posts/f1ebd2ac.html/</link><pubDate>Thu, 27 Mar 2025 01:06:38 +0800</pubDate><guid>https://kiraster.github.io/posts/f1ebd2ac.html/</guid><description>&lt;h2 id="工程名称">工程名称
+&lt;/h2>&lt;p>配置和验证华三设备上的集中式IPv4 EVPN网关VxLAN&lt;/p>
+&lt;h2 id="需求">需求：
+&lt;/h2>&lt;p>Switch A、Switch B为与服务器连接的VTEP设备；Switch C为与广域网连接的集中式EVPN网关设备；Switch D为RR，负责在交换机之间反射BGP路由。&lt;/p>
+&lt;p>虚拟机VM 1和VM 3属于VXLAN 10；VM 2和VM 4属于VXLAN 20。相同VXLAN之间可以二层互通，不同VXLAN之间、VXLAN与广域网之间可以通过集中式EVPN网关互通。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/27/o9PjG1dciUlLRFY.png">
+&lt;img src="https://s2.loli.net/2025/03/27/o9PjG1dciUlLRFY.png"
+loading="lazy"
+alt="image-20250327"
+>
+&lt;/a>
+&lt;/div>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/27/1lR7OXSkNiwz3Us.png">
+&lt;img src="https://s2.loli.net/2025/03/27/1lR7OXSkNiwz3Us.png"
+loading="lazy"
+alt="image-20250327"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="配置思路">配置思路
+&lt;/h2>&lt;ol>
+&lt;li>配置各接口的IP地址和子网掩码；在IP核心网络内配置OSPF协议，&lt;/li>
+&lt;li>配置VTEP（SW-A、SW-B）
+&lt;ul>
+&lt;li>创建VSI实例，创建evpn实例（自动RD和自动RT），创建vxlan&lt;/li>
+&lt;li>配置BGP，l2vpn evpn地址族下激活邻居&lt;/li>
+&lt;li>配置AC&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>配置集中式网关和边界路由器（SW-C）
+&lt;ul>
+&lt;li>创建VSI实例，创建evpn实例（自动RD和自动RT），创建vxlan&lt;/li>
+&lt;li>配置BGP，l2vpn evpn地址族下激活邻居&lt;/li>
+&lt;li>创建VSI虚接口VSI-interface1，并为其配置IP地址&lt;/li>
+&lt;li>配置VXLAN xx所在的VSI实例和接口VSI-interface1关联&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>配置核心网络（SW-D）
+&lt;ul>
+&lt;li>配置BGP，l2vpn evpn地址族下激活邻居&lt;/li>
+&lt;li>关闭BGP EVPN路由的VPN-Target过滤功能&lt;/li>
+&lt;li>配置路由反射器&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>配置接入交换机&lt;/li>
+&lt;/ol>
+&lt;h2 id="实验步骤">实验步骤：
+&lt;/h2>&lt;h3 id="配置设备工作的硬件资源模式">配置设备工作的硬件资源模式
+&lt;/h3>&lt;p>配置Switch A、Switch B和Switch C工作的硬件资源模式，并重启设备（HCL模拟器 (5.10.3)的S6850不支持该命令，但是能做出实验效果）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> hardware-resource vxlan l3gw
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Do you want to change the specified hardware resource working mode? [Y/N]:y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The hardware resource working mode is changed, please save the configuration and reboot the system to make it effective.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> reboot
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Start to check configuration with next startup configuration file, please wait..
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">.......DONE!
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Current configuration may be lost after the reboot, save current configuration?
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[Y/N]:y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">This command will reboot the device. Continue? [Y/N]:y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置ip地址和单播路由协议">配置IP地址和单播路由协议
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>在VM 1和VM 3上指定网关地址为10.1.1.1；在VM 2和VM 4上指定网关地址为10.1.2.1。（具体配置过程略）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置各接口的IP地址和子网掩码；在IP核心网络内配置OSPF协议，确保交换机之间路由可达。（具体配置过程略）&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>SW-A配置各接口的IP地址和子网掩码；配置OSPF协议&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 1.1.1.1 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 11.1.1.1 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 route 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 1.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 11.1.1.1 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>SW-B配置各接口的IP地址和子网掩码；配置OSPF协议&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 2.2.2.2 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 12.1.1.2 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 route 2.2.2.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 2.2.2.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 12.1.1.2 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>SW-C配置各接口的IP地址和子网掩码；配置OSPF协议&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 3.3.3.3 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 13.1.1.3 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 route 3.3.3.3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 3.3.3.3 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 13.1.1.3 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>SW-D配置各接口的IP地址和子网掩码；配置OSPF协议&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 4.4.4.4 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 11.1.1.4 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 12.1.1.4 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 13.1.1.4 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf net p2p
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ospf 100 route 4.4.4.4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">area 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 4.4.4.4 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 11.1.1.4 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 12.1.1.4 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">net 13.1.1.4 0.0.0.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>SW-C和ROUTER配置外部网络（用于测试三层网关访问外部网络）&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># SW-C
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/48
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p link-m r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 100.1.1.3 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-s 0.0.0.0 0 100.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># ROUTER
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int l 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 6.6.6.6 32
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 0/1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip add 100.1.1.1 24
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip route-s 0.0.0.0 0 100.1.1.3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>配置完成以上步骤，SW-A，SW-B，SW-C和SW-D之间的环回接口地址能互相ping通，SW-C能ping通6.6.6.6&lt;/p>
+&lt;h3 id="配置switch-a">配置Switch A
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 开启L2VPN能力
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> l2vpn enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 关闭远端MAC地址自动学习功能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan tunnel mac-learning disable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在VSI实例vpna下创建EVPN实例，并配置自动生成EVPN实例的RD和RT。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpna
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> arp suppression enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> evpn encapsulation vxlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VXLAN 10。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在VSI实例vpnb下创建EVPN实例，并配置自动生成EVPN实例的RD和RT。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpnb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> arp suppression enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> evpn encapsulation vxlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VXLAN 20。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置BGP发布EVPN路由。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 as-number 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 connect-interface loopback 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family l2vpn evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VLAN 2 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 2 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在接入服务器的接口G1/0/2上创建以太网服务实例1000，该实例用来匹配VLAN 2的数据帧。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> interface g 1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan 2 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-instance 1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encapsulation s-vid 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置以太网服务实例1000与VSI实例vpna关联。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> xconnect vsi vpna
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在接口G1/0/1上创建以太网服务实例2000，该实例用来匹配VLAN 3的数据帧。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-instance 2000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encapsulation s-vid 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置以太网服务实例2000与VSI实例vpnb关联。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> xconnect vsi vpnb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置switch-b">配置Switch B
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 开启L2VPN能力。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> l2vpn enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 关闭远端MAC地址自动学习功能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan tunnel mac-learning disable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在VSI实例vpna下创建EVPN实例，并配置自动生成EVPN实例的RD和RT。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpna
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> arp suppression enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> evpn encapsulation vxlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VXLAN 10。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在VSI实例vpnb下创建EVPN实例，并配置自动生成EVPN实例的RD和RT。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpnb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> arp suppression enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> evpn encapsulation vxlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VXLAN 20。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置BGP发布EVPN路由。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 as-number 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 connect-interface loopback 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family l2vpn evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VLAN 2 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 2 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在接入服务器的接口G1/0/2上创建以太网服务实例1000，该实例用来匹配VLAN 2的数据帧。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> interface g 1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-instance 1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # encapsulation s-vid 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 由于是模拟的VM虚机，实际上并没有虚拟化系统上的vswitch，故而VM发出的数据帧没有tag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 所有封装类型选择untagged，实际运用中的vswitch上联为trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encapsulation untagged
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置以太网服务实例1000与VSI实例vpna关联。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> xconnect vsi vpna
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在接口G1/0/3上创建以太网服务实例2000，该实例用来匹配VLAN 3的数据帧。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> interface ge 1/0/3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port link-type trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> port trunk permit vlan 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> service-instance 2000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # encapsulation s-vid 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 由于是模拟的VM虚机，实际上并没有虚拟化系统上的vswitch，故而VM发出的数据帧没有tag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> # 所有封装类型选择untagged，实际运用中的vswitch上联为trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> encapsulation untagged
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置以太网服务实例2000与VSI实例vpnb关联。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> xconnect vsi vpnb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置switch-c">配置Switch C
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 开启L2VPN能力。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> l2vpn enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 关闭远端MAC地址自动学习功能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan tunnel mac-learning disable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在VSI实例vpna下创建EVPN实例，并配置自动生成EVPN实例的RD和RT。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpna
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> evpn encapsulation vxlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VXLAN 10。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 在VSI实例vpnb下创建EVPN实例，并配置自动生成EVPN实例的RD和RT。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpnb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> evpn encapsulation vxlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> route-distinguisher auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vpn-target auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VXLAN 20。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vxlan 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置BGP发布EVPN路由。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 as-number 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 connect-interface loopback 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family l2vpn evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 4.4.4.4 enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VSI虚接口VSI-interface1，并为其配置IP地址，该IP地址作为VXLAN 10内虚拟机的网关地址。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> interface vsi-interface 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.1.1.1 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置VXLAN 10所在的VSI实例和接口VSI-interface1关联。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpna
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway vsi-interface 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 创建VSI虚接口VSI-interface2，并为其配置IP地址，该IP地址作为VXLAN 20内虚拟机的网关地址。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> interface vsi-interface 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ip address 10.1.2.1 255.255.255.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置VXLAN 20所在的VSI实例和接口VSI-interface1关联。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> vsi vpnb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gateway vsi-interface 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置switch-d">配置Switch D
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 配置Switch D与其他交换机建立BGP连接。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bgp 200
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> group evpn internal
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 1.1.1.1 group evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 2.2.2.2 group evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer 3.3.3.3 group evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer evpn connect-interface loopback 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置BGP发布EVPN路由，并关闭BGP EVPN路由的VPN-Target过滤功能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> address-family l2vpn evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer evpn enable
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> undo policy vpn-target
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置Switch D为路由反射器。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> peer evpn reflect-client
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> quit
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="配置acc-1">配置ACC-1
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 创建vlan 2 3 并将端口划入vlan
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port g 1/0/8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vlan 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">port g 1/0/9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 配置 g1/0/2 trunk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">int g 1/0/2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p l t
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">p t per vlan 2 3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">qu
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="测试结果">测试结果：
+&lt;/h2>&lt;h3 id="验证evpn网关设备switch-c">验证EVPN网关设备Switch C
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看Switch C上的EVPN路由信息，可以看到Switch C发送了网关的MAC/IP路由和IMET路由，并接收到Switch A和Switch B发送的MAC/IP路由和IMET路由。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]dis bgp l2vpn evpn
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> BGP local router ID is 3.3.3.3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Status codes: * - valid, &amp;gt; - best, d - dampened, h - history
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> s - suppressed, S - stale, i - internal, e - external
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> a - additional-path
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Origin: i - IGP, e - EGP, ? - incomplete
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Total number of routes from all PEs: 12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route distinguisher: 1:10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Total number of routes: 8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt; Network : [2][0][48][486a-667a-0300][32][10.1.1.1]/136
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 0.0.0.0 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 32768 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486a-daae-0806][0][0.0.0.0]/104
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 1.1.1.1 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486a-daae-0806][32][10.1.1.10]/136
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 1.1.1.1 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486a-e7cf-0a06][0][0.0.0.0]/104
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 2.2.2.2 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486a-e7cf-0a06][32][10.1.1.20]/136
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 2.2.2.2 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [3][0][32][1.1.1.1]/80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 1.1.1.1 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [3][0][32][2.2.2.2]/80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 2.2.2.2 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt; Network : [3][0][32][3.3.3.3]/80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 0.0.0.0 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 32768 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Route distinguisher: 1:20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Total number of routes: 8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt; Network : [2][0][48][486a-667a-0300][32][10.1.2.1]/136
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 0.0.0.0 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 32768 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486a-e4b6-0906][0][0.0.0.0]/104
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 1.1.1.1 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486a-e4b6-0906][32][10.1.2.10]/136
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 1.1.1.1 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486b-09ee-0b06][0][0.0.0.0]/104
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 2.2.2.2 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [2][0][48][486b-09ee-0b06][32][10.1.2.20]/136
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 2.2.2.2 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [3][0][32][1.1.1.1]/80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 1.1.1.1 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt;i Network : [3][0][32][2.2.2.2]/80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 2.2.2.2 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 0 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">* &amp;gt; Network : [3][0][32][3.3.3.3]/80
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> NextHop : 0.0.0.0 LocPrf : 100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> PrefVal : 32768 OutLabel : NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MED : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Path/Ogn: i
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看Switch C上的Tunnel接口信息，可以看到VXLAN模式的Tunnel接口处于up状态。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]dis int Tunnel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tunnel0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Current state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Line protocol state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description: Tunnel0 Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Bandwidth: 64 kbps
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Maximum transmission unit: 1464
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Internet protocol processing: Disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last clearing of counters: Never
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tunnel source 3.3.3.3, destination 1.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tunnel protocol/transport UDP_VXLAN/IP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last 300 seconds input rate: 9 bytes/sec, 72 bits/sec, 0 packets/sec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last 300 seconds output rate: 9 bytes/sec, 72 bits/sec, 0 packets/sec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Input: 804 packets, 78792 bytes, 0 drops
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Output: 808 packets, 79032 bytes, 0 drops
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tunnel1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Current state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Line protocol state: UP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Description: Tunnel1 Interface
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Bandwidth: 64 kbps
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Maximum transmission unit: 1464
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Internet protocol processing: Disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last clearing of counters: Never
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tunnel source 3.3.3.3, destination 2.2.2.2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tunnel protocol/transport UDP_VXLAN/IP
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last 300 seconds input rate: 3 bytes/sec, 24 bits/sec, 0 packets/sec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last 300 seconds output rate: 3 bytes/sec, 24 bits/sec, 0 packets/sec
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Input: 1250 packets, 122500 bytes, 0 drops
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Output: 1252 packets, 122620 bytes, 0 drops
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看Switch C上的VSI虚接口信息，可以看到VSI虚接口处于up状态。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]dis int Vsi-interface brief
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Brief information on interfaces in route mode:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Link: ADM - administratively down; Stby - standby
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Protocol: (s) - spoofing
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Interface Link Protocol Primary IP Description
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Vsi1 UP UP 10.1.1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Vsi2 UP UP 10.1.2.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看Switch C上的VSI信息，可以看到VSI内创建的VXLAN、与VXLAN关联的VXLAN隧道、与VSI关联的VSI虚接口等信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]dis l2vpn vsi verbose
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VSI Name: vpna
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VSI Index : 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VSI State : Up
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MTU : 1500
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Bandwidth : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Broadcast Restrain : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Multicast Restrain : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Unknown Unicast Restrain: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MAC Learning : Enabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MAC Table Limit : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MAC Learning rate : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Drop Unknown : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Flooding : Enabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Gateway Interface : VSI-interface 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VXLAN ID : 10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnels:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnel Name Link ID State Type Flood proxy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnel0 0x5000000 UP Auto Disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnel1 0x5000001 UP Auto Disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">VSI Name: vpnb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VSI Index : 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VSI State : Up
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MTU : 1500
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Bandwidth : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Broadcast Restrain : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Multicast Restrain : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Unknown Unicast Restrain: -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MAC Learning : Enabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MAC Table Limit : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MAC Learning rate : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Drop Unknown : -
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Flooding : Enabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Gateway Interface : VSI-interface 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> VXLAN ID : 20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnels:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnel Name Link ID State Type Flood proxy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnel0 0x5000000 UP Auto Disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Tunnel1 0x5000001 UP Auto Disabled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看Switch C上VSI的EVPN ARP表项信息，可以看到已学习到了虚拟机的ARP信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]dis evpn route arp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flags: D - Dynamic B - BGP L - Local active
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> G - Gateway S - Static M - Mapping I - Invalid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Public instance Interface: Vsi-interface2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">IP address MAC address Router MAC VSI index Flags
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10.1.2.1 486a-667a-0300 - 1 GL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10.1.2.10 486a-e4b6-0906 - 1 B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10.1.2.20 486b-09ee-0b06 - 1 B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Public instance Interface: Vsi-interface1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">IP address MAC address Router MAC VSI index Flags
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10.1.1.1 486a-667a-0300 - 0 GL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10.1.1.10 486a-daae-0806 - 0 B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10.1.1.20 486a-e7cf-0a06 - 0 B
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 查看Switch C上FIB表项信息，可以看到已学习到了虚拟机的转发表项信息。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]dis fib 10.1.1.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Destination count: 1 FIB entry count: 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Flag:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> U:Useable G:Gateway H:Host B:Blackhole D:Dynamic S:Static
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> R:Relay F:FRR
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Destination/Mask Nexthop Flag OutInterface/Token Label
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10.1.1.10/32 10.1.1.10 UH Vsi1 Null
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[SW-C]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="验证主机之间可以互访">验证主机之间可以互访
+&lt;/h3>&lt;p>虚拟机VM 1、VM 2、VM 3、VM 4、L3-Network之间可以互访。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># VM-1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 10.1.1.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 10.1.1.20 (10.1.1.20): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=0 ttl=255 time=12.643 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=1 ttl=255 time=6.087 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=2 ttl=255 time=6.126 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=3 ttl=255 time=5.428 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=4 ttl=255 time=6.368 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 10.1.1.20 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 5.428/7.330/12.643/2.675 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 10.1.2.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 10.1.2.10 (10.1.2.10): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=0 ttl=254 time=15.888 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=1 ttl=254 time=9.885 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=2 ttl=254 time=14.770 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=3 ttl=254 time=10.325 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=4 ttl=254 time=11.280 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 10.1.2.10 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 9.885/12.430/15.888/2.436 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 10.1.2.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 10.1.2.20 (10.1.2.20): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=0 ttl=254 time=13.263 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=1 ttl=254 time=9.997 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=2 ttl=254 time=8.627 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=3 ttl=254 time=9.300 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=4 ttl=254 time=9.422 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 10.1.2.20 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 8.627/10.122/13.263/1.630 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 6.6.6.6 (6.6.6.6): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=0 ttl=254 time=10.909 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=1 ttl=254 time=5.950 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=2 ttl=254 time=4.933 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=3 ttl=254 time=6.101 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=4 ttl=254 time=10.426 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 6.6.6.6 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 4.933/7.664/10.909/2.490 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># VM-2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 10.1.1.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 10.1.1.20 (10.1.1.20): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=0 ttl=255 time=12.643 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=1 ttl=255 time=6.087 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=2 ttl=255 time=6.126 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=3 ttl=255 time=5.428 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.1.20: icmp_seq=4 ttl=255 time=6.368 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 10.1.1.20 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 5.428/7.330/12.643/2.675 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 10.1.2.10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 10.1.2.10 (10.1.2.10): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=0 ttl=254 time=15.888 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=1 ttl=254 time=9.885 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=2 ttl=254 time=14.770 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=3 ttl=254 time=10.325 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.10: icmp_seq=4 ttl=254 time=11.280 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 10.1.2.10 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 9.885/12.430/15.888/2.436 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 10.1.2.20
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 10.1.2.20 (10.1.2.20): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=0 ttl=254 time=13.263 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=1 ttl=254 time=9.997 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=2 ttl=254 time=8.627 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=3 ttl=254 time=9.300 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 10.1.2.20: icmp_seq=4 ttl=254 time=9.422 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 10.1.2.20 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 8.627/10.122/13.263/1.630 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;ping 6.6.6.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Ping 6.6.6.6 (6.6.6.6): 56 data bytes, press CTRL_C to break
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=0 ttl=254 time=6.937 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=1 ttl=254 time=5.335 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=2 ttl=254 time=6.527 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=3 ttl=254 time=5.520 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">56 bytes from 6.6.6.6: icmp_seq=4 ttl=254 time=4.728 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- Ping statistics for 6.6.6.6 ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 packet(s) transmitted, 5 packet(s) received, 0.0% packet loss
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round-trip min/avg/max/std-dev = 4.728/5.809/6.937/0.808 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;lt;H3C&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="说明">说明：
+&lt;/h2>&lt;h2 id="拓扑文件">拓扑文件：
+&lt;/h2>&lt;p>&lt;a class="link" href="https://hclhub.h3c.com/project/20297" target="_blank" rel="noopener"
+>https://hclhub.h3c.com/project/20297
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p></description></item></channel></rss>

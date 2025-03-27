@@ -1,0 +1,559 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="工程名称 配置和验证华三设备上的总部采用 IPsec 安全策略模板方式与分支建 立保护 IPv4 报文的 IPsec 隧道\n网络规划设计\n总部的IPsec设备FW1采用旁挂方式，单独的网段接入核心交换机SW1；分支1的IPsec设备FW2采用旁挂方式接入核心交换机SW2，且与PC_2同一网段；分支2的IPsec设备FW3为出口设备，且出口公网IP地址为动态获取。\n总部与分支1（静态公网IP地址）的IKE第一阶段使用主模式；总部与分支2（动态公网IP地址）的IKE第一阶段使用主动模式（野蛮模式）\n"><meta name=msvalidate.01 content="B0C0B3C5A32207C648603D179C10C991"><title>HCL_总部采用IPsec安全策略模板方式与分支建立保护IPv4报文的IPsec隧道配置</title>
+<link rel=canonical href=https://kiraster.github.io/posts/dc539104.html/><link rel=stylesheet href=/scss/style.min.d5f3072b5dc0f2a4ecf67d23cfa612bfeeab896b768a9e5eda195f00121d08cd.css><meta property='og:title' content="HCL_总部采用IPsec安全策略模板方式与分支建立保护IPv4报文的IPsec隧道配置"><meta property='og:description' content="工程名称 配置和验证华三设备上的总部采用 IPsec 安全策略模板方式与分支建 立保护 IPv4 报文的 IPsec 隧道\n网络规划设计\n总部的IPsec设备FW1采用旁挂方式，单独的网段接入核心交换机SW1；分支1的IPsec设备FW2采用旁挂方式接入核心交换机SW2，且与PC_2同一网段；分支2的IPsec设备FW3为出口设备，且出口公网IP地址为动态获取。\n总部与分支1（静态公网IP地址）的IKE第一阶段使用主模式；总部与分支2（动态公网IP地址）的IKE第一阶段使用主动模式（野蛮模式）\n"><meta property='og:url' content='https://kiraster.github.io/posts/dc539104.html/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='IPsec vpn'><meta property='article:tag' content='总部和分支'><meta property='article:tag' content='IKE野蛮模式'><meta property='article:tag' content='H3C'><meta property='article:published_time' content='2025-03-27T02:47:42+08:00'><meta property='article:modified_time' content='2025-03-27T02:47:42+08:00'><meta name=twitter:title content="HCL_总部采用IPsec安全策略模板方式与分支建立保护IPv4报文的IPsec隧道配置"><meta name=twitter:description content="工程名称 配置和验证华三设备上的总部采用 IPsec 安全策略模板方式与分支建 立保护 IPv4 报文的 IPsec 隧道\n网络规划设计\n总部的IPsec设备FW1采用旁挂方式，单独的网段接入核心交换机SW1；分支1的IPsec设备FW2采用旁挂方式接入核心交换机SW2，且与PC_2同一网段；分支2的IPsec设备FW3为出口设备，且出口公网IP地址为动态获取。\n总部与分支1（静态公网IP地址）的IKE第一阶段使用主模式；总部与分支2（动态公网IP地址）的IKE第一阶段使用主动模式（野蛮模式）\n"><link rel="shortcut icon" href=/favicon.ico><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#工程名称>工程名称</a></li><li><a href=#需求>需求：</a></li><li><a href=#配置思路>配置思路</a></li><li><a href=#实验步骤>实验步骤：</a><ol><li><a href=#ip地址和路由>IP地址和路由</a></li><li><a href=#sw1和sw2上的引流>SW1和SW2上的引流</a></li><li><a href=#r1和r2上配置端口映射>R1和R2上配置端口映射</a></li><li><a href=#fw1配置>FW1配置</a></li><li><a href=#fw2配置>FW2配置</a></li><li><a href=#fw3配置>FW3配置</a></li></ol></li><li><a href=#测试结果>测试结果：</a><ol><li><a href=#连通性测试>连通性测试</a></li><li><a href=#fw1上查看ike-sa>FW1上查看ike sa</a></li><li><a href=#fw1上查看ike-sa-详细信息>FW1上查看ike sa 详细信息</a></li><li><a href=#fw1上查看ipsec-sa-信息>FW1上查看ipsec sa 信息</a></li><li><a href=#fw2上查看信息>FW2上查看信息</a></li><li><a href=#fw3上查看信息>FW3上查看信息</a></li></ol></li><li><a href=#说明>说明：</a></li><li><a href=#拓扑文件>拓扑文件：</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/h3ccloudlab/ style=background-color:#b0c4de;color:#fff>H3CCloudLab</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/dc539104.html/>HCL_总部采用IPsec安全策略模板方式与分支建立保护IPv4报文的IPsec隧道配置</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Mar 27, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>8 minute read</time></div></footer></div></header><section class=article-content><h2 id=工程名称>工程名称</h2><p>配置和验证华三设备上的总部采用 IPsec 安全策略模板方式与分支建 立保护 IPv4 报文的 IPsec 隧道</p><p><strong>网络规划设计</strong></p><p>总部的IPsec设备FW1采用旁挂方式，单独的网段接入核心交换机SW1；分支1的IPsec设备FW2采用旁挂方式接入核心交换机SW2，且与PC_2同一网段；分支2的IPsec设备FW3为出口设备，且出口公网IP地址为动态获取。</p><p>总部与分支1（静态公网IP地址）的IKE第一阶段使用主模式；总部与分支2（动态公网IP地址）的IKE第一阶段使用主动模式（野蛮模式）</p><h2 id=需求>需求：</h2><p>总部和分支均能访问R3的环回接口地址3.3.3.3</p><p>分支FW2、FW3和总部FW1之间建立IPsec隧道，对分支网络与总部网络之间的数据进行安全保护</p><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2025/03/27/eZ7zPiuJTC3M52g.png><img src=https://s2.loli.net/2025/03/27/eZ7zPiuJTC3M52g.png loading=lazy alt=image-20250327></a></div></p><h2 id=配置思路>配置思路</h2><ol><li>先完成IP地址配置，PC能与3.3.3.3 互通 （需要做PAT）</li><li>总部出口路由器配置NAT SERVER 映射旁挂防火墙FW1</li><li>分支1的 R2 路由器配置静态公网IP地址</li><li>分支2的 FW2 防火墙配置动态公网IP地址</li><li>总部的SW1为核心交换机，PC1的网关在SW1上</li><li>分支1的SW2为核心交换机，PC2的网关在SW2上</li><li>分支2的的网关在FW3上</li><li>当分支机构为静态公网IP地址时ike协商使用main模式</li><li>当分支机构为动态公网IP地址时ike协商使用aggressive模式</li><li>使用IKE协商方式建立IPsec SA，采用ESP安全协议</li><li>IKE协商采用预共享密钥认证方式</li><li>总部FW1采用IKE安全策略模板方式，分支FW2和FW3采用IKE安全策略方式</li><li>由于只验证ipsec vpn理论，三台防火墙的策略配置了any安全策略</li></ol><h2 id=实验步骤>实验步骤：</h2><h3 id=ip地址和路由>IP地址和路由</h3><ul><li>设备配置IP地址、静态路由、NAT</li><li>配置完成后各PC能ping通R3上的3.3.3.3；出口设备能ping通对端出口设备的公网IP地址</li></ul><h3 id=sw1和sw2上的引流>SW1和SW2上的引流</h3><p>1、SW1上，配置静态路由，将总部去往分支机构的网段下一跳指向FW1</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 默认路由器用于访问互联网
+</span></span><span class=line><span class=cl> ip route-static 0.0.0.0 0 10.11.11.1
+</span></span><span class=line><span class=cl># 引流的静态路由
+</span></span><span class=line><span class=cl> ip route-static 192.168.20.0 24 10.1.1.1
+</span></span><span class=line><span class=cl> ip route-static 192.168.30.0 24 10.1.1.1
+</span></span></code></pre></div><p>2、SW2上，配置策略路由，将分支1去往总部的网段下一跳地址指向FW2</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 配置acl批量分支1去往总部的流量
+</span></span><span class=line><span class=cl>acl advanced 3666
+</span></span><span class=line><span class=cl> rule 0 permit ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255
+</span></span><span class=line><span class=cl># 配置策略路由匹配acl 3666，指定下一跳地址
+</span></span><span class=line><span class=cl>policy-based-route TO-ZONGBU permit node 10
+</span></span><span class=line><span class=cl> if-match acl 3666
+</span></span><span class=line><span class=cl> apply next-hop 192.168.20.200
+</span></span><span class=line><span class=cl># 分支1网关上应用策略路由
+</span></span><span class=line><span class=cl>interface Vlan-interface10
+</span></span><span class=line><span class=cl> ip policy-based-route TO-ZONGBU
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><h3 id=r1和r2上配置端口映射>R1和R2上配置端口映射</h3><p>1、R1上配置端口映射，将端口映射到FW1的接口地址10.1.1.1</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># udp 500 和 udp 4500
+</span></span><span class=line><span class=cl>interface GigabitEthernet0/1
+</span></span><span class=line><span class=cl> nat server protocol udp global current-interface 500 inside 10.1.1.1 500
+</span></span><span class=line><span class=cl> nat server protocol udp global current-interface 4500 inside 10.1.1.1 4500
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><p>2、R2上配置端口映射，将端口映射到FW2的接口地址192.168.20.200</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># udp 500 和 udp 4500
+</span></span><span class=line><span class=cl>interface GigabitEthernet0/1
+</span></span><span class=line><span class=cl> nat server protocol udp global current-interface 500 inside 192.168.20.200 500
+</span></span><span class=line><span class=cl> nat server protocol udp global current-interface 4500 inside 192.168.20.200 4500
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><h3 id=fw1配置>FW1配置</h3><p>将流量区分为两类给后面的ipsec policy调用</p><ul><li>acl 3010 用于分支机构外网出口是静态公网IP地址的ike 主模式</li><li>acl 3020 用于分支机构外网出口是动态公网IP地址或主模式协商有问题 的ike 野蛮模式</li><li>如果后续需要新增分支机构加入ipsec vpn，可在以上两个acl后直接添加规则</li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 总部去往分支1的数据
+</span></span><span class=line><span class=cl>acl advanced 3010
+</span></span><span class=line><span class=cl> rule 0 permit ip source 192.168.10.0 0.0.0.255 destination 192.168.20.0 0.0.0.255
+</span></span><span class=line><span class=cl># 总部去往分支2的数据
+</span></span><span class=line><span class=cl>acl advanced 3020
+</span></span><span class=line><span class=cl> rule 0 permit ip source 192.168.10.0 0.0.0.255 destination 192.168.30.0 0.0.0.255
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 配置IPsec安全提议，协商封装报文使用的各种安全协议
+</span></span><span class=line><span class=cl>ipsec transform-set tran1
+</span></span><span class=line><span class=cl> # 默认tunnel模式 encapsulation-mode tunnel
+</span></span><span class=line><span class=cl> # 默认esp封装 protocol esp
+</span></span><span class=line><span class=cl> esp encryption-algorithm des-cbc 
+</span></span><span class=line><span class=cl> esp authentication-algorithm sha1 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 配置IKE keychain，约定通信双方使用的密钥信息
+</span></span><span class=line><span class=cl>ike keychain key1
+</span></span><span class=line><span class=cl> # 对于使用静态公网IP地址的，省个事，直接4个0，这样后面要新增分支不需要修改配置
+</span></span><span class=line><span class=cl> pre-shared-key address 0.0.0.0 0.0.0.0 key simple 123
+</span></span><span class=line><span class=cl> # 对于使用动态IP的fqdn，或野蛮模式的
+</span></span><span class=line><span class=cl> pre-shared-key hostname fenzhi-2 key simple 456
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl># 配置IKE profile，约定建立IKE SA所需的安全参数
+</span></span><span class=line><span class=cl># 使用mian模式的连接
+</span></span><span class=line><span class=cl>ike profile profile1
+</span></span><span class=line><span class=cl> keychain key1
+</span></span><span class=line><span class=cl> local-identity fqdn zongbu
+</span></span><span class=line><span class=cl> # 后续新增分支可添加match配置
+</span></span><span class=line><span class=cl> match remote identity fqdn fenzhi-1
+</span></span><span class=line><span class=cl># 使用aggressive模式的连接
+</span></span><span class=line><span class=cl>ike profile profile2
+</span></span><span class=line><span class=cl> keychain key1
+</span></span><span class=line><span class=cl> exchange-mode aggressive
+</span></span><span class=line><span class=cl> local-identity fqdn zongbu
+</span></span><span class=line><span class=cl> # 后续新增分支可添加match配置
+</span></span><span class=line><span class=cl> match remote identity fqdn fenzhi-2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 配置IPsec安全策略模板，用于创建IPsec安全策略
+</span></span><span class=line><span class=cl># 用于主模式的模板
+</span></span><span class=line><span class=cl>ipsec policy-template temp1 10
+</span></span><span class=line><span class=cl> transform-set tran1 
+</span></span><span class=line><span class=cl> security acl 3010 
+</span></span><span class=line><span class=cl> ike-profile profile1
+</span></span><span class=line><span class=cl># 用于野蛮模式的模板
+</span></span><span class=line><span class=cl>ipsec policy-template temp1 20
+</span></span><span class=line><span class=cl> transform-set tran1 
+</span></span><span class=line><span class=cl> security acl 3020 
+</span></span><span class=line><span class=cl> ike-profile profile2
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl># 引用安全策略模板temp1创建一条IKE协商方式的安全策略policy1
+</span></span><span class=line><span class=cl># 建立IPsec隧道，保护需要防护的数据流
+</span></span><span class=line><span class=cl>ipsec policy map1 10 isakmp template temp1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 配置IKE提议，定义双方进行IKE协商所需的安全参数
+</span></span><span class=line><span class=cl># 创建并配置IKE提议1，指定使用预共享密钥认证方式、加密算法、认证算法。
+</span></span><span class=line><span class=cl>ike proposal 1
+</span></span><span class=line><span class=cl> encryption-algorithm 3des-cbc
+</span></span><span class=line><span class=cl> # 默认认证算法  authentication-algorithm sha
+</span></span><span class=line><span class=cl> # 默认预共享密钥认证 authentication-method pre-share
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 在接口下引用IPsec安全策略，对接口上的流量进行保护
+</span></span><span class=line><span class=cl>interface gigabitethernet 1/0/3
+</span></span><span class=line><span class=cl> ipsec apply policy map1
+</span></span></code></pre></div><h3 id=fw2配置>FW2配置</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 分支1去往总部的流量
+</span></span><span class=line><span class=cl>acl advanced 3000
+</span></span><span class=line><span class=cl> rule 0 permit ip source 192.168.20.0 0.0.0.255 destination 192.168.10.0 0.0.0.255
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 配置IPsec安全提议，协商封装报文使用的各种安全协议
+</span></span><span class=line><span class=cl>ipsec transform-set tran1
+</span></span><span class=line><span class=cl> # 默认tunnel模式 encapsulation-mode tunnel
+</span></span><span class=line><span class=cl> # 默认esp封装 protocol esp
+</span></span><span class=line><span class=cl> esp encryption-algorithm des-cbc 
+</span></span><span class=line><span class=cl> esp authentication-algorithm sha1 
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl># 配置IKE keychain，约定通信双方使用的密钥信息
+</span></span><span class=line><span class=cl>ike keychain key1
+</span></span><span class=line><span class=cl> pre-shared-key address 101.1.1.1 255.255.255.255 key simple 123
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 配置IKE profile，约定建立IKE SA所需的安全参数
+</span></span><span class=line><span class=cl>ike profile profile1
+</span></span><span class=line><span class=cl> keychain key1
+</span></span><span class=line><span class=cl> local-identity fqdn fenzhi-1
+</span></span><span class=line><span class=cl> match remote identity address 101.1.1.1 255.255.255.0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 配置ISAKMP方式的安全策略，建立IPsec隧道，保护需要防护的数据流
+</span></span><span class=line><span class=cl># 创建并配置名为map1的IPsec安全策略，引用安全提议tran1，引用ACL 3000，并指定IPsec隧道的对端地址为101.1.1.1
+</span></span><span class=line><span class=cl>ipsec policy map1 10 isakmp
+</span></span><span class=line><span class=cl> transform-set tran1 
+</span></span><span class=line><span class=cl> security acl 3000 
+</span></span><span class=line><span class=cl> remote-address 101.1.1.1
+</span></span><span class=line><span class=cl> ike-profile profile1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 配置IKE提议，定义双方进行IKE协商所需的安全参数
+</span></span><span class=line><span class=cl># 创建并配置IKE提议1，指定使用预共享密钥认证方式、加密算法、认证算法。
+</span></span><span class=line><span class=cl>ike proposal 1
+</span></span><span class=line><span class=cl> encryption-algorithm 3des-cbc
+</span></span><span class=line><span class=cl> # 默认认证算法  authentication-algorithm sha
+</span></span><span class=line><span class=cl> # 默认预共享密钥认证 authentication-method pre-share
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 在接口下引用IPsec安全策略，对接口上的流量进行保护
+</span></span><span class=line><span class=cl>interface gigabitethernet 1/0/3
+</span></span><span class=line><span class=cl> ipsec apply policy map1
+</span></span></code></pre></div><h3 id=fw3配置>FW3配置</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 分支2去往总部的流量
+</span></span><span class=line><span class=cl>acl advanced 3000
+</span></span><span class=line><span class=cl> rule 0 permit ip source 192.168.30.0 0.0.0.255 destination 192.168.10.0 0.0.0.255
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># NAT调用的acl，排除去往总部的流量进行NAT
+</span></span><span class=line><span class=cl>acl advanced 3010
+</span></span><span class=line><span class=cl> rule 0 deny ip source 192.168.30.0 0.0.0.255 destination 192.168.10.0 0.0.0.255
+</span></span><span class=line><span class=cl> rule 5 permit ip
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>ipsec transform-set tran1
+</span></span><span class=line><span class=cl> esp encryption-algorithm des-cbc 
+</span></span><span class=line><span class=cl> esp authentication-algorithm sha1 
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>ipsec policy map1 10 isakmp
+</span></span><span class=line><span class=cl> transform-set tran1 
+</span></span><span class=line><span class=cl> security acl 3000 
+</span></span><span class=line><span class=cl> remote-address 101.1.1.1
+</span></span><span class=line><span class=cl> ike-profile profile1
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>ike profile profile1
+</span></span><span class=line><span class=cl> keychain key1
+</span></span><span class=line><span class=cl> # 野蛮模式
+</span></span><span class=line><span class=cl> exchange-mode aggressive
+</span></span><span class=line><span class=cl> local-identity fqdn fenzhi-2
+</span></span><span class=line><span class=cl> match remote identity address 101.1.1.1 255.255.255.0
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>ike proposal 1
+</span></span><span class=line><span class=cl> encryption-algorithm 3des-cbc
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl>ike keychain key1
+</span></span><span class=line><span class=cl> pre-shared-key address 101.1.1.1 255.255.255.255 key simple 456
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 在接口下引用IPsec安全策略，对接口上的流量进行保护
+</span></span><span class=line><span class=cl># NAT outbound引用acl 3010
+</span></span><span class=line><span class=cl>interface GigabitEthernet1/0/2
+</span></span><span class=line><span class=cl> ip address dhcp-alloc
+</span></span><span class=line><span class=cl> nat outbound 3010
+</span></span><span class=line><span class=cl> ipsec apply policy map1
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></div><h2 id=测试结果>测试结果：</h2><h3 id=连通性测试>连通性测试</h3><p><div class=post-img-view><a data-fancybox=gallery href=https://s2.loli.net/2025/03/27/fsLw2edQAtTxZ9m.png><img src=https://s2.loli.net/2025/03/27/fsLw2edQAtTxZ9m.png loading=lazy alt=image-20250327></a></div></p><p><strong>注意</strong>：应用了该类IPsec安全策略（FW1上的IPsec安全策略模板方式）的接口不能发起协商，仅可以响应远端设备的协商请求。由于IPsec安全策略模板中未定义的可选参数由发起方来决定，而响应方会接受发起方的建议，因此这种方式创建的IPsec安全策略适用于通信对端（例如对端的IP地址）未知的情况下，允许这些对端设备向本端设备主动发起协商</p><h3 id=fw1上查看ike-sa>FW1上查看ike sa</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># FW1
+</span></span><span class=line><span class=cl>&lt;FW1&gt;dis ike sa
+</span></span><span class=line><span class=cl>Flags:
+</span></span><span class=line><span class=cl>RD--READY RL--REPLACED FD-FADING RK-REKEY
+</span></span><span class=line><span class=cl> ID       Profile   Remote               Flag     Remote-Type    Remote-ID      
+</span></span><span class=line><span class=cl>--------------------------------------------------------------------------------
+</span></span><span class=line><span class=cl> 34       profile2  103.1.1.1            RD       FQDN           fenzhi-2      
+</span></span><span class=line><span class=cl> 38       profile1  102.1.1.2            RD       FQDN           fenzhi-1      
+</span></span><span class=line><span class=cl>&lt;FW1&gt;
+</span></span></code></pre></div><p>在FW1上观察到，每个ike sa的引用的profile、远端地址、远端类型、远端ID</p><p>关于使用序号的问题：文档中说越小越优先，不知是以哪一个匹配项进行的profile选择，待研究</p><h3 id=fw1上查看ike-sa-详细信息>FW1上查看ike sa 详细信息</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;FW1&gt;dis ike sa ver
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Connection ID: 34
+</span></span><span class=line><span class=cl>   Outside VPN: 
+</span></span><span class=line><span class=cl>   Inside VPN: 
+</span></span><span class=line><span class=cl>   Profile: profile2
+</span></span><span class=line><span class=cl>   Transmitting entity: Responder
+</span></span><span class=line><span class=cl>   Initiator cookie: b3ef914a89aa888a
+</span></span><span class=line><span class=cl>   Responder cookie: 168da67159b7262f
+</span></span><span class=line><span class=cl>   Output interface name: 
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Local IP/port: 10.1.1.1/4500
+</span></span><span class=line><span class=cl>   Local ID type: FQDN
+</span></span><span class=line><span class=cl>   Local ID: zongbu
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Remote IP/port: 103.1.1.1/4500
+</span></span><span class=line><span class=cl>   Remote ID type: FQDN
+</span></span><span class=line><span class=cl>   Remote ID: fenzhi-2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Authentication-method: PRE-SHARED-KEY
+</span></span><span class=line><span class=cl>   Authentication-algorithm: SHA1
+</span></span><span class=line><span class=cl>   Encryption-algorithm: 3DES-CBC
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Life duration(sec): 86400
+</span></span><span class=line><span class=cl>   Remaining key duration(sec): 84747
+</span></span><span class=line><span class=cl>   Exchange-mode: Aggressive
+</span></span><span class=line><span class=cl>   Diffie-Hellman group: Group 1
+</span></span><span class=line><span class=cl>   NAT traversal: Detected
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Extend authentication: Disabled
+</span></span><span class=line><span class=cl>   Assigned IP address:
+</span></span><span class=line><span class=cl>   Vendor ID index:0xffffffff
+</span></span><span class=line><span class=cl>   Vendor ID sequence number:0x0
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Connection ID: 38
+</span></span><span class=line><span class=cl>   Outside VPN: 
+</span></span><span class=line><span class=cl>   Inside VPN: 
+</span></span><span class=line><span class=cl>   Profile: profile1
+</span></span><span class=line><span class=cl>   Transmitting entity: Responder
+</span></span><span class=line><span class=cl>   Initiator cookie: 4a8ad70544712029
+</span></span><span class=line><span class=cl>   Responder cookie: cee73f6122f5b8b8
+</span></span><span class=line><span class=cl>   Output interface name: 
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Local IP/port: 10.1.1.1/4500
+</span></span><span class=line><span class=cl>   Local ID type: FQDN
+</span></span><span class=line><span class=cl>   Local ID: zongbu
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Remote IP/port: 102.1.1.2/1025
+</span></span><span class=line><span class=cl>   Remote ID type: FQDN
+</span></span><span class=line><span class=cl>   Remote ID: fenzhi-1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Authentication-method: PRE-SHARED-KEY
+</span></span><span class=line><span class=cl>   Authentication-algorithm: SHA1
+</span></span><span class=line><span class=cl>   Encryption-algorithm: 3DES-CBC
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Life duration(sec): 86400
+</span></span><span class=line><span class=cl>   Remaining key duration(sec): 84800
+</span></span><span class=line><span class=cl>   Exchange-mode: Main
+</span></span><span class=line><span class=cl>   Diffie-Hellman group: Group 1
+</span></span><span class=line><span class=cl>   NAT traversal: Detected
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Extend authentication: Disabled
+</span></span><span class=line><span class=cl>   Assigned IP address:
+</span></span><span class=line><span class=cl>   Vendor ID index:0xffffffff
+</span></span><span class=line><span class=cl>   Vendor ID sequence number:0x0
+</span></span><span class=line><span class=cl>&lt;FW1&gt;
+</span></span></code></pre></div><p>在FW1上观察到，sa 协商使用的各种算法、详细的各种信息，Exchange-mode</p><h3 id=fw1上查看ipsec-sa-信息>FW1上查看ipsec sa 信息</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;FW1&gt;dis ipsec sa brief 
+</span></span><span class=line><span class=cl>-----------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>Tunnel-ID Name            Dst Address(port)              Protocol SPI           
+</span></span><span class=line><span class=cl>-----------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>0         template-temp1~ --                             ESP      --            
+</span></span><span class=line><span class=cl>0         template-temp1~ --                             ESP      --            
+</span></span><span class=line><span class=cl>1         template-temp1~ &lt;102.1.1.2(1025)               ESP      2205382650    
+</span></span><span class=line><span class=cl>1         template-temp1~ &gt;102.1.1.2(1025)               ESP      17477209      
+</span></span><span class=line><span class=cl>2         template-temp1~ &lt;103.1.1.1(4500)               ESP      558262863     
+</span></span><span class=line><span class=cl>2         template-temp1~ &gt;103.1.1.1(4500)               ESP      1974871094    
+</span></span><span class=line><span class=cl>3         template-temp1~ --                             ESP      --            
+</span></span><span class=line><span class=cl>3         template-temp1~ --                             ESP      --            
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>&lt;FW1&gt;dis ipsec sa 
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>Interface: GigabitEthernet1/0/3
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>  IPsec policy: map1
+</span></span><span class=line><span class=cl>  Sequence number: 10
+</span></span><span class=line><span class=cl>  Alias: template-temp1-10
+</span></span><span class=line><span class=cl>  Mode: Template
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>    Tunnel id: 1
+</span></span><span class=line><span class=cl>    Encapsulation mode: tunnel
+</span></span><span class=line><span class=cl>    Perfect Forward Secrecy: 
+</span></span><span class=line><span class=cl>    Inside VPN: 
+</span></span><span class=line><span class=cl>    Extended Sequence Numbers enable: N
+</span></span><span class=line><span class=cl>    Traffic Flow Confidentiality enable: N
+</span></span><span class=line><span class=cl>    Transmitting entity: Responder
+</span></span><span class=line><span class=cl>    Path MTU: 1436
+</span></span><span class=line><span class=cl>    Tunnel:
+</span></span><span class=line><span class=cl>        local  address/port: 10.1.1.1/4500
+</span></span><span class=line><span class=cl>        remote address/port: 102.1.1.2/1025
+</span></span><span class=line><span class=cl>    Flow:
+</span></span><span class=line><span class=cl>        sour addr: 192.168.10.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>        dest addr: 192.168.20.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Inbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 2205382650 (0x837377fa)
+</span></span><span class=line><span class=cl>      Connection ID: 81604378625
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842414/1585
+</span></span><span class=line><span class=cl>      Max received sequence-number: 9136
+</span></span><span class=line><span class=cl>      Anti-replay check enable: Y
+</span></span><span class=line><span class=cl>      Anti-replay window size: 64
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Outbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 17477209 (0x010aae59)
+</span></span><span class=line><span class=cl>      Connection ID: 81604378624
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842414/1585
+</span></span><span class=line><span class=cl>      Max sent sequence-number: 9136
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>Interface: GigabitEthernet1/0/3
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>  IPsec policy: map1
+</span></span><span class=line><span class=cl>  Sequence number: 10
+</span></span><span class=line><span class=cl>  Alias: template-temp1-20
+</span></span><span class=line><span class=cl>  Mode: Template
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>    Tunnel id: 2
+</span></span><span class=line><span class=cl>    Encapsulation mode: tunnel
+</span></span><span class=line><span class=cl>    Perfect Forward Secrecy: 
+</span></span><span class=line><span class=cl>    Inside VPN: 
+</span></span><span class=line><span class=cl>    Extended Sequence Numbers enable: N
+</span></span><span class=line><span class=cl>    Traffic Flow Confidentiality enable: N
+</span></span><span class=line><span class=cl>    Transmitting entity: Responder
+</span></span><span class=line><span class=cl>    Path MTU: 1436
+</span></span><span class=line><span class=cl>    Tunnel:
+</span></span><span class=line><span class=cl>        local  address/port: 10.1.1.1/4500
+</span></span><span class=line><span class=cl>        remote address/port: 103.1.1.1/4500
+</span></span><span class=line><span class=cl>    Flow:
+</span></span><span class=line><span class=cl>        sour addr: 192.168.10.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>        dest addr: 192.168.30.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Inbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 558262863 (0x21466a4f)
+</span></span><span class=line><span class=cl>      Connection ID: 90194313219
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842377/1531
+</span></span><span class=line><span class=cl>      Max received sequence-number: 9572
+</span></span><span class=line><span class=cl>      Anti-replay check enable: Y
+</span></span><span class=line><span class=cl>      Anti-replay window size: 64
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Outbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 1974871094 (0x75b62436)
+</span></span><span class=line><span class=cl>      Connection ID: 90194313218
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842377/1531
+</span></span><span class=line><span class=cl>      Max sent sequence-number: 9572
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>&lt;FW1&gt;
+</span></span></code></pre></div><p>在FW1上观察到，<strong>NAT-T</strong>都是 Y</p><h3 id=fw2上查看信息>FW2上查看信息</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;FW2&gt;dis ike sa
+</span></span><span class=line><span class=cl>Flags:
+</span></span><span class=line><span class=cl>RD--READY RL--REPLACED FD-FADING RK-REKEY
+</span></span><span class=line><span class=cl> ID       Profile   Remote               Flag     Remote-Type    Remote-ID      
+</span></span><span class=line><span class=cl>--------------------------------------------------------------------------------
+</span></span><span class=line><span class=cl> 11       profile1  101.1.1.1            RD       FQDN           zongbu        
+</span></span><span class=line><span class=cl>&lt;FW2&gt;
+</span></span><span class=line><span class=cl>&lt;FW2&gt;dis ike sa ver
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Connection ID: 11
+</span></span><span class=line><span class=cl>   Outside VPN: 
+</span></span><span class=line><span class=cl>   Inside VPN: 
+</span></span><span class=line><span class=cl>   Profile: profile1
+</span></span><span class=line><span class=cl>   Transmitting entity: Initiator
+</span></span><span class=line><span class=cl>   Initiator cookie: 4a8ad70544712029
+</span></span><span class=line><span class=cl>   Responder cookie: cee73f6122f5b8b8
+</span></span><span class=line><span class=cl>   Output interface name: 
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Local IP/port: 192.168.20.200/4500
+</span></span><span class=line><span class=cl>   Local ID type: FQDN
+</span></span><span class=line><span class=cl>   Local ID: fenzhi-1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Remote IP/port: 101.1.1.1/4500
+</span></span><span class=line><span class=cl>   Remote ID type: FQDN
+</span></span><span class=line><span class=cl>   Remote ID: zongbu
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Authentication-method: PRE-SHARED-KEY
+</span></span><span class=line><span class=cl>   Authentication-algorithm: SHA1
+</span></span><span class=line><span class=cl>   Encryption-algorithm: 3DES-CBC
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Life duration(sec): 86400
+</span></span><span class=line><span class=cl>   Remaining key duration(sec): 84794
+</span></span><span class=line><span class=cl>   Exchange-mode: Main
+</span></span><span class=line><span class=cl>   Diffie-Hellman group: Group 1
+</span></span><span class=line><span class=cl>   NAT traversal: Detected
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Extend authentication: Disabled
+</span></span><span class=line><span class=cl>   Assigned IP address:
+</span></span><span class=line><span class=cl>   Vendor ID index:0xffffffff
+</span></span><span class=line><span class=cl>   Vendor ID sequence number:0x0
+</span></span><span class=line><span class=cl>&lt;FW2&gt;
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;FW2&gt;dis ipsec sa bri
+</span></span><span class=line><span class=cl>-----------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>Tunnel-ID Name            Dst Address(port)              Protocol SPI           
+</span></span><span class=line><span class=cl>-----------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>0         map1-10         &lt;101.1.1.1(4500)               ESP      17477209      
+</span></span><span class=line><span class=cl>0         map1-10         &gt;101.1.1.1(4500)               ESP      2205382650    
+</span></span><span class=line><span class=cl>&lt;FW2&gt;
+</span></span><span class=line><span class=cl>&lt;FW2&gt;dis ipsec sa 
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>Interface: GigabitEthernet1/0/3
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>  IPsec policy: map1
+</span></span><span class=line><span class=cl>  Sequence number: 10
+</span></span><span class=line><span class=cl>  Alias: map1-10
+</span></span><span class=line><span class=cl>  Mode: ISAKMP
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>    Tunnel id: 0
+</span></span><span class=line><span class=cl>    Encapsulation mode: tunnel
+</span></span><span class=line><span class=cl>    Perfect Forward Secrecy: 
+</span></span><span class=line><span class=cl>    Inside VPN: 
+</span></span><span class=line><span class=cl>    Extended Sequence Numbers enable: N
+</span></span><span class=line><span class=cl>    Traffic Flow Confidentiality enable: N
+</span></span><span class=line><span class=cl>    Transmitting entity: Initiator
+</span></span><span class=line><span class=cl>    Path MTU: 1436
+</span></span><span class=line><span class=cl>    Tunnel:
+</span></span><span class=line><span class=cl>        local  address/port: 192.168.20.200/4500
+</span></span><span class=line><span class=cl>        remote address/port: 101.1.1.1/4500
+</span></span><span class=line><span class=cl>    Flow:
+</span></span><span class=line><span class=cl>        sour addr: 192.168.20.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>        dest addr: 192.168.10.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Inbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 17477209 (0x010aae59)
+</span></span><span class=line><span class=cl>      Connection ID: 98784247809
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842396/1455
+</span></span><span class=line><span class=cl>      Max received sequence-number: 9345
+</span></span><span class=line><span class=cl>      Anti-replay check enable: Y
+</span></span><span class=line><span class=cl>      Anti-replay window size: 64
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Outbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 2205382650 (0x837377fa)
+</span></span><span class=line><span class=cl>      Connection ID: 98784247808
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842396/1455
+</span></span><span class=line><span class=cl>      Max sent sequence-number: 9345
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>&lt;FW2&gt; 
+</span></span></code></pre></div><h3 id=fw3上查看信息>FW3上查看信息</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;FW3&gt;dis ike sa
+</span></span><span class=line><span class=cl>Flags:
+</span></span><span class=line><span class=cl>RD--READY RL--REPLACED FD-FADING RK-REKEY
+</span></span><span class=line><span class=cl> ID       Profile   Remote               Flag     Remote-Type    Remote-ID      
+</span></span><span class=line><span class=cl>--------------------------------------------------------------------------------
+</span></span><span class=line><span class=cl> 8        profile1  101.1.1.1            RD       FQDN           zongbu        
+</span></span><span class=line><span class=cl>&lt;FW3&gt;dis ike sa ver
+</span></span><span class=line><span class=cl>&lt;FW3&gt;dis ike sa verbose 
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Connection ID: 8
+</span></span><span class=line><span class=cl>   Outside VPN: 
+</span></span><span class=line><span class=cl>   Inside VPN: 
+</span></span><span class=line><span class=cl>   Profile: profile1
+</span></span><span class=line><span class=cl>   Transmitting entity: Initiator
+</span></span><span class=line><span class=cl>   Initiator cookie: b3ef914a89aa888a
+</span></span><span class=line><span class=cl>   Responder cookie: 168da67159b7262f
+</span></span><span class=line><span class=cl>   Output interface name: 
+</span></span><span class=line><span class=cl>   -----------------------------------------------
+</span></span><span class=line><span class=cl>   Local IP/port: 103.1.1.1/4500
+</span></span><span class=line><span class=cl>   Local ID type: FQDN
+</span></span><span class=line><span class=cl>   Local ID: fenzhi-2
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Remote IP/port: 101.1.1.1/4500
+</span></span><span class=line><span class=cl>   Remote ID type: FQDN
+</span></span><span class=line><span class=cl>   Remote ID: zongbu
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Authentication-method: PRE-SHARED-KEY
+</span></span><span class=line><span class=cl>   Authentication-algorithm: SHA1
+</span></span><span class=line><span class=cl>   Encryption-algorithm: 3DES-CBC
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Life duration(sec): 86400
+</span></span><span class=line><span class=cl>   Remaining key duration(sec): 84212
+</span></span><span class=line><span class=cl>   Exchange-mode: Aggressive
+</span></span><span class=line><span class=cl>   Diffie-Hellman group: Group 1
+</span></span><span class=line><span class=cl>   NAT traversal: Detected
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Extend authentication: Disabled
+</span></span><span class=line><span class=cl>   Assigned IP address:
+</span></span><span class=line><span class=cl>   Vendor ID index:0xffffffff
+</span></span><span class=line><span class=cl>   Vendor ID sequence number:0x0
+</span></span><span class=line><span class=cl>&lt;FW3&gt; 
+</span></span></code></pre></div><hr><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;FW3&gt;dis ipsec sa bri
+</span></span><span class=line><span class=cl>-----------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>Tunnel-ID Name            Dst Address(port)              Protocol SPI           
+</span></span><span class=line><span class=cl>-----------------------------------------------------------------------------
+</span></span><span class=line><span class=cl>0         map1-10         &lt;101.1.1.1(4500)               ESP      1974871094    
+</span></span><span class=line><span class=cl>0         map1-10         &gt;101.1.1.1(4500)               ESP      558262863     
+</span></span><span class=line><span class=cl>&lt;FW3&gt;
+</span></span><span class=line><span class=cl>&lt;FW3&gt;dis ipsec sa 
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>Interface: GigabitEthernet1/0/2
+</span></span><span class=line><span class=cl>-------------------------------
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>  IPsec policy: map1
+</span></span><span class=line><span class=cl>  Sequence number: 10
+</span></span><span class=line><span class=cl>  Alias: map1-10
+</span></span><span class=line><span class=cl>  Mode: ISAKMP
+</span></span><span class=line><span class=cl>  -----------------------------
+</span></span><span class=line><span class=cl>    Tunnel id: 0
+</span></span><span class=line><span class=cl>    Encapsulation mode: tunnel
+</span></span><span class=line><span class=cl>    Perfect Forward Secrecy: 
+</span></span><span class=line><span class=cl>    Inside VPN: 
+</span></span><span class=line><span class=cl>    Extended Sequence Numbers enable: N
+</span></span><span class=line><span class=cl>    Traffic Flow Confidentiality enable: N
+</span></span><span class=line><span class=cl>    Transmitting entity: Initiator
+</span></span><span class=line><span class=cl>    Path MTU: 1436
+</span></span><span class=line><span class=cl>    Tunnel:
+</span></span><span class=line><span class=cl>        local  address/port: 103.1.1.1/4500
+</span></span><span class=line><span class=cl>        remote address/port: 101.1.1.1/4500
+</span></span><span class=line><span class=cl>    Flow:
+</span></span><span class=line><span class=cl>        sour addr: 192.168.30.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>        dest addr: 192.168.10.0/255.255.255.0  port: 0  protocol: ip
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Inbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 1974871094 (0x75b62436)
+</span></span><span class=line><span class=cl>      Connection ID: 30064771073
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842352/1474
+</span></span><span class=line><span class=cl>      Max received sequence-number: 9867
+</span></span><span class=line><span class=cl>      Anti-replay check enable: Y
+</span></span><span class=line><span class=cl>      Anti-replay window size: 64
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    [Outbound ESP SAs]
+</span></span><span class=line><span class=cl>      SPI: 558262863 (0x21466a4f)
+</span></span><span class=line><span class=cl>      Connection ID: 55834574848
+</span></span><span class=line><span class=cl>      Transform set: ESP-ENCRYPT-DES-CBC ESP-AUTH-SHA1
+</span></span><span class=line><span class=cl>      SA duration (kilobytes/sec): 1843200/3600
+</span></span><span class=line><span class=cl>      SA remaining duration (kilobytes/sec): 1842352/1474
+</span></span><span class=line><span class=cl>      Max sent sequence-number: 9867
+</span></span><span class=line><span class=cl>      UDP encapsulation used for NAT traversal: Y
+</span></span><span class=line><span class=cl>      Status: Active
+</span></span><span class=line><span class=cl>&lt;FW3&gt; 
+</span></span></code></pre></div><h2 id=说明>说明：</h2><h2 id=拓扑文件>拓扑文件：</h2><p><a class=link href=https://hclhub.h3c.com/project/20293 target=_blank rel=noopener>https://hclhub.h3c.com/project/20293
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span></a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/ipsec-vpn/>IPsec Vpn</a>
+<a href=/tags/%E6%80%BB%E9%83%A8%E5%92%8C%E5%88%86%E6%94%AF/>总部和分支</a>
+<a href=/tags/ike%E9%87%8E%E8%9B%AE%E6%A8%A1%E5%BC%8F/>IKE野蛮模式</a>
+<a href=/tags/h3c/>H3C</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/96ed6e58.html/><div class=article-details><h2 class=article-title>HCL_M-LAG 组网 IPv4 双活网关配置</h2></div></a></article><article><a href=/posts/de48f769.html/><div class=article-details><h2 class=article-title>HCL_对称IRB方式分布式EVPN网关配置</h2></div></a></article><article><a href=/posts/f1ebd2ac.html/><div class=article-details><h2 class=article-title>HCL_集中式IPv4 EVPN网关VxLAN配置</h2></div></a></article><article><a href=/posts/9782042e.html/><div class=article-details><h2 class=article-title>HCL_VxLAN头端复制配置</h2></div></a></article><article><a href=/posts/cce1f96e.html/><div class=article-details><h2 class=article-title>H3C 防火墙（v7）提取导出安全策略至表格(textfsm)</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2025 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a> <a href=https://kiraster.channel.io target=_blank title="channel talk" rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><path d="M8 13l3-2 2 2 3-2"/></svg></a> <a href=https://kiraster.github.io/index.xml target=_blank title=RSS rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M5 19m-1 0a1 1 0 102 0 1 1 0 10-2 0"/><path d="M4 4a16 16 0 0116 16"/><path d="M4 11a9 9 0 019 9"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.79ea8b477b8f41bc284aa8e81d0cd59441596821bb33f959c3f9ee1acaf1af8e.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script></body></html>
