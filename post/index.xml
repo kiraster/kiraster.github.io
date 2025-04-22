@@ -332,7 +332,7 @@ height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a> 生成的自动应答xml文件添加到iso文件后，不好使（可能是版本的问题或其他）&lt;/li>
-&lt;li>创建ISO文件记得打开windows自带杀毒（如果还需要）&lt;/li>
+&lt;li>创建ISO文件完成后，记得打开windows自带杀毒（如果还需要）&lt;/li>
 &lt;li>如果是自行封装的系统，不需要这些个操作，因为自由天空网站的软件已经考虑到自动应答的内容&lt;/li>
 &lt;li>可以用做虚拟机测试倒是有点用，比较安装一个虚机，再保存快照占用硬盘可比这个iso大多了&lt;/li>
 &lt;li>可设置的选项巨多，看着玩&lt;/li>
