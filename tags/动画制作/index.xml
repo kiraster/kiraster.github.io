@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>动画制作 on Kir's Blog</title><link>https://kiraster.github.io/tags/%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C/</link><description>Recent content in 动画制作 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 16 Jan 2025 22:51:11 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>inscribed测试</title><link>https://kiraster.github.io/posts/56dec8e7.html/</link><pubDate>Thu, 16 Jan 2025 22:51:11 +0800</pubDate><guid>https://kiraster.github.io/posts/56dec8e7.html/</guid><description>&lt;h2 id="inscribed测试">inscribed测试
+&lt;/h2>&lt;iframe
+style="border: 1px solid #ccc; border-radius: 0.5rem;"
+src="https://inscribed.app/embed?type=slider-template&amp;gist_url=https://gist.github.com/kiraster/4fa156a9aa33259ed5c18eb2b462f2c5"
+width="100%"
+height="500"
+frameborder="0"
+allowfullscreen
+>&lt;/iframe>
+&lt;iframe
+style="border: 1px solid #ccc; border-radius: 0.5rem;"
+src="https://inscribed.app/embed?type=presentation&amp;gist_url=https://gist.github.com/kiraster/4fa156a9aa33259ed5c18eb2b462f2c5"
+width="100%"
+height="500"
+frameborder="0"
+allowfullscreen
+>&lt;/iframe>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/03/29/IxF2pSm9htdDCJg.gif">
+&lt;img src="https://s2.loli.net/2025/03/29/IxF2pSm9htdDCJg.gif"
+loading="lazy"
+alt="inscribed-test"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item></channel></rss>
