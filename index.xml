@@ -179,7 +179,7 @@ loading="lazy"
 &lt;/h2>&lt;ul>
 &lt;li>这TCP连接与断开貌似更多的在软件开发方面，虽然防火墙安全策略五原组也涉及到有点内容，也就那么点&lt;/li>
 &lt;li>这么些年来，也没预见过因为传输层TCP连接失败而导致的网络连通性故障（防火墙安全策略不算）&lt;/li>
-&lt;li>比较设计之初就考虑到糟糕的网络环境而导致的重传（那时候带宽低，设备性能不比现在）&lt;/li>
+&lt;li>毕竟TCP设计之初就考虑到糟糕的网络环境而导致的重传（那时候带宽低，设备性能不比现在）&lt;/li>
 &lt;li>最近遇到个网络ipsec vpn连接失败问题，不知是哪个老六在vpn设备上配了个目的NAT，我这查看会话记录和抓包，发现一个网络中从未有的地址出现在发起ipsec连接，（严重怀疑有人也想卖设备或搞破坏）&lt;/li>
 &lt;li>文章开头的两个图是用excalidraw画的&lt;/li>
 &lt;/ul></description></item><item><title>使用NTLite移除win10自带组件</title><link>https://kiraster.github.io/posts/2c9562cf.html/</link><pubDate>Tue, 22 Apr 2025 09:30:56 +0800</pubDate><guid>https://kiraster.github.io/posts/2c9562cf.html/</guid><description>&lt;p>NTLite是一个Windows 集成和定制的软件，用于在安装Windows 系统前进行一系列定义操作（删除版本、更新补丁、更新语言包、编辑注册表、添加驱动、移除组件、优化设置、无人值守xml添加、添加运行安装包和脚本等）&lt;/p>
