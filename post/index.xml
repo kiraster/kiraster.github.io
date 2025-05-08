@@ -1,4 +1,188 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Kir's Blog</title><link>https://kiraster.github.io/post/</link><description>Recent content in Posts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 22 Apr 2025 09:30:56 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>使用NTLite移除win10自带组件</title><link>https://kiraster.github.io/posts/2c9562cf.html/</link><pubDate>Tue, 22 Apr 2025 09:30:56 +0800</pubDate><guid>https://kiraster.github.io/posts/2c9562cf.html/</guid><description>&lt;p>NTLite是一个Windows 集成和定制的软件，用于在安装Windows 系统前进行一系列定义操作（删除版本、更新补丁、更新语言包、编辑注册表、添加驱动、移除组件、优化设置、无人值守xml添加、添加运行安装包和脚本等）&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Kir's Blog</title><link>https://kiraster.github.io/post/</link><description>Recent content in Posts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 08 May 2025 22:35:05 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>客户端主动发起的TCP连接与断开</title><link>https://kiraster.github.io/posts/fad53f26.html/</link><pubDate>Thu, 08 May 2025 22:35:05 +0800</pubDate><guid>https://kiraster.github.io/posts/fad53f26.html/</guid><description>&lt;p>分析客户端主动发起的TCP连接与断开&lt;/p>
+&lt;blockquote>
+&lt;p>参考《TCP IP详解卷1：协议 原书第2版》第13章&lt;/p>
+&lt;/blockquote>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/H1fLcy6AxW7SVCs.png">
+&lt;img src="https://s2.loli.net/2025/05/08/H1fLcy6AxW7SVCs.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="tcp建立连接和断开连接过程">TCP建立连接和断开连接过程
+&lt;/h2>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/mVsACJ6B719yr8q.png">
+&lt;img src="https://s2.loli.net/2025/05/08/mVsACJ6B719yr8q.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="连接过程">连接过程
+&lt;/h3>&lt;h4 id="第一个报文段">第一个报文段
+&lt;/h4>&lt;p>作用：客户端发起TCP连接请求&lt;/p>
+&lt;p>操作：客户端发送一个SYN置位为1的报文段&lt;/p>
+&lt;p>TCP头部内容：&lt;/p>
+&lt;ul>
+&lt;li>随机源端口&lt;/li>
+&lt;li>目的端口为服务端监听的端口&lt;/li>
+&lt;li>随机客户端的初始序列号&lt;/li>
+&lt;/ul>
+&lt;h4 id="第二个报文段">第二个报文段
+&lt;/h4>&lt;p>作用：服务端响应确认客户端发送的TCP连接请求和服务端被动发起TCP连接请求&lt;/p>
+&lt;p>操作：服务端收到客户端的连接请求后，发送SYN置位为1和ACK置位为1的报文段&lt;/p>
+&lt;p>TCP头部内容：&lt;/p>
+&lt;ul>
+&lt;li>源端口为监听端口&lt;/li>
+&lt;li>目的端口为收到的客户端发送请求的随机源端口&lt;/li>
+&lt;li>随机的服务端初始序列号&lt;/li>
+&lt;li>Ack确认号为收到的客户端发送请求的初始序列号 + 1&lt;/li>
+&lt;/ul>
+&lt;h4 id="第三个报文段">第三个报文段
+&lt;/h4>&lt;p>作用：客户端响应确认服务端被动发起TCP连接请求&lt;/p>
+&lt;p>操作：客户端发送ACK置位为1的报文段&lt;/p>
+&lt;p>TCP头部内容：&lt;/p>
+&lt;ul>
+&lt;li>源端口为第一个报文段中的随机源端口&lt;/li>
+&lt;li>目的端口为服务端监听的端口&lt;/li>
+&lt;li>序列号为第一个报文段中的初始序列号 + 1&lt;/li>
+&lt;li>Ack确认号为收到的服务端初始序列号 + 1&lt;/li>
+&lt;/ul>
+&lt;h3 id="断开过程">断开过程
+&lt;/h3>&lt;h4 id="第一个报文段-1">第一个报文段
+&lt;/h4>&lt;p>作用：客户端主动发起TCP断开请求&lt;/p>
+&lt;p>操作：客户端发送一个FIN、ACK置位为1的报文段&lt;/p>
+&lt;p>TCP头部内容：&lt;/p>
+&lt;ul>
+&lt;li>源端口为已经建立TCP连接的客户端随机端口&lt;/li>
+&lt;li>目的端口为服务端监听的端口&lt;/li>
+&lt;li>序列号为当前序列号&lt;/li>
+&lt;li>Ack确认号为服务端最近一次发来的序列号&lt;/li>
+&lt;/ul>
+&lt;h4 id="第二个报文段-1">第二个报文段
+&lt;/h4>&lt;p>作用：服务端响应确认客户端发起的断开请求&lt;/p>
+&lt;p>操作：服务端收到客户端的断开请求后，发送ACK置位为1的报文段&lt;/p>
+&lt;p>TCP头部内容：&lt;/p>
+&lt;ul>
+&lt;li>源端口为监听端口&lt;/li>
+&lt;li>目的端口为已经建立TCP连接的客户端随机端口&lt;/li>
+&lt;li>序列号为服务端最近一次发给客户端的序列号&lt;/li>
+&lt;li>Ack确认号为接收到客户端发来的当前序列号+1&lt;/li>
+&lt;/ul>
+&lt;h4 id="第三个报文段-1">第三个报文段
+&lt;/h4>&lt;p>作用：服务端发起主动断开TCP请求&lt;/p>
+&lt;p>操作：服务端发送一个FIN、ACK置位为1的报文段&lt;/p>
+&lt;p>TCP头部内容：&lt;/p>
+&lt;ul>
+&lt;li>源端口为监听端口&lt;/li>
+&lt;li>目的端口为已经建立TCP连接的客户端随机端口&lt;/li>
+&lt;li>序列号为服务端最近一次发给客户端的序列号&lt;/li>
+&lt;li>Ack确认号为服务端最近一次发来的序列号+1&lt;/li>
+&lt;/ul>
+&lt;h4 id="第四个报文段">第四个报文段
+&lt;/h4>&lt;p>作用：客户端响应服务端发起的主动断开TCP请求&lt;/p>
+&lt;p>操作：客户端发送一个ACK置位为1的报文段&lt;/p>
+&lt;p>TCP头部内容：&lt;/p>
+&lt;ul>
+&lt;li>源端口为已经建立TCP连接的客户端随机端口&lt;/li>
+&lt;li>目的端口为服务端监听的端口&lt;/li>
+&lt;li>序列号为第一个FIN报文段序列号+1&lt;/li>
+&lt;li>Ack确认号为服务端最近一次发给客户端的序列号+1&lt;/li>
+&lt;/ul>
+&lt;h2 id="报文验证">报文验证
+&lt;/h2>&lt;p>&lt;strong>通过SSH登入和登出过程的报文捕获进行验证，拓扑结构如下&lt;/strong>&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/n8dcHIN2C36WZ7B.png">
+&lt;img src="https://s2.loli.net/2025/05/08/n8dcHIN2C36WZ7B.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="tcp连接">TCP连接
+&lt;/h3>&lt;h4 id="tcp连接第一个报文段">TCP连接第一个报文段
+&lt;/h4>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/2ywDaC9I7vZPYHs.png">
+&lt;img src="https://s2.loli.net/2025/05/08/2ywDaC9I7vZPYHs.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h4 id="tcp连接第二个报文段">TCP连接第二个报文段
+&lt;/h4>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/CgsfK2W7m3YLEJA.png">
+&lt;img src="https://s2.loli.net/2025/05/08/CgsfK2W7m3YLEJA.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h4 id="tcp连接第三个报文段">TCP连接第三个报文段
+&lt;/h4>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/RPNlrpm3sCQbEZx.png">
+&lt;img src="https://s2.loli.net/2025/05/08/RPNlrpm3sCQbEZx.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+1&lt;/p>
+&lt;h3 id="tcp断开">TCP断开
+&lt;/h3>&lt;h4 id="tcp断开第一个报文段">TCP断开第一个报文段
+&lt;/h4>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/xybwq7Ve9fi6QLS.png">
+&lt;img src="https://s2.loli.net/2025/05/08/xybwq7Ve9fi6QLS.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h4 id="tcp断开第二个报文段">TCP断开第二个报文段
+&lt;/h4>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/yWe2KkY3M1PJIoV.png">
+&lt;img src="https://s2.loli.net/2025/05/08/yWe2KkY3M1PJIoV.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h4 id="tcp断开第三个报文段">TCP断开第三个报文段
+&lt;/h4>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/Zg4udzTWsQKUDGH.png">
+&lt;img src="https://s2.loli.net/2025/05/08/Zg4udzTWsQKUDGH.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h4 id="tcp断开第四个报文段">TCP断开第四个报文段
+&lt;/h4>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/08/zb6SZI2aOHNf9gs.png">
+&lt;img src="https://s2.loli.net/2025/05/08/zb6SZI2aOHNf9gs.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>这TCP连接与断开貌似更多的在软件开发方面，虽然防火墙安全策略五原组也涉及到有点内容，也就那么点&lt;/li>
+&lt;li>这么些年来，也没预见过因为传输层TCP连接失败而导致的网络连通性故障（防火墙安全策略不算）&lt;/li>
+&lt;li>比较设计之初就考虑到糟糕的网络环境而导致的重传（那时候带宽低，设备性能不比现在）&lt;/li>
+&lt;li>最近遇到个网络ipsec vpn连接失败问题，不知是哪个老六在vpn设备上配了个目的NAT，我这查看会话记录和抓包，发现一个网络中从未有的地址出现在发起ipsec连接，（严重怀疑有人也想卖设备或搞破坏）&lt;/li>
+&lt;li>文章开头的两个图是用excalidraw画的&lt;/li>
+&lt;/ul></description></item><item><title>使用NTLite移除win10自带组件</title><link>https://kiraster.github.io/posts/2c9562cf.html/</link><pubDate>Tue, 22 Apr 2025 09:30:56 +0800</pubDate><guid>https://kiraster.github.io/posts/2c9562cf.html/</guid><description>&lt;p>NTLite是一个Windows 集成和定制的软件，用于在安装Windows 系统前进行一系列定义操作（删除版本、更新补丁、更新语言包、编辑注册表、添加驱动、移除组件、优化设置、无人值守xml添加、添加运行安装包和脚本等）&lt;/p>
 &lt;p>在封装系统中有个步骤称为母盘定制，当然也有其他软件能干这活&lt;/p>
 &lt;p>与封装系统操作有部分重合，具体看你要达成什么效果&lt;/p>
 &lt;p>以下记录对windows 10 家庭中文版（32位）进行的操作&lt;/p>
