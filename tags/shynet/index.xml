@@ -18,7 +18,6 @@ height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a> （一款开源的网站统计分析工具）&lt;/p>
-&lt;hr>
 &lt;h2 id="在clawcloud部署shynet">在ClawCloud部署Shynet
 &lt;/h2>&lt;h3 id="部署shynet使用postgresql数据库">部署Shynet使用PostgreSQL数据库
 &lt;/h3>&lt;p>1、按照ClawCloud的 &lt;a class="link" href="https://docs.run.claw.cloud/clawcloud-run/migration/migrate-from-docker-compose" target="_blank" rel="noopener"
@@ -91,7 +90,8 @@ fill="currentColor">
 &lt;/svg>&lt;/span>
 &lt;/a>操作步骤，部署Shynet应用后，使用挂载卷挂载目录&lt;code>/var/local/Shynet/db&lt;/code>，在控制台查看log会有如下报错信息&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">……
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">django.db.utils.OperationalError: unable to open database file Migrations failed, exiting”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">django.db.utils.OperationalError: unable to open database file
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Migrations failed, exiting”
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>错误原因&lt;/strong>：在作者构建的docker镜像中，Dockerfile文件里编写了针对&lt;code>/var/local/Shynet/db/&lt;/code>目录的用户权限管理，而ClawCloud上设置挂载卷只有容量大小和挂载目录两个选项，无法设置UID/GID ，并且进入控制台全靠运气（时常抽风进不去），目前发现就算进入控制台我也找不着挂载目录和设置方法（不熟kubectl，专业不对口，折腾起来要去速通k8s教程，不想玩这个，也不知道有没有权限进行操作）&lt;/p>
 &lt;p>根据登陆控制台显示的信息，ClawCloud是以 root 运行容器应用，联想到已部署成功的容器应用，只要绕道修改关于挂载卷权限部分代码，就能成功挂载。至于违反最小权限原则，容器逃逸时攻击者将获得主机 root 权限的问题就交给ClawCloud平台处理，相信他们有这方面的保护措施&lt;/p>
@@ -228,7 +228,7 @@ loading="lazy"
 &lt;/p>
 &lt;h2 id="其他操作">其他操作
 &lt;/h2>&lt;h3 id="设置registeradmin时没有记录密码">设置registeradmin时没有记录密码
-&lt;/h3>&lt;p>解决方法：登陆数据库应用，删除registeradmin时设置的邮箱的行（默认ID为1），重新启动容器应用&lt;/p>
+&lt;/h3>&lt;p>解决方法：登陆数据库应用，删除registeradmin时设置的邮箱的数据行（默认ID为1），重新启动容器应用&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 切换到名为 Shynet_db 的数据库
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">postgres=# \c Shynet_db
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
