@@ -62,7 +62,7 @@
 </span></span></code></pre></div><h2 id=代码弊端>代码弊端</h2><ol><li>代码写死华三设备的oid</li><li>代码中写死设备命名规则</li><li>定时任务写死轮询时间</li><li>前端页面展示以1080P分辨率屏幕编写</li><li>首页展示，类别显示的规则写死华三设备型号</li><li>……</li></ol><h2 id=可能的问题或错误>可能的问题或错误</h2><ol><li><code>PermissionError: [WinError 10013] </code>以一种访问权限不允许的方式做了一个访问套接字的尝试。<ol><li>使用管理员权限运行IDE编辑器</li><li>检查是否端口占用</li></ol></li><li>设备管理页面显示的数据不正确<ol><li>由于是内置华三部分设备的<code>OID</code>，有些设备的<code>OID</code>值没有添加到代码</li><li>有些数据根据设备命名规则解析出来的，如果设备名称不符合命名规则会显示不正确</li></ol></li><li>设备同步后显示同步成功，但是没有数据<ol><li>可能是snmp团体字不正确，或IP地址不可达</li><li>或者本机防火墙限制</li></ol></li><li>批量导入失败<ol><li>上传文件中格式不准确或数据有误</li><li>上传文件中数据与已有数据冲突，可使用清空数据再进行导入</li><li>由于没有加入Django事务，对于已导入正确数据并不会进行回退</li></ol></li><li>首页中类型统计不正确<ol><li>统计规则是根据华三的设备型号中关键字定义的</li><li>其他厂商设备不通用</li></ol></li><li>页面显示不全或内容挤压<ol><li>编写时候是以1080P分辨率屏幕显示为准</li><li>没有对其他分辨率屏幕做调整</li></ol></li></ol></section><footer class=article-footer><section class=article-tags><a href=/tags/django/>Django</a>
 <a href=/tags/snmp/>SNMP</a>
 <a href=/tags/python/>Python</a>
-<a href=/tags/sqlite/>Sqlite</a>
+<a href=/tags/sqlite/>SQLite</a>
 <a href=/tags/orm/>ORM</a>
 <a href=/tags/h3c/>H3C</a>
 <a href=/tags/oid/>OID</a>

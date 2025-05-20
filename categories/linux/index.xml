@@ -1,4 +1,269 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Kir's Blog</title><link>https://kiraster.github.io/categories/linux/</link><description>Recent content in Linux on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sun, 11 May 2025 17:05:26 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>使用GitHub工作流构建Docker镜像并推送至DockerHub</title><link>https://kiraster.github.io/posts/afc79162.html/</link><pubDate>Sun, 11 May 2025 17:05:26 +0800</pubDate><guid>https://kiraster.github.io/posts/afc79162.html/</guid><description>&lt;p>本文介绍如何创建执行 Docker 构建的工作流，然后将 Docker 映像发布到 Docker Hub&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Kir's Blog</title><link>https://kiraster.github.io/categories/linux/</link><description>Recent content in Linux on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Wed, 21 May 2025 01:57:10 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>在ClawCloud部署Shynet</title><link>https://kiraster.github.io/posts/e7226f69.html/</link><pubDate>Wed, 21 May 2025 01:57:10 +0800</pubDate><guid>https://kiraster.github.io/posts/e7226f69.html/</guid><description>&lt;p>&lt;a class="link" href="https://run.claw.cloud" target="_blank" rel="noopener"
+>ClawCloud
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>是一个云服务应用部署平台，可以方便快捷地部署docker应用&lt;/p>
+&lt;p>已经部署一个导航站点和一个github项目的Demo演示站点，直观感受还可以&lt;/p>
+&lt;p>受限于使用的5美刀免费额度和种种的不可靠因素，已做好站点随时消失的准备。毕竟没氪金和没法氪金&lt;/p>
+&lt;p>下面内容记录部署&lt;a class="link" href="https://github.com/milesmcc/Shynet" target="_blank" rel="noopener"
+>Shynet
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> （一款开源的网站统计分析工具）&lt;/p>
+&lt;hr>
+&lt;h2 id="在clawcloud部署shynet">在ClawCloud部署Shynet
+&lt;/h2>&lt;h3 id="部署shynet使用postgresql数据库">部署Shynet使用PostgreSQL数据库
+&lt;/h3>&lt;p>1、按照ClawCloud的 &lt;a class="link" href="https://docs.run.claw.cloud/clawcloud-run/migration/migrate-from-docker-compose" target="_blank" rel="noopener"
+>Migrate from Docker Compose
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> 文档和Shynet的 &lt;a class="link" href="https://github.com/milesmcc/Shynet/blob/master/GUIDE.md" target="_blank" rel="noopener"
+>GUIDE.md
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> 操作步骤，部署Shynet应用后，创建的应用容器可以与创建的PostgreSQL 数据库连通，首次启动会遇到如下提示：
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/zT9ldao6sg8NUMS.png">
+&lt;img src="https://s2.loli.net/2025/05/21/zT9ldao6sg8NUMS.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>2、提示数据库不存在，这是因为通过ClawCloud平台创建的数据库里面并没有环境变量所设置的&lt;code>Shynet_db&lt;/code>的数据库，需要通过&lt;code>connect&lt;/code>连接数据库手动创建&lt;code>Shynet_db&lt;/code>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/pXDxeZHFY7n8o2G.png">
+&lt;img src="https://s2.loli.net/2025/05/21/pXDxeZHFY7n8o2G.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/39LBunwFRPrVgZk.png">
+&lt;img src="https://s2.loli.net/2025/05/21/39LBunwFRPrVgZk.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>3、完成创建&lt;code>Shynet_db&lt;/code>数据库后，重启docker应用，打开控制台发现已经能正常运行
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/zmBEtMUrp6n3Fe9.png">
+&lt;img src="https://s2.loli.net/2025/05/21/zmBEtMUrp6n3Fe9.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="部署shynet使用sqlite数据库">部署Shynet使用SQLite数据库
+&lt;/h3>&lt;p>家境贫寒，全靠平台赠送的5美刀，多开一个PostgreSQL就少一个应用可以玩&lt;/p>
+&lt;p>1、按照ClawCloud的 &lt;a class="link" href="https://docs.run.claw.cloud/clawcloud-run/migration/migrate-from-docker" target="_blank" rel="noopener"
+>Migrate from Docker
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>文档和Shynet的 &lt;a class="link" href="https://github.com/milesmcc/Shynet/blob/master/GUIDE.md" target="_blank" rel="noopener"
+>GUIDE.md
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>操作步骤，部署Shynet应用后，使用挂载卷挂载目录&lt;code>/var/local/Shynet/db&lt;/code>，在控制台查看log会有如下报错信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">django.db.utils.OperationalError: unable to open database file Migrations failed, exiting”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">……
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>错误原因&lt;/strong>：在作者构建的docker镜像中，Dockerfile文件里编写了针对&lt;code>/var/local/Shynet/db/&lt;/code>目录的用户权限管理，而ClawCloud上设置挂载卷只有容量大小和挂载目录两个选项，无法设置UID/GID ，并且进入控制台全靠运气（时常抽风进不去），目前发现就算进入控制台我也找不着挂载目录和设置方法（不熟kubectl，专业不对口，折腾起来要去速通k8s教程，不想玩这个，也不知道有没有权限进行操作）&lt;/p>
+&lt;p>根据登陆控制台显示的信息，ClawCloud是以 root 运行容器应用，联想到已部署成功的容器应用，只要绕道修改关于挂载卷权限部分代码，就能成功挂载。至于违反最小权限原则，容器逃逸时攻击者将获得主机 root 权限的问题就交给ClawCloud平台处理，相信他们有这方面的保护措施&lt;/p>
+&lt;p>&lt;strong>为什么设置挂载卷&lt;/strong>：数据备份，在ClawCloud上可以下载和上传挂载卷的数据库文件&lt;/p>
+&lt;h3 id="绕道修改sqlite数据库挂载卷权限">绕道修改SQLite数据库挂载卷权限
+&lt;/h3>&lt;p>&lt;strong>操作思路&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>Fork作者仓库&lt;/li>
+&lt;li>clone至本地&lt;/li>
+&lt;li>修改Dockerfile文件，去除针对&lt;code>/var/local/Shynet/db/&lt;/code>目录的用户权限管理&lt;/li>
+&lt;li>移除仓库原有的工作流yaml文件，创建自用的构建镜像工作流yaml文件&lt;/li>
+&lt;li>git push&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>为什么这么操作&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>首先，给Shynet作者提issue说ClawCloud平台用不了你这个Shynet镜像，你看他鸟不鸟你&lt;/li>
+&lt;li>第二，给ClawCloud平台说，你这个平台部署不了Shynet，你看他鸟不鸟你&lt;/li>
+&lt;/ul>
+&lt;p>已经将修改后构建的镜像推送到 docker hub，需要的可自行 docker pull kiraster/Shynet-for-clawcloud:latest&lt;/p>
+&lt;p>Fork后修改的仓库：&lt;a class="link" href="https://github.com/kiraster/Shynet" target="_blank" rel="noopener"
+>https://github.com/kiraster/Shynet
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>可review后再决定使用，也可以自行Fork作者仓库然后自己构建docker镜像&lt;/p>
+&lt;p>修改后的&lt;a class="link" href="https://github.com/kiraster/Shynet/blob/master/Dockerfile" target="_blank" rel="noopener"
+>Dockerfile
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>文件&lt;/p>
+&lt;h3 id="控制台提示两个-warning">控制台提示两个 Warning
+&lt;/h3>&lt;p>1、对于提示的两个&lt;code>Warning&lt;/code>，可通过登陆应用控制台执行以下命令进行设置&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>example@example.com&lt;/code>：填写一个邮箱名称用于管理员登陆（仅仅邮箱格式）&lt;/li>
+&lt;li>&lt;code>My Shynet&lt;/code>：控制面板的标题（仅仅标题）&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> python manage.py python manage.py registeradmin example@example.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> python manage.py whitelabel &amp;#34;My Shynet&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>2、容器应用控制台执行&lt;code>python manage.py registeradmin myShynet@Shynet.com&lt;/code> 后会生成一个密码，该密码用于登陆Shynet（登陆Shynet后自行修改密码）
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/dl9QiBnKSMNWvVI.png">
+&lt;img src="https://s2.loli.net/2025/05/21/dl9QiBnKSMNWvVI.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/Ynav98PobRItlLW.png">
+&lt;img src="https://s2.loli.net/2025/05/21/Ynav98PobRItlLW.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="提示csrf问题">提示CSRF问题
+&lt;/h3>&lt;p>将&lt;code>Public Address&lt;/code>填写到环境变量中的&lt;code>ALLOWED_HOSTS&lt;/code>和&lt;code>CSRF_TRUSTED_ORIGINS&lt;/code>即可，注意格式，参照&lt;a class="link" href="https://github.com/milesmcc/Shynet/blob/master/TEMPLATE.env" target="_blank" rel="noopener"
+>TEMPLATE.env
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;h3 id="正常启动控制台显示">正常启动控制台显示
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/76vHkzXfYZrAqxi.png">
+&lt;img src="https://s2.loli.net/2025/05/21/76vHkzXfYZrAqxi.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="登陆shynet和修改密码">登陆Shynet和修改密码
+&lt;/h2>&lt;p>1、在应用详情中，点击&lt;code>Public Address&lt;/code>访问应用
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/EbrwGWTZhqsNQMx.png">
+&lt;img src="https://s2.loli.net/2025/05/21/EbrwGWTZhqsNQMx.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>2、E-mail为之前设置的registeradmin，Password为控制台返回的密码
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/zjEbqeM8hAKvB4l.png">
+&lt;img src="https://s2.loli.net/2025/05/21/zjEbqeM8hAKvB4l.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/l52ehs9MRuXEcpq.png">
+&lt;img src="https://s2.loli.net/2025/05/21/l52ehs9MRuXEcpq.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/4i1uxEoTLrjAmnt.png">
+&lt;img src="https://s2.loli.net/2025/05/21/4i1uxEoTLrjAmnt.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="设置shynet">设置Shynet
+&lt;/h2>&lt;p>1、点击左侧&lt;code>Create&lt;/code>，在右侧填写Name、Link，其他选项看描述操作，最后点击底部的&lt;code>Create&lt;/code>按钮
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/Y8QryKmlsGZAaVL.png">
+&lt;img src="https://s2.loli.net/2025/05/21/Y8QryKmlsGZAaVL.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>2、将代码嵌入网站，当有网站页面被访问，Shynet应用被触发进行工作
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/6q1jRKH3vhLbGg8.png">
+&lt;img src="https://s2.loli.net/2025/05/21/6q1jRKH3vhLbGg8.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h2 id="其他操作">其他操作
+&lt;/h2>&lt;h3 id="设置registeradmin时没有记录密码">设置registeradmin时没有记录密码
+&lt;/h3>&lt;p>解决方法：登陆数据库应用，删除registeradmin时设置的邮箱的行（默认ID为1），重新启动容器应用&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"># 切换到名为 Shynet_db 的数据库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">postgres=# \c Shynet_db
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 列出当前数据库中的所有表
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Shynet_db=# \dt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看core_user表的数据
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Shynet_db=# select * from core_user;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 删除 id 为 1 的行（默认的就是这行）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Shynet_db=# DELETE FROM core_user WHERE id = 1;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">DELETE 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Shynet_db=#
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>容器应用重启后，登入容器控制台，再次执行&lt;code> python manage.py python manage.py registeradmin example@example.com&lt;/code>命令&lt;/p>
+&lt;p>若使用SQLite数据库，点击文件管理，下载后上传或直接删除（刚启动应用一般没重要数据）
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/tp4UiXVk5z7IHRd.png">
+&lt;img src="https://s2.loli.net/2025/05/21/tp4UiXVk5z7IHRd.png"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="浏览器的do-not-track">浏览器的&lt;strong>Do Not Track&lt;/strong>
+&lt;/h3>&lt;p>Shynet 响应“不追踪”（DNT）信号，当浏览器设置发送&lt;strong>Do Not Track&lt;/strong>请求时，Shynet会进行响应。使用这种设置访问网站时，Shynet不会收集访问数据&lt;/p>
+&lt;p>&lt;strong>Do Not Track&lt;/strong> 设置案例
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/f79jBKpGa3Mwzn2.jpg">
+&lt;img src="https://s2.loli.net/2025/05/21/f79jBKpGa3Mwzn2.jpg"
+loading="lazy"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p></description></item><item><title>使用GitHub工作流构建Docker镜像并推送至DockerHub</title><link>https://kiraster.github.io/posts/afc79162.html/</link><pubDate>Sun, 11 May 2025 17:05:26 +0800</pubDate><guid>https://kiraster.github.io/posts/afc79162.html/</guid><description>&lt;p>本文介绍如何创建执行 Docker 构建的工作流，然后将 Docker 映像发布到 Docker Hub&lt;/p>
 &lt;p>Docker容器是个好玩的东西，但是由于可能的网络限制玩起来并不是那么流畅&lt;/p>
 &lt;p>本着开放、共享、协作的互联网精神将代码开源并发布Docker镜像是一个很好的实践&lt;/p>
 &lt;p>本地也可以构建镜像并发布，但是使用自动的GitHub工作流执行这一操作可以给自己省时省事&lt;/p>
