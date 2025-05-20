@@ -140,9 +140,10 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> python manage.py whitelabel &amp;#34;My Shynet&amp;#34;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>2、容器应用控制台执行&lt;code>python manage.py registeradmin myShynet@Shynet.com&lt;/code> 后会生成一个密码，该密码用于登陆Shynet（登陆Shynet后自行修改密码）
 &lt;div class="post-img-view">
-&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/dl9QiBnKSMNWvVI.png">
-&lt;img src="https://s2.loli.net/2025/05/21/dl9QiBnKSMNWvVI.png"
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/05/21/Pd8JzYXOAkawqSj.png">
+&lt;img src="https://s2.loli.net/2025/05/21/Pd8JzYXOAkawqSj.png"
 loading="lazy"
+alt="image-20250521030943843"
 >
 &lt;/a>
 &lt;/div>
