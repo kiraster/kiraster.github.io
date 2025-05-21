@@ -25126,7 +25126,22 @@ fill="currentColor">
 &lt;td style="border: none;">&lt;img src="https://s2.loli.net/2025/03/27/1YK7dVo6IPpiUNw.png" alt="image-20250327.png">&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/table>&lt;/div>
-&lt;h2 id="在线演示站点">在线演示站点
-&lt;/h2>&lt;p>&lt;strong>受限于云平台免费额度和平台的可靠性，可能会出现不可用状态&lt;/strong>&lt;/p>
-&lt;p>IPA_VIEW_v0.2 在线Demo：https://kucsexuzxxdj.ap-northeast-1.clawcloudrun.com&lt;/p>
-&lt;p>ndgv_demo 在线Demo：https://aoxxuhojwftn.ap-northeast-1.clawcloudrun.com&lt;/p></description></item><item><title>Search</title><link>https://kiraster.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/search/</guid><description/></item></channel></rss>
+&lt;p>&lt;strong>受限于云平台免费额度和平台的可靠性，可能会出现不可用状态&lt;/strong>&lt;/p>
+&lt;p>IPA_VIEW_v0.2 在线Demo：&lt;a class="link" href="https://kucsexuzxxdj.ap-northeast-1.clawcloudrun.com" target="_blank" rel="noopener"
+>https://kucsexuzxxdj.ap-northeast-1.clawcloudrun.com
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;p>ndgv_demo 在线Demo：&lt;a class="link" href="https://aoxxuhojwftn.ap-northeast-1.clawcloudrun.com" target="_blank" rel="noopener"
+>https://aoxxuhojwftn.ap-northeast-1.clawcloudrun.com
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p></description></item><item><title>Search</title><link>https://kiraster.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/search/</guid><description/></item></channel></rss>
