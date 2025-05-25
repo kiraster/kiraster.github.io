@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Update on Kir's Blog</title><link>https://kiraster.github.io/categories/update/</link><description>Recent content in Update on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 14 Dec 2024 00:02:00 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/update/index.xml" rel="self" type="application/rss+xml"/><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2024-12-14">2024-12-14
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Update on Kir's Blog</title><link>https://kiraster.github.io/categories/update/</link><description>Recent content in Update on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 14 Dec 2024 00:02:00 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/update/index.xml" rel="self" type="application/rss+xml"/><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2025-05-25">2025-05-25
+&lt;/h3>&lt;ul>
+&lt;li>添加发布时间久远文章的提示&lt;/li>
+&lt;/ul>
+&lt;h3 id="2024-12-14">2024-12-14
 &lt;/h3>&lt;ul>
 &lt;li>更换博客静态网站生成器，主题为&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
 >hugo-theme-stack
@@ -12,7 +16,7 @@ fill="currentColor">
 &lt;li>原因是之前的hexo主题，很多包提示过时（重装操作麻烦）,且主题仓库自2022年已是公开只读&lt;/li>
 &lt;li>当前主题设置抄了网上很多代码，谢&lt;/li>
 &lt;li>已经尽量不花里胡哨了&lt;/li>
-&lt;li>将就着用&lt;/li>
+&lt;li>将就着用&lt;!--more-->&lt;/li>
 &lt;/ul>
 &lt;h3 id="2023-05-10">2023-05-10
 &lt;/h3>&lt;ul>
