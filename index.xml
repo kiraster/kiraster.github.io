@@ -4880,7 +4880,11 @@ alt="inscribed-test"
 &lt;li>修改的使用的方法多来自网络和gpt对话&lt;/li>
 &lt;li>有些地方改的不如意，将就着用（弄不出来）&lt;/li>
 &lt;li>古德拜&lt;/li>
-&lt;/ul></description></item><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2025-05-25">2025-05-25
+&lt;/ul></description></item><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2025-06-07">2025-06-07
+&lt;/h3>&lt;ul>
+&lt;li>github action 添加工作流同时部署静态文件至 infinityfree，http://kiraster.great-site.net/&lt;/li>
+&lt;/ul>
+&lt;h3 id="2025-05-25">2025-05-25
 &lt;/h3>&lt;ul>
 &lt;li>添加发布时间久远文章的提示&lt;/li>
 &lt;/ul>
@@ -24978,7 +24982,15 @@ loading="lazy"
 &lt;li>This is a test page .&lt;/li>
 &lt;/ul></description></item><item><title>Archives</title><link>https://kiraster.github.io/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/archives/</guid><description/></item><item><title/><link>https://kiraster.github.io/privacy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/privacy/</guid><description>&lt;h1 id="隐私声明">隐私声明
 &lt;/h1>&lt;p>&lt;strong>最后更新&lt;/strong>: 2025-05-21&lt;/p>
-&lt;p>在这个网站（https://kiraster.github.io）上，使用了一个名为 &lt;a class="link" href="https://github.com/milesmcc/shynet" target="_blank" rel="noopener"
+&lt;p>在这个网站（https://kiraster.github.io ， &lt;a class="link" href="http://kiraster.great-site.net/" target="_blank" rel="noopener"
+>http://kiraster.great-site.net/
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a> （前者的镜像站））上，使用了一个名为 &lt;a class="link" href="https://github.com/milesmcc/shynet" target="_blank" rel="noopener"
 >Shynet
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
