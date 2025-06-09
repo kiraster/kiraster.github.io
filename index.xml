@@ -82,7 +82,7 @@ alt="image-20250609112442507"
 &lt;li>&lt;strong>FTP 路径&lt;/strong>
 &lt;ul>
 &lt;li>如果是第一个创建的子域名，那么默认的 FTP 路径为 /htdocs/&lt;/li>
-&lt;li>如果是第二个创建的子域名，那么默认的 FTP 路径为 /your-sub-domain/htdocs/&lt;/li>
+&lt;li>如果是第二个创建的子域名，那么默认的 FTP 路径为 /your-subdomains/htdocs/&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
@@ -107,7 +107,7 @@ alt="image-20250609113055138"
 &lt;li>&lt;code>FTP_USERNAME&lt;/code>：FTP 用户名&lt;/li>
 &lt;li>&lt;code>FTP_PASSWORD&lt;/code>：FTP 密码&lt;/li>
 &lt;li>&lt;code>FTP_PORT&lt;/code>：FTP 端口（&lt;code>21&lt;/code>）&lt;/li>
-&lt;li>&lt;code>REMOTE_DIR&lt;/code>：服务器目标路径（如 &lt;code>/htdocs/&lt;/code> 或 &lt;code>/public_html/&lt;/code>）&lt;/li>
+&lt;li>&lt;code>REMOTE_DIR&lt;/code>：服务器目标路径（如 &lt;code>/htdocs/&lt;/code> 或 &lt;code>/your-subdomains/htdocs/&lt;/code>）&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ol>
