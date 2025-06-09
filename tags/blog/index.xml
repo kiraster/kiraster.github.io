@@ -178,7 +178,7 @@ alt="image-20250609113055138"
 &lt;li>在 GitHub Actions 中，工作流不会自动回滚已执行成功的操作；同时，如果工作流其中一个步骤没有执行成功会被标记状态为 Failure （会有 notifications 邮件提示）&lt;/li>
 &lt;li>小小 Hugo 网站没有工作流回滚&lt;/li>
 &lt;li>首次 FTP 上传到 InfinityFree，可能是由于静态文件过多耗时较久，完成首次部署后注释&lt;code>dangerous-clean-slate: true&lt;/code>之后的 FTP Upload 为增量上传&lt;/li>
-&lt;li>Have a good time! &amp;raquo;&amp;gt;&lt;/li>
+&lt;li>Have a good time!&lt;/li>
 &lt;/ul></description></item><item><title>当前主题与原版Stack主题不同的地方</title><link>https://kiraster.github.io/posts/3d1b11f0.html/</link><pubDate>Sun, 15 Dec 2024 14:14:51 +0800</pubDate><guid>https://kiraster.github.io/posts/3d1b11f0.html/</guid><description>&lt;p>尽管原生的Stack主题已经已经很好了，但是由于个人的审美和喜好，还是对其进行了一些自认为较合理的修改&lt;/p>
 &lt;p>网上的教程很多，搜索引擎遨游一下便有修改方法，以下只列出修改的结果&lt;/p>
 &lt;hr>
