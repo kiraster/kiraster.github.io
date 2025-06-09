@@ -1,4 +1,185 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fantasy on Kir's Blog</title><link>https://kiraster.github.io/categories/fantasy/</link><description>Recent content in Fantasy on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 08 May 2025 22:35:05 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/categories/fantasy/index.xml" rel="self" type="application/rss+xml"/><item><title>客户端主动发起的TCP连接与断开</title><link>https://kiraster.github.io/posts/fad53f26.html/</link><pubDate>Thu, 08 May 2025 22:35:05 +0800</pubDate><guid>https://kiraster.github.io/posts/fad53f26.html/</guid><description>&lt;p>分析客户端主动发起的TCP连接与断开&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fantasy on Kir's Blog</title><link>https://kiraster.github.io/categories/fantasy/</link><description>Recent content in Fantasy on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Mon, 09 Jun 2025 04:14:06 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/categories/fantasy/index.xml" rel="self" type="application/rss+xml"/><item><title>博客静态文件发布至Infinityfree</title><link>https://kiraster.github.io/posts/224a4143.html/</link><pubDate>Mon, 09 Jun 2025 04:14:06 +0800</pubDate><guid>https://kiraster.github.io/posts/224a4143.html/</guid><description>&lt;p>InfinityFree 是一家提供&lt;strong>永久免费虚拟主机服务&lt;/strong>的国外平台（真免费么？进入该网站可以看到上下左右的广告）&lt;/p>
+&lt;p>由于访问 GitHub 时常抽风打不开，补充一个博客的镜像访问（与 GitHub Pages 同步发布）&lt;/p>
+&lt;p>通过 &lt;strong>GitHub Actions&lt;/strong> 的工作流自动发布至 InfinityFree&lt;/p>
+&lt;h2 id="同步发布工作原理">同步发布工作原理
+&lt;/h2>&lt;p>1、首先，当前的静态博客是通过 GitHub Actions工作流构建出静态网页文件然后发布至开启GitHub Pages公共仓库&lt;/p>
+&lt;p>2、只需在 GitHub Actions的工作流yml文件中添加上传至 Infinityfree FTP 路径的步骤即可&lt;/p>
+&lt;p>3、Infinityfree 的子域名关联一个FTP路径，访问该域名即可打开静态网站&lt;/p>
+&lt;h2 id="准备工作">准备工作
+&lt;/h2>&lt;h3 id="注册-infinityfree-账户">注册 InfinityFree 账户
+&lt;/h3>&lt;ol>
+&lt;li>注册链接：https://dash.infinityfree.com/register&lt;/li>
+&lt;li>填写邮箱和密码，点击 &lt;strong>Sign UP&lt;/strong> ，然后查看邮件点击 &lt;strong>Verify Email Address&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;h3 id="创建子域名">创建子域名
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/06/09/vHMDTPhyW9B8wEf.png">
+&lt;img src="https://s2.loli.net/2025/06/09/vHMDTPhyW9B8wEf.png"
+loading="lazy"
+alt="image-20250609110601574"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/06/09/3njSpzhVlYDItNT.png">
+&lt;img src="https://s2.loli.net/2025/06/09/3njSpzhVlYDItNT.png"
+loading="lazy"
+alt="image-20250609110356720"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/06/09/ZC9m7uikNvadyLS.png">
+&lt;img src="https://s2.loli.net/2025/06/09/ZC9m7uikNvadyLS.png"
+loading="lazy"
+alt="image-20250609111047697"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/06/09/yLSU3cm512YZPRJ.png">
+&lt;img src="https://s2.loli.net/2025/06/09/yLSU3cm512YZPRJ.png"
+loading="lazy"
+alt="image-20250609111954384"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/06/09/FOuBVKQHL7TeE3b.png">
+&lt;img src="https://s2.loli.net/2025/06/09/FOuBVKQHL7TeE3b.png"
+loading="lazy"
+alt="image-20250609112231064"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h3 id="获取-ftp-凭据">获取 FTP 凭据
+&lt;/h3>&lt;p>从 InfinityFree 控制面板获取以下信息：&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/06/09/ZQ4WprHKqivfaYx.png">
+&lt;img src="https://s2.loli.net/2025/06/09/ZQ4WprHKqivfaYx.png"
+loading="lazy"
+alt="image-20250609112442507"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>FTP 主机名&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>FTP 用户名&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>FTP 密码&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>FTP 端口&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>FTP 路径&lt;/strong>
+&lt;ul>
+&lt;li>如果是第一个创建的子域名，那么默认的 FTP 路径为 /htdocs/&lt;/li>
+&lt;li>如果是第二个创建的子域名，那么默认的 FTP 路径为 /your-sub-domain/htdocs/&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="github仓库设置">GitHub仓库设置
+&lt;/h2>&lt;h3 id="在-github-仓库中设置-secrets">在 GitHub 仓库中设置 Secrets
+&lt;/h3>&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/06/09/Sa7WZgIRzkKpcQ1.png">
+&lt;img src="https://s2.loli.net/2025/06/09/Sa7WZgIRzkKpcQ1.png"
+loading="lazy"
+alt="image-20250609113055138"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>将 FTP 凭据加密存储在 GitHub Secrets 中：&lt;/p>
+&lt;ol>
+&lt;li>进入你的 GitHub 仓库 → &lt;strong>Settings&lt;/strong> → &lt;strong>Secrets and variables&lt;/strong> → &lt;strong>Actions&lt;/strong>。&lt;/li>
+&lt;li>点击 &lt;strong>New repository secret&lt;/strong>，添加以下 Secrets：
+&lt;ul>
+&lt;li>&lt;code>FTP_HOST&lt;/code>：FTP 主机地址&lt;/li>
+&lt;li>&lt;code>FTP_USERNAME&lt;/code>：FTP 用户名&lt;/li>
+&lt;li>&lt;code>FTP_PASSWORD&lt;/code>：FTP 密码&lt;/li>
+&lt;li>&lt;code>FTP_PORT&lt;/code>：FTP 端口（&lt;code>21&lt;/code>）&lt;/li>
+&lt;li>&lt;code>REMOTE_DIR&lt;/code>：服务器目标路径（如 &lt;code>/htdocs/&lt;/code> 或 &lt;code>/public_html/&lt;/code>）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="创建-github-acton-工作流yml">创建 GitHub Acton 工作流yml
+&lt;/h3>&lt;p>在项目根目录下创建 &lt;code>.github/workflows/hugo-build-deploy.yml&lt;/code> 文件，内容如下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-gdscript3" data-lang="gdscript3">&lt;span class="line">&lt;span class="cl">&lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Hugo&lt;/span> &lt;span class="n">Build&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">GitHub&lt;/span> &lt;span class="n">Pages&lt;/span> &lt;span class="n">Deploy&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">FTP&lt;/span> &lt;span class="n">Deploy&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">on&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">push&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">branches&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;main&amp;#34;&lt;/span> &lt;span class="p">]&lt;/span> &lt;span class="c1"># 触发分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">jobs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">deploy&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">runs&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">on&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">ubuntu&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mf">24.04&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">concurrency&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">group&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">github&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">workflow&lt;/span> &lt;span class="p">}}&lt;/span>&lt;span class="o">-$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">github&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ref&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="c1"># 防止并发冲突&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">steps&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 步骤1：检出代码&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">uses&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">actions&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">checkout&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">v4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">with&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">submodules&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">recursive&lt;/span> &lt;span class="c1"># 递归检出子模块（适用于Hugo主题）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 步骤2：安装Hugo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Setup&lt;/span> &lt;span class="n">Hugo&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">uses&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">peaceiris&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">actions&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">hugo&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">v2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">with&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hugo&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">version&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;0.136.5&amp;#39;&lt;/span> &lt;span class="c1"># 与本地开发环境一致&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">extended&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="bp">true&lt;/span> &lt;span class="c1"># 使用extended版本（支持SCSS等）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 步骤3：构建静态站点&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Build&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">hugo&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">minify&lt;/span> &lt;span class="o">--&lt;/span>&lt;span class="n">cleanDestinationDir&lt;/span> &lt;span class="c1"># 生成public目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 步骤4：验证构建结果&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Verify&lt;/span> &lt;span class="n">Public&lt;/span> &lt;span class="n">Folder&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">|&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ls&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">la&lt;/span> &lt;span class="o">./&lt;/span>&lt;span class="n">public&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="n">f&lt;/span> &lt;span class="o">./&lt;/span>&lt;span class="n">public&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">index&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">html&lt;/span> &lt;span class="p">]&lt;/span> &lt;span class="o">||&lt;/span> &lt;span class="n">exit&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="c1"># 确保首页存在&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 步骤5：部署到GitHub Pages&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Deploy&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="n">GitHub&lt;/span> &lt;span class="n">Pages&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">uses&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">peaceiris&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">actions&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">gh&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">pages&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">v3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">with&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">personal_token&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">secrets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">BLOG_PAT&lt;/span>&lt;span class="p">}}&lt;/span> &lt;span class="c1"># 如果secret取了其他名称，将MY_PAT替换掉&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">external_repository&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">kiraster&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">kiraster&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">github&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">io&lt;/span> &lt;span class="c1"># 填写远程仓库，不一定是这个格式，按照自己的情况写 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">publish_dir&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">./&lt;/span>&lt;span class="n">public&lt;/span> &lt;span class="c1"># 指定发布目录（Hugo默认输出目录）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 步骤6：FTP上传到InfinityFree&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">-&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">FTP&lt;/span> &lt;span class="n">Upload&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">uses&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">SamKirkland&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">FTP&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">Deploy&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">Action&lt;/span>&lt;span class="err">@&lt;/span>&lt;span class="n">v4&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="mf">3.4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">with&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">server&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">secrets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">FTP_HOST&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">username&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">secrets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">FTP_USERNAME&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">password&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">secrets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">FTP_PASSWORD&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">port&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">secrets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">FTP_PORT&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">local&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">dir&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">./&lt;/span>&lt;span class="n">public&lt;/span>&lt;span class="o">/&lt;/span> &lt;span class="c1"># 直接使用本地生成的目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">server&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">dir&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="o">$&lt;/span>&lt;span class="p">{{&lt;/span> &lt;span class="n">secrets&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">REMOTE_DIR&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dry&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">run&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="bp">false&lt;/span> &lt;span class="c1"># 实际执行上传&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># dangerous-clean-slate: true # 首次部署启用（取消注释），完成首次部署后再将其注释&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="触发-github-acton-工作流">触发 Github Acton 工作流
+&lt;/h2>&lt;p>Github Acton工作流触发条件为 push 至 main 分支后自动触发，我是在本地创建的 yml，所以只需git三板斧（add-commit-push）即可&lt;/p>
+&lt;h2 id="最后">最后
+&lt;/h2>&lt;ul>
+&lt;li>InfinityFree：It can take up to 72 hours for new domains to be accessible everywhere!&lt;/li>
+&lt;li>InfinityFree 的 FTP 上传速度不是很快且空间只有 5GB&lt;/li>
+&lt;li>尝试过分成两个yml工作流文件执行，但是使用 actions/download-artifact@v4 始终不能找到 actions/upload-artifact@v4 构建的 &lt;strong>Artifacts&lt;/strong> （不折腾这个了）&lt;/li>
+&lt;li>在 GitHub Actions 中，工作流不会自动回滚已执行成功的操作；同时，如果工作流其中一个步骤没有执行成功会被标记状态为 Failure （会有 notifications 邮件提示）&lt;/li>
+&lt;li>小小 Hugo 网站没有工作流回滚&lt;/li>
+&lt;li>首次 FTP 上传到 InfinityFree，可能是由于静态文件过多耗时较久，完成首次部署后注释&lt;code>dangerous-clean-slate: true&lt;/code>之后的 FTP Upload 为增量上传&lt;/li>
+&lt;li>Have a good time! &amp;raquo;&amp;gt;&lt;/li>
+&lt;/ul></description></item><item><title>客户端主动发起的TCP连接与断开</title><link>https://kiraster.github.io/posts/fad53f26.html/</link><pubDate>Thu, 08 May 2025 22:35:05 +0800</pubDate><guid>https://kiraster.github.io/posts/fad53f26.html/</guid><description>&lt;p>分析客户端主动发起的TCP连接与断开&lt;/p>
 &lt;blockquote>
 &lt;p>参考《TCP IP详解卷1：协议 原书第2版》第13章&lt;/p>
 &lt;/blockquote>
