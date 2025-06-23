@@ -5066,9 +5066,13 @@ alt="inscribed-test"
 &lt;li>修改的使用的方法多来自网络和gpt对话&lt;/li>
 &lt;li>有些地方改的不如意，将就着用（弄不出来）&lt;/li>
 &lt;li>古德拜&lt;/li>
-&lt;/ul></description></item><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2025-06-08">2025-06-08
+&lt;/ul></description></item><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2025-06-23">2025-06-23
 &lt;/h3>&lt;ul>
-&lt;li>github action 添加工作流同时部署静态文件至 infinityfree，http://kiraster.is-great.net&lt;/li>
+&lt;li>github action 添加工作流同时部署静态文件至 Cloudflare，https://kiraster.pages.dev/&lt;/li>
+&lt;/ul>
+&lt;h3 id="2025-06-08">2025-06-08
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>github action 添加工作流同时部署静态文件至 infinityfree，http://kiraster.is-great.net&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;h3 id="2025-05-25">2025-05-25
 &lt;/h3>&lt;ul>
@@ -17750,12 +17754,20 @@ alt="ScreenCaputure221205140926"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93.html/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93.html/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
 &lt;p>本文介绍使用&lt;code>python&lt;/code>脚本语言编写一个根据&lt;code>display&lt;/code>回显内容提取安全策略和对象组到表格的方法&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
-&lt;p>{% blockquote %}&lt;/p>
+&lt;ul>
+&lt;li>
 &lt;p>Python 3.9.7&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>openpyxl 3.0.10&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>HCL 3.0.1 （现网环境都为敏感内容，勉为其难用模拟器）&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>VScode 1.73.1&lt;/p>
-&lt;p>{% endblockquote %}&lt;/p>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="提取工作过程">提取工作过程
 &lt;/h2>&lt;h3 id="命令行登陆设备导出display回显内容">命令行登陆设备导出display回显内容
 &lt;/h3>&lt;p>利用&lt;code>SecureCRT&lt;/code>的&lt;code>Log Session&lt;/code>(记录日志)功能生成一个包含回显内容的&lt;code>log文件&lt;/code>，放置在与脚本文件相同目录&lt;/p>
@@ -21219,7 +21231,6 @@ loading="lazy"
 &lt;/div>
 &lt;/p>
 &lt;/blockquote>
-&lt;p>{% blockquote %}&lt;/p>
 &lt;blockquote>
 &lt;p>以太帧类型&lt;/p>
 &lt;p>以太帧有很多种类型。不同类型的帧具有不同的格式和MTU值。但在同种物理媒体上都可同时存在。&lt;/p>
@@ -21233,8 +21244,7 @@ loading="lazy"
 &lt;p>以太 II 帧 (也称作DIX以太网，是以这个设计的主要成员，DEC,Intel和Xerox的名字命名的。[1]),把紧接在目标和源MAC地址后面的这个两字节定义为以太网帧数据类型字段。&lt;/p>
 &lt;p>例如，一个0x0800的以太类型说明这个帧包含的是IPv4数据报。同样的，一个0x0806的以太类型说明这个帧是一个ARP帧，0x8100说明这是一个IEEE 802.1Q帧，而0x86DD说明这是一个IPv6帧。&lt;/p>
 &lt;p>当这个工业界的标准通过正式的IEEE标准化过程后，在802.3标准中以太类型字段变成了一个(数据)长度字段。(最初的以太包通过包括他们的帧来确定它们的长度，而不是以一个明确的数值。)但是包的接收层仍需知道如何解析包，因此标准要求将IEEE802.2头跟在长度字段后面，定义包的类型。多年之后，802.3x-1997标准，一个802.3标准的后继版本，正式允许两种类型的数据包同时存在。实际上，两种数据包都被广泛使用，而最初的以太数据包在以太局域网中被广泛应用，因为他的简便和低开销。&lt;/p>
-&lt;p>为了允许一些使用以太II版本的数据报和一些使用802.3封装的最初版本的数据包能够在同一个以太网段使用，以太类型值必须大于等于1536(0x0600)。这个值比802.3数据包的最大长度1500byte (0x05DC)要更大。因此如果这个字段的值大于等于1536，则这个帧是以太II帧，而那个字段是类型字段。否则(小于1500而大于46字节)，他是一个IEEE 802.3帧，而那个字段是长度字段。1500～1536(不包含)的数值未定义。[2]
-{% endblockquote %}&lt;/p>
+&lt;p>为了允许一些使用以太II版本的数据报和一些使用802.3封装的最初版本的数据包能够在同一个以太网段使用，以太类型值必须大于等于1536(0x0600)。这个值比802.3数据包的最大长度1500byte (0x05DC)要更大。因此如果这个字段的值大于等于1536，则这个帧是以太II帧，而那个字段是类型字段。否则(小于1500而大于46字节)，他是一个IEEE 802.3帧，而那个字段是长度字段。1500～1536(不包含)的数值未定义。[2]&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="part-2">Part 2
 &lt;/h2>&lt;p>前阵子去处理一个无线局域网的接入故障问题，组网结构是二层旁挂隧道转发组网，反映的问题是无线终端接入慢，甚至连接不上 WIFI，在查看了设备后，发现有大量的无线终端获取不到IP地址，我想问题的根本在此。

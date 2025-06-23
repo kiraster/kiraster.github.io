@@ -393,12 +393,20 @@ fill="currentColor">
 &lt;/ul></description></item><item><title>H3C 防火墙（v7）提取导出安全策略至表格</title><link>https://kiraster.github.io/posts/f285fb93.html/</link><pubDate>Thu, 01 Dec 2022 21:01:44 +0000</pubDate><guid>https://kiraster.github.io/posts/f285fb93.html/</guid><description>&lt;p>当前日期时间： &lt;code>20221201&lt;/code> 版本:&lt;code>H3C Comware Software, Version 7.1.064, Release 9628P2416&lt;/code>还没有安全策略导出到表格的功能，而有时确实有实际需求导出安全策略到表格，无论是存档还是提交报告&lt;/p>
 &lt;p>本文介绍使用&lt;code>python&lt;/code>脚本语言编写一个根据&lt;code>display&lt;/code>回显内容提取安全策略和对象组到表格的方法&lt;/p>
 &lt;p>&lt;strong>环境介绍：&lt;/strong>&lt;/p>
-&lt;p>{% blockquote %}&lt;/p>
+&lt;ul>
+&lt;li>
 &lt;p>Python 3.9.7&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>openpyxl 3.0.10&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>HCL 3.0.1 （现网环境都为敏感内容，勉为其难用模拟器）&lt;/p>
+&lt;/li>
+&lt;li>
 &lt;p>VScode 1.73.1&lt;/p>
-&lt;p>{% endblockquote %}&lt;/p>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="提取工作过程">提取工作过程
 &lt;/h2>&lt;h3 id="命令行登陆设备导出display回显内容">命令行登陆设备导出display回显内容
 &lt;/h3>&lt;p>利用&lt;code>SecureCRT&lt;/code>的&lt;code>Log Session&lt;/code>(记录日志)功能生成一个包含回显内容的&lt;code>log文件&lt;/code>，放置在与脚本文件相同目录&lt;/p>

@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Update on Kir's Blog</title><link>https://kiraster.github.io/categories/update/</link><description>Recent content in Update on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 14 Dec 2024 00:02:00 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/update/index.xml" rel="self" type="application/rss+xml"/><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2025-06-08">2025-06-08
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Update on Kir's Blog</title><link>https://kiraster.github.io/categories/update/</link><description>Recent content in Update on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 14 Dec 2024 00:02:00 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/categories/update/index.xml" rel="self" type="application/rss+xml"/><item><title>BLOG CHANGELOG</title><link>https://kiraster.github.io/posts/e2a2e564.html/</link><pubDate>Sat, 14 Dec 2024 00:02:00 +0000</pubDate><guid>https://kiraster.github.io/posts/e2a2e564.html/</guid><description>&lt;h3 id="2025-06-23">2025-06-23
 &lt;/h3>&lt;ul>
-&lt;li>github action 添加工作流同时部署静态文件至 infinityfree，http://kiraster.is-great.net&lt;/li>
+&lt;li>github action 添加工作流同时部署静态文件至 Cloudflare，https://kiraster.pages.dev/&lt;/li>
+&lt;/ul>
+&lt;h3 id="2025-06-08">2025-06-08
+&lt;/h3>&lt;ul>
+&lt;li>&lt;del>github action 添加工作流同时部署静态文件至 infinityfree，http://kiraster.is-great.net&lt;/del>&lt;/li>
 &lt;/ul>
 &lt;h3 id="2025-05-25">2025-05-25
 &lt;/h3>&lt;ul>
