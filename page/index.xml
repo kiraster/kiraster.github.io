@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Pages on Kir's Blog</title><link>https://kiraster.github.io/page/</link><description>Recent content in Pages on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/page/index.xml" rel="self" type="application/rss+xml"/><item><title>Archives</title><link>https://kiraster.github.io/archives/</link><pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/archives/</guid><description/></item><item><title/><link>https://kiraster.github.io/privacy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kiraster.github.io/privacy/</guid><description>&lt;h1 id="隐私声明">隐私声明
-&lt;/h1>&lt;p>&lt;strong>最后更新&lt;/strong>: 2025-06-08&lt;/p>
-&lt;p>在这个网站（https://kiraster.github.io ， &lt;a class="link" href="http://kiraster.is-great.net" target="_blank" rel="noopener"
->http://kiraster.is-great.net
+&lt;/h1>&lt;p>&lt;strong>最后更新&lt;/strong>: 2025-06-23&lt;/p>
+&lt;p>在这个网站 &lt;a class="link" href="https://kiraster.github.io" target="_blank" rel="noopener"
+>https://kiraster.github.io
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-&lt;/a> （前者的镜像同步站））上，使用了一个名为 &lt;a class="link" href="https://github.com/milesmcc/shynet" target="_blank" rel="noopener"
+&lt;/a> 和 &lt;a class="link" href="https://kiraster.pages.dev/" target="_blank" rel="noopener"
+>https://kiraster.pages.dev/
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>（前者的镜像同步），使用了一个名为 &lt;a class="link" href="https://github.com/milesmcc/shynet" target="_blank" rel="noopener"
 >Shynet
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
