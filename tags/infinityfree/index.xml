@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Infinityfree on Kir's Blog</title><link>https://kiraster.github.io/tags/infinityfree/</link><description>Recent content in Infinityfree on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Mon, 09 Jun 2025 04:14:06 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/infinityfree/index.xml" rel="self" type="application/rss+xml"/><item><title>博客静态文件发布至Infinityfree</title><link>https://kiraster.github.io/posts/224a4143.html/</link><pubDate>Mon, 09 Jun 2025 04:14:06 +0800</pubDate><guid>https://kiraster.github.io/posts/224a4143.html/</guid><description>&lt;p>InfinityFree 是一家提供&lt;strong>永久免费虚拟主机服务&lt;/strong>的国外平台（真免费么？进入该网站可以看到上下左右的广告）&lt;/p>
 &lt;p>由于访问 GitHub 时常抽风打不开，补充一个博客的镜像访问（与 GitHub Pages 同步发布）&lt;/p>
 &lt;p>通过 &lt;strong>GitHub Actions&lt;/strong> 的工作流自动发布至 InfinityFree&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>202506补充信息&lt;/strong>&lt;/p>
+&lt;p>我所用的地方移动蜂窝网络已经BAN了 GitHub Pages 和 InfinityFree 的 is-great.net ，访问链接就返回重置&lt;/p>
+&lt;p>究极白忙活&lt;/p>
+&lt;/blockquote>
 &lt;h2 id="同步发布工作原理">同步发布工作原理
 &lt;/h2>&lt;p>1、首先，当前的静态博客是通过 GitHub Actions工作流构建出静态网页文件然后发布至开启GitHub Pages公共仓库&lt;/p>
 &lt;p>2、只需在 GitHub Actions的工作流yml文件中添加上传至 Infinityfree FTP 路径的步骤即可&lt;/p>
