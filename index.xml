@@ -1,17 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kir's Blog</title><link>https://kiraster.github.io/</link><description>Recent content on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Tue, 30 Sep 2025 14:20:29 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>20250930_new_pc_upload_test</title><link>https://kiraster.github.io/posts/c0fda8dc.html/</link><pubDate>Tue, 30 Sep 2025 14:20:29 +0800</pubDate><guid>https://kiraster.github.io/posts/c0fda8dc.html/</guid><description>&lt;h2 id="test">test
-&lt;/h2>&lt;p>123&lt;/p>
-&lt;p>456&lt;/p>
-&lt;p>pic_test&lt;/p>
-&lt;p>
-&lt;div class="post-img-view">
-&lt;a data-fancybox="gallery" href="https://s2.loli.net/2025/09/30/yGJxTRjUczHvroP.jpg">
-&lt;img src="https://s2.loli.net/2025/09/30/yGJxTRjUczHvroP.jpg"
-loading="lazy"
-alt="b88974a59a3f4386917acd31ef42ae6b"
->
-&lt;/a>
-&lt;/div>
-&lt;/p></description></item><item><title>博客静态文件发布至Infinityfree</title><link>https://kiraster.github.io/posts/224a4143.html/</link><pubDate>Mon, 09 Jun 2025 04:14:06 +0800</pubDate><guid>https://kiraster.github.io/posts/224a4143.html/</guid><description>&lt;p>InfinityFree 是一家提供&lt;strong>永久免费虚拟主机服务&lt;/strong>的国外平台（真免费么？进入该网站可以看到上下左右的广告）&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kir's Blog</title><link>https://kiraster.github.io/</link><description>Recent content on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Mon, 09 Jun 2025 04:14:06 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>博客静态文件发布至Infinityfree</title><link>https://kiraster.github.io/posts/224a4143.html/</link><pubDate>Mon, 09 Jun 2025 04:14:06 +0800</pubDate><guid>https://kiraster.github.io/posts/224a4143.html/</guid><description>&lt;p>InfinityFree 是一家提供&lt;strong>永久免费虚拟主机服务&lt;/strong>的国外平台（真免费么？进入该网站可以看到上下左右的广告）&lt;/p>
 &lt;p>&lt;del>由于访问 GitHub 时常抽风打不开，补充一个博客的镜像访问（与 GitHub Pages 同步发布）&lt;/del>&lt;/p>
 &lt;p>&lt;del>通过 &lt;strong>GitHub Actions&lt;/strong> 的工作流自动发布至 InfinityFree&lt;/del>&lt;/p>
 &lt;blockquote>
