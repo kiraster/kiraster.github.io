@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Psycopg2 on Kir's Blog</title><link>https://kiraster.github.io/tags/psycopg2/</link><description>Recent content in Psycopg2 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 22 Jan 2026 23:40:21 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/psycopg2/index.xml" rel="self" type="application/rss+xml"/><item><title>GBase8c数据库登录操作指北</title><link>https://kiraster.github.io/posts/cea66595.html/</link><pubDate>Thu, 22 Jan 2026 23:40:21 +0800</pubDate><guid>https://kiraster.github.io/posts/cea66595.html/</guid><description>&lt;h2 id="环境准备说明">环境准备说明
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>数据库版本：GBase8cV5_S5.0.0B28&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>客户端操作系统：openEuler-22.03-LTS-SP4-x86_64（远程客户端）、Windows 10/11（DBeaver客户端）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>核心工具：gsql客户端、DBeaver Community 25.3.3、Python 3.x（含psycopg2库）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>关键配置：数据库浮动IP（&lt;a class="link" href="172.31.100.230" >172.31.100.230
+&lt;/a>）、端口15400，需提前完成主备集群部署及VIP配置&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="本地登录数据库">本地登录数据库
+&lt;/h2>&lt;h3 id="注意事项">注意事项
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>初始用户远程登录时会提示&lt;code>Forbid remote connection with initial user&lt;/code>，出于安全限制，需手动创建远程连接用户并授予对应权限。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>新创建的&lt;code>testuser&lt;/code>默认仅具备登录和查看数据库权限，需手动配置管理员权限方可执行写入、建表等操作。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>主备集群中，主节点支持&lt;code>gbase&lt;/code>用户本地登录并执行写入操作，备节点仅开放只读权限，无法执行写入指令。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="本地登录命令">本地登录命令
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">gsql -d postgres -p &lt;span class="m">15400&lt;/span> -r
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="用户权限属性说明">用户权限属性说明
+&lt;/h3>&lt;p>创建用户时可配置的权限属性如下（按需选择组合）：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-SQL" data-lang="SQL">&lt;span class="line">&lt;span class="cl">&lt;span class="n">postgres&lt;/span>&lt;span class="o">=#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">create&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">testuser&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">with&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">ADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">IN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">GROUP&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOINHERIT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PASSWORD&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SYSADMIN&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">AUDITADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">INHERIT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOLOGIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PERM&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">SPACE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">SYSID&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CONNECTION&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">LIMIT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">IN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ROLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOMONADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PERSISTENCE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TEMP&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">SPACE&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATEDB&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">LOGIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOOPRADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PGUSER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">UNENCRYPTED&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">CREATEROLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">MONADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOPERSISTENCE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">POLADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">USEFT&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">CREATEUSER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOAUDITADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOPOLADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PROFILE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">USER&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TABLESPACE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NOCREATEDB&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOREPLICATION&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">PROFILE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">USER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">GROUP&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">ENCRYPTED&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOCREATEROLE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOSYSADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">REPLICATION&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">VALID&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">IDENTIFIED&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">BY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">NOCREATEUSER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOUSEFT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">RESOURCE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">POOL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">VCADMIN&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">IN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NODE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">GROUP&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOVCADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">ROLE&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">INDEPENDENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NOINDEPENDENT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">OPRADMIN&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SPILL&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">SPACE&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="创建远程连接测试用户授予系统管理员权限">创建远程连接测试用户（授予系统管理员权限）
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 本地登录数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gsql -d postgres -p &lt;span class="m">15400&lt;/span> -r
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建用户并授予系统管理员权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">create user testuser with sysadmin identified by &lt;span class="s1">&amp;#39;testuser-password&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 退出数据库连接&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">\q&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="远程登录数据库gsql和dbeaver">远程登录数据库（gsql和DBeaver）
+&lt;/h2>&lt;h3 id="服务端配置主节点">服务端配置（主节点）
+&lt;/h3>&lt;p>原理：与授权数据库通过浮动IP访问的逻辑一致，通过配置白名单限定可远程访问数据库的客户端IP，确保访问安全。&lt;/p>
+&lt;ul>
+&lt;li>核心配置文件路径：&lt;code>/opt/database/install/data/dn/pg_hba.conf&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h4 id="配置允许客户端ip连接">配置允许客户端IP连接
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 配置指定IP访问权限，集群所有节点同步生效&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_guc reload -N all -I all -h &lt;span class="s2">&amp;#34;host all all 172.31.100.235/32 sha256&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="撤销客户端ip连接权限扩展操作">撤销客户端IP连接权限（扩展操作）
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 撤销指定IP段的连接权限，集群所有节点同步&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 注：gs_guc set仅将规则认证方式置空并注释该行，需重启数据库才生效&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_guc &lt;span class="nb">set&lt;/span> -N all -I all -h &lt;span class="s2">&amp;#34;host all all 172.31.100.x/32&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重启数据库集群使配置生效&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_om -t restart
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="gsql客户端连接">gsql客户端连接
+&lt;/h3>&lt;h4 id="前置准备可选">前置准备（可选）
+&lt;/h4>&lt;p>可创建普通用户&lt;code>gbase&lt;/code>用于日常操作，本文直接使用root用户演示，操作逻辑一致。&lt;/p>
+&lt;h4 id="安装并配置gsql客户端">安装并配置gsql客户端
+&lt;/h4>&lt;ol>
+&lt;li>创建软件包存放目录：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">mkdir -p /opt/tools
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>从数据库主节点上传文件至客户端：&lt;/li>
+&lt;/ol>
+&lt;p>需上传的文件/目录：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>安装包：GBase8cV5_S5.0.0B28_CentOS_x86_64.tar.bz2&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>依赖库：lib目录&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 数据库主节点执行：切换至软件包目录并上传&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt/software/gbase8c/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo scp -r lib GBase8cV5_S5.0.0B28_CentOS_x86_64.tar.bz2 root@172.31.100.235:/opt/tools/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>客户端解压文件：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt/tools/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -jxvf GBase8cV5_S5.0.0B28_CentOS_x86_64.tar.bz2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>验证文件完整性：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 验证bin目录下存在gsql可执行文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ls bin/gsql
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 验证lib目录下存在.so格式依赖库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ls lib/
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>配置全局环境变量：&lt;/li>
+&lt;/ol>
+&lt;p>编辑&lt;code>/etc/profile&lt;/code>文件，在末尾追加以下内容：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export PATH=/opt/tools/bin:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export LD_LIBRARY_PATH=/opt/tools/lib:&lt;/span>&lt;span class="nv">$LD_LIBRARY_PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使环境变量立即生效：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>验证gsql安装：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">gsql --version
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 预期输出示例：&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># gsql (single_node GBase8cV5 S5.0.0B28 build 51dce1ce) compiled at 2024-06-21 17:06:17 commit 0 last mr 587&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="gsql登录数据库">gsql登录数据库
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">gsql -d postgres -h 172.31.100.230 -p &lt;span class="m">15400&lt;/span> -U testuser -r
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>登录成功后验证用户权限：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>root@gbase8c ~&lt;span class="o">]&lt;/span>&lt;span class="c1"># gsql -d postgres -h 172.31.100.230 -p 15400 -U testuser&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Password &lt;span class="k">for&lt;/span> user testuser:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gsql &lt;span class="o">((&lt;/span>single_node GBase8cV5 S5.0.0B28 build 51dce1ce&lt;span class="o">)&lt;/span> compiled at 2024-06-21 17:06:17 commit &lt;span class="m">0&lt;/span> last mr &lt;span class="m">587&lt;/span> &lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SSL connection &lt;span class="o">(&lt;/span>cipher: ECDHE-RSA-AES128-GCM-SHA256, bits: 128&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Type &lt;span class="s2">&amp;#34;help&amp;#34;&lt;/span> &lt;span class="k">for&lt;/span> help.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">postgres&lt;/span>&lt;span class="o">=&lt;/span>&amp;gt; &lt;span class="se">\d&lt;/span>u testuser
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> List of roles
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Role name &lt;span class="p">|&lt;/span> Attributes &lt;span class="p">|&lt;/span> Member of
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-----------+------------+-----------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> testuser &lt;span class="p">|&lt;/span> Sysadmin &lt;span class="p">|&lt;/span> &lt;span class="o">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">postgres&lt;/span>&lt;span class="o">=&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="dbeaver客户端连接">DBeaver客户端连接
+&lt;/h3>&lt;h4 id="安装dbeaver-community-2533">安装DBeaver Community 25.3.3
+&lt;/h4>&lt;p>支持安装版或压缩包版，本文使用压缩包版&lt;code>dbeaver-ce-25.3.3-win32.win32.x86_64.zip&lt;/code>，无需安装，解压即可使用。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>官方下载地址：&lt;a class="link" href="https://dbeaver.io/download/" target="_blank" rel="noopener"
+>https://dbeaver.io/download/
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>GitHub下载地址：&lt;a class="link" href="https://github.com/dbeaver/dbeaver/releases" target="_blank" rel="noopener"
+>https://github.com/dbeaver/dbeaver/releases
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>国内镜像地址：&lt;a class="link" href="https://mirrors.cernet.edu.cn/app/DBeaverCE" target="_blank" rel="noopener"
+>https://mirrors.cernet.edu.cn/app/DBeaverCE
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>运行方式：下载后解压至本地目录，双击&lt;code>dbeaver.exe&lt;/code>启动客户端。&lt;/p>
+&lt;h4 id="下载gbase8c-jdbc驱动">下载GBase8c JDBC驱动
+&lt;/h4>&lt;p>下载文件：&lt;code>GBase8c_JDBC.zip&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>官方下载地址：&lt;a class="link" href="https://www.gbase.cn/download/gbase-8c?category=DRIVER_PACKAGE" target="_blank" rel="noopener"
+>https://www.gbase.cn/download/gbase-8c?category=DRIVER_PACKAGE
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>驱动下载页面参考截图：&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/VpMckJAIbHWQKg6.png">
+&lt;img src="https://s2.loli.net/2026/01/22/VpMckJAIbHWQKg6.png"
+loading="lazy"
+alt="image-20260122234612846"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;h4 id="配置jdbc驱动至dbeaver">配置JDBC驱动至DBeaver
+&lt;/h4>&lt;ol>
+&lt;li>
+&lt;p>解压&lt;code>GBase8c_JDBC.zip&lt;/code>文件，提取内部的JDBC驱动jar包；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>打开DBeaver客户端，点击菜单栏&lt;code>Database&lt;/code>&amp;ndash;&amp;gt;&lt;code>Driver Manager&lt;/code>；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/jOZp469AE2YxdNz.png">
+&lt;img src="https://s2.loli.net/2026/01/22/jOZp469AE2YxdNz.png"
+loading="lazy"
+alt="image-20260122234651139"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在弹出的对话框中点击&lt;code>New&lt;/code>，输入驱动名称：&lt;code>8c&lt;/code>（自定义，便于识别）；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/JRg7VUGK4rmidv8.png">
+&lt;img src="https://s2.loli.net/2026/01/22/JRg7VUGK4rmidv8.png"
+loading="lazy"
+alt="image-20260122234704583"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/1PuKWkoSQqwgY2H.png">
+&lt;img src="https://s2.loli.net/2026/01/22/1PuKWkoSQqwgY2H.png"
+loading="lazy"
+alt="image-20260122234723950"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>点击&lt;code>Libraries&lt;/code>&amp;ndash;&amp;gt;&lt;code>Add File&lt;/code>，选择解压后的JDBC驱动jar文件；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/U9dbIpugZlvoqEO.png">
+&lt;img src="https://s2.loli.net/2026/01/22/U9dbIpugZlvoqEO.png"
+loading="lazy"
+alt="image-20260122234734876"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>点击&lt;code>Find Class&lt;/code>，系统自动识别驱动类&lt;code>com.gbase8c.Driver&lt;/code>，选中并确认；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/Eac4xz3vRVHnmqk.png">
+&lt;img src="https://s2.loli.net/2026/01/22/Eac4xz3vRVHnmqk.png"
+loading="lazy"
+alt="image-20260122234747747"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>返回&lt;code>Setting&lt;/code>选项卡，输入URL模板：&lt;code>jdbc:gbase8c://{host}:{port}/{database}&lt;/code>，默认端口填写15400，默认数据库填写postgres，点击&lt;code>OK&lt;/code>保存配置。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/gMNO74tyFCRQAkP.png">
+&lt;img src="https://s2.loli.net/2026/01/22/gMNO74tyFCRQAkP.png"
+loading="lazy"
+alt="image-20260122234805944"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="dbeaver登录数据库">DBeaver登录数据库
+&lt;/h4>&lt;ol>
+&lt;li>
+&lt;p>点击菜单栏&lt;code>Database&lt;/code>&amp;ndash;&amp;gt;&lt;code>New Database Connection&lt;/code>；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/AguYaShGy7DOdek.png">
+&lt;img src="https://s2.loli.net/2026/01/22/AguYaShGy7DOdek.png"
+loading="lazy"
+alt="image-20260122234830288"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在弹出的对话框中找到并选择已配置的&lt;code>GBase8c&lt;/code>驱动，点击&lt;code>Next&lt;/code>；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/flDBzojYPR8VuOg.png">
+&lt;img src="https://s2.loli.net/2026/01/22/flDBzojYPR8VuOg.png"
+loading="lazy"
+alt="image-20260122234843268"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>输入连接信息：数据库浮动IP（&lt;a class="link" href="172.31.100.230" >172.31.100.230
+&lt;/a>）、端口15400、用户名&lt;code>testuser&lt;/code>及对应密码；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/cY6trPObaL9mJB3.png">
+&lt;img src="https://s2.loli.net/2026/01/22/cY6trPObaL9mJB3.png"
+loading="lazy"
+alt="image-20260122234905436"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>点击&lt;code>Test Connection&lt;/code>测试连接，测试通过后点击&lt;code>OK&lt;/code>关闭测试窗口；&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.1oli.net/2026/01/22/7aYznVHSjxNKZR5.png">
+&lt;img src="https://s2.1oli.net/2026/01/22/7aYznVHSjxNKZR5.png"
+loading="lazy"
+alt="image-20260122234927137"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>点击&lt;code>Finish&lt;/code>完成连接配置，双击左侧导航栏的数据库连接，即可成功接入GBase8c数据库。&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/GpZdqImgKoMFwiT.png">
+&lt;img src="https://s2.loli.net/2026/01/22/GpZdqImgKoMFwiT.png"
+loading="lazy"
+alt="image-20260122234948395"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="权限问题处理">权限问题处理
+&lt;/h4>&lt;p>若在public模式下创建表时提示权限不足，需在数据库本地使用&lt;code>gbase&lt;/code>用户登录&lt;/p>
+&lt;p>
+&lt;div class="post-img-view">
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/TZpKGxvo2AkFfme.png">
+&lt;img src="https://s2.loli.net/2026/01/22/TZpKGxvo2AkFfme.png"
+loading="lazy"
+alt="image-20260122235021992"
+>
+&lt;/a>
+&lt;/div>
+&lt;/p>
+&lt;p>执行以下命令提升&lt;code>testuser&lt;/code>权限：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-SQL" data-lang="SQL">&lt;span class="line">&lt;span class="cl">&lt;span class="k">alter&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">testuser&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sysadmin&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="python使用psycopg2库连接">Python使用psycopg2库连接
+&lt;/h2>&lt;h3 id="前置准备可选-1">前置准备（可选）
+&lt;/h3>&lt;p>可创建普通用户&lt;code>gbase&lt;/code>用于Python脚本操作，避免使用root用户执行脚本，本文直接使用root用户演示，操作步骤一致。&lt;/p>
+&lt;h3 id="下载并配置驱动">下载并配置驱动
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>驱动下载：选择对应版本（openGauss 6.0.0 (LTS)）、架构（x86_64）、操作系统（openEuler 22.03 LTS），确保驱动与系统及Python版本兼容。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>下载地址：&lt;a class="link" href="https://opengauss.org/zh/download/archive/?version=6.0.0%20%5c%28LTS%5c%29" target="_blank" rel="noopener"
+>https://opengauss.org/zh/download/archive/?version=6.0.0%20(LTS)
+&lt;span style="white-space: nowrap;">&lt;svg width=".7em"
+height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+&lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
+&lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
+fill="currentColor">
+&lt;/svg>&lt;/span>
+&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>上传并解压驱动包：&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建存放目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /opt/psycopg2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 上传文件（示例文件名）：openGauss-Python-6.0.0-openEuler22.03-x86_64.tar.gz&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 解压文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /opt/psycopg2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -zxvf openGauss-Python-6.0.0-openEuler22.03-x86_64.tar.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解压后目录结构示例：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Plain" data-lang="Plain">&lt;span class="line">&lt;span class="cl">[gbase@gbase8c psycopg2]$ ll
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">total 3176
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-x---. 2 gbase gbase4096 Sep 29 2024 lib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-rw-r--r--. 1 gbase gbase 3243058 Jan 21 00:38 openGauss-Python-6.0.0-openEuler22.03-x86_64.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">drwxr-x---. 3 gbase gbase4096 Jan 21 00:39 psycopg2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[gbase@gbase8c psycopg2]$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>配置环境变量：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 永久配置（写入用户环境变量文件）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export LD_LIBRARY_PATH=/opt/psycopg2/lib:\$LD_LIBRARY_PATH&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export PYTHONPATH=/opt/psycopg2:\$PYTHONPATH&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使配置立即生效&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> ~/.bashrc
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
+&lt;li>验证psycopg2导入：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">python3 -c &lt;span class="s2">&amp;#34;import psycopg2; print(&amp;#39;psycopg2导入成功&amp;#39;)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 预期输出：psycopg2导入成功&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
+&lt;li>安装环境变量依赖包：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">pip install python-dotenv
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="编写连接脚本">编写连接脚本
+&lt;/h3>&lt;h4 id="创建env环境变量文件">创建.env环境变量文件
+&lt;/h4>&lt;p>与Python脚本放在同一目录，用于存储数据库连接信息，避免密码硬编码泄露风险：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-TOML" data-lang="TOML">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">GB_HOST&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="mf">172.31&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mf">100.230&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">GB_PORT&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="mi">15400&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">GB_USER&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="nx">testuser&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">GB_PWD&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="nx">testuser-password&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">GB_DB&lt;/span>&lt;span class="p">=&lt;/span>&lt;span class="nx">postgres&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="编写连接测试脚本demo_01py">编写连接测试脚本demo_01.py
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Python" data-lang="Python">&lt;span class="line">&lt;span class="cl">&lt;span class="ch">#!/usr/bin/env python3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -*- coding: utf-8 -*-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">GBase数据库表创建与查询脚本
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">功能：连接GBase数据库，创建test_table并查询表结构和数据
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">psycopg2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">from&lt;/span> &lt;span class="nn">dotenv&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">load_dotenv&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 加载环境变量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">load_dotenv&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 数据库连接配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">DB_CONFIG&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;host&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;GB_HOST&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;172.31.100.230&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;port&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="nb">int&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;GB_PORT&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">15400&lt;/span>&lt;span class="p">)),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;database&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;GB_DB&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;postgres&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;user&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;GB_USER&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;testuser&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;password&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">getenv&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;GB_PWD&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;connect_timeout&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">None&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 1. 连接数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">psycopg2&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">connect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="n">DB_CONFIG&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">autocommit&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kc">True&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;成功连接到GBase数据库：&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">DB_CONFIG&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;host&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">:&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">DB_CONFIG&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;port&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">/&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="n">DB_CONFIG&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;database&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 2. 创建表&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">create_sql&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;&amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> CREATE TABLE IF NOT EXISTS test_table (
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> insert_seq INT PRIMARY KEY,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> insert_time TIMESTAMP DEFAULT now()
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> );
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">conn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cursor&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">cur&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cur&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">create_sql&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;表test_table创建/检查完成&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 3. 查询表数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">&amp;#34;=&amp;#34;&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;test_table 表数据内容：&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;=&amp;#34;&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">data_sql&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;select * from test_table ;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">with&lt;/span> &lt;span class="n">conn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cursor&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">cur&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cur&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data_sql&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="s1">&amp;#39;insert_seq&amp;#39;&lt;/span>&lt;span class="si">:&lt;/span>&lt;span class="s2">&amp;lt;10&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2"> &lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="s1">&amp;#39;insert_time&amp;#39;&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;-&amp;#34;&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="mi">60&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">rows&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cur&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fetchall&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">rows&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sa">f&lt;/span>&lt;span class="s2">&amp;#34;执行出错：&lt;/span>&lt;span class="si">{&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">)[:&lt;/span>&lt;span class="mi">100&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">finally&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 关闭连接&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">conn&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">conn&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">close&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="se">\n&lt;/span>&lt;span class="s2">数据库连接已关闭&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;启动GBase数据库表创建与查询脚本&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">main&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;脚本执行完成&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="执行脚本及输出示例">执行脚本及输出示例
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>gbase@gbase8c psycopg2&lt;span class="o">]&lt;/span>$ python3 demo_01.py
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">启动GBase数据库表创建与查询脚本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">成功连接到GBase数据库：172.31.100.230:15400/postgres
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">表test_table创建/检查完成
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">test_table 表数据内容：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">============================================================&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">insert_seq insert_time
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">------------------------------------------------------------
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">数据库连接已关闭
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">脚本执行完成
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">[&lt;/span>gbase@gbase8c psycopg2&lt;span class="o">]&lt;/span>$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="常见问题排查">常见问题排查
+&lt;/h2>&lt;ol>
+&lt;li>
+&lt;p>gsql登录提示“connection refused”：检查数据库服务是否正常运行（&lt;code>gs_om -t status&lt;/code>），客户端IP是否已添加至服务端白名单。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>DBeaver连接提示“驱动类未找到”：重新配置驱动，确保jar包路径正确，驱动类选择&lt;code>com.gbase8c.Driver&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Python脚本提示“psycopg2导入失败”：检查环境变量配置是否生效，驱动包解压路径是否与配置一致。&lt;/p>
+&lt;/li>
+&lt;/ol></description></item></channel></rss>

@@ -1,0 +1,385 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="部署环境说明 GBase 8c 主备式安装包：GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz VirtualBox版本：7.2.2 r170484 虚拟机操作系统：openEuler-22.03-LTS-SP4-x86_64 SSH client：MobaXterm Home Edition v25.4(Portable edition) 部署模式：一主一备（带CM） 安装准备 软硬件环境 硬件规划（VirtualBox虚拟机） 主节点 备节点 主机名 gbase01 gbase02 CPU 2core 2core 内存 2G 2G 磁盘 20G 20G 操作系统 openEuler-22.03-LTS-SP4-x86_64 openEuler-22.03-LTS-SP4-x86_64 IP地址 172.31.100.231/24 172.31.100.232/24 网络连接 桥接网卡 桥接网卡 有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置） 软件依赖要求 所需软件 建议版本 libaio-devel 0.3.109-13 flex 2.5.31以上 bison 2.7-4 ncurses-devel 5.9-13.20130511 glibc-devel 2.17-111 patch 2.7.1-10 redhat-lsb-core 4.1（openEuler用openeuler-lsb替代） readline-devel 7.0-13 libnsl 2.28-36（openEuler+x86必装） expect 无（非单节点部署必装） patchelf 无 验证系统中依赖包是否符合要求 rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb readline-devel libnsl expect patchelf [root@gbase8c ~]# rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb readline-devel libnsl expect patchelf package libaio-devel is not installed flex-2.6.4-5.oe2203sp4.x86_64 bison-3.8.2-2.oe2203sp4.x86_64 package ncurses-devel is not installed glibc-devel-2.34-152.oe2203sp4.x86_64 patch-2.7.6-14.oe2203sp4.x86_64 package openeuler-lsb is not installed package readline-devel is not installed package libnsl is not installed package expect is not installed package patchelf is not installed [root@gbase8c ~]# 说明：\n"><meta name=msvalidate.01 content="B0C0B3C5A32207C648603D179C10C991"><title>GBase 8c V5.0.0 主备式部署指北</title>
+<link rel=canonical href=https://kiraster.github.io/posts/f5ef6e99.html/><link rel=stylesheet href=/scss/style.min.222c8fe3b882725ffa282428b50008ac8c40f2eadd48d47509cc0fd4430512c4.css><meta property='og:title' content="GBase 8c V5.0.0 主备式部署指北"><meta property='og:description' content="部署环境说明 GBase 8c 主备式安装包：GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz VirtualBox版本：7.2.2 r170484 虚拟机操作系统：openEuler-22.03-LTS-SP4-x86_64 SSH client：MobaXterm Home Edition v25.4(Portable edition) 部署模式：一主一备（带CM） 安装准备 软硬件环境 硬件规划（VirtualBox虚拟机） 主节点 备节点 主机名 gbase01 gbase02 CPU 2core 2core 内存 2G 2G 磁盘 20G 20G 操作系统 openEuler-22.03-LTS-SP4-x86_64 openEuler-22.03-LTS-SP4-x86_64 IP地址 172.31.100.231/24 172.31.100.232/24 网络连接 桥接网卡 桥接网卡 有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置） 软件依赖要求 所需软件 建议版本 libaio-devel 0.3.109-13 flex 2.5.31以上 bison 2.7-4 ncurses-devel 5.9-13.20130511 glibc-devel 2.17-111 patch 2.7.1-10 redhat-lsb-core 4.1（openEuler用openeuler-lsb替代） readline-devel 7.0-13 libnsl 2.28-36（openEuler+x86必装） expect 无（非单节点部署必装） patchelf 无 验证系统中依赖包是否符合要求 rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb readline-devel libnsl expect patchelf [root@gbase8c ~]# rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb readline-devel libnsl expect patchelf package libaio-devel is not installed flex-2.6.4-5.oe2203sp4.x86_64 bison-3.8.2-2.oe2203sp4.x86_64 package ncurses-devel is not installed glibc-devel-2.34-152.oe2203sp4.x86_64 patch-2.7.6-14.oe2203sp4.x86_64 package openeuler-lsb is not installed package readline-devel is not installed package libnsl is not installed package expect is not installed package patchelf is not installed [root@gbase8c ~]# 说明：\n"><meta property='og:url' content='https://kiraster.github.io/posts/f5ef6e99.html/'><meta property='og:site_name' content="Kir's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='GBase8c'><meta property='article:tag' content='HA'><meta property='article:tag' content='安装部署'><meta property='article:tag' content='主备式'><meta property='article:tag' content='openEuler'><meta property='article:published_time' content='2026-01-23T00:02:44+08:00'><meta property='article:modified_time' content='2026-01-23T00:02:44+08:00'><meta name=twitter:title content="GBase 8c V5.0.0 主备式部署指北"><meta name=twitter:description content="部署环境说明 GBase 8c 主备式安装包：GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz VirtualBox版本：7.2.2 r170484 虚拟机操作系统：openEuler-22.03-LTS-SP4-x86_64 SSH client：MobaXterm Home Edition v25.4(Portable edition) 部署模式：一主一备（带CM） 安装准备 软硬件环境 硬件规划（VirtualBox虚拟机） 主节点 备节点 主机名 gbase01 gbase02 CPU 2core 2core 内存 2G 2G 磁盘 20G 20G 操作系统 openEuler-22.03-LTS-SP4-x86_64 openEuler-22.03-LTS-SP4-x86_64 IP地址 172.31.100.231/24 172.31.100.232/24 网络连接 桥接网卡 桥接网卡 有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置） 软件依赖要求 所需软件 建议版本 libaio-devel 0.3.109-13 flex 2.5.31以上 bison 2.7-4 ncurses-devel 5.9-13.20130511 glibc-devel 2.17-111 patch 2.7.1-10 redhat-lsb-core 4.1（openEuler用openeuler-lsb替代） readline-devel 7.0-13 libnsl 2.28-36（openEuler+x86必装） expect 无（非单节点部署必装） patchelf 无 验证系统中依赖包是否符合要求 rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb readline-devel libnsl expect patchelf [root@gbase8c ~]# rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb readline-devel libnsl expect patchelf package libaio-devel is not installed flex-2.6.4-5.oe2203sp4.x86_64 bison-3.8.2-2.oe2203sp4.x86_64 package ncurses-devel is not installed glibc-devel-2.34-152.oe2203sp4.x86_64 patch-2.7.6-14.oe2203sp4.x86_64 package openeuler-lsb is not installed package readline-devel is not installed package libnsl is not installed package expect is not installed package patchelf is not installed [root@gbase8c ~]# 说明：\n"><link rel="shortcut icon" href=/favicon.ico><script src=https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css><script src=https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu16060348347131247650.jpg width=300 height=283 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Kir's Blog</a></h1><h2 class=site-description>@kiraster</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/gallery/><svg viewBox="0 0 24 24" fill="none" width="24" height="24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentcolor"><path d="M15 8h.01"/><path d="M12.5 21H6a3 3 0 01-3-3V6a3 3 0 013-3h12a3 3 0 013 3v6.5"/><path d="M3 16l5-5c.928-.893 2.072-.893 3 0l4 4"/><path d="M14 14l1-1c.67-.644 1.45-.824 2.182-.54"/><path d="M16 19h6"/><path d="M19 16v6"/></svg>
+<span>Gallery</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>About</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#部署环境说明>部署环境说明</a></li><li><a href=#安装准备>安装准备</a><ol><li><a href=#软硬件环境>软硬件环境</a><ol><li><a href=#硬件规划virtualbox虚拟机>硬件规划（VirtualBox虚拟机）</a></li><li><a href=#软件依赖要求>软件依赖要求</a></li><li><a href=#验证系统中依赖包是否符合要求>验证系统中依赖包是否符合要求</a></li><li><a href=#安装缺失的依赖包>安装缺失的依赖包</a></li></ol></li><li><a href=#部署环境配置>部署环境配置</a><ol><li><a href=#关闭防火墙>关闭防火墙</a></li><li><a href=#关闭selinux>关闭SELINUX</a></li><li><a href=#设置时间同步>设置时间同步</a></li><li><a href=#建立节点互信>建立节点互信</a></li><li><a href=#关闭thp服务>关闭THP服务</a></li><li><a href=#关闭removeipc>关闭RemoveIPC</a></li><li><a href=#kernel参数设置>kernel参数设置</a></li><li><a href=#添加用户至sudoer>添加用户至sudoer</a></li><li><a href=#创建gbase用户组和用户>创建gbase用户组和用户</a></li></ol></li></ol></li><li><a href=#安装部署>安装部署</a><ol><li><a href=#上传并解压安装包>上传并解压安装包</a></li><li><a href=#编辑xml配置文件一主一备带cm>编辑XML配置文件（一主一备带CM）</a></li><li><a href=#执行gs_preinstall前置环境检查>执行gs_preinstall前置环境检查</a></li><li><a href=#执行gs_install安装>执行gs_install安装</a></li><li><a href=#验证安装结果>验证安装结果</a></li><li><a href=#配置-vip>配置 VIP</a><ol><li><a href=#添加vip资源和绑定到节点>添加VIP资源和绑定到节点</a></li><li><a href=#cm参数修改>CM参数修改</a></li><li><a href=#添加集群cm_vip地址数据库监听地址>添加集群CM_VIP地址数据库监听地址</a></li><li><a href=#授权数据库允许通过-vip-地址访问>授权数据库允许通过 VIP 地址访问</a></li></ol></li><li><a href=#设置备机可读>设置备机可读</a></li><li><a href=#数据库登陆>数据库登陆</a></li><li><a href=#数据库主备倒换>数据库主备倒换</a></li></ol></li><li><a href=#卸载>卸载</a><ol><li><a href=#主节点执行集群卸载gbase用户执行>主节点执行集群卸载（gbase用户执行）</a></li><li><a href=#主节点执行集群清理环境root用户>主节点执行集群清理环境（root用户）</a></li><li><a href=#删除root互信文件root用户>删除root互信文件（root用户）</a></li><li><a href=#关于其它设置项>关于其它设置项</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/db/>DB</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/posts/f5ef6e99.html/>GBase 8c V5.0.0 主备式部署指北</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>Jan 23, 2026</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>7 minute read</time></div></footer></div></header><section class=article-content><h2 id=部署环境说明>部署环境说明</h2><ul><li>GBase 8c 主备式安装包：<a class=link href=https://www.gbase.cn/community/post/3999 target=_blank rel=noopener>GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span></a></li><li>VirtualBox版本：7.2.2 r170484</li><li>虚拟机操作系统：openEuler-22.03-LTS-SP4-x86_64</li><li>SSH client：MobaXterm Home Edition v25.4(Portable edition)</li><li>部署模式：一主一备（带CM）</li></ul><h2 id=安装准备>安装准备</h2><h3 id=软硬件环境>软硬件环境</h3><h4 id=硬件规划virtualbox虚拟机>硬件规划（VirtualBox虚拟机）</h4><div class=table-wrapper><table><thead><tr><th></th><th>主节点</th><th>备节点</th></tr></thead><tbody><tr><td>主机名</td><td>gbase01</td><td>gbase02</td></tr><tr><td>CPU</td><td>2core</td><td>2core</td></tr><tr><td>内存</td><td>2G</td><td>2G</td></tr><tr><td>磁盘</td><td>20G</td><td>20G</td></tr><tr><td>操作系统</td><td>openEuler-22.03-LTS-SP4-x86_64</td><td>openEuler-22.03-LTS-SP4-x86_64</td></tr><tr><td>IP地址</td><td>172.31.100.231/24</td><td>172.31.100.232/24</td></tr><tr><td>网络连接</td><td>桥接网卡</td><td>桥接网卡</td></tr><tr><td>有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置）</td><td></td><td></td></tr></tbody></table></div><h4 id=软件依赖要求>软件依赖要求</h4><div class=table-wrapper><table><thead><tr><th>所需软件</th><th>建议版本</th></tr></thead><tbody><tr><td>libaio-devel</td><td>0.3.109-13</td></tr><tr><td>flex</td><td>2.5.31以上</td></tr><tr><td>bison</td><td>2.7-4</td></tr><tr><td>ncurses-devel</td><td>5.9-13.20130511</td></tr><tr><td>glibc-devel</td><td>2.17-111</td></tr><tr><td>patch</td><td>2.7.1-10</td></tr><tr><td>redhat-lsb-core</td><td>4.1（openEuler用openeuler-lsb替代）</td></tr><tr><td>readline-devel</td><td>7.0-13</td></tr><tr><td>libnsl</td><td>2.28-36（openEuler+x86必装）</td></tr><tr><td>expect</td><td>无（非单节点部署必装）</td></tr><tr><td>patchelf</td><td>无</td></tr></tbody></table></div><h4 id=验证系统中依赖包是否符合要求>验证系统中依赖包是否符合要求</h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb  readline-devel libnsl expect patchelf
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@gbase8c ~<span class=o>]</span><span class=c1># rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb  readline-devel libnsl expect patchelf</span>
+</span></span><span class=line><span class=cl>package libaio-devel is not installed
+</span></span><span class=line><span class=cl>flex-2.6.4-5.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>bison-3.8.2-2.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>package ncurses-devel is not installed
+</span></span><span class=line><span class=cl>glibc-devel-2.34-152.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>patch-2.7.6-14.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>package openeuler-lsb is not installed
+</span></span><span class=line><span class=cl>package readline-devel is not installed
+</span></span><span class=line><span class=cl>package libnsl is not installed
+</span></span><span class=line><span class=cl>package expect is not installed
+</span></span><span class=line><span class=cl>package patchelf is not installed
+</span></span><span class=line><span class=cl><span class=o>[</span>root@gbase8c ~<span class=o>]</span><span class=c1>#</span>
+</span></span></code></pre></div><p>说明：</p><ul><li>上面的软件依赖要求中大多为 RedHat/CentOS 7.x 等系统上的建议版本，openEuler官方软件仓库中并没有这些版本</li><li>openEuler-22.03-LTS-SP4系统中已经包含flex，bison，glibc-devel，patch四个依赖</li><li>redhat-lsb-core，看名称就明，openEuler用openeuler-lsb替代</li><li>不走通过源码编译安装指定版本这条道（风险较高，可能破坏系统兼容性）</li><li>既然官网中标识支持openEuler-22.03-LTS系统，那就用官方软件仓库中版本，即使高于推荐版本</li></ul><h4 id=安装缺失的依赖包>安装缺失的依赖包</h4><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>dnf install -y libaio-devel ncurses-devel openeuler-lsb readline-devel libnsl expect patchelf
+</span></span></code></pre></div><p>依赖包安装完成后查看</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=o>[</span>root@gbase01 ~<span class=o>]</span><span class=c1># rpm -q libaio-devel flex bison ncurses-devel glibc-devel patch openeuler-lsb  readline-devel libnsl expect patchelf</span>
+</span></span><span class=line><span class=cl>libaio-devel-0.3.113-9.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>flex-2.6.4-5.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>bison-3.8.2-2.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>ncurses-devel-6.3-16.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>glibc-devel-2.34-170.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>patch-2.7.6-14.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>openeuler-lsb-5.0-1.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>readline-devel-8.1-3.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>libnsl-2.34-170.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>expect-5.45.4-8.oe2203sp4.x86_64
+</span></span><span class=line><span class=cl>patchelf-0.16.0-1.oe2203sp4.x86_64
+</span></span></code></pre></div><h3 id=部署环境配置>部署环境配置</h3><h4 id=关闭防火墙>关闭防火墙</h4><p><strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 检查firewalld状态</span>
+</span></span><span class=line><span class=cl>systemctl is-active firewalld <span class=o>&amp;&amp;</span> systemctl is-enabled firewalld
+</span></span><span class=line><span class=cl><span class=c1># 停止防火墙服务 和 禁用防火墙开机自启</span>
+</span></span><span class=line><span class=cl>systemctl stop firewalld.service <span class=o>&amp;&amp;</span> systemctl disable firewalld.service 
+</span></span></code></pre></div><h4 id=关闭selinux>关闭SELINUX</h4><p><strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 检查SELinux当前状态和配置 </span>
+</span></span><span class=line><span class=cl>sestatus 
+</span></span><span class=line><span class=cl>grep -E <span class=s2>&#34;^SELINUX=&#34;</span> /etc/selinux/config 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 直接修改配置文件，设置为永久关闭</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/^SELINUX=enforcing/SELINUX=disabled/&#39;</span> /etc/selinux/config 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 重启系统使配置生效（</span>
+</span></span><span class=line><span class=cl>reboot now 
+</span></span><span class=line><span class=cl><span class=c1># 验证永久关闭状态</span>
+</span></span><span class=line><span class=cl>sestatus
+</span></span></code></pre></div><h4 id=设置时间同步>设置时间同步</h4><ul><li>实验环境可手动校准主备节点时间（确保误差≤3 秒），生产环境推荐配置ntp服务自动同步</li><li>主备节点时间误差需控制在3秒内，否则集群部署失败</li></ul><h4 id=建立节点互信>建立节点互信</h4><p>部署过程中通过 gs_preinstall 脚本初始化安装环境时，输入yes会自动创建root互信
+<strong>以下操作在主备节点上都需要操作&ndash;>可跳过此步骤</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 主备节点都执行：生成RSA密钥对（无密码，直接回车） </span>
+</span></span><span class=line><span class=cl>ssh-keygen -t rsa -P <span class=s2>&#34;&#34;</span> -f ~/.ssh/id_rsa 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 主节点执行：拷贝公钥到备节点（需要输入root密码）</span>
+</span></span><span class=line><span class=cl>ssh-copy-id -o <span class=nv>StrictHostKeyChecking</span><span class=o>=</span>no 172.31.100.232 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 备节点执行：拷贝公钥到主节点（需要输入root密码）</span>
+</span></span><span class=line><span class=cl>ssh-copy-id -o <span class=nv>StrictHostKeyChecking</span><span class=o>=</span>no 172.31.100.231 
+</span></span></code></pre></div><p><strong>验证互信&ndash;>可跳过此步骤</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 备节点测试登录主节点</span>
+</span></span><span class=line><span class=cl>ssh 172.31.100.231
+</span></span></code></pre></div><h4 id=关闭thp服务>关闭THP服务</h4><p><strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 临时关闭</span>
+</span></span><span class=line><span class=cl><span class=c1># echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span>
+</span></span><span class=line><span class=cl><span class=c1># echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 验证（显示[never]）</span>
+</span></span><span class=line><span class=cl>cat /sys/kernel/mm/transparent_hugepage/enabled
+</span></span><span class=line><span class=cl>cat /sys/kernel/mm/transparent_hugepage/defrag
+</span></span></code></pre></div><p>设置重启后自动关闭</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 开机自启脚本rc.local添加可执行权限（默认无x权限）</span>
+</span></span><span class=line><span class=cl>chmod +x /etc/rc.d/rc.local
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置为开机自启（默认是关闭 和 未开机自启的）</span>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> rc-local.service
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 追加命令到rc.local文件末尾，EOF是批量追加标识，不修改原有内容</span>
+</span></span><span class=line><span class=cl>cat &gt;&gt; /etc/rc.d/rc.local <span class=s>&lt;&lt;EOF
+</span></span></span><span class=line><span class=cl><span class=s># 开机自动执行永久关闭swap
+</span></span></span><span class=line><span class=cl><span class=s># 很需要大内存但是……
+</span></span></span><span class=line><span class=cl><span class=s># swapoff -a
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s># 判断THP的enabled文件是否存在，存在则写入never关闭
+</span></span></span><span class=line><span class=cl><span class=s>if test -f /sys/kernel/mm/transparent_hugepage/enabled;
+</span></span></span><span class=line><span class=cl><span class=s>then
+</span></span></span><span class=line><span class=cl><span class=s>   echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+</span></span></span><span class=line><span class=cl><span class=s>fi
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s># 判断THP的defrag文件是否存在，存在则写入never关闭
+</span></span></span><span class=line><span class=cl><span class=s>if test -f /sys/kernel/mm/transparent_hugepage/defrag;
+</span></span></span><span class=line><span class=cl><span class=s>then
+</span></span></span><span class=line><span class=cl><span class=s>  echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+</span></span></span><span class=line><span class=cl><span class=s>fi
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl><span class=c1># 手动执行一次 rc.local，让配置「立即生效」</span>
+</span></span><span class=line><span class=cl>sh /etc/rc.d/rc.local
+</span></span></code></pre></div><h4 id=关闭removeipc>关闭RemoveIPC</h4><p>openEuler-22.03-LTS-SP4-x86_64 默认关闭了RemoveIPC
+可通过命令验证</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[root@gbase01 ~]# cat /etc/systemd/logind.conf | grep -i RemoveIPC
+</span></span><span class=line><span class=cl>#RemoveIPC=no
+</span></span><span class=line><span class=cl>[root@gbase01 ~]# systemctl show systemd-logind | grep RemoveIPC
+</span></span><span class=line><span class=cl>RemoveIPC=no
+</span></span><span class=line><span class=cl>[root@gbase01 ~]#
+</span></span></code></pre></div><p>其它系统需通过命令验证查看是否关闭，然后决定使用以下命令关闭</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=c1># 修改/etc/systemd/logind.conf文件中的“RemoveIPC”值为“no”，执行命令：</span>
+</span></span><span class=line><span class=cl><span class=n>vim</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>systemd</span><span class=o>/</span><span class=n>logind</span><span class=o>.</span><span class=n>conf</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改/usr/lib/systemd/system/systemd-logind.service文件中的“RemoveIPC”值为“no”，执行命令：</span>
+</span></span><span class=line><span class=cl><span class=n>vim</span> <span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>lib</span><span class=o>/</span><span class=n>systemd</span><span class=o>/</span><span class=n>system</span><span class=o>/</span><span class=n>systemd</span><span class=o>-</span><span class=n>logind</span><span class=o>.</span><span class=n>service</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 重启服务：</span>
+</span></span><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>daemon</span><span class=o>-</span><span class=n>reloadsystemctl</span> <span class=n>restart</span> <span class=n>systemd</span><span class=o>-</span><span class=n>logind</span><span class=o>.</span><span class=n>service</span>
+</span></span></code></pre></div><h4 id=kernel参数设置>kernel参数设置</h4><p><strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 检查当前内核参数 </span>
+</span></span><span class=line><span class=cl>sysctl kernel.sem 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 检查sysctl.conf中是否已有配置 </span>
+</span></span><span class=line><span class=cl>grep <span class=s2>&#34;kernel.sem = 40960 2048000 40960 20480&#34;</span> /etc/sysctl.conf 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 追加参数到配置文件末尾 </span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;kernel.sem = 40960 2048000 40960 20480&#34;</span> &gt;&gt; /etc/sysctl.conf 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 使配置立即生效 </span>
+</span></span><span class=line><span class=cl>sysctl -p 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 验证参数是否生效 </span>
+</span></span><span class=line><span class=cl>sysctl kernel.sem
+</span></span></code></pre></div><h4 id=添加用户至sudoer>添加用户至sudoer</h4><p><strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 检查sudoers中是否已有配置 </span>
+</span></span><span class=line><span class=cl>grep <span class=s2>&#34;gbase ALL=(ALL) NOPASSWD:ALL&#34;</span> /etc/sudoers 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 在 root ALL=(ALL) ALL 下一行插入配置 </span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;/^root\s*ALL=(ALL)\s*ALL/a gbase ALL=(ALL) NOPASSWD:ALL&#39;</span> /etc/sudoers 
+</span></span></code></pre></div><h4 id=创建gbase用户组和用户>创建gbase用户组和用户</h4><ul><li>gs_preinstall 脚本初始化安装环境时，如果该用户不存在，则会自动创建gbase用户和用户组，也可提前创建好用户</li><li><code>gbase</code>用户的免密、创建用户、建目录、传包解压、赋权限 全由<code>gs_preinstall</code>自动完成
+<strong>以下操作只在主节点上操作，备节点无需要操作&ndash;>可跳过此步骤</strong></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 需要手动输入gbase密码</span>
+</span></span><span class=line><span class=cl>groupadd gbase
+</span></span><span class=line><span class=cl>useradd -m -d /home/gbase gbase -g gbase
+</span></span><span class=line><span class=cl>passwd gbase
+</span></span></code></pre></div><h2 id=安装部署>安装部署</h2><h3 id=上传并解压安装包>上传并解压安装包</h3><p>上传安装包到/opt/software/gbase8c目录
+<strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>mkdir -p /opt/software/gbase8c
+</span></span><span class=line><span class=cl>chmod <span class=m>755</span> -R /opt/software
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /opt/software/gbase8c
+</span></span></code></pre></div><p><strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 执行解压</span>
+</span></span><span class=line><span class=cl>tar -xvf GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz
+</span></span><span class=line><span class=cl><span class=c1># 解压om安装包</span>
+</span></span><span class=line><span class=cl>tar -xvf GBase8cV5_S5.0.0B28_CentOS_x86_64_om.tar.gz
+</span></span></code></pre></div><h3 id=编辑xml配置文件一主一备带cm>编辑XML配置文件（一主一备带CM）</h3><p>模板位置：cd /opt/software/gbase8c/script/gspylib/etc/conf/
+模板文件：cluster_config_with_cm_template.xml
+直接创建文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># xml创建位置 cd /opt/software/gbase8c</span>
+</span></span><span class=line><span class=cl>nano cluster_config_with_cm.xml 
+</span></span></code></pre></div><p>然后粘贴以下，注意替换实际IP和主机名</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;ROOT&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;CLUSTER&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;clusterName&#34;</span> <span class=na>value=</span><span class=s>&#34;Cluster_GBase&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;nodeNames&#34;</span> <span class=na>value=</span><span class=s>&#34;gbase01,gbase02&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;gaussdbAppPath&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/install/app&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;gaussdbLogPath&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/var/log/omm&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;tmpMppdbPath&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/tmp&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;gaussdbToolPath&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/install/om&#34;</span> <span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;corePath&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/corefile&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;backIp1s&#34;</span> <span class=na>value=</span><span class=s>&#34;172.31.100.231,172.31.100.232&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/CLUSTER&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;DEVICELIST&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;DEVICE</span> <span class=na>sn=</span><span class=s>&#34;gbase01&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;name&#34;</span> <span class=na>value=</span><span class=s>&#34;gbase01&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;azName&#34;</span> <span class=na>value=</span><span class=s>&#34;AZ1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;azPriority&#34;</span> <span class=na>value=</span><span class=s>&#34;1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;backIp1&#34;</span> <span class=na>value=</span><span class=s>&#34;172.31.100.231&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;sshIp1&#34;</span> <span class=na>value=</span><span class=s>&#34;172.31.100.231&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=c>&lt;!-- dn --&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;dataNum&#34;</span> <span class=na>value=</span><span class=s>&#34;1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;dataPortBase&#34;</span> <span class=na>value=</span><span class=s>&#34;15400&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;dataNode1&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/install/data/dn,gbase02,/opt/database/install/data/dn&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;dataNode1_syncNum&#34;</span> <span class=na>value=</span><span class=s>&#34;1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=c>&lt;!-- cm --&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmsNum&#34;</span> <span class=na>value=</span><span class=s>&#34;1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmDir&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/gbase/install/cm&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmServerPortBase&#34;</span> <span class=na>value=</span><span class=s>&#34;15300&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmServerListenIp1&#34;</span> <span class=na>value=</span><span class=s>&#34;172.31.100.231,172.31.100.232&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmServerHaIp1&#34;</span> <span class=na>value=</span><span class=s>&#34;172.31.100.231,172.31.100.232&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmServerlevel&#34;</span> <span class=na>value=</span><span class=s>&#34;1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmServerRelation&#34;</span> <span class=na>value=</span><span class=s>&#34;gbase01,gbase02&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;/DEVICE&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;DEVICE</span> <span class=na>sn=</span><span class=s>&#34;gbase02&#34;</span><span class=nt>&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;name&#34;</span> <span class=na>value=</span><span class=s>&#34;gbase02&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;azName&#34;</span> <span class=na>value=</span><span class=s>&#34;AZ1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;azPriority&#34;</span> <span class=na>value=</span><span class=s>&#34;1&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;backIp1&#34;</span> <span class=na>value=</span><span class=s>&#34;172.31.100.232&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;sshIp1&#34;</span> <span class=na>value=</span><span class=s>&#34;172.31.100.232&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=c>&lt;!-- cm --&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmDir&#34;</span> <span class=na>value=</span><span class=s>&#34;/opt/database/gbase/install/cm&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;PARAM</span> <span class=na>name=</span><span class=s>&#34;cmServerPortStandby&#34;</span> <span class=na>value=</span><span class=s>&#34;15300&#34;</span><span class=nt>/&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&lt;/DEVICE&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;/DEVICELIST&gt;</span>
+</span></span><span class=line><span class=cl><span class=nt>&lt;/ROOT&gt;</span>
+</span></span></code></pre></div><h3 id=执行gs_preinstall前置环境检查>执行gs_preinstall前置环境检查</h3><p><strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 切换root用户执行，之前的步骤中如果切换到gbase用户，直接 exit 退到root</span>
+</span></span><span class=line><span class=cl><span class=c1># 进入script目录</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /opt/software/gbase8c/script/
+</span></span><span class=line><span class=cl><span class=c1># 执行前置脚本</span>
+</span></span><span class=line><span class=cl>./gs_preinstall -U gbase -G gbase -X /opt/software/gbase8c/cluster_config_with_cm.xml
+</span></span></code></pre></div><p>中途会有要求输入yes和密码的步骤</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>……
+</span></span><span class=line><span class=cl>Are you sure you want to create trust <span class=k>for</span> root <span class=o>(</span>yes/no<span class=o>)</span>?yes
+</span></span><span class=line><span class=cl>Please enter password <span class=k>for</span> root
+</span></span><span class=line><span class=cl>Password:
+</span></span><span class=line><span class=cl>……
+</span></span><span class=line><span class=cl>Are you sure you want to create the user<span class=o>[</span>gbase<span class=o>]</span> and create trust <span class=k>for</span> it <span class=o>(</span>yes/no<span class=o>)</span>? yes
+</span></span><span class=line><span class=cl>Please enter password <span class=k>for</span> cluster user.
+</span></span><span class=line><span class=cl>Password:
+</span></span><span class=line><span class=cl>……
+</span></span><span class=line><span class=cl>Please enter password <span class=k>for</span> current user<span class=o>[</span>gbase<span class=o>]</span>.
+</span></span><span class=line><span class=cl>Password:
+</span></span><span class=line><span class=cl>……
+</span></span><span class=line><span class=cl>Preinstallation succeeded.
+</span></span></code></pre></div><h3 id=执行gs_install安装>执行gs_install安装</h3><p><strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 切换gbase用户执行</span>
+</span></span><span class=line><span class=cl>su - gbase
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 执行安装脚本</span>
+</span></span><span class=line><span class=cl>gs_install -X /opt/software/gbase8c/cluster_config_with_cm.xml
+</span></span></code></pre></div><p>中途会有要求输入数据库密码的步骤</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>……
+</span></span><span class=line><span class=cl>Please enter password <span class=k>for</span> database:
+</span></span><span class=line><span class=cl>Please repeat <span class=k>for</span> database:
+</span></span><span class=line><span class=cl>……
+</span></span><span class=line><span class=cl>Configuration is completed.
+</span></span><span class=line><span class=cl>Starting cluster.
+</span></span><span class=line><span class=cl><span class=o>======================================================================</span>
+</span></span><span class=line><span class=cl>Successfully started primary instance. Wait <span class=k>for</span> standby instance.
+</span></span><span class=line><span class=cl><span class=o>======================================================================</span>
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>Successfully started cluster.
+</span></span><span class=line><span class=cl><span class=o>======================================================================</span>
+</span></span><span class=line><span class=cl>cluster_state      : Normal
+</span></span><span class=line><span class=cl>redistributing     : No
+</span></span><span class=line><span class=cl>node_count         : <span class=m>2</span>
+</span></span><span class=line><span class=cl>Datanode State
+</span></span><span class=line><span class=cl>    primary           : <span class=m>1</span>
+</span></span><span class=line><span class=cl>    standby           : <span class=m>1</span>
+</span></span><span class=line><span class=cl>    secondary         : <span class=m>0</span>
+</span></span><span class=line><span class=cl>    cascade_standby   : <span class=m>0</span>
+</span></span><span class=line><span class=cl>    building          : <span class=m>0</span>
+</span></span><span class=line><span class=cl>    abnormal          : <span class=m>0</span>
+</span></span><span class=line><span class=cl>    down              : <span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Successfully installed application.
+</span></span><span class=line><span class=cl>end deploy..
+</span></span></code></pre></div><h3 id=验证安装结果>验证安装结果</h3><p>切换gbase用户执行检查集群状态</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>gs_om -t status --detail
+</span></span></code></pre></div><p>返回 cluster_state 参数状态为“Normal”，则表示数据库可正常使用</p><h3 id=配置-vip>配置 VIP</h3><h4 id=添加vip资源和绑定到节点>添加VIP资源和绑定到节点</h4><p><strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 切换gbase用户执行</span>
+</span></span><span class=line><span class=cl><span class=c1># 添加名称为CM_VIP的资源，float_ip设置为172.31.100.230</span>
+</span></span><span class=line><span class=cl>cm_ctl res --add --res_name<span class=o>=</span><span class=s2>&#34;CM_VIP&#34;</span> --res_attr<span class=o>=</span><span class=s2>&#34;resources_type=VIP,float_ip=172.31.100.230&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 切换gbase用户执行</span>
+</span></span><span class=line><span class=cl><span class=c1># 绑定主备节点实例</span>
+</span></span><span class=line><span class=cl>cm_ctl res --edit --res_name<span class=o>=</span><span class=s2>&#34;CM_VIP&#34;</span> --add_inst<span class=o>=</span><span class=s2>&#34;res_instance_id=6001,node_id=1&#34;</span> --inst_attr<span class=o>=</span><span class=s2>&#34;base_ip=172.31.100.231&#34;</span>
+</span></span><span class=line><span class=cl>cm_ctl res --edit --res_name<span class=o>=</span><span class=s2>&#34;CM_VIP&#34;</span> --add_inst<span class=o>=</span><span class=s2>&#34;res_instance_id=6002,node_id=2&#34;</span> --inst_attr<span class=o>=</span><span class=s2>&#34;base_ip=172.31.100.232&#34;</span>
+</span></span></code></pre></div><p>查看已配置的资源</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>cm_ctl res --list --res_name<span class=o>=</span><span class=s2>&#34;CM_VIP&#34;</span>
+</span></span><span class=line><span class=cl>cm_ctl list --param --server <span class=p>|</span> grep ip
+</span></span></code></pre></div><h4 id=cm参数修改>CM参数修改</h4><ul><li><p>cms_enable_failover_on2nodes = 1 开启双节点故障自动切换功能</p></li><li><p>cms_network_isolation_timeout = 10 配置网络隔离超时10秒</p></li><li><p>cms_enable_db_crash_recovery = 1 开启数据库崩溃自动恢复</p></li><li><p>third_party_gateway_ip = 172.31.100.254 配置网关检测IP</p><p><strong>以下操作只在主节点上操作，备节点无需要操作</strong></p></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 仅主节点执行，集群信息自动同步</span>
+</span></span><span class=line><span class=cl>cm_ctl <span class=nb>set</span> --param --server -k <span class=s2>&#34;cms_enable_failover_on2nodes=1&#34;</span>
+</span></span><span class=line><span class=cl>cm_ctl <span class=nb>set</span> --param --server -k <span class=s2>&#34;cms_network_isolation_timeout=10&#34;</span>
+</span></span><span class=line><span class=cl>cm_ctl <span class=nb>set</span> --param --server -k <span class=s2>&#34;cms_enable_db_crash_recovery=1&#34;</span>
+</span></span><span class=line><span class=cl>cm_ctl <span class=nb>set</span> --param --server -k <span class=s2>&#34;third_party_gateway_ip=172.31.100.254&#34;</span>
+</span></span></code></pre></div><p>重启数据库</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>gs_om -t restart
+</span></span></code></pre></div><p>查看float_ip状态</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=o>[</span>gbase@gbase02 ~<span class=o>]</span>$ cm_ctl show
+</span></span><span class=line><span class=cl><span class=o>[</span>  FloatIp Network State  <span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>node       instance base_ip        float_ip_name float_ip
+</span></span><span class=line><span class=cl>----------------------------------------------------------------
+</span></span><span class=line><span class=cl><span class=m>1</span>  gbase01 <span class=m>6001</span>     172.31.100.231 CM_VIP        172.31.100.230
+</span></span><span class=line><span class=cl>----------------------------------------------------------------
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>gbase@gbase01 ~<span class=o>]</span>$ cm_ctl show
+</span></span><span class=line><span class=cl><span class=o>[</span>  FloatIp Network State  <span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>node       instance base_ip        float_ip_name float_ip
+</span></span><span class=line><span class=cl>----------------------------------------------------------------
+</span></span><span class=line><span class=cl><span class=m>1</span>  gbase01 <span class=m>6001</span>     172.31.100.231 CM_VIP        172.31.100.230
+</span></span><span class=line><span class=cl><span class=o>[</span>gbase@gbase01 ~<span class=o>]</span>$ ip a <span class=p>|</span> grep 172.31.100.230
+</span></span><span class=line><span class=cl>    inet 172.31.100.230/24 brd 172.31.100.255 scope global secondary enp0s3:15400
+</span></span><span class=line><span class=cl><span class=o>[</span>gbase@gbase01 ~<span class=o>]</span>$ gs_guc check -I all -c <span class=s2>&#34;listen_addresses&#34;</span>
+</span></span><span class=line><span class=cl>The gs_guc run with the following arguments: <span class=o>[</span>gs_guc -I all -c listen_addresses check <span class=o>]</span>.
+</span></span><span class=line><span class=cl>expected guc information: gbase01: <span class=nv>listen_addresses</span><span class=o>=</span>NULL: <span class=o>[</span>/opt/database/install/data/dn/postgresql.conf<span class=o>]</span>
+</span></span><span class=line><span class=cl>gs_guc check: gbase01: <span class=nv>listen_addresses</span><span class=o>=</span><span class=s1>&#39;localhost,172.31.100.231,172.31.100.230&#39;</span>: <span class=o>[</span>/opt/database/install/data/dn/postgresql.conf<span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Total GUC values: 1. Failed GUC values: 0.
+</span></span><span class=line><span class=cl>The value of parameter listen_addresses is same on all instances.
+</span></span><span class=line><span class=cl>    <span class=nv>listen_addresses</span><span class=o>=</span><span class=s1>&#39;localhost,172.31.100.231,172.31.100.230&#39;</span>
+</span></span></code></pre></div><p>从gbase02节点看到当前VIP float_ip所在的节点是gbase01
+从gbase01节点看到VIP float_ip 出现在网卡信息里
+从gbase01节点通过 gs_guc check命令查看listen_addresses包含float_ip</p><h4 id=添加集群cm_vip地址数据库监听地址>添加集群CM_VIP地址数据库监听地址</h4><p>实操发现无需手动添加VIP地址，listen_addresses 会自动包含 VIP，主备倒换后VIP地址会自动加载到postgresql.conf
+postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 查看节点当前数据库监听地址</span>
+</span></span><span class=line><span class=cl>gs_guc check -I all -c <span class=s2>&#34;listen_addresses&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># 查看备节点数据库监听地址</span>
+</span></span><span class=line><span class=cl><span class=c1># ssh 172.31.100.232 &#34;gs_guc check -I all -c &#39;listen_addresses&#39;&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 主节点默认值</span>
+</span></span><span class=line><span class=cl><span class=nv>listen_addresses</span> <span class=o>=</span> localhost,172.31.100.231,172.31.100.230<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1># 备节点默认值
+</span></span></span><span class=line><span class=cl><span class=s1>listen_addresses = &#39;</span>localhost,172.31.100.232<span class=s1>&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1># 使用命令 cm_ctl switchover -A 倒换主备，VIP地址自动切换到主节点中的配置文件里
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1># 修改数据库监听地址
+</span></span></span><span class=line><span class=cl><span class=s1># gs_guc set -I all -c &#34;listen_addresses=&#39;</span>localhost,172.31.100.231,172.31.100.232,172.31.100.230<span class=err>&#39;</span><span class=s2>&#34;
+</span></span></span><span class=line><span class=cl><span class=s2>
+</span></span></span><span class=line><span class=cl><span class=s2># 重启集群，让监听地址生效
+</span></span></span><span class=line><span class=cl><span class=s2># gs_om -t restart
+</span></span></span></code></pre></div><h4 id=授权数据库允许通过-vip-地址访问>授权数据库允许通过 VIP 地址访问</h4><p>文件路径：/opt/database/install/data/dn/pg_hba.conf
+<strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 重载pg_hba.conf配置，授权数据库允许通过 VIP 地址访问</span>
+</span></span><span class=line><span class=cl>gs_guc reload -N all -I all -h <span class=s2>&#34;host all all 172.31.100.230/32 sha256&#34;</span>
+</span></span></code></pre></div><ul><li>VIP 是数据库集群对外提供服务的统一入口 IP，这个 IP 本身不属于任何一台物理服务器，是数据库集群的逻辑服务地址</li><li>授权数据库允许通过 VIP 地址访问</li><li>让 VIP 地址具备数据库访问的合法身份，是实现高可用的基础</li></ul><h3 id=设置备机可读>设置备机可读</h3><p>用于双数据源，主节点负责增删改，备节点负责查
+备节点也参与工作，不能闲着
+需要在应用代码中定义连接双数据源逻辑或通过中间件实现读写分离
+<strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 任一节点停止主备实例</span>
+</span></span><span class=line><span class=cl>gs_om -t stop
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 查看默认值</span>
+</span></span><span class=line><span class=cl>more /opt/database/install/data/dn/postgresql.conf <span class=p>|</span> grep hot_standby
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>gbase@gbase01 ~<span class=o>]</span>$ more /opt/database/install/data/dn/postgresql.conf <span class=p>|</span> grep hot_standby
+</span></span><span class=line><span class=cl><span class=nv>wal_level</span> <span class=o>=</span> hot_standby                 <span class=c1># minimal, archive, hot_standby or logical</span>
+</span></span><span class=line><span class=cl><span class=nv>hot_standby</span> <span class=o>=</span> on                        <span class=c1># &#34;on&#34; allows queries during recovery</span>
+</span></span><span class=line><span class=cl><span class=c1>#hot_standby_feedback = off             # send info from standby to prevent</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 编辑主备节点postgresql.conf，修改 hot_standby_feedback = on</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/^#hot_standby_feedback = off/hot_standby_feedback = on/&#39;</span> /opt/database/install/data/dn/postgresql.conf
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 任一节点重启集群</span>
+</span></span><span class=line><span class=cl>gs_om -t start
+</span></span></code></pre></div><h3 id=数据库登陆>数据库登陆</h3><p><a class=link href=https://kiraster.github.io/posts/cea66595.html target=_blank rel=noopener>GBase8c数据库登录操作指北
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span></a></p><h3 id=数据库主备倒换>数据库主备倒换</h3><p><a class=link href=https://kiraster.github.io/posts/37a292f0.html target=_blank rel=noopener>GBase8c主备式部署数据库倒换测试
+<span style=white-space:nowrap><svg width=".7em" height=".7em" viewBox="0 0 21 21"><path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z" fill="currentcolor"/><path d="M19 19H5V5h7l-2-2H5c-1.103.0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103.0 2-.897 2-2v-5l-2-2v7z" fill="currentcolor"/></span></a></p><h2 id=卸载>卸载</h2><h3 id=主节点执行集群卸载gbase用户执行>主节点执行集群卸载（gbase用户执行）</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 主节点执行集群卸载</span>
+</span></span><span class=line><span class=cl>gs_uninstall --delete-data
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>gbase@gbase01 ~<span class=o>]</span>$ gs_uninstall --delete-data
+</span></span><span class=line><span class=cl>Checking uninstallation.
+</span></span><span class=line><span class=cl>Successfully checked uninstallation.
+</span></span><span class=line><span class=cl>Stopping the cluster.
+</span></span><span class=line><span class=cl>Successfully stopped the cluster.
+</span></span><span class=line><span class=cl>Successfully deleted instances.
+</span></span><span class=line><span class=cl>Uninstalling application.
+</span></span><span class=line><span class=cl>Successfully uninstalled application.
+</span></span><span class=line><span class=cl>Uninstallation succeeded.
+</span></span><span class=line><span class=cl><span class=o>[</span>gbase@gbase01 ~<span class=o>]</span>$
+</span></span></code></pre></div><h3 id=主节点执行集群清理环境root用户>主节点执行集群清理环境（root用户）</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 清理环境（root用户）</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /opt/software/gbase8c/script
+</span></span><span class=line><span class=cl>./gs_postuninstall -U gbase -X /opt/software/gbase8c/cluster_config_with_cm.xml --delete-user --delete-group
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@gbase01 script<span class=o>]</span><span class=c1># ./gs_postuninstall -U gbase -X /opt/software/gbase8c/cluster_config_with_cm.xml --delete-user --delete-group</span>
+</span></span><span class=line><span class=cl>Parsing the configuration file.
+</span></span><span class=line><span class=cl>Successfully parsed the configuration file.
+</span></span><span class=line><span class=cl>Creating SSH trust <span class=k>for</span> the root permission user.
+</span></span><span class=line><span class=cl>Are you sure you want to create trust <span class=k>for</span> root <span class=o>(</span>yes/no<span class=o>)</span>?yes
+</span></span><span class=line><span class=cl>Please enter password <span class=k>for</span> root.
+</span></span><span class=line><span class=cl>Password:
+</span></span><span class=line><span class=cl>Successfully created SSH trust <span class=k>for</span> the root permission user.
+</span></span><span class=line><span class=cl>Check log file path.
+</span></span><span class=line><span class=cl>Successfully checked log file path.
+</span></span><span class=line><span class=cl>Checking unpreinstallation.
+</span></span><span class=line><span class=cl>Successfully checked unpreinstallation.
+</span></span><span class=line><span class=cl>Deleting the instance<span class=s1>&#39;s directory.
+</span></span></span><span class=line><span class=cl><span class=s1>Successfully deleted the instance&#39;</span>s directory.
+</span></span><span class=line><span class=cl>Deleting the temporary directory.
+</span></span><span class=line><span class=cl>Successfully deleted the temporary directory.
+</span></span><span class=line><span class=cl>Deleting remote OS user.
+</span></span><span class=line><span class=cl>Successfully deleted remote OS user.
+</span></span><span class=line><span class=cl>Deleting software packages and environmental variables of other nodes.
+</span></span><span class=line><span class=cl>Successfully deleted software packages and environmental variables of other nodes.
+</span></span><span class=line><span class=cl>Deleting logs of other nodes.
+</span></span><span class=line><span class=cl>Successfully deleted logs of other nodes.
+</span></span><span class=line><span class=cl>Deleting software packages and environmental variables of the <span class=nb>local</span> node.
+</span></span><span class=line><span class=cl>Successfully deleted software packages and environmental variables of the <span class=nb>local</span> nodes.
+</span></span><span class=line><span class=cl>Deleting <span class=nb>local</span> OS user.
+</span></span><span class=line><span class=cl>Successfully deleted <span class=nb>local</span> OS user.
+</span></span><span class=line><span class=cl>Deleting <span class=nb>local</span> node<span class=s1>&#39;s logs.
+</span></span></span><span class=line><span class=cl><span class=s1>Successfully deleted local node&#39;</span>s logs.
+</span></span><span class=line><span class=cl>Successfully cleaned environment.
+</span></span><span class=line><span class=cl><span class=o>[</span>root@gbase01 script<span class=o>]</span><span class=c1>#</span>
+</span></span></code></pre></div><h3 id=删除root互信文件root用户>删除root互信文件（root用户）</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 如果之前删除了root的互信，可跳过
+</span></span><span class=line><span class=cl># gbase用户用户已经在上一步骤彻底干没了，无需操作
+</span></span><span class=line><span class=cl>rm -rf ~/.ssh
+</span></span></code></pre></div><h3 id=关于其它设置项>关于其它设置项</h3><ul><li>/opt/software/gbase8c/ 所上传的文件不会删除</li><li>/opt/database/ gabase的安装路径不会删除</li><li>安装的依赖包不会删除</li><li>部署环境配置步骤中的设置不会恢复默认（除创建的gbase用户和用户组）</li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/gbase8c/>GBase8c</a>
+<a href=/tags/ha/>HA</a>
+<a href=/tags/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/>安装部署</a>
+<a href=/tags/%E4%B8%BB%E5%A4%87%E5%BC%8F/>主备式</a>
+<a href=/tags/openeuler/>OpenEuler</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/posts/37a292f0.html/><div class=article-details><h2 class=article-title>GBase8c主备式部署数据库倒换测试指北</h2></div></a></article><article><a href=/posts/cea66595.html/><div class=article-details><h2 class=article-title>GBase8c数据库登录操作指北</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 <a href=https://github.com/kiraster target=_blank rel=noopener>@kiraster</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=/privacy/ title=Privacy rel=me>Privacy</a></section><section class=powerby><a href=https://github.com/kiraster target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a> <a href=mailto:kir_aster@foxmail.com target=_blank title=Email rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/><path d="M3 7l9 6 9-6"/></svg></a> <a href=https://kiraster.channel.io target=_blank title="channel talk" rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><path d="M8 13l3-2 2 2 3-2"/></svg></a> <a href=https://kiraster.github.io/index.xml target=_blank title=RSS rel=me><svg viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"><path d="M5 19m-1 0a1 1 0 102 0 1 1 0 10-2 0"/><path d="M4 4a16 16 0 0116 16"/><path d="M4 11a9 9 0 019 9"/></svg></a><br>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.29.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.79ea8b477b8f41bc284aa8e81d0cd59441596821bb33f959c3f9ee1acaf1af8e.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script><script src=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/js/nprogress.min.js integrity=sha384-bHDlAEUFxsRI7JfULv3DTpL2IXbbgn4JHQJibgo5iiXSK6Iu8muwqHANhun74Cqg crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/zhixuan2333/gh-blog@v0.1.0/css/nprogress.css integrity=sha384-KJyhr2syt5+4M9Pz5dipCvTrtvOmLk/olWVdfhAp858UCa64Ia5GFpTN7+G4BWpE crossorigin=anonymous><script>NProgress.start(),document.addEventListener("readystatechange",()=>{document.readyState==="interactive"&&NProgress.inc(.8),document.readyState==="complete"&&NProgress.done()})</script><script>document.addEventListener("DOMContentLoaded",function(){jQuery(function(e){e("[data-fancybox]").fancybox()})})</script><noscript><img src=https://dmoukdmrpkzv.ap-northeast-1.clawcloudrun.com/ingress/1519c663-ddd7-4738-928e-90ab4ecc9075/pixel.gif></noscript><script defer src=https://dmoukdmrpkzv.ap-northeast-1.clawcloudrun.com/ingress/1519c663-ddd7-4738-928e-90ab4ecc9075/script.js></script></body></html>
