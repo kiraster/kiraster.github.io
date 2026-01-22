@@ -63,13 +63,9 @@ fill="currentColor">
 &lt;td>桥接网卡&lt;/td>
 &lt;td>桥接网卡&lt;/td>
 &lt;/tr>
-&lt;tr>
-&lt;td>有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置）&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置）&lt;/p>
 &lt;h4 id="软件依赖要求">软件依赖要求
 &lt;/h4>&lt;table>
 &lt;thead>
@@ -617,12 +613,12 @@ fill="currentColor">
 &lt;p>客户端操作系统：openEuler-22.03-LTS-SP4-x86_64（远程客户端）、Windows 10/11（DBeaver客户端）&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>核心工具：gsql客户端、DBeaver Community 25.3.3、Python 3.x（含psycopg2库）&amp;lt;!&amp;ndash;mor&amp;gt;&lt;/p>
+&lt;p>核心工具：gsql客户端、DBeaver Community 25.3.3、Python 3.x（含psycopg2库）&lt;/p>
 &lt;/li>
-&lt;li>
-&lt;p>关键配置：数据库浮动IP（&lt;a class="link" href="172.31.100.230" >172.31.100.230
-&lt;/a>）、端口15400，需提前完成主备集群部署及VIP配置&lt;/p>
-&lt;/li>
+&lt;/ul>
+&lt;ul>
+&lt;li>关键配置：数据库浮动IP（&lt;a class="link" href="172.31.100.230" >172.31.100.230
+&lt;/a>）、端口15400，需提前完成主备集群部署及VIP配置&lt;/li>
 &lt;/ul>
 &lt;h2 id="本地登录数据库">本地登录数据库
 &lt;/h2>&lt;h3 id="注意事项">注意事项

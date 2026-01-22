@@ -63,13 +63,9 @@ fill="currentColor">
 &lt;td>桥接网卡&lt;/td>
 &lt;td>桥接网卡&lt;/td>
 &lt;/tr>
-&lt;tr>
-&lt;td>有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置）&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>有条件的可以增大内存剂量（以上配置仅为实验性质配置，实际生产环境需要远高于这个硬件配置）&lt;/p>
 &lt;h4 id="软件依赖要求">软件依赖要求
 &lt;/h4>&lt;table>
 &lt;thead>
