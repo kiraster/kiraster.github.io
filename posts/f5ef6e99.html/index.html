@@ -130,8 +130,7 @@
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># 在 root ALL=(ALL) ALL 下一行插入配置 </span>
 </span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;/^root\s*ALL=(ALL)\s*ALL/a gbase ALL=(ALL) NOPASSWD:ALL&#39;</span> /etc/sudoers 
-</span></span></code></pre></div><h4 id=创建gbase用户组和用户>创建gbase用户组和用户</h4><ul><li>gs_preinstall 脚本初始化安装环境时，如果该用户不存在，则会自动创建gbase用户和用户组，也可提前创建好用户</li><li><code>gbase</code>用户的免密、创建用户、建目录、传包解压、赋权限 全由<code>gs_preinstall</code>自动完成
-<strong>以下操作只在主节点上操作，备节点无需要操作&ndash;>可跳过此步骤</strong></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 需要手动输入gbase密码</span>
+</span></span></code></pre></div><h4 id=创建gbase用户组和用户>创建gbase用户组和用户</h4><ul><li><p>gs_preinstall 脚本初始化安装环境时，如果该用户不存在，则会自动创建gbase用户和用户组，也可提前创建好用户</p></li><li><p><code>gbase</code>用户的免密、创建用户、建目录、传包解压、赋权限 全由<code>gs_preinstall</code>自动完成</p></li></ul><p><strong>以下操作只在主节点上操作，备节点无需要操作&ndash;>可跳过此步骤</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 需要手动输入gbase密码</span>
 </span></span><span class=line><span class=cl>groupadd gbase
 </span></span><span class=line><span class=cl>useradd -m -d /home/gbase gbase -g gbase
 </span></span><span class=line><span class=cl>passwd gbase
@@ -143,9 +142,7 @@
 </span></span><span class=line><span class=cl>tar -xvf GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz
 </span></span><span class=line><span class=cl><span class=c1># 解压om安装包</span>
 </span></span><span class=line><span class=cl>tar -xvf GBase8cV5_S5.0.0B28_CentOS_x86_64_om.tar.gz
-</span></span></code></pre></div><h3 id=编辑xml配置文件一主一备带cm>编辑XML配置文件（一主一备带CM）</h3><p>模板位置：cd /opt/software/gbase8c/script/gspylib/etc/conf/
-模板文件：cluster_config_with_cm_template.xml
-直接创建文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># xml创建位置 cd /opt/software/gbase8c</span>
+</span></span></code></pre></div><h3 id=编辑xml配置文件一主一备带cm>编辑XML配置文件（一主一备带CM）</h3><p>模板位置：cd /opt/software/gbase8c/script/gspylib/etc/conf/</p><p>模板文件：cluster_config_with_cm_template.xml</p><p>直接创建文件</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># xml创建位置 cd /opt/software/gbase8c</span>
 </span></span><span class=line><span class=cl>nano cluster_config_with_cm.xml 
 </span></span></code></pre></div><p>然后粘贴以下，注意替换实际IP和主机名</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=cp>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 </span></span><span class=line><span class=cl><span class=nt>&lt;ROOT&gt;</span>
@@ -252,7 +249,7 @@
 </span></span><span class=line><span class=cl>cm_ctl res --edit --res_name<span class=o>=</span><span class=s2>&#34;CM_VIP&#34;</span> --add_inst<span class=o>=</span><span class=s2>&#34;res_instance_id=6002,node_id=2&#34;</span> --inst_attr<span class=o>=</span><span class=s2>&#34;base_ip=172.31.100.232&#34;</span>
 </span></span></code></pre></div><p>查看已配置的资源</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl>cm_ctl res --list --res_name<span class=o>=</span><span class=s2>&#34;CM_VIP&#34;</span>
 </span></span><span class=line><span class=cl>cm_ctl list --param --server <span class=p>|</span> grep ip
-</span></span></code></pre></div><h4 id=cm参数修改>CM参数修改</h4><ul><li><p>cms_enable_failover_on2nodes = 1 开启双节点故障自动切换功能</p></li><li><p>cms_network_isolation_timeout = 10 配置网络隔离超时10秒</p></li><li><p>cms_enable_db_crash_recovery = 1 开启数据库崩溃自动恢复</p></li><li><p>third_party_gateway_ip = 172.31.100.254 配置网关检测IP</p><p><strong>以下操作只在主节点上操作，备节点无需要操作</strong></p></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 仅主节点执行，集群信息自动同步</span>
+</span></span></code></pre></div><h4 id=cm参数修改>CM参数修改</h4><ul><li><p>cms_enable_failover_on2nodes = 1 开启双节点故障自动切换功能</p></li><li><p>cms_network_isolation_timeout = 10 配置网络隔离超时10秒</p></li><li><p>cms_enable_db_crash_recovery = 1 开启数据库崩溃自动恢复</p></li><li><p>third_party_gateway_ip = 172.31.100.254 配置网关检测IP</p></li></ul><p><strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 仅主节点执行，集群信息自动同步</span>
 </span></span><span class=line><span class=cl>cm_ctl <span class=nb>set</span> --param --server -k <span class=s2>&#34;cms_enable_failover_on2nodes=1&#34;</span>
 </span></span><span class=line><span class=cl>cm_ctl <span class=nb>set</span> --param --server -k <span class=s2>&#34;cms_network_isolation_timeout=10&#34;</span>
 </span></span><span class=line><span class=cl>cm_ctl <span class=nb>set</span> --param --server -k <span class=s2>&#34;cms_enable_db_crash_recovery=1&#34;</span>
@@ -282,10 +279,8 @@
 </span></span><span class=line><span class=cl>Total GUC values: 1. Failed GUC values: 0.
 </span></span><span class=line><span class=cl>The value of parameter listen_addresses is same on all instances.
 </span></span><span class=line><span class=cl>    <span class=nv>listen_addresses</span><span class=o>=</span><span class=s1>&#39;localhost,172.31.100.231,172.31.100.230&#39;</span>
-</span></span></code></pre></div><p>从gbase02节点看到当前VIP float_ip所在的节点是gbase01
-从gbase01节点看到VIP float_ip 出现在网卡信息里
-从gbase01节点通过 gs_guc check命令查看listen_addresses包含float_ip</p><h4 id=添加集群cm_vip地址数据库监听地址>添加集群CM_VIP地址数据库监听地址</h4><p>实操发现无需手动添加VIP地址，listen_addresses 会自动包含 VIP，主备倒换后VIP地址会自动加载到postgresql.conf
-postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 查看节点当前数据库监听地址</span>
+</span></span></code></pre></div><p>从gbase02节点看到当前VIP float_ip所在的节点是gbase01</p><p>从gbase01节点看到VIP float_ip 出现在网卡信息里</p><p>从gbase01节点通过 gs_guc check命令查看listen_addresses包含float_ip</p><h4 id=添加集群cm_vip地址数据库监听地址>添加集群CM_VIP地址数据库监听地址</h4><p>实操发现无需手动添加VIP地址，listen_addresses 会自动包含 VIP，主备倒换后VIP地址会自动加载到postgresql.conf
+postgresql.conf</p><p>文件路径：/opt/database/install/data/dn/postgresql.conf</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 查看节点当前数据库监听地址</span>
 </span></span><span class=line><span class=cl>gs_guc check -I all -c <span class=s2>&#34;listen_addresses&#34;</span>
 </span></span><span class=line><span class=cl><span class=c1># 查看备节点数据库监听地址</span>
 </span></span><span class=line><span class=cl><span class=c1># ssh 172.31.100.232 &#34;gs_guc check -I all -c &#39;listen_addresses&#39;&#34;</span>
@@ -302,13 +297,9 @@ postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf</p><
 </span></span></span><span class=line><span class=cl><span class=s2>
 </span></span></span><span class=line><span class=cl><span class=s2># 重启集群，让监听地址生效
 </span></span></span><span class=line><span class=cl><span class=s2># gs_om -t restart
-</span></span></span></code></pre></div><h4 id=授权数据库允许通过-vip-地址访问>授权数据库允许通过 VIP 地址访问</h4><p>文件路径：/opt/database/install/data/dn/pg_hba.conf
-<strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 重载pg_hba.conf配置，授权数据库允许通过 VIP 地址访问</span>
+</span></span></span></code></pre></div><h4 id=授权数据库允许通过-vip-地址访问>授权数据库允许通过 VIP 地址访问</h4><p>文件路径：/opt/database/install/data/dn/pg_hba.conf</p><p><strong>以下操作只在主节点上操作，备节点无需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 重载pg_hba.conf配置，授权数据库允许通过 VIP 地址访问</span>
 </span></span><span class=line><span class=cl>gs_guc reload -N all -I all -h <span class=s2>&#34;host all all 172.31.100.230/32 sha256&#34;</span>
-</span></span></code></pre></div><ul><li>VIP 是数据库集群对外提供服务的统一入口 IP，这个 IP 本身不属于任何一台物理服务器，是数据库集群的逻辑服务地址</li><li>授权数据库允许通过 VIP 地址访问</li><li>让 VIP 地址具备数据库访问的合法身份，是实现高可用的基础</li></ul><h3 id=设置备机可读>设置备机可读</h3><p>用于双数据源，主节点负责增删改，备节点负责查
-备节点也参与工作，不能闲着
-需要在应用代码中定义连接双数据源逻辑或通过中间件实现读写分离
-<strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 任一节点停止主备实例</span>
+</span></span></code></pre></div><ul><li>VIP 是数据库集群对外提供服务的统一入口 IP，这个 IP 本身不属于任何一台物理服务器，是数据库集群的逻辑服务地址</li><li>授权数据库允许通过 VIP 地址访问</li><li>让 VIP 地址具备数据库访问的合法身份，是实现高可用的基础</li></ul><h3 id=设置备机可读>设置备机可读</h3><p>用于双数据源，主节点负责增删改，备节点负责查</p><p>备节点也参与工作，不能闲着</p><p>需要在应用代码中定义连接双数据源逻辑或通过中间件实现读写分离</p><p><strong>以下操作在主备节点上都需要操作</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Bash data-lang=Bash><span class=line><span class=cl><span class=c1># 任一节点停止主备实例</span>
 </span></span><span class=line><span class=cl>gs_om -t stop
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># 查看默认值</span>

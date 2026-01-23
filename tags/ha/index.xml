@@ -277,10 +277,14 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s1">&amp;#39;/^root\s*ALL=(ALL)\s*ALL/a gbase ALL=(ALL) NOPASSWD:ALL&amp;#39;&lt;/span> /etc/sudoers
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="创建gbase用户组和用户">创建gbase用户组和用户
 &lt;/h4>&lt;ul>
-&lt;li>gs_preinstall 脚本初始化安装环境时，如果该用户不存在，则会自动创建gbase用户和用户组，也可提前创建好用户&lt;/li>
-&lt;li>&lt;code>gbase&lt;/code>用户的免密、创建用户、建目录、传包解压、赋权限 全由&lt;code>gs_preinstall&lt;/code>自动完成
-&lt;strong>以下操作只在主节点上操作，备节点无需要操作&amp;ndash;&amp;gt;可跳过此步骤&lt;/strong>&lt;/li>
+&lt;li>
+&lt;p>gs_preinstall 脚本初始化安装环境时，如果该用户不存在，则会自动创建gbase用户和用户组，也可提前创建好用户&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>gbase&lt;/code>用户的免密、创建用户、建目录、传包解压、赋权限 全由&lt;code>gs_preinstall&lt;/code>自动完成&lt;/p>
+&lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&amp;ndash;&amp;gt;可跳过此步骤&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 需要手动输入gbase密码&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">groupadd gbase
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -d /home/gbase gbase -g gbase
@@ -298,9 +302,9 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 解压om安装包&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xvf GBase8cV5_S5.0.0B28_CentOS_x86_64_om.tar.gz
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="编辑xml配置文件一主一备带cm">编辑XML配置文件（一主一备带CM）
-&lt;/h3>&lt;p>模板位置：cd /opt/software/gbase8c/script/gspylib/etc/conf/
-模板文件：cluster_config_with_cm_template.xml
-直接创建文件&lt;/p>
+&lt;/h3>&lt;p>模板位置：cd /opt/software/gbase8c/script/gspylib/etc/conf/&lt;/p>
+&lt;p>模板文件：cluster_config_with_cm_template.xml&lt;/p>
+&lt;p>直接创建文件&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># xml创建位置 cd /opt/software/gbase8c&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nano cluster_config_with_cm.xml
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后粘贴以下，注意替换实际IP和主机名&lt;/p>
@@ -435,9 +439,9 @@ fill="currentColor">
 &lt;/li>
 &lt;li>
 &lt;p>third_party_gateway_ip = 172.31.100.254 配置网关检测IP&lt;/p>
-&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
 &lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 仅主节点执行，集群信息自动同步&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cm_ctl &lt;span class="nb">set&lt;/span> --param --server -k &lt;span class="s2">&amp;#34;cms_enable_failover_on2nodes=1&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cm_ctl &lt;span class="nb">set&lt;/span> --param --server -k &lt;span class="s2">&amp;#34;cms_network_isolation_timeout=10&amp;#34;&lt;/span>
@@ -470,12 +474,13 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Total GUC values: 1. Failed GUC values: 0.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The value of parameter listen_addresses is same on all instances.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">listen_addresses&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;localhost,172.31.100.231,172.31.100.230&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>从gbase02节点看到当前VIP float_ip所在的节点是gbase01
-从gbase01节点看到VIP float_ip 出现在网卡信息里
-从gbase01节点通过 gs_guc check命令查看listen_addresses包含float_ip&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>从gbase02节点看到当前VIP float_ip所在的节点是gbase01&lt;/p>
+&lt;p>从gbase01节点看到VIP float_ip 出现在网卡信息里&lt;/p>
+&lt;p>从gbase01节点通过 gs_guc check命令查看listen_addresses包含float_ip&lt;/p>
 &lt;h4 id="添加集群cm_vip地址数据库监听地址">添加集群CM_VIP地址数据库监听地址
 &lt;/h4>&lt;p>实操发现无需手动添加VIP地址，listen_addresses 会自动包含 VIP，主备倒换后VIP地址会自动加载到postgresql.conf
-postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/p>
+postgresql.conf&lt;/p>
+&lt;p>文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看节点当前数据库监听地址&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_guc check -I all -c &lt;span class="s2">&amp;#34;listen_addresses&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看备节点数据库监听地址&lt;/span>
@@ -494,8 +499,8 @@ postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"># 重启集群，让监听地址生效
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"># gs_om -t restart
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="授权数据库允许通过-vip-地址访问">授权数据库允许通过 VIP 地址访问
-&lt;/h4>&lt;p>文件路径：/opt/database/install/data/dn/pg_hba.conf
-&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
+&lt;/h4>&lt;p>文件路径：/opt/database/install/data/dn/pg_hba.conf&lt;/p>
+&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重载pg_hba.conf配置，授权数据库允许通过 VIP 地址访问&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_guc reload -N all -I all -h &lt;span class="s2">&amp;#34;host all all 172.31.100.230/32 sha256&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
@@ -504,10 +509,10 @@ postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/
 &lt;li>让 VIP 地址具备数据库访问的合法身份，是实现高可用的基础&lt;/li>
 &lt;/ul>
 &lt;h3 id="设置备机可读">设置备机可读
-&lt;/h3>&lt;p>用于双数据源，主节点负责增删改，备节点负责查
-备节点也参与工作，不能闲着
-需要在应用代码中定义连接双数据源逻辑或通过中间件实现读写分离
-&lt;strong>以下操作在主备节点上都需要操作&lt;/strong>&lt;/p>
+&lt;/h3>&lt;p>用于双数据源，主节点负责增删改，备节点负责查&lt;/p>
+&lt;p>备节点也参与工作，不能闲着&lt;/p>
+&lt;p>需要在应用代码中定义连接双数据源逻辑或通过中间件实现读写分离&lt;/p>
+&lt;p>&lt;strong>以下操作在主备节点上都需要操作&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 任一节点停止主备实例&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_om -t stop
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
@@ -732,7 +737,7 @@ alt="image-20260122232258706"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">cm_ctl switchover -A
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/dEcm9sN7pgk2QUq.png">
@@ -777,7 +782,7 @@ alt="image-20260122232318035"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">cm_ctl switchover -A
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/zavbqUx7rCt58e3.png">
@@ -822,7 +827,7 @@ alt="image-20260122232332815"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">sudo reboot now
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/aM3kO19Wl2ozDYJ.png">
@@ -870,7 +875,7 @@ alt="image-20260122232406749"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">reboot now
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/zJKa4mtSfrBbpcT.png">

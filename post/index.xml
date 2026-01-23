@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Kir's Blog</title><link>https://kiraster.github.io/post/</link><description>Recent content in Posts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 23 Jan 2026 00:02:44 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>GBase 8c V5.0.0 主备式部署指北</title><link>https://kiraster.github.io/posts/f5ef6e99.html/</link><pubDate>Fri, 23 Jan 2026 00:02:44 +0800</pubDate><guid>https://kiraster.github.io/posts/f5ef6e99.html/</guid><description>&lt;h2 id="部署环境说明">部署环境说明
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Kir's Blog</title><link>https://kiraster.github.io/post/</link><description>Recent content in Posts on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 23 Jan 2026 00:44:16 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>AIGC时代的思考</title><link>https://kiraster.github.io/posts/7647a246.html/</link><pubDate>Fri, 23 Jan 2026 00:44:16 +0800</pubDate><guid>https://kiraster.github.io/posts/7647a246.html/</guid><description>&lt;p>AIGC技术的发展已成为不可逆转的趋势&lt;/p>
+&lt;p>正如历史几次工业革命的发展那样冲击着地球人&lt;/p>
+&lt;p>生活中衣食住行各方面都有被AI侵入的痕迹&lt;/p>
+&lt;p>并不是说生活中有AI不好，反而是需要合理有效高质量有边界的AI&lt;/p>
+&lt;p>以我有限的观察，存在一些过度的AI泛滥&lt;/p>
+&lt;p>以视频举例，配音都那几个声音，被算法锁定后大量高度重复的内容涌过来&lt;/p>
+&lt;p>在AI配音无限接近人类的过程中，听着这些声音还是烦&lt;/p>
+&lt;p>更为讨厌的一类粗糙视频是视频画面、文案结构、字幕、配音等一条龙从AI产线上下来的&lt;/p>
+&lt;p>这类毫无营养的粗糙视频无比讨厌&lt;/p>
+&lt;p>当然AI有时候也会瞎编乱造的回答,过于显示自己的能力,它就不会说这个问题它不会&lt;/p>
+&lt;p>当问关于相对专业的具体问题时,或许是大模型的训练资料源的问题,你根据它给出的提示进行操作很多时候会行不通&lt;/p>
+&lt;p>相信这也跟国内一些资料相对封闭有关系&lt;/p>
+&lt;p>对AI问答的使用减少了对搜索引擎的使用，而搜索引擎显示的内容又逐渐AI化，这道题怎么解?之前还看到过AI编造引用信息源的&lt;/p>
+&lt;p>AI写作弄出的内容过于“正确完美”，似乎抹去了自我的风格特征&lt;/p>
+&lt;p>就扯到这^_^__&lt;/p></description></item><item><title>GBase 8c V5.0.0 主备式部署指北</title><link>https://kiraster.github.io/posts/f5ef6e99.html/</link><pubDate>Fri, 23 Jan 2026 00:02:44 +0800</pubDate><guid>https://kiraster.github.io/posts/f5ef6e99.html/</guid><description>&lt;h2 id="部署环境说明">部署环境说明
 &lt;/h2>&lt;ul>
 &lt;li>GBase 8c 主备式安装包：&lt;a class="link" href="https://www.gbase.cn/community/post/3999" target="_blank" rel="noopener"
 >GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz
@@ -277,10 +291,14 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s1">&amp;#39;/^root\s*ALL=(ALL)\s*ALL/a gbase ALL=(ALL) NOPASSWD:ALL&amp;#39;&lt;/span> /etc/sudoers
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="创建gbase用户组和用户">创建gbase用户组和用户
 &lt;/h4>&lt;ul>
-&lt;li>gs_preinstall 脚本初始化安装环境时，如果该用户不存在，则会自动创建gbase用户和用户组，也可提前创建好用户&lt;/li>
-&lt;li>&lt;code>gbase&lt;/code>用户的免密、创建用户、建目录、传包解压、赋权限 全由&lt;code>gs_preinstall&lt;/code>自动完成
-&lt;strong>以下操作只在主节点上操作，备节点无需要操作&amp;ndash;&amp;gt;可跳过此步骤&lt;/strong>&lt;/li>
+&lt;li>
+&lt;p>gs_preinstall 脚本初始化安装环境时，如果该用户不存在，则会自动创建gbase用户和用户组，也可提前创建好用户&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>gbase&lt;/code>用户的免密、创建用户、建目录、传包解压、赋权限 全由&lt;code>gs_preinstall&lt;/code>自动完成&lt;/p>
+&lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&amp;ndash;&amp;gt;可跳过此步骤&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 需要手动输入gbase密码&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">groupadd gbase
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -d /home/gbase gbase -g gbase
@@ -298,9 +316,9 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 解压om安装包&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xvf GBase8cV5_S5.0.0B28_CentOS_x86_64_om.tar.gz
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="编辑xml配置文件一主一备带cm">编辑XML配置文件（一主一备带CM）
-&lt;/h3>&lt;p>模板位置：cd /opt/software/gbase8c/script/gspylib/etc/conf/
-模板文件：cluster_config_with_cm_template.xml
-直接创建文件&lt;/p>
+&lt;/h3>&lt;p>模板位置：cd /opt/software/gbase8c/script/gspylib/etc/conf/&lt;/p>
+&lt;p>模板文件：cluster_config_with_cm_template.xml&lt;/p>
+&lt;p>直接创建文件&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># xml创建位置 cd /opt/software/gbase8c&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nano cluster_config_with_cm.xml
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后粘贴以下，注意替换实际IP和主机名&lt;/p>
@@ -435,9 +453,9 @@ fill="currentColor">
 &lt;/li>
 &lt;li>
 &lt;p>third_party_gateway_ip = 172.31.100.254 配置网关检测IP&lt;/p>
-&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
 &lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 仅主节点执行，集群信息自动同步&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cm_ctl &lt;span class="nb">set&lt;/span> --param --server -k &lt;span class="s2">&amp;#34;cms_enable_failover_on2nodes=1&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cm_ctl &lt;span class="nb">set&lt;/span> --param --server -k &lt;span class="s2">&amp;#34;cms_network_isolation_timeout=10&amp;#34;&lt;/span>
@@ -470,12 +488,13 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Total GUC values: 1. Failed GUC values: 0.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">The value of parameter listen_addresses is same on all instances.
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">listen_addresses&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s1">&amp;#39;localhost,172.31.100.231,172.31.100.230&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>从gbase02节点看到当前VIP float_ip所在的节点是gbase01
-从gbase01节点看到VIP float_ip 出现在网卡信息里
-从gbase01节点通过 gs_guc check命令查看listen_addresses包含float_ip&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>从gbase02节点看到当前VIP float_ip所在的节点是gbase01&lt;/p>
+&lt;p>从gbase01节点看到VIP float_ip 出现在网卡信息里&lt;/p>
+&lt;p>从gbase01节点通过 gs_guc check命令查看listen_addresses包含float_ip&lt;/p>
 &lt;h4 id="添加集群cm_vip地址数据库监听地址">添加集群CM_VIP地址数据库监听地址
 &lt;/h4>&lt;p>实操发现无需手动添加VIP地址，listen_addresses 会自动包含 VIP，主备倒换后VIP地址会自动加载到postgresql.conf
-postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/p>
+postgresql.conf&lt;/p>
+&lt;p>文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看节点当前数据库监听地址&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_guc check -I all -c &lt;span class="s2">&amp;#34;listen_addresses&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看备节点数据库监听地址&lt;/span>
@@ -494,8 +513,8 @@ postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"># 重启集群，让监听地址生效
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"># gs_om -t restart
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="授权数据库允许通过-vip-地址访问">授权数据库允许通过 VIP 地址访问
-&lt;/h4>&lt;p>文件路径：/opt/database/install/data/dn/pg_hba.conf
-&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
+&lt;/h4>&lt;p>文件路径：/opt/database/install/data/dn/pg_hba.conf&lt;/p>
+&lt;p>&lt;strong>以下操作只在主节点上操作，备节点无需要操作&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重载pg_hba.conf配置，授权数据库允许通过 VIP 地址访问&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_guc reload -N all -I all -h &lt;span class="s2">&amp;#34;host all all 172.31.100.230/32 sha256&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
@@ -504,10 +523,10 @@ postgresql.conf文件路径：/opt/database/install/data/dn/postgresql.conf&lt;/
 &lt;li>让 VIP 地址具备数据库访问的合法身份，是实现高可用的基础&lt;/li>
 &lt;/ul>
 &lt;h3 id="设置备机可读">设置备机可读
-&lt;/h3>&lt;p>用于双数据源，主节点负责增删改，备节点负责查
-备节点也参与工作，不能闲着
-需要在应用代码中定义连接双数据源逻辑或通过中间件实现读写分离
-&lt;strong>以下操作在主备节点上都需要操作&lt;/strong>&lt;/p>
+&lt;/h3>&lt;p>用于双数据源，主节点负责增删改，备节点负责查&lt;/p>
+&lt;p>备节点也参与工作，不能闲着&lt;/p>
+&lt;p>需要在应用代码中定义连接双数据源逻辑或通过中间件实现读写分离&lt;/p>
+&lt;p>&lt;strong>以下操作在主备节点上都需要操作&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 任一节点停止主备实例&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_om -t stop
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
@@ -659,9 +678,7 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="远程登录数据库gsql和dbeaver">远程登录数据库（gsql和DBeaver）
 &lt;/h2>&lt;h3 id="服务端配置主节点">服务端配置（主节点）
 &lt;/h3>&lt;p>原理：与授权数据库通过浮动IP访问的逻辑一致，通过配置白名单限定可远程访问数据库的客户端IP，确保访问安全。&lt;/p>
-&lt;ul>
-&lt;li>核心配置文件路径：&lt;code>/opt/database/install/data/dn/pg_hba.conf&lt;/code>&lt;/li>
-&lt;/ul>
+&lt;p>核心配置文件路径：&lt;code>/opt/database/install/data/dn/pg_hba.conf&lt;/code>&lt;/p>
 &lt;h4 id="配置允许客户端ip连接">配置允许客户端IP连接
 &lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 配置指定IP访问权限，集群所有节点同步生效&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">gs_guc reload -N all -I all -h &lt;span class="s2">&amp;#34;host all all 172.31.100.235/32 sha256&amp;#34;&lt;/span>
@@ -680,9 +697,8 @@ fill="currentColor">
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">mkdir -p /opt/tools
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
-&lt;li>从数据库主节点上传文件至客户端：&lt;/li>
+&lt;li>从数据库主节点上传文件至客户端：需上传的文件/目录如下&lt;/li>
 &lt;/ol>
-&lt;p>需上传的文件/目录：&lt;/p>
 &lt;ul>
 &lt;li>
 &lt;p>安装包：GBase8cV5_S5.0.0B28_CentOS_x86_64.tar.bz2&lt;/p>
@@ -707,14 +723,15 @@ fill="currentColor">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 验证lib目录下存在.so格式依赖库&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ls lib/
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="5">
-&lt;li>配置全局环境变量：&lt;/li>
+&lt;li>配置全局环境变量：编辑&lt;code>/etc/profile&lt;/code>文件，在末尾追加以下内容：&lt;/li>
 &lt;/ol>
-&lt;p>编辑&lt;code>/etc/profile&lt;/code>文件，在末尾追加以下内容：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export PATH=/opt/tools/bin:&lt;/span>&lt;span class="nv">$PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/profile
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;export LD_LIBRARY_PATH=/opt/tools/lib:&lt;/span>&lt;span class="nv">$LD_LIBRARY_PATH&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> &amp;gt;&amp;gt; /etc/profile
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使环境变量立即生效：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="6">
+&lt;li>环境变量立即生效：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="7">
 &lt;li>验证gsql安装：&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">gsql --version
@@ -777,8 +794,7 @@ fill="currentColor">
 &lt;p>运行方式：下载后解压至本地目录，双击&lt;code>dbeaver.exe&lt;/code>启动客户端。&lt;/p>
 &lt;h4 id="下载gbase8c-jdbc驱动">下载GBase8c JDBC驱动
 &lt;/h4>&lt;p>下载文件：&lt;code>GBase8c_JDBC.zip&lt;/code>&lt;/p>
-&lt;ul>
-&lt;li>官方下载地址：&lt;a class="link" href="https://www.gbase.cn/download/gbase-8c?category=DRIVER_PACKAGE" target="_blank" rel="noopener"
+&lt;p>官方下载地址：&lt;a class="link" href="https://www.gbase.cn/download/gbase-8c?category=DRIVER_PACKAGE" target="_blank" rel="noopener"
 >https://www.gbase.cn/download/gbase-8c?category=DRIVER_PACKAGE
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
@@ -786,9 +802,8 @@ height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 &lt;path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z"
 fill="currentColor">
 &lt;/svg>&lt;/span>
-&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;p>驱动下载页面参考截图：&lt;/p>
+&lt;/a>&lt;/p>
+&lt;p>驱动下载页面：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/VpMckJAIbHWQKg6.png">
@@ -857,10 +872,10 @@ alt="image-20260122234734876"
 &lt;p>点击&lt;code>Find Class&lt;/code>，系统自动识别驱动类&lt;code>com.gbase8c.Driver&lt;/code>，选中并确认；&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
-&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/Eac4xz3vRVHnmqk.png">
-&lt;img src="https://s2.loli.net/2026/01/22/Eac4xz3vRVHnmqk.png"
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/23/bvgNMlJyofcU3ZL.png">
+&lt;img src="https://s2.loli.net/2026/01/23/bvgNMlJyofcU3ZL.png"
 loading="lazy"
-alt="image-20260122234747747"
+alt="image-20260123103434458"
 >
 &lt;/a>
 &lt;/div>
@@ -926,10 +941,10 @@ alt="image-20260122234905436"
 &lt;p>点击&lt;code>Test Connection&lt;/code>测试连接，测试通过后点击&lt;code>OK&lt;/code>关闭测试窗口；&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
-&lt;a data-fancybox="gallery" href="https://s2.1oli.net/2026/01/22/7aYznVHSjxNKZR5.png">
-&lt;img src="https://s2.1oli.net/2026/01/22/7aYznVHSjxNKZR5.png"
+&lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/23/khnDl5ZWr17AiLB.png">
+&lt;img src="https://s2.loli.net/2026/01/23/khnDl5ZWr17AiLB.png"
 loading="lazy"
-alt="image-20260122234927137"
+alt="image-20260123103602013"
 >
 &lt;/a>
 &lt;/div>
@@ -950,8 +965,9 @@ alt="image-20260122234948395"
 &lt;/li>
 &lt;/ol>
 &lt;h4 id="权限问题处理">权限问题处理
-&lt;/h4>&lt;p>若在public模式下创建表时提示权限不足，需在数据库本地使用&lt;code>gbase&lt;/code>用户登录&lt;/p>
-&lt;p>
+&lt;/h4>&lt;p>若创建表时提示权限不足，需在数据库本地使用&lt;code>gbase&lt;/code>用户登录执行命令提升&lt;code>testuser&lt;/code>权限：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-SQL" data-lang="SQL">&lt;span class="line">&lt;span class="cl">&lt;span class="k">alter&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">testuser&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sysadmin&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/TZpKGxvo2AkFfme.png">
 &lt;img src="https://s2.loli.net/2026/01/22/TZpKGxvo2AkFfme.png"
@@ -961,9 +977,7 @@ alt="image-20260122235021992"
 &lt;/a>
 &lt;/div>
 &lt;/p>
-&lt;p>执行以下命令提升&lt;code>testuser&lt;/code>权限：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-SQL" data-lang="SQL">&lt;span class="line">&lt;span class="cl">&lt;span class="k">alter&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">testuser&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sysadmin&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="python使用psycopg2库连接">Python使用psycopg2库连接
+&lt;h2 id="python使用psycopg2库连接">Python使用psycopg2库连接
 &lt;/h2>&lt;h3 id="前置准备可选-1">前置准备（可选）
 &lt;/h3>&lt;p>可创建普通用户&lt;code>gbase&lt;/code>用于Python脚本操作，避免使用root用户执行脚本，本文直接使用root用户演示，操作步骤一致。&lt;/p>
 &lt;h3 id="下载并配置驱动">下载并配置驱动
@@ -972,8 +986,8 @@ alt="image-20260122235021992"
 &lt;p>驱动下载：选择对应版本（openGauss 6.0.0 (LTS)）、架构（x86_64）、操作系统（openEuler 22.03 LTS），确保驱动与系统及Python版本兼容。&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>下载地址：&lt;a class="link" href="https://opengauss.org/zh/download/archive/?version=6.0.0%20%5c%28LTS%5c%29" target="_blank" rel="noopener"
->https://opengauss.org/zh/download/archive/?version=6.0.0%20(LTS)
+&lt;p>下载地址：&lt;a class="link" href="https://opengauss.org/zh/download/" target="_blank" rel="noopener"
+>https://opengauss.org/zh/download/)
 &lt;span style="white-space: nowrap;">&lt;svg width=".7em"
 height=".7em" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
 &lt;path d="m13 3l3.293 3.293l-7 7l1.414 1.414l7-7L21 11V3z" fill="currentColor" />
@@ -1246,7 +1260,7 @@ alt="image-20260122232258706"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">cm_ctl switchover -A
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/dEcm9sN7pgk2QUq.png">
@@ -1291,7 +1305,7 @@ alt="image-20260122232318035"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">cm_ctl switchover -A
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>倒换过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/zavbqUx7rCt58e3.png">
@@ -1336,7 +1350,7 @@ alt="image-20260122232332815"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">sudo reboot now
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/aM3kO19Wl2ozDYJ.png">
@@ -1384,7 +1398,7 @@ alt="image-20260122232406749"
 &lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">reboot now
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程参考截图：&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>重启过程截图：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
 &lt;a data-fancybox="gallery" href="https://s2.loli.net/2026/01/22/zJKa4mtSfrBbpcT.png">
