@@ -28,7 +28,8 @@
 &lt;/li>
 &lt;/ol>
 &lt;h3 id="本地登录命令">本地登录命令
-&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">gsql -d postgres -p &lt;span class="m">15400&lt;/span> -r
+&lt;/h3>&lt;p>&lt;code>-r&lt;/code>参数,可tab键补全命令，可方向键上下查看历史命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Bash" data-lang="Bash">&lt;span class="line">&lt;span class="cl">gsql -d postgres -p &lt;span class="m">15400&lt;/span> -r
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="用户权限属性说明">用户权限属性说明
 &lt;/h3>&lt;p>创建用户时可配置的权限属性如下（按需选择组合）：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-SQL" data-lang="SQL">&lt;span class="line">&lt;span class="cl">&lt;span class="n">postgres&lt;/span>&lt;span class="o">=#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">create&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">testuser&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">with&lt;/span>&lt;span class="w">
