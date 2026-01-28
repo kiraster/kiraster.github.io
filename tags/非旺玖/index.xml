@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>非旺玖 on Kir's Blog</title><link>https://kiraster.github.io/tags/%E9%9D%9E%E6%97%BA%E7%8E%96/</link><description>Recent content in 非旺玖 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Fri, 22 Nov 2024 14:19:42 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/%E9%9D%9E%E6%97%BA%E7%8E%96/index.xml" rel="self" type="application/rss+xml"/><item><title>非旺玖原装的pl2303请联系供应商-驱动替换</title><link>https://kiraster.github.io/posts/a0365ff4.html/</link><pubDate>Fri, 22 Nov 2024 14:19:42 +0000</pubDate><guid>https://kiraster.github.io/posts/a0365ff4.html/</guid><description>&lt;p>USB转串口转接线显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>问题&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>非旺玖 on Kir's Blog</title><link>https://kiraster.github.io/tags/%E9%9D%9E%E6%97%BA%E7%8E%96/</link><description>Recent content in 非旺玖 on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Sat, 23 Nov 2024 14:19:42 +0000</lastBuildDate><atom:link href="https://kiraster.github.io/tags/%E9%9D%9E%E6%97%BA%E7%8E%96/index.xml" rel="self" type="application/rss+xml"/><item><title>非旺玖原装的pl2303请联系供应商-驱动回滚</title><link>https://kiraster.github.io/posts/a0365ff4.html/</link><pubDate>Sat, 23 Nov 2024 14:19:42 +0000</pubDate><guid>https://kiraster.github.io/posts/a0365ff4.html/</guid><description>&lt;p>USB转串口转接线显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>问题&lt;/p>
+&lt;p>使用驱动回滚的方式解决&lt;/p>
+&lt;p>之前提到过替换文件的方式解决，但是有时不好使&lt;/p>
+&lt;p>现在有一个方法叫做驱动回滚&lt;/p>
+&lt;h2 id="驱动回滚">驱动回滚
+&lt;/h2>&lt;ol>
+&lt;li>首先安装旧版驱动
+&lt;ul>
+&lt;li>上网搜索下载安装旧版驱动：PL2303-W10RS3RS4-DCHU-DriverSetup_v1192_20180503&lt;/li>
+&lt;li>如果不是同款转接线，去找到能正常使用的驱动替换&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>插入USB转串口转接线&lt;/li>
+&lt;li>使用Windows更新驱动&lt;/li>
+&lt;li>设备管理器&amp;ndash;&amp;gt;端口&amp;ndash;&amp;gt;对应com口&amp;ndash;&amp;gt;属性&amp;ndash;&amp;gt;驱动程序&amp;ndash;&amp;gt;回滚驱动程序（选个理由）&lt;/li>
+&lt;li>完事&lt;/li>
+&lt;/ol></description></item><item><title>非旺玖原装的pl2303请联系供应商-驱动替换</title><link>https://kiraster.github.io/posts/a0365ff4.html/</link><pubDate>Fri, 22 Nov 2024 14:19:42 +0000</pubDate><guid>https://kiraster.github.io/posts/a0365ff4.html/</guid><description>&lt;p>USB转串口转接线显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>问题&lt;/p>
 &lt;p>之前也出现过这个问题，解决方法是重装驱动，但是windows自动更新又把驱动升级了，又出现这个问题&lt;/p>
 &lt;p>网上的解释是驱动问题，确实也是&lt;/p>
 &lt;p>看到一篇文章说驱动文件替换可解决此问题，记录一下&lt;/p>

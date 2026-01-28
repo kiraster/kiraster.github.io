@@ -6798,7 +6798,23 @@ fill="currentColor">
 &lt;li>如果出现微信启动后没有自动点击&lt;code>进入微信&lt;/code>按钮，可添加一定时间&lt;code>time.sleep&lt;/code>等待&lt;/li>
 &lt;li>注意替换微信安装位置，我这安装在D盘&lt;/li>
 &lt;li>小玩意儿，省一个点击鼠标或敲回车的时间&lt;/li>
-&lt;/ul></description></item><item><title>HP440笔记本有线无线自动切换问题</title><link>https://kiraster.github.io/posts/85530671.html/</link><pubDate>Fri, 22 Nov 2024 15:17:57 +0000</pubDate><guid>https://kiraster.github.io/posts/85530671.html/</guid><description>&lt;p>惠普440笔记本安装win10后，有线无线自动切换，只能二选一问题&lt;/p>
+&lt;/ul></description></item><item><title>非旺玖原装的pl2303请联系供应商-驱动回滚</title><link>https://kiraster.github.io/posts/a0365ff4.html/</link><pubDate>Sat, 23 Nov 2024 14:19:42 +0000</pubDate><guid>https://kiraster.github.io/posts/a0365ff4.html/</guid><description>&lt;p>USB转串口转接线显示&lt;code>非旺玖原装的pl2303请联系供应商&lt;/code>问题&lt;/p>
+&lt;p>使用驱动回滚的方式解决&lt;/p>
+&lt;p>之前提到过替换文件的方式解决，但是有时不好使&lt;/p>
+&lt;p>现在有一个方法叫做驱动回滚&lt;/p>
+&lt;h2 id="驱动回滚">驱动回滚
+&lt;/h2>&lt;ol>
+&lt;li>首先安装旧版驱动
+&lt;ul>
+&lt;li>上网搜索下载安装旧版驱动：PL2303-W10RS3RS4-DCHU-DriverSetup_v1192_20180503&lt;/li>
+&lt;li>如果不是同款转接线，去找到能正常使用的驱动替换&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>插入USB转串口转接线&lt;/li>
+&lt;li>使用Windows更新驱动&lt;/li>
+&lt;li>设备管理器&amp;ndash;&amp;gt;端口&amp;ndash;&amp;gt;对应com口&amp;ndash;&amp;gt;属性&amp;ndash;&amp;gt;驱动程序&amp;ndash;&amp;gt;回滚驱动程序（选个理由）&lt;/li>
+&lt;li>完事&lt;/li>
+&lt;/ol></description></item><item><title>HP440笔记本有线无线自动切换问题</title><link>https://kiraster.github.io/posts/85530671.html/</link><pubDate>Fri, 22 Nov 2024 15:17:57 +0000</pubDate><guid>https://kiraster.github.io/posts/85530671.html/</guid><description>&lt;p>惠普440笔记本安装win10后，有线无线自动切换，只能二选一问题&lt;/p>
 &lt;p>拔插网线显示如下：&lt;/p>
 &lt;p>
 &lt;div class="post-img-view">
