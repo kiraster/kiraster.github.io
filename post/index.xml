@@ -12,7 +12,7 @@
 &lt;p>相信这也跟国内一些资料相对封闭有关系&lt;/p>
 &lt;p>对AI问答的使用减少了对搜索引擎的使用，而搜索引擎显示的内容又逐渐AI化，这道题怎么解?之前还看到过AI编造引用信息源的&lt;/p>
 &lt;p>AI写作弄出的内容过于“正确完美”，似乎抹去了自我的风格特征&lt;/p>
-&lt;p>就扯到这^_^__&lt;/p></description></item><item><title>GBase 8c V5.0.0 主备式部署指北</title><link>https://kiraster.github.io/posts/f5ef6e99.html/</link><pubDate>Fri, 23 Jan 2026 00:02:44 +0800</pubDate><guid>https://kiraster.github.io/posts/f5ef6e99.html/</guid><description>&lt;h2 id="部署环境说明">部署环境说明
+&lt;p>就扯到这^_^__&lt;/p></description></item><item><title>GBase 8c V5.0.0 主备式部署</title><link>https://kiraster.github.io/posts/f5ef6e99.html/</link><pubDate>Fri, 23 Jan 2026 00:02:44 +0800</pubDate><guid>https://kiraster.github.io/posts/f5ef6e99.html/</guid><description>&lt;h2 id="部署环境说明">部署环境说明
 &lt;/h2>&lt;ul>
 &lt;li>GBase 8c 主备式安装包：&lt;a class="link" href="https://www.gbase.cn/community/post/3999" target="_blank" rel="noopener"
 >GBase8cV5_S5.0.0B28_centos7.8_x86_64.tar.gz
@@ -623,7 +623,7 @@ fill="currentColor">
 &lt;li>/opt/database/ gabase的安装路径不会删除&lt;/li>
 &lt;li>安装的依赖包不会删除&lt;/li>
 &lt;li>部署环境配置步骤中的设置不会恢复默认（除创建的gbase用户和用户组）&lt;/li>
-&lt;/ul></description></item><item><title>GBase8c数据库登录操作指北</title><link>https://kiraster.github.io/posts/cea66595.html/</link><pubDate>Thu, 22 Jan 2026 23:40:21 +0800</pubDate><guid>https://kiraster.github.io/posts/cea66595.html/</guid><description>&lt;h2 id="环境准备说明">环境准备说明
+&lt;/ul></description></item><item><title>GBase8c数据库登录操作</title><link>https://kiraster.github.io/posts/cea66595.html/</link><pubDate>Thu, 22 Jan 2026 23:40:21 +0800</pubDate><guid>https://kiraster.github.io/posts/cea66595.html/</guid><description>&lt;h2 id="环境准备说明">环境准备说明
 &lt;/h2>&lt;ul>
 &lt;li>
 &lt;p>数据库版本：GBase8cV5_S5.0.0B28&lt;/p>
@@ -1133,7 +1133,7 @@ fill="currentColor">
 &lt;li>
 &lt;p>Python脚本提示“psycopg2导入失败”：检查环境变量配置是否生效，驱动包解压路径是否与配置一致。&lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>GBase8c主备式部署数据库倒换测试指北</title><link>https://kiraster.github.io/posts/37a292f0.html/</link><pubDate>Thu, 22 Jan 2026 23:18:53 +0800</pubDate><guid>https://kiraster.github.io/posts/37a292f0.html/</guid><description>&lt;h2 id="环境准备">环境准备
+&lt;/ol></description></item><item><title>GBase8c主备式部署数据库倒换测试</title><link>https://kiraster.github.io/posts/37a292f0.html/</link><pubDate>Thu, 22 Jan 2026 23:18:53 +0800</pubDate><guid>https://kiraster.github.io/posts/37a292f0.html/</guid><description>&lt;h2 id="环境准备">环境准备
 &lt;/h2>&lt;ul>
 &lt;li>
 &lt;p>完成GBase8c主备式部署（含CM、VIP配置）&lt;/p>

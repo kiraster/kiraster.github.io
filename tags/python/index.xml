@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Kir's Blog</title><link>https://kiraster.github.io/tags/python/</link><description>Recent content in Python on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 22 Jan 2026 23:40:21 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>GBase8c数据库登录操作指北</title><link>https://kiraster.github.io/posts/cea66595.html/</link><pubDate>Thu, 22 Jan 2026 23:40:21 +0800</pubDate><guid>https://kiraster.github.io/posts/cea66595.html/</guid><description>&lt;h2 id="环境准备说明">环境准备说明
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Kir's Blog</title><link>https://kiraster.github.io/tags/python/</link><description>Recent content in Python on Kir's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>@kiraster</copyright><lastBuildDate>Thu, 22 Jan 2026 23:40:21 +0800</lastBuildDate><atom:link href="https://kiraster.github.io/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>GBase8c数据库登录操作</title><link>https://kiraster.github.io/posts/cea66595.html/</link><pubDate>Thu, 22 Jan 2026 23:40:21 +0800</pubDate><guid>https://kiraster.github.io/posts/cea66595.html/</guid><description>&lt;h2 id="环境准备说明">环境准备说明
 &lt;/h2>&lt;ul>
 &lt;li>
 &lt;p>数据库版本：GBase8cV5_S5.0.0B28&lt;/p>
@@ -508,7 +508,7 @@ fill="currentColor">
 &lt;li>
 &lt;p>Python脚本提示“psycopg2导入失败”：检查环境变量配置是否生效，驱动包解压路径是否与配置一致。&lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>GBase8c主备式部署数据库倒换测试指北</title><link>https://kiraster.github.io/posts/37a292f0.html/</link><pubDate>Thu, 22 Jan 2026 23:18:53 +0800</pubDate><guid>https://kiraster.github.io/posts/37a292f0.html/</guid><description>&lt;h2 id="环境准备">环境准备
+&lt;/ol></description></item><item><title>GBase8c主备式部署数据库倒换测试</title><link>https://kiraster.github.io/posts/37a292f0.html/</link><pubDate>Thu, 22 Jan 2026 23:18:53 +0800</pubDate><guid>https://kiraster.github.io/posts/37a292f0.html/</guid><description>&lt;h2 id="环境准备">环境准备
 &lt;/h2>&lt;ul>
 &lt;li>
 &lt;p>完成GBase8c主备式部署（含CM、VIP配置）&lt;/p>
